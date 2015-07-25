@@ -3,6 +3,9 @@ div {
   border: 1px solid red;
   margin: 10px;
 }
+.power {
+  background-color: yellow;
+}
 /* /Users/youzi/dev/gaston/lib/browser/styles.less */
 .gaston-ui {
   position: absolute;

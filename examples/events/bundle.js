@@ -130,7 +130,7 @@ var package = require('package.json')
 
 var gaston = window.gaston = module.exports = {
   server: {
-    ip: '145.101.24.73',
+    ip: '192.168.0.23',
     port: '8080',
     socket: '9001'
   },
@@ -23317,45 +23317,47 @@ var Event = require( 'vjs/lib/event' )
 var domEvents = {}
 
 module.exports = new Emitter( {
-  $noInstances:true,
   $define: {
+    $noInstances: true,
     _$key: {
-      set: function( val ) {
+      set: function( val ) { //click
         this._$parent._$parent.$node.style.cursor = 'pointer'
 
         if( !domEvents[ val ] ) {
+
           document.body.addEventListener( val, function( e ) {
             var event
-            var path
+            var path = []
             var child = e.target
             var origChild = child
             var target = child.$base
 
-            if( !target ) {
-              path = []
-              while( !target ) {
-                path.push( child.className )
-                child = child.parentNode
-                target = child.$base
-              }
-              for( var i = path.length - 1; i >= 0; i-- ) {
-                target = target[ path[ i ] ]
-              }
+            while( !target ) {
+              path.push( child.id )
+              child = child.parentNode
+              target = child.$base
             }
 
-            target._$contextNode = origChild
+            for( var i = path.length - 1; i >= 0; i-- ) {
+              target = target[ path[ i ] ]
+            }
 
             while( target ) {
+              if( e.$prevent ) {
+                e.$prevent = null
+                break
+              }
               if( target.$on[ val ] ) {
                 event = new Event( target )
-                event.$domEvent = e
                 target.$emit( val, event, e )
               }
               target = target._$parent
             }
           } )
+
           domEvents[ val ] = true
         }
+
         this.__$key = val
       },
       get: function( val ) {
@@ -23374,29 +23376,64 @@ var On = require( 'vjs/lib/observable/onConstructor' )
 
 var Element = new Observable( {
   $define: {
+    $remove:function( val ){
+      //really slow
+      var context = this._$context
+      var node
+      var parentNode
+      if(context){
+        node = context.$node
+
+        var i = context.$path.length
+        var path = this.$path
+        var length = path.length
+        var childNodes = node.childNodes
+
+        for (; i < length; i++) {
+          for (var j = childNodes.length - 1; j >= 0; j--) {
+            if(childNodes[j].id === path[i]){
+              parentNode = node
+              node = childNodes[j]
+              childNodes = node.childNodes
+              break
+            }
+          }
+        }
+      }else{
+        node = this.$node
+        parentNode = node.parentNode
+      }
+
+      parentNode.removeChild(node)
+    },
     _$key: {
       set: function( val ) {
         if( this._$node ) {
-          this._$node.className = val
+          this._$node.id = val
         }
         this.__$key = val
       },
       get: function() {
         return this.__$key
+          // || ( this._$node && ( this.__$key = this._$node.id ) )
       }
     },
     $node: {
-    	//Returns the node. If no node, creates the node.
+      //Returns the node. If no node, creates the node.
       get: function() {
-      	var node = this._$contextNode || this._$node
+        var node = this._$node
+        var key
 
         if( !node ) {
-        	node = document.createElement( 'div' )
+          node = document.createElement( 'div' )
           node.$base = this
-          node.className = this._$key
+          if( key = this._$key ) {
+            node.id = key //this will change!
+          }
+
           //TODO: remove this:testing
-          node.style.borderLeft = '10px solid blue'
-          node.innerHTML = this.$path.join(' > ')
+          // node.style.borderLeft = '10px solid blue'
+          node.innerHTML = this.$path.join( ' > ' )
 
           this._$node = node
         }
@@ -23406,8 +23443,8 @@ var Element = new Observable( {
     $generateConstructor: function() {
       return function DerivedElement( val, event, parent, key ) {
         if( this._$node ) {
-					var elem
-					var key
+          var elem
+          var key
           var node
           var childNode
           var childNodes
@@ -23421,7 +23458,7 @@ var Element = new Observable( {
               key = originElement._$key
               childNodes = elem.childNodes
               for( var i = 0, l = childNodes.length; i < l; i++ ) {
-              	childNode = childNodes[ i ]
+                childNode = childNodes[ i ]
                 if( childNode.id === key ) {
                   node = childNode
                 }
@@ -23438,7 +23475,7 @@ var Element = new Observable( {
   },
   $flags: {
     $node: function( node ) {
-    	node.$base = this
+      node.$base = this
       this._$node = node
     },
     $on: new On( {
@@ -23450,12 +23487,16 @@ var Element = new Observable( {
   $useVal: true,
   $on: {
     $addToParent: function( event, meta ) {
-    	var parent = this.$parent
+      var parent = this.$parent
+      var node
       if( parent && this instanceof Element ) {
-        parent.$node.appendChild( this.$node )
+        node = this.$node
+        node.id = this._$key
+        parent.$node.appendChild( node )
       }
     }
-  }
+  },
+  $inject: require( './properties' )
 } ).$Constructor
 
 Element.prototype.define( {
@@ -23463,7 +23504,71 @@ Element.prototype.define( {
 } )
 
 module.exports = Element
-},{"./emitter":"/Users/youzi/dev/vui/lib/element/emitter.js","vjs/lib/observable":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/index.js","vjs/lib/observable/onConstructor":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/onConstructor.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/base/constructor.js":[function(require,module,exports){
+
+},{"./emitter":"/Users/youzi/dev/vui/lib/element/emitter.js","./properties":"/Users/youzi/dev/vui/lib/element/properties.js","vjs/lib/observable":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/index.js","vjs/lib/observable/onConstructor":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/onConstructor.js"}],"/Users/youzi/dev/vui/lib/element/properties.js":[function(require,module,exports){
+"use strict";
+
+var Observable = require('vjs/lib/observable')
+
+//TODO: is this the best way for inject?
+module.exports = exports = function( prototype ){
+  var flags = prototype.$flags
+  for (var field in exports) {
+    exports[field] = new Observable({
+      $useVal:true,
+      $on: {
+        $change:exports[field]
+      }
+    })
+    var property = exports[field]
+    flags[field] = returnFn(field, property)
+  }
+}
+
+function returnFn(field, property){
+  return function(val, event) {
+    if(!this[field]) {
+      this.$setKeyInternal( field, new property.$Constructor(), false)
+    }
+    // //TODO: event moet hier
+    this[field].$set(val)
+  }
+}
+
+exports = {
+  $css:function( event ) {
+    var node = this.$parent.$node
+    var className = this.$parent.$node.className
+    node.className = this.$val
+  },
+  $border:function( event ) {
+    this.$parent.$node.style.border = this.$val
+  },
+  $text:function( event ) { //don't replace the entire
+    var node = this.$parent.$node
+    var nodes = node.childNodes
+    var v = this.$val || ''
+
+    if(v instanceof Object) v = ''
+
+    if (/text/.test(node.type)) {
+      node.value = v;
+      return;
+    }
+
+    if (nodes) {
+      for (var i = 0, l = nodes.length; i < l; i++) {
+        if (nodes[i].nodeType === 3) {
+          // console.log('BLABLA'.inverse,v)
+          nodes[i].nodeValue = v;
+          return;
+        }
+      }
+    }
+    node.appendChild(document.createTextNode(v));
+  }
+}
+},{"vjs/lib/observable":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/index.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/base/constructor.js":[function(require,module,exports){
 "use strict";
 
 var Base = require('./')
@@ -24998,7 +25103,7 @@ var Event = require('../event')
 var util = require('../util')
 var convertToArray = util.convertToArray
 
-var c = 0
+// var c = 0
 //split this function up in multiple
 exports.$define = {
   $emit : function( type, event, meta, extraMeta ) {
@@ -25016,17 +25121,18 @@ exports.$define = {
         event = new Event( this )
       }
 
-      if(!emitter.$noInstances) {
-        var instances = this.$on._instances
-        if( instances ) {
-          for( var i = 0, instance, length = instances.length; i < length; i++ ) {
-            instance = instances[i]
-            if( instance !== this && instance !== this.__proto__ ) {
-              instance.$emit.apply( instance, arguments )
-            }
-          }
-        }
-      }
+      //TODO: uncomment this when not working on element
+      // if(!emitter.$noInstances) {
+      //   var instances = this.$on._instances
+      //   if( instances ) {
+      //     for( var i = 0, instance, length = instances.length; i < length; i++ ) {
+      //       instance = instances[i]
+      //       if( instance !== this && instance !== this.__proto__ ) {
+      //         instance.$emit.apply( instance, arguments )
+      //       }
+      //     }
+      //   }
+      // }
 
       if( meta ) {
         //for perf
@@ -26079,7 +26185,7 @@ function makeOR(value, subsObj) {
 
 },{}],"gaston-tester":[function(require,module,exports){
 var chai = window.chai = require('chai');
-var should = window.should = chai.should();
+// var should = window.should = chai.should();
 var expect = window.expect = chai.expect;
 var assert = window.assert = chai.assert;
 
@@ -26097,33 +26203,53 @@ require('./style.less')
 
 var app = require('../../lib/app')
 var Element = require('../../lib/element')
+
 Element.prototype.inject( require('vjs/lib/methods/setWithPath') )
-//-------- example implementation----------
 
-var a = new Element({
-  $key:'a'
-})
-
-a.setWithPath('b.c.d.e.f',
-{ $on:{
-    click:function(){
-      console.error('burn')
+//BUG? path is shared?
+var thing = new Element({
+  one:{
+    $on:{
+      click:click
+    },
+    two:{
+      $on:{
+        click:click
+      },
+      three:{
+        $on:{
+          click:click
+        }
+      }
     }
   }
 })
 
-a.setWithPath('1.2.3',
-{ $on:{
-    click:function(){
-      console.error('numbergame')
-    }
-  }
-})
+// thing.one.two.$remove()
 
 app.$set({
-  a:a,
-  b: new a.$Constructor()
+  a:new thing.$Constructor({
+    $text:'a',
+  }),
+  b:new thing.$Constructor({
+    $text:'b',
+  }),
+  c:new thing.$Constructor({
+    $text:'c',
+  }),
+  d:new thing.$Constructor({
+    $text:'d',
+  })
 })
+
+function click(event, e){
+  // var str =  Math.random() * 10 + ' ' + this.$path
+  // if(!this.$text) this.$set({$text:str})
+  // else this.$text.$val = str
+  e.$prevent = true
+
+  this.$remove()
+}
 },{"../../lib/app":"/Users/youzi/dev/vui/lib/app/index.js","../../lib/element":"/Users/youzi/dev/vui/lib/element/index.js","./style.less":"/Users/youzi/dev/vui/examples/events/style.less","vjs/lib/methods/setWithPath":"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/setWithPath.js"}],"package.json":[function(require,module,exports){
 module.exports={
   "name": "vui",

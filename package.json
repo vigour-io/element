@@ -1,6 +1,6 @@
 {
   "name": "vui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -14,12 +14,12 @@
     "doc": "jsdoc2md lib/**/*.js > vjs.wiki/Classes.md"
   },
   "author": "Vigour.io <dev@vigour.io>",
-  "license": "ISC",
+  "license": "GPL",
   "bugs": {
     "url": "https://github.com/vigour-io/vui/issues"
   },
   "dependencies": {
-    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#0.1.2"
+    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
   },
   "homepage": "https://github.com/vigour-io/vui",
   "gaston": {

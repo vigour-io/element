@@ -7123,6 +7123,53 @@ module.exports = isArray || function (val) {
   return !! val && '[object Array]' == str.call(val);
 };
 
+},{}],"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/os-browserify/browser.js":[function(require,module,exports){
+exports.endianness = function () { return 'LE' };
+
+exports.hostname = function () {
+    if (typeof location !== 'undefined') {
+        return location.hostname
+    }
+    else return '';
+};
+
+exports.loadavg = function () { return [] };
+
+exports.uptime = function () { return 0 };
+
+exports.freemem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.totalmem = function () {
+    return Number.MAX_VALUE;
+};
+
+exports.cpus = function () { return [] };
+
+exports.type = function () { return 'Browser' };
+
+exports.release = function () {
+    if (typeof navigator !== 'undefined') {
+        return navigator.appVersion;
+    }
+    return '';
+};
+
+exports.networkInterfaces
+= exports.getNetworkInterfaces
+= function () { return {} };
+
+exports.arch = function () { return 'javascript' };
+
+exports.platform = function () { return 'browser' };
+
+exports.tmpdir = exports.tmpDir = function () {
+    return '/tmp';
+};
+
+exports.EOL = '\n';
+
 },{}],"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/path-browserify/index.js":[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
@@ -23299,7 +23346,343 @@ module.exports = amdefine;
 
 }).call(this,require('_process'),"/../gaston/node_modules/source-map/node_modules/amdefine/amdefine.js")
 
-},{"_process":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/process/browser.js","path":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/path-browserify/index.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/base/constructor.js":[function(require,module,exports){
+},{"_process":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/process/browser.js","path":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/path-browserify/index.js"}],"/Users/youzi/dev/vui/lib/element/emitter.js":[function(require,module,exports){
+"use strict";
+
+//--------events----------
+var Emitter = require('vjs/lib/emitter')
+var Event = require('vjs/lib/event')
+var domEvents = {}
+
+module.exports = new Emitter({
+  $define: {
+    _$key: {
+      set: function(val) {
+        if (!domEvents[val]) {
+          document.body.addEventListener(val, function(e) {
+            var event
+            var path
+            var child = e.target
+            var origChild = child
+            var target = child.$base
+
+            if (!target) {
+              path = []
+              while (!target) {
+                path.push(child.className)
+                child = child.parentNode
+                target = child.$base
+              }
+              for (var i = path.length - 1; i >= 0; i--) {
+                target = target[path[i]]
+              }
+            }
+
+            target._$contextNode = origChild
+
+            while (target) {
+              if (target.$on[val]) {
+                event = new Event(target)
+                event.$domEvent = e
+                target.$emit(val, event, e)
+              }
+              target = target._$parent
+            }
+          })
+          domEvents[val] = true
+        }
+        this.__$key = val
+      },
+      get: function(val) {
+        return this.__$key
+      }
+    }
+  }
+}).$Constructor
+},{"vjs/lib/emitter":"/Users/youzi/dev/vui/node_modules/vjs/lib/emitter/index.js","vjs/lib/event":"/Users/youzi/dev/vui/node_modules/vjs/lib/event/index.js"}],"/Users/youzi/dev/vui/lib/element/index.js":[function(require,module,exports){
+"use strict";
+
+var DomEmitter = require( './emitter' )
+var Observable = require( 'vjs/lib/observable' )
+var On = require( 'vjs/lib/observable/onConstructor' )
+
+var Element
+
+var element = new Observable( {
+  $define: {
+    _$key: {
+      set: function( val ) {
+        if( this._$node ) {
+          this._$node.className = val
+        }
+        this.__$key = val
+      },
+      get: function() {
+        return this.__$key
+      }
+    },
+    $node: {
+      get: function() {
+        if( this._$contextNode ) {
+          return this._$contextNode
+        }
+
+        if( !this._$node ) {
+          this._$node = document.createElement( 'div' )
+          this._$node.$base = this
+          this._$node.className = this._$key
+
+          //TODO: remove this:testing
+          this._$node.innerHTML = this.$path
+        }
+        return this._$node
+      }
+    },
+    $generateConstructor: function() {
+      return( function DerivedElement( val, event, parent, key ) {
+        if( this._$node ) {
+					var elem
+					var key
+          var node
+          var childNode
+          var childNodes
+          var originElement
+
+          if( parent && parent._$node ) {
+            //dit is ook niet goed
+            originElement = Object.getPrototypeOf( this )
+            if( parent instanceof originElement._$parent._$Constructor ) {
+              elem = parent._$node
+              key = originElement._$key
+              childNodes = elem.childNodes
+              for( var i = 0, l = childNodes.length; i < l; i++ ) {
+              	childNode = childNodes[ i ]
+                if( childNode.className === key ) {
+                  node = childNode
+                }
+              }
+            }
+          }
+          
+          this._$node = node || this._$node.cloneNode( true )
+          this._$node.$base = this
+        }
+        Observable.apply( this, arguments )
+      } )
+    }
+  },
+  $flags: {
+    $node: function( val ) {
+      this._$node = val
+      this._$node.$base = this
+    },
+    $on: new On( {
+      $define: {
+        $ChildConstructor: DomEmitter
+      }
+    } )
+  },
+  $useVal: true,
+  $on: {
+    $addToParent: function( event, meta ) {
+      if( this.$parent && this instanceof Element ) {
+        this.$parent.$node.appendChild( this.$node )
+      }
+    }
+  }
+} )
+
+Element = element.$Constructor
+
+element.define( {
+  $ChildConstructor: Element
+} )
+
+module.exports = Element
+
+},{"./emitter":"/Users/youzi/dev/vui/lib/element/emitter.js","vjs/lib/observable":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/index.js","vjs/lib/observable/onConstructor":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/onConstructor.js"}],"/Users/youzi/dev/vui/node_modules/vjs/dev/perf.js":[function(require,module,exports){
+(function (process){
+// perf.js
+var isNode = (typeof window === 'undefined')
+  , os
+
+var origLog = console.log
+
+var util = {
+  checkArray : function (list, val, index, field) {
+    var arr = index instanceof Array
+    if(!list) return false
+    for (var i = 0, l = list.length, t; i < l; i++) {
+      t = list[i]
+      if (index !== void 0) {
+        if (index === true) {
+          if (t === val) return i
+        } else if (t[index] === val) return field ? t : i
+      } else {
+        if (t === val) return true
+      }
+    }
+    return false
+  }
+}
+
+if (isNode) { 
+  os = require('os')
+} else {
+  console.log('DEBUG \n\nif you want to check memory usage start chrome using: \n\n open -a Google\ Chrome --args --enable-precise-memory-info --enable-memory-info --js-flags="--expose-gc"\n')
+}
+
+function _test(method, name, complete, call, args, nolog, logger) {
+  var start = exports.now()
+    , memorystart = exports.memory()
+    , memoryend
+    , mem
+    , time
+    , end
+    , sub 
+  if (!name) name = 'TEST PERFORMANCE'
+  if (call) {
+    sub = method.apply(call, args)
+  } 
+  else {
+    sub = method.apply(this, args)
+  }
+  end = exports.now()
+  memoryend = exports.memory()
+  mem = (memoryend - memorystart)
+  time = end - start - (sub || 0)
+  if (complete) {
+    complete(((time) / 1000), (memoryend - memorystart))
+  } 
+  else if (!nolog) {
+    if(logger) {
+      logger( name , '\nparse time: ' 
+      + ((end - start) / 1000) 
+      + ' sec' + (mem ? '\nmemory used (approximate): ' 
+      + mem/1024 + ' mb' : ''))
+    } else {
+      console.log(name , '\nparse time: ' 
+      + ((end - start) / 1000) 
+      + ' sec' + (mem ? '\nmemory used (approximate): ' 
+      + mem/1024 + ' mb' : ''))
+    }
+  }
+  return time
+}
+
+
+function _done(params, time, mem, memstart) {
+  if (params.complete) {
+    params.complete(time, mem, params, exports.average(time)[0], exports.average(time)[1])
+  } else {
+
+      // console.log('????')
+
+
+      // var memobj = {
+      //   totalJSHeapSize:window.performance.memory.totalJSHeapSize * Math.pow(0.000976562,2)+'mb' ,
+      //   usedJSHeapSize:window.performance.memory.usedJSHeapSize * Math.pow(0.000976562,2) +'mb'
+      // }
+
+
+      // var memtotal = memstart ? memstart-exports.memory() : 0
+
+      (params.log || console.log)(
+        params.name 
+        , ' n=' + params.loop 
+        + '\nparse time:' 
+        + (params.extensive 
+          ? (' \n\n' + time.join(' sec\n') + ' sec\n\n') 
+          : '') 
+        + 'average: ' + exports.average(time)[1] 
+        + ' sec\ntotal: ' 
+        + exports.average(time)[0] + ' sec\n'
+        // + (mem.length>0 ? '\nmemory used (approximate): '+mem+' kb' : '')
+        // + (memstart ? 'total memory used (entire app): ' + JSON.stringify(memobj,false,2) : '')
+      );
+  }
+}
+
+module.exports = exports = function (params, fn) {
+  if (fn && typeof params === 'string') {
+    return _test(fn, params)
+  } 
+  else if (typeof params === 'function') {
+    return _test(params)
+  } 
+  else if (params instanceof Object) {
+    if(!params.name) params.name = 'performance test'
+
+    if (params.loop) {
+
+      var memstart = exports.memory()
+      //testing memory in loop is hard since the gc almost never makes it before next iteration;
+      var time = []
+        , mem = []
+        , callback = function (_time, memory) {
+          time.push(_time)
+          if (memory) mem.push(memory)
+        }
+
+      if(params.interval) {
+        var cnt = 0
+          , interval = setInterval(function() {
+              cnt++
+              if(cnt===params.loop-1) {
+                 clearInterval(interval)
+                 _done(params, time, mem, memstart) 
+              } else {
+                _test(params.method, false, callback)
+              }
+            },params.interval)
+      } else {
+        for (var i = params.loop; i > 0; i--) {
+          _test(params.method, false, callback)
+        }
+        _done(params, time, mem, memstart) 
+      } 
+      return exports.average(time)
+    } 
+    else {
+      return _test(params.method
+        , params.name
+        , params.complete
+        , params.call
+        , params.args
+        , params.nolog
+        , params.log
+        )
+    }
+  }
+}
+
+exports.now = function () {
+  return isNode
+    ? process.hrtime()[0] * 1000 + process.hrtime()[1] * 0.000001 
+    : (window.performance && window.performance.now 
+      ? window.performance.now() 
+      : Date.now())
+}
+
+exports.memory = function () {
+  return isNode 
+    ? process.memoryUsage().heapUsed * 0.000976562  
+    : (window && window.performance && window.performance.memory 
+      ? window.performance.memory.usedJSHeapSize * 0.000976562 
+      : 0)
+}
+
+exports.average = function (array) {
+  var number = 0
+  for (var i = array.length - 1; i >= 0; i--) {
+    number += array[i]
+  }
+  return [number, number / array.length]
+}
+
+}).call(this,require('_process'))
+
+},{"_process":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/process/browser.js","os":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/os-browserify/browser.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/base/constructor.js":[function(require,module,exports){
 "use strict";
 
 var Base = require('./')
@@ -24307,12 +24690,8 @@ var Emitter = module.exports = new Base({
         this._$meta = meta
       }
 
-      // console.error('xxxxx wtf is going on', 
-      //   this.$lastStamp, 
-      //   event.$stamp
-      // )
-
       if( this.$lastStamp !== event.$stamp ) {
+
         if( event.$origin !== bind && !force ) {
           this.$postpone( bind, event )
         } else if( !event.$block ) {
@@ -24652,31 +25031,7 @@ event.define({
 })
 
 
-},{"../base":"/Users/youzi/dev/vui/node_modules/vjs/lib/base/index.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/event/toString.js":[function(require,module,exports){
-"use strict"
-var Base = require('../base')
-var Event = require('./')
-
-exports.toString = function() {
-  var str = ''
-  for( var key$ in this ) {
-    if( key$ === '$postponed' ) {
-      str+='\n'+key$+ ' : '
-      for( var i in this[key$] ) {
-        // console.info(key$,this[key$])
-        str+= '\n  > '+this[key$][i].$path.join('.')
-      }
-    } else {
-      str+= '\n'+key$ + ' : ' + (this[key$] instanceof Base
-         ? this[key$].$path
-         : this[key$])
-    }
-  }
-  return str
-}
-
-
-},{"../base":"/Users/youzi/dev/vui/node_modules/vjs/lib/base/index.js","./":"/Users/youzi/dev/vui/node_modules/vjs/lib/event/index.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/each.js":[function(require,module,exports){
+},{"../base":"/Users/youzi/dev/vui/node_modules/vjs/lib/base/index.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/each.js":[function(require,module,exports){
 "use strict";
 
 /**
@@ -24733,6 +25088,7 @@ exports.$define = {
 
 var Event = require('../event')
 var util = require('../util')
+var convertToArray = util.convertToArray
 
 //split this function up in multiple
 exports.$define = {
@@ -24747,7 +25103,7 @@ exports.$define = {
     if( emitter ) {
 
       if( event === void 0 ) {
-        console.warn( 'force $emit from', this.$path, type )
+        // console.warn( 'force $emit from', this.$path, type )
         event = new Event( this )
       }
 
@@ -24766,7 +25122,7 @@ exports.$define = {
       if( meta ) {
         //for perf
         if( extraMeta ) {
-          var args = util.convertToArray( arguments )
+          var args = convertToArray( arguments )
           args.unshift( event )
           args[1] = this
           args[2] = void 0
@@ -24831,18 +25187,22 @@ observable.define({
   $ChildConstructor: Observable,
   $generateConstructor: function() {
     return (function derivedObservable( val, event, parent, key ) {
+     
       if(this.$on) {
         this.$on.$newParent( this, event )
       }
+     
       this.setParent( val, event, parent, key )
       if(val) {
         event = this.$set( val, event, true )
       }      
+    
       this.$emit( 
         '$new', 
         event === true ? void 0 : event, 
         Object.getPrototypeOf( this ) 
       )
+    
     })
   },
   $setValueInternal: function( val, event ) {
@@ -24910,11 +25270,13 @@ observable.define({
     
     if( event ) {
       this.$emit( '$property', event, key )
-      if( fireParentEvent && this[key] instanceof Observable ) {
-        this[key].$emit( '$addToParent', event )
-      }
     }
 
+    //double check wtf is going on with event -- prop is false
+    if( fireParentEvent && this[key] instanceof Observable ) {
+      this[key].$emit( '$addToParent', void 0 ) //event
+    }
+    
   }
 })
 
@@ -25049,13 +25411,12 @@ var On = module.exports = new Base({
     }),
     $new: new Emitter({
       $define:{
-        // $executePostponed:false,
-        //maybe use this for the instances array as well?
         $noInstances:true
       }
     }),
     $addToParent: new Emitter({
       $define:{
+        //make no instance and exec postponed same...
         $executePostponed:false,
         $noInstances:true
       }
@@ -25492,7 +25853,7 @@ exports.isRemoved = function( base ) {
 }
 },{"../base":"/Users/youzi/dev/vui/node_modules/vjs/lib/base/index.js"}],"gaston-tester":[function(require,module,exports){
 var chai = window.chai = require('chai');
-// var should = window.should = chai.should();
+var should = window.should = chai.should();
 var expect = window.expect = chai.expect;
 var assert = window.assert = chai.assert;
 
@@ -25506,130 +25867,7 @@ mocha.ui('bdd');
 mocha.reporter('html');
 
 },{"chai":"/Users/youzi/dev/gaston/node_modules/chai/index.js"}],"index.js":[function(require,module,exports){
-
-var Emitter = require('vjs/lib/emitter')
-var Observable = require('vjs/lib/observable')
-var On = require('vjs/lib/observable/onConstructor')
-var DOMEVENTS = {}
-
-var cnt = 0
-
-var Event = require('vjs/lib/event')
-Event.prototype.inject( require('vjs/lib/event/toString' ))
-
-//--------events----------
-
-var DomEmitter = new Emitter({
-  $define: {
-    _$key: {
-      set:function(val) {
-        if(!DOMEVENTS[val]) {
-          console.error( 'should add to dom event' , val )
-          document.body.addEventListener( val, function(e) {
-            e.$stamp = (++cnt)
-            var event
-
-            if(e.target.$base) {
-              if(e.target.$base.$on && e.target.$base.$on[val] ) {
-                if(!event) {
-                  event = new Event( e.target.$base )
-                  event.domEvent = e
-                }
-                e.target.$base.$emit( val, event, e )
-              }
-            }
-
-          })
-          DOMEVENTS[val] = true
-        }
-        this.__$key = val
-      },
-      get:function(val) {
-        return this.__$key
-      }
-    }
-  }
-}).$Constructor
-
-//------element---------
-
-var Element
-
-var element = new Observable({
-  $define: {
-    $node: {
-      get:function() {
-        if(!this._$node)  {
-          this._$node = document.createElement( 'div' )
-          this._$node.$base = this
-          this._$node.style.border = '40px solid orange'
-          this._$node.style.marginTop = '5px'
-          this._$node.style.background = '#eee'
-          this._$node.style.padding = '10px'
-        }
-        return this._$node
-      }
-    }
-  },
-  $flags: {
-    $node:function( val ) {
-      this._$node = val
-      this._$node.$base = this
-      this._$nodeSet = true
-    },
-    $on: new On({
-      $define: {
-        $ChildConstructor: DomEmitter
-      }
-    })
-  },
-  $useVal:true,
-  $on: {
-    $new: function( event, meta ) {
-      if(this._$node && !this._$nodeSet ) {
-        this._$node = this._$node.cloneNode(true)
-        this._$node.$base = this
-      }
-    },
-    $addToParent: function( event, meta ) {
-      if(this._$parent && this instanceof Element) {
-        this._$parent.$node.appendChild( this.$node )
-      }
-    }
-  }
-})
-
-Element = element.$Constructor
-
-element.define({
-  $ChildConstructor: Element
-})
-
-// Element = new Element().$Constructor
-
-//--------properties----------
-
-var Border = new Observable({ 
-  $useVal:true,
-  $on: { 
-    $change: function( event ) {
-      console.error('\n\n\n\n\nblarf border', this.$val)
-      if(this._$parent && this.$parent) {
-        this.$parent.$node.style.border = this.$val
-      } 
-    }
-  }
-}).$Constructor
-
-element.$flags = {
-  $border: function(val, event) {     
-    if(!this.$border) {
-      this.$setKeyInternal( '$border', new Border(), false)
-    }
-    //TODO: event moet hier
-    this.$border.$set(val)
-  } 
-}
+var Element = require('../../lib/element')
 
 //-------- example implementation----------
 
@@ -25638,132 +25876,240 @@ var app = new Element({
   $node: document.body
 })
 
-var aa = new Element()
-
-aa.define({
-  $node: {
-    get:function() {
-     if(!this._$node)  {
-        this._$node = document.createElement( 'div' )
-        this._$node.$base = this
-        this._$node.style.border = '4px solid purple'
-        this._$node.style.background = 'pink'
-        this._$node.style.padding = '4px'
-        this._$node.style.borderRadius = '50%'
-      }
-      return this._$node
-    }
-  },
-  $ChildConstructor: aa.$Constructor
-})
-
-// aa.$node.style.borderRadius = '50%'
-// aa.$node.style.padding = '10px'
-
-var extraSpesh = new aa.$Constructor({
+var YUZI = new Element({
+  $key:'YUZI',
   a: {
     b: {
       c: {
-        d:{}
+        d: {
+          $on: {
+            mousemove:function( event ) {
+              // console.log(event.toString())
+              this.$node.style.opacity = Math.random()
+            }
+          }
+        }
       }
     }
   }
 })
 
+console.log('???', YUZI.$node)
+
 app.$set({
-  yuzi: {
-    $border:'10px solid blue',
-    $on: {
-      click:function() {
-        this.$node.style.opacity = Math.random()
-      }
-    },
-    blurf:{
-      // $border:'10px solid blue',
-      blaps:{
-        bloeps: {
-          blurf:{},
-            smuts: new extraSpesh.$Constructor()
-        }
-      }
-    }
-  },
-  james: true,
-  xx: new extraSpesh.$Constructor(),
-  yy: new extraSpesh.$Constructor()
+  yus: new YUZI.$Constructor(),
+  xyus: new YUZI.$Constructor(),
+  xx:  new YUZI.$Constructor()
 })
 
+console.log( YUZI )
 
-console.log(app.xx.a.b.c.d.$node)
 
-console.log(app.xx.a.$node.$base._$parent.$node === app.xx.$node)
+
+console.log( app.yus )
+
+console.log( app.yus.a.$parent.$node )
+
+console.log( app.yus.a === YUZI.a )
+
+console.log( app.yus.a.b === YUZI.a.b )
+
+/*
+  check tot $base
+  
+  sla path op hoe je er bent gekomen ( in nodes )
+  
+  op $base kijk path naar benedend resolve instances
+    zoek de fields bij het path
+
+  a.b.c
+
+  'a ( context )'
+  'a.b.c
+  
+  zoeken tot base sla node path op
+
+  dan enmaal bij base aangekomen
+    loop path af door je props -- en resolve
+
+  //x.x.x 
+
+  //CONTEXT.path
+
+*/
+
+
+/*
+
+  node resolven op maken nieuwe instance op een set van een ding wat al bestaat
+
+
+  //new node moet zoeken of er al een parent node is en resolven
+  a.b.c.d.$set({x:true})
+  
+  a is context (is real )
+  //er word al van alles gedaan
+
+
+*/
+
+console.clear()
+
+app.yus.a.b.c.$set({
+  flups: {}
+})
 
 app.$node.style.border = '1px solid black'
 
-// var X = new Element({
-//   $border:'20px solid blue',
+var perf = require('vjs/dev/perf')
+var holder 
+perf(function() {
+  holder = new Element({})
+  for(var i = 0 ; i < 10000; i++) {
+    var obj = {}
+    obj[i] = new YUZI.$Constructor()
+    holder.$set(obj)
+  }
+  app.$set({
+    h: holder
+  })
+})
+
+
+// //-------- example implementation----------
+
+// var app = new Element({
+//   $key:'app',
+//   $node: document.body
+// })
+
+// // var aa = new Element()
+
+// // aa.define({
+// //   $node: {
+// //     get:function() {
+// //      if(!this._$node)  {
+// //         this._$node = document.createElement( 'div' )
+// //         this._$node.$base = this
+// //         this._$node.style.border = '4px solid purple'
+// //         this._$node.style.background = 'pink'
+// //         this._$node.style.padding = '4px'
+// //         this._$node.style.borderRadius = '50%'
+// //       }
+// //       return this._$node
+// //     }
+// //   },
+// //   $ChildConstructor: aa.$Constructor
+// // })
+
+// // // aa.$node.style.borderRadius = '50%'
+// // // aa.$node.style.padding = '10px'
+
+// // var extraSpesh = new aa.$Constructor({
+// //   a: {
+// //     b: {
+// //       c: {
+// //         d:{}
+// //       }
+// //     }
+// //   }
+// // })
+
+// var Y = new Element({
+//   $border:'10px solid blue',
 //   $on: {
 //     click:function() {
-//       console.log(this.$path)
-//       console.log(this._$parent)
+//       this.$border.$val = ~~(Math.random() * 20) + 'px solid black'
+//     }
+//   },
+//   burbur:{
+//     // $border:'10px solid green',
+//     $on: {
+//       click:function() {
+//         console.log('burbur')
+//         this.$node.style.border = ~~(Math.random() * 20) + 'px solid black'
+//       }
 //     }
 //   }
 // }).$Constructor
 
 // app.$set({
-//   y: {
-//     // $border:'10px solid blue',
-//     $on: {
-//       mousemove:function() {
-//         this.$node.style.opacity = Math.random()
-//       }
-//     }
-//   },
-//   xxxxxx:new X(),
-//   yyy:new X(),
-//   zzz:new X(),
-//   xy:{
-//     // $border:'10px solid red',
-//     $on: {
-//       click: function() {
-//         this.$node.style.opacity = Math.random()
-//       }
-//     },
-//     blurf: {
-//       // $border:'200px solid red',
-//       $on: {
-//         click: function() {
-//           this.$node.style.marginTop = Math.random()*99+'px'
-//         }
-//       }
-//     }
-//   }
+//   yuzi: new Y(),
+//   // jax: new Y()
 // })
 
-// app.$set({
-//   x:{
-//     // $border:'100px solid pruple',
-//     $on: {
-//       click: function() {
-//         this.$node.style.opacity = Math.random()
-//       }
-//     }
-//   }
-// })
 
-// console.log( '?', app.xxxxxx._$parent )
+// // console.log(app.xx.a.b.c.d.$node)
 
-// console.log( app.xxx)
+// // console.log(app.xx.a.$node.$base._$parent.$node === app.xx.$node)
 
-// app.hhh.$border.$val = '10px solid blue'
+// app.$node.style.border = '1px solid black'
 
-/*
-this._node = node.cloneNode(true); //especialy good to do for memory (also saves 20% on cpu)
-*/
-},{"vjs/lib/emitter":"/Users/youzi/dev/vui/node_modules/vjs/lib/emitter/index.js","vjs/lib/event":"/Users/youzi/dev/vui/node_modules/vjs/lib/event/index.js","vjs/lib/event/toString":"/Users/youzi/dev/vui/node_modules/vjs/lib/event/toString.js","vjs/lib/observable":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/index.js","vjs/lib/observable/onConstructor":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/onConstructor.js"}],"package.json":[function(require,module,exports){
+// // var X = new Element({
+// //   $border:'20px solid blue',
+// //   $on: {
+// //     click:function() {
+// //       console.log(this.$path)
+// //       console.log(this._$parent)
+// //     }
+// //   }
+// // }).$Constructor
+
+// // app.$set({
+// //   y: {
+// //     // $border:'10px solid blue',
+// //     $on: {
+// //       mousemove:function() {
+// //         this.$node.style.opacity = Math.random()
+// //       }
+// //     }
+// //   },
+// //   xxxxxx:new X(),
+// //   yyy:new X(),
+// //   zzz:new X(),
+// //   xy:{
+// //     // $border:'10px solid red',
+// //     $on: {
+// //       click: function() {
+// //         this.$node.style.opacity = Math.random()
+// //       }
+// //     },
+// //     blurf: {
+// //       // $border:'200px solid red',
+// //       $on: {
+// //         click: function() {
+// //           this.$node.style.marginTop = Math.random()*99+'px'
+// //         }
+// //       }
+// //     }
+// //   }
+// // })
+
+// // app.$set({
+// //   x:{
+// //     // $border:'100px solid pruple',
+// //     $on: {
+// //       click: function() {
+// //         this.$node.style.opacity = Math.random()
+// //       }
+// //     }
+// //   }
+// // })
+
+// // console.log( '?', app.xxxxxx._$parent )
+
+// // console.log( app.xxx)
+
+// // app.hhh.$border.$val = '10px solid blue'
+
+// /*
+// this._node = node.cloneNode(true); //especialy good to do for memory 
+// (also saves 20% on cpu)
+// */
+},{"../../lib/element":"/Users/youzi/dev/vui/lib/element/index.js","vjs/dev/perf":"/Users/youzi/dev/vui/node_modules/vjs/dev/perf.js"}],"package.json":[function(require,module,exports){
 module.exports={
   "name": "vui",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -25777,12 +26123,12 @@ module.exports={
     "doc": "jsdoc2md lib/**/*.js > vjs.wiki/Classes.md"
   },
   "author": "Vigour.io <dev@vigour.io>",
-  "license": "ISC",
+  "license": "GPL",
   "bugs": {
     "url": "https://github.com/vigour-io/vui/issues"
   },
   "dependencies": {
-    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#0.1.2"
+    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
   },
   "homepage": "https://github.com/vigour-io/vui",
   "gaston": {

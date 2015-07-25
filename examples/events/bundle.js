@@ -7123,53 +7123,6 @@ module.exports = isArray || function (val) {
   return !! val && '[object Array]' == str.call(val);
 };
 
-},{}],"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/os-browserify/browser.js":[function(require,module,exports){
-exports.endianness = function () { return 'LE' };
-
-exports.hostname = function () {
-    if (typeof location !== 'undefined') {
-        return location.hostname
-    }
-    else return '';
-};
-
-exports.loadavg = function () { return [] };
-
-exports.uptime = function () { return 0 };
-
-exports.freemem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.totalmem = function () {
-    return Number.MAX_VALUE;
-};
-
-exports.cpus = function () { return [] };
-
-exports.type = function () { return 'Browser' };
-
-exports.release = function () {
-    if (typeof navigator !== 'undefined') {
-        return navigator.appVersion;
-    }
-    return '';
-};
-
-exports.networkInterfaces
-= exports.getNetworkInterfaces
-= function () { return {} };
-
-exports.arch = function () { return 'javascript' };
-
-exports.platform = function () { return 'browser' };
-
-exports.tmpdir = exports.tmpDir = function () {
-    return '/tmp';
-};
-
-exports.EOL = '\n';
-
 },{}],"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/path-browserify/index.js":[function(require,module,exports){
 (function (process){
 // Copyright Joyent, Inc. and other Node contributors.
@@ -23346,59 +23299,72 @@ module.exports = amdefine;
 
 }).call(this,require('_process'),"/../gaston/node_modules/source-map/node_modules/amdefine/amdefine.js")
 
-},{"_process":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/process/browser.js","path":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/path-browserify/index.js"}],"/Users/youzi/dev/vui/lib/element/emitter.js":[function(require,module,exports){
+},{"_process":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/process/browser.js","path":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/path-browserify/index.js"}],"/Users/youzi/dev/vui/examples/events/style.less":[function(require,module,exports){
+arguments[4]["/Users/youzi/dev/gaston/lib/browser/styles.less"][0].apply(exports,arguments)
+},{}],"/Users/youzi/dev/vui/lib/app/index.js":[function(require,module,exports){
+"use strict";
+var Element = require('../../lib/element')
+
+module.exports = new Element({
+  $key:'app',
+  $node: document.body
+})
+},{"../../lib/element":"/Users/youzi/dev/vui/lib/element/index.js"}],"/Users/youzi/dev/vui/lib/element/emitter.js":[function(require,module,exports){
 "use strict";
 
-//--------events----------
-var Emitter = require('vjs/lib/emitter')
-var Event = require('vjs/lib/event')
+var Emitter = require( 'vjs/lib/emitter' )
+var Event = require( 'vjs/lib/event' )
 var domEvents = {}
 
-module.exports = new Emitter({
+module.exports = new Emitter( {
+  $noInstances:true,
   $define: {
     _$key: {
-      set: function(val) {
-        if (!domEvents[val]) {
-          document.body.addEventListener(val, function(e) {
+      set: function( val ) {
+        this._$parent._$parent.$node.style.cursor = 'pointer'
+
+        if( !domEvents[ val ] ) {
+          document.body.addEventListener( val, function( e ) {
             var event
             var path
             var child = e.target
             var origChild = child
             var target = child.$base
 
-            if (!target) {
+            if( !target ) {
               path = []
-              while (!target) {
-                path.push(child.className)
+              while( !target ) {
+                path.push( child.className )
                 child = child.parentNode
                 target = child.$base
               }
-              for (var i = path.length - 1; i >= 0; i--) {
-                target = target[path[i]]
+              for( var i = path.length - 1; i >= 0; i-- ) {
+                target = target[ path[ i ] ]
               }
             }
 
             target._$contextNode = origChild
 
-            while (target) {
-              if (target.$on[val]) {
-                event = new Event(target)
+            while( target ) {
+              if( target.$on[ val ] ) {
+                event = new Event( target )
                 event.$domEvent = e
-                target.$emit(val, event, e)
+                target.$emit( val, event, e )
               }
               target = target._$parent
             }
-          })
-          domEvents[val] = true
+          } )
+          domEvents[ val ] = true
         }
         this.__$key = val
       },
-      get: function(val) {
+      get: function( val ) {
         return this.__$key
       }
     }
   }
-}).$Constructor
+} ).$Constructor
+
 },{"vjs/lib/emitter":"/Users/youzi/dev/vui/node_modules/vjs/lib/emitter/index.js","vjs/lib/event":"/Users/youzi/dev/vui/node_modules/vjs/lib/event/index.js"}],"/Users/youzi/dev/vui/lib/element/index.js":[function(require,module,exports){
 "use strict";
 
@@ -23406,9 +23372,7 @@ var DomEmitter = require( './emitter' )
 var Observable = require( 'vjs/lib/observable' )
 var On = require( 'vjs/lib/observable/onConstructor' )
 
-var Element
-
-var element = new Observable( {
+var Element = new Observable( {
   $define: {
     _$key: {
       set: function( val ) {
@@ -23422,24 +23386,25 @@ var element = new Observable( {
       }
     },
     $node: {
+    	//Returns the node. If no node, creates the node.
       get: function() {
-        if( this._$contextNode ) {
-          return this._$contextNode
-        }
+      	var node = this._$contextNode || this._$node
 
-        if( !this._$node ) {
-          this._$node = document.createElement( 'div' )
-          this._$node.$base = this
-          this._$node.className = this._$key
-
+        if( !node ) {
+        	node = document.createElement( 'div' )
+          node.$base = this
+          node.className = this._$key
           //TODO: remove this:testing
-          this._$node.innerHTML = this.$path
+          node.style.borderLeft = '10px solid blue'
+          node.innerHTML = this.$path.join(' > ')
+
+          this._$node = node
         }
-        return this._$node
+        return node
       }
     },
     $generateConstructor: function() {
-      return( function DerivedElement( val, event, parent, key ) {
+      return function DerivedElement( val, event, parent, key ) {
         if( this._$node ) {
 					var elem
 					var key
@@ -23457,24 +23422,24 @@ var element = new Observable( {
               childNodes = elem.childNodes
               for( var i = 0, l = childNodes.length; i < l; i++ ) {
               	childNode = childNodes[ i ]
-                if( childNode.className === key ) {
+                if( childNode.id === key ) {
                   node = childNode
                 }
               }
             }
           }
-          
+
           this._$node = node || this._$node.cloneNode( true )
           this._$node.$base = this
         }
         Observable.apply( this, arguments )
-      } )
+      }
     }
   },
   $flags: {
-    $node: function( val ) {
-      this._$node = val
-      this._$node.$base = this
+    $node: function( node ) {
+    	node.$base = this
+      this._$node = node
     },
     $on: new On( {
       $define: {
@@ -23485,204 +23450,20 @@ var element = new Observable( {
   $useVal: true,
   $on: {
     $addToParent: function( event, meta ) {
-      if( this.$parent && this instanceof Element ) {
-        this.$parent.$node.appendChild( this.$node )
+    	var parent = this.$parent
+      if( parent && this instanceof Element ) {
+        parent.$node.appendChild( this.$node )
       }
     }
   }
-} )
+} ).$Constructor
 
-Element = element.$Constructor
-
-element.define( {
+Element.prototype.define( {
   $ChildConstructor: Element
 } )
 
 module.exports = Element
-
-},{"./emitter":"/Users/youzi/dev/vui/lib/element/emitter.js","vjs/lib/observable":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/index.js","vjs/lib/observable/onConstructor":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/onConstructor.js"}],"/Users/youzi/dev/vui/node_modules/vjs/dev/perf.js":[function(require,module,exports){
-(function (process){
-// perf.js
-var isNode = (typeof window === 'undefined')
-  , os
-
-var origLog = console.log
-
-var util = {
-  checkArray : function (list, val, index, field) {
-    var arr = index instanceof Array
-    if(!list) return false
-    for (var i = 0, l = list.length, t; i < l; i++) {
-      t = list[i]
-      if (index !== void 0) {
-        if (index === true) {
-          if (t === val) return i
-        } else if (t[index] === val) return field ? t : i
-      } else {
-        if (t === val) return true
-      }
-    }
-    return false
-  }
-}
-
-if (isNode) { 
-  os = require('os')
-} else {
-  console.log('DEBUG \n\nif you want to check memory usage start chrome using: \n\n open -a Google\ Chrome --args --enable-precise-memory-info --enable-memory-info --js-flags="--expose-gc"\n')
-}
-
-function _test(method, name, complete, call, args, nolog, logger) {
-  var start = exports.now()
-    , memorystart = exports.memory()
-    , memoryend
-    , mem
-    , time
-    , end
-    , sub 
-  if (!name) name = 'TEST PERFORMANCE'
-  if (call) {
-    sub = method.apply(call, args)
-  } 
-  else {
-    sub = method.apply(this, args)
-  }
-  end = exports.now()
-  memoryend = exports.memory()
-  mem = (memoryend - memorystart)
-  time = end - start - (sub || 0)
-  if (complete) {
-    complete(((time) / 1000), (memoryend - memorystart))
-  } 
-  else if (!nolog) {
-    if(logger) {
-      logger( name , '\nparse time: ' 
-      + ((end - start) / 1000) 
-      + ' sec' + (mem ? '\nmemory used (approximate): ' 
-      + mem/1024 + ' mb' : ''))
-    } else {
-      console.log(name , '\nparse time: ' 
-      + ((end - start) / 1000) 
-      + ' sec' + (mem ? '\nmemory used (approximate): ' 
-      + mem/1024 + ' mb' : ''))
-    }
-  }
-  return time
-}
-
-
-function _done(params, time, mem, memstart) {
-  if (params.complete) {
-    params.complete(time, mem, params, exports.average(time)[0], exports.average(time)[1])
-  } else {
-
-      // console.log('????')
-
-
-      // var memobj = {
-      //   totalJSHeapSize:window.performance.memory.totalJSHeapSize * Math.pow(0.000976562,2)+'mb' ,
-      //   usedJSHeapSize:window.performance.memory.usedJSHeapSize * Math.pow(0.000976562,2) +'mb'
-      // }
-
-
-      // var memtotal = memstart ? memstart-exports.memory() : 0
-
-      (params.log || console.log)(
-        params.name 
-        , ' n=' + params.loop 
-        + '\nparse time:' 
-        + (params.extensive 
-          ? (' \n\n' + time.join(' sec\n') + ' sec\n\n') 
-          : '') 
-        + 'average: ' + exports.average(time)[1] 
-        + ' sec\ntotal: ' 
-        + exports.average(time)[0] + ' sec\n'
-        // + (mem.length>0 ? '\nmemory used (approximate): '+mem+' kb' : '')
-        // + (memstart ? 'total memory used (entire app): ' + JSON.stringify(memobj,false,2) : '')
-      );
-  }
-}
-
-module.exports = exports = function (params, fn) {
-  if (fn && typeof params === 'string') {
-    return _test(fn, params)
-  } 
-  else if (typeof params === 'function') {
-    return _test(params)
-  } 
-  else if (params instanceof Object) {
-    if(!params.name) params.name = 'performance test'
-
-    if (params.loop) {
-
-      var memstart = exports.memory()
-      //testing memory in loop is hard since the gc almost never makes it before next iteration;
-      var time = []
-        , mem = []
-        , callback = function (_time, memory) {
-          time.push(_time)
-          if (memory) mem.push(memory)
-        }
-
-      if(params.interval) {
-        var cnt = 0
-          , interval = setInterval(function() {
-              cnt++
-              if(cnt===params.loop-1) {
-                 clearInterval(interval)
-                 _done(params, time, mem, memstart) 
-              } else {
-                _test(params.method, false, callback)
-              }
-            },params.interval)
-      } else {
-        for (var i = params.loop; i > 0; i--) {
-          _test(params.method, false, callback)
-        }
-        _done(params, time, mem, memstart) 
-      } 
-      return exports.average(time)
-    } 
-    else {
-      return _test(params.method
-        , params.name
-        , params.complete
-        , params.call
-        , params.args
-        , params.nolog
-        , params.log
-        )
-    }
-  }
-}
-
-exports.now = function () {
-  return isNode
-    ? process.hrtime()[0] * 1000 + process.hrtime()[1] * 0.000001 
-    : (window.performance && window.performance.now 
-      ? window.performance.now() 
-      : Date.now())
-}
-
-exports.memory = function () {
-  return isNode 
-    ? process.memoryUsage().heapUsed * 0.000976562  
-    : (window && window.performance && window.performance.memory 
-      ? window.performance.memory.usedJSHeapSize * 0.000976562 
-      : 0)
-}
-
-exports.average = function (array) {
-  var number = 0
-  for (var i = array.length - 1; i >= 0; i--) {
-    number += array[i]
-  }
-  return [number, number / array.length]
-}
-
-}).call(this,require('_process'))
-
-},{"_process":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/process/browser.js","os":"/Users/youzi/dev/gaston/node_modules/browserify/node_modules/os-browserify/browser.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/base/constructor.js":[function(require,module,exports){
+},{"./emitter":"/Users/youzi/dev/vui/lib/element/emitter.js","vjs/lib/observable":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/index.js","vjs/lib/observable/onConstructor":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/onConstructor.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/base/constructor.js":[function(require,module,exports){
 "use strict";
 
 var Base = require('./')
@@ -25083,13 +24864,141 @@ exports.$define = {
 }
 
 
-},{}],"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/emit.js":[function(require,module,exports){
+},{}],"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/setWithPath.js":[function(require,module,exports){
+"use strict";
+var helpers = require('./shared')
+var createPath = helpers.createPath
+var returnPath = helpers.returnPath
+
+/**
+ * @function setWithPath
+ * @memberOf Base#
+ * @param  {string|string[]} path Path or field to find
+ * @param  {*} [set] Value to set on path end
+ * @return {base}
+ */
+exports.$define = {
+  setWithPath: function( path, set ){
+    path = returnPath( path )
+    return createPath( this, path, path.length, set )
+  }
+}
+},{"./shared":"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/shared.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/shared.js":[function(require,module,exports){
+"use strict";
+
+var evaluate = require('../util/test')
+var isPlainObj = require('../util').isPlainObj
+var createPath
+var getPath
+
+exports.clean = function( obj, index ){
+  if(obj.constructor === Array){
+    return obj.splice(0,index)
+  }
+  while(obj[index]){
+    delete obj[index++]
+  }
+  return obj
+}
+
+exports.createPath = createPath = function( obj, path, length, set ){
+  var setObj = {}
+  var nextObj = setObj
+  var i = 0
+  var field
+  for(; i < length; i++ ) {
+    field = path[i]
+    nextObj[field] = {}
+    nextObj = nextObj[field]
+  }
+
+  if(set !== void 0){
+    nextObj[field] = set    
+  }
+  obj.$set(setObj)
+  return getPath( obj, path, length )
+}
+
+exports.getPath = getPath = function( obj, path, length, filter, set ) {
+  // console.log('ok bur', path)
+  var i = 0
+  var result = obj[path[0]]
+
+  while (result) {
+    // console.log('yes got something', result && result.$val)
+    if ( ++i === length ) {
+      if( filter === void 0 || filter(result) ){
+        console.log('length reached, return dat result')
+        return result
+      }
+    }
+    if(typeof result === 'function'){
+      return result.call(obj,path.splice(i), filter)
+    }
+    obj = result
+    result = result[path[i]]
+  }
+
+  if(set !== void 0){
+    return createPath(obj, path.splice(i), length - i, set)
+  }
+}
+
+exports.returnFilter = function( options ){
+  if( options !== void 0 ){
+    var conditions
+    var filter
+    
+    if( typeof options === 'function' ){
+      return options
+    }
+    
+    if( isPlainObj( options ) ){
+      conditions = options.conditions
+
+      if( conditions ){
+        return function( subject ){
+            return evaluate( subject, conditions )
+          }
+      }
+
+      if( options instanceof RegExp ){
+        return function( subject ){
+          return options.test ( subject )
+        }
+      }
+
+      if( options.contructor === Array ){
+        var length = options.length
+        return function( subject ){
+          for( var i = length - 1; i >= 0; i-- ) {
+            var value = options[i]
+            if( subject === value || subject._$val === value ){
+              return true
+            }
+          }
+        }
+      }
+
+    } else {
+      return function( subject ){
+        return subject === options || subject._$val === options
+      }
+    }
+  }
+}
+
+exports.returnPath = function( path ){
+  return typeof path === 'string' ? path.split('.') : path
+}
+},{"../util":"/Users/youzi/dev/vui/node_modules/vjs/lib/util/index.js","../util/test":"/Users/youzi/dev/vui/node_modules/vjs/lib/util/test.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/emit.js":[function(require,module,exports){
 "use strict";
 
 var Event = require('../event')
 var util = require('../util')
 var convertToArray = util.convertToArray
 
+var c = 0
 //split this function up in multiple
 exports.$define = {
   $emit : function( type, event, meta, extraMeta ) {
@@ -25851,7 +25760,324 @@ exports.isRemoved = function( base ) {
   }
   return true
 }
-},{"../base":"/Users/youzi/dev/vui/node_modules/vjs/lib/base/index.js"}],"gaston-tester":[function(require,module,exports){
+},{"../base":"/Users/youzi/dev/vui/node_modules/vjs/lib/base/index.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/util/test.js":[function(require,module,exports){
+"use-strict";
+
+var makeTest = exports.makeTest = function (conditions, subsObj, gotval) {
+  var val = getValue(conditions)
+  if(typeof conditions === 'object') {
+    var keys = getKeys(conditions)
+    var length = keys.length
+    if(length === 1) {
+      var key = keys[0]
+      var test = makeKeyTest(key, conditions[key], subsObj)
+      if(gotval) {
+        return test
+      } else {
+        return function(doc){
+          return test(getValue(doc))
+        }  
+      }
+    } else if(length) {
+      return makeAND(conditions, subsObj)
+    } else {
+      console.error('empty conditions object?')
+      return alwaysTrue
+    }
+  }
+}
+
+function makeKeyTest(key, value, subsObj) {
+  value = value.$val
+
+  var test
+  var endpoint = !(value instanceof Object)
+  
+  switch (key) {
+    case '$not':
+      if(endpoint) {
+        test = function(doc) {
+          return doc !== value
+        }
+      } else {
+        var follow = makeTest(value, subsObj, true)
+        test = function(doc) {
+          return follow(doc) === false
+        }
+      }
+      break
+    case '$ne':
+      test = function(doc) {
+        return doc !== value
+      }
+      break
+    case '$and':
+      test = makeAND(value, subsObj)
+      break
+    case '$nand':
+      var and = makeAND(value, subsObj)
+      test = function(doc) {
+        return !and(doc)
+      }
+      break
+    case '$or':
+      test = makeOR(value, subsObj)
+      break
+    case '$nor':
+      var or = makeOR(value, subsObj)
+      test = function(doc) {
+        return !or(doc)
+      }
+      break
+    case '$every':
+      subsObj.$setKey('any$', {})
+      if(endpoint) {
+        subsObj.any$.$val = true
+        test = function(doc) {
+          var result = doc && doc.$each && true
+          if(result) {
+            doc.$each(function(){
+              if(getValue(this) !== value) {
+                result = false
+                return true
+              }
+            })
+          }
+          return result || false
+        }
+      } else {
+        var follow = makeTest(value, subsObj.any$, true)
+        test = function(doc) {
+          var result = doc && doc.$each && true
+          if(result) {
+            doc.$each(function(){
+              if(!follow(getValue(this))) {
+                result = false
+                return true
+              }
+            })
+          }
+          return result || false
+        }
+      }
+      break
+    case '$nevery':
+      var every = makeKeyTest('$every', value, subsObj)
+      test = function(doc) {
+        return !every(doc)
+      }
+      break
+    case '$':
+    case '$any':
+      subsObj.$setKey('any$', {})
+      if(endpoint) {
+        subsObj.any$.$val = true
+        test = function(doc) {
+          var result = doc && doc.$each
+          if(result) {
+            result = false
+            doc.$each(function(base){
+              if(getValue(base) === value) {
+                return result = true
+              }
+            })
+          }
+          return result || false
+        }
+      } else {
+        var follow = makeTest(value, subsObj.any$, true)
+        test = function(doc) {
+          var result = doc && doc.$each
+          if(result) {
+            result = false
+            doc.$each(function(base){
+              if(follow(getValue(base))) {
+                return result = true
+              }
+            })
+          }
+          return result || false
+        }
+      }
+      break
+    case '$nany':
+      var any = makeKeyTest('$any', value, subsObj)
+      test = function(doc){
+        return !any(doc)
+      }
+      break
+    case '$lt':
+      test = function(doc) {
+        return doc < value
+      }
+      break
+    case '$lte':
+      test = function(doc) {
+        return doc <= value
+      }
+      break
+    case '$gt':
+      test = function(doc) {
+        return doc > value
+      }
+      break
+    case '$gte':
+      test = function(doc) {
+        return doc >= value
+      }
+      break
+    case '$contains':
+      if(!(value instanceof RegExp)) {
+        value = new RegExp(value, 'i')
+      }
+      test = function(doc) {
+        console.log('testing', doc, 'for contains', value)
+        return value.test(doc)
+      }
+      break
+    case '$ncontains':
+      if(!(value instanceof RegExp)) {
+        value = new RegExp(value, 'i')
+      }
+      test = function(doc) {
+        return !value.test(doc)
+      }
+      break
+    case '$has':
+      test = function(doc) {
+        return doc && doc[value] !== void 0
+      }
+      break
+    case '$nhas':
+      test = function(doc) {
+        return !doc || doc[value] === void 0
+      }
+      break
+    case '$exists':
+      test = function(doc) {
+        return (doc !== void 0 && doc !== null) === value
+      }
+      break
+    case '$nexists':
+      test = function(doc) {
+        return (doc === void 0 || doc === null) === value
+      }
+      break
+    case '$in':
+      var list = []
+      value.$each(function(){
+        list.push(getValue(this))
+      })
+      test = function(doc) {
+        for (var i = 0, l = list.length; i < l; i++) {
+          if (doc === list[i]) return true
+        }
+        return false
+      }
+      break
+    case '$nin':
+      var list = []
+      value.$each(function(){
+        list.push(getValue(this))
+      })
+      test = function(doc) {
+        for (var i = 0, l = list.length; i < l; i++) {
+          if (doc === list[i]) return false
+        }
+        return true
+      }
+      break
+    default:
+      if(endpoint) {
+        test = function(doc) {
+          doc = getPropertyValue(doc, key)
+          return doc === value
+        }
+        subsObj.$setKey(key, true)
+        endpoint = null
+      } else {
+        var nextSubsObj = subsObj[key]
+        if(!nextSubsObj) {
+          subsObj.$setKey(key, {})
+          nextSubsObj = subsObj[key]
+        }
+        var follow = makeTest(value, nextSubsObj, true)
+        test = function(doc) {
+          doc = getPropertyValue(doc, key)
+          return follow(doc)
+        }
+      }
+    break
+  }
+
+  if(endpoint) {
+    subsObj.$val = true
+  }
+
+  return test
+
+}
+
+function getValue(base) {
+  base = base.$origin
+  return base.$val
+}
+
+function getPropertyValue(base, key) {
+  base = base.$origin
+  base = base[key]
+  if(base) {
+    return getValue(base)
+  }
+}
+
+function getKeys(base) {
+  var keys = []
+  for(var k in base) {
+    if(k[0] !== '_' && k !== '$bind'){ // TODO: properly exclude keys
+      keys.push(k)
+    }
+  }
+  return keys
+}
+
+function alwaysTrue(){
+  return true
+}
+
+function makeList(value, subsObj) {
+  var list = []
+  value.$each(function(){
+    list.push(makeTest(this, subsObj, true))
+  })
+  return list
+}
+
+function makeAND(value, subsObj) {
+  var testList = makeList(value, subsObj)
+  return function(doc) {
+    for (var i = 0, l = testList.length; i < l; i++) {
+      if (!testList[i](doc)) {
+        return false
+      }
+    }
+    return true
+  }
+}
+
+function makeOR(value, subsObj) {
+  var testList = makeList(value, subsObj)
+  return function(doc) {
+    for (var i = 0, l = testList.length; i < l; i++) {
+      if (testList[i](doc)) {
+        return true
+      }
+    }
+    return false
+  }
+}
+
+},{}],"gaston-tester":[function(require,module,exports){
 var chai = window.chai = require('chai');
 var should = window.should = chai.should();
 var expect = window.expect = chai.expect;
@@ -25867,246 +26093,38 @@ mocha.ui('bdd');
 mocha.reporter('html');
 
 },{"chai":"/Users/youzi/dev/gaston/node_modules/chai/index.js"}],"index.js":[function(require,module,exports){
-var Element = require('../../lib/element')
+require('./style.less')
 
+var app = require('../../lib/app')
+var Element = require('../../lib/element')
+Element.prototype.inject( require('vjs/lib/methods/setWithPath') )
 //-------- example implementation----------
 
-var app = new Element({
-  $key:'app',
-  $node: document.body
+var a = new Element({
+  $key:'a'
 })
 
-var YUZI = new Element({
-  $key:'YUZI',
-  a: {
-    b: {
-      c: {
-        d: {
-          $on: {
-            mousemove:function( event ) {
-              // console.log(event.toString())
-              this.$node.style.opacity = Math.random()
-            }
-          }
-        }
-      }
+a.setWithPath('b.c.d.e.f',
+{ $on:{
+    click:function(){
+      console.error('burn')
     }
   }
 })
 
-console.log('???', YUZI.$node)
+a.setWithPath('1.2.3',
+{ $on:{
+    click:function(){
+      console.error('numbergame')
+    }
+  }
+})
 
 app.$set({
-  yus: new YUZI.$Constructor(),
-  xyus: new YUZI.$Constructor(),
-  xx:  new YUZI.$Constructor()
+  a:a,
+  b: new a.$Constructor()
 })
-
-console.log( YUZI )
-
-
-
-console.log( app.yus )
-
-console.log( app.yus.a.$parent.$node )
-
-console.log( app.yus.a === YUZI.a )
-
-console.log( app.yus.a.b === YUZI.a.b )
-
-/*
-  check tot $base
-  
-  sla path op hoe je er bent gekomen ( in nodes )
-  
-  op $base kijk path naar benedend resolve instances
-    zoek de fields bij het path
-
-  a.b.c
-
-  'a ( context )'
-  'a.b.c
-  
-  zoeken tot base sla node path op
-
-  dan enmaal bij base aangekomen
-    loop path af door je props -- en resolve
-
-  //x.x.x 
-
-  //CONTEXT.path
-
-*/
-
-
-/*
-
-  node resolven op maken nieuwe instance op een set van een ding wat al bestaat
-
-
-  //new node moet zoeken of er al een parent node is en resolven
-  a.b.c.d.$set({x:true})
-  
-  a is context (is real )
-  //er word al van alles gedaan
-
-
-*/
-
-console.clear()
-
-app.yus.a.b.c.$set({
-  flups: {}
-})
-
-app.$node.style.border = '1px solid black'
-
-var perf = require('vjs/dev/perf')
-var holder 
-perf(function() {
-  holder = new Element({})
-  for(var i = 0 ; i < 10000; i++) {
-    var obj = {}
-    obj[i] = new YUZI.$Constructor()
-    holder.$set(obj)
-  }
-  app.$set({
-    h: holder
-  })
-})
-
-
-// //-------- example implementation----------
-
-// var app = new Element({
-//   $key:'app',
-//   $node: document.body
-// })
-
-// // var aa = new Element()
-
-// // aa.define({
-// //   $node: {
-// //     get:function() {
-// //      if(!this._$node)  {
-// //         this._$node = document.createElement( 'div' )
-// //         this._$node.$base = this
-// //         this._$node.style.border = '4px solid purple'
-// //         this._$node.style.background = 'pink'
-// //         this._$node.style.padding = '4px'
-// //         this._$node.style.borderRadius = '50%'
-// //       }
-// //       return this._$node
-// //     }
-// //   },
-// //   $ChildConstructor: aa.$Constructor
-// // })
-
-// // // aa.$node.style.borderRadius = '50%'
-// // // aa.$node.style.padding = '10px'
-
-// // var extraSpesh = new aa.$Constructor({
-// //   a: {
-// //     b: {
-// //       c: {
-// //         d:{}
-// //       }
-// //     }
-// //   }
-// // })
-
-// var Y = new Element({
-//   $border:'10px solid blue',
-//   $on: {
-//     click:function() {
-//       this.$border.$val = ~~(Math.random() * 20) + 'px solid black'
-//     }
-//   },
-//   burbur:{
-//     // $border:'10px solid green',
-//     $on: {
-//       click:function() {
-//         console.log('burbur')
-//         this.$node.style.border = ~~(Math.random() * 20) + 'px solid black'
-//       }
-//     }
-//   }
-// }).$Constructor
-
-// app.$set({
-//   yuzi: new Y(),
-//   // jax: new Y()
-// })
-
-
-// // console.log(app.xx.a.b.c.d.$node)
-
-// // console.log(app.xx.a.$node.$base._$parent.$node === app.xx.$node)
-
-// app.$node.style.border = '1px solid black'
-
-// // var X = new Element({
-// //   $border:'20px solid blue',
-// //   $on: {
-// //     click:function() {
-// //       console.log(this.$path)
-// //       console.log(this._$parent)
-// //     }
-// //   }
-// // }).$Constructor
-
-// // app.$set({
-// //   y: {
-// //     // $border:'10px solid blue',
-// //     $on: {
-// //       mousemove:function() {
-// //         this.$node.style.opacity = Math.random()
-// //       }
-// //     }
-// //   },
-// //   xxxxxx:new X(),
-// //   yyy:new X(),
-// //   zzz:new X(),
-// //   xy:{
-// //     // $border:'10px solid red',
-// //     $on: {
-// //       click: function() {
-// //         this.$node.style.opacity = Math.random()
-// //       }
-// //     },
-// //     blurf: {
-// //       // $border:'200px solid red',
-// //       $on: {
-// //         click: function() {
-// //           this.$node.style.marginTop = Math.random()*99+'px'
-// //         }
-// //       }
-// //     }
-// //   }
-// // })
-
-// // app.$set({
-// //   x:{
-// //     // $border:'100px solid pruple',
-// //     $on: {
-// //       click: function() {
-// //         this.$node.style.opacity = Math.random()
-// //       }
-// //     }
-// //   }
-// // })
-
-// // console.log( '?', app.xxxxxx._$parent )
-
-// // console.log( app.xxx)
-
-// // app.hhh.$border.$val = '10px solid blue'
-
-// /*
-// this._node = node.cloneNode(true); //especialy good to do for memory 
-// (also saves 20% on cpu)
-// */
-},{"../../lib/element":"/Users/youzi/dev/vui/lib/element/index.js","vjs/dev/perf":"/Users/youzi/dev/vui/node_modules/vjs/dev/perf.js"}],"package.json":[function(require,module,exports){
+},{"../../lib/app":"/Users/youzi/dev/vui/lib/app/index.js","../../lib/element":"/Users/youzi/dev/vui/lib/element/index.js","./style.less":"/Users/youzi/dev/vui/examples/events/style.less","vjs/lib/methods/setWithPath":"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/setWithPath.js"}],"package.json":[function(require,module,exports){
 module.exports={
   "name": "vui",
   "version": "0.0.1",

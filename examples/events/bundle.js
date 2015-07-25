@@ -23329,7 +23329,6 @@ module.exports = new Emitter( {
             var event
             var path = []
             var child = e.target
-            var origChild = child
             var target = child.$base
 
             while( !target ) {
@@ -23377,7 +23376,6 @@ var On = require( 'vjs/lib/observable/onConstructor' )
 var Element = new Observable( {
   $define: {
     $remove:function( val ){
-      //really slow
       var context = this._$context
       var node
       var parentNode
@@ -23403,7 +23401,6 @@ var Element = new Observable( {
         node = this.$node
         parentNode = node.parentNode
       }
-
       parentNode.removeChild(node)
     },
     _$key: {
@@ -23493,6 +23490,7 @@ var Element = new Observable( {
         node = this.$node
         node.id = this._$key
         parent.$node.appendChild( node )
+
       }
     }
   },

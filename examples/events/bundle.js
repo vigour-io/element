@@ -130,9 +130,9 @@ var package = require('package.json')
 
 var gaston = window.gaston = module.exports = {
   server: {
-    ip: '192.168.0.23',
-    port: '8080',
-    socket: '9001'
+    ip: '10.0.1.97',
+    port: '8081',
+    socket: '9002'
   },
   remoteLogging: package.gaston && package.gaston['remote-logging'],
   serverAddress: '',
@@ -23309,12 +23309,11 @@ module.exports = new Element({
   $key:'app',
   $node: document.body
 })
-},{"../../lib/element":"/Users/youzi/dev/vui/lib/element/index.js"}],"/Users/youzi/dev/vui/lib/element/emitter.js":[function(require,module,exports){
+},{"../../lib/element":"/Users/youzi/dev/vui/lib/element/index.js"}],"/Users/youzi/dev/vui/lib/element/domemitter.js":[function(require,module,exports){
 "use strict";
 
 var Emitter = require( 'vjs/lib/emitter' )
 var Event = require( 'vjs/lib/event' )
-var domEvents = {}
 
 module.exports = new Emitter( {
   $define: {
@@ -23322,118 +23321,122 @@ module.exports = new Emitter( {
     _$key: {
       set: function( val ) { //click
         this._$parent._$parent.$node.style.cursor = 'pointer'
-
-        if( !domEvents[ val ] ) {
-
-          document.body.addEventListener( val, function( e ) {
-            var event
-            var path = []
-            var child = e.target
-            var target = child.$base
-
-            while( !target ) {
-              path.push( child.id )
-              child = child.parentNode
-              target = child.$base
-            }
-
-            for( var i = path.length - 1; i >= 0; i-- ) {
-              target = target[ path[ i ] ]
-            }
-
-            while( target ) {
-              if( e.$prevent ) {
-                e.$prevent = null
-                break
-              }
-              if( target.$on[ val ] ) {
-                event = new Event( target )
-                target.$emit( val, event, e )
-              }
-              target = target._$parent
-            }
-          } )
-
-          domEvents[ val ] = true
-        }
-
+        this.$domEvent( val )
         this.__$key = val
       },
       get: function( val ) {
         return this.__$key
       }
+    },
+    $domEventCache: {
+      value: {}
+    },
+    $domEvent: function( val ) {
+       if( !this.$domEventCache[ val ] ) {
+        document.body.addEventListener( val, function( e ) {
+          var event
+          var path = []
+          var child = e.target
+          var target = child.$base
+
+          while( !target ) {
+            path.push( child.className )
+            child = child.parentNode
+            target = child.$base
+          }
+
+          for( var i = path.length - 1; i >= 0; i-- ) {
+            target = target[ path[ i ] ]
+          }
+
+          while( target ) {
+            if( target.$on[ val ] ) {
+              if(!event) {
+                event = new Event( target )
+              }
+              target.$emit( val, event, e )
+              if( event.$prevent ) {
+                break
+              }
+            }
+            target = target._$parent
+          }
+        } )
+        this.$domEventCache[ val ] = true
+      }
     }
   }
 } ).$Constructor
 
+
+
 },{"vjs/lib/emitter":"/Users/youzi/dev/vui/node_modules/vjs/lib/emitter/index.js","vjs/lib/event":"/Users/youzi/dev/vui/node_modules/vjs/lib/event/index.js"}],"/Users/youzi/dev/vui/lib/element/index.js":[function(require,module,exports){
 "use strict";
 
-var DomEmitter = require( './emitter' )
+var DomEmitter = require( './domemitter' )
 var Observable = require( 'vjs/lib/observable' )
 var On = require( 'vjs/lib/observable/onConstructor' )
 
 var Element = new Observable( {
   $define: {
-    $remove:function( val ){
-      var context = this._$context
-      var node
-      var parentNode
-      if(context){
-        node = context.$node
-
-        var i = context.$path.length
-        var path = this.$path
-        var length = path.length
-        var childNodes = node.childNodes
-
-        for (; i < length; i++) {
-          for (var j = childNodes.length - 1; j >= 0; j--) {
-            if(childNodes[j].id === path[i]){
-              parentNode = node
-              node = childNodes[j]
-              childNodes = node.childNodes
-              break
-            }
-          }
-        }
-      }else{
-        node = this.$node
-        parentNode = node.parentNode
-      }
-      parentNode.removeChild(node)
-    },
     _$key: {
-      set: function( val ) {
+      set:function( val ) {
         if( this._$node ) {
-          this._$node.id = val
+          this._$node.className = val
         }
         this.__$key = val
       },
       get: function() {
         return this.__$key
-          // || ( this._$node && ( this.__$key = this._$node.id ) )
       }
     },
+    remove: function() {
+      var node = this.$node
+      Observable.prototype.remove.apply( this, arguments )
+      node.parentNode.removeChild( node )
+    },
     $node: {
-      //Returns the node. If no node, creates the node.
       get: function() {
         var node = this._$node
+        var context
+        var parent
         var key
 
         if( !node ) {
           node = document.createElement( 'div' )
           node.$base = this
           if( key = this._$key ) {
-            node.id = key //this will change!
+            node.className = key
           }
 
           //TODO: remove this:testing
-          // node.style.borderLeft = '10px solid blue'
           node.innerHTML = this.$path.join( ' > ' )
-
+          
           this._$node = node
+
+        } else if( context = this._$context ) {
+          
+          node = context._$node
+
+          var parentNode
+          var path = this.$path
+          var length = path.length
+          var childNodes = node.childNodes
+          var i = length - this._$contextLevel - 1
+          var j
+
+          for( ; i < length; i++ ) {
+            for( j = childNodes.length - 1; j >= 0; j-- ) {
+              if( childNodes[ j ].className === path[ i ] ) {
+                parentNode = node
+                node = childNodes[ j ]
+                childNodes = node.childNodes
+                break
+              }
+            }
+          }
         }
+
         return node
       }
     },
@@ -23448,7 +23451,6 @@ var Element = new Observable( {
           var originElement
 
           if( parent && parent._$node ) {
-            //dit is ook niet goed
             originElement = Object.getPrototypeOf( this )
             if( parent instanceof originElement._$parent._$Constructor ) {
               elem = parent._$node
@@ -23456,7 +23458,7 @@ var Element = new Observable( {
               childNodes = elem.childNodes
               for( var i = 0, l = childNodes.length; i < l; i++ ) {
                 childNode = childNodes[ i ]
-                if( childNode.id === key ) {
+                if( childNode.className === key ) {
                   node = childNode
                 }
               }
@@ -23466,12 +23468,17 @@ var Element = new Observable( {
           this._$node = node || this._$node.cloneNode( true )
           this._$node.$base = this
         }
+
         Observable.apply( this, arguments )
       }
     }
   },
   $flags: {
+    // node can be actual node (eg. document.body), or string (eg 'div', 'button', etc)
     $node: function( node ) {
+      if( typeof node === 'string' ) {
+        node = document.createElement( node )
+      }
       node.$base = this
       this._$node = node
     },
@@ -23484,13 +23491,9 @@ var Element = new Observable( {
   $useVal: true,
   $on: {
     $addToParent: function( event, meta ) {
-      var parent = this.$parent
-      var node
-      if( parent && this instanceof Element ) {
-        node = this.$node
-        node.id = this._$key
-        parent.$node.appendChild( node )
-
+      if( ( this instanceof Element ) || this === Element.prototype ) {
+        //TODO: maak functie voor generation
+        this.$parent.$node.appendChild( this.$node )
       }
     }
   },
@@ -23503,7 +23506,7 @@ Element.prototype.define( {
 
 module.exports = Element
 
-},{"./emitter":"/Users/youzi/dev/vui/lib/element/emitter.js","./properties":"/Users/youzi/dev/vui/lib/element/properties.js","vjs/lib/observable":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/index.js","vjs/lib/observable/onConstructor":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/onConstructor.js"}],"/Users/youzi/dev/vui/lib/element/properties.js":[function(require,module,exports){
+},{"./domemitter":"/Users/youzi/dev/vui/lib/element/domemitter.js","./properties":"/Users/youzi/dev/vui/lib/element/properties.js","vjs/lib/observable":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/index.js","vjs/lib/observable/onConstructor":"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/onConstructor.js"}],"/Users/youzi/dev/vui/lib/element/properties.js":[function(require,module,exports){
 "use strict";
 
 var Observable = require('vjs/lib/observable')
@@ -23572,6 +23575,7 @@ exports = {
 var Base = require('./')
 
 exports.setParent = function( val, event, parent, key ) {
+  this.$clearContext()
   if( parent ) {
     this._$parent = parent
   }
@@ -23686,6 +23690,7 @@ exports.$resolveContextSet = function( val, event ) {
     console.warn('no event in resolvecontext', this.$path)
     notchanged = parent.$set( setObj, void 0, true )
   }
+
   delete this._$context.$blockContextGets
   return notchanged
 }
@@ -23723,7 +23728,7 @@ exports.$path = {
     var parent = this
     while( parent && parent._$key !== void 0 ) {
       path.unshift( parent._$contextKey || parent._$key )
-      parent = parent.$parent
+      parent = parent.$parent// || parent.$context
     }
     return path
   }
@@ -23995,11 +24000,13 @@ exports.$removeProperty = function( property, key, event, nocontext ) {
     }
   }
 }
-  
+
 exports.$removeInternal = function( event, nocontext, noparent ) {
 
   var parent = this._$parent
   var contextParent
+
+  console.log('xxxxx', this.$path)
 
   if( !noparent && !nocontext && this._$context ) {
     // console.warn(
@@ -24026,7 +24033,7 @@ exports.$removeInternal = function( event, nocontext, noparent ) {
 
 exports.remove = function( event, nocontext, noparent ) {
   if( this._$val === null ) {
-    console.warn( 'allready removed' )
+    console.warn( 'already removed' )
     return true
   }
   return this.$removeInternal( event, nocontext, noparent )
@@ -24967,134 +24974,7 @@ exports.$define = {
 }
 
 
-},{}],"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/setWithPath.js":[function(require,module,exports){
-"use strict";
-var helpers = require('./shared')
-var createPath = helpers.createPath
-var returnPath = helpers.returnPath
-
-/**
- * @function setWithPath
- * @memberOf Base#
- * @param  {string|string[]} path Path or field to find
- * @param  {*} [set] Value to set on path end
- * @return {base}
- */
-exports.$define = {
-  setWithPath: function( path, set ){
-    path = returnPath( path )
-    return createPath( this, path, path.length, set )
-  }
-}
-},{"./shared":"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/shared.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/shared.js":[function(require,module,exports){
-"use strict";
-
-var evaluate = require('../util/test')
-var isPlainObj = require('../util').isPlainObj
-var createPath
-var getPath
-
-exports.clean = function( obj, index ){
-  if(obj.constructor === Array){
-    return obj.splice(0,index)
-  }
-  while(obj[index]){
-    delete obj[index++]
-  }
-  return obj
-}
-
-exports.createPath = createPath = function( obj, path, length, set ){
-  var setObj = {}
-  var nextObj = setObj
-  var i = 0
-  var field
-  for(; i < length; i++ ) {
-    field = path[i]
-    nextObj[field] = {}
-    nextObj = nextObj[field]
-  }
-
-  if(set !== void 0){
-    nextObj[field] = set    
-  }
-  obj.$set(setObj)
-  return getPath( obj, path, length )
-}
-
-exports.getPath = getPath = function( obj, path, length, filter, set ) {
-  // console.log('ok bur', path)
-  var i = 0
-  var result = obj[path[0]]
-
-  while (result) {
-    // console.log('yes got something', result && result.$val)
-    if ( ++i === length ) {
-      if( filter === void 0 || filter(result) ){
-        console.log('length reached, return dat result')
-        return result
-      }
-    }
-    if(typeof result === 'function'){
-      return result.call(obj,path.splice(i), filter)
-    }
-    obj = result
-    result = result[path[i]]
-  }
-
-  if(set !== void 0){
-    return createPath(obj, path.splice(i), length - i, set)
-  }
-}
-
-exports.returnFilter = function( options ){
-  if( options !== void 0 ){
-    var conditions
-    var filter
-    
-    if( typeof options === 'function' ){
-      return options
-    }
-    
-    if( isPlainObj( options ) ){
-      conditions = options.conditions
-
-      if( conditions ){
-        return function( subject ){
-            return evaluate( subject, conditions )
-          }
-      }
-
-      if( options instanceof RegExp ){
-        return function( subject ){
-          return options.test ( subject )
-        }
-      }
-
-      if( options.contructor === Array ){
-        var length = options.length
-        return function( subject ){
-          for( var i = length - 1; i >= 0; i-- ) {
-            var value = options[i]
-            if( subject === value || subject._$val === value ){
-              return true
-            }
-          }
-        }
-      }
-
-    } else {
-      return function( subject ){
-        return subject === options || subject._$val === options
-      }
-    }
-  }
-}
-
-exports.returnPath = function( path ){
-  return typeof path === 'string' ? path.split('.') : path
-}
-},{"../util":"/Users/youzi/dev/vui/node_modules/vjs/lib/util/index.js","../util/test":"/Users/youzi/dev/vui/node_modules/vjs/lib/util/test.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/emit.js":[function(require,module,exports){
+},{}],"/Users/youzi/dev/vui/node_modules/vjs/lib/observable/emit.js":[function(require,module,exports){
 "use strict";
 
 var Event = require('../event')
@@ -25119,18 +24999,18 @@ exports.$define = {
         event = new Event( this )
       }
 
-      //TODO: uncomment this when not working on element
-      // if(!emitter.$noInstances) {
-      //   var instances = this.$on._instances
-      //   if( instances ) {
-      //     for( var i = 0, instance, length = instances.length; i < length; i++ ) {
-      //       instance = instances[i]
-      //       if( instance !== this && instance !== this.__proto__ ) {
-      //         instance.$emit.apply( instance, arguments )
-      //       }
-      //     }
-      //   }
-      // }
+      // TODO: uncomment this when not working on element
+      if(!emitter.$noInstances) {
+        var instances = this.$on._instances
+        if( instances ) {
+          for( var i = 0, instance, length = instances.length; i < length; i++ ) {
+            instance = instances[i]
+            if( instance !== this && instance !== this.__proto__ ) {
+              instance.$emit.apply( instance, arguments )
+            }
+          }
+        }
+      }
 
       if( meta ) {
         //for perf
@@ -25248,6 +25128,9 @@ observable.define({
   },  
   $removeInternal: function( event, nocontext, noparent ) {
     
+
+    console.log('blurgh', this.$path, event)
+
     if( event === void 0 ) {
       event = new Event( this )
       event.$val = null
@@ -25258,16 +25141,16 @@ observable.define({
     //this is not enough
 
     //has to be cleaned up
-    if( this.$on && this.$on._instances && this._$Constructor ) {
-      this.$clearContext()
-      for( var i in this.$on._instances) {
-        if( this.$on._instances[i] instanceof this._$Constructor ) {
-          if(!this.$on._instances[i].hasOwnProperty('_beingremoved')) {
-            this.$on._instances[i].remove( event, nocontext )
-          }
-        }
-      }
-    }
+    // if( this.$on && this.$on._instances && this._$Constructor ) {
+    //   this.$clearContext()
+    //   for( var i in this.$on._instances) {
+    //     if( this.$on._instances[i] instanceof this._$Constructor ) {
+    //       if(!this.$on._instances[i].hasOwnProperty('_beingremoved')) {
+    //         this.$on._instances[i].remove( event, nocontext )
+    //       }
+    //     }
+    //   }
+    // }
     
     if( event ) {
       this.$emit( '$change', event, true )
@@ -25287,7 +25170,7 @@ observable.define({
 
     //double check wtf is going on with event -- prop is false
     if( fireParentEvent && this[key] instanceof Observable ) {
-      this[key].$emit( '$addToParent', void 0 ) //event
+      this[key].$emit( '$addToParent', event || void 0 ) //event
     }
     
   }
@@ -25864,324 +25747,7 @@ exports.isRemoved = function( base ) {
   }
   return true
 }
-},{"../base":"/Users/youzi/dev/vui/node_modules/vjs/lib/base/index.js"}],"/Users/youzi/dev/vui/node_modules/vjs/lib/util/test.js":[function(require,module,exports){
-"use-strict";
-
-var makeTest = exports.makeTest = function (conditions, subsObj, gotval) {
-  var val = getValue(conditions)
-  if(typeof conditions === 'object') {
-    var keys = getKeys(conditions)
-    var length = keys.length
-    if(length === 1) {
-      var key = keys[0]
-      var test = makeKeyTest(key, conditions[key], subsObj)
-      if(gotval) {
-        return test
-      } else {
-        return function(doc){
-          return test(getValue(doc))
-        }  
-      }
-    } else if(length) {
-      return makeAND(conditions, subsObj)
-    } else {
-      console.error('empty conditions object?')
-      return alwaysTrue
-    }
-  }
-}
-
-function makeKeyTest(key, value, subsObj) {
-  value = value.$val
-
-  var test
-  var endpoint = !(value instanceof Object)
-  
-  switch (key) {
-    case '$not':
-      if(endpoint) {
-        test = function(doc) {
-          return doc !== value
-        }
-      } else {
-        var follow = makeTest(value, subsObj, true)
-        test = function(doc) {
-          return follow(doc) === false
-        }
-      }
-      break
-    case '$ne':
-      test = function(doc) {
-        return doc !== value
-      }
-      break
-    case '$and':
-      test = makeAND(value, subsObj)
-      break
-    case '$nand':
-      var and = makeAND(value, subsObj)
-      test = function(doc) {
-        return !and(doc)
-      }
-      break
-    case '$or':
-      test = makeOR(value, subsObj)
-      break
-    case '$nor':
-      var or = makeOR(value, subsObj)
-      test = function(doc) {
-        return !or(doc)
-      }
-      break
-    case '$every':
-      subsObj.$setKey('any$', {})
-      if(endpoint) {
-        subsObj.any$.$val = true
-        test = function(doc) {
-          var result = doc && doc.$each && true
-          if(result) {
-            doc.$each(function(){
-              if(getValue(this) !== value) {
-                result = false
-                return true
-              }
-            })
-          }
-          return result || false
-        }
-      } else {
-        var follow = makeTest(value, subsObj.any$, true)
-        test = function(doc) {
-          var result = doc && doc.$each && true
-          if(result) {
-            doc.$each(function(){
-              if(!follow(getValue(this))) {
-                result = false
-                return true
-              }
-            })
-          }
-          return result || false
-        }
-      }
-      break
-    case '$nevery':
-      var every = makeKeyTest('$every', value, subsObj)
-      test = function(doc) {
-        return !every(doc)
-      }
-      break
-    case '$':
-    case '$any':
-      subsObj.$setKey('any$', {})
-      if(endpoint) {
-        subsObj.any$.$val = true
-        test = function(doc) {
-          var result = doc && doc.$each
-          if(result) {
-            result = false
-            doc.$each(function(base){
-              if(getValue(base) === value) {
-                return result = true
-              }
-            })
-          }
-          return result || false
-        }
-      } else {
-        var follow = makeTest(value, subsObj.any$, true)
-        test = function(doc) {
-          var result = doc && doc.$each
-          if(result) {
-            result = false
-            doc.$each(function(base){
-              if(follow(getValue(base))) {
-                return result = true
-              }
-            })
-          }
-          return result || false
-        }
-      }
-      break
-    case '$nany':
-      var any = makeKeyTest('$any', value, subsObj)
-      test = function(doc){
-        return !any(doc)
-      }
-      break
-    case '$lt':
-      test = function(doc) {
-        return doc < value
-      }
-      break
-    case '$lte':
-      test = function(doc) {
-        return doc <= value
-      }
-      break
-    case '$gt':
-      test = function(doc) {
-        return doc > value
-      }
-      break
-    case '$gte':
-      test = function(doc) {
-        return doc >= value
-      }
-      break
-    case '$contains':
-      if(!(value instanceof RegExp)) {
-        value = new RegExp(value, 'i')
-      }
-      test = function(doc) {
-        console.log('testing', doc, 'for contains', value)
-        return value.test(doc)
-      }
-      break
-    case '$ncontains':
-      if(!(value instanceof RegExp)) {
-        value = new RegExp(value, 'i')
-      }
-      test = function(doc) {
-        return !value.test(doc)
-      }
-      break
-    case '$has':
-      test = function(doc) {
-        return doc && doc[value] !== void 0
-      }
-      break
-    case '$nhas':
-      test = function(doc) {
-        return !doc || doc[value] === void 0
-      }
-      break
-    case '$exists':
-      test = function(doc) {
-        return (doc !== void 0 && doc !== null) === value
-      }
-      break
-    case '$nexists':
-      test = function(doc) {
-        return (doc === void 0 || doc === null) === value
-      }
-      break
-    case '$in':
-      var list = []
-      value.$each(function(){
-        list.push(getValue(this))
-      })
-      test = function(doc) {
-        for (var i = 0, l = list.length; i < l; i++) {
-          if (doc === list[i]) return true
-        }
-        return false
-      }
-      break
-    case '$nin':
-      var list = []
-      value.$each(function(){
-        list.push(getValue(this))
-      })
-      test = function(doc) {
-        for (var i = 0, l = list.length; i < l; i++) {
-          if (doc === list[i]) return false
-        }
-        return true
-      }
-      break
-    default:
-      if(endpoint) {
-        test = function(doc) {
-          doc = getPropertyValue(doc, key)
-          return doc === value
-        }
-        subsObj.$setKey(key, true)
-        endpoint = null
-      } else {
-        var nextSubsObj = subsObj[key]
-        if(!nextSubsObj) {
-          subsObj.$setKey(key, {})
-          nextSubsObj = subsObj[key]
-        }
-        var follow = makeTest(value, nextSubsObj, true)
-        test = function(doc) {
-          doc = getPropertyValue(doc, key)
-          return follow(doc)
-        }
-      }
-    break
-  }
-
-  if(endpoint) {
-    subsObj.$val = true
-  }
-
-  return test
-
-}
-
-function getValue(base) {
-  base = base.$origin
-  return base.$val
-}
-
-function getPropertyValue(base, key) {
-  base = base.$origin
-  base = base[key]
-  if(base) {
-    return getValue(base)
-  }
-}
-
-function getKeys(base) {
-  var keys = []
-  for(var k in base) {
-    if(k[0] !== '_' && k !== '$bind'){ // TODO: properly exclude keys
-      keys.push(k)
-    }
-  }
-  return keys
-}
-
-function alwaysTrue(){
-  return true
-}
-
-function makeList(value, subsObj) {
-  var list = []
-  value.$each(function(){
-    list.push(makeTest(this, subsObj, true))
-  })
-  return list
-}
-
-function makeAND(value, subsObj) {
-  var testList = makeList(value, subsObj)
-  return function(doc) {
-    for (var i = 0, l = testList.length; i < l; i++) {
-      if (!testList[i](doc)) {
-        return false
-      }
-    }
-    return true
-  }
-}
-
-function makeOR(value, subsObj) {
-  var testList = makeList(value, subsObj)
-  return function(doc) {
-    for (var i = 0, l = testList.length; i < l; i++) {
-      if (testList[i](doc)) {
-        return true
-      }
-    }
-    return false
-  }
-}
-
-},{}],"gaston-tester":[function(require,module,exports){
+},{"../base":"/Users/youzi/dev/vui/node_modules/vjs/lib/base/index.js"}],"gaston-tester":[function(require,module,exports){
 var chai = window.chai = require('chai');
 // var should = window.should = chai.should();
 var expect = window.expect = chai.expect;
@@ -26202,11 +25768,17 @@ require('./style.less')
 var app = require('../../lib/app')
 var Element = require('../../lib/element')
 
-Element.prototype.inject( require('vjs/lib/methods/setWithPath') )
+// Element.prototype.inject( require('vjs/lib/methods/setWithPath') )
+
 
 //BUG? path is shared?
 var thing = new Element({
+  // $text:'whut',
+  $on:{
+    click:click
+  },
   one:{
+    // $text:'dicks',
     $on:{
       click:click
     },
@@ -26224,31 +25796,31 @@ var thing = new Element({
 })
 
 // thing.one.two.$remove()
-
 app.$set({
-  a:new thing.$Constructor({
-    $text:'a',
-  }),
   b:new thing.$Constructor({
-    $text:'b',
-  }),
-  c:new thing.$Constructor({
-    $text:'c',
-  }),
-  d:new thing.$Constructor({
-    $text:'d',
+    c:new thing.$Constructor({
+      
+    })
   })
 })
 
 function click(event, e){
+  event.$prevent = true
+  // var node = this.$node
+
+  // node.style.border = Math.ceil(Math.random() *10) + 'px solid blue'
+
+  // this.remove()
+
   // var str =  Math.random() * 10 + ' ' + this.$path
   // if(!this.$text) this.$set({$text:str})
   // else this.$text.$val = str
-  e.$prevent = true
 
-  this.$remove()
+  // e.$prevent = true
+
+  this.remove()
 }
-},{"../../lib/app":"/Users/youzi/dev/vui/lib/app/index.js","../../lib/element":"/Users/youzi/dev/vui/lib/element/index.js","./style.less":"/Users/youzi/dev/vui/examples/events/style.less","vjs/lib/methods/setWithPath":"/Users/youzi/dev/vui/node_modules/vjs/lib/methods/setWithPath.js"}],"package.json":[function(require,module,exports){
+},{"../../lib/app":"/Users/youzi/dev/vui/lib/app/index.js","../../lib/element":"/Users/youzi/dev/vui/lib/element/index.js","./style.less":"/Users/youzi/dev/vui/examples/events/style.less"}],"package.json":[function(require,module,exports){
 module.exports={
   "name": "vui",
   "version": "0.0.1",

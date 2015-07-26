@@ -3,11 +3,17 @@ require('./style.less')
 var app = require('../../lib/app')
 var Element = require('../../lib/element')
 
-Element.prototype.inject( require('vjs/lib/methods/setWithPath') )
+// Element.prototype.inject( require('vjs/lib/methods/setWithPath') )
+
 
 //BUG? path is shared?
 var thing = new Element({
+  // $text:'whut',
+  $on:{
+    click:click
+  },
   one:{
+    // $text:'dicks',
     $on:{
       click:click
     },
@@ -25,27 +31,27 @@ var thing = new Element({
 })
 
 // thing.one.two.$remove()
-
 app.$set({
-  a:new thing.$Constructor({
-    $text:'a',
-  }),
   b:new thing.$Constructor({
-    $text:'b',
-  }),
-  c:new thing.$Constructor({
-    $text:'c',
-  }),
-  d:new thing.$Constructor({
-    $text:'d',
+    c:new thing.$Constructor({
+      
+    })
   })
 })
 
 function click(event, e){
+  event.$prevent = true
+  // var node = this.$node
+
+  // node.style.border = Math.ceil(Math.random() *10) + 'px solid blue'
+
+  // this.remove()
+
   // var str =  Math.random() * 10 + ' ' + this.$path
   // if(!this.$text) this.$set({$text:str})
   // else this.$text.$val = str
-  e.$prevent = true
 
-  this.$remove()
+  // e.$prevent = true
+
+  this.remove()
 }

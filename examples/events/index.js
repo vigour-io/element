@@ -8,12 +8,10 @@ var Element = require('../../lib/element')
 
 //BUG? path is shared?
 var thing = new Element({
-  // $text:'whut',
   $on:{
     click:click
   },
   one:{
-    // $text:'dicks',
     $on:{
       click:click
     },
@@ -22,13 +20,16 @@ var thing = new Element({
         click:click
       },
       three:{
-        $on:{
-          click:click
-        }
+        four:{},
+        // $on:{
+        //   click:click
+        // }
       }
     }
   }
 })
+
+// thing.one.two.three
 
 // thing.one.two.$remove()
 app.$set({
@@ -36,22 +37,18 @@ app.$set({
     c:new thing.$Constructor({
       
     })
-  })
+  }),
+  a:new thing.$Constructor()
 })
+
+console.log('------')
+
+
+app.a.one.two.three.$val = 'yuzi'
+
+console.log(app.a)
 
 function click(event, e){
   event.$prevent = true
-  // var node = this.$node
-
-  // node.style.border = Math.ceil(Math.random() *10) + 'px solid blue'
-
-  // this.remove()
-
-  // var str =  Math.random() * 10 + ' ' + this.$path
-  // if(!this.$text) this.$set({$text:str})
-  // else this.$text.$val = str
-
-  // e.$prevent = true
-
   this.remove()
 }

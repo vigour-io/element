@@ -8,22 +8,26 @@ var Element = require('../../lib/element')
 
 //BUG? path is shared?
 var thing = new Element({
+  $text:'balls',
   $on:{
     click:click
   },
   one:{
+    $text:'smalls',
     $on:{
       click:click
     },
     two:{
+      $text:'falls',
       $on:{
         click:click
       },
       three:{
+        $text:'walls',
         four:{},
-        // $on:{
-        //   click:click
-        // }
+        $on:{
+          click:click
+        }
       }
     }
   }

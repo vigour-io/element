@@ -25,7 +25,7 @@ var thing = new Element( {
     },
     two: {
       $css: 'grey-bg',
-      $text: 'falls',
+      $text: 'falls', 
       $on: {
         click: click
       },
@@ -53,9 +53,39 @@ app.$set( {
   a: new thing.$Constructor()
 } )
 
-app.a.one.two.three.$val = 'yuzi'
+// app.a.one.two.three.$val = 'yuzi'
+
+// app.a.one.two.three.on( 'mousemove', function() {
+//   this.$node.style.opacity = Math.random()
+// })
+
+
+
+// app.a.one.two.three.$set({
+//   $on: {
+//     click: function() {
+//       this.$node.style.opacity = Math.random()
+//         console.log('???', this.$path)
+//     }
+//   }
+// })
+
+
+//handle voerwrite in method voor resolvement van context
+// app.a.one.two.three.on( 'click', function() {
+//   this.$node.style.opacity = Math.random()
+// }, 'val')
+
+console.log(app.a)
 
 function click( event, e ) {
-  event.$prevent = true
-  this.remove()
+
+  console.log(event.$prevent)
+  event.$postponed = null
+
+  this.$text.$val = Math.random()*9999
+  // this.$node.style.opacity = Math.random()
+
+  console.log('???', this.$path)
+  // this.remove()
 }

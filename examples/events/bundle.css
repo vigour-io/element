@@ -1,10 +1,19 @@
 /* /Users/youzi/dev/vui/examples/events/style.less */
 div {
+  color: green;
+  font-size: 24px;
+  font-family: helvetica;
   border: 1px solid red;
   margin: 10px;
 }
-.power {
-  background-color: yellow;
+.grey-bg {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.blue-bg {
+  background-color: blue;
+}
+.red-txt {
+  color: red !important;
 }
 /* /Users/youzi/dev/gaston/lib/browser/styles.less */
 .gaston-ui {

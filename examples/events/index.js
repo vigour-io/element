@@ -27,20 +27,26 @@ var thing = new Element( {
         $text: 'walls',
         $node:'button',
         $on: {
-          // $down:function(){
-
-          // },
-          // $click:function(){
-
-          // },
-          mousedown:function(){
-            console.log('HEYYYY')
-            var id = 'click'
-            this.$addEvent('mouseup',function(e){
-              console.error('UPUPUPUPUP')
-              this.$removeEvent(  )
-            },id)
+          $drag:function(){
+            
           }
+          // $down:function(){
+          //   console.error('down!!')
+          // },
+          // $move:function(){
+          //   console.error('move!!')
+          // },
+          // $up:function(){
+          //   console.error('up!!')
+          // },
+          // mousedown:function(){
+          //   console.log( 'HEYYYY' )
+          //   var id = 'click'
+          //   this.$addEvent( 'mouseup', function(e){
+          //     console.error('UPPPPP')
+          //     // this.$removeEvent( false,id )
+          //   },id)
+          // }
         }
       }
     }
@@ -50,21 +56,21 @@ var thing = new Element( {
 // thing.$addEvent('mouseup','first')
 
 app.$set( {
-  b: new thing.$Constructor( {
-    $text: '?!@#234234234234!@#',
-    c: new thing.$Constructor( {
-      flups: new thing.$Constructor( {
-        $text: 'HIERO',
-        $css: 'blue-bg'
-      } )
-    } )
-  } ),
+  // b: new thing.$Constructor( {
+  //   $text: '?!@#234234234234!@#',
+  //   c: new thing.$Constructor( {
+  //     flups: new thing.$Constructor( {
+  //       $text: 'HIERO',
+  //       $css: 'blue-bg'
+  //     } )
+  //   } )
+  // } ),
   a: new thing.$Constructor()
 } )
 
 
-console.log('RESULTS',app.b.c.flups.$addEvent)
-console.log( app.a.one.two.three.$on )
+// console.log('RESULTS',app.b.c.flups.$addEvent)
+console.log( app.a.one.two.three.$on.$val )
 
 function click( event, e ) {
 

@@ -5,40 +5,49 @@ var Element = require( '../../lib/element' )
 
 Element.prototype.inject(
   require( '../../lib/property/css' ),
-  require( '../../lib/property/text' )
+  require( '../../lib/property/text' ),
+  require( 'vjs/lib/methods/lookUp' )
 )
 
 var thing = new Element( {
+  $key:'balls',
   $text: 'balls',
   $css: {
     $val: 'grey-bg',
     $add: ' red-txt '
   },
-  $on: {
-    click: click
-  },
   one: {
     $css: 'grey-bg',
     $text: 'smalls',
-    $on: {
-      click: click
-    },
     two: {
       $css: 'grey-bg',
       $text: 'falls', 
-      $on: {
-        click: click
-      },
       three: {
         $css: 'grey-bg',
         $text: 'walls',
+        $node:'button',
         $on: {
-          click: click
+          // $down:function(){
+
+          // },
+          // $click:function(){
+
+          // },
+          mousedown:function(){
+            console.log('HEYYYY')
+            var id = 'click'
+            this.$addEvent('mouseup',function(e){
+              console.error('UPUPUPUPUP')
+              this.$removeEvent(  )
+            },id)
+          }
         }
       }
     }
   }
 } )
+
+// thing.$addEvent('mouseup','first')
 
 app.$set( {
   b: new thing.$Constructor( {
@@ -53,39 +62,17 @@ app.$set( {
   a: new thing.$Constructor()
 } )
 
-// app.a.one.two.three.$val = 'yuzi'
 
-// app.a.one.two.three.on( 'mousemove', function() {
-//   this.$node.style.opacity = Math.random()
-// })
-
-
-
-// app.a.one.two.three.$set({
-//   $on: {
-//     click: function() {
-//       this.$node.style.opacity = Math.random()
-//         console.log('???', this.$path)
-//     }
-//   }
-// })
-
-
-//handle voerwrite in method voor resolvement van context
-// app.a.one.two.three.on( 'click', function() {
-//   this.$node.style.opacity = Math.random()
-// }, 'val')
-
-console.log(app.a)
+console.log('RESULTS',app.b.c.flups.$addEvent)
+console.log( app.a.one.two.three.$on )
 
 function click( event, e ) {
 
-  console.log(event.$prevent)
-  event.$postponed = null
+  // event.$postponed = null
 
-  this.$text.$val = Math.random()*9999
+  // this.$text.$val = Math.random()*9999
   // this.$node.style.opacity = Math.random()
 
-  console.log('???', this.$path)
-  // this.remove()
+  console.error('???', this._$key,this.$path,this.$node)
+  this.remove()
 }

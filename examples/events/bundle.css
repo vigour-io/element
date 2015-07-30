@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* /Users/jim/dev/vui/examples/events/style.less */
 div {
   color: green;
@@ -16,6 +17,9 @@ div {
   color: red !important;
 }
 /* /Users/jim/dev/gaston/lib/browser/styles.less */
+=======
+/* /Users/youzi/dev/gaston/lib/browser/styles.less */
+>>>>>>> 3b4bbb6ef818357cb504fa452b033e39a519217f
 .gaston-ui {
   position: absolute;
   bottom: 0;
@@ -49,4 +53,25 @@ div {
 }
 .gaston-ui.open .logo {
   display: none;
+}
+/* /Users/youzi/dev/vui/examples/events/style.less */
+div {
+  color: green;
+  font-size: 24px;
+  font-family: helvetica;
+  border: 1px solid red;
+  margin: 10px;
+}
+button {
+  width: 100px;
+  height: 100px;
+}
+.grey-bg {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.blue-bg {
+  background-color: blue;
+}
+.red-txt {
+  color: red !important;
 }

@@ -32,8 +32,11 @@ var thing = new Element( {
         $css: 'grey-bg',
         $text: 'walls',
         $on: {
-          $drag:function(event, e){
-            console.log('DEEPER DOWN')
+          $grab:function(event, e) {
+            console.log("Grab",event, e)
+          },
+          $grabstart:function(event, e) {
+            console.log("grabstart",event, e)
           }
         },
         title:{

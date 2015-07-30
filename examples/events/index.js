@@ -9,12 +9,14 @@ Element.prototype.inject(
   require( 'vjs/lib/methods/lookUp' )
 )
 
-<<<<<<< HEAD
-var thing = new Element({
-=======
+
 var thing = new Element( {
+  $on: {
+    mousedown:function(){
+      console.log('DOWN ON TOP')
+    }
+  },
   $key:'balls',
->>>>>>> 3b4bbb6ef818357cb504fa452b033e39a519217f
   $text: 'balls',
   $css: {
     $val: 'grey-bg',
@@ -31,64 +33,28 @@ var thing = new Element( {
         $text: 'walls',
         $node:'button',
         $on: {
-          // $drag:function(){
-
-          // }
-          // $down:function(){
-          //   console.error('down!!')
-          // },
-          // $move:function(){
-          //   console.error('move!!')
-          // },
-          // $up:function(){
-          //   console.error('up!!')
-          // },
-          mousedown:function(){
-            console.log( 'HEYYYY' )
-            var id = 'click'
-            this.$addEvent( 'mousemove', function(e){
-
-            },id)
-            this.$addEvent( 'mouseup', function(e){
-              console.error('UPPPPP')
-              this.$removeEvent( 'mousemove' )
-            },id)
+          mousedown:function(event, e){
+            console.log('DEEPER DOWN')
           }
+        },
+        title:{
+          $text:'click me!'
         }
       }
     }
   }
 } )
 
-// thing.$addEvent('mouseup','first')
-
-app.$set( {
-  // b: new thing.$Constructor( {
-  //   $text: '?!@#234234234234!@#',
-  //   c: new thing.$Constructor( {
-  //     flups: new thing.$Constructor( {
-  //       $text: 'HIERO',
-  //       $css: 'blue-bg'
-  //     } )
-  //   } )
-  // } ),
-  a: new thing.$Constructor()
+app.set( {
+  a: new thing.$Constructor({
+    // one:{
+    //   two:{
+    //     three:{
+    //       $drag:function(){
+    //         console.log('weeehooooo')
+    //       }
+    //     }
+    //   }
+    // }
+  })
 } )
-
-
-<<<<<<< HEAD
-=======
-// console.log('RESULTS',app.b.c.flups.$addEvent)
-console.log( app.a.one.two.three.$on.$val )
-
->>>>>>> 3b4bbb6ef818357cb504fa452b033e39a519217f
-function click( event, e ) {
-
-  // event.$postponed = null
-
-  // this.$text.$val = Math.random()*9999
-  // this.$node.style.opacity = Math.random()
-
-  console.error('???', this._$key,this.$path,this.$node)
-  this.remove()
-}

@@ -8,7 +8,7 @@ Element.prototype.inject(
   require( '../../lib/property/text' )
 )
 
-var thing = new Element( {
+var thing = new Element({
   $text: 'balls',
   $css: {
     $val: 'grey-bg',
@@ -75,8 +75,6 @@ app.$set( {
 // app.a.one.two.three.on( 'click', function() {
 //   this.$node.style.opacity = Math.random()
 // }, 'val')
-
-console.log(app.a)
 
 function click( event, e ) {
 

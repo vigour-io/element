@@ -1,4 +1,4 @@
-/* /Users/youzi/dev/vui/examples/events/style.less */
+/* /Users/jim/dev/vui/examples/events/style.less */
 div {
   color: green;
   font-size: 24px;
@@ -15,7 +15,7 @@ div {
 .red-txt {
   color: red !important;
 }
-/* /Users/youzi/dev/gaston/lib/browser/styles.less */
+/* /Users/jim/dev/gaston/lib/browser/styles.less */
 .gaston-ui {
   position: absolute;
   bottom: 0;

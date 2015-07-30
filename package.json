@@ -1,0 +1,43 @@
+{
+  "name": "vui",
+  "version": "0.0.1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vigour-io/vui.git"
+  },
+  "scripts": {
+    "test": "test/test.js",
+    "doc": "jsdoc2md lib/**/*.js > vjs.wiki/Classes.md"
+  },
+  "author": "Vigour.io <dev@vigour.io>",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/vigour-io/vui/issues"
+  },
+  "dependencies": {
+    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
+  },
+  "homepage": "https://github.com/vigour-io/vui",
+  "gaston": {
+    "port": 8080,
+    "socket-port": 9000,
+    "no-auto-reload": false,
+    "no-package": false,
+    "bundle": "./",
+    "build": "./",
+    "browserify": {
+      "transforms": []
+    },
+    "less": {
+      "options": {}
+    },
+    "smaps": false,
+    "source-maps": false,
+    "remote-logging": false,
+    "require-paths": {}
+  }
+}

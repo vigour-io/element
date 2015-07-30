@@ -9,14 +9,9 @@ Element.prototype.inject(
   require( 'vjs/lib/methods/lookUp' )
 )
 
-
-
 var thing = new Element( {
-  $key:'balls',
-  $css:{
-    $val:'balls',
-    $add:'yoyo'
-  }
+  // $key:'balls',
+  $text:'ha'
 } )
 
 app.set({

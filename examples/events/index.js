@@ -10,6 +10,11 @@ Element.prototype.inject(
 )
 
 var thing = new Element( {
+  $on:{
+    mousedown:function(){
+      console.log('DOWN ON TOP')
+    }
+  },
   $key:'balls',
   $text: 'balls',
   $css: {
@@ -27,61 +32,72 @@ var thing = new Element( {
         $text: 'walls',
         $node:'button',
         $on: {
-          // $drag:function(){
+          // $down:function( event, e ){
+          //   console.log('$down!', event, e)
+          // },
+          // $move:function( event, e ){
+          //   console.log('$move!', event, e)
+          // },
+          // $up:function(event,e){
+          //   console.log('$up!', event, e)
+          // },
+          // $drag:function(event,e){
+          //   console.log('$drag!', event, e)
+          // },
+          // $click:function( event, e ){
+          //   console.log('$click!', event, e)
+          // }
+          // mousedown:function(){
+          //   var id = '$click'
+          //   this.$addEvent('mouseup',function(){
+          //     //do something click!
+
+          //     this.$removeEvent(false,id)
+          //   },id)
+          // }
+          mousedown:function(event, e){
+            console.log('DEEPER DOWN')
+          }
+          // $dragend:function(e){
+
+          // },
+          // $dragstart:function(e){
 
           // }
-          // $down:function(){
-          //   console.error('down!!')
-          // },
-          // $move:function(){
-          //   console.error('move!!')
-          // },
-          // $up:function(){
-          //   console.error('up!!')
-          // },
-          mousedown:function(){
-            console.log( 'HEYYYY' )
-            var id = 'click'
-            this.$addEvent( 'mousemove', function(e){
+          // mousedown:function(){
+          //   var id = 'drag'
+            
+          //   this.$addEvent( 'mousemove', function(e){
+          //     console.log('dragging!!!')
+          //   },id)
 
-            },id)
-            this.$addEvent( 'mouseup', function(e){
-              console.error('UPPPPP')
-              this.$removeEvent( 'mousemove' )
-            },id)
-          }
+          //   this.$addEvent( 'mouseup', function(e){
+          //     console.error('drag end')
+
+
+          //     this.$removeEvent( false, id )
+
+          //   },id)
+          // }
+        },
+        title:{
+          $text:'click me!'
         }
       }
     }
   }
 } )
 
-// thing.$addEvent('mouseup','first')
-
 app.$set( {
-  // b: new thing.$Constructor( {
-  //   $text: '?!@#234234234234!@#',
-  //   c: new thing.$Constructor( {
-  //     flups: new thing.$Constructor( {
-  //       $text: 'HIERO',
-  //       $css: 'blue-bg'
-  //     } )
-  //   } )
-  // } ),
-  a: new thing.$Constructor()
+  a: new thing.$Constructor({
+    // one:{
+    //   two:{
+    //     three:{
+    //       $drag:function(){
+    //         console.log('weeehooooo')
+    //       }
+    //     }
+    //   }
+    // }
+  })
 } )
-
-
-// console.log('RESULTS',app.b.c.flups.$addEvent)
-console.log( app.a.one.two.three.$on.$val )
-
-function click( event, e ) {
-
-  // event.$postponed = null
-
-  // this.$text.$val = Math.random()*9999
-  // this.$node.style.opacity = Math.random()
-
-  console.error('???', this._$key,this.$path,this.$node)
-  this.remove()
-}

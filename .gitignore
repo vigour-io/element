@@ -5,16 +5,9 @@ docs/*
 .DS_Store
 .*.sw[op]
 
-*.mp4
-
 bundle.css
 bundle.js
 bundle.js.map
 build.css
 build.js
 build.html
-vendor/
-
-results.json
-
-time-tracking

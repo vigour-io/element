@@ -11,11 +11,11 @@ Element.prototype.inject(
 
 
 var thing = new Element( {
-  $on: {
-    mousedown:function(){
-      console.log('DOWN ON TOP')
-    }
-  },
+  // $on: {
+  //   mousedown:function(){
+  //     console.log('DOWN ON TOP')
+  //   }
+  // },
   $key:'balls',
   $text: 'balls',
   $css: {
@@ -31,9 +31,8 @@ var thing = new Element( {
       three: {
         $css: 'grey-bg',
         $text: 'walls',
-        $node:'button',
         $on: {
-          mousedown:function(event, e){
+          $drag:function(event, e){
             console.log('DEEPER DOWN')
           }
         },
@@ -45,16 +44,8 @@ var thing = new Element( {
   }
 } )
 
+
 app.set( {
   a: new thing.$Constructor({
-    // one:{
-    //   two:{
-    //     three:{
-    //       $drag:function(){
-    //         console.log('weeehooooo')
-    //       }
-    //     }
-    //   }
-    // }
   })
 } )

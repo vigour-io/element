@@ -9,8 +9,12 @@ Element.prototype.inject(
   require( 'vjs/lib/methods/lookUp' )
 )
 
+<<<<<<< HEAD
+var thing = new Element({
+=======
 var thing = new Element( {
   $key:'balls',
+>>>>>>> 3b4bbb6ef818357cb504fa452b033e39a519217f
   $text: 'balls',
   $css: {
     $val: 'grey-bg',
@@ -72,9 +76,12 @@ app.$set( {
 } )
 
 
+<<<<<<< HEAD
+=======
 // console.log('RESULTS',app.b.c.flups.$addEvent)
 console.log( app.a.one.two.three.$on.$val )
 
+>>>>>>> 3b4bbb6ef818357cb504fa452b033e39a519217f
 function click( event, e ) {
 
   // event.$postponed = null

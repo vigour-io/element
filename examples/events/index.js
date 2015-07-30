@@ -27,9 +27,9 @@ var thing = new Element( {
         $text: 'walls',
         $node:'button',
         $on: {
-          $drag:function(){
-            
-          }
+          // $drag:function(){
+
+          // }
           // $down:function(){
           //   console.error('down!!')
           // },
@@ -39,14 +39,17 @@ var thing = new Element( {
           // $up:function(){
           //   console.error('up!!')
           // },
-          // mousedown:function(){
-          //   console.log( 'HEYYYY' )
-          //   var id = 'click'
-          //   this.$addEvent( 'mouseup', function(e){
-          //     console.error('UPPPPP')
-          //     // this.$removeEvent( false,id )
-          //   },id)
-          // }
+          mousedown:function(){
+            console.log( 'HEYYYY' )
+            var id = 'click'
+            this.$addEvent( 'mousemove', function(e){
+
+            },id)
+            this.$addEvent( 'mouseup', function(e){
+              console.error('UPPPPP')
+              this.$removeEvent( 'mousemove' )
+            },id)
+          }
         }
       }
     }

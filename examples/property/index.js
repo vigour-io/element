@@ -12,22 +12,25 @@ Element.prototype.inject(
 
 var thing = new Element({
   $on: {
-    $click:function(){
-      // console.time('transform, move and dim')
-      var x = ~~(Math.random() * 200)
-      var y = ~~(Math.random() * 200)
+    // $click:function(){
+    //   // console.time('transform, move and dim')
+    //   var x = ~~(Math.random() * 200)
+    //   var y = ~~(Math.random() * 200)
 
-      this.$y.$val = y
-      this.$x.$val = x
-      // console.info('move that thing!', x, y)
+    //   this.$y.$val = y
+    //   this.$x.$val = x
+    //   // console.info('move that thing!', x, y)
 
-      this.$opacity.$val = Math.random() * 2
-      // console.info('make it dim!', this.$opacity.$val)
+    //   this.$opacity.$val = Math.random() * 2
+    //   // console.info('make it dim!', this.$opacity.$val)
 
-      this.$width.$val = ~~(Math.random() * 400)
-      this.$height.$val = ~~(Math.random() * 400)
-      // console.info('change sizes!', x, y)
-      // console.timeEnd('transform, move and dim')
+    //   this.$width.$val = ~~(Math.random() * 400)
+    //   this.$height.$val = ~~(Math.random() * 400)
+    //   // console.info('change sizes!', x, y)
+    //   // console.timeEnd('transform, move and dim')
+    // }
+    $grab:function(event, e){
+      console.log(event,e)
     }
   },
   $x: null,

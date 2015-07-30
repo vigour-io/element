@@ -19,6 +19,6 @@ var thing = new Element( {
   }
 } )
 
-app.$set({
+app.set({
   a:thing
 })

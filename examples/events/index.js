@@ -9,8 +9,9 @@ Element.prototype.inject(
   require( 'vjs/lib/methods/lookUp' )
 )
 
+
 var thing = new Element( {
-  $on:{
+  $on: {
     mousedown:function(){
       console.log('DOWN ON TOP')
     }
@@ -32,53 +33,9 @@ var thing = new Element( {
         $text: 'walls',
         $node:'button',
         $on: {
-          // $down:function( event, e ){
-          //   console.log('$down!', event, e)
-          // },
-          // $move:function( event, e ){
-          //   console.log('$move!', event, e)
-          // },
-          // $up:function(event,e){
-          //   console.log('$up!', event, e)
-          // },
-          // $drag:function(event,e){
-          //   console.log('$drag!', event, e)
-          // },
-          // $click:function( event, e ){
-          //   console.log('$click!', event, e)
-          // }
-          // mousedown:function(){
-          //   var id = '$click'
-          //   this.$addEvent('mouseup',function(){
-          //     //do something click!
-
-          //     this.$removeEvent(false,id)
-          //   },id)
-          // }
           mousedown:function(event, e){
             console.log('DEEPER DOWN')
           }
-          // $dragend:function(e){
-
-          // },
-          // $dragstart:function(e){
-
-          // }
-          // mousedown:function(){
-          //   var id = 'drag'
-            
-          //   this.$addEvent( 'mousemove', function(e){
-          //     console.log('dragging!!!')
-          //   },id)
-
-          //   this.$addEvent( 'mouseup', function(e){
-          //     console.error('drag end')
-
-
-          //     this.$removeEvent( false, id )
-
-          //   },id)
-          // }
         },
         title:{
           $text:'click me!'
@@ -88,7 +45,7 @@ var thing = new Element( {
   }
 } )
 
-app.$set( {
+app.set( {
   a: new thing.$Constructor({
     // one:{
     //   two:{

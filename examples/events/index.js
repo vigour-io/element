@@ -32,8 +32,8 @@ var thing = new Element( {
         $css: 'grey-bg',
         $text: 'walls',
         $on: {
-          $drag:function(event, e){
-            console.log('DEEPER DOWN')
+          $click:function(event, e){
+            console.log('time?',event.duration)
           }
         },
         title:{

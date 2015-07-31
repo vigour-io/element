@@ -1,0 +1,20 @@
+.appearance (@property: none) {
+  -webkit-appearance: @property;
+     -moz-appearance: @property;
+          appearance: @property;
+}
+
+.placeholder(@color: @placeholder) {
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+  &:-moz-placeholder {
+    color: @color;
+  }
+  &:-ms-input-placeholder {
+    color: @color;
+  }
+  &[data-operaplaceholder] {
+    color: @color;
+  }
+}

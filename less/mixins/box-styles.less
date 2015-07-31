@@ -1,0 +1,61 @@
+// border radius mixin
+// example: .radius(3px)
+// example: .radius(top right bottom left)
+.radius(@radius) {
+  -webkit-border-radius: @radius;
+     -moz-border-radius: @radius;
+          border-radius: @radius;
+}
+
+// background-clip mixin
+// example: .clip(content-box)
+.clip (@property: padding-box) {
+  -webkit-background-clip: @property;
+     -moz-background-clip: @property;
+          background-clip: @property;
+}
+
+// background-size mixin
+// example: .bgsize(cover)
+.bgsize (@property) {
+    -webkit-background-size: @property;
+       -moz-background-size: @property;
+         -o-background-size: @property;
+            background-size: @property;
+}
+
+// box-shadow mixin
+// example: .shadow(1px 1px 3px 1px #ccc)
+.shadow (@shadow, @second: inset 0 0 0) {
+  -webkit-box-shadow: @shadow, @second;
+     -moz-box-shadow: @shadow, @second;
+          box-shadow: @shadow, @second;
+}
+
+// overflow scrollbar style
+// example: .overflow(10px, yellow, #eee, #ccc)
+// TODO: needs changes
+.overflow (@width: 10px) {
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: @width;
+  }
+  &::-webkit-scrollbar-track {
+    .radius(5px);
+    background: rgba(255, 255, 255, 0.2);
+    width: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    .radius(5px);
+    background: #ccc;
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #bbb;
+  }
+  &::-webkit-scrollbar-thumb:window-inactive {
+    background: #eee;
+  }
+}

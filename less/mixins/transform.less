@@ -1,0 +1,47 @@
+.transform(@property) {
+  -webkit-transform: @property;
+     -moz-transform: @property;
+      -ms-transform: @property;
+       -o-transform: @property;
+          transform: @property;
+}
+
+.transform-origin(@property) {
+  -webkit-transform-origin: @property;
+     -moz-transform-origin: @property;
+      -ms-transform-origin: @property;
+       -o-transform-origin: @property;
+          transform-origin: @property;
+}
+
+.translate(@top: -50%, @left: -50%) {
+  -webkit-transform: translate(@top, @left);
+     -moz-transform: translate(@top, @left);
+      -ms-transform: translate(@top, @left);
+       -o-transform: translate(@top, @left);
+          transform: translate(@top, @left);
+}
+
+.rotate(@property: 0deg) {
+  -webkit-transform: rotate(@property);
+      -ms-transform: rotate(@property);
+          transform: rotate(@property);
+}
+
+.scale(@x: 1, @y: 1) {
+  -webkit-transform: scale(@x, @y);
+      -ms-transform: scale(@x, @y);
+          transform: scale(@x, @y);
+}
+
+.skew(@x: 1, @y: 1) {
+  -webkit-transform: skew(@x, @y);
+      -ms-transform: skew(@x, @y);
+          transform: skew(@x, @y);
+}
+
+.matrix(@a, @b, @c, @d, @e, @f) {
+  -webkit-transform: matrix(@a, @b, @c, @d, @e, @f);
+      -ms-transform: matrix(@a, @b, @c, @d, @e, @f);
+          transform: matrix(@a, @b, @c, @d, @e, @f);
+}

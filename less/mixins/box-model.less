@@ -1,0 +1,8 @@
+// box-sizing mixin
+// example: .sizing(content-box)
+.sizing (@property: border-box) {
+  -webkit-box-sizing: @property;
+     -moz-box-sizing: @property;
+      -ms-box-sizing: @property;
+          box-sizing: @property;
+}

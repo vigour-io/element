@@ -10,45 +10,36 @@ Element.prototype.inject(
   require( '../../lib/property/size' )
 )
 
-var thing = new Element({
+window.thing = thing = new Element({
   $on: {
-    // $click:function(){
-    //   // console.time('transform, move and dim')
-    //   var x = ~~(Math.random() * 200)
-    //   var y = ~~(Math.random() * 200)
+    $click: function(){
+      // var x = ~~(Math.random() * 200)
+      // var y = ~~(Math.random() * 200)
 
-    //   this.$y.$val = y
-    //   this.$x.$val = x
-    //   // console.info('move that thing!', x, y)
-
-    //   this.$opacity.$val = Math.random() * 2
-    //   // console.info('make it dim!', this.$opacity.$val)
-
-    //   this.$width.$val = ~~(Math.random() * 400)
-    //   this.$height.$val = ~~(Math.random() * 400)
-    //   // console.info('change sizes!', x, y)
-    //   // console.timeEnd('transform, move and dim')
-    // }
-    $down:function(event, e){
-      var rect = this.$node.getBoundingClientRect()
-      this.startY = e.pageY - rect.left// - (this.$y.$val || 0)
-      this.startX = e.pageX - rect.top// - (this.$x.$val || 0)
-
-      console.log('??',(this.$x.$val || 0))
+      // this.$x.$val = x
+      // this.$y.$val = y
     },
+
+    $down: function(event, e){
+      var rect = this.$node.getBoundingClientRect()
+
+      this.startX = rect.left
+      this.startY = rect.top
+    },
+
     $grab:function(event, e){
-      console.log('set x',e.pageX, '-', this.startX,e.pageX - this.startX)
-      this.$x.$val = e.pageX - this.startX
-      this.$y.$val = e.pageY - this.startY
+      this.$x.$val = e.x - 50 - this.startX
+      this.$y.$val = e.y - 50 - this.startY
+
+      console.log(e.x, this.startX)
     }
   },
   $x: 1,
   $y: 1,
-  // $opacity: null,
-  // $width: null,
-  // $height: null,
-  // $key:'balls',
-  $text: 'balls'
+  span: {
+    $node: 'span',
+    $text: 'Drag Me!'
+  }
 })
 
 app.set( {

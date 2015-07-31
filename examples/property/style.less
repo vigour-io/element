@@ -1,27 +1,27 @@
+@import url('~/less/include.less');
+
 div {
-	color:green;
-	font-size: 24px;
-	font-family: helvetica;
-	border:1px solid red;
-	margin:10px;
-	// transition: all 0.2s;
-	cursor: pointer;
-}
+  .translate(50%, 50%);
 
-button{
-	width:100px;
-	height:100px;
-}
+  width: 200px;
+  height: 200px;
 
-.grey-bg {
-	background-color: rgba(0, 0, 0, 0.5);
-}
+  cursor: all-scroll;
+  .radius(3px);
+  background: #eee;
 
-.blue-bg {
-	background-color: blue;
-}
+	span {
+		position: absolute;
+		left: 50%;
+		top: 50%;
+    .translate(-50%, -50%);
 
-.red-txt {
-	color:red !important;
-}
+    width: 40%;
+    pointer-events: none;
 
+		font-style: italic;
+		font-size: 18px;
+		color: #ccc;
+		text-shadow: 1px 0 0 #fff;
+	}
+}

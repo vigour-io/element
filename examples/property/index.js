@@ -11,38 +11,51 @@ Element.prototype.inject(
 )
 
 window.thing = thing = new Element({
+  $text:'??',
   $on: {
     $click: function(){
-      // var x = ~~(Math.random() * 200)
-      // var y = ~~(Math.random() * 200)
 
-      // this.$x.$val = x
-      // this.$y.$val = y
     },
-
     $down: function(event, e){
       var rect = this.$node.getBoundingClientRect()
-
+      this.pageX = e.pageX
+      this.pageY = e.pageY
       this.startX = rect.left
       this.startY = rect.top
     },
-
-    $grab:function(event, e){
-      this.$x.$val = e.x - 50 - this.startX
-      this.$y.$val = e.y - 50 - this.startY
-
-      console.log(e.x, this.startX)
+    $drag:function(event, e){
+      var x = this.startX + (e.pageX - this.pageX)
+      var y = this.startY + (e.pageY - this.pageY)
+      this.$x.$val = x
+      this.$y.$val = y
+      this.$text.$val = x + ' , ' + y
+      this.$node.style.opacity = 1 - x / window.innerWidth
     }
   },
   $x: 1,
-  $y: 1,
-  span: {
-    $node: 'span',
-    $text: 'Drag Me!'
-  }
+  $y: 1
+  // span: {
+  //   $node: 'span',
+  //   $text: 'Drag Me!'
+  // }
 })
 
+// //if id === 3
+// thing.$on.setKey('$down',{
+//   3:function( event, e ) {
+//     var _this = this
+//     app.on('$move',function( event, e ){
+//       _this.$emit( key, event, e )
+//     },3)
+
+//     app.on('$up',function(){
+//       app.off('$move',3)
+//       app.off('$up',3)
+//     },3)
+//   }
+// })
+
 app.set( {
-  a: new thing.$Constructor({
-  })
+  a: new thing.$Constructor()
 } )
+

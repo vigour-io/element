@@ -22,33 +22,47 @@ var thing = new Element( {
     $val: 'grey-bg',
     $add: ' red-txt '
   },
-  one: {
-    $css: 'grey-bg',
-    $text: 'smalls',
-    two: {
-      $css: 'grey-bg',
-      $text: 'falls', 
-      three: {
-        $css: 'grey-bg',
-        $text: 'walls',
-        $on: {
-          $grab:function(event, e) {
-            console.log("Grab",event, e)
-          },
-          $grabstart:function(event, e) {
-            console.log("grabstart",event, e)
-          }
-        },
-        title:{
-          $text:'click me!'
-        }
-      }
-    }
+  // $on:{
+  //   $down:function(){
+  //     console.error('GVD')
+  //   }
+  // },
+  twerp:{
+    $text:'no way!',
+    // $on:{
+    //   $down:function(){
+    //     console.error('GVD')
+    //   }
+    // }
   }
 } )
 
 
 app.set( {
   a: new thing.$Constructor({
+
+  }),
+  b: new thing.$Constructor({
+    $text:'I shouuld say twerp!',
+    $on:{
+      $drag:function(){
+        console.error('twerp')
+      } 
+    }
   })
 } )
+
+console.log('thing.$on.$down',thing.$on.$down)
+console.log('thing.$on.mousedown',thing.$on.mousedown)
+console.log('------------')
+console.log('app.a.$on.$down',app.a.$on.$down)
+console.log('app.a.$on.mousedown',app.a.$on.mousedown)
+console.log('------------')
+console.log('app.b.$on.$down',app.b.$on.$down)
+console.log('app.b.$on.mousedown',app.b.$on.mousedown)
+// console.log('------------')
+// console.log('thing.twerp.$on.$down',thing.twerp.$on.$down)
+// console.log('thing.twerp.$on.mousedown',thing.twerp.$on.mousedown)
+// console.log('------------')
+// console.log('app.a.twerp.$on.$down',app.a.twerp.$on.$down)
+// console.log('app.a.twerp.$on.mousedown',app.a.twerp.$on.mousedown)

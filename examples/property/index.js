@@ -29,16 +29,25 @@ var thing = new Element({
     //   // console.info('change sizes!', x, y)
     //   // console.timeEnd('transform, move and dim')
     // }
+    $down:function(event, e){
+      var rect = this.$node.getBoundingClientRect()
+      this.startY = e.pageY - rect.left// - (this.$y.$val || 0)
+      this.startX = e.pageX - rect.top// - (this.$x.$val || 0)
+
+      console.log('??',(this.$x.$val || 0))
+    },
     $grab:function(event, e){
-      console.log(event,e)
+      console.log('set x',e.pageX, '-', this.startX,e.pageX - this.startX)
+      this.$x.$val = e.pageX - this.startX
+      this.$y.$val = e.pageY - this.startY
     }
   },
-  $x: null,
-  $y: null,
-  $opacity: null,
-  $width: null,
-  $height: null,
-  $key:'balls',
+  $x: 1,
+  $y: 1,
+  // $opacity: null,
+  // $width: null,
+  // $height: null,
+  // $key:'balls',
   $text: 'balls'
 })
 

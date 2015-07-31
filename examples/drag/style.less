@@ -1,25 +1,30 @@
 @import url('~/less/include.less');
 
 div {
-  .translate(50%, 50%);
-
+  .translate3d(100px, 100px, 0);
   width: 200px;
   height: 200px;
-
   cursor: all-scroll;
-  .radius(3px);
   background: #eee;
+  text-align: center;
+  .radius(3px);
+
+  &:active {
+    background: #e7e7e7;
+  }
 
 	span {
 		position: absolute;
 		left: 50%;
 		top: 50%;
-    .translate(-50%, -50%);
+    text-transform: uppercase;
 
     width: 40%;
     pointer-events: none;
+    .translate;
 
-		font-size: 18px;
+		font-size: 13px;
+    line-height: 1.2;
 		color: #ccc;
 		text-shadow: 1px 0 0 #fff;
 	}

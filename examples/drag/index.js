@@ -23,8 +23,8 @@ window.thing = thing = new Element({
       this.$y.$val = e.y - 100 //- this.startY
     }
   },
-  $x: 1,
-  $y: 1,
+  $x: null,
+  $y: null,
   span: {
     $node: 'span',
     $text: 'Drag Me!'

@@ -12,19 +12,22 @@ Element.prototype.inject(
 
 window.thing = thing = new Element({
   $on: {
-    $click: function(){
-      var x = ~~(Math.random() * 200)
-      var y = ~~(Math.random() * 200)
+    $down: function(event, e){
+      var rect = this.$node.getBoundingClientRect()
+      this.startX = rect.left
+      this.startY = rect.top
+    },
 
-      this.$x.$val = x
-      this.$y.$val = y
+    $grab: function(event, e){
+      this.$x.$val = e.x - 100 //- this.startX
+      this.$y.$val = e.y - 100 //- this.startY
     }
   },
   $x: 1,
   $y: 1,
   span: {
     $node: 'span',
-    $text: 'Click me to move!'
+    $text: 'Drag Me!'
   }
 })
 

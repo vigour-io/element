@@ -24,8 +24,8 @@ window.thing = thing = new Element({
       this.startY = rect.top
     },
     $drag:function(event, e){
-      var x = this.startX + (e.pageX - this.pageX)
-      var y = this.startY + (e.pageY - this.pageY)
+      var x = ~~(this.startX + (e.pageX - this.pageX))
+      var y = ~~(this.startY + (e.pageY - this.pageY))
       this.$x.$val = x
       this.$y.$val = y
       this.$text.$val = x + ' , ' + y

@@ -14,12 +14,20 @@
           transform-origin: @property;
 }
 
-.translate(@top: -50%, @left: -50%) {
-  -webkit-transform: translate(@top, @left);
-     -moz-transform: translate(@top, @left);
-      -ms-transform: translate(@top, @left);
-       -o-transform: translate(@top, @left);
-          transform: translate(@top, @left);
+.translate(@x: -50%, @y: -50%) {
+  -webkit-transform: translate(@x, @y);
+     -moz-transform: translate(@x, @y);
+      -ms-transform: translate(@x, @y);
+       -o-transform: translate(@x, @y);
+          transform: translate(@x, @y);
+}
+
+.translate3d(@z: -50%, @y: -50%, @z: 0) {
+  -webkit-transform: translate3d(@z, @y, @z);
+     -moz-transform: translate3d(@z, @y, @z);
+      -ms-transform: translate3d(@z, @y, @z);
+       -o-transform: translate3d(@z, @y, @z);
+          transform: translate3d(@z, @y, @z);
 }
 
 .rotate(@property: 0deg) {

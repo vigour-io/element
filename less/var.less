@@ -3,7 +3,7 @@
 
     // document settings
     @body-background: transparent;
-    @text-color: @blackgray;
+    // @text-color: @blackgray;
 
     // container setting
     @container-min-width: 32rem;
@@ -20,12 +20,12 @@
 /* ---------------------------------------------- */
 
     // weights
-    @slim:      200;
-    @light:     300;
-    @normal:    400;
-    @semibold:  600;
-    @bold:      700;
-    @extrabold: 800;
+    @font-slim:      200;
+    @font-light:     300;
+    @font-regular:    400;
+    @font-semibold:  600;
+    @font-bold:      700;
+    @font-extrabold: 800;
 
     // header sizes
     @h1: 4.6rem;
@@ -40,7 +40,7 @@
     @h10: 1rem;
 
     // default weight for headers
-    @h-weight: @normal;
+    @h-weight: @font-regular;
 
 
 
@@ -103,9 +103,9 @@
     @radius: 3px;
 
     // link properties
-    @a-color: @black;
-    @a-hover: @blue;
-    @a-weight: @normal;
+    // @a-color: @black;
+    // @a-hover: @blue;
+    @a-weight: @font-regular;
     @a-decoration: none;
     @a-hover-decoration: none;
 
@@ -115,4 +115,4 @@
     @font-family: Arial, sans-serif;
 
     // forms
-    @placeholder: @blackgray; // placeholder color for forms
+    // @placeholder: @blackgray; // placeholder color for forms

@@ -54,6 +54,4 @@ describe( 'Events', function ( done ) {
 		done()
 	})
 
-
-	
 })

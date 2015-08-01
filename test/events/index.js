@@ -1,4 +1,3 @@
-var app 				= require( '../../lib/app' )
 var Element 		= require( '../../lib/element' )
 
 Element.prototype.inject(
@@ -17,7 +16,6 @@ var a = new Element( {
 		}
 	}
 } )
-
 
 describe( 'Events', function ( done ) {
 	it( 'Should have the click event available inside an element', function ( done ) {

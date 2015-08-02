@@ -1,3 +1,6 @@
+// transition mixin which joins
+// all transition properties
+// example: .transition(.1s linear background)
 .transition(@property) {
   -webkit-transition: @property;
      -moz-transition: @property;
@@ -5,13 +8,9 @@
           transition: @property;
 }
 
+// transition-timing-function mixin
+// example: .transition-timing(linear)
 .transition-timing(@property) {
   -webkit-transition-timing-function: @property;
           transition-timing-function: @property;
-}
-
-.transform-origin(@property) {
-  -webkit-transform-origin: @property;
-      -ms-transform-origin: @property;
-          transform-origin: @property;
 }

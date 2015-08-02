@@ -1,3 +1,5 @@
+// transform
+// example: .transform(translate(100px, 200px) skewX(10deg))
 .transform(@property) {
   -webkit-transform: @property;
      -moz-transform: @property;
@@ -6,6 +8,8 @@
           transform: @property;
 }
 
+// transform-origin
+// example: .transform-origin(40% 60%)
 .transform-origin(@property) {
   -webkit-transform-origin: @property;
      -moz-transform-origin: @property;
@@ -14,6 +18,8 @@
           transform-origin: @property;
 }
 
+// transform: translate
+// example: .translate(100px, 200px)
 .translate(@x: -50%, @y: -50%) {
   -webkit-transform: translate(@x, @y);
      -moz-transform: translate(@x, @y);
@@ -22,6 +28,38 @@
           transform: translate(@x, @y);
 }
 
+// transform: translateX
+// example: .translateX(100px)
+.translateX(@x: -50%) {
+  -webkit-transform: translateX(@x);
+     -moz-transform: translateX(@x);
+      -ms-transform: translateX(@x);
+       -o-transform: translateX(@x);
+          transform: translateX(@x);
+}
+
+// transform: translateY
+// example: .translateY(200px)
+.translateY(@y: -50%) {
+  -webkit-transform: translateY(@y);
+     -moz-transform: translateY(@y);
+      -ms-transform: translateY(@y);
+       -o-transform: translateY(@y);
+          transform: translateY(@y);
+}
+
+// transform: translateZ
+// example: .translateZ(2)
+.translateZ(@z: 0) {
+  -webkit-transform: translateZ(@z);
+     -moz-transform: translateZ(@z);
+      -ms-transform: translateZ(@z);
+       -o-transform: translateZ(@z);
+          transform: translateZ(@z);
+}
+
+// transform: translate3s
+// example: .translate(100px, 200px, 2)
 .translate3d(@z: -50%, @y: -50%, @z: 0) {
   -webkit-transform: translate3d(@z, @y, @z);
      -moz-transform: translate3d(@z, @y, @z);
@@ -30,24 +68,49 @@
           transform: translate3d(@z, @y, @z);
 }
 
-.rotate(@property: 0deg) {
+// transform: rotate
+// example: .rotate(45deg)
+.rotate(@property: 90deg) {
   -webkit-transform: rotate(@property);
       -ms-transform: rotate(@property);
           transform: rotate(@property);
 }
 
+// transform: scale
+// example: .scale(150% 150%)
 .scale(@x: 1, @y: 1) {
   -webkit-transform: scale(@x, @y);
       -ms-transform: scale(@x, @y);
           transform: scale(@x, @y);
 }
 
-.skew(@x: 1, @y: 1) {
+// transform: skew
+// example: .skew(15deg 25deg)
+.skew(@x, @y) {
   -webkit-transform: skew(@x, @y);
       -ms-transform: skew(@x, @y);
           transform: skew(@x, @y);
 }
 
+// transform: skewX
+// example: .skewX(15deg 25deg)
+.skewX(@x) {
+  -webkit-transform: skewX(@x);
+      -ms-transform: skewX(@x);
+          transform: skewX(@x);
+}
+
+// transform: skewY
+// example: .skewY(15deg 25deg)
+.skewY(@y) {
+  -webkit-transform: skewY(@y);
+      -ms-transform: skewY(@y);
+          transform: skewY(@y);
+}
+
+// transform: matrix
+// combines all 2d transforms
+// example: .matrix(1, -0.3, 0, 1, 0, 0)
 .matrix(@a, @b, @c, @d, @e, @f) {
   -webkit-transform: matrix(@a, @b, @c, @d, @e, @f);
       -ms-transform: matrix(@a, @b, @c, @d, @e, @f);

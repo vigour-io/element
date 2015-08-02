@@ -1,0 +1,104 @@
+@import url('../../less/index');
+
+.hello {
+  .translate(200px, 200px);
+  background: @lilac;
+  color: white;
+  padding: 10px;
+  .size(200px, 100px);
+  .absolute(40%, 40%);
+
+  cursor: pointer;
+
+	.animated;
+  .rollIn();
+	.animation-duration(1s);
+
+  &.toRight {
+    .rotate(25deg);
+
+    &.finished {
+      .animation(rightFinishes)
+    }
+  }
+
+  &.toLeft {
+    .rotate(-25deg);
+
+    &.finished {
+      .animation(leftFinishes)
+    }
+  }
+}
+
+@-webkit-keyframes leftFinishes {
+  0% {
+    .rotate(-25deg);
+  }
+
+  33.33% {
+    .rotate(10deg);
+  }
+
+  66.66% {
+    .rotate(-5deg);
+  }
+
+  100% {
+    .rotate(0);
+  }
+}
+
+@keyframes leftFinishes {
+  0% {
+    .rotate(-25deg);
+  }
+
+  33.33% {
+    .rotate(10deg);
+  }
+
+  66.66% {
+    .rotate(-5deg);
+  }
+
+  100% {
+    .rotate(0);
+  }
+}
+
+@-webkit-keyframes rightFinishes {
+  0% {
+    .rotate(25deg);
+  }
+
+  33.33% {
+    .rotate(-10deg);
+  }
+
+  66.66% {
+    .rotate(5deg);
+  }
+
+  100% {
+    .rotate(0);
+  }
+}
+
+@keyframes rightFinishes {
+  0% {
+    .rotate(25deg);
+  }
+
+  33.33% {
+    .rotate(-10deg);
+  }
+
+  66.66% {
+    .rotate(5deg);
+  }
+
+  100% {
+    .rotate(0);
+  }
+}

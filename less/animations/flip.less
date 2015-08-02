@@ -1,5 +1,5 @@
 .animated.flip {
-  .animation(flip);
+  .animation-name(flip);
   .animation-duration(@animation-duration);
 }
 
@@ -57,8 +57,8 @@
 }
 
 .flipInX() {
-  .backface-visibility(visible !important);
-  .animation(flipInX);
+  .backface-visibility(visible);
+  .animation-name(flipInX);
 }
 
 
@@ -115,8 +115,8 @@
 }
 
 .flipInY() {
-  .backface-visibility(visible !important);
-  .animation(flipInY);
+  .backface-visibility(visible);
+  .animation-name(flipInY);
 }
 
 
@@ -153,9 +153,9 @@
 }
 
 .flipOutX() {
-  .animation(flipOutX);
+  .animation-name(flipOutX);
   .animation-duration(.75s);
-  .backface-visibility(visible !important);
+  .backface-visibility(visible);
 }
 
 
@@ -192,7 +192,7 @@
 }
 
 .flipOutY() {
-  .backface-visibility(visible !important);
-  .animation(flipOutY);
+  .backface-visibility(visible);
+  .animation-name(flipOutY);
   .animation-duration(.75s);
 }

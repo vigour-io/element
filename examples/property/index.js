@@ -13,11 +13,22 @@ Element.prototype.inject(
 
 window.thing = thing = new Element({
   $text:'??',
-  $draggable:true
+  // $draggable:{x:true}
 })
 
-app.set( {
+app.set({
   a: new thing.$Constructor({
     $text:'>>>'
   })
-} )
+})
+
+app.set({
+  $draggable:{
+    // x:function(){
+    //   return app.a.$text
+    // },
+    bind:function(){
+      return this.a
+    }
+  }
+})

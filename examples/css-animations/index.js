@@ -10,7 +10,8 @@ Element.prototype.inject(
 
 var thing = new Element( {
   $text: 'Hello',
-  $css: 'hello'
+  $css: 'hello',
+  $dragable: true
 });
 
 

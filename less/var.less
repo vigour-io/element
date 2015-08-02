@@ -16,13 +16,30 @@
 
 
 
+/* Brand Colors */
+/* ---------------------------------------------- */
+
+    @brand-primary: @blue;
+
+    @brand-secondary: @gray;
+
+    @brand-error: @red;
+
+    @brand-warning: @yellow;
+
+    @brand-info: @lilac;
+
+    @brand-success: @green;
+
+
+
 /* Fonts */
 /* ---------------------------------------------- */
 
     // weights
     @font-slim:      200;
     @font-light:     300;
-    @font-regular:    400;
+    @font-regular:   400;
     @font-semibold:  600;
     @font-bold:      700;
     @font-extrabold: 800;
@@ -43,7 +60,6 @@
     @h-weight: @font-regular;
 
 
-
 /* Layout */
 /* ---------------------------------------------- */
 
@@ -55,44 +71,15 @@
 /* ---------------------------------------------- */
 
     // breakpoints
-    @big-screen: 1920px; // big screens
-    @screen: 1680px; // normal screens
+    @big-screen:   1920px; // big screens
+    @screen:       1680px; // normal screens
     @small-screen: 1336px; // small screens
 
-    @tablet: 1024px; // tablet landscape
+    @tablet:       1024px; // tablet landscape
     @small-tablet: 840px; // tablet portrait
 
-    @mobile: 728px; // mobile landscape
+    @mobile:       728px; // mobile landscape
     @small-mobile: 480px; // mobile portrait
-
-
-
-/* Grid */
-/* ---------------------------------------------- */
-
-    // how many children you'll need in grid by maximum
-    @grid-children: 16;
-
-    // grid clindren amount for specific responsive states
-    @grid-children-big-screen: 0;
-    @grid-children-screen: 0;
-    @grid-children-small-screen: 0;
-
-    @grid-children-tablet: 0;
-    @grid-children-small-tablet: 0;
-
-    @grid-children-mobile: 4;
-    @grid-children-small-mobile: 2;
-
-    // gap inside cells
-    @grid-padding: 1rem;
-
-    // animation
-    @animation-duration: 0.5s;
-
-    // loading elements
-    @loading: '@{img-path}/loader.gif';
-    @light-loading: '@{img-path}/loader-light.gif';
 
 
 
@@ -103,8 +90,8 @@
     @radius: 3px;
 
     // link properties
-    // @a-color: @black;
-    // @a-hover: @blue;
+    @a-color: black;
+    @a-hover: @blue;
     @a-weight: @font-regular;
     @a-decoration: none;
     @a-hover-decoration: none;
@@ -115,4 +102,12 @@
     @font-family: Arial, sans-serif;
 
     // forms
-    // @placeholder: @blackgray; // placeholder color for forms
+    @placeholder: @blackgray; // default placeholder color for forms
+
+
+
+/* Animations */
+/* ---------------------------------------------- */
+
+    // default animation duration
+    @animation-duration: .1s;

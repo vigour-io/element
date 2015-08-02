@@ -21,28 +21,30 @@ var a = new Element({
 })
 
 describe( 'Properties' ,function () {
-	it( 'Should be able to set background-color on a element', function (done) {
+	it( 'Set background-color on an element', function (done) {
 		expect(a.$node.style.backgroundColor).to.be.equal("red")
 		done()
 	})
 
-	it( 'Should be able to set a css class on a element', function (done) {
+	it( 'Set a css class on an element', function (done) {
 		expect(a.$node.className).to.be.equal("test")
 		done()
 	})
 
-	it( 'Should be able to set a custom text on a element', function (done) {
+	it( 'Set a custom text on an element', function (done) {
 		expect(a.$node.textContent).to.be.equal("simple text")
 		done()
 	})
 
-	it( 'Shold be able to change the width and the heigh of an element', function (done) {
+	it( 'Change the width and the height of an element', function (done) {
 		expect(a.$node.style.width).to.be.equal("100px")	
 		expect(a.$node.style.height).to.be.equal("100px")	
 		done()
 	})
-	it( 'Shold be able to any attributes to an element', function (done) {
+	it( 'Set any attributes on an element', function (done) {
 		expect(a.$node.draggable).to.be.equal(true)	
 		done()
 	})
 })
+
+console.log(a.$node)

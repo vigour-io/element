@@ -1,12 +1,13 @@
 @import url('../../less/index');
 
 .hello {
-  .translate(200px, 200px);
   background: @lilac;
   color: white;
   padding: 10px;
   .size(200px, 100px);
   .absolute(40%, 40%);
+
+  .transition(0.1s linear transform);
 
   cursor: pointer;
 
@@ -18,7 +19,7 @@
     .rotate(25deg);
 
     &.finished {
-      .animation(rightFinishes)
+      .animation-name(rightFinishes)
     }
   }
 
@@ -26,7 +27,7 @@
     .rotate(-25deg);
 
     &.finished {
-      .animation(leftFinishes)
+      .animation-name(leftFinishes)
     }
   }
 }

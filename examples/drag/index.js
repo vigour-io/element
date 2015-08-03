@@ -21,11 +21,21 @@ var customImage = new Observable({
 })
 
 window.thing = thing = new Element({
+  $key:'thing',
+  $opacity:0.2,
   $backgroundImage:{
     $val: customImage,
     $size: "100px",
+    // $opaciy:, ?
     $on:{
+      $load:function(){
+        this.$parent.$opacity.$val = 1
+        // debugger
+        console.error('SUCCES',this.$path)
+
+      },
       $error:function (argument) {
+        console.error('ERROR')
         this.$loadError = "error"
       }
     }
@@ -52,5 +62,12 @@ window.thing = thing = new Element({
 
 app.set( {
   a: new thing.$Constructor({
+
   })
 } )
+
+setTimeout(function (argument) {
+    thing.$backgroundImage.$val = "http://wallpaper.ultradownloads.com.br/45586_Papel-de-Parede-Filhote-de-Cachorro_1024x768.jpg"
+},2000)
+
+// app.a.$backgroundImage.remove()

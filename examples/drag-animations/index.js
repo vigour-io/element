@@ -14,18 +14,25 @@ var dragPoint = 0
 var thing = new Element( {
   $text: 'Hello',
   $css: 'hello',
-  // $on: {
-  //   $drag: function(event, e) {
-  //     if (dragPoint > e.x)
-  //       this.$css.$val = 'hello toRight'
-  //     else
-  //       this.$css.$val = 'hello toLeft'
+  // $transformOrigin: null,
+  $on: {
+    $drag: function(event, e) {
+      if (dragPoint > e.x) {
+        if (dragPoint - 5 > e.x)
+          this.$css.$val = 'hello toRight'
+        else
+          this.$css.$val = 'hello toRight finished'
+      }
+      else {
+        if (dragPoint + 5 < e.x)
+          this.$css.$val = 'hello toLeft'
+        else
+          this.$css.$val = 'hello toLeft finished'
+      }
 
-  //     // this.$transformOrigin.$val = e.layerX + ' ' + e.layerY
-
-  //     dragPoint = e.x
-  //   }
-  // }
+      dragPoint = e.x
+    }
+  }
 });
 
 

@@ -11,7 +11,7 @@ Element.prototype.inject(
 
 var a = new Element({
 	$backgroundcolor: 'red',
-	$text: 'simple text', 
+	$text: 'simple text',
 	$css: 'test',
 	$width: 100,
 	$height: 100,
@@ -19,6 +19,8 @@ var a = new Element({
 		draggable:true
 	}
 })
+
+console.error( a )
 
 describe( 'Properties' ,function () {
 	it( 'Set background-color on an element', function (done) {
@@ -37,12 +39,12 @@ describe( 'Properties' ,function () {
 	})
 
 	it( 'Change the width and the height of an element', function (done) {
-		expect(a.$node.style.width).to.be.equal("100px")	
-		expect(a.$node.style.height).to.be.equal("100px")	
+		expect(a.$node.style.width).to.be.equal("100px")
+		expect(a.$node.style.height).to.be.equal("100px")
 		done()
 	})
 	it( 'Set any attributes on an element', function (done) {
-		expect(a.$node.draggable).to.be.equal(true)	
+		expect(a.$node.draggable).to.be.equal(true)
 		done()
 	})
 })

@@ -9,57 +9,63 @@ Element.prototype.inject(
   require( 'vjs/lib/methods/lookUp' )
 )
 
+// Element.prototype.inject(
+//   require( '../../lib/events/drag' )
+//
+// )
 
 var thing = new Element( {
-  // $on: {
-  //   mousedown:function(){
-  //     console.log('DOWN ON TOP')
-  //   }
-  // },
   $key:'balls',
-  $text: 'balls',
+  $text: 'xxxxxx',
   $css: {
     $val: 'grey-bg',
     $add: ' red-txt '
   },
-  // $on:{
-  //   $down:function(){
-  //     console.error('GVD')
-  //   }
-  // },
   twerp:{
-    $text:'no way!',
-    // $on:{
-    //   $down:function(){
-    //     console.error('GVD')
-    //   }
-    // }
-  }
-} )
-
-
-app.set( {
-  a: new thing.$Constructor({
-
-  }),
-  b: new thing.$Constructor({
-    $text:'I shouuld say twerp!',
-    $on:{
-      $drag:function(){
-        console.error('twerp')
-      } 
+    $css: {
+      $val: 'buzz'
+    },
+    $text:'no way!'
+  },
+  $on: {
+    $drag: function() {
+      this.$text.$val = Math.random()*999
+    },
+    mousemove: function() {
+      // this.$text.$val = Math.random()*999
+    },
+    click: function() {
+      this.$node.style.opacity = 0.5
     }
-  })
-} )
+  }
+})
 
-console.log('thing.$on.$down',thing.$on.$down)
-console.log('thing.$on.mousedown',thing.$on.mousedown)
-console.log('------------')
-console.log('app.a.$on.$down',app.a.$on.$down)
-console.log('app.a.$on.mousedown',app.a.$on.mousedown)
-console.log('------------')
-console.log('app.b.$on.$down',app.b.$on.$down)
-console.log('app.b.$on.mousedown',app.b.$on.mousedown)
+var holder = new Element({
+
+})
+
+gaston.performance(function() {
+  var Thing = thing.$Constructor
+  for(var i = 0 ; i < 1e3; i++) {
+    holder.setKey(i, new Thing())
+  }
+  app.set( {
+    holder: holder
+  })
+}).done(function() {
+  console.log(arguments[0]*1000 +'ms')
+})
+
+
+
+// console.log('thing.$on.$down',thing.$on.$down)
+// console.log('thing.$on.mousedown',thing.$on.mousedown)
+// console.log('------------')
+// console.log('app.a.$on.$down',app.a.$on.$down)
+// console.log('app.a.$on.mousedown',app.a.$on.mousedown)
+// console.log('------------')
+// console.log('app.b.$on.$down',app.b.$on.$down)
+// console.log('app.b.$on.mousedown',app.b.$on.mousedown)
 // console.log('------------')
 // console.log('thing.twerp.$on.$down',thing.twerp.$on.$down)
 // console.log('thing.twerp.$on.mousedown',thing.twerp.$on.mousedown)

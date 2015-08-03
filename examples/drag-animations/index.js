@@ -18,13 +18,13 @@ var thing = new Element( {
   $on: {
     $drag: function(event, e) {
       if (dragPoint > e.x) {
-        if (dragPoint - 5 > e.x)
+        if (dragPoint - 8 > e.x)
           this.$css.$val = 'hello toRight'
         else
           this.$css.$val = 'hello toRight finished'
       }
       else {
-        if (dragPoint + 5 < e.x)
+        if (dragPoint + 8 < e.x)
           this.$css.$val = 'hello toLeft'
         else
           this.$css.$val = 'hello toLeft finished'

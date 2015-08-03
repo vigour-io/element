@@ -42,9 +42,10 @@ describe( 'Properties' ,function () {
 		done()
 	})
 	it( 'Set any attributes on an element', function (done) {
+		console.log('draggable',a.$node)
 		expect(a.$node.draggable).to.be.equal(true)	
 		done()
 	})
 })
 
-console.log(a.$node)
+console.log('..',a.$node)

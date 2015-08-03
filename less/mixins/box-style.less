@@ -1,4 +1,4 @@
-// border radius mixin
+// border radius
 // example: .radius(3px)
 // example: .radius(top right bottom left)
 .radius(@radius) {
@@ -7,7 +7,7 @@
           border-radius: @radius;
 }
 
-// background-clip mixin
+// background-clip
 // example: .clip(content-box)
 .clip (@property: padding-box) {
   -webkit-background-clip: @property;
@@ -15,16 +15,26 @@
           background-clip: @property;
 }
 
-// background-size mixin
+// background image
+// makes backround set easyer
+// example: .bgimg('../assets/test.jpg', center center no-repeat)
+.bgimg (@property, @property2) {
+    -webkit-background: url(@property) @property2;
+       -moz-background: url(@property) @property2;
+         -o-background: url(@property) @property2;
+            background: url(@property) @property2;
+}
+
+// background-size
 // example: .bgsize(cover)
-.bgsize (@property) {
+.bgsize (@property: cover) {
     -webkit-background-size: @property;
        -moz-background-size: @property;
          -o-background-size: @property;
             background-size: @property;
 }
 
-// box-shadow mixin
+// box-shadow
 // example: .shadow(1px 1px 3px 1px #ccc)
 .shadow (@shadow, @second: inset 0 0 0) {
   -webkit-box-shadow: @shadow, @second;

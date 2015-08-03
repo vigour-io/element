@@ -1,22 +1,39 @@
 var Element 		= require( '../../lib/element' )
+var Observable  = require('vjs/lib/observable')
 
 Element.prototype.inject(
   require( '../../lib/property/css' ),
   require( '../../lib/property/size' ),
   require( '../../lib/property/attributes' ),
   require( '../../lib/property/backgroundcolor' ),
+  require( '../../lib/property/backgroundImage' ),
   require( '../../lib/property/text' ),
   require( 'vjs/lib/methods/lookUp' )
 )
 
 var a = new Element({
 	$backgroundcolor: 'red',
-	$text: 'simple text', 
+	$text: 'simple text',
 	$css: 'test',
 	$width: 100,
 	$height: 100,
 	$attributes: {
 		draggable:true
+	}
+})
+
+var customImage = new Observable({
+	$val: "/test.jpg"
+})
+
+var b = new Element({
+	$backgroundImage:{
+		$val: customImage,
+		$on:{
+			$error:function (argument) {
+				this.$loadError = "error"
+			}
+		}
 	}
 })
 
@@ -37,15 +54,23 @@ describe( 'Properties' ,function () {
 	})
 
 	it( 'Change the width and the height of an element', function (done) {
-		expect(a.$node.style.width).to.be.equal("100px")	
-		expect(a.$node.style.height).to.be.equal("100px")	
+		expect(a.$node.style.width).to.be.equal("100px")
+		expect(a.$node.style.height).to.be.equal("100px")
 		done()
 	})
 	it( 'Set any attributes on an element', function (done) {
-		console.log('draggable',a.$node)
-		expect(a.$node.draggable).to.be.equal(true)	
+		expect(a.$node.draggable).to.be.equal(true)
 		done()
 	})
 })
 
-console.log('..',a.$node)
+describe( 'Background Image property' ,function () {
+	it( 'Trigger erro event if an error occours when loading an image', function (done) {
+		expect(b.$backgroundImage.$loadError).to.be.equal('error')
+		done()
+	})
+	it( 'Trigger load event if the image loads with succed', function (done) {
+		// expect(b.$backgroundImage.$success).to.be.equal('true')
+		done()
+	})
+})

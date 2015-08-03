@@ -13,7 +13,14 @@ Element.prototype.inject(
 
 window.thing = thing = new Element({
   $text:'??',
-  // $draggable:{x:true}
+  $x:100,
+  $y:100,
+  $draggable:true
+  // {
+  //   pass:function( event, e ){
+  //     return Math.abs(event.dx) > Math.abs(event.dy)
+  //   }
+  // }
 })
 
 app.set({
@@ -23,12 +30,17 @@ app.set({
 })
 
 app.set({
-  $draggable:{
-    // x:function(){
-    //   return app.a.$text
-    // },
-    bind:function(){
-      return this.a
-    }
+  // $draggable:{
+  //   x:true
+  // }
+})
+
+var elem = new Element({
+  $x:20
+})
+
+var elem = new Element({
+  $transform:{
+    x:20
   }
 })

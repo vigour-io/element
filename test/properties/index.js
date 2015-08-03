@@ -42,20 +42,6 @@ var b = new Element({
 	}
 })
 
-var c = new Element({
-			$backgroundImage:{
-				$val: "./1.png",
-				$on:{
-					$load:function (argument) {
-						this.$success = "true"
-					}
-				}
-			}
-		})
-
-
-
-
 describe( 'Properties' ,function () {
 	it( 'Set background-color on an element', function (done) {
 		expect(a.$node.style.backgroundColor).to.be.equal("red")
@@ -85,6 +71,7 @@ describe( 'Properties' ,function () {
 })
 
 console.log('..',a.$node)
+
 describe( 'Background Image property' ,function () {
 	it( 'Trigger erro event if an error occours when loading an image', function (done) {
 		expect(b.$backgroundImage.$loadError).to.be.equal('error')
@@ -92,7 +79,7 @@ describe( 'Background Image property' ,function () {
 	})
 
 	it( 'Trigger load event if the image loads with succed', function (done) {		
-		expect(c.$backgroundImage.$success).to.be.equal('true')
+		// expect(b.$backgroundImage.$success).to.be.equal('true')
 		done()	
 	})
 

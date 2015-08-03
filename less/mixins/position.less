@@ -1,0 +1,30 @@
+// makes element's position absolute
+// pass vertical positions (top, bottom) first
+
+// from top left
+.absolute (@top, @left) {
+  position: absolute;
+  top: @top;
+  left: @left;
+}
+
+// from top right
+.absolute-right (@top, @right) {
+  position: absolute;
+  top: @top;
+  right: @right;
+}
+
+// from bottom left
+.absolute-bottom-left (@bottom, @left) {
+  position: absolute;
+  bottom: @bottom;
+  left: @left;
+}
+
+// from bottom right
+.absolute-bottom-right (@bottom, @right) {
+  position: absolute;
+  bottom: @bottom;
+  right: @right;
+}

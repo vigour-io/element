@@ -6,52 +6,24 @@ var Element = require( '../../lib/element' )
 Element.prototype.inject(
   require( '../../lib/property/css' ),
   require( '../../lib/property/text' ),
-  require( 'vjs/lib/methods/lookUp' )
+  require('../../lib/cases')
 )
 
-
-var Observable = require('vjs/lib/observable')
-// Observable.prototype.inject(require('vjs/lib/operator/add'))
-
-a = new Observable({
-  $key:'a',
-  $val:1
+console.clear()
+cases.set({
+	$connected:true,
+	$isreceiver:true
 })
-
-b = new Observable({
-  $key:'b',
-  $val:1
-})
-
-c = new Observable({
-  $val: a,
-  $add: b
-})
-
-a.$val = 'x'
-b.$val = 'y'
-
-var thing = new Element( {
-  $text:{
-	  $val: 'a',
-	  $add: 'b'
-  }
-} )
-
-var Event = require( 'vjs/lib/event' )
-var bla = new Event(app)
 
 app.set({
   b:new Element({
 	  $text:{
-		  $val: 'a',
-		  $add: 'b'
+		  $val: 'not desk!!',
+		  $desktop:{
+		  	$val:'smur!!',
+		  	// $case:true//or false
+		  	// $add:'desktop!!' //an operator which is an instance of observable
+		  }
 	  }
   })
 })
-
-
-
-console.log(c.$val)
-
-// console.log(app.a.$text.$val)

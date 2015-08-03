@@ -1,7 +1,6 @@
 var Element 		= require( '../../lib/element' )
 var Observable  = require('vjs/lib/observable')
 
-
 Element.prototype.inject(
   require( '../../lib/property/css' ),
   require( '../../lib/property/size' ),
@@ -11,8 +10,6 @@ Element.prototype.inject(
   require( '../../lib/property/text' ),
   require( 'vjs/lib/methods/lookUp' )
 )
-
-
 
 var a = new Element({
 	$backgroundcolor: 'red',
@@ -25,14 +22,9 @@ var a = new Element({
 	}
 })
 
-<<<<<<< HEAD
-console.error( a )
-=======
-
 var customImage = new Observable({
 	$val: "/test.jpg"
 })
-
 
 var b = new Element({
 	$backgroundImage:{
@@ -44,7 +36,6 @@ var b = new Element({
 		}
 	}
 })
->>>>>>> f70c2f5b45eeb6bf368813442accabd835d08e55
 
 describe( 'Properties' ,function () {
 	it( 'Set background-color on an element', function (done) {
@@ -68,31 +59,18 @@ describe( 'Properties' ,function () {
 		done()
 	})
 	it( 'Set any attributes on an element', function (done) {
-<<<<<<< HEAD
 		expect(a.$node.draggable).to.be.equal(true)
-=======
-		console.log('draggable',a.$node)
-		expect(a.$node.draggable).to.be.equal(true)	
->>>>>>> f70c2f5b45eeb6bf368813442accabd835d08e55
 		done()
 	})
 })
-
-<<<<<<< HEAD
-console.log(a.$node)
-=======
-console.log('..',a.$node)
 
 describe( 'Background Image property' ,function () {
 	it( 'Trigger erro event if an error occours when loading an image', function (done) {
 		expect(b.$backgroundImage.$loadError).to.be.equal('error')
 		done()
 	})
-
-	it( 'Trigger load event if the image loads with succed', function (done) {		
+	it( 'Trigger load event if the image loads with succed', function (done) {
 		// expect(b.$backgroundImage.$success).to.be.equal('true')
-		done()	
+		done()
 	})
-
 })
->>>>>>> f70c2f5b45eeb6bf368813442accabd835d08e55

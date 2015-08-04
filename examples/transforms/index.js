@@ -12,25 +12,19 @@ Element.prototype.inject(
 var thing = window.thing = new Element( {
   $css: 'hello',
   $draggable: true,
-  $rotate: void 0,
-  $skewX: void 0,
-  $skewY: void 0,
-  $skew: void 0,
-  $translate3d: void 0,
-  $scaleX: void 0,
-  $scaleY: void 0,
-  $scale: void 0,
+  // $rotate: void 0,
+  // $scaleX: void 0,
+  // $scaleY: void 0,
+  // $scale: void 0,
   $on: {
     $drag: function(event, e) {
-      e.preventDefault()
+      // this.$rotate.$val = e.x / 4
 
-      this.$rotate.$val = e.x / 4
+      // this.$skewX.$val = e.x / 10
+      // this.$skewY.$val = e.y / 10
 
-      this.$skewX.$val = e.x / 10
-      this.$skewY.$val = e.y / 10
-
-      this.$scaleX.$val = e.x / 4
-      this.$scaleY.$val = e.y / 4
+      // this.$scaleX.$val = e.x / 4
+      // this.$scaleY.$val = e.y / 4
     }
   }
 });

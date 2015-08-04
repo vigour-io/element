@@ -171,6 +171,7 @@ describe( 'Element', function () {
 		it( 'change elem $val should not update elemInstance $val', function(){
 			elem.$val="Another value"
 			expect(elemInstance.$val).to.be.equal("new")
+			expect(elem.$val).to.be.equal("Another value")
 		})
 
 	})

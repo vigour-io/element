@@ -2,10 +2,11 @@ require( './style.less' )
 
 var app = require( '../../lib/app' )
 var Element = require( '../../lib/element' )
-
+// var Operator = require('vjs/lib/operator')
 Element.prototype.inject(
   require( '../../lib/property/css' ),
-  require( '../../lib/property/text' ) 
+  require( '../../lib/property/text' ),
+  require( '../../lib/property/backgroundImage' )
 )
 // console.clear()
 
@@ -17,13 +18,24 @@ Element.prototype.inject(
 // 	$isreceiver:true
 // })
 
-var b = new Element({
+var a = new Element({
   $text:{
-	  $val: 'not desk!!',
+	  $val: 'A & ',
 	  $add:'bawler'
-  }
+  },
+  $backgroundImage:'http://www.cdc.gov/importation/images/dog2.jpg'
 })
 
 app.set({
-  b:b
+	a:new a.$Constructor()
 })
+
+app.set({
+	b:new Element({
+	  $text:{
+		  $val: 'B & ',
+		  $add:'bawler'
+	  }
+	})
+})
+

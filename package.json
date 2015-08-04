@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "doc": "ddede"
   },
   "repository": {
     "type": "git",
@@ -11,7 +12,7 @@
   },
   "scripts": {
     "test": "test/test.js",
-    "doc": "jsdoc2md lib/**/*.js > vjs.wiki/Classes.md"
+    "doc": "node documentation.js"
   },
   "author": "Vigour.io <dev@vigour.io>",
   "license": "GPL",
@@ -20,6 +21,10 @@
   },
   "dependencies": {
     "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
+  },
+  "devDependencies": {
+    "dmd": "^1.1.1",
+    "jsdoc-to-markdown": "^1.1.1"
   },
   "homepage": "https://github.com/vigour-io/vui",
   "gaston": {

@@ -18,7 +18,7 @@ var thing = window.thing = new Element( {
   // $scale: void 0,
   $on: {
     $drag: function(event, e) {
-      // this.$rotate.$val = e.x / 4
+      this.$rotate.$val = e.x / 4
 
       // this.$skewX.$val = e.x / 10
       // this.$skewY.$val = e.y / 10

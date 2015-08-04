@@ -34,6 +34,9 @@ var thing = new Element( {
     $scroll: function() {
       console.log("eventttt scrolll")
     },
+    mousedown:function(){
+      console.log('HEY')
+    },
     click: function() {
       this.$node.style.opacity = 0.5
     }
@@ -48,6 +51,8 @@ var holder = new Element({
   }
 })
 
+console.error('!!!')
+
 gaston.performance(function() {
   var Thing = thing.$Constructor
   for(var i = 0 ; i < 1e3; i++) {
@@ -60,7 +65,15 @@ gaston.performance(function() {
   // console.log(arguments[0]*1000 +'ms')
 })
 
+console.clear()
 
+console.log('before!',holder.$text,holder.$text.val)
+
+// console.error('does it fire')
+// var evObj = document.createEvent('Events');
+// evObj.initEvent('mousedown', true, false);
+// document.getElementsByClassName('grey-bg red-txt ')[0].dispatchEvent(evObj);
+// console.error('?')
 
 // console.log('thing.$on.$down',thing.$on.$down)
 // console.log('thing.$on.mousedown',thing.$on.mousedown)

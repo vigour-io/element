@@ -152,7 +152,7 @@ describe( 'Element', function () {
 
 	describe( 'changes should be happen in the correct element',function(){
 
-		elemInstance.set({
+		elem.set({
 			$on:{
 				$change:function(){
 				}

@@ -31,8 +31,8 @@ var thing = new Element( {
     $drag: function() {
       this.$text.$val = Math.random()*999
     },
-    mousemove: function() {
-      // this.$text.$val = Math.random()*999
+    $scroll: function() {
+      console.log("eventttt scrolll")
     },
     click: function() {
       this.$node.style.opacity = 0.5
@@ -41,7 +41,11 @@ var thing = new Element( {
 })
 
 var holder = new Element({
-
+  $on:{
+    $scroll:function (argument) {
+      console.log("scrollling", arguments)
+    }
+  }
 })
 
 gaston.performance(function() {
@@ -53,7 +57,7 @@ gaston.performance(function() {
     holder: holder
   })
 }).done(function() {
-  console.log(arguments[0]*1000 +'ms')
+  // console.log(arguments[0]*1000 +'ms')
 })
 
 

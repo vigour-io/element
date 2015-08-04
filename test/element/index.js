@@ -150,5 +150,29 @@ describe( 'Element', function () {
 
 	})
 
+	describe( 'changes should be happen in the correct element',function(){
+
+		elemInstance.set({
+			$on:{
+				$change:function(){
+				}
+			}
+		})
+
+		it( 'changes in elemInstance should NOT change elem',function () {
+			var spy = sinon.spy(elem.$on.change)
+			elemInstance.$val = "new"
+			expect(spy.calledOnce).to.not.be.true
+		})
+
+		it( 'elem should keep the same val',function () {
+			expect(elem.$val).to.not.be.equal("new")
+		})
+		it( 'change elem $val should not update elemInstance $val', function(){
+			elem.$val="Another value"
+			expect(elemInstance.$val).to.be.equal("new")
+		})
+
+	})
 
 })

@@ -99,7 +99,7 @@ describe( 'Element', function () {
 			expect(elemInstance._$key).to.equal('elemInstanceKey');
 		})
 
-		it( 'elem now has a path [\'elemInstanceKey\']', function () {
+		it( 'elemInstance now has a path [\'elemInstanceKey\']', function () {
 			expect(elemInstance.$path).to.deep.equal(['elemInstanceKey']);
 		})
 

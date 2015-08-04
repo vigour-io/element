@@ -99,7 +99,7 @@ describe( 'Element', function () {
 			expect(elemInstance._$key).to.equal('elemInstanceKey');
 		})
 
-		it( 'elem now has a path [\'elemInstanceKey\']', function () {
+		it( 'elemInstance now has a path [\'elemInstanceKey\']', function () {
 			expect(elemInstance.$path).to.deep.equal(['elemInstanceKey']);
 		})
 
@@ -150,5 +150,30 @@ describe( 'Element', function () {
 
 	})
 
+	describe( 'changes should be happen in the correct element',function(){
+
+		elem.set({
+			$on:{
+				$change:function(){
+				}
+			}
+		})
+
+		it( 'changes in elemInstance should NOT change elem',function () {
+			var spy = sinon.spy(elem.$on.change)
+			elemInstance.$val = "new"
+			expect(spy.calledOnce).to.not.be.true
+		})
+
+		it( 'elem should keep the same val',function () {
+			expect(elem.$val).to.not.be.equal("new")
+		})
+		it( 'change elem $val should not update elemInstance $val', function(){
+			elem.$val="Another value"
+			expect(elemInstance.$val).to.be.equal("new")
+			expect(elem.$val).to.be.equal("Another value")
+		})
+
+	})
 
 })

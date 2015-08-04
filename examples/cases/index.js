@@ -19,9 +19,15 @@ Element.prototype.inject(
 // })
 
 var a = new Element({
+	$css:'funlife',
   $text:{
 	  $val: 'A & ',
 	  $add:'bawler'
+  },
+  $on:{
+  	$click:function(){
+  		console.error('HEY!!')
+  	}
   },
   $backgroundImage:'http://www.cdc.gov/importation/images/dog2.jpg'
 })
@@ -35,7 +41,10 @@ app.set({
 	  $text:{
 		  $val: 'B & ',
 		  $add:'bawler'
-	  }
+	  },
+	  c:new a.$Constructor({
+	  	d:new a.$Constructor()
+	  })
 	})
 })
 

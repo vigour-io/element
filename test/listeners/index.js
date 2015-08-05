@@ -1,0 +1,5 @@
+require('./change')
+require('./addToParent')
+require('./value')
+require('./reference')
+require('./property')

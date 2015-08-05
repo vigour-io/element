@@ -1,27 +1,28 @@
 var Element = require( '../../lib/element' )
 
-it('var $new = {a:0,b:0}')
-it('var $change = {a:0,b:0}')
-it('var $property = {a:0,b:0}')
-it('var $addToParent = {a:0,b:0}')
+// it('var $new = {a:0,b:0}')
+// it('var $change = {a:0,b:0}')
+// it('var $property = {a:0,b:0}')
+// it('var $addToParent = {a:0,b:0}')
 
-var elem = new Element()
-var elemInstance
-var a = {}
-var b = {}
+// // var elem
+// var elemInstance
+// var a = {}
+// var b = {}
 
+// var $new = {a:0,b:0}
+// var $change = {a:0,b:0}
+// var $property = {a:0,b:0}
+// var $addToParent = {a:0,b:0}
 
-var $new = {a:0,b:0}
-var $change = {a:0,b:0}
-var $property = {a:0,b:0}
-var $addToParent = {a:0,b:0}
+describe( 'Creating basic Element', function(){
 
-describe( 'Element', function () {
-		
-	//create element
+	var elem
+
 	describe( 'Create new element \'elem\'', function(){
-
-		it( 'var elem = new Element()')		
+		it( 'var elem = new Element()',function(){
+			elem = new Element()
+		})
 
 		it( 'elem is instance of Element', function () {
 			expect(elem).to.be.instanceOf(Element);
@@ -40,13 +41,13 @@ describe( 'Element', function () {
 		})
 	})
 
-	//set key
 	describe( 'Set key \'a\'', function(){
 		
-		it('elem.set({ $key:\'a\' })')
+		it('elem.set({ $key:\'a\' })',function(){
+			elem.set({$key:'a'})
+		})
 
 		it( 'elem now has key \'a\'', function () {
-			elem.set({$key:'a'})
 			expect(elem._$key).to.equal('a');
 		})
 
@@ -60,106 +61,14 @@ describe( 'Element', function () {
 
 	})
 
-	//add change listener to original
-	describe( 'Add a change listener',function(){
-		
-		before(function(){
-			elem.$on.set({
-				$change:function(){
-					$change[this._$key]++
-				}
-			})
-		})
-
-		it('elem.$on.set({ $change:function(){ $change[this._$key]++ } })')
-
-		it( 'elem now has a $change listener', function () {
-			expect(elem.$on.$change).to.be.ok
-		})
-
-		it( '$change.a is zero', function () {
-			expect($change.a).to.be.zero
-		})
-
-	})
-
-	//add change listener to original
-	describe( 'Add $new listener',function(){
-
-		before(function(){
-			elem.$on.set({
-				$new:function(){
-					$new[this._$key]++
-				}
-			})
-		})
-
-		it('elem.$on.set({ $new:function(){ $new[this._$key]++ } })')
-
-		it( 'elem now has a $new listener', function () {
-			expect(elem.$on.$new).to.be.ok
-		})
-
-		it( '$new.a is zero', function () {
-			expect($new.a).to.be.zero
-		})
-
-	})
-
-	//add change listener to original
-	describe( 'Add $addToParent listener',function(){
-
-		before(function(){
-			elem.$on.set({
-				$addToParent:function(){
-					$addToParent[this._$key]++
-				}
-			})
-		})
-
-		it('elem.$on.set({ $addToParent:function(){ $addToParent[this._$key]++ } })')
-
-		it( 'elem now has a addToParent listener', function () {
-			expect(elem.$on.$addToParent).to.be.ok
-		})
-
-		it( '$addToParent.a is zero', function () {
-			expect($addToParent.a).to.be.zero
-		})
-
-	})
-
-	//add change listener to original
-	describe( 'Add $property listener',function(){
-
-		before(function(){
-			elem.$on.set({
-				$property:function(){
-					$property[this._$key]++
-				}
-			})
-		})
-
-		it('elem.$on.set({ $property:function(){ $property[this._$key]++ } })')
-
-		it( 'elem now has a property listener', function () {
-			expect(elem.$on.$property).to.be.ok;
-		})
-
-		it( '$property.a is zero', function () {
-			expect($property.a).to.equal(0)
-		})
-
-	})
-
 	//add child
-	describe( 'Add children on elem', function(){
+	describe( 'Add child', function(){
 
-		before(function(){
-			elem.set({ elemChild:{}, elemChild2:{} })
+		var elem = new Element({$key:'a'})
+
+		it('elem.set({ elemChild:{} })',function(){
+			elem.set({ elemChild:{} })
 		})
-
-		it('elem.set({ elemChild:{}, elemChild2:{} })')
 
 		it( 'elem.elemChild is instance of Element', function () {
 			expect(elem.elemChild instanceof Element).to.equal(true);
@@ -177,41 +86,27 @@ describe( 'Element', function () {
 			expect(elem.elemChild._$context).to.not.be.ok;
 		})
 
-		describe('-> events:elem',function(){
-			it( '$change fired -> $change.a is one', function () {
-				expect($change.a).to.equal(1);
-			})
-
-			it( '$property fired -> $property.a is one', function () {
-				expect($property.a).to.equal(1);
-			})
-
-			it( '$new did not fire -> $new.a is still zero', function () {
-				expect($new.a).to.equal(0);
-			})
-
-			it( '$addToParent did not fire -> $addToParent.a is still zero', function () {
-				expect($addToParent.a).to.equal(0);
-			})
-		})
-
 	})
 
-	//create instance of elem
-	describe( 'Create instance of original elem, with key \'b\'', function(){
+})
 
-		before(function(){
-			elemInstance = new elem.$Constructor({$key:'b'})
+//create instance of elem
+describe( 'Creating instances of Elements', function(){
+
+	var elem = new Element({$key:'a',elemChild:{}})
+	var elemInstance
+
+	describe( 'Create instance of elem',function(){
+		it('var elemInstance = new elem.$Constructor()',function(){
+			elemInstance = new elem.$Constructor()
 		})
-
-		it('var elemInstance = new elem.$Constructor({$key:\'b\'})')
 
 		it( 'elemInstance is instance of elem._$Constructor', function () {
 			expect(elemInstance).to.be.instanceOf(elem._$Constructor);
 		})
 
-		it( 'elemInstance.elemChild is instance of elem.elemChild._$Constructor', function () {
-			expect(elemInstance.elemChild).to.be.instanceOf(elem.elemChild._$Constructor);
+		it( 'elemInstance.elemChild === elem.elemChild', function () {
+			expect(elemInstance.elemChild).equals(elem.elemChild);
 		})
 
 		it( 'elemInstance has no context', function () {
@@ -226,42 +121,47 @@ describe( 'Element', function () {
 			expect(elem.elemChild._$context).to.not.be.ok;
 		})
 
-		describe('-> events:elem',function(){
-			
-			it( '$new did not fire -> $new.a is still zero', function () {
-				expect($new.a).to.equal(0);
-			})
-
-			it( '$property did not fire -> $property.a is still one', function () {
-				expect($property.a).to.equal(1);
-			})
-
-			it( '$addToParent did not fire -> $addToParent.a is still zero', function () {
-				expect($addToParent.a).to.equal(0);
-			})
-
-			it( '$change did not fire -> $change.a is still one', function () {
-				expect($change.a).to.equal(1);
-			})
-
+		it( 'elemInstance inherited key \'a\'', function () {
+			expect(elemInstance._$key).to.equal('a')
 		})
 
-		describe('-> events:elemInstance',function(){
-			it( '$new fired -> $new.b is now one', function () {
-				expect($new.b).to.equal(1);
-			})
+		it( 'elemInstance has a path [\'a\']', function () {
+			expect(elem.$path).to.deep.equal(['a']);
+		})
 
-			it( '$change fired -> $change.b is now one', function () {
-				expect($change.b).to.equal(1);
-			})
+		it( "elemInstance.elemChild has path ['a','elemChild']", function () {
+			expect(elemInstance.elemChild.$path).to.deep.equal(['a','elemChild']);
+		})
 
-			it( '$property did not fire -> $property.b is still zero', function () {
-				expect($property.b).to.equal(0);
-			})
+	})
 
-			it( '$addToParent did not fire -> $addToParent.b is still zero', function () {
-				expect($addToParent.b).to.equal(0);
-			})
+	describe('Set key \'b\' on instance',function(){
+		it('elemInstance.set({$key:\'b\'})',function(){
+			elemInstance.set({$key:'b'})
+		})
+
+		it( 'elemInstance now has key \'b\'', function () {
+			expect(elemInstance._$key).to.equal('b')
+		})
+
+		it( 'elemInstance now has a path [\'b\']', function () {
+			expect(elemInstance.$path).to.deep.equal(['b']);
+		})
+
+		it( "elemInstance.elemChild now has path ['b','elemChild']", function () {
+			expect(elemInstance.elemChild.$path).to.deep.equal(['b','elemChild']);
+		})
+
+		it( 'elem still has key \'a\'', function () {
+			expect(elem._$key).to.equal('a')
+		})
+
+		it( 'elem still has path [\'a\']', function () {
+			expect(elem.$path).to.deep.equal(['a']);
+		})
+
+		it( "elem.elemChild still has path ['a','elemChild']", function () {
+			expect(elem.elemChild.$path).to.deep.equal(['a','elemChild']);
 		})
 
 	})
@@ -269,11 +169,9 @@ describe( 'Element', function () {
 	//add child to elemInstance
 	describe( 'Add child to instance', function(){
 
-		before(function(){
+		it('elemInstance.set({ elemInstanceChild:{} })',function(){
 			elemInstance.set({ elemInstanceChild:{} })
 		})
-
-		it('elemInstance.set({ elemInstanceChild:{} })')
 
 		it( 'elem does not have child elemInstanceChild', function () {
 			expect(elem.elemInstanceChild).to.not.be.ok
@@ -287,54 +185,50 @@ describe( 'Element', function () {
 			expect(elemInstance.elemInstanceChild.$path).to.deep.equal(['b','elemInstanceChild']);
 		})
 
-		describe('-> events:elem',function(){
-			
-			it( '$new did not fire -> $new.a is still zero', function () {
-				expect($new.a).to.equal(0);
-			})
+	})
 
-			it( '$property did not fire -> $property.a is still one', function () {
-				expect($property.a).to.equal(1);
-			})
+	//add child to original
+	describe( 'Add child to original', function(){
 
-			it( '$addToParent did not fire -> $addToParent.a is still zero', function () {
-				expect($addToParent.a).to.equal(0);
-			})
-
-			it( '$change did not fire -> $change.a is still one', function () {
-				expect($change.a).to.equal(1);
-			})
-
+		it('elem.set({ elemChild2:{} })',function(){
+			elem.set({ elemChild2:{} })
 		})
 
-		describe('-> events:elemInstance',function(){
-			it( '$change fired -> $change.b is now two', function () {
-				expect($change.b).to.equal(2);
-			})
+		it( 'elem has child elemChild2', function () {
+			expect(elem.elemChild2).to.be.ok
+		})
 
-			it( '$property fired -> $property.b is now one', function () {
-				expect($property.b).to.equal(1);
-			})
+		it( 'elemInstance also has child elemChild2', function () {
+			expect(elemInstance.elemChild2).to.be.ok
+		})
 
-			it( '$new did not fire -> $new.b is still one', function () {
-				expect($new.b).to.equal(1);
-			})
+		it( 'elemInstance.elemChild2 === elem.elemChild2', function () {
+			expect(elemInstance.elemChild2).equals(elem.elemChild2);
+		})
 
-			it( '$addToParent did not fire -> $addToParent.b is still zero', function () {
-				expect($addToParent.b).to.equal(0);
-			})
+		it( 'elem.elemChild2 has path [\'a\',\'elemChild2\']', function () {
+			expect(elem.elemChild2.$path).to.deep.equal(['a','elemChild2']);
+		})
+
+		it( 'elemInstance.elemChild2 has path [\'b\',\'elemChild2\']', function () {
+			expect(elemInstance.elemChild2.$path).to.deep.equal(['b','elemChild2']);
 		})
 
 	})
 
-	//remove child from original
-	describe( 'Remove child from elem', function(){
-		
-		before(function(){
+})
+
+//remove child from original
+describe( 'Removing children', function(){
+
+	var elem = new Element({$key:'a',elemChild:{}, elemChild2:{}})
+	var elemInstance = new elem.$Constructor({$key:'b',elemInstanceChild:{}})
+
+	describe( 'Removing child from original', function(){
+
+		it('elem.elemChild.remove()',function(){
 			elem.elemChild.remove()
 		})
-
-		it('elem.elemChild.remove()')
 
 		it( 'elem.elemChild is removed', function () {
 			expect(elem.elemChild).to.not.be.ok
@@ -344,54 +238,14 @@ describe( 'Element', function () {
 			expect(elemInstance.elemChild).to.not.be.ok
 		})
 
-		describe('-> events:elem',function(){
-
-			it( '$change fired -> $change.a is now two', function () {
-				expect($change.a).to.equal(2);
-			})
-
-			it( '$property fired -> $property.a is now two', function () {
-				expect($property.a).to.equal(2);
-			})
-			
-			it( '$new did not fire -> $new.a is still zero', function () {
-				expect($new.a).to.equal(0);
-			})
-
-			it( '$addToParent did not fire -> $addToParent.a is still zero', function () {
-				expect($addToParent.a).to.equal(0);
-			})
-
-		})
-
-		describe('-> events:elemInstance',function(){
-			it( '$change fires -> $change.b is now three', function () {
-				expect($change.b).to.equal(3);
-			})
-
-			it( '$property fired -> $property.b is now two', function () {
-				expect($property.b).to.equal(2);
-			})
-
-			it( '$new did not fire -> $new.b is still one', function () {
-				expect($new.b).to.equal(1);
-			})
-
-			it( '$addToParent did not fire -> $addToParent.b is still zero', function () {
-				expect($addToParent.b).to.equal(0);
-			})
-		})
-
 	})
 
 	//remove child from instance
 	describe( 'Remove child from instance', function(){
 
-		before(function(){
+		it('elemInstance.elemChild2.remove()',function(){
 			elemInstance.elemChild2.remove()
 		})
-
-		it('elemInstance.elemChild2.remove()')
 
 		it( 'elemInstance.elemChild2 is removed', function () {
 			expect(elemInstance.elemChild2).to.not.be.ok
@@ -399,44 +253,6 @@ describe( 'Element', function () {
 
 		it( 'elem.elemChild2 is not removed', function () {
 			expect(elem.elemChild2).to.be.ok
-		})
-
-		describe('-> events:elem',function(){
-
-			it( '$change did not fire -> $change.a is still two', function () {
-				expect($change.a).to.equal(2);
-			})
-
-			it( '$property did not fire -> $property.a is still two', function () {
-				expect($property.a).to.equal(2);
-			})
-			
-			it( '$new did not fire -> $new.a is still zero', function () {
-				expect($new.a).to.equal(0);
-			})
-
-			it( '$addToParent did not fire -> $addToParent.a is still zero', function () {
-				expect($addToParent.a).to.equal(0);
-			})
-
-		})
-
-		describe('-> events:elemInstance',function(){
-			it( '$change fires -> $change.b is now four', function () {
-				expect($change.b).to.equal(4);
-			})
-
-			it( '$property fired -> $property.b is now three', function () {
-				expect($property.b).to.equal(3);
-			})
-
-			it( '$new did not fire -> $new.b is still one', function () {
-				expect($new.b).to.equal(1);
-			})
-
-			it( '$addToParent did not fire -> $addToParent.b is still zero', function () {
-				expect($addToParent.b).to.equal(0);
-			})
 		})
 
 	})

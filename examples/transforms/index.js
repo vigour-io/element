@@ -5,7 +5,7 @@ var Element = require( '../../lib/element' )
 
 Element.prototype.inject(
   require( '../../lib/property/css' ),
-  require( '../../lib/property/transform' ).extended(),
+  require( '../../lib/property/transform' ),//.extended(),
   require( '../../lib/property/draggable' )
 )
 
@@ -20,8 +20,8 @@ var thing = window.thing = new Element( {
         $rotate: e.x + 'deg',
         $skewX: Math.abs(e.x / 10),
         $skewY: Math.abs(e.y / 10),
-        $scaleX: e.x / 5,
-        $scaleY: e.y / 5,
+        $scaleX: e.x / 500,
+        $scaleY: e.y / 500,
         $transformOrigin: e.x
       })
     }

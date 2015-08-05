@@ -4,15 +4,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "doc": "ddede"
+    "doc": "node documentation.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/vigour-io/vui.git"
-  },
-  "scripts": {
-    "test": "test/test.js",
-    "doc": "node documentation.js"
   },
   "author": "Vigour.io <dev@vigour.io>",
   "license": "GPL",

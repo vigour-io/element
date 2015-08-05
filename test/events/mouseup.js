@@ -17,7 +17,7 @@ describe('Add mouseup listener',function(){
 		app.set({elem:elem})
 	})
 
-	it('app.elem.set({ $on:{ mouseup:function(){ mouseupCount++ } } })',function(){
+	it('app.elem.set({ $on:{ mouseup:function(){ mouseupPath = this.$path } } })',function(){
 		elem.set({ $on:{ mouseup:function(){ mouseupPath = this.$path } } })
 	})
 

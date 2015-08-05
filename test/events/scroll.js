@@ -17,7 +17,7 @@ describe('Add scroll listener',function(){
 		app.set({elem:elem})
 	})
 
-	it('app.elem.set({ $on:{ scroll:function(){ scrollCount++ } } })',function(){
+	it('app.elem.set({ $on:{ scroll:function(){ scrollPath = this.$path } } })',function(){
 		elem.set({ $on:{ scroll:function(){ scrollPath = this.$path } } })
 	})
 

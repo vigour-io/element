@@ -4,14 +4,13 @@ var Observable = require('vjs/lib/observable')
 // var expect = chai.expect
 
 Element.prototype.inject(
-require('../../lib/property/css'),
-require('../../lib/property/size'),
-require('../../lib/property/attributes'),
-require('../../lib/property/transform'),//.extended(),
-require('../../lib/property/backgroundcolor'),
-require('../../lib/property/backgroundImage'),
-require('../../lib/property/text'),
-require('vjs/lib/methods/lookUp')
+  require('../../lib/property/css'),
+  require('../../lib/property/size'),
+  require('../../lib/property/attributes'),
+  require('../../lib/property/transform'),//.extended(),
+  require('../../lib/property/backgroundcolor'),
+  require('../../lib/property/backgroundImage'),
+  require('../../lib/property/text')
 )
 
 describe('$x, $y, $z', function() {

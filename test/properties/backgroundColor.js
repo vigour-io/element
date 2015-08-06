@@ -24,7 +24,7 @@ describe( '--> backgroundColor', function(){
 		expect(element.$node.style.backgroundColor).to.be.equal("black")
 		done()
 	})
-	//seting back the original state of element( with backgound color red )
+	//setting back the original state of element( with backgound color red )
 	afterEach(function(){
 		element.set({
 			$backgroundColor:"red"

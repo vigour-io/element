@@ -5,3 +5,7 @@ describe('On transforms',function(){
 describe('On backgroundColor',function(){
   require('./backgroundColor')
 })
+
+describe('On backgroundColor',function(){
+  require('./backgroundImage')
+})

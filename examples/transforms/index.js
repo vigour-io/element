@@ -5,7 +5,7 @@ var Element = require( '../../lib/element' )
 
 Element.prototype.inject(
   require( '../../lib/property/css' ),
-  require( '../../lib/property/transform' ),//.extended(),
+  require( '../../lib/property/transform' ),
   require( '../../lib/property/draggable' )
 )
 

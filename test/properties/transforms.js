@@ -166,15 +166,22 @@ describe('adding transforms', function () {
 
 describe('removing transforms', function () {
   var valueX = 100
+  var scale = 2.3
 
   var elem = new Element({
-    $x: valueX
+    $x: valueX,
+    $scale: scale
   })
 
   it('should remove property on defined element', function () {
-    expect(elem.$node.style.transform).to.equal('translate3d(' + valueX + 'px, 0px, 0px)')
+    expect(elem.$node.style.transform).to.equal('translate3d(' + valueX + 'px, 0px, 0px) scale(' + scale + ')')
 
     elem.$x.remove()
+
+    expect(elem.$node.style.transform).to.equal('scale(' + scale + ')')
+
+    elem.$scale.remove()
+    console.log(elem.$scale)
 
     expect(elem.$node.style.transform).to.equal('')
   })

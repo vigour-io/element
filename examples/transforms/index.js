@@ -12,17 +12,11 @@ Element.prototype.inject(
 var thing = window.thing = new Element( {
   $css: 'hello',
   $draggable: true,
-  $skewX: '10deg',
-  $skewY: '10deg',
   $on: {
     $drag: function(event, e) {
       this.set({
-        $rotate: e.x + 'deg',
-        $skewX: Math.abs(e.x / 10),
-        $skewY: Math.abs(e.y / 10),
-        $scaleX: e.x / 500,
-        $scaleY: e.y / 500,
-        $transformOrigin: e.x
+        $rotate: e.x,
+        $scale: e.x / 500,
       })
     }
   }
@@ -33,6 +27,12 @@ app.set( {
   $draggable: {
     bind: function(){
       return this.hello
+    }
+  },
+  $on: {
+    $scroll: function (event, e) {
+      console.log(event)
+      event.preventDefault()
     }
   }
 })

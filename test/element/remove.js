@@ -1,7 +1,16 @@
 var app = require( '../../lib/app' )
 var Element = require( '../../lib/element' )
-var elem = new Element({$key:'a',elemChild:{}, elemChild2:{}})
-var elemInstance = new elem.$Constructor({$key:'b',elemInstanceChild:{}})
+
+var elem = new Element({
+  $key: 'a',
+  elemChild: {},
+  elemChild2: {}
+})
+
+var elemInstance = new elem.$Constructor({
+  $key: 'b',
+  elemInstanceChild: {}
+})
 
 app.set({
 	elem:elem,

@@ -13,30 +13,27 @@ Element.prototype.inject(
   require('../../lib/property/text')
 )
 
-describe('creating new property',function(){
+describe('creating new property', function(){
   var el = new Element({
-    $flags:{
-      test:new Observable()
+    $flags: {
+      test: new Observable()
     }
   })
 
-  // it('should be able to set el.test to 1',function(){
-  //   el.set({
-  //     test:1
-  //   })
-  //   expect(el.test.$val).to.equal(1)
-  // })
-
-  it('should be able to set el.test to 0',function(){
-
-    console.error(Observable,Property)
-
+  it('should be able to set new property to 0',function(){
     el.set({
-      test:0
+      test: 0
     })
 
-    console.log('>>>',el.test.$val)
     expect(el.test.$val).to.equal(0)
+  })
+
+  it('should be able to set new property to 1',function(){
+    el.set({
+      test: 1
+    })
+
+    expect(el.test.$val).to.equal(1)
   })
 })
 

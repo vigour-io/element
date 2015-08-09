@@ -19,7 +19,9 @@ app.set({
 
 describe( 'Removing child from original', function(){
 	it('app.elem.elemChild.remove()',function(){
+		console.clear()
 		elem.elemChild.remove()
+		console.log('---------')
 	})
 
 	it( 'app.elem.elemChild is removed', function () {
@@ -31,9 +33,9 @@ describe( 'Removing child from original', function(){
 	})
 
 	//TODO: this test is good, we need to fix remove for nodes, and uncomment the test
-	// it( 'app.elem.elemChild and app.elemInstance.elemChild nodes are removed', function () {
-	// 	expect(document.getElementsByClassName('elemChild').length).to.not.be.ok
-	// })
+	it( 'app.elem.elemChild and app.elemInstance.elemChild nodes are removed', function () {
+		expect(document.getElementsByClassName('elemChild').length).to.not.be.ok
+	})
 
 })
 
@@ -53,9 +55,9 @@ describe( 'Remove child from instance', function(){
 	})
 
 	//TODO: this test is good, we need to fix remove for nodes, and uncomment the test
-	// it( 'only app.elemInstance.elemChild2 node is removed', function () {
-	// 	expect(document.getElementsByClassName('elemChild2').length).to.not.be.one
-	// })
+	it( 'only app.elemInstance.elemChild2 node is removed', function () {
+		expect(document.getElementsByClassName('elemChild2').length).to.not.be.one
+	})
 
 })
 
@@ -68,13 +70,13 @@ describe( 'Removing original', function(){
 		expect(app.elem).to.not.be.ok
 	})
 
-	it( 'app.elemInstance is not removed', function () {
-		expect(app.elemInstance).to.be.ok
+	it( 'app.elemInstance is removed', function () {
+		expect(app.elemInstance).to.not.be.ok
 	})
 
 	//TODO: this test is good, we need to fix remove for nodes, and uncomment the test
-	// it( 'app.elem.elemChild and app.elemInstance.elemChild nodes are removed', function () {
-	// 	expect(document.getElementsByClassName('elemChild').length).to.not.be.ok
-	// })
+	it( 'app.elem.elemChild and app.elemInstance.elemChild nodes are removed', function () {
+		expect(document.getElementsByClassName('elemChild').length).to.not.be.ok
+	})
 
 })

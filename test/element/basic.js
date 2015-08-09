@@ -13,7 +13,7 @@ describe( 'Create new element \'elem\'', function(){
 	})
 	
 	it( 'elem has no key by default', function () {
-		expect(elem._$key).to.equal(void 0);
+		expect(elem.$key).to.equal(void 0);
 	})
 
 	it( 'elem has no path', function () {
@@ -34,7 +34,7 @@ describe( 'Set key \'a\'', function(){
 	})
 
 	it( 'elem now has key \'a\'', function () {
-		expect(elem._$key).to.equal('a');
+		expect(elem.$key).to.equal('a');
 	})
 
 	it( 'elem now has a path [\'a\']', function () {
@@ -61,7 +61,7 @@ describe( 'Add child', function(){
 	})
 
 	it( 'elem.elemChild has key \'elemChild\'', function () {
-		expect(elem.elemChild._$key).to.equal('elemChild');
+		expect(elem.elemChild.$key).to.equal('elemChild');
 	})
 
 	it( "elem.elemChild has path ['a','elemChild']", function () {

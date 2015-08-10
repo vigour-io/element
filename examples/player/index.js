@@ -10,10 +10,17 @@ Element.prototype.inject(
 )
 
 var player = new Element({
+  loaded: false,
   $attributes: {
     id: 'player'
   },
 })
+
+// kWidget.addReadyCallback( function( playerId ){
+//   var kdp = document.getElementById( playerId );
+// })
+
+var loaded = false
 
 var controls = new Element({
   play: {
@@ -32,7 +39,7 @@ var controls = new Element({
         kWidget.addReadyCallback( function( playerId ){
           var kdp = document.getElementById( playerId );
           kdp.sendNotification('doPause');
-        })  
+        })
       }
     }
   },
@@ -53,6 +60,15 @@ app.set({
 })
 
 
+kWidget.addReadyCallback( function( playerId ){
+	var kdp = document.getElementById( playerId );
+  console.log('haha')
+  return player.loaded = true
+});
+
+if (player.loaded) {
+  console.log('loaded!')
+}
 
 kWidget.embed({
   targetId: "player",

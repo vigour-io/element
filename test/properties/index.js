@@ -9,3 +9,7 @@ describe('On backgroundColor',function(){
 describe('On backgroundColor',function(){
   require('./backgroundImage')
 })
+
+describe('On attributes',function(){
+  require('./attributes')
+})

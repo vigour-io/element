@@ -1,0 +1,30 @@
+@import url('../../less/index');
+
+body {
+  .bgimg('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Graph-paper.svg/255px-Graph-paper.svg.png', top left repeat);
+}
+
+.hello {
+  .size(200px);
+  .radius(100px);
+  border: rgba(255, 0, 0, 0.2) 5px solid;
+  background: rgba(255, 0, 0, 0.5);
+
+  .selectable;
+
+  cursor: move;
+
+  .animated;
+  .bounceIn();
+  .animation-duration(1s);
+
+  &.move {
+    cursor: pointer;
+    .transition(0.2s ease-out transform);
+  }
+
+  &.blue {
+    border: rgba(0, 0, 255, 0.2) 5px solid;
+    background: rgba(0, 0, 255, 0.5);
+  }
+}

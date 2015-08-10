@@ -10,7 +10,7 @@ Element.prototype.inject(
 )
 
 var thing = window.thing = new Element( {
-  $css: 'hello',
+  // $css: 'my-own-hello',=
   $draggable: true,
   $on: {
     $drag: function(event, e) {

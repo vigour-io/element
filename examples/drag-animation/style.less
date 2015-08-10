@@ -1,22 +1,30 @@
 @import url('../../less/index');
 
-.hello {
-  .bgimg('https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Flag_of_Europe.svg/810px-Flag_of_Europe.svg.png', center center no-repeat);
-  .bgsize(contain);
-  .transform-origin(50% 50% 0);
+body {
+  .bgimg('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Graph-paper.svg/255px-Graph-paper.svg.png', top left repeat);
+}
 
-  padding: 10px;
-  .size(300px, 150px);
+.hello {
+  .size(200px);
+  .radius(100px);
+  border: rgba(255, 0, 0, 0.2) 5px solid;
+  background: rgba(255, 0, 0, 0.5);
 
   .selectable;
 
-  cursor: pointer;
+  cursor: move;
 
   .animated;
-  .rollIn();
+  .bounceIn();
   .animation-duration(1s);
 
-  &.return {
-    .transition(0.1s ease-in transform);
+  &.move {
+    cursor: pointer;
+    .transition(0.2s ease-out transform);
+  }
+
+  &.blue {
+    border: rgba(0, 0, 255, 0.2) 5px solid;
+    background: rgba(0, 0, 255, 0.5);
   }
 }

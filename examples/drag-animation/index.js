@@ -11,22 +11,27 @@ Element.prototype.inject(
 
 var thing = window.thing = new Element( {
   $draggable: true,
+  $css: 'hello',
   $on: {
     $down: function(event, e) {
-      this.$removeClass('return')
-      this.startX = e.x
-      this.startY = e.y
-      console.log(this.startX, this.startY)
+      this.$css.removeClass('move')
+
+      this.startX = e.x - e.offsetX
+      this.startY = e.y - e.offsetY
     },
-    // $drag: function(event, e) {
-    //   this.set({
-    //     $scale: e.x / 400,
-    //   })
-    // },
+
+    $click: function (event, e) {
+      this.$css.toggleClass('blue')
+    },
+
     'mouseup': function() {
-      this.$addClass('return')
-      this.$x.$val = this.startX
-      this.$y.$val = this.startY
+      this.$css.addClass('move')
+
+      this.set({
+        $x: this.startX,
+        $y: this.startY,
+        $scale: 1
+      })
     }
   }
 })

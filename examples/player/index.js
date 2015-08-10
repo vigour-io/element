@@ -1,9 +1,6 @@
-require( './style.less' )
-
+require( './style.less')
 var app = require( '../../lib/app' )
 var Element = require( '../../lib/element' )
-var kWidget = require( './lib/kaltura.js' )
-
 
 Element.prototype.inject(
   require( '../../lib/property/css' ),
@@ -13,35 +10,56 @@ Element.prototype.inject(
 )
 
 var player = new Element({
-  $css: 'player',
-  $width: 800,
-  $height: 660
+  $attributes: {
+    id: 'player'
+  },
 })
 
-player.$node.id = 'player'
-
+var controls = new Element({
+  play: {
+    $text: 'play',
+    $on: {
+      click: kWidget.addReadyCallback( function( playerId ){
+        var kdp = document.getElementById( playerId );
+        kdp.sendNotification('doPlay');
+      })
+    }
+  },
+  pause: {
+    $text: 'pause',
+    $on: {
+      click: function () {
+        kWidget.addReadyCallback( function( playerId ){
+          var kdp = document.getElementById( playerId );
+          kdp.sendNotification('doPause');
+        })  
+      }
+    }
+  },
+  // seeking: {
+  //   $text: 'seeking',
+  //   $on: {
+  //     click: kWidget.addReadyCallback( function( playerId ){
+  //       var kdp = document.getElementById( playerId );
+  //       kdp.sendNotification('doSeek', 30 );
+  //     })
+  //   }
+  // }
+})
 
 app.set({
- player :new player.$Constructor,
+ player: new player.$Constructor,
+ controls: new controls.$Constructor
 })
-
-mw.setConfig ('controlBarContainer.plugin', false)
-mw.setConfig ('largePlayBtn.plugin', false)
-mw.setConfig ('loadingSpinner.plugin', false)
-
-mw.setConfig('controls', false);
 
 
 
 kWidget.embed({
-  'targetId': 'player',
-  'wid': '_1984621',
-  'uiconf_id' : '30743062',
-  'entry_id' : '1_s11mis1k',
-  'flashvars':{ // flashvars allows you to set runtime uiVar configuration overrides.
-    'autoPlay': false
-  },
-  'params':{ // params allows you to set flash embed params such as wmode, allowFullScreen etc
-    'wmode': 'transparent'
-  }
-});
+  targetId: "player",
+	wid: "_1984621",
+	uiconf_id: "30785531",
+	entry_id: "1_s11mis1k",
+	// flashvars: {
+  //   externalInterfaceDisabled: false
+	// }
+})

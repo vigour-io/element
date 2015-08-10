@@ -30,20 +30,20 @@ describe( '--> Using Cases' , function () {
 	//Act
 	var a = new Element({
 		$css:{
-			$val:"screenClass",
+			$val:"class1",
 			$desktop:{
-				$normalScreen:"normalScreenClass"
+				$normalScreen:"class2"
 			}
 		},
 		$text:{
-			$val:'default text',
+			$val:'text 1',
 			$desktop:{
 				$val:"bla",
-				$normalScreen:"desktop text"
+				$normalScreen:"text 2"
 			},
 			$phone:{
-				$val:"simple text",
-				$smallScrenn:"small text"
+				$val:"text 1 mobile",
+				$smallScrenn:"text 2 mobile"
 			}
 		}
 	})
@@ -53,22 +53,78 @@ describe( '--> Using Cases' , function () {
 		cases.$phone.$val = false
 		done()
 	})
-	//Asserts
+	//Assert
 	it( 'change the text element when desktop' , function (done) {
-		expect(a.$text.$val).to.be.equal("desktop text")
+		expect(a.$text.$val).to.be.equal("text 2")
 		done()
 	})
 
 	it( 'change the text element when phone' , function (done) {
 		cases.$phone.$val = true 
-		expect(a.$text.$val).to.be.equal("small text")
+		expect(a.$text.$val).to.be.equal("text 2 mobile")
 		done()
 	})
 
-	it( 'using the same case to update two properties' ,function (done) {
-		expect(a.$text.$val).to.be.equal("desktop text")
-		expect(a.$css.$val).to.be.equal("normalScreenClass")
+	it( 'using the same case to update two properties (css and text)' ,function (done) {
+		expect(a.$text.$val).to.be.equal("text 2")
+		expect(a.$css.$val).to.be.equal("class2")
 		done()
 	})
 
+	describe ( 'inheritane of element with cases' , function (argument) {
+		var b = new a.$Constructor({})
+
+		it( 'inherit text cases logic from element a' ,function (done) {
+			expect(b.$text.$val).to.be.equal("text 2")
+			done()	
+		})
+
+		it( 'changes in b should update only b' ,function (done) {
+			
+			b.set({
+				$text:{
+					$val:"b default text",
+					$desktop: {
+						$normalScreen:"b text"
+					}
+				}
+			})
+
+			expect(b.$text.$val).to.be.equal("b text")
+			done()	
+		})
+
+		it( 'should not update a' , function (done) {
+			expect(a.$text.$val).to.be.equal("text 2")		
+			done()
+		})
+
+		// Talk with Youzi
+		it ( 'a changes should update b as well' , function (done) {
+			a.$text.set({
+				$desktop:{
+					$normalScreen: "new value for a"
+				}
+			})
+			expect(b.$text.$val).to.be.equal("new value for a")
+			done()
+		})
+		
+		// Talk with Youzii
+		describe( 'remove cases property' , function () {
+		
+			it( 'remove cases from b' , function (done) {
+				b.$text.$desktop.remove()
+				expect(b.$text.$desktop).to.be.null
+				done()
+			})
+
+		})		
+	})
 })
+
+
+
+
+
+

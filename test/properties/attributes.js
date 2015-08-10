@@ -8,6 +8,7 @@ Element.prototype.inject(
 
 describe( '--> Attributes' , function () {
 	var a = new Element({})
+	var b
 	a.set({
 		$attributes: {
 	    custom: true
@@ -32,7 +33,9 @@ describe( '--> Attributes' , function () {
 	})
 
 	describe( 'inheriting elements' , function () {
-		var b = new a.$Constructor()
+		before(function(){
+			b = new a.$Constructor()
+		})
 
 		it( 'b should have the same attributes of a' , function () {
 			expect(b.$node.getAttribute('custom')).to.be.equals("true")

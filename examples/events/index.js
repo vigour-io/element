@@ -51,8 +51,6 @@ var holder = new Element({
   }
 })
 
-console.error('!!!')
-
 gaston.performance(function() {
   var Thing = thing.$Constructor
   for(var i = 0 ; i < 1e3; i++) {
@@ -65,9 +63,9 @@ gaston.performance(function() {
   // console.log(arguments[0]*1000 +'ms')
 })
 
-console.clear()
+// console.clear()
 
-console.log('before!',holder.$text,holder.$text.val)
+// console.log('before!',holder.$text,holder.$text.val)
 
 // console.error('does it fire')
 // var evObj = document.createEvent('Events');

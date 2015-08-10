@@ -2,7 +2,6 @@ require( './style.less' )
 
 var app = require( '../../lib/app' )
 var Element = require( '../../lib/element' )
-
 Element.prototype.inject(
   require( '../../lib/property/css' ),
   require( '../../lib/property/text' ),
@@ -43,4 +42,8 @@ app.set({
 	b:new a.$Constructor({
 		c:new a.$Constructor()
 	})
+})
+
+window.requestAnimationFrame(function(){
+	a.remove()
 })

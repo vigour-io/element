@@ -5,24 +5,24 @@ var Element = require( '../../lib/element' )
 
 Element.prototype.inject(
   require( '../../lib/property/css' ),
-  require( '../../lib/property/transform' ),//.extended(),
+  require( '../../lib/property/transform' ),
   require( '../../lib/property/draggable' )
 )
 
 var thing = window.thing = new Element( {
   $css: 'hello',
+<<<<<<< HEAD
   // $draggable: true,
   $skewX: '10deg',
   $skewY: '10deg',
+=======
+  $draggable: true,
+>>>>>>> 62f32205ba278384a23f5cce9f87ece8b595c58c
   $on: {
     $drag: function(event, e) {
       this.set({
-        $rotate: e.x + 'deg',
-        $skewX: Math.abs(e.x / 10),
-        $skewY: Math.abs(e.y / 10),
-        $scaleX: e.x / 500,
-        $scaleY: e.y / 500,
-        $transformOrigin: e.x
+        $rotate: e.x,
+        $scale: e.x / 500,
       })
     }
   }
@@ -33,6 +33,12 @@ app.set( {
   $draggable: {
     bind: function(){
       return this.hello
+    }
+  },
+  $on: {
+    $scroll: function (event, e) {
+      console.log(event)
+      event.preventDefault()
     }
   }
 })

@@ -18,7 +18,9 @@ describe('Add mousedown listener',function(){
 	})
 
 	it('app.elem.set({ $on:{ mousedown:function(){ mousedownPath = this.$path } } })',function(){
-		elem.set({ $on:{ mousedown:function(){ mousedownPath = this.$path } } })
+		elem.set({ $on:{ mousedown:function(){
+			mousedownPath = this.$path
+		} } })
 	})
 
 	it( 'elem now has a mousedown listener', function () {

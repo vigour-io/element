@@ -28,7 +28,7 @@ describe( 'Create instance of elem',function(){
 	})
 
 	it( 'elemInstance inherited key \'a\'', function () {
-		expect(elemInstance._$key).to.equal('a')
+		expect(elemInstance.$key).to.equal('a')
 	})
 
 	it( 'elemInstance has a path [\'a\']', function () {
@@ -47,7 +47,7 @@ describe('Set key \'b\' on instance',function(){
 	})
 
 	it( 'elemInstance now has key \'b\'', function () {
-		expect(elemInstance._$key).to.equal('b')
+		expect(elemInstance.$key).to.equal('b')
 	})
 
 	it( 'elemInstance now has a path [\'b\']', function () {
@@ -59,7 +59,7 @@ describe('Set key \'b\' on instance',function(){
 	})
 
 	it( 'elem still has key \'a\'', function () {
-		expect(elem._$key).to.equal('a')
+		expect(elem.$key).to.equal('a')
 	})
 
 	it( 'elem still has path [\'a\']', function () {

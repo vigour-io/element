@@ -23,11 +23,12 @@ var thing = window.thing = new Element( {
     $click: function (event, e) {
       this.$css.toggleClass('blue')
     },
-
     'mouseup': function() {
       this.$css.addClass('move')
-
       this.set({
+        // $css:{
+        //   addClass:'move'
+        // },
         $x: this.startX,
         $y: this.startY,
         $scale: 1
@@ -38,15 +39,9 @@ var thing = window.thing = new Element( {
 
 app.set( {
   hello: new thing.$Constructor(),
-  $draggable: {
-    bind: function(){
-      return this.hello
-    }
-  },
-  $on: {
-    $scroll: function (event, e) {
-      console.log(event)
-      event.preventDefault()
-    }
-  }
+  // $on: {
+  //   $scroll: function (event, e) {
+  //     event.preventDefault()
+  //   }
+  // }
 })

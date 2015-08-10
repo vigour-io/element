@@ -11,7 +11,7 @@ Element.prototype.inject(
 
 var thing = window.thing = new Element( {
   $css: 'hello',
-  $draggable: true,
+  // $draggable: true,
   $skewX: '10deg',
   $skewY: '10deg',
   $on: {

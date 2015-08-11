@@ -13,3 +13,7 @@ describe('On backgroundColor',function(){
 describe('On attributes',function(){
   require('./attributes')
 })
+
+describe('On css',function(){
+  require('./css')
+})

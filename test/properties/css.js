@@ -4,34 +4,59 @@ Element.prototype.inject(
   require( '../../lib/property/css' )
 )
 
+
+var element
+var childElement
 describe( '--> CSS' , function () {
-
-	var a 
-
-	afterEach(function () {
-		a	= new Element({
+	beforeEach(function () {
+		element	= new Element({
+			$key : "elem",
 			$css:'vigourClass'
 		})
 	})
 
 	it( 'Adding a css class on the Element' , function () {
-		expect(a.$node.className).to.be.equals('vigourClass')
+		expect(element.$node.className).to.be.equals('vigourClass')
 	})
 
 	it( 'changing the css class' , function () {
-		a.$css.$val  = 'newClass'
-		expect(a.$node.className).to.be.equals('newClass')
+		element.$css.set({
+			$val:'newClass'
+		})
+		expect(element.$node.className).to.be.equals('newClass')
 	})
 
 	it( 'add another css class on the same element' , function () {
-		a.$css.addClass('newClass')
-		expect(a.$node.className).to.be.equals('vigourClass newClass')
+		element.$css.set({
+			$addClass:'newClass'
+		})
+		expect(element.$node.className).to.be.equals('vigourClass newClass ')
 	})
 
 	it( 'remove specific css class on the element' , function () {
-		a.$css.addClass('newClass')
-		a.$css.remove('vigourClass')
-		expect(a.$node.className).to.be.equals('newClass')
+		element.$css.set({
+			$addClass:'newClass'
+		})
+		element.$css.set({
+			$removeClass:'vigourClass'
+		})
+		expect(element.$node.className).to.be.equals('newClass')
+	})
+})
+
+describe( 'Inheriting' , function () {
+	beforeEach(function () {
+		childElement = new element.$Constructor({})
+	})
+	it( 'childElement should have element class' , function () {
+		expect(childElement.$node.className).to.be.equals('newClass')
 	})
 
+	//not supported yet
+	// it( 'element changes should change childElement ' , function () {
+	// 	element.$css.set({
+	// 		$addClass:'active'
+	// 	})
+	// 	expect(childElement.$node.className).to.be.equals("newClass active")
+	// })
 })

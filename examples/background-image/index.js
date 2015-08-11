@@ -16,6 +16,24 @@ var element = new Element({
 	$backgroundImage:'http://wallpaper.ultradownloads.com.br/45586_Papel-de-Parede-Filhote-de-Cachorro_1024x768.jpg'
 })
 
-app.set({
-	a:element
+
+var a = new element.$Constructor({
+
 })
+
+app.set({
+	q:element,
+	a:a
+})
+
+// console.log(a)
+
+// not work
+// a.$backgroundImage.$val = "whatever"
+
+
+// a.set({
+// 	$backgroundImage: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSWzoOZjb0UQ-A3EoHuiYuzCcY0BNDEyNERtlu8BKgOx6tQB-DTjrjzZF0"
+// })
+console.log('......')
+a.$backgroundImage.$val = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSWzoOZjb0UQ-A3EoHuiYuzCcY0BNDEyNERtlu8BKgOx6tQB-DTjrjzZF0"

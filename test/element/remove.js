@@ -19,9 +19,7 @@ app.set({
 
 describe( 'Removing child from original', function(){
 	it('app.elem.elemChild.remove()',function(){
-		console.log('11111111')
 		elem.elemChild.remove()
-		console.log('22222222')
 	})
 
 	it( 'app.elem.elemChild is removed', function () {

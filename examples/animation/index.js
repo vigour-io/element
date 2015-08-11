@@ -11,6 +11,7 @@ Element.prototype.inject(
 
 var thing = window.thing = new Element( {
   $draggable: true,
+  $css: 'hello test',
   $on: {
     $dragstart: function(event, e) {
       this.set ({
@@ -23,7 +24,7 @@ var thing = window.thing = new Element( {
     $click: function () {
       this.set ({
         $css: {
-          $toggleClass: 'toggle'
+          $toggleClass: 'toggle test'
         }
       })
     },
@@ -33,7 +34,7 @@ var thing = window.thing = new Element( {
         $x: event.startX,
         $y: event.startY,
         $css: {
-          $addClass: 'move test'
+          $addClass: 'move'
         }
       })
     },

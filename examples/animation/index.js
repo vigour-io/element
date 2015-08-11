@@ -20,12 +20,20 @@ var thing = window.thing = new Element( {
       })
     },
 
+    $click: function () {
+      this.set ({
+        $css: {
+          $toggleClass: 'toggle'
+        }
+      })
+    },
+
     $dragend:function( event, e ){
       this.set({
         $x: event.startX,
         $y: event.startY,
         $css: {
-          $addClass: 'move toRight'
+          $addClass: 'move test'
         }
       })
     },

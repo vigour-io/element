@@ -11,9 +11,8 @@ Element.prototype.inject(
 
 var thing = window.thing = new Element( {
   $draggable: true,
-  $css : "teste",
   $on: {
-    $dragstart: function (event, e) {
+    $dragstart: function(event, e) {
       this.set ({
         $css: {
           $removeClass: 'move'
@@ -21,30 +20,18 @@ var thing = window.thing = new Element( {
       })
     },
 
-    $click: function (event, e) {
-      this.set({
-        $css: {
-          $toggleClass: 'blue'
-        }
-      })
-    },
-
-    $dragend: function (event, e){
+    $dragend:function( event, e ){
       this.set({
         $x: event.startX,
         $y: event.startY,
         $css: {
-          $addClass: 'move'
+          $addClass: 'move toRight'
         }
       })
     },
 
     $transitionEnd: function (event) {
-      // this.set ({
-      //   $css: {
-      //     $removeClass: 'move'
-      //   }
-      // })
+      console.info('transitionEnd', event)
     }
   }
 })

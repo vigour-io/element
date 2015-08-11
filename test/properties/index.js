@@ -6,7 +6,7 @@ describe('On backgroundColor',function(){
   require('./backgroundColor')
 })
 
-describe('On backgroundColor',function(){
+describe('On backgroundImage',function(){
   require('./backgroundImage')
 })
 

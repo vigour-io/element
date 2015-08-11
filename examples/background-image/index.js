@@ -11,14 +11,11 @@ Element.prototype.inject(
   require( '../../lib/property/backgroundColor' )
 )
 
-var element =  new Element({
+var element = new Element({
 	$css:"active",
 	$backgroundImage:'http://wallpaper.ultradownloads.com.br/45586_Papel-de-Parede-Filhote-de-Cachorro_1024x768.jpg'
 })
 
-
-element.$backgroundImage.remove()
-
 app.set({
-	a: new element.$Constructor({})
+	a:element
 })

@@ -6,10 +6,14 @@ describe('On backgroundColor',function(){
   require('./backgroundColor')
 })
 
-describe('On backgroundColor',function(){
+describe('On backgroundImage',function(){
   require('./backgroundImage')
 })
 
 describe('On attributes',function(){
   require('./attributes')
+})
+
+describe('On css',function(){
+  require('./css')
 })

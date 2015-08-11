@@ -71,7 +71,7 @@ describe( '--> Using Cases' , function () {
 		done()
 	})
 
-	describe ( 'inheritane of element with cases' , function (argument) {
+	describe ( 'inheritance of element with cases' , function (argument) {
 		var b = new a.$Constructor({})
 
 		it( 'inherit text cases logic from element a' ,function (done) {
@@ -99,18 +99,20 @@ describe( '--> Using Cases' , function () {
 			done()
 		})
 
-		// Talk with Youzi
-		it ( 'a changes should update b as well' , function (done) {
+		// Talk with Youzi 
+		// ===> it should not because you've set a different value on b, which creates it's own instance, decoupling it from a
+		it ( 'a changes should not update b as well' , function (done) {
 			a.$text.set({
 				$desktop:{
 					$normalScreen: "new value for a"
 				}
 			})
-			expect(b.$text.$val).to.be.equal("new value for a")
+			expect(b.$text.$val).to.not.be.equal("new value for a")
 			done()
 		})
 		
 		// Talk with Youzii
+		// ===> have to test if this works for operators in general (in vjs)
 		describe( 'remove cases property' , function () {
 		
 			it( 'remove cases from b' , function (done) {

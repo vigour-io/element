@@ -9,7 +9,7 @@ body {
   right: 0;
 }
 
-.hello {
+div {
   .size(200px);
   .radius(100px);
   border: rgba(255, 0, 0, 0.2) 5px solid;
@@ -25,11 +25,15 @@ body {
 
   &.move {
     cursor: pointer;
-    .transition(0.2s ease-out transform);
+    .transition(.2s ease-out all);
   }
 
   &.blue {
     border: rgba(0, 0, 255, 0.2) 5px solid;
     background: rgba(0, 0, 255, 0.5);
   }
+}
+
+.smups {
+  border: 10px solid pink;
 }

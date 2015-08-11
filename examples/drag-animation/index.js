@@ -11,40 +11,39 @@ Element.prototype.inject(
 
 var thing = window.thing = new Element( {
   $draggable: true,
-  $css: 'hello',
+  $css : "teste",
   $on: {
-    $down: function(event, e) {
-      this.$css.set ({
-        $removeClass: 'move'
+    $dragstart: function(event, e) {
+      this.set ({
+        $css: {
+          $removeClass: 'move'
+        }
       })
-
-      this.startX = e.x - e.offsetX
-      this.startY = e.y - e.offsetY
     },
 
     $click: function (event, e) {
-      this.$css.toggleClass('blue')
+      this.set({
+        $css: {
+          $toggleClass: 'blue'
+        }
+      })
     },
 
-    'mouseup': function() {
-      this.$css.set({
-        $addClass: 'move'
-      })
-
+    $dragend:function( event, e ){
       this.set({
-        // $css:{
-        //   addClass:'move'
-        // },
-        $x: this.startX,
-        $y: this.startY,
-        $scale: 1
+        $x: event.startX,
+        $y: event.startY,
+        $css: {
+          $addClass: 'move'
+        }
       })
     }
   }
 })
 
 app.set( {
-  hello: new thing.$Constructor(),
+  hello: new thing.$Constructor()
+
   // $on: {
   //   $scroll: function (event, e) {
   //     event.preventDefault()

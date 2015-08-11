@@ -14,7 +14,9 @@ var thing = window.thing = new Element( {
   $css: 'hello',
   $on: {
     $down: function(event, e) {
-      this.$css.removeClass('move')
+      this.$css.set ({
+        $removeClass: 'move'
+      })
 
       this.startX = e.x - e.offsetX
       this.startY = e.y - e.offsetY
@@ -25,7 +27,9 @@ var thing = window.thing = new Element( {
     },
 
     'mouseup': function() {
-      this.$css.addClass('move')
+      this.$css.set({
+        $addClass: 'move'
+      })
 
       this.set({
         $x: this.startX,

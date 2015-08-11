@@ -45,8 +45,10 @@ describe( '--> Attributes' , function () {
 			a.$attributes.custom.set({
 				$val :"newValue"
 			})
+
 			// Should update as well, no youri?
 			// the weird thing is that b.$attributes.custom.$val === "newValue"
+			// this is not handled yet in attributes
 			expect(b.$node.getAttribute('custom')).to.be.equals("newValue")
 		})
 

@@ -20,7 +20,7 @@ describe( '--> Using Cases' , function () {
 				return val > 400
 			}
 		},
-		$smallScrenn:{
+		$smallScreen:{
 			$val: phoneSize,
 			$transform:function(val,event) {
 				return val < 400
@@ -43,7 +43,7 @@ describe( '--> Using Cases' , function () {
 			},
 			$phone:{
 				$val:"text 1 mobile",
-				$smallScrenn:"text 2 mobile"
+				$smallScreen:"text 2 mobile"
 			}
 		}
 	})

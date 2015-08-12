@@ -13,14 +13,6 @@ var thing = window.thing = new Element( {
   $draggable: true,
   $css : "teste",
   $on: {
-    // $down:function(){
-    //   var rect = this.$node.getBoundingClientRect()
-    //   this.set({
-    //     $x:rect.left,
-    //     $y:rect.top
-    //   })
-    // },
-
     $dragstart: function (event, e) {
       this.set ({
         $css: {
@@ -45,14 +37,6 @@ var thing = window.thing = new Element( {
           $addClass: 'move'
         }
       })
-    },
-
-    $transitionEnd: function (event) {
-      // this.set ({
-      //   $css: {
-      //     $removeClass: 'move'
-      //   }
-      // })
     }
   }
 })

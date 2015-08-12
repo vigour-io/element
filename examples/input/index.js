@@ -1,7 +1,6 @@
 require('./style.less')
 var Element = require( '../../lib/element' )
 var Input = require( '../../lib/input' )
-
 var app = require( '../../lib/app' )
 
 var input = new Input({
@@ -9,8 +8,8 @@ var input = new Input({
 		type:'text'
 	},
 	$on:{
-		$focus:function ( event ) {
-			console.log( this, event )
+		focusin: function ( event ) {
+			console.log( "focusIn", event)
 		}
 	}
 })

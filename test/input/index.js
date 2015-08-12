@@ -32,7 +32,7 @@ describe( '--> Using the input component' , function () {
 	app.set({elem:a})
 
 	it( 'creating a simple input type text' , function () {
-		expect(a.$node).to.be.equals('text')
+		expect(a.$node.type).to.be.equals('text')
 	})
 
 	it( 'input should trigger focusIn when focused' , function () {

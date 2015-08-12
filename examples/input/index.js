@@ -10,6 +10,9 @@ var input = new Input({
 	$on:{
 		focusin: function ( event ) {
 			console.log( "focusIn", event)
+		},
+		focusout: function ( event ) {
+			console.log( "focusOUttt", event)
 		}
 	}
 })

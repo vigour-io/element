@@ -3,20 +3,31 @@ var Element = require( '../../lib/element' )
 var Input = require( '../../lib/input' )
 var app = require( '../../lib/app' )
 
+Element.prototype.inject(require('vjs/lib/operator/transform'))
+
 var input = new Input({
 	$attributes: {
 		type:'text'
 	},
+	$required:true,
 	$on:{
-		focusin: function ( event ) {
-			console.log( "focusIn", event)
+		$focusin: function ( event ) {
+			console.log("in")
 		},
-		focusout: function ( event ) {
-			console.log( "focusOUttt", event)
+		$focusout: function ( event ) {
+			console.log("outt")
+		},
+		$keyup:function (argument) {
+			console.log("uppp")
+		},
+		$keydown:function (argument) {
+			console.log("downnn")
+		},
+		$keypress:function (argument) {
+			console.log("press")
 		}
 	}
 })
-
 
 var passwordInput = new Input({
 	$val:"renan",
@@ -42,9 +53,10 @@ var element = new Element({
 })
 
 app.set({
-	form:element
+	form:{
+		$node:"form",
+		form:element
+	}
 })
 
-
-input.$val = "renan"
-console.log(input.$val)
+console.log(input.$flags.$rules)

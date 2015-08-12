@@ -13,3 +13,6 @@ describe('Properties',function(){
 describe('Cases',function(){
 	require('../cases')
 })
+describe('Input',function(){
+	require('../input')
+})

@@ -7,8 +7,10 @@
           box-sizing: @property;
 }
 
+// size of box
+// example: .size(200px, 100px, block)
 .size(@width, @height: @width, @display: inline-block) {
-  display: @display;
   width: @width;
   height: @height;
+  display: @display;
 }

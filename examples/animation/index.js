@@ -6,41 +6,32 @@ var Element = require( '../../lib/element' )
 Element.prototype.inject(
   require( '../../lib/property/css' ),
   require( '../../lib/property/transform' ),
+  require( '../../lib/property/backgroundcolor' ),
   require( '../../lib/property/draggable' )
 )
 
+var asd
+
 var thing = window.thing = new Element( {
-  $draggable: true,
   $css: 'hello test',
   $on: {
-    $dragstart: function(event, e) {
-      this.set ({
-        $css: {
-          $removeClass: 'move'
-        }
-      })
-    },
-
     $click: function () {
-      this.set ({
-        $css: {
-          $toggleClass: 'toggle test'
-        }
-      })
-    },
+      var that = this;
 
-    $dragend:function( event, e ){
-      this.set({
-        $x: event.startX,
-        $y: event.startY,
-        $css: {
-          $addClass: 'move'
-        }
-      })
-    },
+      function anim () {
+        var x = this.$x && this.$x.val || 0
+        var y = this.$y && this.$y.val || 0
 
-    $transitionEnd: function (event) {
-      console.info('transitionEnd', event)
+        that.set({
+          $x: x + 1,
+          $y: y + 1
+        })
+
+        requestAnimationFrame(anim)
+      }
+
+      asd = requestAnimationFrame(anim)
+
     }
   }
 })

@@ -29,7 +29,7 @@ describe( '--> Using the input component' , function () {
 			}
 		}
 	})
-	app.set({elem:a})
+	app.set({renan:a})
 
 	it( 'creating a simple input type text' , function () {
 		expect(a.$node.type).to.be.equals('text')

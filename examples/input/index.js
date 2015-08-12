@@ -11,11 +11,11 @@ var input = new Input({
 	},
 	$required:true,
 	$on:{
-		$focusin: function ( event ) {
-			console.log("in")
+		focus:function(){
+			console.log('such a party')
 		},
-		$focusout: function ( event ) {
-			console.log("outt")
+		blur:function(){
+			console.log('such a party, with Blur')
 		},
 		$keyup:function (argument) {
 			console.log("uppp")

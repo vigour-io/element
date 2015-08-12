@@ -18,10 +18,10 @@ describe( '--> Using the input component' , function () {
 			type:"text"
 		},
 		$on:{
-			$focusin: function () {
+			focus: function () {
 				count++
 			},
-			$focusout: function () {
+			blur: function () {
 				count++
 			},
 			$keypress: function() {
@@ -35,13 +35,13 @@ describe( '--> Using the input component' , function () {
 		expect(a.$node.type).to.be.equals('text')
 	})
 
-	it( 'input should trigger focusIn when focused' , function () {
-		fireEvent( a.$node, 'focusin')
+	it( 'input should trigger focus when focused' , function () {
+		fireEvent( a.$node, 'focus')
 		expect(count).to.be.equals(1)
 	})
 
-	it( 'input should trigger focusOut when focus is out' , function () {
-		fireEvent( a.$node, 'focusout')
+	it( 'input should trigger blur when blur' , function () {
+		fireEvent( a.$node, 'blur')
 		expect(count).to.be.equals(2)
 	})
 

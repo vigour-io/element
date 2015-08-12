@@ -1,22 +1,48 @@
+require('./style.less')
 var Element = require( '../../lib/element' )
 var Input = require( '../../lib/input' )
 
 var app = require( '../../lib/app' )
 
+var input = new Input({
+	$attributes: {
+		type:'text'
+	},
+	$on:{
+		$focus:function ( event ) {
+			console.log( this, event )
+		}
+	}
+})
 
+
+var passwordInput = new Input({
+	$val:"renan",
+	$attributes:{
+		type:"password"
+	}
+})
 
 var element = new Element({
-	textBox: new Input({
-		$val:"renan",
-		$attributes:{
-			type:'text'
-		}
-	})
+	fields : {
+		name: new input.$Constructor,
+		surname : new input.$Constructor,
+		pass:{
+			password:passwordInput
+		},
+		submit : new Input({
+			$attributes : {
+				type:"submit",
+				value:"Save"
+			}
+		})
+	}
 })
-
 
 app.set({
-	ba:element
+	form:element
 })
 
-console.log(element.textBox)
+
+input.$val = "renan"
+console.log(input.$val)

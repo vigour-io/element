@@ -16,11 +16,11 @@ var thing = window.thing = new Element( {
       time:60
     }
   },
-  $y:{
-    $animation:{
-      time:30
-    }
-  }
+  // $y:{
+  //   $animation:{
+  //     time:30
+  //   }
+  // }
 })
 
 app.set( {
@@ -28,7 +28,7 @@ app.set( {
   $on:{
     $click:function(event, e){
       this.hello.$x.$val = {$val: e.x, $add:-110}
-      this.hello.$y.$val = {$val: e.y, $add:-110}
+      // this.hello.$y.$val = {$val: e.y, $add:-110}
     }
   }
 })

@@ -7,11 +7,9 @@ Element.prototype.inject(require('vjs/lib/operator/transform'))
 
 var input = new Input({
 	$attributes : {
-		type :'text',
 		maxlength : 10
 	},
-	
-	$on:{
+	$on: {
 		$keyup: function ( argument ) {
 			console.log("uppp")
 		},
@@ -29,38 +27,39 @@ var input = new Input({
 	},
 })
 
-// var passwordInput = new Input({
-// 	$val:"renan",
-// 	$attributes:{
-// 		type:"password"
-// 	}
-// })
-
-var element = new Element({
-	fields : {
-		name: new input.$Constructor,
-		surname : new input.$Constructor,
-		// pass:{
-		// 	password:passwordInput
-		// },
-		submit : new Input({
-			$attributes : {
-				type:"submit",
-				value:"Save"
-			},
-			$on:{
-				click:function (argument) {
-				}
-			}
-		})
-	}
+var passwordInput = new Input({
+  $val:"renan",
+  $attributes:{
+    type:"password"
+  }
 })
+
+var form = new Element({
+  $node: 'form',
+  name: new input.$Constructor,
+  surname: new input.$Constructor,
+  password: new passwordInput.$Constructor,
+  submit: {
+    $node:'input',
+    $attributes:{
+      type:'submit'
+    }
+  },
+  $on:{
+      $submit: function ( event, e ) {
+        e.preventDefault()
+        var test = this.$node.children
+        for (var i = 0 ; i < test.length; i++ ){
+          if(test[i]){
+
+          }
+        }
+      }
+    }
+})
+
 
 app.set({
-	form:{
-		$node:"form",
-		form:element
-	}
+	 formulario: form
 })
 
-console.log(input.$flags.$rules)

@@ -16,7 +16,7 @@
     "url": "https://github.com/vigour-io/vui/issues"
   },
   "dependencies": {
-    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
+    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#master"
   },
   "devDependencies": {
     "dmd": "^1.1.1",

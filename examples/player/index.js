@@ -1,81 +1,98 @@
-require( './style.less')
-var app = require( '../../lib/app' )
-var Element = require( '../../lib/element' )
+require('./style.less')
+var app = require('../../lib/app')
+var Element = require('../../lib/element')
+var Observable = require('vjs/lib/observable')
+var Emitter = require('vjs/lib/emitter')
 
 Element.prototype.inject(
-  require( '../../lib/property/css' ),
-  require( '../../lib/property/text' ),
-  require( '../../lib/property/attributes' ),
-  require( 'vjs/lib/methods/lookUp' )
+  require('../../lib/property/css'),
+  require('../../lib/property/text'),
+  require('../../lib/property/attributes'),
+  require('vjs/lib/methods/lookUp')
 )
 
-var player = new Element({
-  loaded: false,
-  $attributes: {
-    id: 'player'
-  },
+var readyPlayer = new Observable({
+  id: "",
 })
 
-// kWidget.addReadyCallback( function( playerId ){
-//   var kdp = document.getElementById( playerId );
-// })
+var player = new Element({
+  $attributes: {
+    id: 'player'
+  }
+})
 
-var loaded = false
+var title = new Element({
+  $text: " ",
+  description: {
+    $text: " "
+  }
+})
 
 var controls = new Element({
   play: {
     $text: 'play',
+    elapsed: {
+      $text: 0
+    },
+    selector: {
+      $node: 'input',
+      $attributes: {
+        type: 'range',
+        value: 0,
+        min: 0,
+        max: 151,
+      }
+    },
+    duration: {
+      $text: 00
+    },
     $on: {
-      click: kWidget.addReadyCallback( function( playerId ){
-        var kdp = document.getElementById( playerId );
-        kdp.sendNotification('doPlay');
-      })
+      click: function() {
+        readyPlayer.id.sendNotification('doPlay');
+        setTime(readyPlayer.id)
+      }
     }
   },
   pause: {
     $text: 'pause',
     $on: {
-      click: function () {
-        kWidget.addReadyCallback( function( playerId ){
-          var kdp = document.getElementById( playerId );
-          kdp.sendNotification('doPause');
-        })
+      click: function() {
+        readyPlayer.id.sendNotification('doPause')
       }
     }
-  },
-  // seeking: {
-  //   $text: 'seeking',
-  //   $on: {
-  //     click: kWidget.addReadyCallback( function( playerId ){
-  //       var kdp = document.getElementById( playerId );
-  //       kdp.sendNotification('doSeek', 30 );
-  //     })
-  //   }
-  // }
+  }
 })
 
-app.set({
- player: new player.$Constructor,
- controls: new controls.$Constructor
-})
-
-
-kWidget.addReadyCallback( function( playerId ){
-	var kdp = document.getElementById( playerId );
-  console.log('haha')
-  return player.loaded = true
-});
-
-if (player.loaded) {
-  console.log('loaded!')
+function setTime(playerId) {
+  playerId.addJsListener("playerUpdatePlayhead", function(data) {
+    app.controls.play.elapsed.$text.$val = Math.floor(data)
+  })
 }
 
+function setTitle(title) {
+  kdp.addJsListener('kdpReady', function() {
+    app.title.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.name}')
+    app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
+    app.title.description.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.description}')
+  });
+}
+
+kWidget.addReadyCallback(function(playerId) {
+  kdp = readyPlayer.id = document.getElementById(playerId)
+  setTitle(kdp)
+})
+
+
+
+app.set({
+  title: new title.$Constructor,
+  player: new player.$Constructor,
+  controls: new controls.$Constructor
+})
+
 kWidget.embed({
-  targetId: "player",
-	wid: "_1984621",
-	uiconf_id: "30785531",
-	entry_id: "1_s11mis1k",
-	// flashvars: {
-  //   externalInterfaceDisabled: false
-	// }
+  'targetId': 'player',
+  'wid': '_1984621',
+  'uiconf_id': '30785531',
+  'entry_id': '1_s11mis1k',
 })

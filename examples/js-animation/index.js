@@ -13,7 +13,7 @@ var thing = window.thing = new Element( {
   $css : "teste",
   $x:{
     $animation:{
-      time:60
+      time:600
     }
   },
   // $y:{

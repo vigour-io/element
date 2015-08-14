@@ -52,44 +52,29 @@ describe( '--> Using the input component' , function () {
 })
 
 
-describe( '--> Input with required true' , function(){
-
-  var a = new Input({
-    $attributes:{
-      type:"text"
+describe( '--> Applying Input validations' , function() {
+  var input = new Input({
+    $attributes : {
+      maxlength : 10
     },
-    $required:{
-      required: true,
-      message: "This is a custom message for required fields",
-      defaultStyle : true
-    },
+    $verify:true,
     $on:{
-      $validation:function( event, meta ) {
-        txt = ""
-        txt = meta
+      $verified:function( event, meta ) {
+        count++
+        this.$node.style.border = meta.value ? '1px solid green' : '1px solid red'
       }
     }
   })
-  app.set({inputRequired:a})
-
-  it( 'should use the default error behaviour when the the input is empty' ,function () {
-    a.$node.value = ""
-    fireEvent( a.$node, 'blur')
-    expect(a.$node.style.borderColor).to.be.equal('red')
+  app.set({validation:input})
+  it( 'input should have the $verified property' , function () {
+    expect(input.$verified).to.be.ok
   })
 
-  it( 'should be fine if the input is not empty' ,function () {
-    a.$node.value = "some text"
-    fireEvent( a.$node, 'blur')
-    expect(a.$node.style.borderColor).to.not.be.equal('red')
+  it( '$verified should be called if the input.$val changes' , function () {
+    input.$val = "test"
+    fireEvent( input.$node, 'keyup')
+    expect(count).to.be.equals(3)
   })
-
-  it( 'should use the custom message' ,function () {
-    a.$node.value = "some text"
-    fireEvent( a.$node, 'blur')
-    expect(txt).to.be.equal('This is a custom message for required fields')
-  })
-
 })
 
 

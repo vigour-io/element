@@ -12,7 +12,7 @@ var input = new Input({
   $verify:function( val ){
     return val && val.length > 4
   },
-  // $defaultError:true,
+  $defaultError:true,
   $on:{
     $verified:function( event, meta ) {
       // this.$node.style.border = meta.value ? '10px solid green' : '10px solid red'

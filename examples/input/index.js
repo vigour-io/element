@@ -9,26 +9,18 @@ var input = new Input({
 	$attributes : {
 		maxlength : 10
 	},
-	$on: {
-		$keyup: function ( argument ) {
-			console.log("uppp")
-		},
-		blur:function() {
-			this.$val = this.$node.value
-		},
-		$validation: function ( event, meta ) {
-			console.log(meta)
-		}
-	},
-	$required:{
-		required: true,
-		message: "This is a custom message for required fields",
-		defaultStyle : true //otherWise you can pass the css or meybe a function ? WIP
-	},
+  $verify:function( val ){
+    return val && val.length > 4
+  },
+  $defaultError:true,
+  $on:{
+    $verified:function( event, meta ) {
+      // this.$node.style.border = meta.value ? '10px solid green' : '10px solid red'
+    }
+  }
 })
 
 var passwordInput = new Input({
-  $val:"renan",
   $attributes:{
     type:"password"
   }
@@ -37,28 +29,25 @@ var passwordInput = new Input({
 var form = new Element({
   $node: 'form',
   name: new input.$Constructor,
-  surname: new input.$Constructor,
   password: new passwordInput.$Constructor,
   submit: {
     $node:'input',
-    $attributes:{
+    $attributes:
+    {
       type:'submit'
     }
   },
   $on:{
       $submit: function ( event, e ) {
         e.preventDefault()
-        var test = this.$node.children
-        for (var i = 0 ; i < test.length; i++ ){
-          if(test[i]){
-
-          }
+        var name = this.name.$val
+        var password = this.password.$val
+        if (this.name.$verified.$val){
+          console.log(name, password)
         }
       }
     }
 })
-
-
 app.set({
 	 formulario: form
 })

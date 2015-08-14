@@ -13,14 +13,9 @@ var input = new Input({
     return val && val.length > 4
   },
   $on:{
-    $verified:function( event, verified ) {
-      this.$node.style.border = verified ? '10px solid green' : '10px solid red'
-    },
-    // blur:function (  ) {
-    //   if(!this.$verified.$val){
-    //     alert("Invalid name")
-    //   }
-    // }
+    $verified:function( event, meta ) {
+      this.$node.style.border = meta.value ? '10px solid green' : '10px solid red'
+    }
   }
 })
 
@@ -36,7 +31,8 @@ var form = new Element({
   password: new passwordInput.$Constructor,
   submit: {
     $node:'input',
-    $attributes:{
+    $attributes:
+    {
       type:'submit'
     }
   },

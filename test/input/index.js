@@ -57,11 +57,11 @@ describe( '--> Applying Input validations' , function() {
     $attributes : {
       maxlength : 10
     },
+    $defaultError:true,
     $verify:true,
     $on:{
       $verified:function( event, meta ) {
         count++
-        this.$node.style.border = meta.value ? '1px solid green' : '1px solid red'
       }
     }
   })
@@ -75,6 +75,21 @@ describe( '--> Applying Input validations' , function() {
     fireEvent( input.$node, 'keyup')
     expect(count).to.be.equals(3)
   })
+
+  it( 'using the default error style' , function () {
+    input.setKey("$verify",false)
+    input.$val = ""
+    fireEvent( input.$node, 'blur')
+    expect(input.$node.style.borderColor).to.be.equals('red')
+  })
+
+  it( 'should not use the default error style when false' , function () {
+    input.setKey("$defaultError",false)
+    input.$val = ""
+    fireEvent( input.$node, 'blur')
+    expect(input.$node.style.borderColor).to.not.be.equals('red')
+  })
+
 })
 
 

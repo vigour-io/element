@@ -34,7 +34,7 @@ describe( 'Removing children', function(){
       // not orignal anumore??
 
       // console.log(elem, elem.elemChild._$context)
-      elem.elemChild.$resetContextsUp()
+      // elem.elemChild.$resetContextsUp()
 
   		elem.elemChild.remove()
       // console.log(elem.

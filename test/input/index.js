@@ -80,14 +80,14 @@ describe( '--> Applying Input validations' , function() {
     input.setKey("$verify",false)
     input.$val = ""
     fireEvent( input.$node, 'blur')
-    expect(input.$node.style.borderColor).to.be.equals('red')
+    expect(input.$node.className).to.be.equals('input-field error')
   })
 
   it( 'should not use the default error style when false' , function () {
-    input.setKey("$defaultError",false)
+    input.setKey("$verify",true)
     input.$val = ""
     fireEvent( input.$node, 'blur')
-    expect(input.$node.style.borderColor).to.not.be.equals('red')
+    expect(input.$node.className).to.not.be.equals('input-field error')
   })
 
 })

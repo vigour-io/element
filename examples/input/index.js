@@ -3,21 +3,27 @@ var Element = require( '../../lib/element' )
 var Input = require( '../../lib/input' )
 var app = require( '../../lib/app' )
 
-Element.prototype.inject(require('vjs/lib/operator/transform'))
+Element.prototype.inject(
+  require('vjs/lib/operator/transform'),
+  require('../../lib/property/css')
+)
 
 var input = new Input({
+  $css:'input-field',
 	$attributes : {
 		maxlength : 10
 	},
   $verify:function( val ){
     return val && val.length > 4
   },
-  $defaultError:true,
-  $on:{
-    $verified:function( event, meta ) {
-      // this.$node.style.border = meta.value ? '10px solid green' : '10px solid red'
-    }
-  }
+  // $defaultVerify:true//,
+  // $on:{
+  //   $verified:function( event, meta ) {
+  //     this.set({
+  //       $css:'input-field ' + (meta.value ? 'verified' : 'error')
+  //     })
+  //   }
+  // }
 })
 
 var passwordInput = new Input({
@@ -32,8 +38,7 @@ var form = new Element({
   password: new passwordInput.$Constructor,
   submit: {
     $node:'input',
-    $attributes:
-    {
+    $attributes:{
       type:'submit'
     }
   },

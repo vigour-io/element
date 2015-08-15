@@ -48,7 +48,6 @@ describe( 'Removing children', function(){
 
   	it( 'app.elemInstance.elemChild is also removed', function () {
       // console.clear()
-      console.log('!@#!@#?',elemInstance.elemChild )
   		expect(elemInstance.elemChild).to.not.be.ok
 
   	})

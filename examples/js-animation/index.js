@@ -30,8 +30,7 @@ app.set( {
           $y: e.y,
           $opacity: Math.random(),
           $easing: 'easeIn',
-          // $time: Math.random() * 1000,
-          $time: 1000,
+          $time: Math.random() * 1000,
           $delay: 0,
           $callback: function (event) {
 

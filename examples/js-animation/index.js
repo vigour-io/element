@@ -10,7 +10,8 @@ Element.prototype.inject(
   require( '../../lib/property/transform' ),
   require( '../../lib/property/opacity' ),
   require( '../../lib/property/transition' ),
-  require( '../../lib/property/animate' )
+  require( '../../lib/property/animate' ),
+  require( '../../lib/property/backgroundColor' )
 )
 
 var thing = window.thing = new Element( {
@@ -34,15 +35,11 @@ app.set( {
           $delay: 0,
           $callback: function (event) {
 
-            console.log('in callback', this)
+            this.set({
+              $backgroundColor: this.$backgroundColor && this.$backgroundColor.$val === 'green' ? '' : 'green'
+            })
 
-            // this is window (?!)
-            // this must be 'thing' object
-            // console.log(this, event)
-
-            // this.set({
-            //   $backgroundColor: 'green'
-            // })
+            console.log('callback done!')
 
           }
         }

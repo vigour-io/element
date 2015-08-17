@@ -24,15 +24,22 @@ app.set( {
   $on:{
     $click: function(event, e){
       this.hello.set({
-        $animate:{
+        $animate: {
+          $css3: false,
           $x: e.x,
           $y: e.y,
           $opacity: Math.random(),
           $easing: 'easeIn',
-          $time: Math.random() * 1000,
+          // $time: Math.random() * 1000,
+          $time: 1000,
           $delay: 0,
           $callback: function (event) {
-            console.log('>>> callback fired!', event)
+
+            console.log(this, event)
+
+            thing.set({
+              $backgroundColor: 'green'
+            })
           }
         }
       })

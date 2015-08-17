@@ -5,30 +5,33 @@ var Element = require( '../../lib/element' )
 
 Element.prototype.inject(
   require( '../../lib/property/css' ),
-  require( '../../lib/property/text' ),
-  require( '../../lib/property/transform' )
+  require( '../../lib/property/transform' ),
+  require( '../../lib/property/animate' )
 )
 
 var thing = window.thing = new Element( {
   $css : "teste",
-  $x:{
-    $animation:{
-      time:600
-    }
-  },
-  // $y:{
-  //   $animation:{
-  //     time:30
-  //   }
-  // }
+  $x: 100,
+  $y: 200
 })
 
 app.set( {
   hello: new thing.$Constructor(),
   $on:{
     $click:function(event, e){
-      this.hello.$x.$val = {$val: e.x, $add:-110}
-      // this.hello.$y.$val = {$val: e.y, $add:-110}
+      this.hello.set({
+        $animate:{
+          $x: e.x,
+          $y: e.y,
+          $opacity: 0.2,
+          $easing: 'easeInOut',
+          $time: 600,
+          $delay: 500,
+          $callback: function () {
+            console.log('done', new Date())
+          }
+        }
+      })
     }
   }
 })

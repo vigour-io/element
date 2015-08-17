@@ -34,11 +34,14 @@ app.set( {
           $delay: 0,
           $callback: function (event) {
 
-            console.log(this, event)
+            // this is window (?!)
+            // this must be 'thing' object
+            // console.log(this, event)
 
-            thing.set({
-              $backgroundColor: 'green'
-            })
+            // this.set({
+            //   $backgroundColor: 'green'
+            // })
+
           }
         }
       })

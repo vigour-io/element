@@ -25,8 +25,9 @@ app.set( {
   $on:{
     $click: function(event, e){
       this.hello.set({
+
         $animate: {
-          $css3: false,
+          $css3: true,
           $x: e.x,
           $y: e.y,
           $opacity: Math.random() + 0.1,
@@ -34,15 +35,13 @@ app.set( {
           $duration: Math.random() * 1000,
           $delay: 0,
           $callback: function (event) {
-
             this.set({
               $backgroundColor: this.$backgroundColor && this.$backgroundColor.$val === 'green' ? '' : 'green'
             })
-
-            console.log('callback fired!')
-
+            console.log('THIS in css callback', this, event)
           }
         }
+
       })
     }
   }

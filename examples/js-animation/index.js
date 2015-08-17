@@ -30,9 +30,11 @@ app.set( {
           $y: e.y,
           $opacity: Math.random(),
           $easing: 'easeIn',
-          $time: Math.random() * 1000,
+          $duration: Math.random() * 1000,
           $delay: 0,
           $callback: function (event) {
+
+            console.log('in callback', this)
 
             // this is window (?!)
             // this must be 'thing' object

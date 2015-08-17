@@ -28,8 +28,8 @@ app.set( {
         $animate: {
           $css3: true,
           $x: e.x,
-          // $y: e.y,
-          // $opacity: Math.random() + 0.1,
+          $y: e.y,
+          $opacity: Math.random() + 0.1,
           $easing: 'easeIn',
           $duration: Math.random() * 1000,
           $delay: 0,
@@ -38,7 +38,7 @@ app.set( {
               $backgroundColor: this.$backgroundColor && this.$backgroundColor.$val === 'green' ? '' : 'green'
             })
 
-            console.log(this.$backgroundColor)
+            console.log(event)
           }
         }
       })

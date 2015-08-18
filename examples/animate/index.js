@@ -26,7 +26,7 @@ app.set( {
     $click: function(event, e){
       this.hello.set({
         $animate: {
-          $css3: true,
+          $css3: false,
           $x: e.x,
           $y: e.y,
           $opacity: Math.random() + 0.1,

@@ -11,36 +11,50 @@ Element.prototype.inject(
   require( '../../lib/property/opacity' ),
   require( '../../lib/property/transition' ),
   require( '../../lib/property/animate' ),
+  require( '../../lib/property/draggable' ),
   require( '../../lib/property/backgroundColor' )
 )
 
 var thing = window.thing = new Element( {
-  $css : "teste",
-  $x: 100,
-  $y: 200
+  $css : "test",
+  $draggable:{
+    x:true
+  },
+  $x: {
+    $val: 100,
+    $animation: {
+      $duration: 24,
+      $easing: 'easeIn'
+    }
+  },
+  $opacity: {
+    $val: 0.1,
+    $animation: {
+      $duration: 24,
+      $easing: 'easeIn'
+    }
+  },
+  $on:{
+    $transitionend:function(){
+      console.log('DONE you cray man')
+    }
+  }
+  // $y: {
+  //   $val: 200,
+  //   $animation: {
+  //     $duration: 25,
+  //     $easing: 'easeIn'
+  //   }
+  // }
 })
 
-app.set( {
-  hello: new thing.$Constructor(),
-  $on:{
+app.set({
+  hello: thing,
+  $on: {
     $click: function(event, e){
       this.hello.set({
-        $animate: {
-          $css3: true,
-          $x: e.x,
-          $y: e.y,
-          $opacity: Math.random() + 0.1,
-          $easing: 'easeIn',
-          $duration: Math.random() * 1000,
-          $delay: 0,
-          $callback: function (event) {
-            this.set({
-              $backgroundColor: this.$backgroundColor && this.$backgroundColor.$val === 'green' ? '' : 'green'
-            })
-
-            console.log(event)
-          }
-        }
+        $x: e.x,
+        $opacity: Math.random()
       })
     }
   }

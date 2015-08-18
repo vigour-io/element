@@ -23,15 +23,13 @@ var thing = window.thing = new Element( {
   $x: {
     $val: 100,
     $animation: {
-      $duration: 24,
-      $easing: 'easeIn'
+      $duration: 24
     }
   },
   $opacity: {
     $val: 0.1,
     $animation: {
-      $duration: 24,
-      $easing: 'easeIn'
+      $duration: 24
     }
   },
   $on:{

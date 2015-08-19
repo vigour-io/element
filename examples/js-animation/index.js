@@ -36,11 +36,11 @@ app.set({
         console.clear()
         console.log('%cJSAnimating','font-size:24px;font-weight:900;color:red')
 
-        app.rectangle.setKey('$x', e.x + Math.random() * 350)
-        app.rectangle.setKey('$y', e.y - Math.random() * 700)
+        app.rectangle.setKey('$x', e.x + Math.random() * 300)
+        app.rectangle.setKey('$y', e.y - Math.random() * 600)
 
-        app.triangle.setKey('$x', e.x - Math.random() * 700)
-        app.triangle.setKey('$y', e.y + Math.random() * 350)
+        app.triangle.setKey('$x', e.x - Math.random() * 600)
+        app.triangle.setKey('$y', e.y + Math.random() * 300)
       }
     }
   },

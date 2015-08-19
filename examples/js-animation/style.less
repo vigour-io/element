@@ -13,6 +13,7 @@ body {
 div {
   .absolute(0, 0);
   .transition(0.1s linear opacity);
+  pointer-events: none;
   opacity: .7;
 
   &:hover {
@@ -68,6 +69,7 @@ div {
 .draggable {
   cursor: -webkit-grab;
   cursor: -moz-grab;
+  pointer-events: auto;
 
   &:after {
     content: url('http://cdn.flaticon.com/svg/8/8051.svg');

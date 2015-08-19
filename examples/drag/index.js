@@ -9,7 +9,7 @@ Element.prototype.inject(
   require( '../../lib/property/draggable' )
 )
 
-var thing = window.thing = new Element( {
+var thing = window.thing = new Element({
   $draggable: true,
   $css : "teste",
   $on: {
@@ -41,6 +41,6 @@ var thing = window.thing = new Element( {
   }
 })
 
-app.set( {
+app.set({
   hello: new thing.$Constructor()
 })

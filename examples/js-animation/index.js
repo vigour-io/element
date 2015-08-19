@@ -13,49 +13,64 @@ Element.prototype.inject(
   require( '../../lib/property/backgroundColor' )
 )
 
-var thing = window.thing = new Element( {
-  $css : "test",
-  $draggable: true,
-  $x: {
-    $val: 100,
-    $animation: {
-      $duration: 6
+app.set({
+  circle: {
+    $x: {
+      $val: 100,
+      $animation: {
+        $duration: 36,
+        $start: -1000,
+        $end: 400
+      }
+    },
+    $y: {
+      $val: 200,
+      // $animation: {
+      //   $duration: 16
+      // }
     }
   },
-  $y: {
-    $val: 200,
-    $animation: {
-      $duration: 16
-    }
-  },
-  // $opacity: {
-  //   $val: 0.1,
-  //   $animation: {
-  //     $duration: 24
+  // rectangle: {
+  //   $x: {
+  //     $val: 400,
+  //     $animation: {
+  //       $duration: 16
+  //     }
+  //   },
+  //   $y: {
+  //     $val: 600,
+  //     $animation: {
+  //       $duration: 12
+  //     }
   //   }
   // },
-  $on:{
-    $dragend:function(){
-      console.log('DRAGEND')
-      this.set({
-        $x:0,
-        $y:0
-      })
-    $transitionEnd:function( event ){
-      console.log('transitionEnd',event)
-    }
-  }
-})
+  // triangle: {
+  //   $draggable: true,
+  //   $x: {
+  //     $val: 700,
+  //     $animation: {
+  //       $duration: 38,
+  //       $start: -200
+  //     }
+  //   },
+  //   $y: {
+  //     $val: 100,
+  //     // $animation: {
+  //     //   $duration: 6
+  //     // }
+  //   }
+  // },
 
-app.set({
-  hello: thing,
   $on: {
-    $click: function(event, e){
-      // this.hello.set({
-      //   $x: e.x,
-      //   $y: e.y
-      //   // $opacity: Math.random()
-      // })
+    $click: function (event, e) {
+
+      // app.circle.setKey('$x', e.x - Math.random() * 700)
+      // app.circle.setKey('$y', e.y + Math.random() * 350)
+
+      // app.rectangle.setKey('$x', e.x + Math.random() * 350)
+      // app.rectangle.setKey('$y', e.y - Math.random() * 700)
+
+      app.circle.setKey('$x', e.x)
     }
   }
 })

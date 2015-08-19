@@ -7,17 +7,59 @@ body {
   left: 0;
   bottom: 0;
   right: 0;
-}
-
-div {
-  .size(200px);
-  .radius(100px);
-  border: rgba(255, 0, 0, 0.2) 5px solid;
-  background: rgba(255, 0, 0, 0.5);
-
   .selectable;
 }
 
-.smups {
-  border: 10px solid pink;
+div {
+  .absolute(0, 0);
+  .transition(0.1s linear opacity);
+  opacity: .7;
+
+  &:hover {
+    opacity: .8;
+  }
+
+  &:active {
+    opacity: 1;
+  }
+}
+
+.circle {
+  .size(200px);
+  .radius(100px);
+  border: fade(@red, 50%) 5px solid;
+  background: fade(@red, 80%);
+}
+
+.rectangle {
+  .size(300px, 200px);
+  border: fade(@green, 30%) 5px solid;
+  background: fade(@green, 60%);
+}
+
+.triangle {
+  position: relative;
+  display: inline-block;
+
+  &:before,
+  &:after {
+    content: '';
+    .absolute(0, 0);
+  }
+
+  &:before {
+    border-left: 125px transparent solid;
+    border-right: 125px transparent solid;
+    border-bottom: 250px fade(@white, 20%) solid;
+    .translate(-5.5%, -5.5%);
+    z-index: 2
+  }
+
+  &:after {
+    border-left: 138px transparent solid;
+    border-right: 138px transparent solid;
+    border-bottom: 270px fade(@yellow, 70%) solid;
+    .translate(-10%, -10%);
+    z-index: 1
+  }
 }

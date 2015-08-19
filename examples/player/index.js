@@ -13,6 +13,17 @@ Element.prototype.inject(
 
 var readyPlayer = new Observable({
   id: "",
+  duration: {
+    $val: 100,
+    $on: {
+      $change: function () {
+        console.log('yes')
+        app.controls.play.selector.$attributes.max.set({
+          $val: 10
+        })
+      }
+    }
+  }
 })
 
 var player = new Element({
@@ -38,18 +49,27 @@ var controls = new Element({
       $node: 'input',
       $attributes: {
         type: 'range',
-        value: 0,
+        value: {
+          $val: 110
+        },
         min: 0,
-        max: 151,
+        max: {
+          $val: 100,
+          $on: {
+            $change: function() {
+              console.log('yes', this.$val)
+              return this.$val
+            }
+          }
+        }
       }
     },
     duration: {
-      $text: 00
+      $text: readyPlayer.duration.$val
     },
     $on: {
       click: function() {
         readyPlayer.id.sendNotification('doPlay');
-        setTime(readyPlayer.id)
       }
     }
   },
@@ -63,31 +83,38 @@ var controls = new Element({
   }
 })
 
+
+
+
 function setTime(playerId) {
   playerId.addJsListener("playerUpdatePlayhead", function(data) {
     app.controls.play.elapsed.$text.$val = Math.floor(data)
+    app.controls.play.selector.$attributes.value.$val = Math.floor(data)
   })
 }
 
-function setTitle(title) {
+function setInfo(title) {
   kdp.addJsListener('kdpReady', function() {
     app.title.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.name}')
-    app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
     app.title.description.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.description}')
-  });
+    app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
+    console.clear()
+    app.controls.play.selector.$attributes.max.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
+    console.log('new selector max',app.controls.play.selector.$attributes.max.$val)
+    //app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
+  })
 }
 
 kWidget.addReadyCallback(function(playerId) {
   kdp = readyPlayer.id = document.getElementById(playerId)
-  setTitle(kdp)
+  setInfo(kdp)
+  setTime(kdp)
 })
 
-
-
 app.set({
-  title: new title.$Constructor,
-  player: new player.$Constructor,
-  controls: new controls.$Constructor
+  title: new title.$Constructor(),
+  player: new player.$Constructor(),
+  controls: new controls.$Constructor()
 })
 
 kWidget.embed({

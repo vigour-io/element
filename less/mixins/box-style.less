@@ -15,13 +15,6 @@
           background-clip: @property;
 }
 
-// background image
-// makes backround set easier
-// example: .bgimg('../assets/test.jpg', center center no-repeat)
-.bgimg (@property, @property2) {
-  background: url(@property) @property2;
-}
-
 // background-size
 // example: .bgsize(cover)
 .bgsize (@property: cover) {
@@ -29,6 +22,16 @@
        -moz-background-size: @property;
          -o-background-size: @property;
             background-size: @property;
+}
+
+// background image
+// makes backround set easier
+// example: .bgimg('../assets/test.jpg', center center no-repeat)
+.bgimg (@url, @position: center center, @repeat: no-repeat, @size: auto) {
+  background-image: url(@url);
+  background-position: @position;
+  background-repeat: @repeat;
+  .bgsize(@size);
 }
 
 // box-shadow

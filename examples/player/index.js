@@ -73,9 +73,6 @@ var controls = new Element({
   }
 })
 
-
-
-
 function setTime(playerId) {
   playerId.addJsListener("playerUpdatePlayhead", function(data) {
     var progress = Math.floor(data)
@@ -91,7 +88,6 @@ function setInfo() {
     controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
     controls.play.selector.$attributes.set({max:20})
     controls.play.selector.$attributes.max.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
-    //app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
   })
 }
 

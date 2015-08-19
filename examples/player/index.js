@@ -52,15 +52,6 @@ var controls = new Element({
         value: 110,
         min: 0,
         max:100
-        // max: {
-        //   $val: 100,
-        //   $on: {
-        //     $change: function() {
-        //       console.log('yes', this.$val)
-        //       return this.$val
-        //     }
-        //   }
-        // }
       }
     },
     duration: {
@@ -92,13 +83,13 @@ function setTime(playerId) {
   })
 }
 
-function setInfo(title) {
+function setInfo() {
   kdp.addJsListener('kdpReady', function() {
-    app.title.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.name}')
-    app.title.description.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.description}')
-    app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
-    app.controls.play.selector.$attributes.set({max:20})
-    app.controls.play.selector.$attributes.max.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
+    title.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.name}')
+    title.description.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.description}')
+    controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
+    controls.play.selector.$attributes.set({max:20})
+    controls.play.selector.$attributes.max.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
     //app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
   })
 }

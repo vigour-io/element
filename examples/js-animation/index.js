@@ -17,6 +17,7 @@ Element.prototype.inject(
 
 app.set({
   circle: {
+    $css: 'circle draggable',
     $x: {
       $val: 100,
       $animation: {
@@ -27,6 +28,19 @@ app.set({
       $val: 200,
       $animation: {
         $duration: 16
+      }
+    },
+    $draggable: true,
+    $on: {
+      $dragend: function (event, e) {
+        console.clear()
+        console.log('%cJSAnimating','font-size:24px;font-weight:900;color:red')
+
+        app.rectangle.setKey('$x', e.x + Math.random() * 350)
+        app.rectangle.setKey('$y', e.y - Math.random() * 700)
+
+        app.triangle.setKey('$x', e.x - Math.random() * 700)
+        app.triangle.setKey('$y', e.y + Math.random() * 350)
       }
     }
   },
@@ -45,8 +59,6 @@ app.set({
     }
   },
   triangle: {
-    $css: 'triangle draggable',
-    $draggable: true,
     $x: {
       $val: 700,
       $animation: {
@@ -58,21 +70,6 @@ app.set({
       $animation: {
         $duration: 6
       }
-    }
-  },
-
-  $on: {
-    $click: function (event, e) {
-
-      console.clear()
-      console.log('%cJSAnimating','font-size:24px;font-weight:900;color:red')
-
-      app.circle.setKey('$x', e.x - Math.random() * 700)
-      app.circle.setKey('$y', e.y + Math.random() * 350)
-
-      app.rectangle.setKey('$x', e.x + Math.random() * 350)
-      app.rectangle.setKey('$y', e.y - Math.random() * 700)
-
     }
   }
 })

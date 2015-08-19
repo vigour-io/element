@@ -1,7 +1,7 @@
 @import url('../../less/index');
 
 body {
-  .bgimg('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Graph-paper.svg/255px-Graph-paper.svg.png', top left repeat);
+  .bgimg('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Graph-paper.svg/255px-Graph-paper.svg.png', top left, repeat);
   position: absolute;
   top: 0;
   left: 0;
@@ -40,6 +40,7 @@ div {
 .triangle {
   position: relative;
   display: inline-block;
+  .size(222px, 295px);
 
   &:before,
   &:after {
@@ -55,7 +56,7 @@ div {
     z-index: 2
   }
 
-  &:after {
+  &::after {
     border-left: 138px transparent solid;
     border-right: 138px transparent solid;
     border-bottom: 270px fade(@yellow, 70%) solid;
@@ -67,6 +68,15 @@ div {
 .draggable {
   cursor: -webkit-grab;
   cursor: -moz-grab;
+
+  &:after {
+    content: url('http://cdn.flaticon.com/svg/8/8051.svg');
+    z-index: -1;
+    .absolute;
+    .translate;
+    width: 20px;
+    opacity: .3;
+  }
 
   &:active {
     cursor: -webkit-grabbing;

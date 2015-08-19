@@ -19,7 +19,6 @@ var thing = window.thing = new Element( {
   $x: {
     $val: 100,
     $animation: {
-<<<<<<< HEAD
       $duration: 6
     }
   },
@@ -27,9 +26,6 @@ var thing = window.thing = new Element( {
     $val: 200,
     $animation: {
       $duration: 16
-=======
-      $duration: 120
->>>>>>> fe704be769dd7c97fff74846a2f072e9f34e7b71
     }
   },
   // $opacity: {
@@ -39,17 +35,14 @@ var thing = window.thing = new Element( {
   //   }
   // },
   $on:{
-<<<<<<< HEAD
     $dragend:function(){
       console.log('DRAGEND')
       this.set({
         $x:0,
         $y:0
       })
-=======
-    $transitionend:function( event ){
-      console.log('transitionend',event)
->>>>>>> fe704be769dd7c97fff74846a2f072e9f34e7b71
+    $transitionEnd:function( event ){
+      console.log('transitionEnd',event)
     }
   }
 })

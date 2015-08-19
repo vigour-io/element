@@ -49,7 +49,7 @@ var controls = new Element({
       $node: 'input',
       $attributes: {
         type: 'range',
-        value: 110,
+        value:0,
         min: 0,
         max:100
       }
@@ -78,8 +78,9 @@ var controls = new Element({
 
 function setTime(playerId) {
   playerId.addJsListener("playerUpdatePlayhead", function(data) {
-    app.controls.play.elapsed.$text.$val = Math.floor(data)
-    app.controls.play.selector.$attributes.value.$val = Math.floor(data)
+    var progress = Math.floor(data)
+    controls.play.elapsed.$text.$val = progress
+    app.controls.play.selector.$node.value = progress
   })
 }
 
@@ -97,6 +98,7 @@ function setInfo() {
 kWidget.addReadyCallback(function(playerId) {
   kdp = readyPlayer.id = document.getElementById(playerId)
   setInfo(kdp)
+  console.log(kdp)
   setTime(kdp)
 })
 

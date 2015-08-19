@@ -1,5 +1,3 @@
-console.clear()
-
 require( './style.less' )
 
 var app = require( '../../lib/app' )
@@ -34,7 +32,7 @@ var thing = window.thing = new Element( {
   // },
   $on:{
     $transitionend:function( event ){
-      console.log('DONE you cray man',event)
+      console.log('transitionend',event)
     }
   }
 })

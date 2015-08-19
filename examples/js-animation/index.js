@@ -1,3 +1,5 @@
+console.clear()
+
 require( './style.less' )
 
 var app = require( '../../lib/app' )
@@ -13,38 +15,68 @@ Element.prototype.inject(
   require( '../../lib/property/backgroundColor' )
 )
 
-var thing = window.thing = new Element( {
-  $css : "test",
-  $draggable:{
-    x:true
-  },
-  $x: {
-    $val: 100,
-    $animation: {
-      $duration: 120
-    }
-  },
-  // $opacity: {
-  //   $val: 0.1,
-  //   $animation: {
-  //     $duration: 24
-  //   }
-  // },
-  $on:{
-    $transitionend:function( event ){
-      console.log('transitionend',event)
-    }
-  }
-})
-
 app.set({
-  hello: thing,
+  circle: {
+    $x: {
+      $val: 100,
+      $animation: {
+        $duration: 36,
+        // $start: -1000
+      }
+    },
+    $y: {
+      $val: 200,
+      $animation: {
+        $duration: 16
+      }
+    }
+  },
+  rectangle: {
+    $x: {
+      $val: 400,
+      $animation: {
+        $duration: 16
+      }
+    },
+    $y: {
+      $val: 600,
+      $animation: {
+        $duration: 12,
+        // $start: -1000
+      }
+    }
+  },
+  triangle: {
+    $draggable: true,
+    $x: {
+      $val: 700,
+      $animation: {
+        $duration: 38
+      }
+    },
+    $y: {
+      $val: 100,
+      $animation: {
+        $duration: 6
+      }
+    }
+  },
+
   $on: {
-    $click: function(event, e){
-      this.hello.set({
-        $x: e.x,
-        $opacity: Math.random()
-      })
+    $click: function (event, e) {
+
+      console.clear()
+      console.log('%cJSAnimating','font-size:24px;font-weight:900;color:red')
+
+      app.circle.setKey('$x', e.x - Math.random() * 700)
+      app.circle.setKey('$y', e.y + Math.random() * 350)
+
+      app.rectangle.setKey('$x', e.x + Math.random() * 350)
+      app.rectangle.setKey('$y', e.y - Math.random() * 700)
+
+      // app.triangle.setKey('$x', e.x + Math.random() * 350)
+      // app.triangle.setKey('$y', e.y - Math.random() * 700)
+
     }
   }
 })

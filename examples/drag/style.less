@@ -1,31 +1,35 @@
 @import url('../../less/index');
 
-div {
-  .translate3d(100px, 100px, 0);
-  width: 200px;
-  height: 200px;
-  cursor: all-scroll;
-  background: #eee;
-  text-align: center;
-  .radius(3px);
+body {
+  .bgimg('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Graph-paper.svg/255px-Graph-paper.svg.png', top left repeat);
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
 
-  &:active {
-    background: #e7e7e7;
+div {
+  .size(200px);
+  .radius(100px);
+  border: rgba(255, 0, 0, 0.2) 5px solid;
+  background: rgba(255, 0, 0, 0.5);
+
+  .selectable;
+
+  cursor: move;
+
+  .animated;
+  .bounceIn();
+  .animation-duration(1s);
+
+  &.move {
+    cursor: pointer;
+    .transition(.3s ease-out all);
   }
 
-	span {
-		position: absolute;
-		left: 50%;
-		top: 50%;
-    text-transform: uppercase;
-
-    width: 40%;
-    pointer-events: none;
-    .translate;
-
-		font-size: 13px;
-    line-height: 1.2;
-		color: #ccc;
-		text-shadow: 1px 0 0 #fff;
-	}
+  &.toggle {
+    border: rgba(210, 210, 0, 0.4) 5px solid;
+    background: rgba(210, 210, 0, 0.5);
+  }
 }

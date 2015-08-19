@@ -10,3 +10,9 @@ describe('Dom Events',function(){
 describe('Properties',function(){
 	require('../properties')
 })
+describe('Cases',function(){
+	require('../cases')
+})
+describe('Input',function(){
+	require('../input')
+})

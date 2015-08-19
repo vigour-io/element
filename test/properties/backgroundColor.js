@@ -21,6 +21,7 @@ describe( '--> backgroundColor', function(){
 		element.set({
 			$backgroundColor:"black"
 		})
+		// debugger
 		expect(element.$node.style.backgroundColor).to.be.equal("black")
 		done()
 	})
@@ -32,8 +33,9 @@ describe( '--> backgroundColor', function(){
 	})
 
 	describe('--> inheritance',function () {
-
-		childElement = new element.$Constructor()
+		before(function(){
+			childElement = new element.$Constructor()
+		})
 
 		it('childElement should inherit the background color from elemet' ,function (done) {
 			expect(childElement.$node.style.backgroundColor).to.be.equal("red")

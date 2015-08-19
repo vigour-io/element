@@ -49,19 +49,18 @@ var controls = new Element({
       $node: 'input',
       $attributes: {
         type: 'range',
-        value: {
-          $val: 110
-        },
+        value: 110,
         min: 0,
-        max: {
-          $val: 100,
-          $on: {
-            $change: function() {
-              console.log('yes', this.$val)
-              return this.$val
-            }
-          }
-        }
+        max:100
+        // max: {
+        //   $val: 100,
+        //   $on: {
+        //     $change: function() {
+        //       console.log('yes', this.$val)
+        //       return this.$val
+        //     }
+        //   }
+        // }
       }
     },
     duration: {
@@ -98,9 +97,8 @@ function setInfo(title) {
     app.title.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.name}')
     app.title.description.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.description}')
     app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
-    console.clear()
+    app.controls.play.selector.$attributes.set({max:20})
     app.controls.play.selector.$attributes.max.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
-    console.log('new selector max',app.controls.play.selector.$attributes.max.$val)
     //app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
   })
 }

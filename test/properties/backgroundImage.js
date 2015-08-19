@@ -8,9 +8,11 @@ var element
 var childElement
 
 describe( '--> backgroundImage', function(){
+
 	element = new Element({
 		$backgroundImage:"./mouse.png"
 	})
+	childElement = new element.$Constructor()
 
 	it( 'should set the backgound image for element', function(done){
 		var elementImage = element.$node.style.backgroundImage.indexOf("mouse.png")
@@ -19,8 +21,6 @@ describe( '--> backgroundImage', function(){
 	})
 
 	it( 'childElement should inherit the background image from element',function (done) {
-		childElement = new element.$Constructor({})
-
 		var elementImage = childElement.$node.style.backgroundImage.indexOf("mouse.png")
 		expect(elementImage).to.not.be.equal(-1)
 		done()
@@ -46,6 +46,16 @@ describe( '--> backgroundImage', function(){
 		done()
 	})
 
+	it( 'remove childElement background Image' , function () {
+		childElement.$backgroundImage.remove()
+		expect(childElement.$node.style.backgroundImage).to.be.equals('')
+	}) 
+
+	it( 'remove element background Image should not remove childElement background Image' , function () {
+		childElement = new element.$Constructor({})
+		element.$backgroundImage.remove()
+		expect(childElement.$node.style.backgroundImage).to.not.be.equals('')
+	})
 }) 
 
 

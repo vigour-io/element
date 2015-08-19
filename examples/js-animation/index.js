@@ -17,43 +17,39 @@ Element.prototype.inject(
 
 var thing = window.thing = new Element( {
   $css : "test",
-  $draggable:{
-    x:true
-  },
+  $draggable: true,
   $x: {
     $val: 100,
     $animation: {
-      $duration: 24
+      $duration: 6
     }
   },
-  $opacity: {
-    $val: 0.1,
+  $y: {
+    $val: 200,
     $animation: {
-      $duration: 24
+      $duration: 16
     }
   },
   $on:{
-    $transitionend:function(){
-      console.log('DONE you cray man')
+    $dragend:function(){
+      console.log('DRAGEND')
+      this.set({
+        $x:0,
+        $y:0
+      })
     }
   }
-  // $y: {
-  //   $val: 200,
-  //   $animation: {
-  //     $duration: 25,
-  //     $easing: 'easeIn'
-  //   }
-  // }
 })
 
 app.set({
   hello: thing,
   $on: {
     $click: function(event, e){
-      this.hello.set({
-        $x: e.x,
-        $opacity: Math.random()
-      })
+      // this.hello.set({
+      //   $x: e.x,
+      //   $y: e.y
+      //   // $opacity: Math.random()
+      // })
     }
   }
 })

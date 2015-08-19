@@ -20,8 +20,7 @@ app.set({
     $x: {
       $val: 100,
       $animation: {
-        $duration: 30,
-        // $start: -1000
+        $duration: 30
       }
     },
     $y: {
@@ -31,22 +30,22 @@ app.set({
       }
     }
   },
-  // rectangle: {
-  //   $x: {
-  //     $val: 400,
-  //     $animation: {
-  //       $duration: 16
-  //     }
-  //   },
-  //   $y: {
-  //     $val: 600,
-  //     $animation: {
-  //       $duration: 18,
-  //       // $start: -1000
-  //     }
-  //   }
-  // },
+  rectangle: {
+    $x: {
+      $val: 400,
+      $animation: {
+        $duration: 16
+      }
+    },
+    $y: {
+      $val: 600,
+      $animation: {
+        $duration: 18
+      }
+    }
+  },
   triangle: {
+    $css: 'triangle draggable',
     $draggable: true,
     $x: {
       $val: 700,
@@ -65,14 +64,14 @@ app.set({
   $on: {
     $click: function (event, e) {
 
-      // console.clear()
-      // console.log('%cJSAnimating','font-size:24px;font-weight:900;color:red')
+      console.clear()
+      console.log('%cJSAnimating','font-size:24px;font-weight:900;color:red')
 
       app.circle.setKey('$x', e.x - Math.random() * 700)
       app.circle.setKey('$y', e.y + Math.random() * 350)
 
-      // app.rectangle.setKey('$x', e.x + Math.random() * 350)
-      // app.rectangle.setKey('$y', e.y - Math.random() * 700)
+      app.rectangle.setKey('$x', e.x + Math.random() * 350)
+      app.rectangle.setKey('$y', e.y - Math.random() * 700)
 
     }
   }

@@ -21,7 +21,7 @@ app.set({
       $val: 100,
       $animation: {
         $duration: 36,
-        $start: -1000
+        // $start: -1000
       }
     },
     $y: {
@@ -42,7 +42,7 @@ app.set({
       $val: 600,
       $animation: {
         $duration: 12,
-        $start: -1000
+        // $start: -1000
       }
     }
   },
@@ -51,15 +51,14 @@ app.set({
     $x: {
       $val: 700,
       $animation: {
-        $duration: 38,
-        $start: -200
+        $duration: 38
       }
     },
     $y: {
       $val: 100,
-      // $animation: {
-      //   $duration: 6
-      // }
+      $animation: {
+        $duration: 6
+      }
     }
   },
 
@@ -67,6 +66,7 @@ app.set({
     $click: function (event, e) {
 
       console.clear()
+      console.log('%cJSAnimating','font-size:24px;font-weight:900;color:red')
 
       app.circle.setKey('$x', e.x - Math.random() * 700)
       app.circle.setKey('$y', e.y + Math.random() * 350)

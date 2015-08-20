@@ -1,5 +1,3 @@
-console.clear()
-
 require( './style.less' )
 
 var app = require( '../../lib/app' )
@@ -10,9 +8,7 @@ Element.prototype.inject(
   require( '../../lib/property/transform' ),
   require( '../../lib/property/opacity' ),
   require( '../../lib/property/transition' ),
-  require( '../../lib/property/animate' ),
-  require( '../../lib/property/draggable' ),
-  require( '../../lib/property/backgroundColor' )
+  require( '../../lib/property/draggable' )
 )
 
 app.set({
@@ -33,14 +29,11 @@ app.set({
     $draggable: true,
     $on: {
       $dragend: function (event, e) {
-        console.clear()
-        console.log('%cJSAnimating','font-size:24px;font-weight:900;color:red')
+        app.rectangle.setKey('$x', e.x + Math.random() * 250)
+        app.rectangle.setKey('$y', e.y - Math.random() * 500)
 
-        app.rectangle.setKey('$x', e.x + Math.random() * 300)
-        app.rectangle.setKey('$y', e.y - Math.random() * 600)
-
-        app.triangle.setKey('$x', e.x - Math.random() * 600)
-        app.triangle.setKey('$y', e.y + Math.random() * 300)
+        app.triangle.setKey('$x', e.x - Math.random() * 500)
+        app.triangle.setKey('$y', e.y + Math.random() * 250)
       }
     }
   },
@@ -48,7 +41,8 @@ app.set({
     $x: {
       $val: 400,
       $animation: {
-        $duration: 16
+        $duration: 16,
+        $start: -1000
       }
     },
     $y: {

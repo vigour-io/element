@@ -3,8 +3,7 @@ var app 		= require( '../../lib/app' )
 
 Element.prototype.inject(
   require( '../../lib/property/css' ),
-  require( '../../lib/property/text' ),
-  require( '../../lib/property/backgroundImage' )
+  require( '../../lib/property/text' )
 )
 
 var cases = require('../../lib/cases')

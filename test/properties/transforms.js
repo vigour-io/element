@@ -9,8 +9,6 @@ Element.prototype.inject(
   require('../../lib/property/attributes'),
   require('../../lib/property/transform'),
   require('../../lib/property/opacity'),
-  require('../../lib/property/backgroundcolor'),
-  require('../../lib/property/backgroundImage'),
   require('../../lib/property/text')
 )
 

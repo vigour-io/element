@@ -56,8 +56,6 @@ for(var i = 0 ; i < 100; i ++) {
   holder.setKey(i, t)
 }
 
-
-
 app.set({
   holder: holder
 })

@@ -10,7 +10,6 @@ Element.prototype.inject(
 )
 
 var thing = window.thing = new Element( {
-  // $css: 'my-own-hello',=
   $draggable: true,
   $on: {
     $drag: function(event, e) {
@@ -27,12 +26,6 @@ app.set( {
   $draggable: {
     bind: function(){
       return this.hello
-    }
-  },
-  $on: {
-    $scroll: function (event, e) {
-      console.log(event)
-      event.preventDefault()
     }
   }
 })

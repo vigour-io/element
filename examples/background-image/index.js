@@ -70,13 +70,7 @@ app.set({
 mouse.x.$val = 200
 mouse.y.$val = 200
 
-// for(var j = 0 ; j < 1000; j++) {
-//   mouse.x.$val
-//   mouse.y.$val
-// }
-
 document.body.addEventListener('click', function(e) {
-  console.clear()
   mouse.x.$val = e.pageX
   mouse.y.$val = e.pageY
 })

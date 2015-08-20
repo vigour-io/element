@@ -18,8 +18,8 @@ var thing = new Element({
     require( '../../lib/property/transform' ),
     require('../../lib/property/background/image')
   ],
-  $width: 20,
-  $height: 20,
+  $width: 200,
+  $height: 200,
   // $rotate: { $val: mouse.y, $multiply:0.5,
   //   $animation: {
   //     $duration: 30
@@ -46,13 +46,12 @@ var thing = new Element({
     // $x: {
     //   $val: mouse.x,
     //   // $multiply: { $val: -2.},
-    //   // $animation: { $duration: 200 }
+    //   $animation: { $duration: 200 }
     // },
-    // $width: 400,
+    // // $width: 400,
     // $y: {
     //   $val: mouse.y,
-    //   $multiply: -2,
-    //   // $animation: { $duration: 200 }
+    //   $animation: { $duration: 200 }
     // },
     // $draggable:true,
     // $width: {

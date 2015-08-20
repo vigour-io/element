@@ -1,3 +1,4 @@
+console.clear()
 require( './style.less' )
 
 var app = require( '../../lib/app' )
@@ -41,6 +42,7 @@ app.set({
     $x: {
       $val: 400,
       $animation: {
+        $css: true,
         $duration: 16,
         $start: -1000
       }
@@ -48,6 +50,7 @@ app.set({
     $y: {
       $val: 600,
       $animation: {
+        $css: true,
         $duration: 18
       }
     }
@@ -56,12 +59,14 @@ app.set({
     $x: {
       $val: 700,
       $animation: {
+        $css: true,
         $duration: 38
       }
     },
     $y: {
       $val: 100,
       $animation: {
+        $css: true,
         $duration: 6
       }
     }

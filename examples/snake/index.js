@@ -4,21 +4,39 @@ var Element = require( '../../lib/element' )
 var Property = require('../../lib/property')
 Property.prototype.inject( require('../../lib/animation') )
 
+Element.prototype.inject(
+  require( '../../lib/property/transition' ),
+  require( '../../lib/property/text' )
+)
+
 var mouse = new Property({
-  x: 0,
-  y: 0
+  $key:'mouse',
+  x: {
+    $val: 1,
+    $animation: {
+      $duration: 16
+    }
+  },
+  y: {
+    $val: 1,
+    $animation: {
+      $duration: 16
+    }
+  }
 })
 
 var thing = new Element({
   $inject: [
+    require( '../../lib/property/background' ),
     require( '../../lib/property/size' ),
     require( '../../lib/property/transform' )
   ],
+  $background: {
+    $inject: require('../../lib/property/background/position')
+  },
   $width: 20,
   $height: 20
 })
-
-thing.$node.style.position = 'absolute';
 
 var Img = new Element({
   $background: {
@@ -28,43 +46,37 @@ var Img = new Element({
 
 var holder = new Element({})
 
-for(var i = 0 ; i < 100; i ++) {
+for(var i = 0 ; i < 50; i ++) {
   var t = new thing.$Constructor({
     $define: {
       i: i
     },
-    $y: {
-      $val: mouse.y,
-      $add: function() {
-        return Math.sin( this.$parent.i / 10 + mouse.y.$val/20 )*(mouse.y.$val)
-      },
-      $animation: {
-        $duration: 200
-      }
-    },
-    $scale: i*0.01+1,
-    $x: {
-      $val: mouse.x,
-      $add: function() {
-        return Math.cos( this.$parent.i / 20 + mouse.x.$val/200 )* 300+ 150
-
-        //*(mouse.x.$val)
-      },
-      $animation: {
-        $duration: i / 5
-      }
+    $width: 128,
+    $height: 128,
+    $background: {
+      $val:'http://33.media.tumblr.com/avatar_948e40c89497_128.png',
+      $x: { $val: mouse.x },
+      $y: { $val: mouse.y }
     }
   })
+
   holder.setKey(i, t)
 }
-
-
 
 app.set({
   holder: holder
 })
 
-document.body.addEventListener('mousemove', function(e) {
+mouse.x.$val = 200
+mouse.y.$val = 200
+
+// for(var j = 0 ; j < 1000; j++) {
+//   mouse.x.$val
+//   mouse.y.$val
+// }
+
+document.body.addEventListener('click', function(e) {
+  console.clear()
   mouse.x.$val = e.pageX
   mouse.y.$val = e.pageY
 })

@@ -1,39 +1,82 @@
 require('./style.less')
-var app 				= require( '../../lib/app' )
-var Element 		= require( '../../lib/element' )
-
+var app = require( '../../lib/app' )
+var Element = require( '../../lib/element' )
+var Property = require('../../lib/property')
+Property.prototype.inject( require('../../lib/animation') )
 
 Element.prototype.inject(
-  require( '../../lib/property/css' ),
-  require( '../../lib/property/text' ),
-  require( '../../lib/property/attributes' ),
-  require( '../../lib/property/backgroundImage' ),
-  require( '../../lib/property/backgroundColor' )
+  require( '../../lib/property/transition' ),
+  require( '../../lib/property/text' )
 )
 
-var element = new Element({
-	$css:"active",
-	$backgroundImage:'http://wallpaper.ultradownloads.com.br/45586_Papel-de-Parede-Filhote-de-Cachorro_1024x768.jpg'
+var mouse = new Property({
+  $key:'mouse',
+  x: {
+    $val: 1,
+    $animation: {
+      $duration: 16
+    }
+  },
+  y: {
+    $val: 1,
+    $animation: {
+      $duration: 16
+    }
+  }
 })
 
-
-var a = new element.$Constructor({
-
+var thing = new Element({
+  $inject: [
+    require( '../../lib/property/background' ),
+    require( '../../lib/property/size' ),
+    require( '../../lib/property/transform' )
+  ],
+  $background: {
+    $inject: require('../../lib/property/background/position')
+  },
+  $width: 20,
+  $height: 20
 })
+
+var Img = new Element({
+  $background: {
+    $inject: require('../../lib/property/background/position')
+  }
+}).$Constructor
+
+var holder = new Element({})
+
+for(var i = 0 ; i < 50; i ++) {
+  var t = new thing.$Constructor({
+    $define: {
+      i: i
+    },
+    $width: 128,
+    $height: 128,
+    $background: {
+      $val:'http://33.media.tumblr.com/avatar_948e40c89497_128.png',
+      $x: { $val: mouse.x },
+      $y: { $val: mouse.y }
+    }
+  })
+
+  holder.setKey(i, t)
+}
 
 app.set({
-	q:element,
-	a:a
+  holder: holder
 })
 
-// console.log(a)
+mouse.x.$val = 200
+mouse.y.$val = 200
 
-// not work
-// a.$backgroundImage.$val = "whatever"
+// for(var j = 0 ; j < 1000; j++) {
+//   mouse.x.$val
+//   mouse.y.$val
+// }
 
-
-// a.set({
-// 	$backgroundImage: "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSWzoOZjb0UQ-A3EoHuiYuzCcY0BNDEyNERtlu8BKgOx6tQB-DTjrjzZF0"
-// })
-console.log('......')
-a.$backgroundImage.$val = "https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSWzoOZjb0UQ-A3EoHuiYuzCcY0BNDEyNERtlu8BKgOx6tQB-DTjrjzZF0"
+document.body.addEventListener('click', function(e) {
+  console.clear()
+  mouse.x.$val = e.pageX
+  mouse.y.$val = e.pageY
+})

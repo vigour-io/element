@@ -35,6 +35,7 @@ var a = new Element({
 	  	$bigscreen:'BIG!'
 	  }
   },
+  //TODO: $background: { $val: '#hex | rgb | rgba() ', $image: '' , $size: { }, $load, $position, $noRepeat } << do it like this better!
   $backgroundImage:'http://www.cdc.gov/importation/images/dog2.jpg'
 })
 

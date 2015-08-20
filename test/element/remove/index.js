@@ -22,22 +22,7 @@ describe( 'Removing children', function(){
 
   describe( 'Removing child from original', function(){
   	it('app.elem.elemChild.remove()',function(){
-      // console.clear()
-
-      //what goes wrong here is
-
-      // elem with isntances
-
-      // context word geset in emit
-
-      // emit is after orig -- set instance
-      // not orignal anumore??
-
-      // console.log(elem, elem.elemChild._$context)
-      // elem.elemChild.$resetContextsUp()
-
   		elem.elemChild.remove()
-      // console.log(elem.
   	})
 
   	it( 'app.elem.elemChild is removed', function () {

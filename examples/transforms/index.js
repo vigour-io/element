@@ -15,7 +15,7 @@ var thing = window.thing = new Element( {
   $on: {
     $drag: function(event, e) {
       this.set({
-        $rotate: e.x,
+        $rotate: e.y,
         $scale: e.x / 500,
       })
     }

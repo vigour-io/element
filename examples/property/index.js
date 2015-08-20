@@ -12,7 +12,7 @@ Element.prototype.inject(
 )
 
 window.thing = thing = new Element({
-  $text:'??',
+  $text:'?xxx?',
   $x:100,
   $y:100,
   $draggable:true
@@ -25,7 +25,7 @@ window.thing = thing = new Element({
 
 app.set({
   a: new thing.$Constructor({
-    $text:'>>>'
+    $text:'>>xx>'
   })
 })
 

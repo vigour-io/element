@@ -10,6 +10,7 @@ exports.fireEvent = function(element,type){
   }
 
   event.eventName = type;
+  event.changedTouches = event.changedTouches || [{pageX: 0, pageY: 0}]
 
   if (document.createEvent) {
     element.dispatchEvent(event);

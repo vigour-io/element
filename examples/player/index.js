@@ -11,20 +11,11 @@ Element.prototype.inject(
   require('vjs/lib/methods/lookUp')
 )
 
-var readyPlayer = new Observable({
-  id: "",
-  duration: {
-    $val: 100,
-    $on: {
-      $change: function () {
-        console.log('yes')
-        app.controls.play.selector.$attributes.max.set({
-          $val: 10
-        })
-      }
-    }
-  }
-})
+// var controls = require('./src/controls.js')
+var readyPlayer = require('./src/controls.js').readyPlayer
+// var setTime = require('./src/controls.js').setTime
+// var setInfo = require('./src/controls.js').setInfo
+
 
 var player = new Element({
   $attributes: {
@@ -49,9 +40,18 @@ var controls = new Element({
       $node: 'input',
       $attributes: {
         type: 'range',
-        value:0,
-        min: 0,
-        max:100
+        value: 0,
+        step: '1',
+        max: void 0
+      },
+      $on: {
+        mousedown: function () {
+          readyPlayer.id.sendNotification('doPause')
+        },
+        mouseup: function (val) {
+          kdp.sendNotification('doSeek', this.$node.value);
+          readyPlayer.id.sendNotification('doPlay');
+        }
       }
     },
     duration: {
@@ -89,16 +89,14 @@ function setInfo() {
     title.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.name}')
     title.description.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.description}')
     controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
-    controls.play.selector.$attributes.set({max:20})
+    // controls.play.selector.$attributes.set({max:20})
     controls.play.selector.$attributes.max.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
-    //app.controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
   })
 }
 
 kWidget.addReadyCallback(function(playerId) {
   kdp = readyPlayer.id = document.getElementById(playerId)
   setInfo(kdp)
-  console.log(kdp)
   setTime(kdp)
 })
 

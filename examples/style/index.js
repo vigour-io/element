@@ -13,7 +13,7 @@ var thing = new Element( {
   $text: 'Hello',
   $css: 'hello',
   $style: {
-    'background-color': 'blue'
+    backgroundColor: 'blue'
   }
 })
 

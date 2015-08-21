@@ -1,4 +1,3 @@
-console.clear()
 require( './style.less' )
 
 var app = require( '../../lib/app' )
@@ -13,31 +12,6 @@ Element.prototype.inject(
 )
 
 app.set({
-  circle: {
-    $css: 'circle draggable',
-    $x: {
-      $val: 100,
-      $animation: {
-        $duration: 30
-      }
-    },
-    $y: {
-      $val: 200,
-      $animation: {
-        $duration: 16
-      }
-    },
-    $draggable: true,
-    $on: {
-      $dragend: function (event, e) {
-        app.rectangle.setKey('$x', e.x + Math.random() * 250)
-        app.rectangle.setKey('$y', e.y - Math.random() * 500)
-
-        app.triangle.setKey('$x', e.x - Math.random() * 500)
-        app.triangle.setKey('$y', e.y + Math.random() * 250)
-      }
-    }
-  },
   rectangle: {
     $x: {
       $val: 400,
@@ -51,23 +25,50 @@ app.set({
       $val: 600,
       $animation: {
         $css: true,
-        $duration: 18
+        $duration: 18,
+        $start: 1000
       }
     }
   },
-  triangle: {
+  // triangle: {
+  //   $x: {
+  //     $val: 700,
+  //     $animation: {
+  //       $css: true,
+  //       $duration: 38
+  //     }
+  //   },
+  //   $y: {
+  //     $val: 100,
+  //     $animation: {
+  //       $css: true,
+  //       $duration: 6
+  //     }
+  //   }
+  // }
+
+  circle: {
+    $css: 'circle draggable',
     $x: {
-      $val: 700,
+      $val: 100,
       $animation: {
-        $css: true,
-        $duration: 38
+        $duration: 50
       }
     },
     $y: {
-      $val: 100,
+      $val: 200,
       $animation: {
-        $css: true,
-        $duration: 6
+        $duration: 16
+      }
+    },
+    $draggable: true,
+    $on: {
+      $drag: function (event, e) {
+        app.rectangle.setKey('$x', this.$x.$val + Math.random() * 250)
+        app.rectangle.setKey('$y', this.$y.$val + Math.random() * 250)
+
+        // app.triangle.setKey('$x', e.x - Math.random() * 450)
+        // app.triangle.setKey('$y', e.y - Math.random() * 450)
       }
     }
   }

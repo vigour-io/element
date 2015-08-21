@@ -55,15 +55,15 @@ describe('Create instance of elem',function(){
 
 //Fire mouseup on elem
 describe('Emit mouseup on elem',function(){
-	
+
 	before(function(){
 		spy = sinon.spy( elem.$on.mouseup.$fn, 'val' )
 		mouseupPath = void 0
 	})
 
-	it('elem.$emit(\'mouseup\')',function(){
-		elem.$emit('mouseup')
-	})	
+	it('elem.emit(\'mouseup\')',function(){
+		elem.emit('mouseup')
+	})
 
 	it('elem.$on.mouseup fired once',function(){
 		expect(spy.calledOnce).to.be.ok
@@ -77,7 +77,7 @@ describe('Emit mouseup on elem',function(){
 
 //Fire mouseup on elem
 describe('Trigger mouseup on document.body',function(){
-	
+
 	before(function(){
 		mouseupPath = void 0
 		spy.reset()
@@ -92,7 +92,7 @@ describe('Trigger mouseup on document.body',function(){
 
 //Fire mouseup on elem
 describe('Trigger mouseup on elem node',function(){
-	
+
 	before(function(){
 		mouseupPath = void 0
 		spy.reset()
@@ -111,7 +111,7 @@ describe('Trigger mouseup on elem node',function(){
 
 //Fire mouseup on elem
 describe('Trigger mouseup on elemInstance node',function(){
-	
+
 	before(function(){
 		mouseupPath = void 0
 		spy.reset()

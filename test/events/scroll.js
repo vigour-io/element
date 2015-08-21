@@ -61,8 +61,8 @@ describe('Emit scroll on elem',function(){
 		scrollPath = void 0
 	})
 
-	it('elem.$emit(\'scroll\')',function(){
-		elem.$emit('scroll')
+	it('elem.emit(\'scroll\')',function(){
+		elem.emit('scroll')
 	})	
 
 	it('elem.$on.scroll fired once',function(){

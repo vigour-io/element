@@ -2,6 +2,8 @@ var Element = require('../../lib/element')
 var Property = require('../../lib/property')
 var Base = require('vjs/lib/observable')
 var Observable = require('vjs/lib/observable')
+var ua = require('../../lib/ua')
+var transform = ua.prefix+'Transform'
 
 Element.prototype.inject(
   require('../../lib/property/css'),
@@ -44,7 +46,9 @@ describe('$x, $y', function() {
       $x: value
     })
 
-    expect(elem.$node.style.transform).to.equal('translate3d(' + value + 'px, 0px, 0px)')
+    console.log('???', elem.$node.style,  elem.$node.style['-webkit-transform'])
+
+    expect(elem.$node.style[transform]).to.equal('translate3d(' + value + 'px, 0px, 0px)')
   })
 
   it('should set translate3d property for $y', function () {
@@ -54,7 +58,7 @@ describe('$x, $y', function() {
       $y: value
     })
 
-    expect(elem.$node.style.transform).to.equal('translate3d(0px, ' + value + 'px, 0px)')
+    expect(elem.$node.style[transform]).to.equal('translate3d(0px, ' + value + 'px, 0px)')
   })
 
   describe('-> together', function() {
@@ -67,7 +71,7 @@ describe('$x, $y', function() {
         $y: valueY
       })
 
-      expect(elem.$node.style.transform).to.equal('translate3d(' + valueX + 'px, ' + valueY + 'px, 0px)')
+      expect(elem.$node.style[transform]).to.equal('translate3d(' + valueX + 'px, ' + valueY + 'px, 0px)')
     })
   })
 })
@@ -81,7 +85,7 @@ describe('$scale', function() {
       $scale: value
     })
 
-    expect(elem.$node.style.transform).to.equal('scale(' + value + ')')
+    expect(elem.$node.style[transform]).to.equal('scale(' + value + ')')
   })
 })
 
@@ -93,7 +97,7 @@ describe('$rotate', function() {
       $rotate: value
     })
 
-    expect(elem.$node.style.transform).to.equal('rotate(' + value + 'deg)')
+    expect(elem.$node.style[transform]).to.equal('rotate(' + value + 'deg)')
   })
 })
 
@@ -111,7 +115,7 @@ describe('-> together', function() {
       $scale: scale
     })
 
-    expect(elem.$node.style.transform).to.equal(
+    expect(elem.$node.style[transform]).to.equal(
       'translate3d(' + x + 'px, ' + y + 'px, 0px) ' +
       'rotate(' + rotate + 'deg) ' +
       'scale(' + scale + ')'
@@ -142,19 +146,19 @@ describe('adding transforms', function () {
   })
 
   it('should add transform on defined element', function () {
-    expect(elem.$node.style.transform).to.equal('translate3d(' + valueX + 'px, 0px, 0px)')
+    expect(elem.$node.style[transform]).to.equal('translate3d(' + valueX + 'px, 0px, 0px)')
 
     elem.set({
       $y: valueY
     })
 
-    expect(elem.$node.style.transform).to.equal('translate3d(' + valueX + 'px, ' + valueY + 'px, 0px)')
+    expect(elem.$node.style[transform]).to.equal('translate3d(' + valueX + 'px, ' + valueY + 'px, 0px)')
 
     elem.set({
       $scale: scale
     })
 
-    expect(elem.$node.style.transform).to.equal(
+    expect(elem.$node.style[transform]).to.equal(
       'translate3d(' + valueX + 'px, ' + valueY + 'px, 0px) ' +
       'scale(' + scale + ')'
     )
@@ -172,14 +176,14 @@ describe('removing transforms', function () {
   })
 
   it('should remove property on defined element', function () {
-    expect(elem.$node.style.transform).to.equal('translate3d(' + valueX + 'px, 0px, 0px) scale(' + scale + ')')
+    expect(elem.$node.style[transform]).to.equal('translate3d(' + valueX + 'px, 0px, 0px) scale(' + scale + ')')
 
     elem.$x.remove()
 
-    expect(elem.$node.style.transform).to.equal('scale(' + scale + ')')
+    expect(elem.$node.style[transform]).to.equal('scale(' + scale + ')')
 
     elem.$scale.remove()
 
-    expect(elem.$node.style.transform).to.equal('')
+    expect(elem.$node.style[transform]).to.equal('')
   })
 })

@@ -2,12 +2,8 @@ describe('On transforms',function(){
   require('./transforms')
 })
 
-describe('On backgroundColor',function(){
-  require('./backgroundColor')
-})
-
-describe('On backgroundImage',function(){
-  require('./backgroundImage')
+describe('background',function(){
+  require('./background/')
 })
 
 describe('On attributes',function(){

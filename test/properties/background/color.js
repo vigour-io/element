@@ -1,17 +1,17 @@
-var Element = require('../../lib/element')
-
-Element.prototype.inject(
-  require('../../lib/property/backgroundcolor') 
-)
+var Element = require('../../../lib/element')
 
 var element
 var childElement
 
 describe( '--> backgroundColor', function(){
 	element = new Element({
-		$backgroundColor:"red"
+    $inject: require('../../../lib/property/background/'),
+		$background : {
+      $inject: require('../../../lib/property/background/color'),
+      $color: "red"
+    }
 	})
-	
+
 	it( 'should set the backgound color for element',function(done){
 		expect(element.$node.style.backgroundColor).to.be.equal("red")
 		done()
@@ -19,7 +19,9 @@ describe( '--> backgroundColor', function(){
 
 	it( 'should change the background color for element',function (done) {
 		element.set({
-			$backgroundColor:"black"
+			$background: {
+        $color: 'black'
+      }
 		})
 		// debugger
 		expect(element.$node.style.backgroundColor).to.be.equal("black")
@@ -28,8 +30,10 @@ describe( '--> backgroundColor', function(){
 	//setting back the original state of element( with backgound color red )
 	afterEach(function(){
 		element.set({
-			$backgroundColor:"red"
-		})
+      $background: {
+        $color: 'red'
+      }
+    })
 	})
 
 	describe('--> inheritance',function () {
@@ -44,12 +48,14 @@ describe( '--> backgroundColor', function(){
 
 		it( 'childElement should be able to change the background color',function (done) {
 				childElement.set({
-					$backgroundColor:"blue"
+          $background: {
+            $color: 'blue'
+          }
 				})
 
 				expect(childElement.$node.style.backgroundColor).to.be.equal("blue")
 				done()
-		}) 
+		})
 
 		it( 'element should stay with the same color',function (done) {
 			expect(element.$node.style.backgroundColor).to.be.equal("red")
@@ -58,15 +64,14 @@ describe( '--> backgroundColor', function(){
 
 		it( 'element background color chages should not change childElement backgound color',function (done) {
 			element.set({
-				$backgroundColor:"green"
+        $background: {
+          $color: 'green'
+        }
 			})
+
 			expect(childElement.$node.style.backgroundColor).to.be.equal("blue")
 			done()
 		})
 	})
 
-}) 
-
-
-
-
+})

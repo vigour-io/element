@@ -14,13 +14,13 @@ var mouse = new Property({
   x: {
     $val: 1,
     $animation: {
-      $duration: 16
+      $duration: 36
     }
   },
   y: {
     $val: 1,
     $animation: {
-      $duration: 16
+      $duration: 36
     }
   }
 })
@@ -70,7 +70,16 @@ app.set({
 mouse.x.$val = 200
 mouse.y.$val = 200
 
-document.body.addEventListener('click', function(e) {
-  mouse.x.$val = e.pageX
-  mouse.y.$val = e.pageY
+app.set({
+  holder: holder,
+  $on: {
+    $move: function (event, e) {
+      mouse.x.$val = e.pageX
+      mouse.y.$val = e.pageY
+    },
+    $down: function (event, e) {
+      mouse.x.$val = e.pageX
+      mouse.y.$val = e.pageY
+    }
+  }
 })

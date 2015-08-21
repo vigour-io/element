@@ -1,0 +1,17 @@
+// clearfix
+.clear { // it also can be used in grids. !important is required to overwrite floating
+  clear: both !important;
+  width: 100% !important;
+  float: none !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+.clearfix {
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 0;
+    float: none;
+  }
+}

@@ -60,7 +60,16 @@ app.set({
   holder: holder
 })
 
-document.body.addEventListener('mousemove', function(e) {
-  mouse.x.$val = e.pageX
-  mouse.y.$val = e.pageY
+app.set({
+  holder: holder,
+  $on: {
+    $move: function (event, e) {
+      mouse.x.$val = e.pageX
+      mouse.y.$val = e.pageY
+    },
+    $down: function (event, e) {
+      mouse.x.$val = e.pageX
+      mouse.y.$val = e.pageY
+    }
+  }
 })

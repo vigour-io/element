@@ -57,15 +57,15 @@ describe('Create instance of elem',function(){
 
 //Fire mousedown on elem
 describe('Emit mousedown on elem',function(){
-	
+
 	before(function(){
 		spy = sinon.spy( elem.$on.mousedown.$fn, 'val' )
 		mousedownPath = void 0
 	})
 
-	it('elem.$emit(\'mousedown\')',function(){
-		elem.$emit('mousedown')
-	})	
+	it('elem.emit(\'mousedown\')',function(){
+		elem.emit('mousedown')
+	})
 
 	it('elem.$on.mousedown fired once',function(){
 		expect(spy.calledOnce).to.be.ok
@@ -79,7 +79,7 @@ describe('Emit mousedown on elem',function(){
 
 //Fire mousedown on elem
 describe('Trigger mousedown on document.body',function(){
-	
+
 	before(function(){
 		mousedownPath = void 0
 		spy.reset()
@@ -94,7 +94,7 @@ describe('Trigger mousedown on document.body',function(){
 
 //Fire mousedown on elem
 describe('Trigger mousedown on elem node',function(){
-	
+
 	before(function(){
 		mousedownPath = void 0
 		spy.reset()
@@ -113,7 +113,7 @@ describe('Trigger mousedown on elem node',function(){
 
 //Fire mousedown on elem
 describe('Trigger mousedown on elemInstance node',function(){
-	
+
 	before(function(){
 		mousedownPath = void 0
 		spy.reset()

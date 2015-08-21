@@ -179,7 +179,6 @@ describe('removing transforms', function () {
     expect(elem.$node.style.transform).to.equal('scale(' + scale + ')')
 
     elem.$scale.remove()
-    console.log(elem.$scale)
 
     expect(elem.$node.style.transform).to.equal('')
   })

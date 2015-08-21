@@ -49,14 +49,14 @@ describe( '--> Attributes' , function () {
 			// Should update as well, no youri?
 			// the weird thing is that b.$attributes.custom.$val === "newValue"
 			// this is not handled yet in attributes
-			expect(b.$node.getAttribute('custom')).to.be.equals("newValue")
+			expect(b.$node.getAttribute('custom')).equals("newValue")
 		})
 
 		it( '\'b\' changes should not change \'a\'' , function () {
 			b.$attributes.set({
 				custom :"bValue"
 			})
-			expect(a.$node.getAttribute('custom')).to.be.equals("true")
+			expect(a.$node.getAttribute('custom')).not.equals("bValue")
 		})
 
 		it( 'remove custom attributes from \'b\'' , function () {

@@ -13,7 +13,9 @@ var thing = new Element( {
   $text: 'Hello',
   $css: 'hello',
   $style: {
-    backgroundColor: 'blue'
+    backgroundColor: 'blue',
+    position: 'absolute',
+    left: '100px'
   }
 })
 

@@ -73,9 +73,6 @@ var controls = new Element({
   }
 })
 
-
-
-
 function setTime(playerId) {
   playerId.addJsListener("playerUpdatePlayhead", function(data) {
     var progress = Math.floor(data)

@@ -12,6 +12,31 @@ Element.prototype.inject(
 )
 
 app.set({
+  circle: {
+    $css: 'circle draggable',
+    $x: {
+      $val: 100,
+      $animation: {
+        $duration: 50
+      }
+    },
+    $y: {
+      $val: 200,
+      $animation: {
+        $duration: 16
+      }
+    },
+    $draggable: true,
+    $on: {
+      $dragend: function (event, e) {
+        app.rectangle.setKey('$x', this.$x.$val + Math.random() * 450)
+        app.rectangle.setKey('$y', this.$y.$val + Math.random() * 450)
+
+        app.triangle.setKey('$x', e.x - Math.random() * 450)
+        app.triangle.setKey('$y', e.y - Math.random() * 450)
+      }
+    }
+  },
   rectangle: {
     $x: {
       $val: 400,
@@ -30,45 +55,19 @@ app.set({
       }
     }
   },
-  // triangle: {
-  //   $x: {
-  //     $val: 700,
-  //     $animation: {
-  //       $css: true,
-  //       $duration: 38
-  //     }
-  //   },
-  //   $y: {
-  //     $val: 100,
-  //     $animation: {
-  //       $css: true,
-  //       $duration: 6
-  //     }
-  //   }
-  // }
-
-  circle: {
-    $css: 'circle draggable',
+  triangle: {
     $x: {
-      $val: 100,
+      $val: 700,
       $animation: {
-        $duration: 50
+        $css: true,
+        $duration: 38
       }
     },
     $y: {
-      $val: 200,
+      $val: 100,
       $animation: {
-        $duration: 16
-      }
-    },
-    $draggable: true,
-    $on: {
-      $drag: function (event, e) {
-        app.rectangle.setKey('$x', this.$x.$val + Math.random() * 250)
-        app.rectangle.setKey('$y', this.$y.$val + Math.random() * 250)
-
-        // app.triangle.setKey('$x', e.x - Math.random() * 450)
-        // app.triangle.setKey('$y', e.y - Math.random() * 450)
+        $css: true,
+        $duration: 6
       }
     }
   }

@@ -20,8 +20,6 @@ describe('style properties for inline css', function(){
         backgroundColor: 'red'
       }
     })
-
-    console.log(el.$node.style)
     expect(el.$node.style.backgroundColor).to.equal('red')
   })
 

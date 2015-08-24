@@ -7,7 +7,9 @@ var Element = require('../../lib/element')
 Element.prototype.inject(
   require('../../lib/property/css'),
   require('../../lib/property/text'),
-  require('../../lib/property/background')
+  require('../../lib/property/style'),
+  require('../../lib/property/background')//,
+  // require('../../lib/cases/inject')
 )
 
 var cases = require('../../lib/cases')
@@ -26,20 +28,25 @@ var a = new Element({
   // $css: 'funlife',
   $text: {
     $val: app.$width,
-    $add:{
-      $val:'???',
-      $add:'!!@@'
-    },
     $desktop: {
       $val: 'desktop, but not connected',
       $connected: 'I am connected!!',
       $bigscreen: 'BIG!'
     },
+    $add:{
+      $val:'???',
+      $add:'!!@@'
+    },
     $phone: {
       $val: 'bawler',
       $add: '!!!'
     }
-  }
+  },
+  // $desktop:{
+    $style:{
+      border:'10px solid blue'
+    }
+  // }
 })
 
 app.set({
@@ -47,4 +54,13 @@ app.set({
   b: new a.$Constructor({
     c: new a.$Constructor()
   })
+})
+
+app.b.set({
+  $style:{
+    border:{
+      $val:'10px solid orange',
+      $bigscreen:'10px solid red'
+    }
+  }
 })

@@ -54,7 +54,6 @@ describe( '--> Using Cases' , function () {
 	})
 	//Assert
 	it( 'change the text element when desktop' , function (done) {
-		console.error('JAJA')
 		expect(a.$text.$val).to.be.equal("text 2")
 		done()
 	})

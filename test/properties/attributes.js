@@ -54,10 +54,6 @@ describe( '--> Attributes' , function () {
 		})
 
 		it( '\'b\' changes should not change \'a\'' , function () {
-
-      console.clear()
-
-      console.log('THIS SHOULD FIRE FOR B!')
       b.$attributes.set({
 				custom :'bValue'
 			})

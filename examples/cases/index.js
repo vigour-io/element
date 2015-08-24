@@ -2,6 +2,7 @@ require('./style.less')
 
 var app = require('../../lib/app')
 var Element = require('../../lib/element')
+// var Observable = require('vjs/lib/observable')
 
 Element.prototype.inject(
   require('../../lib/property/css'),
@@ -22,22 +23,22 @@ cases.set({
 })
 
 var a = new Element({
-  $css: 'funlife',
+  // $css: 'funlife',
   $text: {
     $val: app.$width,
-    $phone: {
-      $val: 'bawler',
-      $add: '!!!'
+    $add:{
+      $val:'???',
+      $add:'!!@@'
     },
     $desktop: {
       $val: 'desktop, but not connected',
       $connected: 'I am connected!!',
       $bigscreen: 'BIG!'
+    },
+    $phone: {
+      $val: 'bawler',
+      $add: '!!!'
     }
-  },
-  //TODO: $background: { $val: '#hex | rgb | rgba() ', $image: '' , $size: { }, $load, $position, $noRepeat } << do it like this better!
-  $background: {
-    $val: 'http://www.cdc.gov/importation/images/dog2.jpg'
   }
 })
 

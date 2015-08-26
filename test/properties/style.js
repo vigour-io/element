@@ -1,7 +1,4 @@
 var Element = require('../../lib/element')
-var Property = require('../../lib/property')
-var Base = require('vjs/lib/observable')
-var Observable = require('vjs/lib/observable')
 
 Element.prototype.inject(
   require('../../lib/property/style')
@@ -21,7 +18,6 @@ describe('style properties for inline css', function(){
       }
     })
 
-    console.log(el.$node.style)
     expect(el.$node.style.backgroundColor).to.equal('red')
   })
 

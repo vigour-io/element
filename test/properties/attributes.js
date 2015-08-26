@@ -10,7 +10,6 @@ describe( '--> Attributes' , function () {
 	var a = new Element({})
 	var b
 	a.set({
-    // $trackInstances:true,
 		$attributes: {
 	    custom: true
 	  },
@@ -54,28 +53,17 @@ describe( '--> Attributes' , function () {
 		})
 
 		it( '\'b\' changes should not change \'a\'' , function () {
-
-      console.clear()
-
-      console.log('THIS SHOULD FIRE FOR B!')
       b.$attributes.set({
 				custom :'bValue'
 			})
 
       expect(a.$attributes.custom.$val).to.equal( true )
       expect(b.$attributes.custom.$val).to.equal('bValue')
-      //
-      // console.log('?????',  b.$attributes !==  a.$attributes )
-			// expect(a.$node.getAttribute('custom')).to.equal('true')
-      //
-      //
-      // console.warn( b.$node === a.$node, b.$node.getAttribute('custom') )
-      //
-      // expect(b.$node.getAttribute('custom')).to.equal('bValue')
 		})
 
 		it( 'remove custom attributes from \'b\'' , function () {
 			b.$attributes.custom.remove()
+
 			expect(b.$node.getAttribute('custom')).to.be.null
 		})
 

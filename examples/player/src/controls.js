@@ -24,10 +24,9 @@ kWidget.addReadyCallback(function(playerId) {
 })
 
 var setTime = function (playerId) {
-  console.log(playerId)
   playerId.addJsListener("playerUpdatePlayhead", function(data) {
     app.controls.play.elapsed.$text.$val = Math.floor(data)
-    app.controls.play.selector.$attributes.value.$val = Math.floor(data)
+    app.controls.play.selector.$node.value = Math.floor(data)
   })
 }
 

@@ -11,10 +11,10 @@ Element.prototype.inject(
   require('vjs/lib/methods/lookUp')
 )
 
-// var controls = require('./src/controls.js')
 var readyPlayer = require('./src/controls.js').readyPlayer
-// var setTime = require('./src/controls.js').setTime
-// var setInfo = require('./src/controls.js').setInfo
+var doSeek = require('./src/controls.js').doSeek
+var setInfo = require('./src/controls.js').setInfo
+var setTime = require('./src/controls.js').setTime
 
 
 var player = new Element({
@@ -32,7 +32,18 @@ var title = new Element({
 
 var controls = new Element({
   play: {
-    $text: 'play',
+    button: {
+      $node: 'button',
+      $text: 'play',
+      $attributes: {
+        type: 'button',
+      }
+    },
+    $on: {
+      click: function() {
+        readyPlayer.id.sendNotification('doPlay');
+      }
+    },
     elapsed: {
       $text: 0
     },
@@ -42,59 +53,61 @@ var controls = new Element({
         type: 'range',
         value: 0,
         step: '1',
-        max: void 0
+        max: ''
       },
       $on: {
-        mousedown: function () {
-          readyPlayer.id.sendNotification('doPause')
-        },
-        mouseup: function (val) {
+        input: function () {
+          console.log(this.$node.value)
           kdp.sendNotification('doSeek', this.$node.value);
-          readyPlayer.id.sendNotification('doPlay');
-        }
+        },
+        // mousedown: function () {
+        //   readyPlayer.id.sendNotification('doPause')
+        // },
+        // mouseup: function (val) {
+        //   kdp.sendNotification('doSeek', this.$node.value);
+        //   readyPlayer.id.sendNotification('doPause')
+        // }
       }
     },
     duration: {
       $text: readyPlayer.duration.$val
-    },
-    $on: {
-      click: function() {
-        readyPlayer.id.sendNotification('doPlay');
-      }
     }
   },
   pause: {
-    $text: 'pause',
+    button: {
+      $node: 'button',
+      $text: 'pause',
+      $attributes: {
+        type: 'button',
+      }
+    },
     $on: {
       click: function() {
         readyPlayer.id.sendNotification('doPause')
       }
     }
+  },
+  mediaSwitch: {
+    button: {
+      $node: 'button',
+      $text: 'switch media',
+      $attributes: {
+        type: 'button',
+      }
+    },
+    $on: {
+      click: function() {
+        kdp.sendNotification( "changeMedia", { 'entryId' : '0_uv0gpe78'});
+      }
+    }
   }
 })
-
-function setTime(playerId) {
-  playerId.addJsListener("playerUpdatePlayhead", function(data) {
-    var progress = Math.floor(data)
-    controls.play.elapsed.$text.$val = progress
-    app.controls.play.selector.$node.value = progress
-  })
-}
-
-function setInfo() {
-  kdp.addJsListener('kdpReady', function() {
-    title.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.name}')
-    title.description.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.description}')
-    controls.play.duration.$text.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
-    // controls.play.selector.$attributes.set({max:20})
-    controls.play.selector.$attributes.max.$val = readyPlayer.id.evaluate('{mediaProxy.entry.duration}')
-  })
-}
 
 kWidget.addReadyCallback(function(playerId) {
   kdp = readyPlayer.id = document.getElementById(playerId)
   setInfo(kdp)
   setTime(kdp)
+  // doSeek(kdp)
 })
 
 app.set({

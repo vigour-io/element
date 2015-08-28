@@ -24,7 +24,7 @@ var thing = window.thing = new Element( {
 app.set( {
   hello: new thing.$Constructor(),
   $draggable: {
-    bind: function(){
+    $bind: function(){
       return this.hello
     }
   }

@@ -2,11 +2,14 @@ require('./style.less')
 
 var app = require('../../lib/app')
 var Element = require('../../lib/element')
+// var Observable = require('vjs/lib/observable')
 
 Element.prototype.inject(
   require('../../lib/property/css'),
   require('../../lib/property/text'),
-  require('../../lib/property/background')
+  require('../../lib/property/style'),
+  require('../../lib/property/background')//,
+  // require('../../lib/cases/inject')
 )
 
 var cases = require('../../lib/cases')
@@ -22,23 +25,28 @@ cases.set({
 })
 
 var a = new Element({
-  $css: 'funlife',
+  // $css: 'funlife',
   $text: {
     $val: app.$width,
-    $phone: {
-      $val: 'bawler',
-      $add: '!!!'
-    },
     $desktop: {
       $val: 'desktop, but not connected',
       $connected: 'I am connected!!',
       $bigscreen: 'BIG!'
+    },
+    $add:{
+      $val:'???',
+      $add:'!!@@'
+    },
+    $phone: {
+      $val: 'bawler',
+      $add: '!!!'
     }
   },
-  //TODO: $background: { $val: '#hex | rgb | rgba() ', $image: '' , $size: { }, $load, $position, $noRepeat } << do it like this better!
-  $background: {
-    $val: 'http://www.cdc.gov/importation/images/dog2.jpg'
-  }
+  // $desktop:{
+    $style:{
+      border:'10px solid blue'
+    }
+  // }
 })
 
 app.set({
@@ -46,4 +54,13 @@ app.set({
   b: new a.$Constructor({
     c: new a.$Constructor()
   })
+})
+
+app.b.set({
+  $style:{
+    border:{
+      $val:'10px solid orange',
+      $bigscreen:'10px solid red'
+    }
+  }
 })

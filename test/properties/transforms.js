@@ -46,8 +46,6 @@ describe('$x, $y', function() {
       $x: value
     })
 
-    console.log('???', elem.$node.style,  elem.$node.style['-webkit-transform'])
-
     expect(elem.$node.style[transform]).to.equal('translate3d(' + value + 'px, 0px, 0px)')
   })
 

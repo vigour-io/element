@@ -1,0 +1,37 @@
+body {
+  padding: 100px;
+
+  div {
+    margin: 20px;
+  }
+}
+
+// fonts
+@font-face {
+  font-family: 'icomoon';
+  src:url('icons/icomoon.eot?ypcv2b');
+  src:url('icons/icomoon.eot?#iefixypcv2b') format('embedded-opentype'),
+    url('icons/icomoon.woff2?ypcv2b') format('woff2'),
+    url('icons/icomoon.ttf?ypcv2b') format('truetype'),
+    url('icons/icomoon.woff?ypcv2b') format('woff'),
+    url('icons/icomoon.svg?ypcv2b#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.font.icon {
+  font-family: 'icomoon';
+  font-size: 32px;
+
+  &.cloud:before {
+    content: "\e600";
+  }
+  &.sun:before {
+    content: "\e601";
+  }
+  &.twister:before {
+    content: "\e602";
+  }
+}
+
+

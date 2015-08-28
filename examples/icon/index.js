@@ -4,7 +4,7 @@ var app = require( '../../lib/app' )
 var Icon = require('../../lib/components/icon')
 
 app.set({
-  cloud: new Icon('cloud', 'icomoon'),
-  sun: new Icon('sun', 'icomoon'),
-  twister: new Icon('twister', 'icomoon')
+  cloud: new Icon('cloud'),
+  sun: new Icon('sun'),
+  twister: new Icon('twister')
 })

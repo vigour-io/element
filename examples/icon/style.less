@@ -1,3 +1,5 @@
+@import url('~/less/colors');
+
 body {
   padding: 100px;
 
@@ -25,12 +27,15 @@ body {
 
   &.cloud:before {
     content: "\e600";
+    color: @blue;
   }
   &.sun:before {
     content: "\e601";
+    color: @yellow;
   }
   &.twister:before {
     content: "\e602";
+    color: @lightgray;
   }
 }
 

@@ -1,30 +1,20 @@
-// makes element's position absolute
-// pass vertical positions (top, bottom) first
+/* Position mixins
+---------------------------------------------- */
 
-// from top left
-.absolute (@top: 50%, @left: 50%) {
+/**
+ * Makes element's position absolute and gets params. It starts from `left`.
+ * @param left {number}
+ * @param top {number}
+ * @param right {number}
+ * @param bottom {number}
+ * @example
+ * .absolute(10px, 20px)
+ * .absolute(auto, auto, 100px, 200px)
+ */
+.absolute(@left: auto, @top: auto, @right: auto, @bottom: auto) {
   position: absolute;
-  top: @top;
   left: @left;
-}
-
-// from top right
-.absolute-right (@top, @right) {
-  position: absolute;
   top: @top;
   right: @right;
-}
-
-// from bottom left
-.absolute-bottom-left (@bottom, @left) {
-  position: absolute;
   bottom: @bottom;
-  left: @left;
-}
-
-// from bottom right
-.absolute-bottom-right (@bottom, @right) {
-  position: absolute;
-  bottom: @bottom;
-  right: @right;
 }

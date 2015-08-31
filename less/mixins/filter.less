@@ -1,5 +1,12 @@
-// filter
-// example: .filter(blur(2px) grayscale(20%))
+/* Filters
+---------------------------------------------- */
+
+/**
+ * `filter` mixin - to use multiple filters.
+ * @param {string} property
+ * @example
+ * .filter(blur(2px) grayscale(20%))
+ */
 .filter(@property) {
   -webkit-filter: @property;
      -moz-filter: @property;
@@ -8,9 +15,12 @@
           filter: @property;
 }
 
-// filter: url
-// to import filter settings from XML file
-// example: .filter('set.xml')
+/**
+ * filter: `url` - to import filter settings from XML file
+ * @param {string} property
+ * @example
+ * .filter('set.xml')
+ */
 .filter-url(@property) {
   -webkit-filter: url(@property);
      -moz-filter: url(@property);
@@ -19,8 +29,12 @@
           filter: url(@property);
 }
 
-// filter: blur
-// example: .blur(1px)
+/**
+ * filter: `blur`
+ * @param {string} property
+ * @example
+ * .blur(1px)
+ */
 .blur(@property) {
   -webkit-filter: blur(@property);
      -moz-filter: blur(@property);
@@ -29,8 +43,12 @@
           filter: blur(@property);
 }
 
-// filter: sepia
-// example: .sepia(45%)
+/**
+ * filter: `sepia`
+ * @param {string} property
+ * @example
+ * .sepia(45%)
+ */
 .sepia(@property) {
   -webkit-filter: sepia(@property);
      -moz-filter: sepia(@property);
@@ -39,8 +57,12 @@
           filter: sepia(@property);
 }
 
-// filter: grayscale
-// example: .grayscale(50%)
+/**
+ * filter: `grayscale`
+ * @param {string} property
+ * @example
+ * .grayscale(50%)
+ */
 .grayscale(@property) {
   -webkit-filter: grayscale(@property);
      -moz-filter: grayscale(@property);
@@ -49,8 +71,12 @@
           filter: grayscale(@property);
 }
 
-// filter: saturate
-// example: .saturate(50%)
+/**
+ * filter: `saturate`
+ * @param {string} property
+ * @example
+ * .saturate(50%)
+ */
 .saturate(@property) {
   -webkit-filter: saturate(@property);
      -moz-filter: saturate(@property);
@@ -59,8 +85,12 @@
           filter: saturate(@property);
 }
 
-// filter: hue-rotate
-// example: .hue-rotate(30deg)
+/**
+ * filter: hue-`rotate`
+ * @param {string} property
+ * @example
+ * .hue-rotate(30deg)
+ */
 .hue-rotate(@property) {
   -webkit-filter: hue-rotate(@property);
      -moz-filter: hue-rotate(@property);
@@ -69,8 +99,12 @@
           filter: hue-rotate(@property);
 }
 
-// filter: invert
-// example: .invert(50%)
+/**
+ * filter: `invert`
+ * @param {string} property
+ * @example
+ * .invert(50%)
+ */
 .invert(@property) {
   -webkit-filter: invert(@property);
      -moz-filter: invert(@property);
@@ -79,8 +113,12 @@
           filter: invert(@property);
 }
 
-// filter: opacity
-// example: .opacity(50%)
+/**
+ * filter: `opacity`
+ * @param {string} property
+ * @example
+ * .opacity(50%)
+ */
 .opacity(@property) {
   -webkit-filter: opacity(@property);
      -moz-filter: opacity(@property);
@@ -89,8 +127,12 @@
           filter: opacity(@property);
 }
 
-// filter: brightness
-// example: .brightness(50%)
+/**
+ * filter: `brightness`
+ * @param {string} property
+ * @example
+ * .brightness(50%)
+ */
 .brightness(@property) {
   -webkit-filter: brightness(@property);
      -moz-filter: brightness(@property);
@@ -99,8 +141,12 @@
           filter: brightness(@property);
 }
 
-// filter: contrast
-// example: .contrast(50%)
+/**
+ * filter: `contrast`
+ * @param {string} property
+ * @example
+ * .contrast(50%)
+ */
 .contrast(@property) {
   -webkit-filter: contrast(@property);
      -moz-filter: contrast(@property);
@@ -109,9 +155,12 @@
           filter: contrast(@property);
 }
 
-// filter: drop-shadow
-// works as box-shadow - .shadow() mixin
-// example: .drop-shadow(3px 5px 2px gray)
+/**
+ * filter: `drop-shadow`
+ * @param {string} property
+ * @example
+ * .drop-shadow(3px 5px 2px gray)
+ */
 .drop-shadow(@property) {
   -webkit-filter: drop-shadow(@property);
      -moz-filter: drop-shadow(@property);

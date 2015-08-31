@@ -1,20 +1,32 @@
-// text-shadow mixin
-// example: .text-shadow(2px 0 1px #ccc)
+/* Text specific mixins
+---------------------------------------------- */
+
+/**
+ * text-shadow mixin
+ * @param property {string}
+ * @example
+ * .text-shadow(2px 0 1px #ccc)
+ */
 .text-shadow (@property) {
   -webkit-text-shadow: @property;
           text-shadow: @property;
 }
 
-// helper for text-overflow
-// adds additional properties if it uses ellipsis
+/**
+ * Helper for `text-overflow`.
+ * Adds additional properties if it uses `ellipsis` overflow.
+ */
 .ellipsis (@property) when (@property = ellipsis) {
   overflow: hidden;
   white-space: nowrap;
 }
 
-// text-overflow mixin
-// it's for cut the text when it goes to second line
-// example: .text-overflow(ellipsis)
+/**
+ * It's for cutting the text when it goes to second line.
+ * @param property {string}
+ * @example
+ * .text-overflow(ellipsis)
+ */
 .text-overflow (@property: ellipsis) {
   .ellipsis(@property);
   -ms-text-overflow: @property;
@@ -22,9 +34,13 @@
       text-overflow: @property;
 }
 
-// user-select mixin
-// prevents user to select something
-// example: .selectable(none)
+/**
+ * user-select mixin
+ * prevents user to select something
+ * @param property {string}
+ * @example
+ * .selectable(none)
+ */
 .selectable (@property: none) {
   -webkit-user-select: @property;
      -moz-user-select: @property;
@@ -32,18 +48,24 @@
           user-select: @property;
 }
 
-// word-wrap mixin
-// breaks word if it does not include space
-// and is too long for container
-// example: .word-wrap()
+/**
+ * Breaks word if it does not include space and is too long for container.
+ * @param property {string}
+ * @example
+ * .word-wrap(break-word)
+ */
 .word-wrap (@property: break-word) {
   -ms-word-wrap: @property;
       word-wrap: @property;
 }
 
-// selection changes default color and backround
-// for selected item
-// example: .selection(yellow, black)
+/**
+ * Changes default color and backround for selected item.
+ * @param background {string}
+ * @param color {string}
+ * @example
+ * .selection(yellow, black)
+ */
 .selection(@background: #000, @color: #ccc){
   &::selection {
     background-color: @background;

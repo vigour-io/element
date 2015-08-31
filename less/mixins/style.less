@@ -1,32 +1,40 @@
-// border radius
-// example: .radius(3px)
-// example: .radius(top right bottom left)
+/* Box styling mixins
+---------------------------------------------- */
+
+/**
+ * `border-radius` mixin
+ * @param {string} property
+ * @example
+ * .radius(3px) // all
+ * .radius(top right bottom left)
+ */
 .radius(@radius) {
   -webkit-border-radius: @radius;
      -moz-border-radius: @radius;
           border-radius: @radius;
 }
 
-// background-clip
-// example: .clip(content-box)
+/**
+ * `background-clip` mixin
+ * @param {string} [property=padding-box]
+ * @example
+ * .clip(content-box)
+ */
 .clip (@property: padding-box) {
   -webkit-background-clip: @property;
      -moz-background-clip: @property;
           background-clip: @property;
 }
 
-// background-size
-// example: .bgsize(cover)
-.bgsize (@property: cover) {
-    -webkit-background-size: @property;
-       -moz-background-size: @property;
-         -o-background-size: @property;
-            background-size: @property;
-}
-
-// background image
-// makes backround set easier
-// example: .bgimg('../assets/test.jpg', center center no-repeat)
+/**
+ * Background image mixin - makes backround set easier.
+ * @param {string} url
+ * @param {string} position
+ * @param {string} repeat
+ * @param {string} size
+ * @example
+ * .bgimg('../assets/test.jpg', center center, no-repeat, cover)
+ */
 .bgimg (@url, @position: center center, @repeat: no-repeat, @size: auto) {
   background-image: url(@url);
   background-position: @position;
@@ -34,17 +42,38 @@
   .bgsize(@size);
 }
 
-// box-shadow
-// example: .shadow(1px 1px 3px 1px #ccc)
-.shadow (@shadow, @second: inset 0 0 0) {
-  -webkit-box-shadow: @shadow, @second;
-     -moz-box-shadow: @shadow, @second;
-          box-shadow: @shadow, @second;
+/**
+ * background-size
+ * @param {string} [property=cover]
+ * @example
+ * .bgsize(cover)
+ */
+.bgsize (@property: cover) {
+    -webkit-background-size: @property;
+       -moz-background-size: @property;
+         -o-background-size: @property;
+            background-size: @property;
 }
 
-// overflow scrollbar style
-// example: .overflow(10px, yellow, #eee, #ccc)
-// TODO: needs to be changed
+/**
+ * box-shadow
+ * @param {string} property
+ * @param {string} [property2=inset 0 0 0]
+ * @example
+ * .shadow(1px 1px 3px 1px #ccc)
+ */
+.shadow (@property, @property2: inset 0 0 0) {
+  -webkit-box-shadow: @property, @property2;
+     -moz-box-shadow: @property, @property2;
+          box-shadow: @property, @property2;
+}
+
+/**
+ * Overflow scrollbar styling
+ * @todo needs to be more flexible
+ * @example
+ * .overflow(10px, yellow, #eee, #ccc)
+ */
 .overflow (@width: 10px) {
   overflow-x: hidden;
   overflow-y: auto;

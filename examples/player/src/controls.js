@@ -20,7 +20,7 @@ kWidget.addReadyCallback(function(playerId) {
   kdp = readyPlayer.id = document.getElementById(playerId)
   setInfo(kdp)
   setTime(kdp)
-  // doSeek(kdp)
+  doSeek(kdp)
 })
 
 var setTime = function (playerId) {

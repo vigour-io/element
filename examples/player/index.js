@@ -3,7 +3,6 @@ var app = require('../../lib/app')
 var Element = require('../../lib/element')
 var Observable = require('vjs/lib/observable')
 var Emitter = require('vjs/lib/emitter')
-
 Element.prototype.inject(
   require('../../lib/property/css'),
   require('../../lib/property/text'),
@@ -15,7 +14,6 @@ var readyPlayer = require('./src/controls.js').readyPlayer
 var doSeek = require('./src/controls.js').doSeek
 var setInfo = require('./src/controls.js').setInfo
 var setTime = require('./src/controls.js').setTime
-
 
 var player = new Element({
   $attributes: {
@@ -107,7 +105,7 @@ kWidget.addReadyCallback(function(playerId) {
   kdp = readyPlayer.id = document.getElementById(playerId)
   setInfo(kdp)
   setTime(kdp)
-  // doSeek(kdp)
+  doSeek(kdp)
 })
 
 app.set({
@@ -115,7 +113,6 @@ app.set({
   player: new player.$Constructor(),
   controls: new controls.$Constructor()
 })
-
 kWidget.embed({
   'targetId': 'player',
   'wid': '_1984621',

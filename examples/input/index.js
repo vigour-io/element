@@ -1,7 +1,7 @@
 require('./style.less')
 var Element = require('../../lib/element')
-var Input = require('../../lib/input')
 var app = require('../../lib/app')
+var Input = require('../../lib/components/input')
 
 Element.prototype.inject(
   require('vjs/lib/operator/transform'),

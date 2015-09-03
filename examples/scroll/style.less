@@ -1,29 +1,40 @@
-// @import url('~/less/colors');
+@import url('~/less/index');
 
 body {
-	margin: 0;
-	padding: 10px;
-	background: pink;
+  margin: 0;
+  padding: 10px;
 }
 
-div {
-	&:nth-child(1) {
-	 	background: red;
-	}
+.lilac {
+  background: @lilac;
+}
 
-	&:nth-child(2) {
-	 	background: yellow;
-	}
+.blue {
+  background: @blue;
+}
 
-	&:nth-child(3) {
-	 	background: orange;
-	}
+.orange {
+  background: @orange;
+}
 
-	&:nth-child(4) {
-	 	background: blue;
-	}
+.yellow {
+  background: @yellow;
+}
 
-	&:nth-child(5) {
-	 	background: lilac;
-	}
+.pink {
+  background: @pink;
+}
+
+.chooser {
+  .fixed(50%, auto, auto, 20px);
+  margin-left: -75px;
+  background: white;
+  padding: 2px;
+
+  div {
+    display: block;
+    float: left;
+    margin: 3px;
+    .size(22px);
+  }
 }

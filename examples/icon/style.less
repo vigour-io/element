@@ -31,9 +31,14 @@ body {
   &.cloud {
     background-image: url('../icon-svg/svg/cloud.svg');
   }
-  &.sun:before {
-    content: "\e601";
-    color: @yellow;
+  &.sun{
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    &:before {
+      content: "\e601";
+      color: @yellow;
+    }
   }
   &.twister:before {
     content: "\e602";

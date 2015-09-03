@@ -1,13 +1,17 @@
 require('./style.less')
 
 var app = require('../../lib/app')
-
+var dictionary = window.dictionary = require('../../lib/dictionary')
 var Element = require('../../lib/element')
 
-Element.prototype.inject( require('../../lib/dictionary/inject') )
+dictionary.set( require('./en.json') )
+
+Element.prototype.inject( require('../../lib/dictionary/text') )
 
 app.set({
   test:{
-    $text:'translation.test'
+    $text:'message.success'
   }
 })
+
+// app.test.$text.$val = 'message.error'

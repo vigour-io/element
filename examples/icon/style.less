@@ -5,6 +5,7 @@ body {
   background: #f9f9f9;
 
   div {
+    vertical-align: top;
     margin: 20px;
   }
 }
@@ -22,13 +23,14 @@ body {
   font-style: normal;
 }
 
-.font.icon {
+.icon {
   font-family: 'vui';
   font-size: 32px;
-
-  &.cloud:before {
-    content: "\e600";
-    color: @blue;
+  width: 32px;
+  height: 32px;
+  background-size:cover;
+  &.cloud {
+    background-image: url('../icon-svg/svg/cloud.svg');
   }
   &.sun:before {
     content: "\e601";

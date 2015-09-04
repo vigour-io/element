@@ -6,7 +6,8 @@ var Element = require( '../../lib/element' )
 Element.prototype.inject(
   require( '../../lib/property/css' ),
   require( '../../lib/property/size' ),
-  require( '../../lib/property/scroll/top' )
+  require( '../../lib/property/scroll/top' ),
+  require( '../../lib/property/transform' )
 )
 
 var thing = new Element({
@@ -38,15 +39,22 @@ for(var i = 0 ; i < 5; i=i+1) {
 app.set({
   holder: holder,
   chooser: chooser,
-  // $on: {
-  //   $scroll: function (ev, event) {
-  //     console.log(ev, event)
-  //   }
-  // },
   $scrollTop: {
     $val: 0,
     $animation: {
       $duration: 16
+    }
+  }
+})
+
+app.set({
+  arrow:{
+    $y:{
+      $val:app.$scrollTop,
+      $transform:function( val ){
+        var b = document.body
+        return val * b.offsetHeight/b.scrollHeight
+      }
     }
   }
 })

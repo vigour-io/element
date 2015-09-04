@@ -1,5 +1,5 @@
 {
-  "name": "vui",
+  "name": "element",
   "version": "0.0.2",
   "main": "index.js",
   "scripts": {
@@ -8,12 +8,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/vigour-io/vui.git"
+    "url": "https://github.com/vigour-io/element.git"
   },
-  "author": "Vigour.io <dev@vigour.io>",
+  "author": "vigour.io <dev@vigour.io>",
   "license": "GPL",
   "bugs": {
-    "url": "https://github.com/vigour-io/vui/issues"
+    "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
     "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
@@ -22,7 +22,7 @@
     "dmd": "^1.1.1",
     "jsdoc-to-markdown": "^1.1.1"
   },
-  "homepage": "https://github.com/vigour-io/vui",
+  "homepage": "https://github.com/vigour-io/element",
   "gaston": {
     "port": 8080,
     "socket-port": 9000,

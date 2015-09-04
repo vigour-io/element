@@ -38,11 +38,11 @@ for(var i = 0 ; i < 5; i=i+1) {
 app.set({
   holder: holder,
   chooser: chooser,
-  $on: {
-    $scroll: function (ev, event) {
-      console.log(ev, event)
-    }
-  },
+  // $on: {
+  //   $scroll: function (ev, event) {
+  //     console.log(ev, event)
+  //   }
+  // },
   $scrollTop: {
     $val: 0,
     $animation: {

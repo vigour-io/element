@@ -14,44 +14,11 @@ var thing = new Element({
   $height: 300
 })
 
-function roll( scroll, delta ){
-  scroll.$rafId = window.requestAnimationFrame(function(){
-    delta = delta/1.1
-    scroll.set(scroll.$val - delta)
-    if(Math.abs(delta) > 1.1){
-      roll( scroll, delta )
-    }else{
-      scroll.setKey( '$dragging', false )
-    }
-  })
-}
-
 var holder = new Element({
-  $scrollTop: {
-    $val: 0,
-    $animation: {
-      $duration: 16
-    }
-  },
-  $on:{
-    touchstart:function( event, e ){
-      e.preventDefault()
-      this._prev = e.y
-      this.$scrollTop.setKey( '$dragging', true )
-      window.cancelAnimationFrame( this.$scrollTop.$rafId )
-    },
-    touchmove:function( event, e ){
-      e.preventDefault()
-      var d = ( e.y - this._prev )
-      this.$scrollTop.$val -= d
-      this._delta = d
-      this._prev = e.y
-    },
-    touchend:function( event, e ){
-      var $scrollTop = this.$scrollTop
-      var d = this._delta
-      this._delta = 0
-      roll($scrollTop,d)
+  $scrollTop:{
+    $val:0,
+    $animation:{
+      $duration:24
     }
   }
 })
@@ -86,17 +53,17 @@ app.set({
 })
 
 document.body.addEventListener('touchstart',function(e){
-  e.preventDefault();
+  e.preventDefault()
 },false)
 
 app.set({
-  // arrow:{
-  //   $y:{
-  //     $val:app.holder.$scrollTop,
-  //     $transform:function( val ){
-  //       var b = document.body
-  //       return val * b.offsetHeight/b.scrollHeight
-  //     }
-  //   }
-  // }
+  arrow:{
+    $y:{
+      $val:app.holder.$scrollTop,
+      $transform:function( val ){
+        var b = document.body
+        return val * b.offsetHeight/b.scrollHeight
+      }
+    }
+  }
 })

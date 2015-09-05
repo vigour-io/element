@@ -1,7 +1,6 @@
 @import url('~/less/index');
 
 body {
-  position: fixed;
   border:10px solid green;
   box-sizing: border-box;
   margin: 0;
@@ -10,7 +9,12 @@ body {
 
 .holder {
   height: 300px;
-  overflow: scroll;
+  // overflow: scroll;
+  & > div {
+    background-image: url('http://www.wallcoo.net/animal/home_pussy_1600x1200/images/[wallcoo_com]_pussy_cat_wallpaper_02_wEA39114.jpg');
+    background-size: 200px 150px;
+    background-repeat: no-repeat;
+  }
 }
 
 .lilac {

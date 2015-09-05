@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "gaston test",
     "doc": "node documentation.js"
   },
   "repository": {
@@ -16,6 +16,7 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
+    "gaston": "^0.12.9",
     "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
   },
   "devDependencies": {

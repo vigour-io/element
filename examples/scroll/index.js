@@ -18,7 +18,7 @@ var Bla = new Element({
 var thing = new Element({
   $height: 300,
   scroller:new Element({
-    $scrollLeft:true,
+    // $scrollLeft:true,
     one:new Bla(),
     two:new Bla(),
     three:new Bla(),

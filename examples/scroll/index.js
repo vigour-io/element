@@ -29,18 +29,18 @@ var thing = new Element({
 })
 
 var holder = new Element({
-  $scrollTop:true
-  // $scrollTop:{
-  //   $val:0,
-  //   $animation:{
-  //     $duration:36
-  //   },
-  //   // $on:{
-  //   //   $change:function(){
-  //   //     console.log('unified scroll!!',this.$val)
-  //   //   }
-  //   // }
-  // }
+  // $scrollTop:true
+  $scrollTop:{
+    $val:0,
+    $animation:{
+      $duration:36
+    },
+    // $on:{
+    //   $change:function(){
+    //     console.log('unified scroll!!',this.$val)
+    //   }
+    // }
+  }
 })
 
 var chooser = new Element({})

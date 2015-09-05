@@ -38,7 +38,7 @@ var holder = new Element({
       e.preventDefault()
       this._prev = e.y
       this.$scrollTop.setKey( '$dragging', true )
-      window.cancelAnimationFrame( scroll.$rafId )
+      window.cancelAnimationFrame( this.$scrollTop.$rafId )
     },
     touchmove:function( event, e ){
       e.preventDefault()

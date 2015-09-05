@@ -18,7 +18,6 @@ var Bla = new Element({
 var thing = new Element({
   $height: 300,
   scroller:new Element({
-    // $scrollLeft:true,
     one:new Bla(),
     two:new Bla(),
     three:new Bla(),
@@ -29,17 +28,11 @@ var thing = new Element({
 })
 
 var holder = new Element({
-  // $scrollTop:true
   $scrollTop:{
     $val:0,
     $animation:{
       $duration:36
-    },
-    // $on:{
-    //   $change:function(){
-    //     console.log('unified scroll!!',this.$val)
-    //   }
-    // }
+    }
   }
 })
 
@@ -70,7 +63,7 @@ app.set({
       $val:holder.$scrollTop,
       $transform:function( val ){
         var b = document.body
-        return val * b.offsetHeight/b.scrollHeight
+        return val * b.offsetHeight/b.scrollHeight/2
       }
     }
   }

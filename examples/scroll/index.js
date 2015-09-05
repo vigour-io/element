@@ -38,7 +38,6 @@ var holder = new Element({
       e.preventDefault()
       this._prev = e.y
       this.$scrollTop.setKey( '$dragging', true )
-
       window.cancelAnimationFrame( scroll.$rafId )
     },
     touchmove:function( event, e ){
@@ -51,6 +50,7 @@ var holder = new Element({
     touchend:function( event, e ){
       var $scrollTop = this.$scrollTop
       var d = this._delta
+      this._delta = 0
       roll($scrollTop,d)
     }
   }

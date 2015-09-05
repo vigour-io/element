@@ -18,7 +18,7 @@ function roll( scroll, delta ){
   scroll.$rafId = window.requestAnimationFrame(function(){
     delta = delta/1.1
     scroll.set(scroll.$val - delta)
-    if(Math.abs(delta) > 1){
+    if(Math.abs(delta) > 1.1){
       roll( scroll, delta )
     }else{
       scroll.setKey( '$dragging', false )
@@ -90,13 +90,13 @@ document.body.addEventListener('touchstart',function(e){
 },false)
 
 app.set({
-  arrow:{
-    $y:{
-      $val:app.holder.$scrollTop,
-      $transform:function( val ){
-        var b = document.body
-        return val * b.offsetHeight/b.scrollHeight
-      }
-    }
-  }
+  // arrow:{
+  //   $y:{
+  //     $val:app.holder.$scrollTop,
+  //     $transform:function( val ){
+  //       var b = document.body
+  //       return val * b.offsetHeight/b.scrollHeight
+  //     }
+  //   }
+  // }
 })

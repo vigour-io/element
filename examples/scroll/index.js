@@ -14,6 +14,18 @@ var thing = new Element({
   $height: 300
 })
 
+function roll( scroll, delta ){
+  scroll.$rafId = window.requestAnimationFrame(function(){
+    delta = delta/1.1
+    scroll.set(scroll.$val - delta)
+    if(Math.abs(delta) > 1){
+      roll( scroll, delta )
+    }else{
+      scroll.setKey( '$dragging', false )
+    }
+  })
+}
+
 var holder = new Element({
   $scrollTop: {
     $val: 0,
@@ -26,6 +38,8 @@ var holder = new Element({
       e.preventDefault()
       this._prev = e.y
       this.$scrollTop.setKey( '$dragging', true )
+
+      window.cancelAnimationFrame( scroll.$rafId )
     },
     touchmove:function( event, e ){
       e.preventDefault()
@@ -37,14 +51,7 @@ var holder = new Element({
     touchend:function( event, e ){
       var $scrollTop = this.$scrollTop
       var d = this._delta
-      console.log(d)
-      $scrollTop.set({
-        $dragging:false,
-        $val:$scrollTop.$val - d * Math.abs(d/2),
-        $animation:{
-          $duration:Math.abs(d/2)
-        }
-      })
+      roll($scrollTop,d)
     }
   }
 })

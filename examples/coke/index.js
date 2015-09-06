@@ -1,4 +1,5 @@
-// original idea came from http://www.romancortes.com/ficheros/css-coke.html
+// original idea came from
+// http://www.romancortes.com/ficheros/css-coke.html
 require( './style.less' )
 
 var app = window.app1 = require( '../../lib/app' )
@@ -11,7 +12,7 @@ Element.prototype.inject(
 
 var coke = new Element({
   $background: {
-    $inject: require( '../../lib/property/background/position' ),
+    $inject: require('../../lib/property/background/position'),
   },
   label: {}
 })

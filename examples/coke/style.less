@@ -1,0 +1,30 @@
+@import url('~/less/mixins');
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 10px;
+}
+
+@cokew: 194px;
+@cokeh: 336px;
+
+html {
+  height: 2250px;
+}
+
+body {
+  height: 100%;
+}
+
+.coke {
+  .size(@cokew, @cokeh);
+  .fixed(50%, 50%);
+  .translate;
+  .bgimg('imgs/coke-label.jpg', top left, repeat-x);
+
+  .label {
+    .bgimg('imgs/coke-can.png');
+    .fullsize;
+  }
+}

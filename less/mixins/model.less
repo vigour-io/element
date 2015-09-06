@@ -1,3 +1,5 @@
+@import url('position');
+
 /* Box model mixins
 ---------------------------------------------- */
 
@@ -26,6 +28,19 @@
   width: @width;
   height: @height;
   display: @display;
+}
+
+/**
+ * Set size of box
+ * @param {string} width
+ * @param {string} height
+ * @param {string} [display=inline-block]
+ * @example
+ * .size(200px, 100px, block)
+ */
+.fullsize() {
+  .absolute(0, 0);
+  .size(100%, 100%);
 }
 
 /**

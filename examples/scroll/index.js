@@ -37,9 +37,9 @@ var holder = new Element({
 })
 
 var chooser = new Element({})
-var colors = ['yellow', 'orange', 'blue', 'lilac', 'pink']
+var colors = ['yellow', 'orange', 'blue', 'lilac', 'pink', 'red']
 
-for(var i = 0 ; i < 5; i=i+1) {
+for(var i = 0 ; i < colors.length; i=i+1) {
   var n = new thing.$Constructor({$scrollLeft:true})
   var m = new Element({
     $define: {

@@ -19,10 +19,11 @@ var coke = new Element({
 
 app.set({
   coke: coke,
-  $scrollTop: 0,
-  $on: {
-    $scroll: function (ev, event) {
-      coke.$background.setKey('$x', app.$scrollTop.$val / 2)
+  $scrollTop:{
+    $on:{
+      $change:function (ev, event) {
+        coke.$background.setKey('$x', ~~(this.$val / 2))
+      }
     }
   }
 })

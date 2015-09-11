@@ -16,12 +16,12 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
-    "gaston": "^0.12.9",
     "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
   },
   "devDependencies": {
     "dmd": "^1.1.1",
-    "jsdoc-to-markdown": "^1.1.1"
+    "jsdoc-to-markdown": "^1.1.1",
+    "gaston": "git+ssh://git@github.com:vigour-io/gaston.git#dev"
   },
   "homepage": "https://github.com/vigour-io/element",
   "gaston": {
@@ -41,5 +41,13 @@
     "source-maps": false,
     "remote-logging": false,
     "require-paths": {}
+  },
+  "vigour": {
+    "services": {
+      "sentinel": {
+        "branches": [],
+        "unignoreFolders": []
+      }
+    }
   }
 }

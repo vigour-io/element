@@ -46,7 +46,8 @@
     "services": {
       "sentinel": {
         "branches": [],
-        "unignoreFolders": []
+        "unignoreFolders": [],
+        "slackChannel": "element"
       }
     }
   }

@@ -18,7 +18,7 @@ describe('on rendered',function(){
 	})
 
 	el.on('$addToParent',function(){
-		console.error('KANKER')
+		console.error('KANKER',this)
 	})
 
  //  el.subscribe({

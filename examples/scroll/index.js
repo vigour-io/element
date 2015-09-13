@@ -40,7 +40,21 @@ var chooser = new Element({})
 var colors = ['yellow', 'orange', 'blue', 'lilac', 'pink', 'red']
 
 for(var i = 0 ; i < colors.length; i=i+1) {
-  var n = new thing.$Constructor({$scrollLeft:true})
+  var n = new thing.$Constructor({
+    $scrollLeft:true//,
+    // topbar:{
+    //   $style:{
+    //     position:{
+    //       $val:holder.$scrollTop,
+    //       $transform:function(val){
+    //         var node = this.$parent.$parent.$node
+    //         return node.offsetTop - val <= 0 ? 'fixed' : 'absolute'
+    //       }
+    //       // $val:Math.random() >= 0.5 ? 'fixed' : 'absolute'
+    //     }
+    //   }
+    // }
+  })
   var m = new Element({
     $define: {
       i: i*300

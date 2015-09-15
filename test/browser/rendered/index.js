@@ -10,31 +10,33 @@ describe('on rendered',function(){
 
 	var el = new Element({
 		$key:'elem',
-		// $on:{
-		// 	$render:function(){
-		// 		console.log('party!!',this)
-		// 	}
-		// }
+		$on:{
+			$render:function(){
+				console.log('party!!',this)
+			}
+		}
 	})
 
-	el.on('$addToParent',function(){
-		console.error('KANKER',this)
+	it('blur',function(){
+		// app.set({
+		// 	rendered:true,
+		// 	elem:el
+		// })
+
+	console.log('????',el.$on.$property)
+
+	console.log('CHECK',obj.$on.$property)
+	console.log('ELEM',el)
+
+	console.log('\nsmurrrrr',obj === el)
+
+	el.on('$property',function(){
+		console.error('!')
 	})
 
- //  el.subscribe({
-	// 	$upward:{
-	// 		flups:true
-	// 	}
-	// },function( event, meta ){
-	// 	console.error('WHAT')
-	// 	console.log('>>>',this,el)
-	// 	// this.emit( key, event, meta )
-	// })
-
-	// it('blur',function(){
-		app.set({
-			flups:true
+		el.set({
+			rendered:true
 		})
-	// })
+	})
 
 })

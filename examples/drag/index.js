@@ -6,17 +6,19 @@ var Element = require( '../../lib/element' )
 Element.prototype.inject(
   require( '../../lib/property/css' ),
   require( '../../lib/property/transform' ),
-  require( '../../lib/property/draggable' )
+  require( '../../lib/events/down' )
 )
 
 var thing = window.thing = new Element({
-  $draggable: true,
+  // $draggable: true,
   $css : "teste",
   $on: {
 
-    // $down:function(){
-    //   console.log('move!')
-    // },
+    $down:{
+      setX:{
+        $x:100
+      }
+    },
 
     // $up:function(){
     //   console.log('up')

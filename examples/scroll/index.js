@@ -7,16 +7,21 @@ Element.prototype.inject(
   require( '../../lib/property/css' ),
   require( '../../lib/property/size' ),
   require( '../../lib/property/scroll/top' ),
-  require( '../../lib/property/transform' )
+  require( '../../lib/property/scroll/left' ),
+  require( '../../lib/property/transform' ),
+  require( '../../lib/events/click' )
 )
 
 var Bla = new Element({
+  $key:'bla',
   $width: 200,
   $height:200,
 }).$Constructor
 
 var thing = new Element({
+  $key:'thing',
   $height: 300,
+  $scrollLeft:true,
   scroller:new Element({
     one:new Bla(),
     two:new Bla(),
@@ -28,12 +33,13 @@ var thing = new Element({
 })
 
 var holder = new Element({
-  $scrollTop:{
-    $val:0,
-    $animation:{
-      $duration:36
+    $key:'holder',
+    $scrollTop:{
+      $val:100,
+      $animation:{
+        $duration:36
+      }
     }
-  }
 })
 
 var chooser = new Element({})
@@ -41,7 +47,7 @@ var colors = ['yellow', 'orange', 'blue', 'lilac', 'pink', 'red']
 
 for(var i = 0 ; i < colors.length; i=i+1) {
   var n = new thing.$Constructor({
-    $scrollLeft:true//,
+    //,
     // topbar:{
     //   $style:{
     //     position:{

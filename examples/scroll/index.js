@@ -21,7 +21,7 @@ var Bla = new Element({
 var thing = new Element({
   $key:'thing',
   $height: 300,
-  $scrollLeft:true,
+  $scrollLeft:100,
   scroller:new Element({
     one:new Bla(),
     two:new Bla(),
@@ -76,7 +76,7 @@ for(var i = 0 ; i < colors.length; i=i+1) {
 }
 
 app.set({
-  holder: holder,
+  holder: new holder.$Constructor(),
   chooser: chooser,
   arrow:{
     $y:{

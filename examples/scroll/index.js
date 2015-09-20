@@ -77,10 +77,13 @@ for(var i = 0 ; i < colors.length; i=i+1) {
 
 app.set({
   holder: new holder.$Constructor(),
-  chooser: chooser,
+  chooser: chooser
+})
+
+app.set({
   arrow:{
     $y:{
-      $val:holder.$scrollTop,
+      $val:app.holder.$scrollTop,
       $transform:function( val ){
         var b = document.body
         return val * b.offsetHeight/b.scrollHeight/2

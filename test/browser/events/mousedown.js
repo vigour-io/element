@@ -22,7 +22,7 @@ describe('Add mousedown listener', function () {
     elem.set({
       on: {
         mousedown: function () {
-          console.log('hilious')
+          console.log('funtimes')
           mousedownPath = this.path
         }
       }
@@ -65,7 +65,6 @@ describe('Create instance of elem', function () {
 // Fire mousedown on elem
 describe('Emit mousedown on elem', function () {
   before(function () {
-    console.log('>>', elem._on.mousedown.fn.val)
     spy = sinon.spy(elem._on.mousedown.fn, 'val')
     mousedownPath = void 0
   })

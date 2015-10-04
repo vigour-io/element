@@ -1,15 +1,15 @@
-describe( 'On $change',function(){
-	require('./change')
+describe('On change', function () {
+  require('./change')
 })
-describe( 'On $addToParent',function(){
-	require('./addToParent')
+describe('On parent', function () {
+  require('./addToParent')
 })
-describe( 'On $value',function(){
-	require('./value')
+describe('On value', function () {
+  require('./value')
 })
-describe( 'On $reference',function(){
-	require('./reference')
+describe('On reference', function () {
+  require('./reference')
 })
-describe( 'On $property',function(){
-	require('./property')
+describe('On property', function () {
+  require('./property')
 })

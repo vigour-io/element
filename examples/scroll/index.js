@@ -1,33 +1,33 @@
-require( './style.less' )
+require('./style.less')
 
-var app = require( '../../lib/app' )
-var Element = require( '../../lib/element' )
+var app = require('../../lib/app')
+var Element = require('../../lib/element')
 
 Element.prototype.inject(
-  require( '../../lib/property/text' ),
-  require( '../../lib/property/css' ),
-  require( '../../lib/property/size' ),
-  require( '../../lib/property/scroll/top' ),
-  require( '../../lib/property/scroll/left' ),
-  require( '../../lib/property/transform' ),
-  require( '../../lib/events/click' )
+  require('../../lib/property/text'),
+  require('../../lib/property/css'),
+  require('../../lib/property/size'),
+  require('../../lib/property/scroll/top'),
+  require('../../lib/property/scroll/left'),
+  require('../../lib/property/transform'),
+  require('../../lib/events/click')
 )
 
 var Bla = new Element({
-  $key:'bla',
-}).$Constructor
+  key: 'bla',
+}).Constructor
 
 var thing = new Element({
-  $key:'thing',
-  image:{}
+  key: 'thing',
+  image: {}
 })
 
 var holder = new Element({
-  $key:'holder',
-  $scrollTop:{
-    $val:0,
-    $animation:{
-      $duration:36
+  key: 'holder',
+  scrollTop: {
+    val: 0,
+    $animation: {
+      duration: 36
     }
   }
 })
@@ -35,16 +35,15 @@ var holder = new Element({
 var chooser = new Element({})
 var colors = ['yellow', 'orange', 'blue', 'lilac', 'pink', 'red']
 
-for(var i = 0 ; i < colors.length; i=i+1) {
-  
-  var n = new thing.$Constructor()
+for (var i = 0; i < colors.length; i = i + 1) {
+  var n = new thing.Constructor()
   var m = new Element({
-    $define: {
-      i: i*300
+    define: {
+      i: i * 300
     },
-    $on: {
-      $click: function (ev, event) {
-        app.holder.setKey('$scrollTop', this.i)
+    on: {
+      click: function (ev, event) {
+        app.holder.setKey('scrollTop', this.i)
       }
     }
   })
@@ -53,109 +52,109 @@ for(var i = 0 ; i < colors.length; i=i+1) {
 }
 
 app.set({
-  holder: new holder.$Constructor(),
+  holder: new holder.Constructor(),
   chooser: chooser
 })
 
 app.set({
-  holder:{
-    yellow:{
-      topbar:{
-        $text:'YELLOW',
-        $css:{
-          $val:app.holder.$scrollTop,
-          $transform:function( val ){
-            if(this._$input.$val < 250){
+  holder: {
+    yellow: {
+      topbar: {
+        text: 'YELLOW',
+        css: {
+          val: app.holder.scrollTop,
+          $transform: function (val) {
+            if (this._input.val < 250) {
               return 'topbar sticky'
-            }else if(this._$input.$val < 300){
+            } else if (this._input.val < 300) {
               return 'topbar bottom'
             }
             return 'topbar'
-          } 
+          }
         }
       }
     },
-    orange:{
-      topbar:{
-        $text:'ORANGE',
-        $css:{
-          $val:app.holder.$scrollTop,
-          $transform:function( val ){
-            if(this._$input.$val > 550){
+    orange: {
+      topbar: {
+        text: 'ORANGE',
+        css: {
+          val: app.holder.scrollTop,
+          $transform: function (val) {
+            if (this._input.val > 550) {
               return 'topbar bottom'
             }
-            if(this._$input.$val > 300){
+            if (this._input.val > 300) {
               return 'topbar sticky'
             }
             return 'topbar'
-          } 
+          }
         }
       }
     },
-    blue:{
-      topbar:{
-        $text:'BLUE',
-        $css:{
-          $val:app.holder.$scrollTop,
-          $transform:function( val ){
-            if(this._$input.$val > 850){
+    blue: {
+      topbar: {
+        text: 'BLUE',
+        css: {
+          val: app.holder.scrollTop,
+          $transform: function (val) {
+            if (this._input.val > 850) {
               return 'topbar bottom'
             }
-            if(this._$input.$val > 600){
+            if (this._input.val > 600) {
               return 'topbar sticky'
             }
             return 'topbar'
-          } 
+          }
         }
       }
     },
-    lilac:{
-      topbar:{
-        $text:'LILAC',
-        $css:{
-          $val:app.holder.$scrollTop,
-          $transform:function( val ){
-            if(this._$input.$val > 1150){
+    lilac: {
+      topbar: {
+        text: 'LILAC',
+        css: {
+          val: app.holder.scrollTop,
+          $transform: function (val) {
+            if (this._input.val > 1150) {
               return 'topbar bottom'
             }
-            if(this._$input.$val > 900){
+            if (this._input.val > 900) {
               return 'topbar sticky'
             }
             return 'topbar'
-          } 
+          }
         }
       }
     },
-    pink:{
-      topbar:{
-        $text:'PINK',
-        $css:{
-          $val:app.holder.$scrollTop,
-          $transform:function( val ){
-            if(this._$input.$val > 1450){
+    pink: {
+      topbar: {
+        text: 'PINK',
+        css: {
+          val: app.holder.scrollTop,
+          $transform: function (val) {
+            if (this._input.val > 1450) {
               return 'topbar bottom'
             }
-            if(this._$input.$val > 1200){
+            if (this._input.val > 1200) {
               return 'topbar sticky'
             }
             return 'topbar'
-          } 
+          }
         }
       }
     },
-    red:{
-      topbar:{
-        $text:'RED'
+    red: {
+      topbar: {
+        text: 'RED'
       }
     }
   }
-  // arrow:{
-  //   $y:{
-  //     $val:app.holder.$scrollTop,
-  //     $transform:function( val ){
-  //       var b = document.body
-  //       return val * b.offsetHeight/b.scrollHeight/2
-  //     }
-  //   }
-  // }
+// arrow:{
+//   y:{
+//     val:app.holder.scrollTop,
+//     $$transform:function( val ){
+//       var b = document.body
+//       return val * b.offsetHeight/b.scrollHeight/2
+//     }
+//   }
+// }
 })

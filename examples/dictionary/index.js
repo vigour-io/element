@@ -7,29 +7,29 @@ var Observable = require('vjs/lib/observable')
 var en = require('./en.json')
 var nl = require('./nl.json')
 var toggle = true
-dictionary.set( en )
+dictionary.set(en)
 
-Element.prototype.inject( require('../../lib/property/text') )
-Observable.prototype.inject( require('../../lib/dictionary/inject') )
+Element.prototype.inject(require('../../lib/property/text'))
+Observable.prototype.inject(require('../../lib/dictionary/inject'))
 
 app.set({
-  test:{
-    $text:{
-    	$dictionary:'message.success',
-    	$transform:[
-    		function(val){
-    			return 'balls'
-    		},
-    		function(val){
-    			return 'smalls'
-    		}
-    	],
-    	$add:['1','2','3','4','5']
+  test: {
+    text: {
+      dictionary: 'message.success',
+      transform: [
+        function (val) {
+          return 'balls'
+        },
+        function (val) {
+          return 'smalls'
+        }
+      ],
+      add: ['1', '2', '3', '4', '5']
     }
   }
 })
 
-setInterval(function(){
-	dictionary.set( toggle ? nl : en )
-	toggle = !toggle
-},1000)
+setInterval(function () {
+  dictionary.set(toggle ? nl : en)
+  toggle = !toggle
+}, 1000)

@@ -1,57 +1,56 @@
- require( './style.less' )
+require('./style.less')
 
-var app = require( '../../lib/app' )
-var Element = require( '../../lib/element' )
+var app = require('../../lib/app')
+var Element = require('../../lib/element')
 
 Element.prototype.inject(
-  require( '../../lib/property/css' ),
-  require( '../../lib/property/transform' ),
-  require( '../../lib/events/down' )
+  require('../../lib/property/css'),
+  require('../../lib/property/transform'),
+  require('../../lib/events/down')
 )
 
 var thing = window.thing = new Element({
-  // $draggable: true,
-  $css : "teste",
-  $on: {
-
-    $down:{
-      setX:{
-        $x:100
+  // draggable: true,
+  css: 'teste',
+  on: {
+    down: {
+      setX: {
+        x: 100
       }
     },
 
-    // $up:function(){
+    // up:function(){
     //   console.log('up')
     // },
 
-    // $dragstart: function (event, e) {
+    // dragstart: function (e, event) {
     //   this.set ({
-    //     $css: {
-    //       $removeClass: 'move'
+    //     css: {
+    //       removeClass: 'move'
     //     }
     //   })
     // },
 
-    // $click: function (event, e) {
+    // click: function (e, event) {
     //   this.set({
-    //     $css: {
-    //       $toggleClass: 'blue'
+    //     css: {
+    //       toggleClass: 'blue'
     //     }
     //   })
     // },
 
-    // $dragend: function (event, e){
-    //   this.set({
-    //     $x: event.startX,
-    //     $y: event.startY,
-    //     $css: {
-    //       $addClass: 'move'
-    //     }
-    //   })
-    // }
+  // dragend: function (e, event){
+  //   this.set({
+  //     x: event.startX,
+  //     y: event.startY,
+  //     css: {
+  //       addClass: 'move'
+  //     }
+  //   })
+  // }
   }
 })
 
 app.set({
-  hello: new thing.$Constructor()
+  hello: new thing.Constructor()
 })

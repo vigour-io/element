@@ -14,13 +14,13 @@ Element.prototype.inject(
 )
 
 var player = new Element({
-  $attributes: {
+  attributes: {
     id: 'player'
   }
 })
 
 app.set({
-  player: new player.$Constructor(),
+  player: new player.Constructor(),
 })
 
 initBitdash()

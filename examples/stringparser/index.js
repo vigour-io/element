@@ -1,47 +1,45 @@
 var Observable = require('vjs/lib/observable')
 
-var MockNode = function() {}
+var MockNode = function () {}
 Observable.prototype.define.call(MockNode.prototype, {
   value: {
-    get: function() {
+    get: function () {
       console.log('get value...')
     },
-    set: function( val ) {
+    set: function ( val ) {
       console.log('write value', val)
     }
   }
 })
 
 var SpecialElement = new Observable({
-  $define: {
-    $node: {
-      get: function() {
-        if(!this._$node) {
-          this._$node = new MockNode()
+  define: {
+    node: {
+      get: function () {
+        if (!this._node) {
+          this._node = new MockNode()
         }
-        return this._$node
+        return this._node
       },
-      set: function() {
-
-      }
+      set: function () {}
     }
   }
-}).$Constructor
+}).Constructor
 
 var text = require('../../lib/property/text')
 
 var domString = ''
 
 var bla = new SpecialElement({
-  $inject: text,
-  $text: {
-    $on: {
-      $change:function() {
+  inject: text,
+  text: {
+    on: {
+      change: function () {
         domString
-        console.log('a change?', this.$val)
+        console.log('a change?', this.val)
       }
     }
   }
 })
 
-bla.$text.$val = 'xxx'
+bla.text.val = 'xxx'

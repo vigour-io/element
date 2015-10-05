@@ -13,56 +13,56 @@ Element.prototype.inject(
 
 var bla = new Element( void 0, void 0, void 0, 'nika' )
 
-console.log( bla, bla.$node )
+console.log( bla, bla.node )
 
 var Post = new Element({
-  $css:'post',
-  $text:'random post',
-  $attributes: {
+  css:'post',
+  text:'random post',
+  attributes: {
     draggable: true
   },
-  $define: {
+  define: {
     andrew: function( val ) {
       console.log('!!! fire andrew', val)
     }
   },
   x:{},
-  $: {
+  : {
     each:function(property) {
       console.log('!', property)
     },
     andrew: false
   },
   buttons: {
-    // $css:'buttons',
+    // css:'buttons',
     removeBtn: {
-      // $node:'button',
-      $text:'remove it!',
-      $on: {
+      // node:'button',
+      text:'remove it!',
+      on: {
         mousemove: function() {
-          this.$node.style.opacity = Math.random()
+          this.node.style.opacity = Math.random()
         },
         click: function() {
           // alert('?')
 
-          this.$parent.$parent.$set({
-            $attributes: {
+          this.parent.parent.set({
+            attributes: {
               draggable:null
             }
           })
 
-          this.$parent.$parent.$node.style.border = '100px solid blue'
+          this.parent.parent.node.style.border = '100px solid blue'
           
           var post = this.lookUp("2")
-          console.log(post.$path)
-          post.$text.$val = 'no way!'
+          console.log(post.path)
+          post.text.val = 'no way!'
 
-          // this.$parent.$parent.remove()
+          // this.parent.parent.remove()
         }
       }
     }
   }
-}).$Constructor
+}).Constructor
 
 var holder = new Element()
 
@@ -82,25 +82,25 @@ if( window.gaston ) {
   window.gaston.performance(function() {
 
     var event = new Event(app)
-    event.$block = true
+    event.block = true
     for(var i = 0; i < 1000;i ++) {
 
-      // props.$setKey( i, new Observable(i), false )
+      // props.setKey( i, new Observable(i), false )
 
       // var obj = {}
       // obj[i] = new Post()
-      holder.$setKey( i, new Post({}, event), event )
+      holder.setKey( i, new Post({}, event), event )
     }
 
-    event.$block = false
-    app.$set({ posts: holder }, event)
+    event.block = false
+    app.set({ posts: holder }, event)
   })
 }
 
 // perf(function() {
 
 //   for(var i = 100-1; i>-1; i--) {
-//     props[i].$val = 100-i
+//     props[i].val = 100-i
 //   }
 
 // })

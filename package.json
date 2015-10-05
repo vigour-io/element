@@ -42,6 +42,9 @@
     "remote-logging": false,
     "require-paths": {}
   },
+  "standard": {
+    "globals": [ "describe", "it", "beforeEach", "sinon", "expect", "xit" ]
+  },
   "vigour": {
     "services": {
       "sentinel": {

@@ -30,7 +30,14 @@ var thing = new Element({
     //   //this is the next test
     //   return this.parent.key
     // },
-    $animation: 2
+    $animation: 2,
+    // on: {
+    //   transitionEnd: function() {
+    //     // setTimeout(function() {
+    //     //   thing.x.val = Math.random()*300
+    //     // })
+    //   }
+    // }
     // on: {
     //   data: function() {
     //     console.error('ok data update', this.path)
@@ -52,12 +59,11 @@ var thing = new Element({
 // the slowness is the context lookup sitution
 // cache context lookups maybe?
 //
-for(var i = 0 ; i < 1000; i++) {
+for(var i = 0 ; i < 1500; i++) {
   app.setKey(i, new thing.Constructor())
 }
 
-
-// for(var i = 0 ; i < 1000; i++) {
+// for(var i = 0 ; i < 500; i++) {
 //   app.setKey(i, new Element({
 //     css:'thing',
 //     x: {
@@ -67,12 +73,12 @@ for(var i = 0 ; i < 1000; i++) {
 //   }))
 // }
 
-// app.set({
-//   a: new thing.Constructor(),
-//   b: new thing.Constructor(),
-//   c: new thing.Constructor(),
-//   d: new thing.Constructor()
-// })
+app.set({
+  a: new thing.Constructor(),
+  b: new thing.Constructor(),
+  c: new thing.Constructor(),
+  d: new thing.Constructor()
+})
 
 console.clear()
 
@@ -80,8 +86,12 @@ console.clear()
 
 // thing.clearContext()
 thing.x.val = 300
+//
+// setTimeout(function() {
+//   thing.x.val = 900
+// },1000)
 
-// for(var i = 0 ; i < 1000; i++) {
+// for(var i = 0 ; i < 500; i++) {
 //   app[i].x.val = 300
 // }
 
@@ -89,3 +99,30 @@ thing.x.val = 300
 // setTime
 // dit is wel heel chill
 // thing.x.on('done')
+
+// var test = new Observable({
+//   trackInstances: true,
+//   bla: {
+//     on: {
+//       data: function(data, event) {
+//         // console.log('!')
+//       }
+//     }
+//   }
+// })
+//
+// var Test = test.Constructor
+//
+// var n = 10000
+// //lookups are slow
+// var ins = []
+// for(var i = 0 ; i < n; i++) {
+//   ins.push(new Test())
+// }
+//
+// var t = Date.now()
+//
+// test.bla.val = 'xxxx'
+//
+//
+// console.log((Date.now()-t)/1000, 's', n)

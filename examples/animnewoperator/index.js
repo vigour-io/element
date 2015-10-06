@@ -26,6 +26,10 @@ var thing = new Element({
   css:'thing',
   x: {
     val: 20,
+    // val: function() {
+    //   //this is the next test
+    //   return this.parent.key
+    // },
     $animation: 2
     // on: {
     //   data: function() {
@@ -33,30 +37,53 @@ var thing = new Element({
     //   }
     // }
   },
-  text: {
-    on: {
-      parent: function (parent, event) {
-        //does not work with useval?
-        console.log('parent anyone? does not seem to work...', parent.key)
-        this.set( parent.key, event )
-      }
-    }
-  }
+  // text: {
+  //   on: {
+  //     parent: function (parent, event) {
+  //       //does not work with useval?
+  //       console.log('parent anyone? does not seem to work...', parent.key)
+  //       this.set( parent.key, event )
+  //     }
+  //   }
+  // }
 })
 
-app.set({
-  a: new thing.Constructor(),
-  b: new thing.Constructor(),
-  c: new thing.Constructor(),
-  d: new thing.Constructor()
-})
+
+// the slowness is the context lookup sitution
+// cache context lookups maybe?
+//
+for(var i = 0 ; i < 1000; i++) {
+  app.setKey(i, new thing.Constructor())
+}
+
+
+// for(var i = 0 ; i < 1000; i++) {
+//   app.setKey(i, new Element({
+//     css:'thing',
+//     x: {
+//       val: 20,
+//       $animation:2
+//     }
+//   }))
+// }
+
+// app.set({
+//   a: new thing.Constructor(),
+//   b: new thing.Constructor(),
+//   c: new thing.Constructor(),
+//   d: new thing.Constructor()
+// })
 
 console.clear()
 
-console.log(thing._instances)
+// console.log(thing._instances)
 
 // thing.clearContext()
 thing.x.val = 300
+
+// for(var i = 0 ; i < 1000; i++) {
+//   app[i].x.val = 300
+// }
 
 
 // setTime

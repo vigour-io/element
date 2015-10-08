@@ -14,14 +14,10 @@ Element.prototype.inject(
   require('../../lib/property/opacity')
 )
 
-var Bla = new Element({
-  key: 'bla',
-}).Constructor
-
 var Observable = require('vjs/lib/observable')
 var Property = require('../../lib/property')
 
-var n = 2000
+var n = 10000
 
 var thing = new Element({
   properties: {
@@ -43,7 +39,7 @@ var thing = new Element({
     })
   },
   css: 'info',
-  text: 'not bound',
+  // text: 'not bound',
   // color: 0,
   opacity: {
     $transform: function(val) {
@@ -121,13 +117,30 @@ var t = Date.now()
 
 var holder = new Element()
 
+// console.log('thi')
+
 for(var i = 0 ; i < n; i++) {
   holder.setKey(i, new thing.Constructor({
-    text: ins[i].cnt
+    text: ins[i].cnt,
+    color: ins[i].cnt
   }))
 }
 
+
+// a
+/*
+
+  a.val = b
+
+  --> b.on('data', a)
+
+
+
+ */
+
 console.log('create elements', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')
+
+
 //
 // var t = Date.now()
 //
@@ -160,9 +173,10 @@ console.log('attach holder', (Date.now()-t)/1000, 's')
 
 var cnt = 0
 function loop () {
-  cnt = ~~(Math.random() * 10)
+  cnt++
+  // cnt = ~~(Math.random() * 10)
   for (var i = 0 ; i < n; i++) {
-    ins[i].cnt.val = cnt * 20 + i
+    ins[i].cnt.val = cnt * 10 + i
   }
 }
 
@@ -170,11 +184,56 @@ function doTimed() {
   window.requestAnimationFrame(function() {
     var t = Date.now()
     loop()
-    console.log('timed update test on data', (Date.now()-t)/1000, 's')
+    // console.clear()
+    // console.log('timed update test on data', (Date.now()-t)/1000, 's')
     doTimed()
   })
 }
 
-doTimed()
+
 
 // doTimed()
+//
+var a = new Observable({
+  b:{}
+})
+
+a.on('property', function( data, event ) {
+  console.warn( data )
+})
+// a.subscribe('valerio', fn)
+a.b.subscribe({
+  $up: {
+    valerio: true   //['true', 'data', 'entry']
+  }
+}, function() {
+  console.error('zzzzzz')
+})
+
+
+a.set({
+  valerio: true
+})
+
+
+// doTimed()
+
+var t = Date.now()
+
+var a = new Observable()
+
+for(var i = 0 ; i < n ; i++) {
+  ins[i].val = a
+}
+
+console.log('add ref listeners', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')
+
+
+var t = Date.now()
+
+var a = new Observable()
+
+for(var i = 0 ; i < n ; i++) {
+  a.on(function(){})
+}
+console.log('add listeners', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')

@@ -12,7 +12,7 @@ Element.prototype.inject(
 
 var coke = new Element({
   background: {
-    inject: require('../../lib/property/background/position'),
+    inject: require('../../lib/property/background/position')
   },
   label: {}
 })

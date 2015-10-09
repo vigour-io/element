@@ -1,242 +1,214 @@
-require('./style.less')
+// require('./style.less')
 
-var app = require('../../lib/app')
+// handle style require in node
+
+var App = require('../../lib/app')
 var Element = require('../../lib/element')
 
-Element.prototype.inject(
-  require('../../lib/property/text'),
-  require('../../lib/property/css'),
-  require('../../lib/property/size'),
-  require('../../lib/property/scroll/top'),
-  require('../../lib/property/scroll/left'),
-  require('../../lib/property/transform'),
-  require('../../lib/events/click'),
-  require('../../lib/property/opacity')
-)
+var app = module.exports = new App()
 
-var Bla = new Element({
-  key: 'bla',
-}).Constructor
+Element.prototype.inject(
+  require('../../lib/property/text')
+  // require('../../lib/property/css'),
+  // require('../../lib/property/size'),
+  // require('../../lib/property/scroll/top'),
+  // require('../../lib/property/scroll/left'),
+  // require('../../lib/property/transform')
+  // require('../../lib/events/click'),
+  // require('../../lib/property/opacity')
+)
 
 var Observable = require('vjs/lib/observable')
 var Property = require('../../lib/property')
 
-var n = 500
+var n = 1e3
 
-var thing = new Element({
-  properties: {
-    bla: Observable,
-    color: new Property({
-      on: {
-        data: function() {
-          var val = this.val
-          var r, g, b
-          // val = val
-          // this.parent.text.val = (Math.cos(val)*255+255)/2
-          r = ~~((Math.sin(val/50)*255+255)/2)
-          g = ~~((Math.cos(val/100)*255+255)/2)
-          b = 10
-          // b = ~~((Math.cos(val/100)*255+255)/2)
-          this.parent.node.style.backgroundColor = 'rgb('+[r,g,b].join(',')+')'
-        }
-      }
-    })
-  },
-  css: 'info',
-  text: 'not bound',
-  // color: 0,
-  opacity: {
-    $transform: function(val) {
-      return Math.floor((val+n)/n)
-    }
-  },
-  y:0,
-  x: {
-    val: 20,
-    // val: function() {
-    //   //this is the next test
-    //   return this.parent.key
-    // },
-    // $animation: 2
-    // on: {
-    //   transitionEnd: function() {
-    //     // setTimeout(function() {
-    //     //   thing.x.val = Math.random()*300
-    //     // })
-    //   }
-    // }
-    // on: {
-    //   data: function() {
-    //     console.error('ok data update', this.path)
-    //   }
-    // }
-  }
-  // text: {
-  //   on: {
-  //     parent: function (parent, event) {
-  //       //does not work with useval?
-  //       console.log('parent anyone? does not seem to work...', parent.key)
-  //       this.set( parent.key, event )
-  //     }
-  //   }
-  // }
-})
-
+var thing = new Element()
 
 // the slowness is the context lookup sitution
 // cache context lookups maybe?
-console.clear()
+// console.clear()
+
+
+
+var test = new Observable({
+  trackInstances: true,
+  cnt: {
+    val: 1,
+    inject: require('vjs/lib/operator/all'),
+    // on: {
+    //   data: function () {
+    //     this.val
+    //   }
+    // }
+  }
+})
 
 var t = Date.now()
 
-
-for(var i = 0 ; i < n; i++) {
-  //{text:i}
-  app.setKey(i, new thing.Constructor())
-}
-
-console.log((Date.now()-t)/1000+'s')
-
-// for(var i = 0 ; i < 500; i++) {
-//   app.setKey(i, new Element({
-//     css:'thing',
-//     x: {
-//       val: 20,
-//       $add: i,
-//       $animation:2
-//     }
-//   }))
-// }
-
-// app.set({
-//   a: new thing.Constructor(),
-//   b: new thing.Constructor(),
-//   c: new thing.Constructor(),
-//   d: new thing.Constructor()
-// })
-
-
-// console.log(thing._instances)
-
-// thing.clearContext()
-// thing.x.val = 300
-
-// setTimeout(function() {
-//   thing.x.val = 900
-// },1000)
-//
-// for(var i = 0 ; i < 500; i++) {
-//   app[i].x.val = i*3+50
-// }
-
-//one state off your app
-//passing down the correc tthings that can be translated to state
-/*
- for hub data
- subs: { sourceid: ts }
-
- //what we also keep in the hub is the last stamp of any change
-
-
-
-
-
-//this combined state can be parsed
-
-// need to think of a smart way to stored
-
-
-//hub can store these 2 things
-subsmap: {
-  hash: sourceid+ms
-
-  // see how to make this into a hashmap
-  e.g structure based
-}
-
-
-// optional (how many do you want to track?)
-// changemap: {  //max length (cleans up after a while)
-//   // can be used to sync info about timing perhaps (for later)
-//   instance--reffed--path: sourceid+ms
-//   // this will only store data not set from the upstream
-//   // since upstream will always be a subscription
-// }
-// thse changes + sourceid only have to be cominucated
-// never send sourceid back even if form another upstream
-
-/*
-  disconnect / connect
-*/
-/*
-instance--reffed--path
-way to serilize paths + instance + context
-*/
-
-
-// setTime
-// dit is wel heel chill
-// thing.x.on('done')
-// var Observable = require('vjs/lib/observable')
-//
-var test = new Observable({
-  // track:
-  trackInstances: true,
-  cnt: {
-    val:1,
-    inject: require('vjs/lib/operator/all')
-    // $add:10
-  }
-})
 
 var Test = test.Constructor
 
 //lookups are slow
 var ins = []
 for(var i = 0 ; i < n; i++) {
-  ins.push(new Test({ cnt: i }))
+  //resolving context is extrorodinary slow!
+  ins.push(new Test({ cnt:i }))
 }
 
+// test.cnt.val++
+
+console.log('create test data', (Date.now() - t) / 1000 + ' s')
+
 var t = Date.now()
-test.cnt.val++
 
-console.log('update1', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k', test.cnt.val)
+var holder = new Element()
 
-var t = Date.now()
+console.log('thiz ')
 
-test.cnt.val++
-
-console.log('update2', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k', test.cnt.val)
-
-for(var i = 0;i<n;i++) {
-  // console.log(app[i])
-  // app[i].x.val = ins[i].cnt
-  // app[i].x.val = Math.sin(i/100)*50
-  // app[i].y.val = Math.sin(i/100)*50
-
-  // app[i].color.val = ins[i].cnt
-  app[i].text.val = ins[i].cnt
-  // app[i].opacity.val = ins[i].cnt
+for(var i = 0 ; i < n; i++) {
+  holder.setKey(i, new thing.Constructor({
+    text: ins[i].cnt
+    // color: ins[i].cnt
+  }))
 }
+
+
+// a
+/*
+
+  a.val = b
+
+  --> b.on('data', a)
+
+
+
+ */
+
+console.log('create elements', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')
+
+
+//
+// var t = Date.now()
+//
+// // updating class value while its overwritten is giving very strange results!
+// // test.cnt.val++
+//
+// for (var i = 0;i < n;i++) {
+//   // console.log(app[i])
+//   // app[i].x.val = ins[i].cnt
+//   // app[i].x.val = Math.sin(i/100)*50
+//   // app[i].y.val = Math.sin(i/100)*50
+//   // app[i].color.val = ins[i].cnt
+//   // console.log(i, app[i].text)
+//   holder[i].text.val = ins[i].cnt
+//   // app[i].opacity.val = ins[i].cnt
+// }
+//
+// console.log('attach to elements (and update elements)', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k', test.cnt.val)
+//
 
 // setInterval(function() {
 //   for(var i = 0;i<n;i++) {
 //     ins[i].cnt.val++
 //   }
 // },50)
+var t = Date.now()
+
+app.set({ holder: holder })
+console.log('attach holder', (Date.now()-t)/1000, 's')
 
 var cnt = 0
-function loop() {
-  cnt = ~~(Math.random()*10)
-  // var i = Math.floor(Math.random()*n)
-  // for (var i = Math.max(i-50,0),len = i+50; i < len; i++) {
-  for(var i = 0 ; i < n; i++) {
-    ins[i].cnt.val = cnt*20 + i
-    // if(ins[i].cnt.val>(255*2)) {
-    //   ins[i].cnt.val = 0
-    // }
+function loop () {
+  cnt++
+  // cnt = ~~(Math.random() * 10)
+  for (var i = 0 ; i < n; i++) {
+    ins[i].cnt.val = cnt * 10 + i
   }
-  window.requestAnimationFrame(loop)
 }
 
-loop()
+function doTimed() {
+  setTimeout(function() {
+    var t = Date.now()
+    loop()
+    // console.clear()
+    // console.log('timed update test on data', (Date.now()-t)/1000, 's')
+    doTimed()
+  })
+}
+
+
+
+doTimed()
+//
+var a = new Observable({
+  b:{}
+})
+
+a.on('property', function( data, event ) {
+  console.warn( data )
+})
+// a.subscribe('valerio', fn)
+a.b.subscribe({
+  $up: {
+    valerio: true   //['true', 'data', 'entry']
+  }
+}, function() {
+  console.error('zzzzzz')
+})
+
+
+a.set({
+  valerio: true
+})
+
+
+// doTimed()
+
+// var t = Date.now()
+//
+// var a = new Observable()
+//
+// for(var i = 0 ; i < n ; i++) {
+//   ins[i].val = a
+// }
+//
+// console.log('add ref listeners', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')
+//
+//
+// var t = Date.now()
+//
+// var a = new Observable()
+//
+// for(var i = 0 ; i < n ; i++) {
+//   a.on(function(){})
+// }
+// console.log('add listeners', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')
+
+
+// this does not work ofc
+// app.set({ node: document.body })
+
+console.log('wtf???', app.node)
+// document.body.appendChild(app.node)
+
+var ReactDOM = require('react-dom')
+//
+ReactDOM.render(
+  app.node,
+  document.body
+);
+
+// var ReactDOMServer = require('react-dom')
+
+// var ReactDOMServer = require('react-dom/server')
+
+var exampleApp = require('../../examples/animnewoperator/100k')
+// var parsed = parse(exampleApp)
+
+
+// var http = require('http')
+//
+// http.createServer(function(req, res) {
+//   res.end(ReactDOMServer.renderToString(app.node))
+// }).listen(3030)

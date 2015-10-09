@@ -16,6 +16,8 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
+    "react": "0.14.0",
+    "jsdom": "6.5.1",
     "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
   },
   "devDependencies": {

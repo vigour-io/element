@@ -1,86 +1,33 @@
 require('./style.less')
 
-var app = require('../../lib/app')
+// handle style require in node
+
+var App = require('../../lib/app')
 var Element = require('../../lib/element')
 
+var app = module.exports = new App()
+
 Element.prototype.inject(
-  require('../../lib/property/text'),
-  require('../../lib/property/css'),
-  require('../../lib/property/size'),
-  require('../../lib/property/scroll/top'),
-  require('../../lib/property/scroll/left'),
-  require('../../lib/property/transform'),
-  require('../../lib/events/click'),
-  require('../../lib/property/opacity')
+  require('../../lib/property/text')
+  // require('../../lib/property/css'),
+  // require('../../lib/property/size'),
+  // require('../../lib/property/scroll/top'),
+  // require('../../lib/property/scroll/left'),
+  // require('../../lib/property/transform')
+  // require('../../lib/events/click'),
+  // require('../../lib/property/opacity')
 )
 
 var Observable = require('vjs/lib/observable')
 var Property = require('../../lib/property')
 
-var n = 10000
+var n = 1e1
 
-var thing = new Element({
-  properties: {
-    bla: Observable,
-    color: new Property({
-      on: {
-        data: function() {
-          var val = this.val
-          var r, g, b
-          // val = val
-          // this.parent.text.val = (Math.cos(val)*255+255)/2
-          r = ~~((Math.sin(val/50)*255+255)/2)
-          g = ~~((Math.cos(val/100)*255+255)/2)
-          b = 10
-          // b = ~~((Math.cos(val/100)*255+255)/2)
-          this.parent.node.style.backgroundColor = 'rgb('+[r,g,b].join(',')+')'
-        }
-      }
-    })
-  },
-  css: 'info',
-  // text: 'not bound',
-  // color: 0,
-  opacity: {
-    $transform: function(val) {
-      return Math.floor((val+n)/n)
-    }
-  },
-  y:0,
-  x: {
-    val: 20,
-    // val: function() {
-    //   //this is the next test
-    //   return this.parent.key
-    // },
-    // $animation: 2
-    // on: {
-    //   transitionEnd: function() {
-    //     // setTimeout(function() {
-    //     //   thing.x.val = Math.random()*300
-    //     // })
-    //   }
-    // }
-    // on: {
-    //   data: function() {
-    //     console.error('ok data update', this.path)
-    //   }
-    // }
-  }
-  // text: {
-  //   on: {
-  //     parent: function (parent, event) {
-  //       //does not work with useval?
-  //       console.log('parent anyone? does not seem to work...', parent.key)
-  //       this.set( parent.key, event )
-  //     }
-  //   }
-  // }
-})
+var thing = new Element()
 
 // the slowness is the context lookup sitution
 // cache context lookups maybe?
-console.clear()
+// console.clear()
 
 
 
@@ -117,12 +64,12 @@ var t = Date.now()
 
 var holder = new Element()
 
-// console.log('thi')
+console.log('thiz ')
 
 for(var i = 0 ; i < n; i++) {
   holder.setKey(i, new thing.Constructor({
-    text: ins[i].cnt,
-    color: ins[i].cnt
+    text: ins[i].cnt
+    // color: ins[i].cnt
   }))
 }
 
@@ -181,9 +128,10 @@ function loop () {
 }
 
 function doTimed() {
-  window.requestAnimationFrame(function() {
+  setTimeout(function() {
     var t = Date.now()
     loop()
+    render()
     // console.clear()
     // console.log('timed update test on data', (Date.now()-t)/1000, 's')
     doTimed()
@@ -216,24 +164,62 @@ a.set({
 })
 
 
-// doTimed()
+doTimed()
 
-var t = Date.now()
+// var t = Date.now()
+//
+// var a = new Observable()
+//
+// for(var i = 0 ; i < n ; i++) {
+//   ins[i].val = a
+// }
+//
+// console.log('add ref listeners', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')
+//
+//
+// var t = Date.now()
+//
+// var a = new Observable()
+//
+// for(var i = 0 ; i < n ; i++) {
+//   a.on(function(){})
+// }
+// console.log('add listeners', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')
 
-var a = new Observable()
 
-for(var i = 0 ; i < n ; i++) {
-  ins[i].val = a
+// this does not work ofc
+// app.set({ node: document.body })
+
+console.log('wtf???', app.node)
+
+var holder = document.createElement('div')
+document.body.appendChild(holder)
+
+var ReactDOM = require('react-dom')
+//
+//
+//
+//
+function render() {
+  ReactDOM.render(
+    app.node,
+    holder
+  )
 }
+render()
 
-console.log('add ref listeners', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')
+// window.requestAnimationFrame(render)
+
+// var ReactDOMServer = require('react-dom')
+
+// var ReactDOMServer = require('react-dom/server')
+
+// var exampleApp = require('../../examples/animnewoperator/100k')
+// var parsed = parse(exampleApp)
 
 
-var t = Date.now()
-
-var a = new Observable()
-
-for(var i = 0 ; i < n ; i++) {
-  a.on(function(){})
-}
-console.log('add listeners', (Date.now()-t)/1000, 's', ~~(n/1000) + 'k')
+// var http = require('http')
+//
+// http.createServer(function(req, res) {
+//   res.end(ReactDOMServer.renderToString(app.node))
+// }).listen(3030)

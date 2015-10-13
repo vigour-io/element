@@ -15,19 +15,19 @@ Element.prototype.inject(
 
 app.set({
   container: {
-    text:{
-      val:'Container height: calc(100% - 90px); Should not result in calc(10%),',
-      $transform:function( val ){
+    text: {
+      val: 'Container height: calc(100% - 90px); Should not result in calc(10%),',
+      $transform: function (val) {
         return val + ' which is +/-' + (window.innerHeight - 20) * 0.1 + 'px'
       }
     }
   }
 })
 
-window.requestAnimationFrame(function(){
+window.requestAnimationFrame(function () {
   app.set({
-    msg:{
-      text: 'Container size is currently: '+ window.getComputedStyle(app.container.node,null).height
+    msg: {
+      text: 'Container size is currently: ' + window.getComputedStyle(app.container.node, null).height
     }
   })
 })

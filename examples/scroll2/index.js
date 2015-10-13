@@ -41,23 +41,23 @@ var List = new Element({
   five: {}
 }).Constructor
 
+var holder = new Element({
+  scrollTop: 0,
+  list: new List()
+})
+
 app.set({
   holder: {
-    scrollTop: {
-      val: 40,
-      $animation: {
-        duration: 36
-      }
-    },
+    scrollTop: 0,
     list: new List()
-  },
-  thing: {
-    y: -200,
-    text: {
-      val: 'oh no!!',
-      $subscribe: 'parent.parent.holder.scrollTop'
-    }
   }
+// ,
+// thing: {
+//   y: -200,
+//   text: {
+//     $subscribe: 'parent.parent.holder.scrollTop'
+//   }
+// }
 })
 
 // console.log('??', app.scrollTop instanceof Property)

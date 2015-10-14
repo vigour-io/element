@@ -14,24 +14,29 @@ Element.prototype.inject(
 )
 
 var Bla = new Element({
-  key: 'bla',
+  key: 'bla'
 }).Constructor
 
 var thing = new Element({
-  css:'thing',
-  x:{ val: 20, $animation: 20 },
+  css: 'thing',
+  x: { val: 20, $animation: 20 },
   text: 'a'
 })
 
-app.set({
-  a: new thing.Constructor(),
-  b: new thing.Constructor(),
-  c: new thing.Constructor()
-})
+// app.set({
+//   a: new thing.Constructor(),
+//   b: new thing.Constructor(),
+//   c: new thing.Constructor()
+// })
 
-app.set({
-  // text: app.a.x.val
-})
+var n = 4e2
+for (let i = 0; i < n; i++) {
+  app.setKey( i, new thing.Constructor() )
+}
+
+// app.set({
+//   // text: app.a.x.val
+// })
 
 thing.x.val = 300
 

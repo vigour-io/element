@@ -69,7 +69,7 @@ app.set({
   content: {},
   container: new SomeUIElement(),
   randomTitle: new RandomChannelTitle(),
-  nested:{
+  nested: {
     firstTitle: new FirstShowTitle(),
     anotherFirstTitle: new FirstShowTitle()
   },
@@ -79,7 +79,7 @@ app.set({
 })
 
 setInterval(function () {
-  if(Math.random() > 0.1){
+  if (Math.random() > 0.1) {
     app.content.set({
       shows: {
         first: {
@@ -88,7 +88,7 @@ setInterval(function () {
       }
     })
   }
-  if(Math.random() > 0.1){
+  if (Math.random() > 0.1) {
     app.content.set({
       channels: {
         random: {
@@ -100,13 +100,13 @@ setInterval(function () {
 }, 1000)
 
 setInterval(function () {
-  if(Math.random() > 0.8){
-    if(app.content.shows){
+  if (Math.random() > 0.8) {
+    if (app.content.shows) {
       app.content.shows.remove()
     }
   }
-  if(Math.random() > 0.8){
-    if(app.content.channels){
+  if (Math.random() > 0.8) {
+    if (app.content.channels) {
       app.content.channels.remove()
     }
   }

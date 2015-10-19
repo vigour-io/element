@@ -6,7 +6,35 @@ Observable.prototype.inject(require('vjs/lib/operator/add'))
 Observable.prototype.inject(require('vjs/lib/operator/subscribe'))
 Element.prototype.inject(require('../../lib/property/text'))
 
+var Item = new Element({
+  nested: {
+    text: {
+      $: 'parent.parent.title'
+    }
+  }
+}).Constructor
+
+// var content = new Observable({
+//   one: {
+//     title: 'one',
+//     subtitle: 'studje'
+//   },
+//   two: {
+//     title: 'two',
+//     subtitle: 'nerdje'
+//   },
+//   three: {
+//     title: 'three',
+//     subtitle: 'mannetje'
+//   },
+//   four: {
+//     title: 'four',
+//     subtitle: 'gek'
+//   }
+// })
+
 var app = new Element({
+  node: document.body,
   val: new Observable({
     content: {
       one: {
@@ -22,49 +50,20 @@ var app = new Element({
         subtitle: 'mannetje'
       },
       four: {
-        title: 'three',
+        title: 'four',
         subtitle: 'gek'
       }
     }
   }),
-  node: document.body,
   info: {
     child: {
-      ChildConstructor: new Element({
-        nested: {
-          text: {
-            $: 'parent.parent.title'
-          }
-        },
-        ballx:{
-          text: {
-            $: 'parent.parent.subtitle'
-          }
-        }
-      }).Constructor,
-      $: 'upward.content'
-    }
-  },
-  info2: {
-    child: {
-      ChildConstructor: new Element({
-        text: {
-          $: 'parent.title'
-        }
-      }).Constructor,
-      $: 'upward.content'
+      $: 'upward.content',
+      ChildConstructor: Item
     }
   }
 })
-
-app.val.content.set({
-    five: {
-      title: 'five'
-    }
-  })
-  // app.content.trups.remove()
+// app.val.content.one.title.val = 'burp'
 console.log('>>', app.info.child.val)
-console.log('>>', app.info2.child.val)
 
 // var ref = new Observable({
 //   child: {

@@ -2,24 +2,38 @@ require('./style.less')
   // var app = require('../../lib/app')
 var Observable = require('vjs/lib/observable')
 var Element = require('../../')
+
+
+var Operator = require('vjs/lib/operator')
+
+Operator.prototype.define({
+  generateConstructor (){
+    return function(val, event, parent, key){
+      if( parent instanceof Element){
+        parent.on(function(){
+          this.val
+        })
+      }
+      return Operator.apply(this, arguments)
+    }
+  }
+})
+
 Observable.prototype.inject(require('vjs/lib/operator/add'))
 Observable.prototype.inject(require('vjs/lib/operator/subscribe'))
 Element.prototype.inject(require('../../lib/property/text'))
 var app = new Element()
 
 var Item = new Element({
-  // nested: {
-  //   text: {
-  //     $: 'parent.parent.title'
-  //   }
-  // },
-  text:{
-    $:'parent.subtitle'
+  nested: {
+    text: {
+      $: 'parent.parent.title'
+    }
+  },
+  text: {
+    $: 'parent.subtitle'
   }
 }).Constructor
-
-console.log('parent listener?',Item.prototype._on.parentEmitter)
-console.log('----------------')
 
 var app = new Element({
   node: document.body,
@@ -45,13 +59,8 @@ var app = new Element({
   }),
   info: {
     holder: {
-      on:{
-        data(){
-          this.val
-        }
-      },
-      $: 'upward.content',
-      ChildConstructor: Item
+      ChildConstructor: Item,
+      $: 'upward.content'
     }
   }
 })

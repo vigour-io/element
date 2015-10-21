@@ -22,16 +22,17 @@ Operator.prototype.define({
 Observable.prototype.inject(require('vjs/lib/operator/add'))
 Observable.prototype.inject(require('vjs/lib/operator/subscribe'))
 Element.prototype.inject(require('../../lib/property/text'))
-var app = new Element()
 
 var Item = new Element({
-  nested: {
+  titleField: {
     text: {
       $: 'parent.parent.title'
     }
   },
-  text: {
-    $: 'parent.subtitle'
+  subtitleField:{
+    text: {
+      $: 'parent.parent.subtitle'
+    }
   }
 }).Constructor
 

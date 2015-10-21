@@ -34,8 +34,8 @@
     "browserify": {
       "transforms": []
     },
-    "less": {
-      "options": {}
+    "less-options": {
+      "strictMath":true
     },
     "smaps": false,
     "source-maps": false,

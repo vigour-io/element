@@ -13,10 +13,6 @@ Element.prototype.inject(
   require('../../lib/events/click')
 )
 
-var Bla = new Element({
-  key: 'bla',
-}).Constructor
-
 var thing = new Element({
   key: 'thing',
   image: {}

@@ -5,33 +5,21 @@ var Element = require('../../')
 Observable.prototype.inject(require('vjs/lib/operator/add'))
 Observable.prototype.inject(require('vjs/lib/operator/subscribe'))
 Element.prototype.inject(require('../../lib/property/text'))
+var app = new Element()
 
 var Item = new Element({
-  nested: {
-    text: {
-      $: 'parent.parent.title'
-    }
+  // nested: {
+  //   text: {
+  //     $: 'parent.parent.title'
+  //   }
+  // },
+  text:{
+    $:'parent.subtitle'
   }
 }).Constructor
 
-// var content = new Observable({
-//   one: {
-//     title: 'one',
-//     subtitle: 'studje'
-//   },
-//   two: {
-//     title: 'two',
-//     subtitle: 'nerdje'
-//   },
-//   three: {
-//     title: 'three',
-//     subtitle: 'mannetje'
-//   },
-//   four: {
-//     title: 'four',
-//     subtitle: 'gek'
-//   }
-// })
+console.log('parent listener?',Item.prototype._on.parentEmitter)
+console.log('----------------')
 
 var app = new Element({
   node: document.body,
@@ -56,14 +44,21 @@ var app = new Element({
     }
   }),
   info: {
-    child: {
+    holder: {
+      on:{
+        data(){
+          this.val
+        }
+      },
       $: 'upward.content',
       ChildConstructor: Item
     }
   }
 })
-// app.val.content.one.title.val = 'burp'
-console.log('>>', app.info.child.val)
+
+// console.log('>>', app.info.holder.val)
+
+// console.log('>>', app.info.holder.val)
 
 // var ref = new Observable({
 //   child: {

@@ -1,4 +1,4 @@
-// require('./style.less')
+require('./style.less')
 
 // handle style require in node
 
@@ -18,36 +18,10 @@ Element.prototype.inject(
   // require('../../lib/property/opacity')
 )
 
-<<<<<<< HEAD
-var Bla = new Element({
-  key: 'bla'
-}).Constructor
-
-var thing = new Element({
-  css: 'thing',
-  x: { val: 20, $animation: 20 },
-  text: 'a'
-})
-
-// app.set({
-//   a: new thing.Constructor(),
-//   b: new thing.Constructor(),
-//   c: new thing.Constructor()
-// })
-
-var n = 4e2
-for (let i = 0; i < n; i++) {
-  app.setKey( i, new thing.Constructor() )
-}
-
-// app.set({
-//   // text: app.a.x.val
-// })
-=======
 var Observable = require('vjs/lib/observable')
 var Property = require('../../lib/property')
 
-var n = 1e3
+var n = 1e1
 
 var thing = new Element()
 
@@ -157,6 +131,7 @@ function doTimed() {
   setTimeout(function() {
     var t = Date.now()
     loop()
+    render()
     // console.clear()
     // console.log('timed update test on data', (Date.now()-t)/1000, 's')
     doTimed()
@@ -165,7 +140,7 @@ function doTimed() {
 
 
 
-doTimed()
+// doTimed()
 //
 var a = new Observable({
   b:{}
@@ -187,10 +162,9 @@ a.b.subscribe({
 a.set({
   valerio: true
 })
->>>>>>> feature/Animation
 
 
-// doTimed()
+doTimed()
 
 // var t = Date.now()
 //
@@ -217,20 +191,30 @@ a.set({
 // app.set({ node: document.body })
 
 console.log('wtf???', app.node)
-// document.body.appendChild(app.node)
+
+var holder = document.createElement('div')
+document.body.appendChild(holder)
 
 var ReactDOM = require('react-dom')
 //
-ReactDOM.render(
-  app.node,
-  document.body
-);
+//
+//
+//
+function render() {
+  ReactDOM.render(
+    app.node,
+    holder
+  )
+}
+render()
+
+// window.requestAnimationFrame(render)
 
 // var ReactDOMServer = require('react-dom')
 
 // var ReactDOMServer = require('react-dom/server')
 
-var exampleApp = require('../../examples/animnewoperator/100k')
+// var exampleApp = require('../../examples/animnewoperator/100k')
 // var parsed = parse(exampleApp)
 
 

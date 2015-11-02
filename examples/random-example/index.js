@@ -61,7 +61,7 @@ var data = new Observable({
 var app = new Element({
   node: document.body,
   val: data,
-  info1:{
+  info1: {
     holder: {
       ChildConstructor: Item,
       $: 'upward.content'

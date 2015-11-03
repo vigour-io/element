@@ -4,7 +4,7 @@
   "version": "0.0.2",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/gaston test",
+    "test": "gaston test",
     "doc": "node documentation.js"
   },
   "repository": {
@@ -24,8 +24,7 @@
   },
   "devDependencies": {
     "dmd": "^1.1.1",
-    "jsdoc-to-markdown": "^1.1.1",
-    "gaston": "git+ssh://git@github.com:vigour-io/gaston.git#develop"
+    "jsdoc-to-markdown": "^1.1.1"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

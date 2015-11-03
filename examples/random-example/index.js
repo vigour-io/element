@@ -41,33 +41,41 @@ var data = new Observable({
       title: 'one',
       // subtitle: 'studje',
       // description: 'loremipsum'
-    }//,
-    // two: {
-    //   title: 'two',
-    //   // subtitle: 'nerdje',
-    //   // description: 'loremipsum'
-    // },
-    // three: {
-    //   title: 'three',
-    //   // subtitle: 'mannetje',
-    //   // description: 'loremipsum'
-    // },
-    // four: {
-    //   title: 'four',
-    //   // subtitle: 'gek',
-    //   // description: 'loremipsum'
-    // }
+    },
+    two: {
+      title: 'two',
+      // subtitle: 'nerdje',
+      // description: 'loremipsum'
+    },
+    three: {
+      title: 'three',
+      // subtitle: 'mannetje',
+      // description: 'loremipsum'
+    },
+    four: {
+      title: 'four',
+      // subtitle: 'gek',
+      // description: 'loremipsum'
+    }
   }
 })
 
+var item = new Item({
+    // text:'1',
+    key:'item',
+    val:data.content.one
+  })
+
 var app = new Element({
+  key:'APP',
   node: document.body,
   val: data,
   // item1:new Item({
   //   // text:'1',
-  //   key:'itemOne',
+  //   key:'itemOne'//,
   //   val:data.content.one
   // }),
+  // item2:item
   // item2:new Item({
   //   // text:2,
   //   key:'itemTwo',
@@ -89,7 +97,12 @@ var app = new Element({
   // notpattern:{text:'notpattern'}
 })
 
-// var toggle = 0
+// app.item1.val = data.content.one
+
+// app.holder.val.one.val = data.content.two
+console.log('RESULT',app.holder.val.one.titleField.text.val)
+
+// // var toggle = 0
 // setInterval(() => {
 //   // data.content[toggle === 1 ? 'one' : 'two'].title.val = Math.random()
 //   // toggle = toggle === 1 ? 0 : 1

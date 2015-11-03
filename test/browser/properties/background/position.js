@@ -22,7 +22,7 @@ describe('position', function () {
 
   describe('remove property', function () {
     xit('should not have backgroundPosition when properties set to null', function () {
-      // TODO: vjs still broken to run this test.
+      // TODO: vigour-js still broken to run this test.
       element.background.set({
         x: null,
         y: null

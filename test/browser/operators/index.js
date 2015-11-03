@@ -16,7 +16,7 @@ describe('Using the add operator on Element', function () {
 
 describe('Using the transform operator on Element', function () {
   var elem = new Element({
-    inject: require('vjs/lib/operator/transform'),
+    inject: require('vigour-js/lib/operator/transform'),
     $transform: {
       one: {},
       two: {}

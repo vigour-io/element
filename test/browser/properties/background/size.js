@@ -22,7 +22,7 @@ describe('size', function () {
 
   describe('remove property', function () {
     xit('should not have backgroundSize when properties set to null', function () {
-      // TODO: vjs still broken to run this test.
+      // TODO: vigour-js still broken to run this test.
       element.background.set({
         width: null,
         height: null

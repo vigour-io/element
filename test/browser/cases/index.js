@@ -109,7 +109,7 @@ describe('--> Using Cases' , function () {
     })
 
     // Talk with Youzii
-    // ===> have to test if this works for operators in general (in vjs)
+    // ===> have to test if this works for operators in general (in vigour-js)
     describe('remove cases property' , function () {
       it('remove cases from b' , function (done) {
         b.text.desktop.remove()

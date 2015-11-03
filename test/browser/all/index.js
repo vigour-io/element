@@ -16,3 +16,7 @@ describe('Properties', function () {
 describe('Input', function () {
   require('../input')
 })
+
+describe('Operators', function () {
+  require('../operators')
+})

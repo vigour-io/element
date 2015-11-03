@@ -1,5 +1,6 @@
 {
-  "name": "element",
+  "name": "vigour-element",
+  "description": "DOM stuff for vigour-js",
   "version": "0.0.2",
   "main": "index.js",
   "scripts": {
@@ -11,7 +12,7 @@
     "url": "https://github.com/vigour-io/element.git"
   },
   "author": "vigour.io <dev@vigour.io>",
-  "license": "GPL",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/vigour-io/element/issues"
   },
@@ -27,6 +28,20 @@
     "gaston": "git+ssh://git@github.com:vigour-io/gaston.git#develop"
   },
   "homepage": "https://github.com/vigour-io/element",
+  "keywords": [
+    "vigour-js",
+    "element",
+    "DOM"
+  ],
+  "contributors": [
+    "Youri Daamen <youri@vigour.io>",
+    "Jim de Beer <jim@vigour.io>",
+    "Nika Tomadze <nika@vigour.io>",
+    "Renan Calvalho <renan@vigour.io>"
+  ],
+  "engines": {
+
+  },
   "gaston": {
     "port": 8080,
     "socket-port": 9000,

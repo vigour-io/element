@@ -13,11 +13,19 @@ describe('Add scroll listener', function () {
       app.elem.remove()
     }
     elem = new Element()
-    app.set({elem: elem})
   })
 
   it('app.elem.set({ on:{ scroll:function(){ scrollPath = this.path } } })', function () {
-    elem.set({ on: { scroll: function () { scrollPath = this.path } } })
+    elem.set({
+      on: {
+        scroll: function () {
+          scrollPath = this.path
+        }
+      }
+    })
+    app.set({
+      elem: new elem.Constructor()
+    })
   })
 
   it('elem now has a scroll listener', function () {
@@ -39,7 +47,9 @@ describe('Create instance of elem', function () {
 
   it('app.elemInstance = new elem.Constructor()', function () {
     elemInstance = new elem.Constructor()
-    app.set({elemInstance: elemInstance})
+    app.set({
+      elemInstance: elemInstance
+    })
   })
 
   it('elemInstance inherited scroll listener', function () {
@@ -59,7 +69,7 @@ describe('Emit scroll on elem', function () {
   })
 
   it("elem.emit('scroll')", function () {
-    elem.emit('scroll')
+    app.elem.emit('scroll')
   })
 
   it('elem._on.scroll fired once', function () {
@@ -91,7 +101,7 @@ describe('Trigger scroll on elem node', function () {
   before(function () {
     scrollPath = void 0
     spy.reset()
-    fireEvent(elem.node, 'scroll')
+    fireEvent(app.elem.node, 'scroll')
   })
 
   it('elem._on.scroll fired once', function () {
@@ -109,7 +119,7 @@ describe('Trigger scroll on elemInstance node', function () {
   before(function () {
     scrollPath = void 0
     spy.reset()
-    fireEvent(elemInstance.node, 'scroll')
+    fireEvent(app.elemInstance.node, 'scroll')
   })
 
   it('elemInstance._on.scroll fired once', function () {

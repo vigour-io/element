@@ -18,7 +18,6 @@ describe('--> backgroundImage', function () {
 
   it('should set the backgound image for element', function (done) {
     var elementImage = element.node.style.backgroundImage.indexOf('mouse.png')
-    console.log('???', element.node.style.backgroundImage)
     expect(elementImage).to.not.be.equal(-1)
     done()
   })

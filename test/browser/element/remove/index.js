@@ -3,35 +3,32 @@ describe('Removing children', function () {
   var Element = require('../../../../lib/element')
 
   var elem = new Element({
-    key: 'a',
     elemChild: {},
     elemChild2: {}
   })
 
-  var elemInstance = new elem.Constructor({
-    key: 'b',
-    elemInstanceChild: {}
-  })
-
   app.set({
-    elem: elem,
-    elemInstance: elemInstance
+    elem: new elem.Constructor({
+      key: 'a'
+    }),
+    elemInstance: new elem.Constructor({
+      key: 'b',
+      elemInstanceChild: {}
+    })
   })
 
   describe('Removing child from original', function () {
-    it('app.elem.elemChild.remove()', function () {
+    it('elem.elemChild.remove()', function () {
       elem.elemChild.remove()
     })
 
     it('app.elem.elemChild is removed', function () {
       // this test is wrong
-      // console.log('1!@#!@#?',elem.elemChild )
-      expect(elem.elemChild).to.not.be.ok
+      expect(app.elem.elemChild).to.not.be.ok
     })
 
     it('app.elemInstance.elemChild is also removed', function () {
-      // console.clear()
-      expect(elemInstance.elemChild).to.not.be.ok
+      expect(app.elemInstance.elemChild).to.not.be.ok
     })
     //
     // //TODO: this test is good, we need to fix remove for nodes, and uncomment the test
@@ -43,17 +40,16 @@ describe('Removing children', function () {
   // remove child from instance
   describe('Remove child from instance', function () {
     it('app.elemInstance.elemChild2.remove()', function () {
-      elemInstance.elemChild2.remove()
+      app.elemInstance.elemChild2.remove()
     })
 
     it('app.elemInstance.elemChild2 is removed', function () {
-      expect(elemInstance.elemChild2).to.be.null
+      expect(app.elemInstance.elemChild2).to.be.null
     })
 
     it('app.elem.elemChild2 is not removed', function () {
       // nu deze nog!
-
-      expect(elem.elemChild2).to.be.ok
+      expect(app.elem.elemChild2).to.be.ok
     })
 
     // TODO: this test is good, we need to fix remove for nodes, and uncomment the test
@@ -64,8 +60,8 @@ describe('Removing children', function () {
   })
 
   describe('Removing original', function () {
-    it('app.elem.remove()', function () {
-      app.elem.remove()
+    it('elem.remove()', function () {
+      elem.remove()
     })
 
     it('app.elem is removed', function () {

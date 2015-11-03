@@ -13,11 +13,11 @@ describe('Add mouseup listener', function () {
       app.elem.remove()
     }
     elem = new Element()
-    app.set({elem: elem})
   })
 
   it('app.elem.set({ on:{ mouseup:function(){ mouseupPath = this.path } } })', function () {
     elem.set({ on: { mouseup: function () { mouseupPath = this.path } } })
+    app.set({elem: new elem.Constructor()})
   })
 
   it('elem now has a mouseup listener', function () {
@@ -54,12 +54,12 @@ describe('Create instance of elem', function () {
 // Fire mouseup on elem
 describe('Emit mouseup on elem', function () {
   before(function () {
-    spy = sinon.spy(elem._on.mouseup.fn, 'val')
+    spy = sinon.spy(app.elem._on.mouseup.fn, 'val')
     mouseupPath = void 0
   })
 
   it("elem.emit('mouseup')", function () {
-    elem.emit('mouseup')
+    app.elem.emit('mouseup')
   })
 
   it('elem._on.mouseup fired once', function () {
@@ -91,7 +91,7 @@ describe('Trigger mouseup on elem node', function () {
   before(function () {
     mouseupPath = void 0
     spy.reset()
-    fireEvent(elem.node, 'mouseup')
+    fireEvent(app.elem.node, 'mouseup')
   })
 
   it('elem._on.mouseup fired once', function () {
@@ -109,7 +109,7 @@ describe('Trigger mouseup on elemInstance node', function () {
   before(function () {
     mouseupPath = void 0
     spy.reset()
-    fireEvent(elemInstance.node, 'mouseup')
+    fireEvent(app.elemInstance.node, 'mouseup')
   })
 
   it('elemInstance._on.mouseup fired once', function () {

@@ -13,24 +13,23 @@ describe('Add mousedown listener', function () {
       app.elem.remove()
     }
     elem = new Element()
-    app.set({
-      elem: elem
-    })
   })
 
   it('app.elem.set({ on:{ mousedown:function(){ mousedownPath = this.path } } })', function () {
     elem.set({
       on: {
         mousedown: function () {
-          console.log('funtimes')
           mousedownPath = this.path
         }
       }
     })
+    app.set({
+      elem: new elem.Constructor()
+    })
   })
 
   it('elem now has a mousedown listener', function () {
-    expect(elem._on.mousedown).to.be.ok
+    expect(app.elem._on.mousedown).to.be.ok
   })
 
   it('mousedownPath is undefined', function () {
@@ -70,9 +69,7 @@ describe('Emit mousedown on elem', function () {
   })
 
   it("elem.emit('mousedown')", function () {
-    console.log('------------')
-    elem.emit('mousedown')
-    console.log('------------')
+    app.elem.emit('mousedown')
   })
 
   it('elem._on.mousedown fired once', function () {
@@ -104,7 +101,7 @@ describe('Trigger mousedown on elem node', function () {
   before(function () {
     mousedownPath = void 0
     spy.reset()
-    fireEvent(elem.node, 'mousedown')
+    fireEvent(app.elem.node, 'mousedown')
   })
 
   it('elem._on.mousedown fired once', function () {

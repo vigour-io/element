@@ -1,4 +1,6 @@
+require('vigour-scratch/index.less')
 require('./style.less')
+
 var app = require('../../lib/app')
 var Element = require('../../lib/element')
 var Property = require('../../lib/property')

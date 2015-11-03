@@ -1,10 +1,11 @@
 require('./style.less')
-var Observable = require('vjs/lib/observable')
+
+var Observable = require('vigour-js/lib/observable')
 var Element = require('../../')
 
-Observable.prototype.inject(require('vjs/lib/operator/add'))
-Observable.prototype.inject(require('vjs/lib/operator/transform'))
-Observable.prototype.inject(require('vjs/lib/operator/subscribe'))
+Observable.prototype.inject(require('vigour-js/lib/operator/add'))
+Observable.prototype.inject(require('vigour-js/lib/operator/subscribe'))
+Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
 Element.prototype.inject(require('../../lib/property/text'))
 
 var Item = new Element({
@@ -113,14 +114,3 @@ var app = new Element({
 //     }
 //   }
 // })
-
-// var app = new Element({
-//   node: document.body,
-//   val: data,
-//   holder: {
-//     ChildConstructor: Item,
-//     $: 'upward.content'
-//   }
-// })
-
-// data.content.two.title.val = 'POWER'

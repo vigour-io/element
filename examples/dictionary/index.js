@@ -3,7 +3,7 @@ require('./style.less')
 var app = require('../../lib/app')
 var dictionary = window.dictionary = require('../../lib/dictionary')
 var Element = require('../../lib/element')
-var Observable = require('vjs/lib/observable')
+var Observable = require('vigour-js/lib/observable')
 var en = require('./en.json')
 var nl = require('./nl.json')
 var toggle = true

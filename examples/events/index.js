@@ -6,7 +6,7 @@ var Element = require('../../lib/element')
 Element.prototype.inject(
   require('../../lib/property/css'),
   require('../../lib/property/text'),
-  require('vjs/lib/methods/lookUp')
+  require('vigour-js/lib/methods/lookUp')
 )
 
 // Element.prototype.inject(

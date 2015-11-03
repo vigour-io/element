@@ -1,4 +1,4 @@
-var Observable = require('vjs/lib/observable')
+var Observable = require('vigour-js/lib/observable')
 
 var MockNode = function () {}
 Observable.prototype.define.call(MockNode.prototype, {

@@ -8,8 +8,8 @@ var App = require('../../lib/app')
 var Element = require('../../lib/element/')
 Element.prototype.inject(
   require('../../lib/property/text'),
-  require('vjs/lib/methods/serialize'),
-  require('vjs/lib/methods/plain')
+  require('vigour-js/lib/methods/serialize'),
+  require('vigour-js/lib/methods/plain')
 
 )
 

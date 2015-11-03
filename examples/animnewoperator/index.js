@@ -44,7 +44,7 @@ for (let i = 0; i < n; i++) {
 //   // text: app.a.x.val
 // })
 =======
-var Observable = require('vjs/lib/observable')
+var Observable = require('vigour-js/lib/observable')
 var Property = require('../../lib/property')
 
 var n = 1e3
@@ -61,7 +61,7 @@ var test = new Observable({
   trackInstances: true,
   cnt: {
     val: 1,
-    inject: require('vjs/lib/operator/all'),
+    inject: require('vigour-js/lib/operator/all'),
     // on: {
     //   data: function () {
     //     this.val

@@ -2,7 +2,7 @@ require('./style.less')
 
 var app = require('../../lib/app')
 var Element = require('../../lib/element')
-// var Observable = require('vjs/lib/observable')
+// var Observable = require('vigour-js/lib/observable')
 
 Element.prototype.inject(
   require('../../lib/property/css'),

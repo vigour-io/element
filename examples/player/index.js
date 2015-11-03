@@ -1,13 +1,13 @@
 require('./style.less')
 var app = require('../../lib/app')
 var Element = require('../../lib/element')
-var Observable = require('vjs/lib/observable')
-var Emitter = require('vjs/lib/emitter')
+var Observable = require('vigour-js/lib/observable')
+var Emitter = require('vigour-js/lib/emitter')
 Element.prototype.inject(
   require('../../lib/property/css'),
   require('../../lib/property/text'),
   require('../../lib/property/attributes'),
-  require('vjs/lib/methods/lookUp')
+  require('vigour-js/lib/methods/lookUp')
 )
 
 var readyPlayer = require('./src/controls.js').readyPlayer

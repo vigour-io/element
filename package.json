@@ -1,10 +1,10 @@
 {
   "name": "vigour-element",
   "description": "DOM stuff for vigour-js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/.bin/gaston test",
+    "test": "gaston test",
     "doc": "node documentation.js"
   },
   "repository": {
@@ -19,13 +19,12 @@
   "dependencies": {
     "jsdom": "6.5.1",
     "react": "0.14.0",
-    "vigour-scratch": "git+ssh://git@github.com:vigour-io/scratch.git",
-    "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
+    "vigour-js": "^0.2.2",
+    "vigour-scratch": "git+ssh://git@github.com:vigour-io/scratch.git"
   },
   "devDependencies": {
     "dmd": "^1.1.1",
-    "jsdoc-to-markdown": "^1.1.1",
-    "gaston": "git+ssh://git@github.com:vigour-io/gaston.git#develop"
+    "jsdoc-to-markdown": "^1.1.1"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [
@@ -39,9 +38,7 @@
     "Nika Tomadze <nika@vigour.io>",
     "Renan Calvalho <renan@vigour.io>"
   ],
-  "engines": {
-
-  },
+  "engines": {},
   "gaston": {
     "port": 8080,
     "socket-port": 9000,

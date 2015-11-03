@@ -1,7 +1,7 @@
 var Element = require('../../../lib/element')
 var Property = require('../../../lib/property')
-var Base = require('vjs/lib/observable')
-var Observable = require('vjs/lib/observable')
+var Base = require('vigour-js/lib/observable')
+var Observable = require('vigour-js/lib/observable')
 var ua = require('../../../lib/ua')
 var transform = ua.prefix + 'Transform'
 

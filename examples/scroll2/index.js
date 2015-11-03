@@ -5,7 +5,7 @@ var Property = require('../../lib/property')
 
 Property.prototype.inject(
   require('../../lib/animation'),
-  require('vjs/lib/operator/subscribe')
+  require('vigour-js/lib/operator/subscribe')
 )
 
 var app = require('../../lib/app')

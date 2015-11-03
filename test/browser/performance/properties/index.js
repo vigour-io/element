@@ -1,6 +1,6 @@
 describe('properties performance', function () {
   // this is buggy shit
-  var Base = require('vjs/lib/base')
+  var Base = require('vigour-js/lib/base')
   var Element = require('../../../../lib/element')
   var Property = require('../../../../lib/property')
 

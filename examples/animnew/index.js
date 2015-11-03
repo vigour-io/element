@@ -18,7 +18,7 @@ Element.prototype.inject(
   // require('../../lib/property/opacity')
 )
 
-var Observable = require('vjs/lib/observable')
+var Observable = require('vigour-js/lib/observable')
 var Property = require('../../lib/property')
 
 var n = 1e1
@@ -35,7 +35,7 @@ var test = new Observable({
   trackInstances: true,
   cnt: {
     val: 1,
-    inject: require('vjs/lib/operator/all'),
+    inject: require('vigour-js/lib/operator/all'),
     // on: {
     //   data: function () {
     //     this.val

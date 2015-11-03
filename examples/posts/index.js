@@ -7,7 +7,7 @@ Element.prototype.inject(
   require( '../../lib/property/css' ),
   require( '../../lib/property/text' ),
   require( '../../lib/property/attributes' ),
-  require( 'vjs/lib/methods/lookUp')
+  require( 'vigour-js/lib/methods/lookUp')
 )
 //val, event, parent, key
 
@@ -72,9 +72,9 @@ function shared() {
 
 }
 
-var Observable = require('vjs/lib/observable')
+var Observable = require('vigour-js/lib/observable')
 
-var Event = require('vjs/lib/event')
+var Event = require('vigour-js/lib/event')
 
 var props = window.props = new Observable()
 

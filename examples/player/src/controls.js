@@ -1,4 +1,4 @@
-var Observable = require('vjs/lib/observable')
+var Observable = require('vigour-js/lib/observable')
 var app = require('../../../lib/app')
 
 var readyPlayer = new Observable({

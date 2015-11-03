@@ -2,7 +2,7 @@ var Element = require('../../../lib/element')
 
 describe('Using the add operator on Element', function () {
   var elem = new Element({
-    inject: require('vjs/lib/operator/add'),
+    inject: require('vigour-js/lib/operator/add'),
     $add: {
       one: {},
       two: {}

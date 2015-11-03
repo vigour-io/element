@@ -16,8 +16,9 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
-    "react": "0.14.0",
     "jsdom": "6.5.1",
+    "react": "0.14.0",
+    "vigour-scratch": "git+ssh://git@github.com:vigour-io/scratch.git",
     "vjs": "git+ssh://git@github.com:vigour-io/vjs.git#develop"
   },
   "devDependencies": {
@@ -37,7 +38,7 @@
       "transforms": []
     },
     "less-options": {
-      "strictMath":true
+      "strictMath": true
     },
     "smaps": false,
     "source-maps": false,
@@ -45,7 +46,14 @@
     "require-paths": {}
   },
   "standard": {
-    "globals": [ "describe", "it", "beforeEach", "sinon", "expect", "xit" ]
+    "globals": [
+      "describe",
+      "it",
+      "beforeEach",
+      "sinon",
+      "expect",
+      "xit"
+    ]
   },
   "vigour": {
     "services": {

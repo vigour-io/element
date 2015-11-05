@@ -9,13 +9,12 @@ Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
 Element.prototype.inject(require('../../lib/property/text'))
 
 var Item = new Element({
-  key: 'original',
   text: {
-    $: '../title'
+    $: '../title' // parent.title
   },
   nested: {
     text: {
-      $: '../../subtitle'
+      $: '../../subtitle' // parent.parent.subtitle
     }
   },
   powertitle: {
@@ -25,92 +24,161 @@ var Item = new Element({
   }
 }).Constructor
 
-var data = new Observable()
+var data = new Observable({
+  channels: {
+    one: {
+      title: 'one',
+      subtitle: 'studje',
+      power: 'loremipsum'
+    },
+    two: {
+      title: 'two',
+      subtitle: 'nerdje',
+      power: 'loremipsum'
+    },
+    three: {
+      title: 'three',
+      subtitle: 'mannetje',
+      power: 'loremipsum'
+    },
+    four: {
+      title: 'four',
+      subtitle: 'gek',
+      power: 'loremipsum'
+    }
+  },
+  episodes:{
+    one: {
+      title: 'one',
+      subtitle: 'studje',
+      power: 'loremipsum'
+    },
+    two: {
+      title: 'two',
+      subtitle: 'nerdje',
+      power: 'loremipsum'
+    },
+    three: {
+      title: 'three',
+      subtitle: 'mannetje',
+      power: 'loremipsum'
+    },
+    four: {
+      title: 'four',
+      subtitle: 'gek',
+      power: 'loremipsum'
+    }
+  }
+})
 
-var count = 1
-while (count <= 10) {
-  let key = 'el' + count
-  data.setKey(key, {
-    title: key + '-title',
-    subtitle: key + '-subtitle',
-    power: key + '-powertitle'
-  })
-  count++
-}
+var ChannelList = new Element({
+  ChildConstructor: Item,
+  // $: 'upward.channels'
+}).Constructor
+
+// var EpisodeList = new Element({
+//   ChildConstructor: Item,
+//   $: 'upward.episodes'
+// }).Constructor
 
 var app = new Element({
   node: document.body,
-  ChildConstructor: Item,
-  $transform: data
+  // val: data,
+  list:new ChannelList({
+    $transform:data.channels
+  })
+  // nested:{
+  //   very:{
+  //     deep:{
+  //       in:{
+  //         here:{
+  //           list:new ChannelList()
+  //         }
+  //       }
+  //     },
+  //     list:new EpisodeList()
+  //   }
+  // }
 })
 
-// setInterval(function(){
-//   data.each(function(prop, key){
-//     prop.set({
-//       title:key + '-title:' + Math.random(),
-//       subtitle:key + '-subtitle:' + Math.random(),
-//       power:key + '-powertitle:' + Math.random()
-//     })
-//   })
-// },200)
+// var elem = new Element()
 
-// require('./style.less')
-//   // var app = require('../../lib/app')
-// var Observable = require('vjs/lib/observable')
-// var Element = require('../../')
-
-// Observable.prototype.inject(require('vjs/lib/operator/add'))
-// Observable.prototype.inject(require('vjs/lib/operator/subscribe'))
-// Element.prototype.inject(require('../../lib/property/text'))
-
-// var Item = new Element({
-//   key:'original',
-//   titleField: {
-//     text: {
-//       $: 'upward.title'
+//   nested:{
+//     nest:{
+//       list1: new ChannelList(),
 //     }
-//   }//,
-//   // subtitleField: {
-//   //   nested: {
-//   //     nested: {
-//   //       text: {
-//   //         $: 'upward.subtitle'
-//   //       }
-//   //     }
-//   //   }
-//   // },
-//   // desc: {
-//   //   nested: {
-//   //     nested: {
-//   //       text: {
-//   //         $: 'upward.description'
-//   //       }
-//   //     }
-//   //   }
-//   // }
-// }).Constructor
+//   }
+//   // list2: new EpisodeList()
+// })
+  // console.clear()
+var cnt = 0
+setInterval(function(){
+  var set = {}
+  var key = 'channel'+ ++cnt
+  set[key] = {
+    title:key + '-title',
+    subtitle:key + '-subtitle',
+    power:key + '-powertitle'
+  }
+  data.channels.set(set)
+},1000)
+  // app.list2.val
+  // setInterval(function () {
+  //   var randomNr = Math.random()
+  //   data.items.each(function (prop, key) {
+  //     prop.set({
+  //       title: key + '-title' + randomNr,
+  //       subtitle: key + '-subtitle' + randomNr,
+  //       power: key + '-power' + randomNr
+  //     })
+  //   })
+  // }, 500)
 
 // var data = new Observable({
-//   content: {
-//     one: {
-//       title: 'one',
-//       subtitle: 'studje',
-//       description: 'loremipsum'
-//     },
-//     two: {
-//       title: 'two',
-//       subtitle: 'nerdje',
-//       description: 'loremipsum'
-//     },
-//     three: {
-//       title: 'three',
-//       subtitle: 'mannetje',
-//       description: 'loremipsum'
-//     },
-//     four: {
-//       title: 'four',
-//       subtitle: 'gek',
-//       description: 'loremipsum'
+//   one: {
+//     // title: 'one',
+//     // subtitle: 'studje',
+//     // power: 'loremipsum'
+//   },
+//   two: {
+//   //   title: 'two',
+//   //   subtitle: 'nerdje',
+//   //   power: 'loremipsum'
+//   },
+//   three: {
+//   //   title: 'three',
+//   //   subtitle: 'mannetje',
+//   //   power: 'loremipsum'
+//   },
+//   four: {
+//     // title: 'four',
+//     // subtitle: 'gek',
+//     // power: 'loremipsum'
+//   }
+// })
+
+// var app = new Element({
+//   node: document.body,
+//   ChildConstructor: Item,
+//   $transform: data
+// })
+
+// setInterval(function () {
+//   var randomNr = Math.random()
+//   data.each(function (prop, key) {
+//     prop.set({
+//       title: key + '-title' + randomNr,
+//       subtitle: key + '-subtitle' + randomNr,
+//       power: key + '-power' + randomNr
+//     })
+//   })
+// }, 500)
+
+// console.clear()
+// var obs = new Observable({
+//   on:{
+//     property(data){
+//       if(data.added) console.error('added',data.added)
 //     }
 //   }
 // })

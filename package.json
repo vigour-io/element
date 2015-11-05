@@ -17,14 +17,10 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
-    "jsdom": "6.5.1",
-    "react": "0.14.0",
     "vigour-js": "^0.2.2"
   },
   "devDependencies": {
-    "dmd": "^1.1.1",
-    "vigour-scratch": "*",
-    "jsdoc-to-markdown": "^1.1.1"
+    "vigour-scratch": "*"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

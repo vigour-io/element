@@ -19,11 +19,11 @@
   "dependencies": {
     "jsdom": "6.5.1",
     "react": "0.14.0",
-    "vigour-js": "^0.2.2",
-    "vigour-scratch": "git+ssh://git@github.com:vigour-io/scratch.git"
+    "vigour-js": "^0.2.2"
   },
   "devDependencies": {
     "dmd": "^1.1.1",
+    "vigour-scratch": "*",
     "jsdoc-to-markdown": "^1.1.1"
   },
   "homepage": "https://github.com/vigour-io/element",

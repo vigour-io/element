@@ -17,7 +17,8 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
-    "vigour-js": "^0.2.2"
+    "vigour-js": "^0.2.2",
+    "vigour-ua": "^0.0.1"
   },
   "devDependencies": {
     "vigour-scratch": "*"

@@ -12,16 +12,16 @@ var Item = new Element({
   text: {
     $: '../title' // parent.title
   },
-  nested: {
-    text: {
-      $: '../../subtitle' // parent.parent.subtitle
-    }
-  },
-  powertitle: {
-    text: {
-      $: '../../power'
-    }
-  }
+  // nested: {
+  //   text: {
+  //     $: '../../subtitle' // parent.parent.subtitle
+  //   }
+  // },
+  // powertitle: {
+  //   text: {
+  //     $: '../../power'
+  //   }
+  // }
 }).Constructor
 
 var data = new Observable({
@@ -36,39 +36,39 @@ var data = new Observable({
       subtitle: 'nerdje',
       power: 'loremipsum'
     },
-    three: {
-      title: 'three',
-      subtitle: 'mannetje',
-      power: 'loremipsum'
-    },
-    four: {
-      title: 'four',
-      subtitle: 'gek',
-      power: 'loremipsum'
-    }
+    // three: {
+    //   title: 'three',
+    //   subtitle: 'mannetje',
+    //   power: 'loremipsum'
+    // },
+    // four: {
+    //   title: 'four',
+    //   subtitle: 'gek',
+    //   power: 'loremipsum'
+    // }
   },
-  episodes:{
-    one: {
-      title: 'one',
-      subtitle: 'studje',
-      power: 'loremipsum'
-    },
-    two: {
-      title: 'two',
-      subtitle: 'nerdje',
-      power: 'loremipsum'
-    },
-    three: {
-      title: 'three',
-      subtitle: 'mannetje',
-      power: 'loremipsum'
-    },
-    four: {
-      title: 'four',
-      subtitle: 'gek',
-      power: 'loremipsum'
-    }
-  }
+  // episodes:{
+  //   one: {
+  //     title: 'one',
+  //     subtitle: 'studje',
+  //     power: 'loremipsum'
+  //   },
+  //   two: {
+  //     title: 'two',
+  //     subtitle: 'nerdje',
+  //     power: 'loremipsum'
+  //   },
+  //   three: {
+  //     title: 'three',
+  //     subtitle: 'mannetje',
+  //     power: 'loremipsum'
+  //   },
+  //   four: {
+  //     title: 'four',
+  //     subtitle: 'gek',
+  //     power: 'loremipsum'
+  //   }
+  // }
 })
 
 var ChannelList = new Element({
@@ -83,7 +83,7 @@ var ChannelList = new Element({
 
 var app = new Element({
   node: document.body,
-  // val: data,
+  val: data,
   list:new ChannelList({
     $transform:data.channels
   })
@@ -111,17 +111,17 @@ var app = new Element({
 //   // list2: new EpisodeList()
 // })
   // console.clear()
-var cnt = 0
-setInterval(function(){
-  var set = {}
-  var key = 'channel'+ ++cnt
-  set[key] = {
-    title:key + '-title',
-    subtitle:key + '-subtitle',
-    power:key + '-powertitle'
-  }
-  data.channels.set(set)
-},1000)
+// var cnt = 0
+// setInterval(function(){
+//   var set = {}
+//   var key = 'channel'+ ++cnt
+//   set[key] = {
+//     title:key + '-title',
+//     subtitle:key + '-subtitle',
+//     power:key + '-powertitle'
+//   }
+//   data.channels.set(set)
+// },1000)
   // app.list2.val
   // setInterval(function () {
   //   var randomNr = Math.random()

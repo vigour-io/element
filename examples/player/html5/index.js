@@ -3,7 +3,10 @@
 // var Player = require('../../../lib/player/')
 var app = require('../../../lib/app')
 var Element = require('../../../lib/element')
-var Property = require('../../../lib/property/')
+
+Element.prototype.inject(require('../../../lib/events/render'))
+
+var Property = require('../../../lib/property')
 
 var Observable = require('vigour-js/lib/observable')
 
@@ -64,7 +67,7 @@ app.set({
   player: myPlayer
 })
 
-myPlayer.emit('render')
+// myPlayer.emit('render')
 
 setTimeout(function () {
   myPlayer.play.val = true

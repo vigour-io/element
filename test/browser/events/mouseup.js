@@ -1,10 +1,15 @@
 var Element = require('../../../lib/element')
-var app = require('../../../lib/app')
+var App = require('../../../lib/app')
 var fireEvent = require('./util').fireEvent
 var mouseupPath
 var spy
 var elemInstance
 var elem
+
+var app = new App({
+  key:'app',
+  node:document.body
+})
 
 // add mouseup listener to original
 describe('Add mouseup listener', function () {

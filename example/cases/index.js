@@ -1,15 +1,17 @@
 require('./style.less')
 
-var app = require('../../lib/app')
+var App = require('../../lib/app')
 var Element = require('../../lib/element')
+var app = new App({
+  node:document.body
+})
 // var Observable = require('vigour-js/lib/observable')
 
 Element.prototype.inject(
   require('../../lib/property/css'),
   require('../../lib/property/text'),
   require('../../lib/property/style'),
-  require('../../lib/property/background') // ,
-// require('../../lib/cases/inject')
+  require('../../lib/property/background')
 )
 
 var cases = require('../../lib/cases')
@@ -17,7 +19,7 @@ var cases = require('../../lib/cases')
 cases.set({
   bigscreen: {
     val: app.width,
-    transform: function (val, event) {
+    transform (val, event) {
       return val > 400
     }
   },
@@ -27,25 +29,18 @@ cases.set({
 var a = new Element({
   // css: 'funlife',
   text: {
-    val: app.width,
-    desktop: {
-      val: 'desktop, but not connected',
-      connected: 'I am connected!!',
-      bigscreen: 'BIG!'
-    },
-    add: {
-      val: '???',
-      add: '!!@@'
-    },
-    phone: {
-      val: 'bawler',
-      add: '!!!'
+    inject: require('../../lib/cases').injectable,
+    val: 'smurr',
+    $phone:{
+      inject: require('../../lib/cases').injectable,
+      val:'bawler',
+      $touch:'funsies'
     }
-  },
-  // desktop:{
-  style: {
-    border: '10px solid blue'
   }
+  // desktop:{
+  // style: {
+  //   border: '10px solid blue'
+  // }
 // }
 })
 

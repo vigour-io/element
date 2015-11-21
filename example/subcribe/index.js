@@ -23,13 +23,13 @@ Element.prototype.inject(
 
 var FirstShowTitle = new Element({
   text: {
-    $subscribe: 'upward.content.shows.first.title'
+    $: 'content.shows.first.title'
   }
 }).Constructor
 
 var RandomChannelTitle = new Element({
   text: {
-    $subscribe: 'upward.content.channels.random.title'
+    $: 'content.channels.random.title'
   }
 }).Constructor
 
@@ -66,7 +66,18 @@ app.set({
   properties: {
     content: userView.Constructor
   },
-  content: {},
+  content: {
+    shows: {
+      first: {
+        title: 'hey'
+      }
+    },
+    channels: {
+      random: {
+        title: 'nerdje'
+      }
+    }
+  },
   container: new SomeUIElement(),
   randomTitle: new RandomChannelTitle(),
   nested: {

@@ -1,7 +1,12 @@
 require('./style.less')
-var app = require('../../lib/app')
+var App = require('../../lib/app')
 var Element = require('../../lib/element')
 var Property = require('../../lib/property')
+
+var app = new App({
+  node:document.body
+})
+
 Property.prototype.inject(require('../../lib/animation'))
 
 Element.prototype.inject(

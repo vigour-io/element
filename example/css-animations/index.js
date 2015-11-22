@@ -1,6 +1,6 @@
 require('./style.less')
 
-var app = require('../../lib/app')
+var App = require('../../lib/app')
 var Element = require('../../lib/element')
 
 Element.prototype.inject(
@@ -14,6 +14,6 @@ var thing = new Element({
   dragable: true
 })
 
-app.set({
+var app = new App({
   a: thing
 })

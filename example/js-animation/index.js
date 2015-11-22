@@ -1,7 +1,10 @@
 require('./style.less')
 
-var app = require('../../lib/app')
+var App = require('../../lib/app')
 var Element = require('../../lib/element')
+var app = new App({
+  node:document.body
+})
 
 Element.prototype.inject(
   require('../../lib/property/css'),

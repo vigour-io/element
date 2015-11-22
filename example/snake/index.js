@@ -1,7 +1,10 @@
 require('vigour-scratch/index.less')
 require('./style.less')
 
-var app = require('../../lib/app')
+var App = require('../../lib/app')
+var app = new App({
+  node:document.body
+})
 var Element = require('../../lib/element')
 var Property = require('../../lib/property')
 Property.prototype.inject(require('../../lib/animation'))

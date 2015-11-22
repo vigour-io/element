@@ -1,6 +1,6 @@
 require('./style.less')
 
-var app = require('../../lib/app')
+var App = require('../../lib/app')
 var Element = require('../../lib/element')
 
 Element.prototype.inject(
@@ -51,6 +51,7 @@ var thing = window.thing = new Element({
   }
 })
 
-app.set({
+var app = new App({
+  node:document.body,
   hello: new thing.Constructor()
 })

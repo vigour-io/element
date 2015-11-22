@@ -4,9 +4,7 @@
 require('vigour-scratch/lib/mixins.less')
 require('./style.less')
 
-var app = require('../../lib/app')
-// var app = module.exports = new App()
-
+var App = require('../../lib/app')
 var Element = require('../../lib/element')
 
 Element.prototype.inject(
@@ -21,11 +19,12 @@ var coke = new Element({
   label: {}
 })
 
-app.set({
+var app = new App({
+  node:document.body,
   coke: coke,
   scrollTop: {
     on: {
-      data: function (ev, event) {
+      data (ev, event) {
         coke.background.setKey('x', ~~(this.val / 2))
       }
     }

@@ -1,5 +1,8 @@
 require('./style.less')
-var app = require('../../lib/app')
+var App = require('../../lib/app')
+var app = new App({
+  node:document.body
+})
 var Element = require('../../lib/element')
 var Observable = require('vigour-js/lib/observable')
 var Emitter = require('vigour-js/lib/emitter')

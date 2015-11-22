@@ -1,10 +1,15 @@
 var Element = require('../../../lib/element')
-var app = require('../../../lib/app')
+var App = require('../../../lib/app')
 var fireEvent = require('./util').fireEvent
-var mousedownPath
+var mousedownKey
 var spy
 var elemInstance
 var elem
+
+var app = new App({
+  key:'app',
+  node:document.body
+})
 
 // add mousedown listener to original
 describe('Add mousedown listener', function () {
@@ -15,11 +20,11 @@ describe('Add mousedown listener', function () {
     elem = new Element()
   })
 
-  it('app.elem.set({ on:{ mousedown:function(){ mousedownPath = this.path } } })', function () {
+  it('app.elem.set({ on:{ mousedown:function(){ mousedownKey = this.key } } })', function () {
     elem.set({
       on: {
         mousedown: function () {
-          mousedownPath = this.path
+          mousedownKey = this.key
         }
       }
     })
@@ -32,8 +37,8 @@ describe('Add mousedown listener', function () {
     expect(app.elem._on.mousedown).to.be.ok
   })
 
-  it('mousedownPath is undefined', function () {
-    expect(mousedownPath).to.equal(void 0)
+  it('mousedownKey is undefined', function () {
+    expect(mousedownKey).to.equal(void 0)
   })
 })
 
@@ -56,8 +61,8 @@ describe('Create instance of elem', function () {
     expect(elemInstance._on.mousedown).to.be.ok
   })
 
-  it('mousedownPath is undefined', function () {
-    expect(mousedownPath).to.equal(void 0)
+  it('mousedownKey is undefined', function () {
+    expect(mousedownKey).to.equal(void 0)
   })
 })
 
@@ -65,7 +70,7 @@ describe('Create instance of elem', function () {
 describe('Emit mousedown on elem', function () {
   before(function () {
     spy = sinon.spy(elem._on.mousedown.fn, 'val')
-    mousedownPath = void 0
+    mousedownKey = void 0
   })
 
   it("elem.emit('mousedown')", function () {
@@ -76,8 +81,8 @@ describe('Emit mousedown on elem', function () {
     expect(spy.calledOnce).to.be.ok
   })
 
-  it("mousedownPath === ['app','elem']", function () {
-    expect(mousedownPath).to.deep.equal(['app', 'elem'])
+  it("mousedownKey === ['app','elem']", function () {
+    expect(mousedownKey).to.deep.equal('elem')
   })
 
 })
@@ -85,7 +90,7 @@ describe('Emit mousedown on elem', function () {
 // Fire mousedown on elem
 describe('Trigger mousedown on document.body', function () {
   before(function () {
-    mousedownPath = void 0
+    mousedownKey = void 0
     spy.reset()
     fireEvent(document.body, 'mousedown')
   })
@@ -99,7 +104,7 @@ describe('Trigger mousedown on document.body', function () {
 // Fire mousedown on elem
 describe('Trigger mousedown on elem node', function () {
   before(function () {
-    mousedownPath = void 0
+    mousedownKey = void 0
     spy.reset()
     fireEvent(app.elem.node, 'mousedown')
   })
@@ -108,8 +113,8 @@ describe('Trigger mousedown on elem node', function () {
     expect(spy.calledOnce).to.be.ok
   })
 
-  it("mousedownPath === ['app','elem']", function () {
-    expect(mousedownPath).to.deep.equal(['app', 'elem'])
+  it("mousedownKey === ['app','elem']", function () {
+    expect(mousedownKey).to.deep.equal('elem')
   })
 
 })
@@ -117,7 +122,7 @@ describe('Trigger mousedown on elem node', function () {
 // Fire mousedown on elem
 describe('Trigger mousedown on elemInstance node', function () {
   before(function () {
-    mousedownPath = void 0
+    mousedownKey = void 0
     spy.reset()
     fireEvent(elemInstance.node, 'mousedown')
   })
@@ -126,8 +131,8 @@ describe('Trigger mousedown on elemInstance node', function () {
     expect(spy.calledOnce).to.be.ok
   })
 
-  it("mousedownPath === ['app','elemInstance']", function () {
-    expect(mousedownPath).to.deep.equal(['app', 'elemInstance'])
+  it("mousedownKey === ['app','elemInstance']", function () {
+    expect(mousedownKey).to.deep.equal('elemInstance')
   })
 
 })

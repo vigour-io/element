@@ -1,5 +1,8 @@
 describe('Removing children', function () {
-  var app = require('../../../../lib/app')
+  var App = require('../../../../lib/app')
+  var app = new App({
+    node:document.body
+  })
   var Element = require('../../../../lib/element')
 
   var elem = new Element({

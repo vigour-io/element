@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "vigour-js": "^0.2.2",
-    "vigour-ua": "^0.0.1"
+    "vigour-ua": "^0.0.1",
+    "vigour-scratch": "^1.2.1"
   },
   "devDependencies": {
-    "vigour-scratch": "*"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

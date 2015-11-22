@@ -1,11 +1,17 @@
 require('vigour-scratch/index.less')
 require('./style.less')
 
-var App = require('../../lib/app')
-var app = new App({
-  node:document.body
-})
 var Element = require('../../lib/element')
+var app = new Element({
+  node: document.body
+})
+
+Element.prototype.inject(
+  require('vigour-js/lib/operator/add'),
+  require('../../lib/events/down'),
+  require('../../lib/events/move')
+)
+
 var Property = require('../../lib/property')
 Property.prototype.inject(require('../../lib/animation'))
 
@@ -60,10 +66,6 @@ for (var i = 0; i < 100; i++) {
   })
   holder.setKey(i, t)
 }
-
-app.set({
-  holder: holder
-})
 
 app.set({
   holder: holder,

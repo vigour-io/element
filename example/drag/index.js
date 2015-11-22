@@ -1,3 +1,4 @@
+require('vigour-scratch/index.less')
 require('./style.less')
 
 var App = require('../../lib/app')
@@ -6,6 +7,7 @@ var Element = require('../../lib/element')
 Element.prototype.inject(
   require('../../lib/property/css'),
   require('../../lib/property/transform'),
+  require('../../lib/property/draggable'),
   require('../../lib/events/down')
 )
 

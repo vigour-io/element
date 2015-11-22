@@ -1,10 +1,10 @@
+require('vigour-scratch/lib/mixins.less')
 require('./style.less')
 
-var App = require('../../lib/app')
-var app = new App({
-  node:document.body
-})
 var Element = require('../../lib/element')
+var app = new Element({
+  node: document.body
+})
 
 Element.prototype.inject(
   require('../../lib/property/text'),

@@ -1,11 +1,10 @@
-// original idea came from
-// http://www.romancortes.com/ficheros/css-coke.html
-
 require('vigour-scratch/lib/mixins.less')
 require('./style.less')
 
-var App = require('../../lib/app')
 var Element = require('../../lib/element')
+var app = new Element({
+  node: document.body
+})
 
 Element.prototype.inject(
   require('../../lib/property/scroll/top'),
@@ -19,7 +18,7 @@ var coke = new Element({
   label: {}
 })
 
-var app = new App({
+app.set({
   node:document.body,
   coke: coke,
   scrollTop: {

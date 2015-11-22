@@ -2,9 +2,12 @@ require('vigour-scratch/index.less')
 require('./style.less')
 
 var Element = require('../../lib/element')
-var app = new Element({
+
+var App = require('../../lib/app')
+var app = new App({
   node: document.body
 })
+
 
 Element.prototype.inject(
   require('../../lib/events/down'),
@@ -13,7 +16,7 @@ Element.prototype.inject(
 
 var Observable = require('vigour-js/lib/observable')
 Observable.prototype.inject(
-  // require('vigour-js/lib/operator/add')
+  require('vigour-js/lib/operator/add')
 )
 
 var Property = require('../../lib/property')
@@ -29,10 +32,7 @@ var mouse = new Property({
 var thing = new Element({
   inject: [
     require('../../lib/property/size'),
-    require('../../lib/property/transform'),
-
-    // add operator
-    require('vigour-js/lib/operator/add')
+    require('../../lib/property/transform')
   ],
   width: 20,
   height: 20
@@ -55,7 +55,7 @@ for (var i = 0; i < 100; i++) {
     },
     y: {
       val: mouse.y,
-      add: function () {
+      $add: function () {
         return Math.sin(this.parent.i / 10 + mouse.y.val / 20) * (mouse.y.val)
       },
       animation: {
@@ -65,7 +65,7 @@ for (var i = 0; i < 100; i++) {
     scale: i * 0.01 + 1,
     x: {
       val: mouse.x,
-      add: function () {
+      $add: function () {
         return Math.cos(this.parent.i / 20 + mouse.x.val / 200) * 300 + 150
       },
       animation: {

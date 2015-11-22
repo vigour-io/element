@@ -2,7 +2,9 @@ require('vigour-scratch/index.less')
 require('./style.less')
 
 var Element = require('../../lib/element')
-var app = new Element({
+
+var App = require('../../lib/app')
+var app = new App({
   node: document.body
 })
 
@@ -11,7 +13,8 @@ Element.prototype.inject(
   require('../../lib/property/transform'),
   require('../../lib/property/opacity'),
   require('../../lib/property/transition'),
-  require('../../lib/property/draggable')
+  require('../../lib/property/draggable'),
+  require('../../lib/events/drag')
 )
 
 app.set({
@@ -32,6 +35,8 @@ app.set({
     draggable: true,
     on: {
       dragend: function (e, event) {
+        console.log(1)
+
         app.rectangle.setKey('x', this.x.val + Math.random() * 450)
         app.rectangle.setKey('y', this.y.val + Math.random() * 450)
 

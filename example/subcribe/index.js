@@ -2,8 +2,11 @@ require('./style.less')
 
 var Observable = require('vigour-js/lib/observable')
 var Element = require('../../lib/element')
+
 var App = require('../../lib/app')
-var app = new App()
+var app = new App({
+  node: document.body
+})
 
 var Property = require('../../lib/property')
 
@@ -64,7 +67,7 @@ var Hub = new Observable().Constructor
 var userView = new Hub()
 
 app.set({
-  node:document.body,
+  node: document.body,
   properties: {
     content: userView.Constructor
   },
@@ -81,53 +84,53 @@ app.set({
   //   //   }
   //   // }
   // },
-  content:'test',
-  one:new FirstShowTitle(),
-  two:new FirstShowTitle()
-  // container: new SomeUIElement(),
-  // randomTitle: new RandomChannelTitle(),
-  // nested: {
-  //   firstTitle: new FirstShowTitle(),
-  //   anotherFirstTitle: new FirstShowTitle()
-  // },
-  // firstTitle: new FirstShowTitle(),
-  // anotherFirstTitle: new FirstShowTitle(),
-  // anotherThing: new SomeUIElement()
+  content: 'test',
+  one: new FirstShowTitle(),
+  two: new FirstShowTitle()
+// container: new SomeUIElement(),
+// randomTitle: new RandomChannelTitle(),
+// nested: {
+//   firstTitle: new FirstShowTitle(),
+//   anotherFirstTitle: new FirstShowTitle()
+// },
+// firstTitle: new FirstShowTitle(),
+// anotherFirstTitle: new FirstShowTitle(),
+// anotherThing: new SomeUIElement()
 })
 
 setInterval(function () {
   console.log('-------set')
   // if (Math.random() > 0.1) {
-    // app.content.set({
-    //   // shows:Math.random()
-    // })
-  app.set({content:Math.random()})
-  // }
-  // if (Math.random() > 0.1) {
-    // app.content.set({
-    //   channels: {
-    //     random: {
-    //       title: 'MTV 24H Channel' + Math.random()
-    //     }
-    //   }
-    // })
-  // }
+  // app.content.set({
+  //   // shows:Math.random()
+  // })
+  app.set({content: Math.random()})
+// }
+// if (Math.random() > 0.1) {
+// app.content.set({
+//   channels: {
+//     random: {
+//       title: 'MTV 24H Channel' + Math.random()
+//     }
+//   }
+// })
+// }
 }, 3000)
 
-setTimeout(function(){
+setTimeout(function () {
   setInterval(function () {
     console.log('-------remove')
     // if (Math.random() > 0.8) {
-      if (app.content.shows) {
-        app.content.shows.remove()
-      }
+    if (app.content.shows) {
+      app.content.shows.remove()
+    }
     // }
     // if (Math.random() > 0.8) {
-      if (app.content.channels) {
-        app.content.channels.remove()
-      }
+    if (app.content.channels) {
+      app.content.channels.remove()
+    }
 
-      if(app.content) app.content.remove()
-    // }
+    if (app.content) app.content.remove()
+  // }
   }, 3000)
-},1500)
+}, 1500)

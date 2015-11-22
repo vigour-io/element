@@ -1,7 +1,7 @@
 var Element = require('../../../lib/element')
 var App = require('../../../lib/app')
 var fireEvent = require('./util').fireEvent
-var mouseupPath
+var mouseupKey
 var spy
 var elemInstance
 var elem
@@ -20,8 +20,8 @@ describe('Add mouseup listener', function () {
     elem = new Element()
   })
 
-  it('app.elem.set({ on:{ mouseup:function(){ mouseupPath = this.path } } })', function () {
-    elem.set({ on: { mouseup: function () { mouseupPath = this.path } } })
+  it('app.elem.set({ on:{ mouseup:function(){ mouseupKey = this.key } } })', function () {
+    elem.set({ on: { mouseup: function () { mouseupKey = this.key } } })
     app.set({elem: new elem.Constructor()})
   })
 
@@ -29,8 +29,8 @@ describe('Add mouseup listener', function () {
     expect(elem._on.mouseup).to.be.ok
   })
 
-  it('mouseupPath is undefined', function () {
-    expect(mouseupPath).to.equal(void 0)
+  it('mouseupKey is undefined', function () {
+    expect(mouseupKey).to.equal(void 0)
   })
 })
 
@@ -51,8 +51,8 @@ describe('Create instance of elem', function () {
     expect(elemInstance._on.mouseup).to.be.ok
   })
 
-  it('mouseupPath is undefined', function () {
-    expect(mouseupPath).to.equal(void 0)
+  it('mouseupKey is undefined', function () {
+    expect(mouseupKey).to.equal(void 0)
   })
 })
 
@@ -60,7 +60,7 @@ describe('Create instance of elem', function () {
 describe('Emit mouseup on elem', function () {
   before(function () {
     spy = sinon.spy(app.elem._on.mouseup.fn, 'val')
-    mouseupPath = void 0
+    mouseupKey = void 0
   })
 
   it("elem.emit('mouseup')", function () {
@@ -71,8 +71,8 @@ describe('Emit mouseup on elem', function () {
     expect(spy.calledOnce).to.be.ok
   })
 
-  it("mouseupPath === ['app','elem']", function () {
-    expect(mouseupPath).to.deep.equal(['app', 'elem'])
+  it("mouseupKey === ['app','elem']", function () {
+    expect(mouseupKey).to.deep.equal('elem')
   })
 
 })
@@ -80,7 +80,7 @@ describe('Emit mouseup on elem', function () {
 // Fire mouseup on elem
 describe('Trigger mouseup on document.body', function () {
   before(function () {
-    mouseupPath = void 0
+    mouseupKey = void 0
     spy.reset()
     fireEvent(document.body, 'mouseup')
   })
@@ -94,7 +94,7 @@ describe('Trigger mouseup on document.body', function () {
 // Fire mouseup on elem
 describe('Trigger mouseup on elem node', function () {
   before(function () {
-    mouseupPath = void 0
+    mouseupKey = void 0
     spy.reset()
     fireEvent(app.elem.node, 'mouseup')
   })
@@ -103,8 +103,8 @@ describe('Trigger mouseup on elem node', function () {
     expect(spy.calledOnce).to.be.ok
   })
 
-  it("mouseupPath === ['app','elem']", function () {
-    expect(mouseupPath).to.deep.equal(['app', 'elem'])
+  it("mouseupKey === ['app','elem']", function () {
+    expect(mouseupKey).to.deep.equal('elem')
   })
 
 })
@@ -112,7 +112,7 @@ describe('Trigger mouseup on elem node', function () {
 // Fire mouseup on elem
 describe('Trigger mouseup on elemInstance node', function () {
   before(function () {
-    mouseupPath = void 0
+    mouseupKey = void 0
     spy.reset()
     fireEvent(app.elemInstance.node, 'mouseup')
   })
@@ -121,8 +121,8 @@ describe('Trigger mouseup on elemInstance node', function () {
     expect(spy.calledOnce).to.be.ok
   })
 
-  it("mouseupPath === ['app','elemInstance']", function () {
-    expect(mouseupPath).to.deep.equal(['app', 'elemInstance'])
+  it("mouseupKey === ['app','elemInstance']", function () {
+    expect(mouseupKey).to.deep.equal('elemInstance')
   })
 
 })

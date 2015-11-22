@@ -3,9 +3,9 @@ require('./style.less')
 var App = require('../../lib/app')
 var Element = require('../../lib/element')
 var app = new App({
-  node:document.body
-})
-// var Observable = require('vigour-js/lib/observable')
+    node: document.body
+  })
+  // var Observable = require('vigour-js/lib/observable')
 
 Element.prototype.inject(
   require('../../lib/property/css'),
@@ -19,7 +19,7 @@ var cases = require('../../lib/cases')
 cases.set({
   bigscreen: {
     val: app.width,
-    transform (val, event) {
+    transform(val, event) {
       return val > 400
     }
   },
@@ -31,17 +31,17 @@ var a = new Element({
   text: {
     inject: require('../../lib/cases').injectable,
     val: 'smurr',
-    $phone:{
+    $phone: {
       inject: require('../../lib/cases').injectable,
-      val:'bawler',
-      $touch:'funsies'
+      val: 'bawler',
+      $touch: 'funsies'
     }
   }
   // desktop:{
   // style: {
   //   border: '10px solid blue'
   // }
-// }
+  // }
 })
 
 app.set({

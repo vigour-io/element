@@ -1,7 +1,7 @@
 var Element = require('../../../lib/element')
 var App = require('../../../lib/app')
 var fireEvent = require('./util').fireEvent
-var scrollPath
+var scrollKey
 var spy
 var elemInstance
 var elem
@@ -20,11 +20,11 @@ describe('Add scroll listener', function () {
     elem = new Element()
   })
 
-  it('app.elem.set({ on:{ scroll:function(){ scrollPath = this.path } } })', function () {
+  it('app.elem.set({ on:{ scroll:function(){ scrollKey = this.key } } })', function () {
     elem.set({
       on: {
         scroll: function () {
-          scrollPath = this.path
+          scrollKey = this.key
         }
       }
     })
@@ -37,8 +37,8 @@ describe('Add scroll listener', function () {
     expect(elem._on.scroll).to.be.ok
   })
 
-  it('scrollPath is undefined', function () {
-    expect(scrollPath).to.equal(void 0)
+  it('scrollKey is undefined', function () {
+    expect(scrollKey).to.equal(void 0)
   })
 })
 
@@ -61,8 +61,8 @@ describe('Create instance of elem', function () {
     expect(elemInstance._on.scroll).to.be.ok
   })
 
-  it('scrollPath is undefined', function () {
-    expect(scrollPath).to.equal(void 0)
+  it('scrollKey is undefined', function () {
+    expect(scrollKey).to.equal(void 0)
   })
 })
 
@@ -70,7 +70,7 @@ describe('Create instance of elem', function () {
 describe('Emit scroll on elem', function () {
   before(function () {
     spy = sinon.spy(elem._on.scroll.fn, 'val')
-    scrollPath = void 0
+    scrollKey = void 0
   })
 
   it("elem.emit('scroll')", function () {
@@ -81,8 +81,8 @@ describe('Emit scroll on elem', function () {
     expect(spy.calledOnce).to.be.ok
   })
 
-  it("scrollPath === ['app','elem']", function () {
-    expect(scrollPath).to.deep.equal(['app', 'elem'])
+  it("scrollKey === ['app','elem']", function () {
+    expect(scrollKey).to.deep.equal('elem')
   })
 
 })
@@ -90,7 +90,7 @@ describe('Emit scroll on elem', function () {
 // Fire scroll on elem
 describe('Trigger scroll on document.body', function () {
   before(function () {
-    scrollPath = void 0
+    scrollKey = void 0
     spy.reset()
     fireEvent(document.body, 'scroll')
   })
@@ -104,7 +104,7 @@ describe('Trigger scroll on document.body', function () {
 // Fire scroll on elem
 describe('Trigger scroll on elem node', function () {
   before(function () {
-    scrollPath = void 0
+    scrollKey = void 0
     spy.reset()
     fireEvent(app.elem.node, 'scroll')
   })
@@ -113,8 +113,8 @@ describe('Trigger scroll on elem node', function () {
     expect(spy.calledOnce).to.be.ok
   })
 
-  it("scrollPath === ['app','elem']", function () {
-    expect(scrollPath).to.deep.equal(['app', 'elem'])
+  it("scrollKey === ['app','elem']", function () {
+    expect(scrollKey).to.deep.equal( 'elem')
   })
 
 })
@@ -122,7 +122,7 @@ describe('Trigger scroll on elem node', function () {
 // Fire scroll on elem
 describe('Trigger scroll on elemInstance node', function () {
   before(function () {
-    scrollPath = void 0
+    scrollKey = void 0
     spy.reset()
     fireEvent(app.elemInstance.node, 'scroll')
   })
@@ -131,8 +131,8 @@ describe('Trigger scroll on elemInstance node', function () {
     expect(spy.calledOnce).to.be.ok
   })
 
-  it("scrollPath === ['app','elemInstance']", function () {
-    expect(scrollPath).to.deep.equal(['app', 'elemInstance'])
+  it("scrollKey === ['app','elemInstance']", function () {
+    expect(scrollKey).to.deep.equal('elemInstance')
   })
 
 })

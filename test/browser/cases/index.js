@@ -1,6 +1,8 @@
 var Element = require('../../../lib/element')
-var app = require('../../../lib/app')
-
+var App = require('../../../lib/app')
+var app = new App({
+  node:document.body
+})
 Element.prototype.inject(
   require('../../../lib/property/css'),
   require('../../../lib/property/text')

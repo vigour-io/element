@@ -7,13 +7,19 @@ var app = new Element({
 })
 
 Element.prototype.inject(
-  require('vigour-js/lib/operator/add'),
   require('../../lib/events/down'),
   require('../../lib/events/move')
 )
 
+var Observable = require('vigour-js/lib/observable')
+Observable.prototype.inject(
+  // require('vigour-js/lib/operator/add')
+)
+
 var Property = require('../../lib/property')
-Property.prototype.inject(require('../../lib/animation'))
+Property.prototype.inject(
+  require('../../lib/animation')
+)
 
 var mouse = new Property({
   x: 0,
@@ -23,7 +29,10 @@ var mouse = new Property({
 var thing = new Element({
   inject: [
     require('../../lib/property/size'),
-    require('../../lib/property/transform')
+    require('../../lib/property/transform'),
+
+    // add operator
+    require('vigour-js/lib/operator/add')
   ],
   width: 20,
   height: 20

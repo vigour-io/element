@@ -57,27 +57,34 @@ var App = require('../../lib/app')
 //   }
 // })
 
+Element.prototype.inject(
+  require('vigour-js/lib/operator/transform'),
+  require('../../lib/property/text')
+)
+
 var app2 = new App({
   inject: [
-    require('../../lib/property/css'),
-    require('../../lib/property/text')
+    require('../../lib/property/css')
   ],
   text: {
     inject: require('vigour-js/lib/operator/subscribe'),
     $: 'width'
   },
-  dragThing: {
-    inject: [
-      require('../../lib/property/draggable'),
-      require('../../lib/property/text')
-    ],
-    draggable:true,
-    y:20,
-    text:{
-      inject: require('vigour-js/lib/operator/subscribe'),
-      $:'y'
-    }
+  list: {
+    $transform:[1,2,3,4,5]
   }
+  // dragThing: {
+  //   inject: [
+  //     require('../../lib/property/draggable'),
+  //     require('../../lib/property/text')
+  //   ],
+  //   draggable:true,
+  //   y:20,
+  //   text:{
+  //     inject: require('vigour-js/lib/operator/subscribe'),
+  //     $:'y'
+  //   }
+  // }
 })
 
 // document.body.appendChild(app1.node)

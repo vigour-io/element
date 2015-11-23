@@ -37,22 +37,7 @@
   ],
   "engines": {},
   "gaston": {
-    "port": 8080,
-    "socket-port": 9000,
-    "no-auto-reload": false,
-    "no-package": false,
-    "bundle": "./",
-    "build": "./",
-    "browserify": {
-      "transforms": []
-    },
-    "less-options": {
-      "strictMath": true
-    },
-    "smaps": false,
-    "source-maps": false,
-    "remote-logging": false,
-    "require-paths": {}
+    "source-maps": true
   },
   "standard": {
     "globals": [

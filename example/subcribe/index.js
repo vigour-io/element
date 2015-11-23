@@ -9,7 +9,7 @@ var app = new App({
 
 var Property = require('../../lib/property')
 
-Observable.prototype.inject(
+Property.prototype.inject(
   require('../../lib/animation'),
   require('vigour-js/lib/operator/subscribe')
 )
@@ -26,33 +26,39 @@ Element.prototype.inject(
 
 var FirstShowTitle = new Element({
   text: {
-    $: 'content'
+    $: 'content.shows.first.title'
   }
 }).Constructor
 
-// var RandomChannelTitle = new Element({
-//   text: {
-//     $: 'content.channels.random.title'
-//   }
-// }).Constructor
+var RandomChannelTitle = new Element({
+  text: {
+    $: 'content.channels.random.title'
+  }
+}).Constructor
 
 var SomeUIElement = new Element({
-  nested: new FirstShowTitle()
-  // completely: {
-  //   somewhere: {
-  //     elsewhere: {
-  //       perhaps: {
-  //         even: {
-  //           very: {
-  //             far: {
-  //               away: new RandomChannelTitle()
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // }
+  nested: {
+    somewhere: {
+      nomatter: {
+        where: new FirstShowTitle()
+      }
+    }
+  },
+  completely: {
+    somewhere: {
+      elsewhere: {
+        perhaps: {
+          even: {
+            very: {
+              far: {
+                away: new RandomChannelTitle()
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }).Constructor
 
 var Hub = new Observable().Constructor
@@ -60,66 +66,78 @@ var Hub = new Observable().Constructor
 var userView = new Hub()
 
 app.set({
-  properties: {
-    content: new Observable()
-  },
-  content: 'bla',
-  // content: {
-  //   shows: {
-  //     first: {
-  //       title: 'hey'
-  //     }
-  //   },
-  //   // channels: {
-  //   //   random: {
-  //   //     title: 'nerdje'
-  //   //   }
-  //   // }
-  // },
+  val: new Observable({
+    content: {
+      shows: {
+        first: {
+          title: 'hey'
+        }
+      },
+      channels: {
+        random: {
+          title: 'nerdje'
+        }
+      }
+    }
+  }),
   container: new SomeUIElement(),
-  // another: new SomeUIElement(),
-  // randomTitle: new RandomChannelTitle(),
-  // nested: {
-  //   firstTitle: new FirstShowTitle(),
-  //   anotherFirstTitle: new FirstShowTitle()
-  // },
-  // firstTitle: new FirstShowTitle(),
-  // anotherFirstTitle:{
-  //   flur:new FirstShowTitle(),
-  // }
-  // anotherThing: new SomeUIElement()
+  container2: new SomeUIElement(),
+  randomTitle: new RandomChannelTitle(),
+  nested: {
+    firstTitle: new FirstShowTitle(),
+    anotherFirstTitle: new FirstShowTitle()
+  },
+  firstTitle: new FirstShowTitle(),
+  anotherFirstTitle: new FirstShowTitle(),
+  anotherThing: new SomeUIElement(),
+  pleaseStop: {
+    text: 'start madness',
+    on: {
+      click() {
+        if(this.a){
+          clearInterval(this.a)
+          clearInterval(this.b)
+          this.a = false
+          this.text.val = 'start madness'
+          this.node.style.backgroundColor = 'green'
+        }else{
+          this.text.val = 'stop madness'
+          this.node.style.backgroundColor = 'red'
+          this.a = setInterval(function () {
+            if (Math.random() > 0.1) {
+              app.val.content.set({
+                shows: {
+                  first: {
+                    title: 'True Detective' + Math.random()
+                  }
+                }
+              })
+            }
+            if (Math.random() > 0.1) {
+              app.val.content.set({
+                channels: {
+                  random: {
+                    title: 'MTV 24H Channel' + Math.random()
+                  }
+                }
+              })
+            }
+          }, 5)
+
+          this.b = setInterval(function () {
+            if (Math.random() > 0.8) {
+              if (app.val.content.shows) {
+                app.val.content.shows.remove()
+              }
+            }
+            if (Math.random() > 0.8) {
+              if (app.val.content.channels) {
+                app.val.content.channels.remove()
+              }
+            }
+          }, 9)
+        }
+      }
+    }
+  }
 })
-
-// setInterval(function () {
-//   if (Math.random() > 0.1) {
-//     app.content.set({
-//       shows: {
-//         first: {
-//           title: 'True Detective' + Math.random()
-//         }
-//       }
-//     })
-//   }
-//   if (Math.random() > 0.1) {
-//     app.content.set({
-//       channels: {
-//         random: {
-//           title: 'MTV 24H Channel' + Math.random()
-//         }
-//       }
-//     })
-//   }
-// }, 1000)
-
-// setInterval(function () {
-//   if (Math.random() > 0.8) {
-//     if (app.content.shows) {
-//       app.content.shows.remove()
-//     }
-//   }
-//   if (Math.random() > 0.8) {
-//     if (app.content.channels) {
-//       app.content.channels.remove()
-//     }
-//   }
-// }, 1500)

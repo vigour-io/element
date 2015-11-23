@@ -1,13 +1,28 @@
 require('vigour-scratch/index.less')
 require('./style.less')
 
+var Element = require('../../lib/element')
+
 var App = require('../../lib/app')
 var app = new App({
-  node:document.body
+  node: document.body
 })
-var Element = require('../../lib/element')
+
+
+Element.prototype.inject(
+  require('../../lib/events/down'),
+  require('../../lib/events/move')
+)
+
+var Observable = require('vigour-js/lib/observable')
+Observable.prototype.inject(
+  require('vigour-js/lib/operator/add')
+)
+
 var Property = require('../../lib/property')
-Property.prototype.inject(require('../../lib/animation'))
+Property.prototype.inject(
+  require('../../lib/animation')
+)
 
 var mouse = new Property({
   x: 0,
@@ -40,7 +55,7 @@ for (var i = 0; i < 100; i++) {
     },
     y: {
       val: mouse.y,
-      add: function () {
+      $add: function () {
         return Math.sin(this.parent.i / 10 + mouse.y.val / 20) * (mouse.y.val)
       },
       animation: {
@@ -50,7 +65,7 @@ for (var i = 0; i < 100; i++) {
     scale: i * 0.01 + 1,
     x: {
       val: mouse.x,
-      add: function () {
+      $add: function () {
         return Math.cos(this.parent.i / 20 + mouse.x.val / 200) * 300 + 150
       },
       animation: {
@@ -60,10 +75,6 @@ for (var i = 0; i < 100; i++) {
   })
   holder.setKey(i, t)
 }
-
-app.set({
-  holder: holder
-})
 
 app.set({
   holder: holder,

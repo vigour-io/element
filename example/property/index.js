@@ -1,10 +1,13 @@
+require('vigour-scratch/lib/mixins.less')
 require('./style.less')
+
+var Element = require('../../lib/element')
 
 var App = require('../../lib/app')
 var app = new App({
-  node:document.body
+  node: document.body
 })
-var Element = require('../../lib/element')
+
 
 Element.prototype.inject(
   require('../../lib/property/css'),
@@ -19,23 +22,12 @@ window.thing = thing = new Element({
   x: 100,
   y: 100,
   draggable: true
-// {
-//   pass:function( e, event ){
-//     return Math.abs(event.dx) > Math.abs(event.dy)
-//   }
-// }
 })
 
 app.set({
   a: new thing.Constructor({
     text: '>>xx>'
   })
-})
-
-app.set({
-  // draggable:{
-  //   x:true
-  // }
 })
 
 var elem = new Element({

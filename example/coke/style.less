@@ -17,12 +17,12 @@ body {
 
 .coke {
   .size(@cokew, @cokeh);
-  .fixed(50%, 50%);
+  .fixed(50%, auto, auto, 50%);
   .translate;
-  .bgimg('examples/coke/imgs/coke-label.jpg', top left, repeat-x);
+  .bgimg('example/coke/imgs/coke-label.jpg', top left, repeat-x);
 
   .label {
-    .bgimg('examples/coke/imgs/coke-can.png');
+    .bgimg('example/coke/imgs/coke-can.png');
     .fullsize;
   }
 }

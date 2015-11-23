@@ -1,9 +1,11 @@
+require('vigour-scratch/index.less')
 require('./style.less')
-var App = require('../../lib/app')
-var app = new App({
+
+var Element = require('../../lib/element')
+var app = new Element({
   node:document.body
 })
-var Element = require('../../lib/element')
+
 var Observable = require('vigour-js/lib/observable')
 var Emitter = require('vigour-js/lib/emitter')
 Element.prototype.inject(

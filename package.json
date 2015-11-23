@@ -18,10 +18,10 @@
   },
   "dependencies": {
     "vigour-js": "^0.2.2",
-    "vigour-ua": "^0.0.1"
+    "vigour-ua": "^0.0.1",
+    "vigour-scratch": "^1.2.1"
   },
   "devDependencies": {
-    "vigour-scratch": "*"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [
@@ -37,22 +37,7 @@
   ],
   "engines": {},
   "gaston": {
-    "port": 8080,
-    "socket-port": 9000,
-    "no-auto-reload": false,
-    "no-package": false,
-    "bundle": "./",
-    "build": "./",
-    "browserify": {
-      "transforms": []
-    },
-    "less-options": {
-      "strictMath": true
-    },
-    "smaps": false,
-    "source-maps": false,
-    "remote-logging": false,
-    "require-paths": {}
+    "source-maps": true
   },
   "standard": {
     "globals": [

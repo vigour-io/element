@@ -1,10 +1,10 @@
 'use strict'
 
-// var Player = require('../../../lib/player/')
 var App = require('../../../lib/app')
 var app = new App({
-  node:document.body
+  node: document.body
 })
+
 var Player = require('../../../lib/player/')
 var myPlayer = new Player({
   inject: require('../../../lib/player/players/html5')
@@ -12,7 +12,8 @@ var myPlayer = new Player({
 
 myPlayer.set({
   play: false,
-  src: 'http://localhost:8000/rahh.mov'
+  src: 'http://localhost:8000/rahh.mov',
+  volume: 1
 })
 
 app.set({
@@ -26,14 +27,5 @@ setTimeout(function () {
 setTimeout(function () {
   // myPlayer.play.val = true
   myPlayer.time.val = 0.9
-  myPlayer.volume.val = 0
+  myPlayer.volume.val = 0.3
 }, 3000)
-
-setTimeout(function () {
-  // myPlayer.volume.val = 0.1
-  // myPlayer.time.val = 0.9
-}, 4000)
-
-// setTimeout(function () {
-//   myPlayer.play.val = false
-// }, 6000)

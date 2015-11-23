@@ -31,16 +31,3 @@ app.set({
     text: secondPlayer.time
   }
 })
-
-// secondPlayer.time.val = 1
-
-
-// setTimeout(function () {
-//   myPlayer.play.val = true
-// }, 2000)
-
-// setTimeout(function () {
-//   // myPlayer.play.val = true
-//   myPlayer.time.val = 0.9
-//   myPlayer.volume.val = 0.3
-// }, 3000)

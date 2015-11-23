@@ -8,7 +8,6 @@ var app = new App({
   node: document.body
 })
 
-
 Element.prototype.inject(
   require('../../lib/property/scroll/top'),
   require('../../lib/property/background')
@@ -22,7 +21,7 @@ var coke = new Element({
 })
 
 app.set({
-  node:document.body,
+  node: document.body,
   coke: coke,
   scrollTop: {
     on: {

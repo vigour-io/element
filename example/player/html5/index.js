@@ -1,33 +1,28 @@
 'use strict'
 
 var App = require('../../../lib/app')
-var Observable = require('vigour-js/lib/observable')
-var Element = require('../../../lib/element')
-var app = new App({
+var app = window.app = new App({
   node: document.body
 })
 
 var Player = require('../../../lib/player/')
 
-var myPlayer = new Player({
-  inject: require('../../../lib/player/players/html5'),
-  play: false,
-  src: 'http://localhost:8000/rahh.mov',
-  volume: 1
-})
-
-var secondPlayer = new Player({
+var thePlayer = new Player({
   inject: require('../../../lib/player/players/html5'),
   src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
-  volume: 0
+  volume: 0.1
 })
 
 app.set({
-  // player: myPlayer,
-  secondPlayer: secondPlayer,
+  thePlayer: thePlayer,
   label: {
     node: 'h1',
     inject: require('../../../lib/property/text'),
-    text: secondPlayer.time
+    text: thePlayer.time
   }
+})
+
+// just testing removal
+;(window.onunload = function () {
+  app.remove()
 })

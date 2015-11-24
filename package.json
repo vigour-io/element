@@ -1,7 +1,7 @@
 {
   "name": "vigour-element",
   "description": "DOM stuff for vigour-js",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "index.js",
   "scripts": {
     "test": "gaston test",
@@ -21,8 +21,7 @@
     "vigour-ua": "^0.0.1",
     "vigour-scratch": "^1.2.1"
   },
-  "devDependencies": {
-  },
+  "devDependencies": {},
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [
     "vigour-js",
@@ -37,22 +36,7 @@
   ],
   "engines": {},
   "gaston": {
-    "port": 8080,
-    "socket-port": 9000,
-    "no-auto-reload": false,
-    "no-package": false,
-    "bundle": "./",
-    "build": "./",
-    "browserify": {
-      "transforms": []
-    },
-    "less-options": {
-      "strictMath": true
-    },
-    "smaps": false,
-    "source-maps": false,
-    "remote-logging": false,
-    "require-paths": {}
+    "source-maps": true
   },
   "standard": {
     "globals": [

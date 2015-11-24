@@ -10,7 +10,6 @@ var App = require('../../lib/app')
 
 Element.prototype.inject(
   require('../../lib/property/css'),
-  require('../../lib/property/transform'),
   require('../../lib/property/draggable')
 )
 

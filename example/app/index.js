@@ -57,6 +57,11 @@ var App = require('../../lib/app')
 //   }
 // })
 
+Element.prototype.inject(
+  require('vigour-js/lib/operator/transform'),
+  require('../../lib/property/text')
+)
+
 var app2 = new App({
   node:document.body,
   inject: [
@@ -87,10 +92,9 @@ var app2 = new App({
     },
   },
 
-  // text: {
-  //   inject: require('vigour-js/lib/operator/subscribe'),
-  //   $: 'width'
-  // },
+  list: {
+    $transform:[1,2,3,4,5]
+  }
   // dragThing: {
   //   inject: [
   //     require('../../lib/property/draggable'),

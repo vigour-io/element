@@ -22,7 +22,7 @@ app.set({
   }
 })
 
-//just testing removal
+// just testing removal
 ;(window.onunload = function () {
   app.remove()
 })

@@ -1,4 +1,4 @@
-require('vigour-scratch/lib/mixins.less')
+// require('vigour-scratch/lib/mixins.less')
 require('./style.less')
 
 var Observable = require('vigour-js/lib/observable')
@@ -8,7 +8,8 @@ var App = require('../../lib/app')
 
 Observable.prototype.inject(
   require('vigour-js/lib/operator/subscribe'),
-  require('vigour-js/lib/operator/transform')
+  require('vigour-js/lib/operator/transform'),
+  require('vigour-js/lib/operator/add')
 )
 
 Element.prototype.inject(
@@ -39,9 +40,14 @@ var Item = new Element({
   }
 })
 
+var scroll = new Observable({
+  key: 'scrollMagic',
+  val: 180
+})
+
 var app = new App({
   node: document.body,
-  properties:{
+  properties: {
     navigation: new Observable()
   },
   navigation: new Observable({
@@ -49,11 +55,17 @@ var app = new App({
   }),
   topbar: {
     text: {
-      $: '../../navigation.title'
+      $: '../../navigation.title',
+      $add: {
+        val: scroll,
+        $transform (val) {
+          return ' - ' + ~~val
+        }
+      }
     }
   },
   list: {
-    scrollTop: 180,
+    scrollTop: scroll,
     ChildConstructor: Item,
     $transform: data.shows
   }

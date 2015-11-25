@@ -35,14 +35,31 @@ var Item = new Element({
   },
   on: {
     click () {
-      this.lookUp('navigation').val = this.origin
+
     }
   }
 })
 
+var focus
+
+function focusSomething () {
+  var elem = document.elementFromPoint(100, 300)
+  if (elem !== focus) {
+    if (focus) focus.base.setKey('css', '')
+    focus = elem
+    elem.base.setKey('css', 'focused')
+    elem.base.lookUp('navigation').val = elem.base.lookUp('_input')
+  }
+}
+
 var scroll = new Observable({
   key: 'scrollMagic',
-  val: 180
+  val: 180,
+  on: {
+    data () {
+      focusSomething()
+    }
+  }
 })
 
 var app = new App({

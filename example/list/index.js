@@ -22,10 +22,17 @@ Element.prototype.inject(
   require('../../lib/events/click')
 )
 
+
 var Item = new Element({
   titlefield: {
+    node:'input',
     text: {
       $: '../../title'
+    },
+    on: {
+      click (e) {
+        this.node.focus()
+      }
     }
   },
   descriptionfield: {
@@ -68,6 +75,7 @@ var app = new App({
     title: 'Home'
   }),
   topbar: {
+    y:0,
     text: {
       $: '../../navigation.title',
       $add: {
@@ -86,3 +94,25 @@ var app = new App({
 })
 
 focusSomething()
+
+function setTopbar () {
+  let scrollTop = document.body.scrollTop
+  if (scrollTop) {
+    window.requestAnimationFrame(function () {
+      app.topbar.setKey('y', scrollTop)
+    })
+  }
+}
+
+document.body.addEventListener('blur', function () {
+  // window.requestAnimationFrame(function(){
+  //   app.topbar.setKey('y', 0)
+  //   window.scrollTo(0,0)
+  // })
+  setTopbar()
+  // setTimeout(function(){window.scrollTo(0,0)},200)
+},true)
+
+document.body.addEventListener('focus', function () {
+  setTopbar()
+},true)

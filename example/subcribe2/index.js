@@ -9,7 +9,8 @@ var App = require('../../lib/app')
 
 Observable.prototype.inject(
   require('../../lib/animation'),
-  require('vigour-js/lib/operator/subscribe')
+  require('vigour-js/lib/operator/subscribe'),
+  require('vigour-js/lib/operator/transform')
 )
 
 Element.prototype.inject(
@@ -41,27 +42,35 @@ var app = new App({
   properties: {
     content: new Observable()
   },
-  content: obj,
   node: document.body,
+  content:obj,
   list: {
     ChildConstructor: Item,
     $: 'content.shows'
   }
 })
 
-// app.content.each(function(){
-
+// app.set({
+//   list:{
+//     $:'content.shows'
+//   }
 // })
-
-// console.log('..removing')
-// app.content.shows[977].remove()
-// app.content.shows.remove()
+// "app", "content", "discover_row1_free", "list", "6", "subtitle"
+// app.content.discover_row1_free.list[6].subtitle.remove()
+// "app", "content", "shows", "1900"
+// app.content.shows[1900].remove()
+// app.set({
+//   content:obj
+// })
+// app.set({
+//   content:obj
+// })
 
 function count (obs, cnt, remove) {
   if(!obs) return
   cnt = cnt || 0
   if (cnt === remove) {
-    console.info('removing:',obs.path)
+    // console.info('removing:',obs.path)
     obs.remove()
   } else {
     obs.each(function (property) {
@@ -72,23 +81,21 @@ function count (obs, cnt, remove) {
   }
 }
 
-// //removing random item every now and then
-// setInterval(function(){
-//   var randomItem = ~~(Math.random() * count(app.content))
-//   count(app.content, 0, randomItem)
-// },100)
+//removing random item every now and then
+setInterval(function(){
+  var randomItem = ~~(Math.random() * count(app.content))
+  // console.log('...remove',randomItem)
+  count(app.content, 0, randomItem)
+  // console.log('...set')
+},1)
 
-// setInterval(function(){
-//   // try{
-//     app.set({
-//       content:obj
-//     })
-//   // }catch(err){
-//   //   console.error(err)
-//   //   debugger
-//   // }
-  
-// },1000)
+//setting all data again
+setInterval(function(){
+  console.clear()
+  app.set({
+    content:JSON.parse(JSON.stringify(obj))
+  })
+},10)
 
 
 

@@ -38,223 +38,71 @@ var Item = new Element({
 
 var obj = require('./content.json')
 
-var app = new App({
-  properties: {
-    content: new Observable()
-  },
-  node: document.body,
-  content:obj,
-  list: {
-    ChildConstructor: Item,
-    $: 'content.shows'
-  }
+var List = new Element({
+  ChildConstructor: Item,
+  $: 'content.shows'
+}).Constructor
+
+var data = new Observable({
+  content:obj
 })
 
-// app.set({
-//   list:{
-//     $:'content.shows'
-//   }
-// })
-// "app", "content", "discover_row1_free", "list", "6", "subtitle"
-// app.content.discover_row1_free.list[6].subtitle.remove()
-// "app", "content", "shows", "1900"
-// app.content.shows[1900].remove()
-// app.set({
-//   content:obj
-// })
-// app.set({
-//   content:obj
-// })
+var app = new App({
+  // properties: {
+  //   content: new Observable()
+  // },
+  node: document.body,
+  // content:obj,
+  val:data,
+  list: new List(),
+  list2: new List()
+})
 
 function count (obs, cnt, remove) {
-  if(!obs) return
+  if (!obs) return
   cnt = cnt || 0
   if (cnt === remove) {
-    // console.info('removing:',obs.path)
     obs.remove()
   } else {
     obs.each(function (property) {
       cnt = count(property, cnt, remove)
-      if(!cnt) return true
+      if (!cnt) return true
     })
     return cnt + 1
   }
 }
 
-//removing random item every now and then
-setInterval(function(){
-  var randomItem = ~~(Math.random() * count(app.content))
-  // console.log('...remove',randomItem)
-  count(app.content, 0, randomItem)
-  // console.log('...set')
-},1)
+// app.list.remove()
+// removing random item every now and then
+setInterval(function () {
+  var randomItem = ~~(Math.random() * count(data.content))
+  count(data.content, 0, randomItem)
+}, 1)
 
-//setting all data again
-setInterval(function(){
+// setting all data again
+setInterval(function () {
   console.clear()
-  app.set({
-    content:JSON.parse(JSON.stringify(obj))
+  data.set({
+    content: JSON.parse(JSON.stringify(obj))
   })
-},10)
+}, 10)
 
+// // removing the list and making a new instance
+// setInterval(function () {
+//   app.list.remove()
+//   setTimeout(function () {
+//     app.set({
+//       list: new List()
+//     })
+//   }, 10)
+// }, 100)
 
-
-  // app.content.each()
-
-// console.log('..adding', obj)
-// app.content.shows[977].set({
-//   description: 'ballz'
-// })
-// app.content.set(obj)
-// app.text.subscribe({
-//   upward:{
-//     title:true
-//   }
-// },function(){
-//   console.log('ha!')
-// })
-// console.log('remove...')
-// d.title.remove()
-// console.log('add...')
-// d.set({
-//   title:'snurt'
-// })
-
-// console.info(app.path)
-
-
-
-// app.content.set({
-//   shows:{
-//     1:{
-//       title:'fun'
-//     }
-//   }
-// })
-// setInterval(function(){
-//   app.content.set({
-//     shows: {
-//       [Math.random()]:{
-//         title:Math.random()
-//       }
-//     }
-//   })
-// },1000)
-
-// var FirstShowTitle = new Element({
-//   text: {
-//     $: 'content.shows.first.title'
-//   }
-// }).Constructor
-
-// var RandomChannelTitle = new Element({
-//   text: {
-//     $: 'content.channels.random.title'
-//   }
-// }).Constructor
-
-// var SomeUIElement = new Element({
-//   nested: {
-//     somewhere: {
-//       nomatter: {
-//         where: new FirstShowTitle()
-//       }
-//     }
-//   },
-//   completely: {
-//     somewhere: {
-//       elsewhere: {
-//         perhaps: {
-//           even: {
-//             very: {
-//               far: {
-//                 away: new RandomChannelTitle()
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   }
-// }).Constructor
-
-// var Hub = new Observable().Constructor
-
-// var userView = new Hub()
-
-// app.set({
-//   val: new Observable({
-//     content: {
-//       shows: {
-//         first: {
-//           title: 'hey'
-//         }
-//       },
-//       channels: {
-//         random: {
-//           title: 'nerdje'
-//         }
-//       }
-//     }
-//   }),
-//   container: new SomeUIElement(),
-//   container2: new SomeUIElement(),
-//   randomTitle: new RandomChannelTitle(),
-//   nested: {
-//     firstTitle: new FirstShowTitle(),
-//     anotherFirstTitle: new FirstShowTitle()
-//   },
-//   firstTitle: new FirstShowTitle(),
-//   anotherFirstTitle: new FirstShowTitle(),
-//   anotherThing: new SomeUIElement(),
-//   pleaseStop: {
-//     text: 'start madness',
-//     on: {
-//       click() {
-//         if(this.a){
-//           clearInterval(this.a)
-//           clearInterval(this.b)
-//           this.a = false
-//           this.text.val = 'start madness'
-//           this.node.style.backgroundColor = 'green'
-//         }else{
-//           this.text.val = 'stop madness'
-//           this.node.style.backgroundColor = 'red'
-//           this.a = setInterval(function () {
-//             if (Math.random() > 0.1) {
-//               app.val.content.set({
-//                 shows: {
-//                   first: {
-//                     title: 'True Detective' + Math.random()
-//                   }
-//                 }
-//               })
-//             }
-//             if (Math.random() > 0.1) {
-//               app.val.content.set({
-//                 channels: {
-//                   random: {
-//                     title: 'MTV 24H Channel' + Math.random()
-//                   }
-//                 }
-//               })
-//             }
-//           }, 5)
-
-//           this.b = setInterval(function () {
-//             if (Math.random() > 0.8) {
-//               if (app.val.content.shows) {
-//                 app.val.content.shows.remove()
-//               }
-//             }
-//             if (Math.random() > 0.8) {
-//               if (app.val.content.channels) {
-//                 app.val.content.channels.remove()
-//               }
-//             }
-//           }, 9)
-//         }
-//       }
-//     }
-//   }
-// })
+// // removing the list and making a new instance
+// setInterval(function () {
+//   app.list2.remove()
+//   setTimeout(function () {
+//     app.set({
+//       list2: new List()
+//     })
+//   }, 20)
+// }, 90)

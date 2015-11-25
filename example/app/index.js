@@ -70,7 +70,8 @@ var app2 = new App({
     require('../../lib/events/nav/down'),
     require('../../lib/events/nav/right'),
     require('../../lib/events/nav/up'),
-    require('../../lib/events/nav/left')
+    require('../../lib/events/nav/left'),
+    require('../../lib/events/click')
   ],
 
   on:{
@@ -90,6 +91,12 @@ var app2 = new App({
       e.preventDefault()
       console.log('-----UP')
     },
+    click () {
+      console.log('click it')
+    },
+    touchstart (){
+      console.log('HAHA')
+    }
   },
 
   list: {

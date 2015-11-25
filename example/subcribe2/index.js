@@ -33,7 +33,7 @@ var Item = new Element({
   }
 }).Constructor
 
-var obj = require('./content.json')
+var obj = require('../content.json')
 
 var List = new Element({
   ChildConstructor: Item,

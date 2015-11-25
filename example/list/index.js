@@ -43,12 +43,14 @@ var Item = new Element({
 var focus
 
 function focusSomething () {
-  var elem = document.elementFromPoint(100, 300)
+  var elem = document.elementFromPoint(100, 140)
   if (elem !== focus) {
-    if (focus) focus.base.setKey('css', '')
+    if (focus && focus.base) focus.base.setKey('css', '')
     focus = elem
-    elem.base.setKey('css', 'focused')
-    elem.base.lookUp('navigation').val = elem.base.lookUp('_input')
+    if (elem.base) {
+      elem.base.setKey('css', 'focused')
+      elem.base.lookUp('navigation').val = elem.base.lookUp('_input')
+    }
   }
 }
 
@@ -87,3 +89,5 @@ var app = new App({
     $transform: data.shows
   }
 })
+
+focusSomething()

@@ -32,11 +32,6 @@ var Item = new Element({
     text: {
       $: '../../description'
     }
-  },
-  on: {
-    click () {
-
-    }
   }
 })
 

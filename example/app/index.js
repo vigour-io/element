@@ -63,13 +63,35 @@ Element.prototype.inject(
 )
 
 var app2 = new App({
+  node:document.body,
   inject: [
-    require('../../lib/property/css')
+    require('../../lib/property/css'),
+    require('../../lib/property/text'),
+    require('../../lib/events/nav/down'),
+    require('../../lib/events/nav/right'),
+    require('../../lib/events/nav/up'),
+    require('../../lib/events/nav/left')
   ],
-  text: {
-    inject: require('vigour-js/lib/operator/subscribe'),
-    $: 'width'
+
+  on:{
+    arrowDown(e){
+      e.preventDefault()
+      console.log('-----DOWN')
+    },
+    arrowRight(e){
+      e.preventDefault()
+      console.log('-----RIGHT')
+    },
+    arrowLeft(e){
+      e.preventDefault()
+      console.log('-----LEFT')
+    },
+    arrowUp(e){
+      e.preventDefault()
+      console.log('-----UP')
+    },
   },
+
   list: {
     $transform:[1,2,3,4,5]
   }
@@ -88,4 +110,4 @@ var app2 = new App({
 })
 
 // document.body.appendChild(app1.node)
-document.body.appendChild(app2.node)
+// document.body.appendChild(app2.node)

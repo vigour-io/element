@@ -14,6 +14,7 @@ Element.prototype.inject(
   require('../../lib/property/opacity'),
   require('../../lib/property/transition'),
   require('../../lib/property/draggable'),
+  require('../../lib/animation'),
   require('../../lib/events/drag')
 )
 
@@ -35,7 +36,7 @@ app.set({
     draggable: true,
     on: {
       dragend: function (e, event) {
-        console.log(1)
+        console.info('dragend')
 
         app.rectangle.setKey('x', this.x.val + Math.random() * 450)
         app.rectangle.setKey('y', this.y.val + Math.random() * 450)

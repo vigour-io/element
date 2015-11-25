@@ -5,7 +5,7 @@ body {
 }
 
 div {
-  .absolute(0, auto, auto, 0);
+  .absolute(auto, auto);
   .transition(0.1s linear opacity);
   pointer-events: none;
   opacity: .7;
@@ -41,7 +41,7 @@ div {
   &:before,
   &:after {
     content: '';
-    .absolute(0, auto, auto, 0);
+    .absolute(0, 0);
   }
 
   &:before {
@@ -69,7 +69,7 @@ div {
   &:after {
     content: url('http://cdn.flaticon.com/svg/8/8051.svg');
     z-index: -1;
-    .absolute(50%, auto, auto, 50%);
+    .absolute(50%, 50%);
     .translate;
     width: 20px;
     opacity: .3;

@@ -1,4 +1,3 @@
-require('vigour-scratch/index.less')
 require('./style.less')
 
 var Element = require('../../lib/element')
@@ -12,12 +11,9 @@ Element.prototype.inject(
   require('../../lib/property/draggable')
 )
 
-var thing = new Element({
-  text: 'Hello',
-  css: 'hello',
-  dragable: true
-})
-
 app.set({
-  a: thing
+  hello: {
+    text: 'Hello',
+    dragable: true
+  }
 })

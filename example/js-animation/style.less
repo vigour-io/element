@@ -1,12 +1,18 @@
 body {
-  .bgimg('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Graph-paper.svg/255px-Graph-paper.svg.png', top left, repeat);
-  .absolute(0,0,0,0);
-  .user-select;
+  background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Graph-paper.svg/255px-Graph-paper.svg.png') top left repeat;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom:0;
+  user-select: none;
 }
 
 div {
-  .absolute(0, auto, auto, 0);
-  .transition(0.1s linear opacity);
+  position: absolute;
+  top: 0;
+  left: 0
+  transition: 0.1s linear opacity;
   pointer-events: none;
   opacity: .7;
 
@@ -20,43 +26,48 @@ div {
 }
 
 .circle {
-  .size(200px);
-  .radius(100px);
-  border: fade(@red, 50%) 5px solid;
-  background: fade(@red, 80%);
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  border: fade(red, 50%) 5px solid;
+  background: fade(red, 80%);
   z-index: 2;
 }
 
 .rectangle {
-  .size(300px, 200px);
-  border: fade(@green, 30%) 5px solid;
-  background: fade(@green, 60%);
+  width: 300px;
+  height: 200px;
+  border: fade(green, 30%) 5px solid;
+  background: fade(green, 60%);
 }
 
 .triangle {
   position: relative;
   display: inline-block;
-  .size(222px, 295px);
+  width: 222px;
+  height: 295px;
 
   &:before,
   &:after {
     content: '';
-    .absolute(0, auto, auto, 0);
+    position: absolute;
+    top: 0;
+    left: 0
   }
 
   &:before {
     border-left: 125px transparent solid;
     border-right: 125px transparent solid;
     border-bottom: 250px fade(white, 20%) solid;
-    .translate(-5.5%, -5.5%);
+    transform: translate(-5.5%, -5.5%);
     z-index: 2
   }
 
   &::after {
     border-left: 138px transparent solid;
     border-right: 138px transparent solid;
-    border-bottom: 270px fade(@yellow, 70%) solid;
-    .translate(-10%, -10%);
+    border-bottom: 270px fade(yellow, 70%) solid;
+    transform: translate(-10%, -10%);
     z-index: 1
   }
 }
@@ -69,8 +80,10 @@ div {
   &:after {
     content: url('http://cdn.flaticon.com/svg/8/8051.svg');
     z-index: -1;
-    .absolute(50%, auto, auto, 50%);
-    .translate;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
     width: 20px;
     opacity: .3;
   }

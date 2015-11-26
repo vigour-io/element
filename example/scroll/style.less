@@ -1,10 +1,12 @@
-html, body {
-  height:100%;
+html,
+body {
+  height: 100%;
 }
 
 body {
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Source Sans', 'San Francisco', Helvetica, Arial, sans-serif;
 }
 
 .topbar {
@@ -21,11 +23,9 @@ body {
 
 .holder {
   height: 100%;
-
   & > div {
     height: 300px;
     position: relative;
-
     .image {
       height: 300px;
       background-image: url('http://www.wallcoo.net/animal/home_pussy_1600x1200/images/[wallcoo_com]_pussy_cat_wallpaper_02_wEA39114.jpg');
@@ -45,45 +45,46 @@ body {
 }
 
 .bottom {
-  top:250px;
+  top: 250px;
 }
 
-.lilac {
-  background: @lilac;
-  color:@lilac;
+.brown {
+  background: brown;
+  color: brown;
 }
 
 .blue {
-  background: @blue;
-  color:@blue;
+  background: blue;
+  color: blue;
 }
 
 .orange {
-  background: @orange;
-  color:@orange;
+  background: orange;
+  color: orange;
 }
 
 .yellow {
-  background: @yellow;
-  color:@yellow;
+  background: yellow;
+  color: yellow;
 }
 
 .pink {
-  background: @pink;
-  color:@pink;
+  background: pink;
+  color: pink;
 }
 
 .red {
-  background: @red;
-  color: @red;
+  background: red;
+  color: red;
 }
 
 .chooser {
-  .fixed(auto, auto, 20px, 50%);
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
   margin-left: -120px;
   background: white;
   padding: 2px;
-
   div {
     display: block;
     float: left;
@@ -94,7 +95,7 @@ body {
 
 .arrow {
   position: fixed;
-  top:0;
+  top: 0;
   width: 0;
   height: 0;
   border-top: 60px solid transparent;

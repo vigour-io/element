@@ -1,4 +1,3 @@
-require('vigour-scratch/index.less')
 require('./style.less')
 
 var Element = require('../../lib/element')
@@ -28,8 +27,8 @@ app.set({
     inject: require('../../lib/cases/inject'),
     val: 'balls',
     $bigscreen: {
-      val:'randomString',
-      $desktop:'DESKTOP'
+      val: 'randomString',
+      $desktop: 'DESKTOP'
     },
     $phone: 'phone ballz'
   }
@@ -47,4 +46,4 @@ app.set({
 
 setInterval(function () {
   cases.$bigscreen.val = !cases.$bigscreen.val
-},500)
+}, 500)

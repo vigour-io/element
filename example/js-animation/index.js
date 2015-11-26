@@ -14,22 +14,45 @@ Element.prototype.inject(
   require('../../lib/property/opacity'),
   require('../../lib/property/transition'),
   require('../../lib/property/draggable'),
-  require('../../lib/animation'),
   require('../../lib/events/drag')
 )
+
+// var Observable = require('vigour-js/lib/observable')
+// var Operator = require('vigour-js/lib/operator')
+
+// var op = new Operator({
+//   key: 'test',
+//   operator (val, operator, origin) {
+//     var parsed = operator.parseValue(val, origin)
+//     console.log('nika baller',val, parsed)
+//     return val + parsed
+//   }
+// })
+
+// var obs = new Observable({
+//   properties: {
+//     op: op
+//   },
+//   val: 123,
+//   op: 111111
+// })
+
+// console.log(obs.val)
 
 app.set({
   circle: {
     css: 'circle draggable',
     x: {
+      inject: require('../../lib/animation'),
       val: 100,
-      animation: {
+      op: 100,
+      $animation: {
         duration: 50
       }
     },
     y: {
       val: 200,
-      animation: {
+      $animation: {
         duration: 16
       }
     },
@@ -49,7 +72,7 @@ app.set({
   rectangle: {
     x: {
       val: 400,
-      animation: {
+      $animation: {
         css: true,
         duration: 16,
         start: -1000
@@ -57,7 +80,7 @@ app.set({
     },
     y: {
       val: 600,
-      animation: {
+      $animation: {
         css: true,
         duration: 18,
         start: 1000
@@ -67,14 +90,14 @@ app.set({
   triangle: {
     x: {
       val: 700,
-      animation: {
+      $animation: {
         css: true,
         duration: 38
       }
     },
     y: {
       val: 100,
-      animation: {
+      $animation: {
         css: true,
         duration: 6
       }

@@ -17,11 +17,12 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
-    "vigour-js": "^0.2.2",
-    "vigour-ua": "^0.0.1",
-    "vigour-scratch": "^1.2.1"
+    "vigour-js": "~0.3.0",
+    "vigour-ua": "~0.0.1"  
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "vigour-scratch": "~1.2.1"
+  },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [
     "vigour-js",

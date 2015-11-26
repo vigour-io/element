@@ -1,10 +1,7 @@
 require('./style.less')
 
 var Observable = require('vigour-js/lib/observable')
-
-
 var Element = require('../../lib/element')
-
 var App = require('../../lib/app')
 
 Observable.prototype.inject(
@@ -36,7 +33,7 @@ var Item = new Element({
   }
 }).Constructor
 
-var obj = require('./content.json')
+var obj = require('../content.json')
 
 var List = new Element({
   ChildConstructor: Item,
@@ -81,7 +78,6 @@ setInterval(function () {
 
 // setting all data again
 setInterval(function () {
-  console.clear()
   data.set({
     content: JSON.parse(JSON.stringify(obj))
   })

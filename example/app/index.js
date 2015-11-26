@@ -70,26 +70,30 @@ var app2 = new App({
     require('../../lib/events/nav/down'),
     require('../../lib/events/nav/right'),
     require('../../lib/events/nav/up'),
-    require('../../lib/events/nav/left')
+    require('../../lib/events/nav/left'),
+    require('../../lib/events/click')
   ],
 
   on:{
-    arrowDown(e){
-      e.preventDefault()
-      console.log('-----DOWN')
-    },
-    arrowRight(e){
-      e.preventDefault()
-      console.log('-----RIGHT')
-    },
-    arrowLeft(e){
-      e.preventDefault()
-      console.log('-----LEFT')
-    },
-    arrowUp(e){
-      e.preventDefault()
-      console.log('-----UP')
-    },
+    // arrowDown(e){
+    //   e.preventDefault()
+    //   console.log('-----DOWN')
+    // },
+    // arrowRight(e){
+    //   e.preventDefault()
+    //   console.log('-----RIGHT')
+    // },
+    // arrowLeft(e){
+    //   e.preventDefault()
+    //   console.log('-----LEFT')
+    // },
+    // arrowUp(e){
+    //   e.preventDefault()
+    //   console.log('-----UP')
+    // },
+    click () {
+      console.log('click it')
+    }
   },
 
   list: {

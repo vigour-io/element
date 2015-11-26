@@ -2,9 +2,23 @@
 var Observable = require('vigour-js/lib/observable')
 Observable.prototype.inject(require('vigour-js/lib/operator/subscribe'))
 Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
+
+var Element = require('../../../lib/element')
+var PimpedElement = new Element({
+  ChildConstructor: 'Constructor',
+  inject: [
+    require('../../../lib/property/attributes'),
+    require('../../../lib/property/style'),
+    require('../../../lib/property/size'),
+    require('../../../lib/property/text'),
+    require('../../../lib/events/click')
+  ]
+})
+
 var App = require('../../../lib/app')
 var app = window.app = new App({
-  node: document.body
+  node: document.body,
+  ChildConstructor: PimpedElement
 })
 
 var Player = require('../../../lib/player/')
@@ -20,7 +34,8 @@ var thePlayer = new Player({
 thePlayer.ad.set({
   // src: 'http://html5videoformatconverter.com/data/images/happyfit2.mp4',
   src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4',
-  play: true
+  play: true,
+  canSkip: true
 })
 
 app.set({
@@ -28,37 +43,37 @@ app.set({
 
   progressContainer: {
     node: 'div',
-    inject: [
-      require('../../../lib/property/attributes'),
-      require('../../../lib/property/size')
-    ],
     width: thePlayer.videoWidth,
     height: 30,
 
     progress: {
-      inject: [
-        require('../../../lib/property/attributes'),
-        require('../../../lib/property/style'),
-        require('../../../lib/property/size')
-      ],
-      width: {
-        $: '../../thePlayer.time',
-        $transform (val) {
-          return ~~(val * 100) + '%'
+      width: '100%',
+      style: {
+        border: '1px solid red',
+        boxSizing: 'border-box'
+      },
+      on: {
+        click (e) {
+          var pos = e.x / thePlayer.videoWidth.val
+          thePlayer.time.val = pos
         }
       },
-      height: 8,
-      style: {
-        backgroundColor: 'red'
+
+      progressBar: {
+        width: {
+          $: '../../thePlayer.time',
+          $transform (val) {
+            return ~~(val * 100) + '%'
+          }
+        },
+        height: 8,
+        style: {
+          backgroundColor: 'red'
+        }
       }
     },
 
     bufferProgress: {
-      inject: [
-        require('../../../lib/property/attributes'),
-        require('../../../lib/property/style'),
-        require('../../../lib/property/size')
-      ],
       width: {
         $: '../../thePlayer.buffer',
         $transform (val) {
@@ -74,14 +89,28 @@ app.set({
 
   play: {
     node: 'button',
-    inject: [
-      require('../../../lib/property/text'),
-      require('../../../lib/events/click')
-    ],
     text: 'play/pause',
     on: {
       click () {
         thePlayer.toggle()
+      }
+    }
+  },
+
+  skip: {
+    node: 'button',
+    text: 'skip',
+    attributes: {
+      disabled: {
+        $: '../../thePlayer.ad.canSkip',
+        $transform () {
+          return !thePlayer.ad.canSkip.val
+        }
+      }
+    },
+    on: {
+      click () {
+        thePlayer.ad.skip.val = true
       }
     }
   }

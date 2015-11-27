@@ -18,10 +18,7 @@
   },
   "dependencies": {
     "vigour-js": "~0.3.0",
-    "vigour-ua": "~0.0.1"  
-  },
-  "devDependencies": {
-    "vigour-scratch": "~1.2.1"
+    "vigour-ua": "~0.0.1"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

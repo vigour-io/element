@@ -12,6 +12,7 @@ Element.prototype.inject(
   require('../../lib/property/css'),
   require('../../lib/property/text'),
   require('../../lib/property/background/color'),
+  require('../../lib/property/size'),
   require('../../lib/property/style')
 )
 
@@ -21,8 +22,14 @@ var thing = new Element({
   style: {
     backgroundColor: 'blue',
     position: 'absolute',
-    left: '100px'
-  }
+    left: '100px',
+    width: '400px',
+    height: '300px'
+  },
+
+  // size property has more power
+  width: 200,
+  height: 100
 })
 
 app.set({

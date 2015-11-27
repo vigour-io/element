@@ -1,9 +1,12 @@
-require('vigour-scratch/index.less')
 require('./style.less')
 
 var Element = require('../../lib/element')
 
 var App = require('../../lib/app')
+
+var app = new App({
+  node: document.body
+})
 
 Element.prototype.inject(
   require('../../lib/property/css'),
@@ -15,7 +18,6 @@ var thing = window.thing = new Element({
   css: 'teste'
 })
 
-var app = new App({
-  node: document.body,
+app.set({
   hello: new thing.Constructor()
 })

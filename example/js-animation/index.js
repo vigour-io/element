@@ -1,3 +1,5 @@
+'use strict'
+
 require('./style.less')
 
 var Element = require('../../lib/element')

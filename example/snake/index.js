@@ -1,4 +1,3 @@
-require('vigour-scratch/index.less')
 require('./style.less')
 
 var Element = require('../../lib/element')
@@ -7,7 +6,6 @@ var App = require('../../lib/app')
 var app = new App({
   node: document.body
 })
-
 
 Element.prototype.inject(
   require('../../lib/events/down'),
@@ -39,12 +37,6 @@ var thing = new Element({
 })
 
 thing.node.style.position = 'absolute'
-
-var Img = new Element({
-  background: {
-    inject: require('../../lib/property/background/position')
-  }
-}).Constructor
 
 var holder = new Element({})
 

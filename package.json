@@ -1,7 +1,7 @@
 {
   "name": "vigour-element",
   "description": "DOM stuff for vigour-js",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "main": "index.js",
   "scripts": {
     "test": "gaston test",
@@ -17,11 +17,9 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
-    "vigour-js": "^0.2.2",
-    "vigour-ua": "^0.0.1",
-    "vigour-scratch": "^1.2.1"
+    "vigour-js": "~0.3.0",
+    "vigour-ua": "~0.0.1"
   },
-  "devDependencies": {},
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [
     "vigour-js",

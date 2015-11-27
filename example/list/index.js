@@ -1,4 +1,3 @@
-// require('vigour-scratch/lib/mixins.less')
 require('./style.less')
 
 var Observable = require('vigour-js/lib/observable')

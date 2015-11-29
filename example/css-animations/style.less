@@ -1,11 +1,22 @@
+@import url('./animate.less');
+
+html,
+body {
+  position: relative;
+  height: 100%;
+  margin: 0;
+}
+
 .hello {
-  background: @lilac;
+  background: thistle;
   color: white;
   padding: 10px;
-  .size(200px, 100px);
-  .absolute(40%, 40%);
+  width: 200px;
+  height: 100px;
+  position: absolute;
+  left: 40%;
+  top: 40%;
 
 	.animated;
-  .rollIn();
-	.animation-duration(1s);
+  .rollIn;
 }

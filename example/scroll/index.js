@@ -34,7 +34,7 @@ var holder = new Element({
 })
 
 var chooser = new Element({})
-var colors = ['yellow', 'orange', 'blue', 'lilac', 'pink', 'red']
+var colors = ['yellow', 'orange', 'blue', 'brown', 'pink', 'red']
 
 for (var i = 0; i < colors.length; i = i + 1) {
   var n = new thing.Constructor()
@@ -109,9 +109,9 @@ app.set({
         }
       }
     },
-    lilac: {
+    brown: {
       topbar: {
-        text: 'LILAC',
+        text: 'BROWN',
         css: {
           val: app.holder.scrollTop,
           $transform: function (val) {

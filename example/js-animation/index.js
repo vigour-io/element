@@ -1,4 +1,3 @@
-require('vigour-scratch/index.less')
 require('./style.less')
 
 var Element = require('../../lib/element')

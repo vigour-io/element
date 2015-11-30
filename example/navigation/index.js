@@ -10,7 +10,9 @@ Element.prototype.inject(
   require('../../lib/events/nav/right'),
   require('../../lib/events/nav/up'),
   require('../../lib/events/nav/left'),
-  require('../../lib/events/nav/back')
+  require('../../lib/events/nav/back'),
+  require('../../lib/events/nav/menu'),
+  require('../../lib/events/click')
 )
 
 // var statusBar = require('vigour-status-bar')
@@ -51,6 +53,15 @@ var envTester = new Element({
       },
       arrowUp () {
         console.log("up")
+      },
+      backButton () {
+        console.log("Back")
+      },
+      menuButton () {
+        console.log("Menu")
+      },
+      click () {
+        console.log('click or enter')
       }
     }
   },

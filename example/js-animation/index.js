@@ -1,5 +1,7 @@
 'use strict'
 
+console.clear()
+
 require('./style.less')
 
 var Element = require('../../lib/element')
@@ -17,28 +19,6 @@ Element.prototype.inject(
   require('../../lib/property/draggable'),
   require('../../lib/events/drag')
 )
-
-// var Observable = require('vigour-js/lib/observable')
-// var Operator = require('vigour-js/lib/operator')
-
-// var op = new Operator({
-//   key: 'test',
-//   operator (val, operator, origin) {
-//     var parsed = operator.parseValue(val, origin)
-//     console.log('nika baller',val, parsed)
-//     return val + parsed
-//   }
-// })
-
-// var obs = new Observable({
-//   properties: {
-//     op: op
-//   },
-//   val: 123,
-//   op: 111111
-// })
-
-// console.log(obs.val)
 
 app.set({
   circle: {
@@ -60,8 +40,6 @@ app.set({
     draggable: true,
     on: {
       dragend: function (e, event) {
-        console.info('dragend')
-
         app.rectangle.setKey('x', this.x.val + Math.random() * 450)
         app.rectangle.setKey('y', this.y.val + Math.random() * 450)
 

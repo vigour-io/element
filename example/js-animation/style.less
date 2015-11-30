@@ -5,7 +5,7 @@ body {
   top: 0;
   right: 0;
   bottom:0;
-  user-select: none;
+  overflow: hidden;
 }
 
 div {
@@ -15,6 +15,10 @@ div {
   transition: 0.1s linear opacity;
   pointer-events: none;
   opacity: .7;
+
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 
   &:hover {
     opacity: .8;

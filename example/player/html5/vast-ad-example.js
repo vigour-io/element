@@ -3,6 +3,36 @@ var Observable = require('vigour-js/lib/observable')
 Observable.prototype.inject(require('vigour-js/lib/operator/subscribe'))
 Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
 
+const VAST_EXAMPLE_URL = 'http://ad3.liverail.com/?LR_PUBLISHER_ID=1331&LR_CAMPAIGN_ID=229&LR_SCHEMA=vast2'
+
+var Player = require('../../../lib/player/')
+var thePlayer = new Player({
+  inject: [
+    require('../../../lib/player/html5/index'),
+    require('../../../lib/player/html5/vast-ad.js')
+  ]
+})
+
+thePlayer.set({
+  src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4',
+  volume: 0.1,
+  play: false,
+  ad: {
+    vastOptions: {
+      supportedMediaTypes: [ 'video/mp4' ],
+      // supportedMediaTypes: [ 'video/x-flv' ],
+      mediaBitrateMim: 200,
+      mediaBitrateMax: 1200
+    },
+    vastUrl: VAST_EXAMPLE_URL,
+    play: true
+  }
+})
+
+setTimeout(() => {
+  // thePlayer.ad.play.val = true
+}, 10000)
+
 var PimpedElement = require('./utils/pimped-element')
 
 var App = require('../../../lib/app')
@@ -11,26 +41,8 @@ var app = window.app = new App({
   ChildConstructor: PimpedElement
 })
 
-var Player = require('../../../lib/player/')
-
-var thePlayer = new Player({
-  inject: require('../../../lib/player/html5'),
-  // src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
-  src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4',
-  volume: 0.1,
-  play: true
-})
-
-thePlayer.ad.set({
-  // src: 'http://html5videoformatconverter.com/data/images/happyfit2.mp4',
-  src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_2mb.mp4',
-  play: true,
-  canSkip: true
-})
-
 app.set({
   thePlayer: thePlayer,
-
   progressContainer: {
     node: 'div',
     width: thePlayer.videoWidth,
@@ -76,37 +88,15 @@ app.set({
       }
     }
   },
-
-  play: {
-    node: 'button',
-    text: 'play/pause',
-    on: {
-      click () {
-        thePlayer.toggle()
-      }
-    }
-  },
-
-  skip: {
-    node: 'button',
-    text: 'skip',
-    attributes: {
-      disabled: {
-        $: '../../thePlayer.ad.canSkip',
-        $transform () {
-          return !thePlayer.ad.canSkip.val
+  container: {
+    play: {
+      node: 'button',
+      text: 'play/pause',
+      on: {
+        click () {
+          thePlayer.toggle()
         }
-      }
-    },
-    on: {
-      click () {
-        thePlayer.ad.skip.val = true
       }
     }
   }
-})
-
-// just testing removal
-;(window.onunload = function () {
-  app.remove()
 })

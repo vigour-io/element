@@ -18,7 +18,10 @@
   },
   "dependencies": {
     "vigour-js": "~0.3.0",
-    "vigour-ua": "~0.0.1"
+    "vigour-ua": "~0.0.1",
+    "bluebird": "^3.0.5",
+    "xfluent": "^1.0.0",
+    "axios": "^0.7.0"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

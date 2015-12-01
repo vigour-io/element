@@ -3,7 +3,8 @@ var Observable = require('vigour-js/lib/observable')
 Observable.prototype.inject(require('vigour-js/lib/operator/subscribe'))
 Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
 
-const VAST_EXAMPLE_URL = 'http://ad3.liverail.com/?LR_PUBLISHER_ID=1331&LR_CAMPAIGN_ID=229&LR_SCHEMA=vast2'
+// const VAST_EXAMPLE_URL = 'http://ad3.liverail.com/?LR_PUBLISHER_ID=1331&LR_CAMPAIGN_ID=229&LR_SCHEMA=vast2'
+const VAST_EXAMPLE_URL = 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
 
 var Player = require('../../../lib/player/')
 var thePlayer = new Player({

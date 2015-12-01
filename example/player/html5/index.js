@@ -30,9 +30,9 @@ var thePlayer = new Player({
 
 var tracking = require('vigour-track')
 var Observable = require('vigour-js/lib/observable')
-var trackerEmitter = require('vigour-track/emitter')
+var trackerEmitter = require('vigour-track/lib/emitter')
 
-trackerEmitter.inject(require('vigour-track/emitter/service'))
+trackerEmitter.inject(require('vigour-track/lib/emitter/service'))
 
 thePlayer.ad.set({
   // src: 'http://html5videoformatconverter.com/data/images/happyfit2.mp4',

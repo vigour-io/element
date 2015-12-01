@@ -5,6 +5,11 @@ console.clear()
 require('./style.less')
 
 var Element = require('../../lib/element')
+var Property = require('../../lib/property')
+
+Property.prototype.inject(
+  require('../../lib/animation')
+)
 
 var App = require('../../lib/app')
 var app = new App({
@@ -17,14 +22,14 @@ Element.prototype.inject(
   require('../../lib/property/opacity'),
   require('../../lib/property/transition'),
   require('../../lib/property/draggable'),
-  require('../../lib/events/drag')
+  require('../../lib/events/drag'),
+  require('../../lib/animation')
 )
 
 app.set({
   circle: {
     css: 'circle draggable',
     x: {
-      inject: require('../../lib/animation'),
       val: 100,
       op: 100,
       $animation: {

@@ -69,23 +69,16 @@ var scroll = new Observable({
 
 var app = new App({
   node: document.body,
-  // hiddeninput: {
-  //   node: 'input',
-  //   text: '',
-  //   on: {
-  //     keyup () {
-  //       this.text.origin.val = this.node.value
-  //     }
-  //   }
-  // },
   properties: {
-    navigation: new Observable()
+    navigation: new Observable(),
+    scroll: new Observable()
   },
   navigation: new Observable({
     title: 'Home'
   }),
+  scroll: scroll,
   topbar: {
-    y:0,
+    y: 0,
     text: {
       $: '../../navigation.title',
       $add: {
@@ -98,7 +91,7 @@ var app = new App({
   },
   list: {
     scrollTop: {
-      $:{}
+      $: '../../scroll'
     },
     ChildConstructor: Item,
     $transform: data.shows

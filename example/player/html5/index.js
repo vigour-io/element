@@ -4,17 +4,7 @@ Observable.prototype.inject(require('vigour-js/lib/operator/subscribe'))
 Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
 Observable.prototype.inject(require('vigour-track'))
 
-var Element = require('../../../lib/element')
-var PimpedElement = new Element({
-  ChildConstructor: 'Constructor',
-  inject: [
-    require('../../../lib/property/attributes'),
-    require('../../../lib/property/style'),
-    require('../../../lib/property/size'),
-    require('../../../lib/property/text'),
-    require('../../../lib/events/click')
-  ]
-})
+var PimpedElement = require('./utils/pimped-element')
 
 var App = require('../../../lib/app')
 var app = window.app = new App({

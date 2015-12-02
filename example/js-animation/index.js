@@ -57,6 +57,8 @@ app.set({
       }
     }
   },
+
+
   rectangle: {
      on : {
       transitionEnd () {
@@ -92,10 +94,6 @@ app.set({
         css: true,
         duration: 6
       }
-    },
-    teste : {
-      node:'button',
-      tect:'ola'
     }
   }
 })

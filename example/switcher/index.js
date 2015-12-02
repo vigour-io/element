@@ -23,9 +23,40 @@ Element.prototype.inject(
   require('../../lib/property/text'),
   require('../../lib/property/transition'),
   require('../../lib/property/draggable'),
+  require('../../lib/property/size'),
   require('../../lib/events/drag'),
   require('../../lib/animation')
 )
+
+var Container1 = new Element({
+  on:{
+    transitionEnd () {
+      console.log('remove')
+      this.remove()
+    }
+  },
+  x:{
+    val:0,
+    $animation:{
+
+    }
+  }
+})
+
+var Container2 = new Element({
+on:{
+    transitionEnd () {
+      console.log('remove')
+      this.remove()
+    }
+  },
+  x:{
+    val:0,
+    $animation:{
+
+    }
+  }
+})
 
 var Switcher = new Element({
   width:420,
@@ -49,46 +80,39 @@ var Switcher = new Element({
         }
       }
     }
-  }
+  },
+  container1: Container1
+
 })
 
+
 app.set({
-  switcher : Switcher,
-  container1:{
-     on:{
-      transitionEnd () {
-        console.log('remove')
-      }
-    },
-    x:{
-      val:0,
-      $animation:{
 
-      }
-    }
-  },
-  container2:{
 
-  },
   back:{
     node:'button',
     text:'back',
     on: {
       click () {
         console.log('clicked back')
-        this.parent.switcher.emit('switchto', [ this.parent.container1,'transition', 'left', 100]) //Also animation types (opacity, transiction)
+        app.switcher.set({container1: new Element({
+  on:{
+    transitionEnd () {
+      console.log('remove')
+      this.remove()
+    }
+  },
+  x:{
+    val:0,
+    $animation:{
+
+    }
+  }
+})})
+        this.parent.switcher.emit('switchto', [ this.parent.switcher.container1,'transition', 'left', 30]) //Also animation types (opacity, transiction)
       }
     }
   },
-  front:{
-    node:'button',
-    text:'front',
-    on: {
-      click () {
-        console.log('clicked front')
-        this.parent.switcher.emit('switchto', [ this.parent.container1,'transition', 'right', 100]) //Also animation types (opacity, transiction)
-      }
-    }
-  }
+  switcher : Switcher
 })
 

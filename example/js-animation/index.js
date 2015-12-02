@@ -1,6 +1,15 @@
+'use strict'
+
+console.clear()
+
 require('./style.less')
 
 var Element = require('../../lib/element')
+var Property = require('../../lib/property')
+
+Property.prototype.inject(
+  require('../../lib/animation')
+)
 
 var App = require('../../lib/app')
 var app = new App({
@@ -13,7 +22,8 @@ Element.prototype.inject(
   require('../../lib/property/opacity'),
   require('../../lib/property/transition'),
   require('../../lib/property/draggable'),
-  require('../../lib/events/drag')
+  require('../../lib/events/drag'),
+  require('../../lib/animation')
 )
 
 app.set({
@@ -21,21 +31,20 @@ app.set({
     css: 'circle draggable',
     x: {
       val: 100,
-      animation: {
+      op: 100,
+      $animation: {
         duration: 50
       }
     },
     y: {
       val: 200,
-      animation: {
+      $animation: {
         duration: 16
       }
     },
     draggable: true,
     on: {
       dragend: function (e, event) {
-        console.log(1)
-
         app.rectangle.setKey('x', this.x.val + Math.random() * 450)
         app.rectangle.setKey('y', this.y.val + Math.random() * 450)
 
@@ -47,7 +56,7 @@ app.set({
   rectangle: {
     x: {
       val: 400,
-      animation: {
+      $animation: {
         css: true,
         duration: 16,
         start: -1000
@@ -55,7 +64,7 @@ app.set({
     },
     y: {
       val: 600,
-      animation: {
+      $animation: {
         css: true,
         duration: 18,
         start: 1000
@@ -65,14 +74,14 @@ app.set({
   triangle: {
     x: {
       val: 700,
-      animation: {
+      $animation: {
         css: true,
         duration: 38
       }
     },
     y: {
       val: 100,
-      animation: {
+      $animation: {
         css: true,
         duration: 6
       }

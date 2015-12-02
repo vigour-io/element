@@ -2,18 +2,9 @@
 var Observable = require('vigour-js/lib/observable')
 Observable.prototype.inject(require('vigour-js/lib/operator/subscribe'))
 Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
+Observable.prototype.inject(require('vigour-track'))
 
-var Element = require('../../../lib/element')
-var PimpedElement = new Element({
-  ChildConstructor: 'Constructor',
-  inject: [
-    require('../../../lib/property/attributes'),
-    require('../../../lib/property/style'),
-    require('../../../lib/property/size'),
-    require('../../../lib/property/text'),
-    require('../../../lib/events/click')
-  ]
-})
+var PimpedElement = require('./utils/pimped-element')
 
 var App = require('../../../lib/app')
 var app = window.app = new App({
@@ -27,9 +18,21 @@ var thePlayer = new Player({
   inject: require('../../../lib/player/html5'),
   // src: 'http://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4',
   src: 'http://www.sample-videos.com/video/mp4/720/big_buck_bunny_720p_10mb.mp4',
-  volume: 0.1,
-  play: true
+  volume: {
+    val: 0.1,
+    track: true
+  },
+  play: {
+    val: true,
+    track: true
+  }
 })
+
+var tracking = require('vigour-track')
+var Observable = require('vigour-js/lib/observable')
+var trackerEmitter = require('vigour-track/lib/emitter')
+
+trackerEmitter.inject(require('vigour-track/lib/emitter/service'))
 
 thePlayer.ad.set({
   // src: 'http://html5videoformatconverter.com/data/images/happyfit2.mp4',

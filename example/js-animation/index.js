@@ -58,13 +58,13 @@ app.set({
     }
   },
   rectangle: {
+     on : {
+      transitionEnd () {
+        console.log('65 x', arguments)
+      }
+    },
     x: {
       val: 400,
-      on : {
-        transitionEnd () {
-          console.log('65 x')
-        }
-      },
       $animation: {
         duration: 16,
         start: -1000
@@ -72,11 +72,6 @@ app.set({
     },
     y: {
       val: 600,
-      on : {
-        transitionEnd () {
-         console.log('77 y')
-        }
-      },
       $animation: {
         duration: 18,
         start: 1000,
@@ -86,11 +81,6 @@ app.set({
   triangle: {
     x: {
       val: 700,
-      on : {
-        transitionEnd () {
-          debugger
-        }
-      },
       $animation: {
         css: true,
         duration: 38
@@ -98,15 +88,14 @@ app.set({
     },
     y: {
       val: 100,
-      on : {
-        transitionEnd () {
-          debugger
-        }
-      },
       $animation: {
         css: true,
         duration: 6
       }
+    },
+    teste : {
+      node:'button',
+      tect:'ola'
     }
   }
 })

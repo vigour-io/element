@@ -24,15 +24,17 @@ Element.prototype.inject(
 
 var Item = new Element({
   titlefield: {
-    node:'input',
+    // node:'input',
     text: {
       $: '../../title'
     },
-    on: {
-      click (e) {
-        this.node.focus()
-      }
-    }
+    // on: {
+    //   click (e) {
+    //     var hiddeninput = this.lookUp('hiddeninput')
+    //     hiddeninput.node.focus()
+    //     hiddeninput.text.val = this.text.origin
+    //   }
+    // }
   },
   descriptionfield: {
     text: {
@@ -68,13 +70,15 @@ var scroll = new Observable({
 var app = new App({
   node: document.body,
   properties: {
-    navigation: new Observable()
+    navigation: new Observable(),
+    scroll: new Observable()
   },
   navigation: new Observable({
     title: 'Home'
   }),
+  scroll: scroll,
   topbar: {
-    y:0,
+    y: 0,
     text: {
       $: '../../navigation.title',
       $add: {
@@ -86,32 +90,10 @@ var app = new App({
     }
   },
   list: {
-    scrollTop: scroll,
+    scrollTop: {
+      $: '../../scroll'
+    },
     ChildConstructor: Item,
     $transform: data.shows
   }
 })
-
-focusSomething()
-
-function setTopbar () {
-  let scrollTop = document.body.scrollTop
-  if (scrollTop) {
-    window.requestAnimationFrame(function () {
-      app.topbar.setKey('y', scrollTop)
-    })
-  }
-}
-
-document.body.addEventListener('blur', function () {
-  // window.requestAnimationFrame(function(){
-  //   app.topbar.setKey('y', 0)
-  //   window.scrollTo(0,0)
-  // })
-  setTopbar()
-  // setTimeout(function(){window.scrollTo(0,0)},200)
-},true)
-
-document.body.addEventListener('focus', function () {
-  setTopbar()
-},true)

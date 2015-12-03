@@ -1,11 +1,12 @@
 'use strict'
 
 console.clear()
-
+var count = 0
 require('./style.less')
 
 var Element = require('../../lib/element')
 var Property = require('../../lib/property')
+var Switcher = require('../../lib/switcher')
 
 Property.prototype.inject(
   require('../../lib/animation')
@@ -22,17 +23,32 @@ Element.prototype.inject(
   require('../../lib/property/opacity'),
   require('../../lib/property/text'),
   require('../../lib/property/transition'),
+  require('../../lib/property/css'),
   require('../../lib/property/draggable'),
   require('../../lib/property/size'),
   require('../../lib/events/drag'),
   require('../../lib/animation')
 )
-
+app.set({
+  switcher : new Switcher
+})
 var Container1 = new Element({
+  css:'container1',
+  firstOption:{
+    button1:{
+      node : 'button',
+      text:'Language'
+    }
+  },
   on:{
     transitionEnd () {
-      console.log('remove')
+      console.log('removed container 1')
       this.remove()
+    },
+    click () {
+      console.log('clicked back new')
+      var a = new Container2
+      app.switcher.emit('switchto', [this, a,'transition', 'left', 30]) //Also animation types (opacity, transiction)
     }
   },
   x:{
@@ -41,13 +57,25 @@ var Container1 = new Element({
 
     }
   }
-})
+}).Constructor
 
 var Container2 = new Element({
-on:{
+  css: 'container2',
+  firstOption:{
+    button1:{
+      node : 'button',
+      text:'English'
+    }
+  },
+  on:{
     transitionEnd () {
       console.log('remove')
       this.remove()
+    },
+    click () {
+      console.log('clicked back')
+      var a = new Container2
+      app.switcher.emit('switchto', [this, new Container1,'transition', 'left', 30]) //Also animation types (opacity, transiction)
     }
   },
   x:{
@@ -56,63 +84,7 @@ on:{
 
     }
   }
-})
+}).Constructor
 
-var Switcher = new Element({
-  width:420,
-  on:{
-    switchto: {
-      test (params) {
-        this._lastElem = params[0]
-        this._type = params[1]
-        this._direction = params[2]
-        this._duration = params[3]
-
-        if(this._type === 'transition') {
-          if(this._direction === 'left'){
-            this._lastElem.setKey('x', this._lastElem.x.val - this.parent.switcher.width.val)
-          } else if(this._direction === 'right'){
-            this._lastElem.setKey('x', this._lastElem.x.val + this.parent.switcher.width.val)
-          }
-          this._lastElem.x.$animation.set({
-            duration : this._duration
-          })
-        }
-      }
-    }
-  },
-  container1: Container1
-
-})
-
-
-app.set({
-
-
-  back:{
-    node:'button',
-    text:'back',
-    on: {
-      click () {
-        console.log('clicked back')
-        app.switcher.set({container1: new Element({
-  on:{
-    transitionEnd () {
-      console.log('remove')
-      this.remove()
-    }
-  },
-  x:{
-    val:0,
-    $animation:{
-
-    }
-  }
-})})
-        this.parent.switcher.emit('switchto', [ this.parent.switcher.container1,'transition', 'left', 30]) //Also animation types (opacity, transiction)
-      }
-    }
-  },
-  switcher : Switcher
-})
+app.switcher.emit('add',{container2:new Container2})
 

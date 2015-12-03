@@ -47,8 +47,7 @@ var Container1 = new Element({
     },
     click () {
       console.log('clicked back new')
-      var a = new Container2
-      app.switcher.emit('switchto', [this, a,'transition', 'left', 30]) //Also animation types (opacity, transiction)
+      app.switcher.emit('switchto', [this, new Container2,'transition', 'left', 30]) //Also animation types (opacity, transiction)
     }
   },
   x:{
@@ -74,8 +73,7 @@ var Container2 = new Element({
     },
     click () {
       console.log('clicked back')
-      var a = new Container2
-      app.switcher.emit('switchto', [this, new Container1,'transition', 'left', 30]) //Also animation types (opacity, transiction)
+      app.switcher.emit('switchto', [this, new Container1,'transition', 'right', 30]) //Also animation types (opacity, transiction)
     }
   },
   x:{

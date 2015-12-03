@@ -42,7 +42,7 @@ var container = new Element({
     click () {
       console.log('clicked back new')
       var container2 = new Container2
-      app.switcher.emit('fadeto', [this, container2, 'left', 400]) //Also animation types (opacity, transiction)
+      app.switcher.emit('fadeto', [this, container2, 'left', 1000]) //Also animation types (opacity, transiction)
     }
   },
   x:{
@@ -63,7 +63,7 @@ var Container2 = new Element({
     click () {
       console.log('clicked back')
       var container1 = new container
-      app.switcher.emit('fadeto', [this, container1, 'right', 400]) //Also animation types (opacity, transiction)
+      app.switcher.emit('fadeto', [this, container1, 'right', 1000]) //Also animation types (opacity, transiction)
     }
   },
   x:{
@@ -75,26 +75,3 @@ var Container2 = new Element({
 }).Constructor
 
 app.switcher.emit('add',{0: new container})
-// app.switcher.emit('add',{container2: new Container2})
-
-
-// var elem = new Element({
-//     label:{
-//       node:'div'
-//     },
-//     child:{}
-//   })
-
-//   elem.label.remove()
-
-//   elem.set({
-//     label: {
-//       insertBefore: 'child',
-//       node: 'span'
-//     }
-//   })
-
-
-//   app.set({
-//     abc: elem
-//   })

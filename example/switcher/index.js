@@ -32,14 +32,8 @@ Element.prototype.inject(
 app.set({
   switcher : new Switcher
 })
-var Container1 = new Element({
-  css:'container1',
-  firstOption:{
-    button1:{
-      node : 'button',
-      text:'Language'
-    }
-  },
+var container = new Element({
+  css:'container',
   on:{
     transitionEnd () {
       console.log('removed container 1')
@@ -47,7 +41,8 @@ var Container1 = new Element({
     },
     click () {
       console.log('clicked back new')
-      app.switcher.emit('switchto', [this, new Container2,'transition', 'left', 30]) //Also animation types (opacity, transiction)
+      var container2 = new Container2
+      app.switcher.emit('fadeto', [this, container2, 'left', 400]) //Also animation types (opacity, transiction)
     }
   },
   x:{
@@ -60,12 +55,6 @@ var Container1 = new Element({
 
 var Container2 = new Element({
   css: 'container2',
-  firstOption:{
-    button1:{
-      node : 'button',
-      text:'English'
-    }
-  },
   on:{
     transitionEnd () {
       console.log('remove')
@@ -73,7 +62,8 @@ var Container2 = new Element({
     },
     click () {
       console.log('clicked back')
-      app.switcher.emit('switchto', [this, new Container1,'transition', 'right', 30]) //Also animation types (opacity, transiction)
+      var container1 = new container
+      app.switcher.emit('fadeto', [this, container1, 'right', 400]) //Also animation types (opacity, transiction)
     }
   },
   x:{
@@ -84,5 +74,27 @@ var Container2 = new Element({
   }
 }).Constructor
 
-app.switcher.emit('add',{container2:new Container2})
+app.switcher.emit('add',{0: new container})
+// app.switcher.emit('add',{container2: new Container2})
 
+
+// var elem = new Element({
+//     label:{
+//       node:'div'
+//     },
+//     child:{}
+//   })
+
+//   elem.label.remove()
+
+//   elem.set({
+//     label: {
+//       insertBefore: 'child',
+//       node: 'span'
+//     }
+//   })
+
+
+//   app.set({
+//     abc: elem
+//   })

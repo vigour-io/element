@@ -34,7 +34,7 @@ app.set({
       val: 100,
       on : {
         transitionEnd () {
-          debugger
+          // debugger
         }
       }
     },
@@ -42,7 +42,7 @@ app.set({
       val: 200,
       on : {
         transitionEnd () {
-          debugger
+
         }
       }
     },
@@ -62,7 +62,7 @@ app.set({
   rectangle: {
      on : {
       transitionEnd () {
-        console.log('65 x', arguments)
+        console.log('be')
       }
     },
     x: {
@@ -81,17 +81,23 @@ app.set({
     }
   },
   triangle: {
+    on:{
+      transitionEnd () {
+        console.log('beng--')
+        this.remove()
+      }
+    },
     x: {
       val: 700,
       $animation: {
-        css: true,
+        // css: true,
         duration: 38
       }
     },
     y: {
       val: 100,
       $animation: {
-        css: true,
+        // css: true,
         duration: 6
       }
     }

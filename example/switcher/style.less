@@ -1,40 +1,41 @@
 body {
   background: url('https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Graph-paper.svg/255px-Graph-paper.svg.png') top left repeat;
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom:0;
-  overflow: hidden;
 }
 
 .switcher {
   width: 400px;
   height: 450px;
-  // overflow: hidden;
-  // border: fade(green, 50%) 5px solid;
-  // background: fade(green, 80%);
+  overflow: hidden;
+  position: absolute;
+}
+
+.switcher2 {
+  width: 400px;
+  height: 450px;
+  overflow: hidden;
+  position: absolute;
 }
 .container {
   width: 400px;
   height: 450px;
-  border: fade(red, 50%) 5px solid;
-  background: fade(red, 80%);
+  background: red;
   position: absolute;
 }
 
 .container2 {
   width: 400px;
   height: 450px;
-  border: fade(green, 50%) 5px solid;
-  background: fade(green, 80%);
-
+  position: absolute;
+  background: green;
 }
-
 
 .show{
   transition: opacity 1000ms;
 }
 .hide {
   opacity: 0;
+}
+
+.selected{
+  background: green;
 }

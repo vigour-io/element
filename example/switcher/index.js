@@ -75,7 +75,11 @@ app.set({
   },
   switcher : new Switcher
 })
+
+
+
 var container = new Element({
+  text:'1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19',
   css:'container',
     x:{
     val:0,
@@ -97,12 +101,13 @@ var container = new Element({
     click () {
       console.log('clicked back new')
       var container2 = new Container2
-      app.switcher.emit(this.parent.animationType.val , [this, container2, 'left', 500])
+      app.switcher.emit(this.parent.animationType.val , [this, container2, 'left', 100])
     }
   }
 }).Constructor
 
 var Container2 = new Element({
+  text:'1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19',
   css: 'container2',
   on:{
     transitionEnd () {
@@ -112,7 +117,7 @@ var Container2 = new Element({
     click () {
       console.log('clicked back')
       var container1 = new container
-      app.switcher.emit(this.parent.animationType.val , [this, container1, 'right', 500])
+      app.switcher.emit(this.parent.animationType.val , [this, container1, 'right', 100])
     }
   },
   x:{
@@ -129,3 +134,10 @@ var Container2 = new Element({
   }
 }).Constructor
 app.switcher.emit('add',[null,{'1': new container}])
+
+app.switcher.set({animationType: 'switchto'})
+
+console.log('HAHAHA',document.elementFromPoint(100,100))
+setInterval(function(){
+  document.elementFromPoint(100,100).base.emit('click')
+},2000)

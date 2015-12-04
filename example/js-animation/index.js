@@ -75,7 +75,7 @@ app.set({
     y: {
       val: 600,
       $animation: {
-        duration: 18,
+        duration: 16,
         start: 1000,
       }
     }

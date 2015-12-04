@@ -73,19 +73,20 @@ app.set({
       }
     }
   },
-  switcher : new Switcher,
-  // switcher2 : new Switcher
+  switcher : new Switcher
 })
 var container = new Element({
   css:'container',
     x:{
     val:0,
     $animation:{
+      duration:0
     }
   },
   y:{
     val:0,
     $animation:{
+      duration:0
     }
   },
   on:{
@@ -96,7 +97,7 @@ var container = new Element({
     click () {
       console.log('clicked back new')
       var container2 = new Container2
-      app.switcher.emit(this.parent.animationType.val , [this, container2, 'left', 30])
+      app.switcher.emit(this.parent.animationType.val , [this, container2, 'left', 500])
     }
   }
 }).Constructor
@@ -111,72 +112,20 @@ var Container2 = new Element({
     click () {
       console.log('clicked back')
       var container1 = new container
-      app.switcher.emit(this.parent.animationType.val , [this, container1, 'right', 30])
+      app.switcher.emit(this.parent.animationType.val , [this, container1, 'right', 500])
     }
   },
   x:{
     val:0,
     $animation:{
+       duration:0
     }
   },
   y:{
     val:0,
     $animation:{
+       duration:0
     }
   }
 }).Constructor
-
-
 app.switcher.emit('add',[null,{'1': new container}])
-// app.switcher2.emit('add',[null,{'1': new containerex}])
-//
-// var containerex = new Element({
-//   css:'container',
-//   x:{
-//     val:0,
-//     $animation:{
-//     }
-//   },
-//   y:{
-//     val:0,
-//     $animation:{
-//     }
-//   },
-//   on:{
-//     transitionEnd () {
-//       console.log('removed container 1')
-//       this.remove()
-//     },
-//     click () {
-//       console.log('clicked back new')
-//       var container2 = new Container2ex
-//       app.switcher2.emit('switchto', [this, container2, 'left', 30]) //Also animation types (opacity, transiction)
-//     }
-//   },
-
-// }).Constructor
-
-// var Container2ex = new Element({
-//   css: 'container2',
-//   x:{
-//     val:0,
-//     $animation:{
-//     }
-//   },
-//   y:{
-//     val:0,
-//     $animation:{
-//     }
-//   },
-//   on:{
-//     transitionEnd () {
-//       console.log('remove')
-//       this.remove()
-//     },
-//     click () {
-//       console.log('clicked back')
-//       var container1 = new containerex
-//       app.switcher2.emit('switchto', [this, container1, 'right', 30]) //Also animation types (opacity, transiction)
-//     }
-//   }
-// }).Constructor

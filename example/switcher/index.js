@@ -41,7 +41,7 @@ app.set({
           this.node.className = "selected buttons"
           this.parent.button2.node.className = "buttons"
           this.parent.button3.node.className = "buttons"
-          this.parent.parent.switcher.set({animationType: 'switchto'})
+          this.parent.parent.switcher.set({animationType: 'togetherto'})
         }
       }
     },
@@ -96,12 +96,12 @@ var container = new Element({
   on:{
     transitionEnd () {
       console.log('removed container 1')
-      this.remove()
+      // this.remove()
     },
     click () {
       console.log('clicked back new')
       var container2 = new Container2
-      app.switcher.emit(this.parent.animationType.val , [this, container2, 'left', 100])
+      app.switcher.emit(this.parent.animationType.val , [this, container2, 'left', 50])
     }
   }
 }).Constructor
@@ -112,12 +112,12 @@ var Container2 = new Element({
   on:{
     transitionEnd () {
       console.log('remove')
-      this.remove()
+      // this.remove()
     },
     click () {
       console.log('clicked back')
       var container1 = new container
-      app.switcher.emit(this.parent.animationType.val , [this, container1, 'right', 100])
+      app.switcher.emit(this.parent.animationType.val , [this, container1, 'right', 50])
     }
   },
   x:{
@@ -135,9 +135,9 @@ var Container2 = new Element({
 }).Constructor
 app.switcher.emit('add',[null,{'1': new container}])
 
-app.switcher.set({animationType: 'switchto'})
+// app.switcher.set({animationType: 'switchto'})
 
-console.log('HAHAHA',document.elementFromPoint(100,100))
-setInterval(function(){
-  document.elementFromPoint(100,100).base.emit('click')
-},2000)
+// console.log('HAHAHA',document.elementFromPoint(100,100))
+// setInterval(function(){
+//   document.elementFromPoint(100,100).base.emit('click')
+// },2000)

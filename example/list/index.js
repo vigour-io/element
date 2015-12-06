@@ -67,33 +67,91 @@ var scroll = new Observable({
   }
 })
 
+var original = new Observable(data)
+var content = new Observable()
+
 var app = new App({
   node: document.body,
+  inputfield: {
+    node: 'input',
+    on: {
+      input () {
+        var regex = new RegExp(this.node.value, 'i')
+        content.each(function (property) {
+          property.remove()
+        })
+        original.unsubscribe()
+        original.subscribe({
+          shows: {
+            $any: {
+              $condition: [{
+                title (title) {
+                  return ~title.val.search(regex)
+                }
+              }, {
+                subtitle (title) {
+                  return ~title.val.search(regex)
+                }
+              }]
+            }
+          }
+        }, function (data) {
+          var origin = data.origin
+          if (data.data === null) {
+            content[origin.key].remove()
+          } else {
+            content.set({[origin.key]:origin})
+          }
+        }).run()
+      }
+    }
+  },
   properties: {
+    data: new Observable(),
     navigation: new Observable(),
     scroll: new Observable()
   },
   navigation: new Observable({
     title: 'Home'
   }),
+  data: content,
   scroll: scroll,
-  topbar: {
-    y: 0,
-    text: {
-      $: '../../navigation.title',
-      $add: {
-        val: scroll,
-        $transform (val) {
-          return ' - ' + ~~val
+  // topbar: {
+  //   y: 0,
+  //   text: {
+  //     $: '../../navigation.title',
+  //     $add: {
+  //       val: scroll,
+  //       $transform (val) {
+  //         return ' - ' + ~~val
+  //       }
+  //     }
+  //   }
+  // },
+  list: {
+    // scrollTop: {
+    //   $: '../../scroll'
+    // },
+    ChildConstructor: Item,
+    $: 'data'
+  }
+})
+
+original.subscribe({
+  $any: {
+    $any: {
+      $condition: {
+        title (title) {
+          return true
         }
       }
     }
-  },
-  list: {
-    scrollTop: {
-      $: '../../scroll'
-    },
-    ChildConstructor: Item,
-    $transform: data.shows
   }
-})
+}, function (data) {
+  var origin = data.origin
+  if (data.data === null) {
+    content[origin.key].remove()
+  } else {
+    content.set({[origin.key]:origin})
+  }
+}).run()

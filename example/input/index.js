@@ -12,6 +12,7 @@ Observable.prototype.inject(
 )
 
 Element.prototype.inject(
+  require('../../lib/property/attributes'),
   require('../../lib/property/text'),
   require('../../lib/property/css'),
   require('../../lib/property/size'),
@@ -21,35 +22,44 @@ Element.prototype.inject(
   require('../../lib/events/click')
 )
 
-var app = new App({
-  node: document.body,
-  topbar: {
-    text: 'topbar'
+var Input = new Element({
+  node: 'input',
+  attributes:{
+    placeholder:'placeholder smeiz'
   },
-  holder: {
-    input: {
-      node: 'input',
-      text: {
-        $: 'topbar.text'
-      },
-      on: {
-        click () {
-          var holder = this.parent
-          holder.set({
-            y: -160
-          })
+  text: {
+    $: 'topbar.text'
+  },
+  on: {
+    click () {
+      var node = this.node
+      if (document.activeElement !== node) {
+        var holder = this.parent
+        holder.set({
+          y: -this.node.offsetTop + 65
+        })
+        holder.once('transitionend', () => {
+          node.focus()
           this.once('blur', function () {
             holder.y.val = 0
           })
-          holder.once('transitionend', () => {
-            this.node.focus()
-          })
-        },
-        input () {
-          console.log(this.text.origin)
-          this.text.origin.set(this.node.value)
-        }
+        })
       }
+    },
+    input () {
+      this.text.origin.set(this.node.value)
     }
+  }
+}).Constructor
+
+var app = new App({
+  node: document.body,
+  topbar: {
+    text: {
+      val: 'topbar'
+    }
+  },
+  holder: {
+    input:new Input()
   }
 })

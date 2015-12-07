@@ -54,12 +54,12 @@ var container = new Element({
   on:{
     transitionEnd () {
       console.log('removed container 1')
-      this.remove()
+      // this.remove()
     },
     click () {
       console.log('clicked back new')
       var container2 = new Container2
-      app.switcher.emit('changeto' , [this, container2, 'right', 1000])
+      app.switcher.emit('togetherto' , [this, container2, 'right', 50])
     }
   }
 }).Constructor
@@ -70,12 +70,12 @@ var Container2 = new Element({
   on:{
     transitionEnd () {
       console.log('remove container 2')
-      this.remove()
+      // this.remove()
     },
     click () {
       console.log('clicked back')
       var container1 = new container
-      app.switcher.emit('changeto', [this, container1, 'left', 1000])
+      app.switcher.emit('togetherto', [this, container1, 'left', 50])
     }
   },
   x:{
@@ -93,9 +93,8 @@ var Container2 = new Element({
 }).Constructor
 app.switcher.emit('add',[null,{'1': new container}])
 
-// app.switcher.set({animationType: 'switchto'})
 
-// console.log('HAHAHA',document.elementFromPoint(100,100))
-// setInterval(function(){
-//   document.elementFromPoint(100,100).base.emit('click')
-// },2000)
+console.log('HAHAHA',document.elementFromPoint(100,100))
+setInterval(function(){
+  document.elementFromPoint(100,100).base.emit('click')
+},1000)

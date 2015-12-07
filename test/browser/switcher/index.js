@@ -25,57 +25,82 @@ Element.prototype.inject(
 )
 
 describe('--> Switcher' , () => {
+   switcher = new Switcher
 
-  switcher = new Switcher
+    firstContainer = new Element({
+      key:1,
+      x:{
+        val:0,
+        $animation: {
 
-  firstContainer = new Element({
-    key:1,
-    x:{
-      val:0,
-      $animation: {
+        }
+      },
+      y:{
+        val:0,
+        $animation: {
 
+        }
       }
-    },
-    y:{
-      val:0,
-      $animation: {
+    })
 
+    secondContainer = new Element({
+      key:2,
+      x:{
+        val:0,
+        $animation: {
+
+        }
+      },
+      y:{
+        val:0,
+        $animation: {
+
+        }
       }
-    }
-  })
-
-  secondContainer = new Element({
-    key:2,
-    x:{
-      val:0,
-      $animation: {
-
-      }
-    },
-    y:{
-      val:0,
-      $animation: {
-
-      }
-    }
-  })
+    })
 
   switcher.emit('add',[null,{'1': firstContainer}])
 
-  it('Emiting switchto event', () => {
-    spy = sinon.spy(switcher._on.switchto.fn, 'animate')
-    switcher.emit('switchto',[firstContainer, secondContainer,'left', 50])
-    expect(spy.calledOnce).to.be.ok
+  describe('--> Emiting the switchto animation' , () => {
+
+    it('emiting switchto event', () => {
+      spy = sinon.spy(switcher._on.switchto.fn, 'animate')
+      switcher.emit('switchto',[firstContainer, secondContainer,'left', 50])
+      expect(spy.calledOnce).to.be.ok
+    })
+
+    it('should add the second container on the receiver', () => {
+      expect(switcher.node.children.length).to.be.equals(2)
+    })
+    it('should insert the second container before the firstContainer', () =>{
+      expect(switcher.node.children[0].base.key).to.be.equals('2')
+    })
+    it('should have the transation end event', () => {
+      spyAnimation = sinon.spy(firstContainer._on.transitionEnd.fn, 'val')
+      expect(spyAnimation).to.be.ok
+    })
   })
 
-  it('should add the second container on the receiver', () => {
-    expect(switcher.node.children.length).to.be.equals(2)
-  })
-  it('should insert the second container before the firstContainer', () =>{
-    expect(switcher.node.children[0].base.key).to.be.equals('2')
-  })
-  it('should have the transation end event', () => {
-    spyAnimation = sinon.spy(switcher[1]._on.transitionEnd.fn, 'val')
-    expect(spyAnimation).to.be.ok
+  describe('Emiting the togetherto animation',() => {
+    beforeEach(()=>{
+      switcher = new Switcher
+      switcher.emit('add',[null,{'1': firstContainer}])
+    })
+    it('emiting togetherto event', () => {
+      spy = sinon.spy(switcher._on.togetherto.fn, 'together')
+      switcher.emit('togetherto',[firstContainer, secondContainer,'left', 80])
+      expect(spy.calledOnce).to.be.ok
+    })
+    it('should not insert before ', () => {
+      switcher.emit('togetherto',[firstContainer, secondContainer,'left', 80])
+      expect(switcher.node.children[0].base.key).to.be.equals("1")
+    })
+
+    it('firstContainer animation should ends after the secondContainer animation ', () => {
+      switcher.emit('togetherto',[firstContainer, secondContainer,'left', 80])
+      spyAnimation = sinon.spy(firstContainer._on.transitionEnd.fn, 'val')
+      expect(sinon.assert.notCalled(spyAnimation))
+      expect(sinon.assert.called(spy))
+    })
   })
 })

@@ -34,7 +34,7 @@ setTimeout(() => {
   // thePlayer.ad.play.val = true
 }, 10000)
 
-var PimpedElement = require('./utils/pimped-element')
+var PimpedElement = require('../utils/pimped-element')
 
 var App = require('../../../lib/app')
 var app = window.app = new App({

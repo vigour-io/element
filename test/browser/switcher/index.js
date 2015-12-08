@@ -25,39 +25,39 @@ Element.prototype.inject(
 )
 
 describe('--> Switcher' , () => {
-   switcher = new Switcher
+  switcher = new Switcher
 
-    firstContainer = new Element({
-      key:1,
-      x:{
-        val:0,
-        $animation: {
+  firstContainer = new Element({
+    key:1,
+    x:{
+      val:0,
+      $animation: {
 
-        }
-      },
-      y:{
-        val:0,
-        $animation: {
-
-        }
       }
-    })
+    },
+    y:{
+      val:0,
+      $animation: {
 
-    secondContainer = new Element({
-      key:2,
-      x:{
-        val:0,
-        $animation: {
-
-        }
-      },
-      y:{
-        val:0,
-        $animation: {
-
-        }
       }
-    })
+    }
+  })
+
+  secondContainer = new Element({
+    key:2,
+    x:{
+      val:0,
+      $animation: {
+
+      }
+    },
+    y:{
+      val:0,
+      $animation: {
+
+      }
+    }
+  })
 
   switcher.emit('add',[null,{'1': firstContainer}])
 
@@ -79,10 +79,13 @@ describe('--> Switcher' , () => {
       spyAnimation = sinon.spy(firstContainer._on.transitionEnd.fn, 'val')
       expect(spyAnimation).to.be.ok
     })
+    it('should use the passed duration time', () => {
+      expect(firstContainer.x.$animation.duration.val).to.be.equals(50)
+    })
   })
 
   describe('Emiting the togetherto animation',() => {
-    beforeEach(()=>{
+    beforeEach(() => {
       switcher = new Switcher
       switcher.emit('add',[null,{'1': firstContainer}])
     })
@@ -101,6 +104,28 @@ describe('--> Switcher' , () => {
       spyAnimation = sinon.spy(firstContainer._on.transitionEnd.fn, 'val')
       expect(sinon.assert.notCalled(spyAnimation))
       expect(sinon.assert.called(spy))
+    })
+    it('should use the passed duration time', () => {
+      expect(firstContainer.x.$animation.duration.val).to.be.equals(80)
+    })
+
+    it('should use the passed duration time for the second container / 1.5. --  80/1.5 = 53.333333333333336', () => {
+      expect(secondContainer.x.$animation.duration.val).to.be.equals(53.333333333333336)
+    })
+  })
+
+  describe('Emiting the changeto animation', () => {
+    beforeEach(() => {
+      switcher = new Switcher
+      switcher.emit('add',[null,{'1': firstContainer}])
+    })
+
+
+    it.skip('should use duration 0', () => {
+      // spy = sinon.spy(switcher._on.changeto.fn, 'change')
+      // switcher.emit('changeto',[firstContainer, secondContainer,'left', 80])
+      // debugger
+      // expect(firstContainer.node.style.webkitTransitionDuration).to.be.equals(0)
     })
   })
 })

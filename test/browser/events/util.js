@@ -1,5 +1,6 @@
 // [TODO - move this to Gaston]
 exports.fireEvent = function (element, type) {
+  console.log(element)
   var event // The custom event that will be created
   if (document.createEvent) {
     event = document.createEvent('HTMLEvents')

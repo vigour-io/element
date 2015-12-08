@@ -59,7 +59,7 @@ var container = new Element({
     click () {
       console.log('clicked back new')
       var container2 = new Container2
-      app.switcher.emit('togetherto' , [this, container2, 'right', 50])
+      app.switcher.emit('fadeto' , [this, container2, /*'right'*/ 1000])
     }
   }
 }).Constructor
@@ -75,7 +75,7 @@ var Container2 = new Element({
     click () {
       console.log('clicked back')
       var container1 = new container
-      app.switcher.emit('togetherto', [this, container1, 'left', 50])
+      app.switcher.emit('fadeto', [this, container1, /*'left'*/ 1000])
     }
   },
   x:{
@@ -94,7 +94,7 @@ var Container2 = new Element({
 app.switcher.emit('add',[null,{'1': new container}])
 
 
-console.log('HAHAHA',document.elementFromPoint(100,100))
-setInterval(function(){
-  document.elementFromPoint(100,100).base.emit('click')
-},1000)
+// console.log('HAHAHA',document.elementFromPoint(100,100))
+// setInterval(function(){
+//   document.elementFromPoint(100,100).base.emit('click')
+// },5500)

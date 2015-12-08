@@ -18,6 +18,7 @@ Element.prototype.inject(
   require('../../lib/property/scroll/top'),
   require('../../lib/property/scroll/left'),
   require('../../lib/property/transform'),
+  require('../../lib/property/attributes'),
   require('../../lib/events/click')
 )
 
@@ -74,6 +75,9 @@ var app = new App({
   node: document.body,
   inputfield: {
     node: 'input',
+    attributes: {
+      placeholder: 'Search'
+    },
     on: {
       input () {
         var regex = new RegExp(this.node.value, 'i')
@@ -89,7 +93,7 @@ var app = new App({
                   return ~title.val.search(regex)
                 }
               }, {
-                subtitle (title) {
+                description (title) {
                   return ~title.val.search(regex)
                 }
               }]

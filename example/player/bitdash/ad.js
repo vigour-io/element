@@ -1,5 +1,4 @@
 'use strict'
-
 var Observable = require('vigour-js/lib/observable')
 Observable.prototype.inject(require('vigour-js/lib/operator/subscribe'))
 Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
@@ -36,8 +35,17 @@ thePlayer.set({
     dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.mpd',
     hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.m3u8'
   },
-  volume: 0.1,
-  play: true
+  volume: 0.9,
+  play: true,
+  fullscreen: {
+    on: {
+      data: {
+        test () {
+          console.log('FULLSCREEN HAS CHANGED to:', this.val)
+        }
+      }
+    }
+  }
 })
 
 // setTimeout(function () {
@@ -121,6 +129,36 @@ app.set({
     }
   },
 
+  mute: {
+    node: 'button',
+    text: {
+      $: '../../thePlayer.mute',
+      $transform (data) {
+        return data ? 'unmute' : 'mute'
+      }
+    },
+    on: {
+      click () {
+        thePlayer.mute.val = !thePlayer.mute.val
+      }
+    }
+  },
+
+  fullscreen: {
+    node: 'button',
+    text: {
+      $: '../../thePlayer.fullscreen',
+      $transform (data) {
+        return data ? 'exit fullscreen' : 'fullscreen'
+      }
+    },
+    on: {
+      click () {
+        thePlayer.fullscreen.val = !thePlayer.fullscreen.val
+      }
+    }
+  },
+
   skip: {
     node: 'button',
     text: 'skip ad',
@@ -136,6 +174,33 @@ app.set({
       click () {
         thePlayer.ad.skip.val = true
       }
+    }
+  },
+
+  volumeContainer: {
+    label: {
+      node: 'label',
+      text: 'volume:'
+    },
+    volume: {
+      node: 'input',
+      attributes: {
+        type: 'range',
+        min: 0,
+        max: 100,
+        value: {
+          $: 'volume',
+          $transform () {
+            return thePlayer.volume.val * 100
+          }
+        }
+      },
+      on: {
+        change () {
+          thePlayer.volume.val = this.node.value / 100
+        }
+      },
+      width: 100
     }
   },
 

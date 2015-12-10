@@ -41,13 +41,15 @@ thePlayer.set({
 })
 
 // setTimeout(function () {
-//   thePlayer.set({
-//     source: {
-//       dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
-//       hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8'
-//     }
-//   })
-// }, 10000)
+//   // thePlayer.set({
+//   //   source: {
+//   //     dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
+//   //     hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8'
+//   //   }
+//   // })
+//   // app.remove()
+//   thePlayer.remove()
+// }, 7000)
 
 thePlayer.ad.set({
   source: {

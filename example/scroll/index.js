@@ -26,7 +26,7 @@ var thing = new Element({
 var holder = new Element({
   key: 'holder',
   scrollTop: {
-    val: 0,
+    val: 100,
     // $animation: {
     //   duration: 36
     // }

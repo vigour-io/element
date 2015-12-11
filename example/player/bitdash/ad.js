@@ -57,7 +57,7 @@ thePlayer.set({
 //   // })
 //   // app.remove()
 //   thePlayer.remove()
-// }, 7000)
+// }, 5000)
 
 thePlayer.ad.set({
   source: {

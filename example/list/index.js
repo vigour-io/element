@@ -2,7 +2,7 @@ require('./style.less')
 
 var Observable = require('vigour-js/lib/observable')
 var Element = require('../../lib/element')
-var data = require('../content.json')
+var data = require('../partial.json')
 var App = require('../../lib/app')
 
 Observable.prototype.inject(
@@ -27,7 +27,8 @@ var Item = new Element({
   titlefield: {
     // node:'input',
     text: {
-      $: '../../title'
+      val:'smur'
+      // $: '../../title'
     },
     // on: {
     //   click (e) {
@@ -37,11 +38,11 @@ var Item = new Element({
     //   }
     // }
   },
-  descriptionfield: {
-    text: {
-      $: '../../description'
-    }
-  }
+  // descriptionfield: {
+  //   text: {
+  //     $: '../../description'
+  //   }
+  // }
 })
 
 var focus
@@ -80,33 +81,42 @@ var app = new App({
     },
     on: {
       input () {
+        var value = this.node.value
         var regex = new RegExp(this.node.value, 'i')
-        content.each(function (property) {
-          property.remove()
-        })
+        console.info('query:',value)
+        console.time('removeItems')
+        content.clear()
+        console.timeEnd('removeItems')
+        console.time('unsubscribe')
         original.unsubscribe()
-        original.subscribe({
+        console.timeEnd('unsubscribe')
+        console.time('subscribe')
+        var sub = original.subscribe({
           shows: {
             $any: {
-              $condition: [{
+              $condition: {
                 title (title) {
                   return ~title.val.search(regex)
                 }
-              }, {
-                description (title) {
-                  return ~title.val.search(regex)
-                }
-              }]
+              }
             }
           }
         }, function (data) {
-          var origin = data.origin
+          var origin = data[0].origin
           if (data.data === null) {
+            console.time('removeItem')
             content[origin.key].remove()
+            console.timeEnd('removeItem')
           } else {
-            content.set({[origin.key]:origin})
+            console.time('addToContent')
+            content.set({[origin.key]: origin})
+            console.timeEnd('addToContent')
           }
-        }).run()
+        })
+        console.timeEnd('subscribe')
+        console.time('run')
+        sub.run()
+        console.timeEnd('run')
       }
     }
   },
@@ -120,29 +130,14 @@ var app = new App({
   }),
   data: content,
   scroll: scroll,
-  // topbar: {
-  //   y: 0,
-  //   text: {
-  //     $: '../../navigation.title',
-  //     $add: {
-  //       val: scroll,
-  //       $transform (val) {
-  //         return ' - ' + ~~val
-  //       }
-  //     }
-  //   }
-  // },
   list: {
-    // scrollTop: {
-    //   $: '../../scroll'
-    // },
     ChildConstructor: Item,
     $: 'data'
   }
 })
 
 original.subscribe({
-  $any: {
+  shows: {
     $any: {
       $condition: {
         title (title) {
@@ -152,7 +147,7 @@ original.subscribe({
     }
   }
 }, function (data) {
-  var origin = data.origin
+  var origin = data[0].origin
   if (data.data === null) {
     content[origin.key].remove()
   } else {

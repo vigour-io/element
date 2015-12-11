@@ -1,147 +1,46 @@
-var Element = require('../../../lib/element')
-var elem = new Element()
-var propertyCount
-
-// add property listener to original
-describe('Add property listener', function () {
-  before(function () {
-    propertyCount = 0
-  })
-
-  it('elem._on.set({ property:function(){ propertyCount++ } })', function () {
+describe('Element Event property',function () {
+  var Element = require('../../../lib/element/')
+  var fireEvent = require('../util/util').fireEvent
+  var elem
+  var spy
+  var refefenceObject
+  beforeEach(function () {
+    elem = new Element()
     elem._on.set({
       property: function () {
-        propertyCount++
       }
     })
   })
 
-  it('elem now has a property listener', function () {
-    expect(elem._on.property).to.be.ok
-  })
+  context('When declaring a property listener to an element', function () {
+    beforeEach(function () {
+      refefenceObject = new Element()
+      spy = sinon.spy(elem._on.property.fn,'val')
+    })
 
-  it('propertyCount is zero', function () {
-    expect(propertyCount).to.be.zero
-  })
-})
+    afterEach(function () {
+      spy.reset()
+    })
 
-// property value of element
-describe('Set value', function () {
-  before(function () {
-    propertyCount = 0
-  })
+    it('should not get triggered if the element val is changed', function () {
+      elem.val = 1
+      expect(spy.called).to.not.be.true
+    })
 
-  it('elem.val = 1', function () {
-    elem.val = 1
-  })
+    it('should get triggered if set a new property in element', function () {
+      elem.set({
+        a:new Element()
+      })
+      expect(spy.called).to.be.true
+    })
 
-  it('property did not fire, propertyCount is 0', function () {
-    expect(propertyCount).to.equal(0)
-  })
-})
+    it('should get triggered a child was removed', function () {
+      elem.set({
+        child:new Element()
+      })
+      elem.child.remove()
+      expect(spy.calledTwice).to.be.true
+    })
 
-// set key
-describe('Set key ', function () {
-  before(function () {
-    propertyCount = 0
-  })
-
-  it("elem.set({key:'a'})", function () {
-    elem.set({key: 'a'})
-  })
-
-  it('property did not fire, propertyCount is 0', function () {
-    expect(propertyCount).to.equal(0)
-  })
-})
-
-// add to parent
-describe('Add elem to parent', function () {
-  before(function () {
-    propertyCount = 0
-  })
-
-  it('var parent = new Element({ elem:elem })', function () {
-    var parent = new Element({ elem: elem })
-  })
-
-  it('property did not fire, propertyCount is 0', function () {
-    expect(propertyCount).to.equal(0)
-  })
-})
-
-// set reference
-describe('Set reference', function () {
-  before(function () {
-    propertyCount = 0
-  })
-
-  it('var ref = new Element(); elem.val = ref', function () {
-    var ref = new Element()
-    elem.val = ref
-  })
-
-  it('property did not fire, propertyCount is 0', function () {
-    expect(propertyCount).to.equal(0)
-  })
-})
-
-// set child
-describe('Add child', function () {
-  before(function () {
-    propertyCount = 0
-  })
-
-  it('elem.set({child:{}})', function () {
-    elem.set({child: {}})
-  })
-
-  it('property fired, propertyCount is 1', function () {
-    expect(propertyCount).to.equal(1)
-  })
-})
-
-// set child on child
-describe('Add nested child', function () {
-  before(function () {
-    propertyCount = 0
-  })
-
-  it('elem.child.set({child:{}})', function () {
-    elem.child.set({child: {}})
-  })
-
-  it('property did not fire, propertyCount is 0', function () {
-    expect(propertyCount).to.equal(0)
-  })
-})
-
-// remove nested child
-describe('Remove nested child', function () {
-  before(function () {
-    propertyCount = 0
-  })
-
-  it('elem.child.child.remove()', function () {
-    elem.child.child.remove()
-  })
-
-  it('property did not fire, propertyCount is 0', function () {
-    expect(propertyCount).to.equal(0)
-  })
-})
-
-// remove child
-describe('Remove child', function () {
-  before(function () {
-    propertyCount = 0
-  })
-
-  it('elem.child.remove()', function () {
-    elem.child.remove()
-  })
-
-  it('property fired, propertyCount is 1', function () {
-    expect(propertyCount).to.equal(1)
   })
 })

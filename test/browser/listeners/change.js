@@ -1,147 +1,56 @@
-var Element = require('../../../lib/element')
-var elem = new Element()
-var changeCount
-
-// add change listener to original
-describe('Add change listener', function () {
-  before(function () {
-    changeCount = 0
-  })
-
-  it('elem._on.set({ data:function(){ changeCount++ } })', function () {
+describe('Element Event change',function () {
+  var Element = require('../../../lib/element/')
+  var fireEvent = require('../util/util').fireEvent
+  var elem
+  var spy
+  beforeEach(function () {
+    elem = new Element()
     elem._on.set({
       data: function () {
-        changeCount++
       }
     })
   })
 
-  it('elem now has a change listener', function () {
-    expect(elem._on.data).to.be.ok
-  })
+  context('When declaring a change(data) listener to an element', function () {
+    beforeEach(function () {
+      spy = sinon.spy(elem._on.data.fn,'val')
+    })
 
-  it('changeCount is zero', function () {
-    expect(changeCount).to.be.zero
+    afterEach(function () {
+      spy.reset()
+    })
+
+    it('should get triggered when the val is changed', function () {
+      elem.val = 1
+      expect(spy.called).to.be.true
+    })
+
+    it('should get triggered when set a new key', function () {
+      elem.set({key: 'a'})
+      expect(spy.called).to.be.true
+    })
+
+    it('should not trigger if a parent element is added', function () {
+      let parent = new Element({ elem: elem })
+      expect(spy.called).to.not.be.true
+    })
+
+    it('should get triggered if a new reference is added', function () {
+      let ref = new Element()
+      elem.val = ref
+      expect(spy.called).to.be.true
+    })
+
+    it('should get triggered if a new child is added', function () {
+      elem.set({child: new Element()})
+      expect(spy.called).to.be.true
+    })
+
+    it('should get triggered if a child element was removed', function () {
+      elem.set({child: new Element()})
+      elem.child.remove()
+      expect(spy.calledTwice).to.be.true
+    })
   })
 })
 
-// change value of element
-describe('Set value', function () {
-  before(function () {
-    changeCount = 0
-  })
-
-  it('elem.val = 1', function () {
-    elem.val = 1
-  })
-
-  it('change fired, changeCount is 1', function () {
-    expect(changeCount).to.equal(1)
-  })
-})
-
-// set key
-describe('Set key ', function () {
-  before(function () {
-    changeCount = 0
-  })
-
-  it("elem.set({key:'a'})", function () {
-    elem.set({key: 'a'})
-  })
-
-  it('change fired, changeCount is 1', function () {
-    expect(changeCount).to.equal(1)
-  })
-})
-
-// add to parent
-describe('Add elem to parent', function () {
-  before(function () {
-    changeCount = 0
-  })
-
-  it('var parent = new Element({ elem:elem })', function () {
-    var parent = new Element({ elem: elem })
-  })
-
-  it('change did not fire, changeCount is 0', function () {
-    expect(changeCount).to.equal(0)
-  })
-})
-
-// set reference
-describe('Set reference', function () {
-  before(function () {
-    changeCount = 0
-  })
-
-  it('var ref = new Element(); elem.val = ref', function () {
-    var ref = new Element()
-    elem.val = ref
-  })
-
-  it('change fired, changeCount is 1', function () {
-    expect(changeCount).to.equal(1)
-  })
-})
-
-// set child
-describe('Add child', function () {
-  before(function () {
-    changeCount = 0
-  })
-
-  it('elem.set({child:{}})', function () {
-    elem.set({child: {}})
-  })
-
-  it('change fired, changeCount is 1', function () {
-    expect(changeCount).to.equal(1)
-  })
-})
-
-// set child on child
-describe('Add nested child', function () {
-  before(function () {
-    changeCount = 0
-  })
-
-  it('elem.child.set({child:{}})', function () {
-    elem.child.set({child: {}})
-  })
-
-  it('change did not fire, changeCount is 0', function () {
-    expect(changeCount).to.equal(0)
-  })
-})
-
-// remove nested child
-describe('Remove nested child', function () {
-  before(function () {
-    changeCount = 0
-  })
-
-  it('elem.child.child.remove()', function () {
-    elem.child.child.remove()
-  })
-
-  it('change did not fire, changeCount is 0', function () {
-    expect(changeCount).to.equal(0)
-  })
-})
-
-// remove child
-describe('Remove child', function () {
-  before(function () {
-    changeCount = 0
-  })
-
-  it('elem.child.remove()', function () {
-    elem.child.remove()
-  })
-
-  it('change fired, changeCount is 1', function () {
-    expect(changeCount).to.equal(1)
-  })
-})

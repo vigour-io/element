@@ -1,5 +1,6 @@
+require('../element')
+require('../listeners')
 // describe('Element basics', function () {
-  require('../element')
 // })
 // describe('On listeners', function () {
 //   require('../listeners')

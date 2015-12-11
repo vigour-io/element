@@ -1,6 +1,5 @@
 describe('Element Event reference',function () {
   var Element = require('../../../lib/element/')
-  var fireEvent = require('../util/util').fireEvent
   var elem
   var spy
   var refefenceObject

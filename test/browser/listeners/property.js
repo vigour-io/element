@@ -41,6 +41,6 @@ describe('Element Event property',function () {
       elem.child.remove()
       expect(spy.calledTwice).to.be.true
     })
-
   })
+
 })

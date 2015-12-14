@@ -38,6 +38,7 @@ var parseButton = new Element({
   // text: 'home',
   on: {
     click () {
+      // for node this would be req.url or something
       var parsedUrl = url.parseUrl(window.location.href)
       console.log(parsedUrl.hostname)
       console.log(parsedUrl.pathname)
@@ -53,7 +54,7 @@ var app = new App({
     back:new BackButton({
       text: 'back',
     }),
-    back:new parseButton({
+    parse:new parseButton({
       text: 'parse',
     }),
     home:new Button({

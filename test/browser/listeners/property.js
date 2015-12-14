@@ -1,9 +1,7 @@
 describe('Element Event property',function () {
   var Element = require('../../../lib/element/')
-  var fireEvent = require('../util/util').fireEvent
   var elem
   var spy
-  var refefenceObject
   beforeEach(function () {
     elem = new Element()
     elem._on.set({
@@ -14,7 +12,6 @@ describe('Element Event property',function () {
 
   context('When declaring a property listener to an element', function () {
     beforeEach(function () {
-      refefenceObject = new Element()
       spy = sinon.spy(elem._on.property.fn,'val')
     })
 

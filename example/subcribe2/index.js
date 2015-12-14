@@ -1,5 +1,6 @@
 require('./style.less')
 
+var Event = require('vigour-js/lib/event')
 var Observable = require('vigour-js/lib/observable')
 var Element = require('../../lib/element')
 var App = require('../../lib/app')
@@ -7,7 +8,8 @@ var App = require('../../lib/app')
 Observable.prototype.inject(
   require('../../lib/animation'),
   require('vigour-js/lib/operator/subscribe'),
-  require('vigour-js/lib/operator/transform')
+  require('vigour-js/lib/operator/transform'),
+  require('vigour-js/lib/operator/add')
 )
 
 Element.prototype.inject(
@@ -21,84 +23,58 @@ Element.prototype.inject(
 )
 
 var Item = new Element({
-  tit: {
-    text: {
-      $: 'title'
-    }
+  text: {
+    $: '../',
+    $add: 'smur'
   },
-  des: {
-    text: {
-      $: 'description'
-    }
-  }
+  // foo: {
+  //   text: {
+  //     $: '../../'
+  //   }
+  // },
+  // bar: {
+  //   text: {
+  //     $: '../../'
+  //   }
+  // }
 }).Constructor
 
-var obj = require('../content.json')
+var obj = {}
 
 var List = new Element({
   ChildConstructor: Item,
-  $: 'content.shows'
+  $: 'content'
 }).Constructor
 
 var data = new Observable({
-  content:obj
+  content: {
+    // on: {
+    //   data: {
+    //     test () {
+    //       console.log('data')
+    //     }
+    //   },
+    //   property () {
+    //     console.log('property')
+    //   }
+    // }
+  }
 })
+
+console.time('content set')
+var event = new Event(data.content, 'data')
+event.isTriggered = true
 
 var app = new App({
-  // properties: {
-  //   content: new Observable()
-  // },
   node: document.body,
-  // content:obj,
-  val:data,
-  list: new List(),
-  list2: new List()
-})
+  val: data,
+  list: new List()
+}, event)
 
-function count (obs, cnt, remove) {
-  if (!obs) return
-  cnt = cnt || 0
-  if (cnt === remove) {
-    obs.remove()
-  } else {
-    obs.each(function (property) {
-      cnt = count(property, cnt, remove)
-      if (!cnt) return true
-    })
-    return cnt + 1
-  }
+
+for (var i = 1; i > 0; i--) {
+  data.content.set({[i]: 'test'+i }, event)
 }
-
-// app.list.remove()
-// removing random item every now and then
-setInterval(function () {
-  var randomItem = ~~(Math.random() * count(data.content))
-  count(data.content, 0, randomItem)
-}, 1)
-
-// setting all data again
-setInterval(function () {
-  data.set({
-    content: JSON.parse(JSON.stringify(obj))
-  })
-}, 10)
-
-// // removing the list and making a new instance
-// setInterval(function () {
-//   app.list.remove()
-//   setTimeout(function () {
-//     app.set({
-//       list: new List()
-//     })
-//   }, 10)
-// }, 100)
-
-// // removing the list and making a new instance
-// setInterval(function () {
-//   app.list2.remove()
-//   setTimeout(function () {
-//     app.set({
-//       list2: new List()
-//     })
-//   }, 20)
-// }, 90)
+console.log('trigger!')
+event.trigger()
+console.timeEnd('content set')

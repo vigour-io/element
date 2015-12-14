@@ -18,11 +18,11 @@ var Player = require('../../../lib/player/')
 var thePlayer = new Player({
   inject: require('../../../lib/property/attributes'),
   options: {
-    bitdashScriptUrl: '//bitdash-a.akamaihd.net/bitmovin-portal/564da69672496/043ac8aa88/latest/bitdash.min.js',
-    key: 'ebacd4297ba9f6466fbd3164fbc42b4e',
-    width: `${CUSTOM_WIDTH}px`
-    // bitdashScriptUrl: 'http://blog.vigour.io/assets/scripts/bitdash.min.js',
-    // key: 'd2aee4705ead414b60760cf0bbabe905'
+    // bitdashScriptUrl: '//bitdash-a.akamaihd.net/bitmovin-portal/564da69672496/043ac8aa88/latest/bitdash.min.js',
+    // key: 'ebacd4297ba9f6466fbd3164fbc42b4e',
+    width: `${CUSTOM_WIDTH}px`,
+    bitdashScriptUrl: 'http://blog.vigour.io/assets/scripts/bitdash.min.js',
+    key: 'd2aee4705ead414b60760cf0bbabe905'
   }
 })
 
@@ -35,8 +35,11 @@ thePlayer.set({
     dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.mpd',
     hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.m3u8'
   },
-  volume: 0.9,
+  volume: 0.1,
   play: true,
+  time: {
+    inject: require('vigour-js/lib/observable/is')
+  },
   fullscreen: {
     on: {
       data: {
@@ -48,21 +51,40 @@ thePlayer.set({
   }
 })
 
-// setTimeout(function () {
-//   // thePlayer.set({
-//   //   source: {
-//   //     dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
-//   //     hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8'
-//   //   }
-//   // })
-//   // app.remove()
-//   thePlayer.remove()
-// }, 7000)
+setTimeout(function () {
+  // thePlayer.set({
+  //   source: {
+  //     dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
+  //     hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8'
+  //   }
+  // })
+  // app.remove()
+  // thePlayer.remove()
+  // console.log('RAHHHh', thePlayer.ad.source.progressive.val)
+  // a.val = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
+  // console.log('RAHHHh', thePlayer.ad.source.progressive.val)
+}, 5000)
+
+thePlayer.time.is((time) => {
+  return time > 0.5 && !thePlayer.ad.play.val
+}).then(() => {
+  thePlayer.ad.set({
+    source: {
+      dash: '',
+      hls: '',
+      progressive: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
+    },
+    play: true,
+    canSkip: true
+  })
+})
 
 thePlayer.ad.set({
   source: {
     dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
-    hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8'
+    hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8',
+    // progressive: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
+    // progressive: a
   },
   play: true,
   canSkip: true

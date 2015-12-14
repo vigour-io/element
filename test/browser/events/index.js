@@ -1,5 +1,4 @@
 require('./mouse')
-// require('./mouseup')
-// require('./scroll')
-// require('./nav')
+require('./scroll')
+require('./nav')
 

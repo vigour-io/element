@@ -1,6 +1,6 @@
 var Element = require('../../../../lib/element')
 var App = require('../../../../lib/app')
-var fireEvent = require('../util').fireEvent
+var fireEvent = require('../../util/util').fireEvent
 var platforms = require('../../../../lib/events/nav/platforms')
 
 var app = new App({

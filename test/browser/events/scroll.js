@@ -1,138 +1,44 @@
-var Element = require('../../../lib/element')
-var App = require('../../../lib/app')
-var fireEvent = require('./util').fireEvent
-var scrollKey
-var spy
-var elemInstance
-var elem
+describe('Element Scroll events',function () {
+  var Element = require('../../../lib/element/')
+  var App = require('../../../lib/app')
+  var fireEvent = require('../util/util').fireEvent
+  var documentBody = document.implementation.createHTMLDocument('test').body
+  var elem
+  var spy
 
-var app = new App({
-  key:'app',
-  node:document.body
-})
-
-// add scroll listener to original
-describe('Add scroll listener', function () {
-  before(function () {
-    if (app.elem) {
-      app.elem.remove()
-    }
-    elem = new Element()
-  })
-
-  it('app.elem.set({ on:{ scroll:function(){ scrollKey = this.key } } })', function () {
-    elem.set({
-      on: {
-        scroll: function () {
-          scrollKey = this.key
-        }
-      }
+  describe('Scroll',function () {
+    beforeEach(function () {
+      elem = new Element()
+      app = new App({
+        node: documentBody
+      })
+      app.set({elem: elem})
     })
-    app.set({
-      elem: new elem.Constructor()
-    })
-  })
+    context('When adding scroll listener to an element', function () {
+      beforeEach(function () {
+        elem.set({
+          on: {
+            scroll: function () {
+            }
+          }
+        })
+        spy = sinon.spy(elem._on.scroll.fn, 'val')
+      })
 
-  it('elem now has a scroll listener', function () {
-    expect(elem._on.scroll).to.be.ok
-  })
+      afterEach(function () {
+        spy.reset()
+      })
 
-  it('scrollKey is undefined', function () {
-    expect(scrollKey).to.equal(void 0)
-  })
-})
+      it('should trigger scroll when the triggered from the element', function () {
+        app.elem.emit('scroll')
+        expect(spy.calledOnce).to.be.true
+      })
 
-// Create instance of elem
-describe('Create instance of elem', function () {
-  before(function () {
-    if (app.elemInstance) {
-      app.elemInstance.remove()
-    }
-  })
+      it('should not trigger scroll on the element when triggered form document body', function(){
+        fireEvent(documentBody, 'scroll')
+        expect(spy.calledOnce).to.not.be.true
+      })
 
-  it('app.elemInstance = new elem.Constructor()', function () {
-    elemInstance = new elem.Constructor()
-    app.set({
-      elemInstance: elemInstance
     })
   })
-
-  it('elemInstance inherited scroll listener', function () {
-    expect(elemInstance._on.scroll).to.be.ok
-  })
-
-  it('scrollKey is undefined', function () {
-    expect(scrollKey).to.equal(void 0)
-  })
-})
-
-// Fire scroll on elem
-describe('Emit scroll on elem', function () {
-  before(function () {
-    spy = sinon.spy(elem._on.scroll.fn, 'val')
-    scrollKey = void 0
-  })
-
-  it("elem.emit('scroll')", function () {
-    app.elem.emit('scroll')
-  })
-
-  it('elem._on.scroll fired once', function () {
-    expect(spy.calledOnce).to.be.ok
-  })
-
-  it("scrollKey === ['app','elem']", function () {
-    expect(scrollKey).to.deep.equal('elem')
-  })
-
-})
-
-// Fire scroll on elem
-describe('Trigger scroll on document.body', function () {
-  before(function () {
-    scrollKey = void 0
-    spy.reset()
-    fireEvent(document.body, 'scroll')
-  })
-
-  it('elem._on.scroll is not fired', function () {
-    expect(spy.called).to.not.be.ok
-  })
-
-})
-
-// Fire scroll on elem
-describe('Trigger scroll on elem node', function () {
-  before(function () {
-    scrollKey = void 0
-    spy.reset()
-    fireEvent(app.elem.node, 'scroll')
-  })
-
-  it('elem._on.scroll fired once', function () {
-    expect(spy.calledOnce).to.be.ok
-  })
-
-  it("scrollKey === ['app','elem']", function () {
-    expect(scrollKey).to.deep.equal( 'elem')
-  })
-
-})
-
-// Fire scroll on elem
-describe('Trigger scroll on elemInstance node', function () {
-  before(function () {
-    scrollKey = void 0
-    spy.reset()
-    fireEvent(app.elemInstance.node, 'scroll')
-  })
-
-  it('elemInstance._on.scroll fired once', function () {
-    expect(spy.calledOnce).to.be.ok
-  })
-
-  it("scrollKey === ['app','elemInstance']", function () {
-    expect(scrollKey).to.deep.equal('elemInstance')
-  })
-
 })

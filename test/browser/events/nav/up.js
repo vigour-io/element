@@ -1,29 +1,31 @@
 var Element = require('../../../../lib/element')
 var App = require('../../../../lib/app')
-var fireEvent = require('../util').fireEvent
 var platforms = require('../../../../lib/events/nav/platforms')
+var documentBody = document.implementation.createHTMLDocument('test').body
+var spy
 
 var app = new App({
   key:'app',
-  node: document.body
+  node:documentBody
 })
 
-describe('Add arrowUp listener', () => {
-
+describe('Add arrowUp listener', function () {
   before(function () {
     app.set({
-      on:{
-        arrowUp (e) {
+      elem: new Element({
+        on: {
+          arrowUp () {
+          }
         }
-      }
+      })
     })
   })
 
-  it('document body should have a listener for arrowUp', () => {
-    expect(app._on.arrowUp).to.be.ok
+  it('document body should have a listener for arrowUp', function () {
+    expect(app.elem._on.arrowUp).to.be.ok
   })
 
-  it('document body should have a samsung tv listener for arrowUp', () => {
+  it('document body should have a samsung tv listener for arrowUp', function () {
     expect(platforms.up[29460]).to.be.equals("samsungUp")
   })
 

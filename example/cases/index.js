@@ -3,7 +3,14 @@ require('./style.less')
 var Element = require('../../lib/element')
 var App = require('../../lib/app')
 var app = new App({
-  node: document.body
+  node: document.body,
+  teste: new Element({
+    on:{
+    mousedown () {
+        console.log('yo')
+      }
+    }
+  })
 })
 
 var Observable = require('vigour-js/lib/observable')
@@ -22,6 +29,7 @@ cases.set({
 })
 
 app.set({
+
   inject: require('../../lib/cases/inject'),
   text: {
     inject: require('../../lib/cases/inject'),

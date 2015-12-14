@@ -91,7 +91,7 @@ describe('Element Mouse events',function () {
         spy.reset()
       })
 
-      it('should trigger mousedup when the mouse button is pressed on the elementv',function () {
+      it('should trigger mouseup when the mouse button is pressed on the elementv',function () {
         app.elem.emit('mouseup')
         expect(spy.calledOnce).to.be.true
       })

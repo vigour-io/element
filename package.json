@@ -17,6 +17,7 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
+    "vigour-hub": "*",
     "axios": "^0.7.0",
     "bluebird": "^3.0.5",
     "vigour-js": "^0.3.8",

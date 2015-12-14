@@ -26,6 +26,17 @@ var thePlayer = new Player({
   }
 })
 
+
+var Hub = require('vigour-hub')
+var hub = new Hub({
+  adapter: {
+    inject: require('vigour-hub/lib/protocol/websocket'),
+    websocket: 'ws://jim.local:3031'
+  },
+  play: true,
+  time: 0
+})
+
 thePlayer.set({
   attributes: {
     id: 'mexirica'
@@ -38,7 +49,8 @@ thePlayer.set({
     poster: '//bitdash-a.akamaihd.net/content/MI201109210084_1/poster.jpg'
   },
   volume: 0.1,
-  play: true
+  play: hub.play,
+  time: hub.time
 })
 
 // setTimeout(function () {
@@ -75,10 +87,14 @@ app.set({
         border: '1px solid red',
         boxSizing: 'border-box'
       },
+      inject: require('../../../lib/events/drag'),
       on: {
+        drag (e, event) {
+          this.emit('click', e, event)
+        },
         click (e) {
           var pos = e.x / customWidth
-          thePlayer.time.val = pos
+          thePlayer.time.origin.val = pos
         }
       },
 
@@ -115,7 +131,7 @@ app.set({
     text: 'play/pause',
     on: {
       click () {
-        thePlayer.toggle()
+        hub.play.val = !hub.play.val
       }
     }
   },

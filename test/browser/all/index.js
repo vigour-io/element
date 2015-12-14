@@ -3,6 +3,9 @@ require('../element')
 require('../animation')
 require('../cases')
 require('../events')
+require('../operators')
+require('../rendered')
+require('../properties')
 // describe('Element basics', function () {
 // })
 // describe('On listeners', function () {

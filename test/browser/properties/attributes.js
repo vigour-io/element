@@ -1,10 +1,11 @@
-var Element = require('../../../lib/element')
+describe('Element Attributes property' , function () {
 
-Element.prototype.inject(
-  require('../../../lib/property/attributes')
-)
+  var Element = require('../../../lib/element')
 
-describe('--> Attributes' , function () {
+  Element.prototype.inject(
+    require('../../../lib/property/attributes')
+  )
+
   var a = new Element({})
   var b
   a.set({
@@ -13,15 +14,7 @@ describe('--> Attributes' , function () {
     },
   })
 
-  afterEach(function () {
-    a.attributes.set({
-      custom: true
-    })
-    expect(a.node.getAttribute('custom')).to.equal('true')
-
-  })
-
-  it('adding custom attributes to an element' , function () {
+  it('should add custom attributes to an element' , function () {
     expect(a.node.getAttribute('custom')).to.be.equals('true')
   })
 
@@ -32,9 +25,19 @@ describe('--> Attributes' , function () {
     expect(a.node.getAttribute('custom')).to.be.equals('newValue')
   })
 
-  describe('inheriting elements' , function () {
+  context('when inheriting elements' , function () {
+
     before(function () {
+      a.attributes.set({
+        custom: true
+      })
       b = new a.Constructor()
+    })
+
+    afterEach(function () {
+      a.attributes.set({
+        custom: true
+      })
     })
 
     it("'b' should have the same attributes of 'a'" , function () {

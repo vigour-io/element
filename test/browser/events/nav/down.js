@@ -8,7 +8,7 @@ var app = new App({
   node: document.body
 })
 
-describe('Add arrowDown listener', () => {
+describe('When using arrow Down event', () => {
 
   before(function () {
     app.set({

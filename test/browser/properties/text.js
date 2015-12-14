@@ -1,10 +1,10 @@
-var Element = require('../../../lib/element')
-var Observable = require('vigour-js/lib/observable')
-Element.prototype.inject(
-  require('../../../lib/property/text')
-)
+describe('Element property Text', function () {
+  var Element = require('../../../lib/element')
+  var Observable = require('vigour-js/lib/observable')
+  Element.prototype.inject(
+    require('../../../lib/property/text')
+  )
 
-describe('--> text', function () {
   it('should accept strings', function () {
     var value = 'hello'
     var element = new Element({

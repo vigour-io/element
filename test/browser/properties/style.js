@@ -1,10 +1,9 @@
-var Element = require('../../../lib/element')
+describe('Element inline style', function () {
+  var Element = require('../../../lib/element')
 
-Element.prototype.inject(
-  require('../../../lib/property/style')
-)
-
-describe('style properties for inline css', function () {
+  Element.prototype.inject(
+    require('../../../lib/property/style')
+  )
   var el = new Element({})
 
   it('should show empty string when nothing is set on "style"', function () {

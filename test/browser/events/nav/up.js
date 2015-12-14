@@ -9,7 +9,7 @@ var app = new App({
   node:documentBody
 })
 
-describe('Add arrowUp listener', function () {
+describe('When using arrow Up event', function () {
   before(function () {
     app.set({
       elem: new Element({

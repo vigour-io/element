@@ -8,7 +8,7 @@ var app = new App({
   node: document.body
 })
 
-describe('Add arrowRight listener', () => {
+describe('When using arrow right event', () => {
 
   before(function () {
     app.set({

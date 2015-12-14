@@ -1,13 +1,12 @@
-var Element = require('../../../lib/element')
+describe('Element css property', function () {
+  var Element = require('../../../lib/element')
 
-Element.prototype.inject(
-  require('../../../lib/property/css')
-)
+  Element.prototype.inject(
+    require('../../../lib/property/css')
+  )
+  var element
+  var childElement
 
-var element
-var childElement
-
-describe('--> CSS', function () {
   beforeEach(function () {
     element = new Element({
       key: 'elem',
@@ -15,18 +14,18 @@ describe('--> CSS', function () {
     })
   })
 
-  it('Adding a css class on the Element', function () {
+  it('should add the css class on the Element', function () {
     expect(element.node.className).to.be.equals('elem vigourClass')
   })
 
-  it('changing the css class', function () {
+  it('should change the css class', function () {
     element.css.set({
       val: 'newClass'
     })
     expect(element.node.className).to.be.equals('elem newClass')
   })
 
-  it('add another css class on the same element', function () {
+  it('should add another css class on the same element', function () {
     element.css.set({
       addClass: 'newClass'
     })
@@ -74,20 +73,3 @@ describe('--> CSS', function () {
   })
 })
 
-describe('Inheriting', function () {
-  beforeEach(function () {
-    childElement = new element.Constructor()
-  })
-
-  it('childElement should have key class', function () {
-    expect(childElement.node.className).to.be.equals('elem')
-  })
-
-// // not supported yet
-//   it('element changes should change childElement ', function () {
-//   	childElement.css.set({
-//   		addClass: 'active'
-//   	})
-//   	expect(childElement.node.className).to.be.equals("newClass active")
-//   })
-})

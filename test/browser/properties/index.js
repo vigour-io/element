@@ -1,23 +1,13 @@
-describe('On transforms', function () {
-  require('./transforms')
-})
+require('./transforms')
+require('./text')
+require('./style')
+require('./css')
+require('./attributes')
 
-describe('background', function () {
-  require('./background/')
-})
+// describe('background', function () {
+//   require('./background/')
+// })
 
-describe('On attributes', function () {
-  require('./attributes')
-})
-
-describe('On css', function () {
-  require('./css')
-})
-
-describe('On text', function () {
-  require('./text')
-})
-
-describe('style', function () {
-  require('./style')
-})
+// describe('On attributes', function () {
+//   require('./attributes')
+// })

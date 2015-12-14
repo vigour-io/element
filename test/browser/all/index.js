@@ -2,6 +2,7 @@ require('../listeners')
 require('../element')
 require('../animation')
 require('../cases')
+require('../events')
 // describe('Element basics', function () {
 // })
 // describe('On listeners', function () {

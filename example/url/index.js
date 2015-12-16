@@ -15,7 +15,6 @@ Element.prototype.inject(
 
 var Button = new Element({
   node: 'button',
-  // text: 'home',
   on: {
     click () {
       url.buildUrl(this.val)
@@ -34,11 +33,29 @@ var BackButton = new Element({
   }
 }).Constructor
 
+var parseButton = new Element({
+  node: 'button',
+  // text: 'home',
+  on: {
+    click () {
+      // for node this would be req.url or something
+      var parsedUrl = url.parseUrl(window.location.href)
+      console.log(parsedUrl.hostname)
+      console.log(parsedUrl.pathname)
+      console.log(parsedUrl.hash)
+      console.log(parsedUrl.search)
+    }
+  }
+}).Constructor
+
 var app = new App({
   node: document.body,
   holder: {
     back:new BackButton({
       text: 'back',
+    }),
+    parse:new parseButton({
+      text: 'parse',
     }),
     home:new Button({
       text: 'Home',

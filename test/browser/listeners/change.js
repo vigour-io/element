@@ -1,4 +1,5 @@
-describe('Element Event change',function () {
+'use strict'
+describe('Element Event change', function () {
   var Element = require('../../../lib/element/')
   var elem
   var spy
@@ -12,7 +13,7 @@ describe('Element Event change',function () {
 
   context('When declaring a change(data) listener to an element', function () {
     beforeEach(function () {
-      spy = sinon.spy(elem._on.data.fn,'val')
+      spy = sinon.spy(elem._on.data.fn, 'val')
     })
 
     afterEach(function () {
@@ -49,6 +50,23 @@ describe('Element Event change',function () {
       elem.set({child: new Element()})
       elem.child.remove()
       expect(spy.calledTwice).to.be.true
+    })
+  })
+
+  context('When adding a child element with on data listener', function () {
+    it('should not affect the order of nodes', function () {
+      elem.set({
+        child1: {
+
+        },
+        child2: new Element({
+          on: {
+            data () {}
+          }
+        })
+      })
+
+      expect(elem.node.childNodes[0]).equals(elem.child1.node)
     })
   })
 })

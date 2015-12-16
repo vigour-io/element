@@ -1,3 +1,4 @@
+'use strict'
 describe('Element Event reference',function () {
   var Element = require('../../../lib/element/')
   var elem

@@ -11,19 +11,25 @@ var app = window.app = new App({
   node: document.body,
   ChildConstructor: PimpedElement
 })
-var CUSTOM_WIDTH = 1024
+const CUSTOM_WIDTH = 300
 
 var Player = require('../../../lib/player/')
 
 var thePlayer = new Player({
   inject: require('../../../lib/property/attributes'),
   options: {
-    // bitdashScriptUrl: '//bitdash-a.akamaihd.net/bitmovin-portal/564da69672496/043ac8aa88/latest/bitdash.min.js',
-    // key: 'ebacd4297ba9f6466fbd3164fbc42b4e',
     width: `${CUSTOM_WIDTH}px`,
     bitdashScriptUrl: 'http://blog.vigour.io/assets/scripts/bitdash.min.js',
     key: 'd2aee4705ead414b60760cf0bbabe905'
   }
+  // options: {
+  //   // bitdashScriptUrl: '//bitdash-a.akamaihd.net/bitmovin-portal/564da69672496/043ac8aa88/latest/bitdash.min.js',
+  //   // key: 'ebacd4297ba9f6466fbd3164fbc42b4e',
+  //   caralho: 'TETA',
+  //   width: `${CUSTOM_WIDTH}px`,
+  //   bitdashScriptUrl: 'http://blog.vigour.io/assets/scripts/bitdash.min.js',
+  //   key: 'd2aee4705ead414b60760cf0bbabe905'
+  // }
 })
 
 thePlayer.set({
@@ -36,19 +42,8 @@ thePlayer.set({
     hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.m3u8'
   },
   volume: 0.1,
-  play: true,
-  time: {
-    inject: require('vigour-js/lib/observable/is')
-  },
-  fullscreen: {
-    on: {
-      data: {
-        test () {
-          console.log('FULLSCREEN HAS CHANGED to:', this.val)
-        }
-      }
-    }
-  }
+  // time: 0.5,
+  play: true
 })
 
 setTimeout(function () {
@@ -65,19 +60,19 @@ setTimeout(function () {
   // console.log('RAHHHh', thePlayer.ad.source.progressive.val)
 }, 5000)
 
-thePlayer.time.is((time) => {
-  return time > 0.5 && !thePlayer.ad.play.val
-}).then(() => {
-  thePlayer.ad.set({
-    source: {
-      dash: '',
-      hls: '',
-      progressive: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
-    },
-    play: true,
-    canSkip: true
-  })
-})
+// thePlayer.time.is((time) => {
+//   return time > 0.5 && !thePlayer.ad.play.val
+// }).then(() => {
+//   thePlayer.ad.set({
+//     source: {
+//       dash: '',
+//       hls: '',
+//       progressive: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
+//     },
+//     play: true,
+//     canSkip: true
+//   })
+// })
 
 thePlayer.ad.set({
   source: {
@@ -115,7 +110,7 @@ app.set({
 
       progressBar: {
         width: {
-          $: '../../thePlayer.time',
+          $: 'thePlayer.time',
           $transform (val) {
             return (val * 100) + '%'
           }
@@ -180,7 +175,6 @@ app.set({
       }
     }
   },
-
   skip: {
     node: 'button',
     text: 'skip ad',
@@ -237,6 +231,13 @@ app.set({
     node: 'h4',
     text: {
       $: '../../thePlayer.buffer'
+    }
+  },
+
+  duration: {
+    node: 'h1',
+    text: {
+      $: 'thePlayer.duration'
     }
   }
 })

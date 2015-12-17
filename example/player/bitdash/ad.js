@@ -20,7 +20,16 @@ var thePlayer = new Player({
   options: {
     width: `${CUSTOM_WIDTH}px`,
     bitdashScriptUrl: 'http://blog.vigour.io/assets/scripts/bitdash.min.js',
-    key: 'd2aee4705ead414b60760cf0bbabe905'
+    key: 'd2aee4705ead414b60760cf0bbabe905',
+    // advertising: {
+    //   client: 'vast',
+    //   schedule: {
+    //     'pre-roll-ad': {
+    //       offset: '50%',
+    //       tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
+    //     }
+    //   }
+    // }
   }
   // options: {
   //   // bitdashScriptUrl: '//bitdash-a.akamaihd.net/bitmovin-portal/564da69672496/043ac8aa88/latest/bitdash.min.js',
@@ -74,16 +83,16 @@ setTimeout(function () {
 //   })
 // })
 
-thePlayer.ad.set({
-  source: {
-    dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
-    hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8',
-    // progressive: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
-    // progressive: a
-  },
-  play: true,
-  canSkip: true
-})
+// thePlayer.ad.set({
+//   source: {
+//     dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
+//     hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8',
+//     // progressive: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
+//     // progressive: a
+//   },
+//   play: true,
+//   canSkip: true
+// })
 
 // myEl.set(thePlayer)
 

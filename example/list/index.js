@@ -27,8 +27,8 @@ var Item = new Element({
   titlefield: {
     // node:'input',
     text: {
-      val:'smur'
-      // $: '../../title'
+      // val:'smur'
+      $: '../../title'
     },
     // on: {
     //   click (e) {
@@ -101,14 +101,15 @@ var app = new App({
               }
             }
           }
-        }, function (data) {
-          var origin = data[0].origin
-          if (data.data === null) {
-            console.time('removeItem')
+        }, function (load) {
+          var origin = load[0].origin
+          if (load.data === null) {
+            // console.time('removeItem')
             content[origin.key].remove()
-            console.timeEnd('removeItem')
+            // console.timeEnd('removeItem')
           } else {
             console.time('addToContent')
+            console.time('addToContent1')
             content.set({[origin.key]: origin})
             console.timeEnd('addToContent')
           }

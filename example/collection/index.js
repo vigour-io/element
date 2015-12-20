@@ -24,7 +24,7 @@ Element.prototype.inject(
 
 var Item = new Element({
   titlefield: {
-    node: 'input',
+    // node: 'input',
     text: {
       $: '../../title'
     },
@@ -35,7 +35,7 @@ var Item = new Element({
     }
   },
   descriptionfield: {
-    node: 'textarea',
+    // node: 'textarea',
     text: {
       $: '../../description'
     },

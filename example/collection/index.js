@@ -111,6 +111,9 @@ var app = new App({
   data: content,
   scroll: scroll,
   list: {
+    thing: {
+      text: 'extreme miracle'
+    },
     ChildConstructor: Item,
     $: 'data'
   }

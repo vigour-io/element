@@ -74,16 +74,16 @@ var EmailLogin = new Element({
 
 // popup
 var popup = new Switcher({
-  config:{
-    animation:{
-      duration:100
+  config: {
+    animation: {
+      duration: 100
     },
-    factor:2
+    factor: 3
   },
   map: {
     settings: {
       val: Settings,
-      language: Language,
+      language:Language,
       faq: FAQ,
       help: Help
     },
@@ -127,9 +127,12 @@ var app = new App({
     },
     on: {
       change () {
+        // settings.help
         popup.val = this.node.value
       }
     }
   },
   popup: popup
 })
+
+popup.val = 'settings'

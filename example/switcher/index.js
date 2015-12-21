@@ -7,9 +7,10 @@ var Property = require('../../lib/property')
 var data = require('../partial.json')
 var App = require('../../lib/app')
 
+var Switcher = require('../../lib/switcher')
+
 Property.prototype.inject(
-  require('../../lib/animation'),
-  require('vigour-js/lib/observable/is')
+  require('../../lib/animation')
 )
 
 Observable.prototype.inject(
@@ -30,8 +31,73 @@ Element.prototype.inject(
   require('../../lib/events/click')
 )
 
-// setup
-var Switcher = new Element({
+var Settings = new Element({
+  css: 'fun',
+  text: 'Settings'
+}).Constructor
+
+var Language = new Element({
+  text: 'Settings: Language'
+}).Constructor
+
+var FAQ = new Element({
+  text: 'Settings: FAQ'
+}).Constructor
+
+var Help = new Element({
+  text: 'Settings: Help'
+}).Constructor
+
+var Register = new Element({
+  text: 'Register'
+}).Constructor
+
+var FbRegister = new Element({
+  text: 'Register: Facebook'
+}).Constructor
+
+var EmailRegister = new Element({
+  text: 'Register: Email'
+}).Constructor
+
+var Login = new Element({
+  text: 'Login'
+}).Constructor
+
+var FbLogin = new Element({
+  text: 'Login: Facebook'
+}).Constructor
+
+var EmailLogin = new Element({
+  text: 'Login: Email'
+}).Constructor
+
+// popup
+var popup = new Switcher({
+  config:{
+    animation:{
+      duration:100
+    },
+    factor:2
+  },
+  map: {
+    settings: {
+      val: Settings,
+      language: Language,
+      faq: FAQ,
+      help: Help
+    },
+    register: {
+      val: Register,
+      facebook: FbRegister,
+      email: EmailRegister
+    },
+    login: {
+      val: Login,
+      facebook: FbLogin,
+      email: EmailLogin
+    }
+  },
   inject: require('../../lib/events/drag'),
   on: {
     dragstart (e) {
@@ -45,109 +111,12 @@ var Switcher = new Element({
     dragend (e, event) {
       this.content.x.dragging = false
       this.content.x.set(0, event)
-    },
-    data: {
-      switcher (data, event) {
-        if (data) {
-          var val = this.val
-          var keys = val.split('.')
-          var params = this.map.get(keys)
-          if (params) {
-            let Constructor = params._input
-            let content = this.content
-            let key = keys[keys.length - 1]
-            let element = new Constructor()
-            if (content) {
-              let animation = content.x.$animation
-              let transform
-              let start
-              animation && animation.remove()
-              if (val.indexOf(this.current) === 0){
-                start = 200
-                transform = function (val) {
-                  return -((start - val) / 3)
-                }
-              } else {
-                start = -200 / 3
-                transform = function (val) {
-                  return -((start - val) * 3)
-                }
-              }
-              element.set({
-                x: {
-                  val: start,
-                  $animation: {
-                    duration: 24
-                  }
-                }
-              })
-              content.x.set({
-                val: element.x,
-                $transform: transform
-              })
-              // element.on('transitionEnd', function () {
-              //   content.remove()
-              // })
-            }
-            element.setKey('x', 0, event)
-            this.setKey(key, element, event)
-            this.setKey('content', element, event)
-            this.setKey('current', val, event)
-          }
-        }
-      }
-    }
-  },
-  properties: {
-    map: Base,
-    content: true,
-    direction: true,
-    current: true
-  }
-}).Constructor
-
-// popup
-var popup = new Switcher({
-  map: {
-    settings: {
-      val: new Element({
-        css: 'fun',
-        text: 'Settings'
-      }).Constructor,
-      language: new Element({
-        text: 'Settings: Language'
-      }).Constructor,
-      faq: new Element({
-        text: 'Settings: FAQ'
-      }).Constructor,
-      help: new Element({
-        text: 'Settings: Help'
-      }).Constructor
-    },
-    register: {
-      val: new Element({
-        text: 'Register'
-      }).Constructor,
-      facebook: new Element({
-        text: 'facebook'
-      }).Constructor,
-      email: new Element({
-        text: 'email'
-      }).Constructor
-    },
-    login: {
-      val: new Element({
-        text: 'language'
-      }).Constructor,
-      facebook: new Element({
-        text: 'language'
-      }).Constructor,
-      email: new Element({
-        text: 'language'
-      }).Constructor
     }
   }
 }, false)
+
+
+
 
 var app = new App({
   node: document.body,
@@ -157,7 +126,7 @@ var app = new App({
       placeholder: 'enter value...'
     },
     on: {
-      change() {
+      change () {
         popup.val = this.node.value
       }
     }

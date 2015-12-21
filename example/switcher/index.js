@@ -75,33 +75,14 @@ var EmailLogin = new Element({
 // popup
 
 
-
-
-var app = new App({
-  node: document.body,
-  inputfield: {
-    node: 'input',
-    attributes: {
-      placeholder: 'enter value...'
-    },
-    on: {
-      change () {
-        // settings.help
-        app.popup.val = this.node.value
-      }
-    }
-  },
-  popup: new Switcher({
-  // config: {
-  //   animation: {
-  //     duration: 100
-  //   },
-  //   factor: 3
-  // },
+var popup = global.popup = new Switcher({
   map: {
     settings: {
       val: Settings,
-      language:Language,
+      language: {
+        val: Language,
+        help: Help
+      },
       faq: FAQ,
       help: Help
     },
@@ -116,23 +97,37 @@ var app = new App({
       email: EmailLogin
     }
   },
-  val:'settings'
-  // inject: require('../../lib/events/drag'),
-  // on: {
-  //   dragstart (e) {
-  //     var content = this.content
-  //     this._start = e.x - content.x.val
-  //     this.content.x.dragging = true
-  //   },
-  //   drag (e, event) {
-  //     this.content.x.set(e.x - this._start, event)
-  //   },
-  //   dragend (e, event) {
-  //     this.content.x.dragging = false
-  //     this.content.x.set(0, event)
-  //   }
-  // }
+  val: 'settings'
 })
+
+var app = new App({
+  node: document.body,
+  inputfield: {
+    node: 'input',
+    attributes: {
+      placeholder: 'enter value...'
+    },
+    on: {
+      change () {
+        app.popup.val = this.node.value
+        this.node.value = ''
+      }
+    }
+  },
+  backbtn: {
+    node: 'button',
+    text: {
+      inject: require('vigour-js/lib/operator/add'),
+      val: 'back:',
+      $add: popup.previous
+    },
+    on: {
+      click () {
+        popup.back()
+      }
+    }
+  },
+  popup: popup
 })
 
 // popup.val = 'settings'

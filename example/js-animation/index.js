@@ -26,20 +26,24 @@ Element.prototype.inject(
   require('../../lib/animation')
 )
 
+
 app.set({
   circle: {
     css: 'circle draggable',
     x: {
       val: 100,
-      op: 100,
-      $animation: {
-        duration: 50
+      on : {
+        transitionEnd () {
+          // debugger
+        }
       }
     },
     y: {
       val: 200,
-      $animation: {
-        duration: 16
+      on : {
+        transitionEnd () {
+
+        }
       }
     },
     draggable: true,
@@ -53,11 +57,17 @@ app.set({
       }
     }
   },
+
+
   rectangle: {
+     on : {
+      transitionEnd () {
+        console.log('be')
+      }
+    },
     x: {
       val: 400,
       $animation: {
-        css: true,
         duration: 16,
         start: -1000
       }
@@ -65,24 +75,29 @@ app.set({
     y: {
       val: 600,
       $animation: {
-        css: true,
-        duration: 18,
-        start: 1000
+        duration: 16,
+        start: 1000,
       }
     }
   },
   triangle: {
+    on:{
+      transitionEnd () {
+        console.log('beng--')
+        this.remove()
+      }
+    },
     x: {
       val: 700,
       $animation: {
-        css: true,
+        // css: true,
         duration: 38
       }
     },
     y: {
       val: 100,
       $animation: {
-        css: true,
+        // css: true,
         duration: 6
       }
     }

@@ -14,22 +14,22 @@ Property.prototype.inject(
 )
 
 Observable.prototype.inject(
-  require('vigour-js/lib/operator/subscribe'),
-  require('vigour-js/lib/operator/transform'),
-  require('vigour-js/lib/operator/add')
+// //   require('vigour-js/lib/operator/subscribe'),
+  require('vigour-js/lib/operator/transform')
+// //   require('vigour-js/lib/operator/add')
 )
 
-Element.prototype.inject(
-  require('../../lib/property/text'),
-  require('../../lib/property/css'),
-  require('../../lib/property/size'),
-  require('../../lib/property/scroll/top'),
-  require('../../lib/property/scroll/left'),
-  require('../../lib/property/transform'),
-  require('../../lib/property/attributes'),
-  require('../../lib/property/draggable'),
-  require('../../lib/events/click')
-)
+// // Element.prototype.inject(
+// //   require('../../lib/property/text'),
+// //   require('../../lib/property/css'),
+// //   require('../../lib/property/size'),
+// //   require('../../lib/property/scroll/top'),
+// //   require('../../lib/property/scroll/left'),
+// //   require('../../lib/property/transform'),
+// //   require('../../lib/property/attributes'),
+// //   require('../../lib/property/draggable'),
+// //   require('../../lib/events/click')
+// // )
 
 var Settings = new Element({
   css: 'fun',
@@ -73,13 +73,31 @@ var EmailLogin = new Element({
 }).Constructor
 
 // popup
-var popup = new Switcher({
-  config: {
-    animation: {
-      duration: 100
+
+
+
+
+var app = new App({
+  node: document.body,
+  inputfield: {
+    node: 'input',
+    attributes: {
+      placeholder: 'enter value...'
     },
-    factor: 3
+    on: {
+      change () {
+        // settings.help
+        app.popup.val = this.node.value
+      }
+    }
   },
+  popup: new Switcher({
+  // config: {
+  //   animation: {
+  //     duration: 100
+  //   },
+  //   factor: 3
+  // },
   map: {
     settings: {
       val: Settings,
@@ -98,41 +116,23 @@ var popup = new Switcher({
       email: EmailLogin
     }
   },
-  inject: require('../../lib/events/drag'),
-  on: {
-    dragstart (e) {
-      var content = this.content
-      this._start = e.x - content.x.val
-      this.content.x.dragging = true
-    },
-    drag (e, event) {
-      this.content.x.set(e.x - this._start, event)
-    },
-    dragend (e, event) {
-      this.content.x.dragging = false
-      this.content.x.set(0, event)
-    }
-  }
-}, false)
-
-
-
-
-var app = new App({
-  node: document.body,
-  inputfield: {
-    node: 'input',
-    attributes: {
-      placeholder: 'enter value...'
-    },
-    on: {
-      change () {
-        // settings.help
-        popup.val = this.node.value
-      }
-    }
-  },
-  popup: popup
+  val:'settings'
+  // inject: require('../../lib/events/drag'),
+  // on: {
+  //   dragstart (e) {
+  //     var content = this.content
+  //     this._start = e.x - content.x.val
+  //     this.content.x.dragging = true
+  //   },
+  //   drag (e, event) {
+  //     this.content.x.set(e.x - this._start, event)
+  //   },
+  //   dragend (e, event) {
+  //     this.content.x.dragging = false
+  //     this.content.x.set(0, event)
+  //   }
+  // }
+})
 })
 
-popup.val = 'settings'
+// popup.val = 'settings'

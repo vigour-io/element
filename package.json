@@ -17,7 +17,7 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
-    "vigour-play":"git+ssh://git@github.com:vigour-io/vigour-play.git#develop"
+    "vigour-js": "0.4.1^"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

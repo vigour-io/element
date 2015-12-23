@@ -17,13 +17,8 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
-    "vigour-hub": "*",
-    "axios": "^0.7.0",
-    "bluebird": "^3.0.5",
-    "vigour-js": "^0.3.8",
-    "vigour-track": "^1.0.6",
-    "vigour-ua": "~0.0.1",
-    "xfluent": "^1.0.0"
+    "vigour-js": "0.4.1",
+    "vigour-ua": "0.0.3"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

@@ -20,3 +20,7 @@ describe('Input', function () {
 describe('Operators', function () {
   require('../operators')
 })
+
+describe('Switcher', function () {
+  require('../switcher')
+})

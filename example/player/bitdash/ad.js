@@ -15,71 +15,71 @@ const CUSTOM_WIDTH = 300
 
 var Player = require('../../../lib/player/')
 
-var thePlayer = new Player({
-  inject: require('../../../lib/property/attributes'),
-  options: {
-    width: `${CUSTOM_WIDTH}px`,
-    // bitdashScriptUrl: 'http://blog.vigour.io/assets/scripts/bitdash.min.js',
-    // key: 'd2aee4705ead414b60760cf0bbabe905',
-    // bitdashScriptUrl: 'http://bitmovin-a.akamaihd.net/bitdash/beta/latest/bitdash.min.js',
-    bitdashScriptUrl: 'https://bitmovin-a.akamaihd.net/bitdash/beta/4.1.0-b4/bitdash.min.js',
-    // key: 'f9f96c01610f437d9a7243abe98755b2',
-    key: 'f9f96c01-610f-437d-9a72-43abe98755b2',
-    advertising: {
-      client: 'vast',
-      schedule: {
-        'pre-roll-ad': {
-          offset: 'pre',
-          tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
-        },
-        'mid-roll-ad-01': {
-          offset: '50%',
-          tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
-        },
-        'post-roll-ad': {
-          offset: 'post',
-          tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
-        }
-      }
-    }
-  }
-  // options: {
-  //   // bitdashScriptUrl: '//bitdash-a.akamaihd.net/bitmovin-portal/564da69672496/043ac8aa88/latest/bitdash.min.js',
-  //   // key: 'ebacd4297ba9f6466fbd3164fbc42b4e',
-  //   caralho: 'TETA',
-  //   width: `${CUSTOM_WIDTH}px`,
-  //   bitdashScriptUrl: 'http://blog.vigour.io/assets/scripts/bitdash.min.js',
-  //   key: 'd2aee4705ead414b60760cf0bbabe905'
-  // }
-})
+// var thePlayer = new Player({
+//   inject: require('../../../lib/property/attributes'),
+//   options: {
+//     width: `${CUSTOM_WIDTH}px`,
+//     // bitdashScriptUrl: 'http://blog.vigour.io/assets/scripts/bitdash.min.js',
+//     // key: 'd2aee4705ead414b60760cf0bbabe905',
+//     // bitdashScriptUrl: 'http://bitmovin-a.akamaihd.net/bitdash/beta/latest/bitdash.min.js',
+//     bitdashScriptUrl: 'https://bitmovin-a.akamaihd.net/bitdash/beta/4.1.0-b4/bitdash.min.js',
+//     // key: 'f9f96c01610f437d9a7243abe98755b2',
+//     key: 'f9f96c01-610f-437d-9a72-43abe98755b2',
+//     advertising: {
+//       client: 'vast',
+//       schedule: {
+//         'pre-roll-ad': {
+//           offset: 'pre',
+//           tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
+//         },
+//         'mid-roll-ad-01': {
+//           offset: '50%',
+//           tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
+//         },
+//         'post-roll-ad': {
+//           offset: 'post',
+//           tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
+//         }
+//       }
+//     }
+//   }
+//   // options: {
+//   //   // bitdashScriptUrl: '//bitdash-a.akamaihd.net/bitmovin-portal/564da69672496/043ac8aa88/latest/bitdash.min.js',
+//   //   // key: 'ebacd4297ba9f6466fbd3164fbc42b4e',
+//   //   caralho: 'TETA',
+//   //   width: `${CUSTOM_WIDTH}px`,
+//   //   bitdashScriptUrl: 'http://blog.vigour.io/assets/scripts/bitdash.min.js',
+//   //   key: 'd2aee4705ead414b60760cf0bbabe905'
+//   // }
+// })
 
-thePlayer.set({
-  attributes: {
-    id: 'mexirica'
-  },
-  inject: require('../../../lib/player/bitdash/'),
-  source: {
-    dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.mpd',
-    hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.m3u8'
-  },
-  volume: 0.1,
-  time: 0.5,
-  play: true
-})
+// thePlayer.set({
+//   attributes: {
+//     id: 'mexirica'
+//   },
+//   inject: require('../../../lib/player/bitdash/'),
+//   source: {
+//     dash: 'http://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.mpd',
+//     hls: 'http://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.m3u8'
+//   },
+//   volume: 0.1,
+//   time: 0.5,
+//   play: true
+// })
 
-setTimeout(function () {
-  // thePlayer.set({
-  //   source: {
-  //     dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
-  //     hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8'
-  //   }
-  // })
-  // app.remove()
-  // thePlayer.remove()
-  // console.log('RAHHHh', thePlayer.ad.source.progressive.val)
-  // a.val = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
-  // console.log('RAHHHh', thePlayer.ad.source.progressive.val)
-}, 5000)
+// setTimeout(function () {
+//   // thePlayer.set({
+//   //   source: {
+//   //     dash: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
+//   //     hls: '//eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8'
+//   //   }
+//   // })
+//   // app.remove()
+//   // thePlayer.remove()
+//   // console.log('RAHHHh', thePlayer.ad.source.progressive.val)
+//   // a.val = 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
+//   // console.log('RAHHHh', thePlayer.ad.source.progressive.val)
+// }, 5000)
 
 // thePlayer.time.is((time) => {
 //   return time > 0.5 && !thePlayer.ad.play.val
@@ -107,6 +107,92 @@ setTimeout(function () {
 // })
 
 // myEl.set(thePlayer)
+
+
+var thePlayer = new Player({
+  inject: require('../../../lib/property/attributes'),
+  options: {
+    width: `${CUSTOM_WIDTH}px`,
+    bitdashScriptUrl: 'https://bitmovin-a.akamaihd.net/bitdash/beta/4.1.0-b4/bitdash.min.js',
+    key: 'f9f96c01-610f-437d-9a72-43abe98755b2',
+    advertising: {
+      client: 'vast',
+      schedule: {
+        'pre-roll-ad': {
+          offset: 'pre',
+          tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
+        },
+        'mid-roll-ad-01': {
+          offset: '50%',
+          tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
+        },
+        'post-roll-ad': {
+          offset: 'post',
+          tag: 'https://pubads.g.doubleclick.net/gampad/ads?sz=640x480&iu=%2F32573358%2F2nd_test_ad_unit&impl=s&gdfp_req=1&env=vp&output=xml_vast2&unviewed_position_start=1&url=http%3A%2F%2Freleasetest.dash-player.com%2Fads%2F&description_url=[description_url]&correlator=' + Math.floor(Date.now() + Math.random() * 10000)
+        }
+      }
+    }
+  }
+})
+
+// thePlayer.set({
+//   attributes: {
+//     id: 'mexirica'
+//   },
+//   inject: require('../../../lib/player/bitdash/'),
+//   source: {
+//     dash: 'http://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.mpd',
+//     hls: 'http://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.m3u8'
+//   },
+//   volume: 1,
+//   play: true
+// })
+//
+// thePlayer.ad.set({
+//   source: {
+//     dash: 'http://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.mpd',
+//     hls: 'http://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/45138_0c23e1f0d512875c60c51db6e5ba9a39/45138.m3u8'
+//   },
+//   play: true,
+//   canSkip: true
+// })
+
+thePlayer.set({
+  attributes: {
+    id: 'mexirica'
+  },
+  inject: require('../../../lib/player/bitdash/'),
+  source: {
+    // dash: 'https://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2038_d06f9f4f032f9f599edbe38f1acd2900/5391_93fe74e97ef2a8ff3389d5a490d902c7/5391.mpd',
+    // hls: 'https://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2038_d06f9f4f032f9f599edbe38f1acd2900/5391_93fe74e97ef2a8ff3389d5a490d902c7/5391.m3u8'
+    progressive: 'https://bitdash-a.akamaihd.net/content/MI201109210084_1/MI201109210084_mpeg-4_hd_high_1080p25_10mbits.mp4'
+  },
+  volume: 1,
+  play: true
+  // time: 0.45
+})
+
+// thePlayer.set({
+//   attributes: {
+//     id: 'mexirica'
+//   },
+//   inject: require('vigour-element/lib/player/bitdash/'),
+//   source: {
+//     dash: 'http://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.mpd',
+//     hls: 'http://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2686_1acb6ae99aa947d716463ce5bf3947ce/44855_41fa53de02cf600d6f56ac459dd5f015/44855.m3u8'
+//   },
+//   volume: 1,
+//   play: true
+// })
+
+// thePlayer.ad.set({
+//   source: {
+//     progressive: 'http://techslides.com/demos/sample-videos/small.mp4'
+//   },
+//   play: true,
+//   canSkip: true
+// })
+
 
 app.set({
   thePlayer: thePlayer,

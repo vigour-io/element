@@ -17,6 +17,7 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
+    "vast-client": "^1.3.6",
     "vigour-js": "0.4.1",
     "vigour-ua": "0.0.3"
   },

@@ -1,5 +1,8 @@
 .element-switcher {
-  > div {
+  > * {
+    opacity: 1;
+    .transition(@transition opacity);
+    top:0;
     position:absolute;
     width:100%;
   }

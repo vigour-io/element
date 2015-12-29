@@ -35,9 +35,9 @@ var Thing = new Element({
   theText: {
     text: 'MURDER KAPOT!',
     on: {
-      click () {
+      click (ev, event) {
         console.log('YO YO YO', this.path)
-        this.text.val = Math.random() * 999
+        this.text.set(Math.random() * 999, event)
       }
     }
   },
@@ -127,6 +127,12 @@ app.set({
   nodes: new Element({
     text: 'yo'
   }),
+  bla: new Element({
+    holder: {
+      type: 'pre',
+      text: 'yeey'
+    }
+  }),
   holder: new holder.Constructor({ '0': { text: 'number 1 holder' } }),
   holder2: new holder.Constructor()
 })
@@ -162,3 +168,7 @@ global.nodes = globals.nodes
 // app.holder.yuz.remove()
 console.time(1)
 console.timeEnd(1)
+
+setInterval(function () {
+  app.bla.holder.text.val = global.activeContexts.toString()
+})

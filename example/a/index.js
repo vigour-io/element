@@ -169,8 +169,8 @@ global.nodes = globals.nodes
 // app.holder.yuz.remove()
 console.time(1)
 console.timeEnd(1)
+app.bla.inject(require('../../lib/property/scroll'))
 
 setInterval(function () {
   app.bla.holder.text.val = global.activeContexts.toString()
-  app.bla.inject(require('../../lib/property/scroll'))
-})
+}, 1000)

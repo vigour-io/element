@@ -3,8 +3,10 @@ var Element = require('../../lib/element')
 var Event = require('vigour-js/lib/event')
 var Observable = require('vigour-js/lib/observable')
 var App = require('../../lib/engine/dom')
-// **************** THIS IS THING *****************
+require('./style.less')
+// ******************** CONFIG ********************
 var n = 1
+// ************************************************
 
 var app = new App()
 // var str = new StringApp()
@@ -72,11 +74,15 @@ for (let i = 0; i < n; i++) {
     }
   }, false), false)
 }
-// event.trigger()
+
 app.set({
-  // doouble context is stil broken of course
-  // fix it tmrw
-  // make nested and remove
-  holder: holder
-  // holder: new holder.Constructor()
+  bla: new Element({
+    text: 'yo'
+  }),
+  holder: new holder.Constructor(),
+  holder2: new holder.Constructor()
 })
+
+var globals = require('../../lib/globals')
+
+app.bla.text.val = 'nodes: ' + Object.keys(globals.nodes).join(', ') + ' cnodes: ' + Object.keys(globals.cnodes).join(', ')

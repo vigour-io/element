@@ -5,7 +5,7 @@ var Observable = require('vigour-js/lib/observable')
 var App = require('../../lib/engine/dom')
 require('./style.less')
 // ******************** CONFIG ********************
-var n = 1
+var n = 1e3
 // ************************************************
 
 var app = new App()
@@ -95,6 +95,7 @@ app.set({
 var globals = require('../../lib/engine/dom/globals')
 
 global.app = app
+global.nodes = globals.nodes
 
 app.cnodes.text.val = 'cnodes: ' + Object.keys(globals.cnodes).join(', ')
 app.nodes.text.val = 'nodes: ' + Object.keys(globals.nodes).join(', ')
@@ -120,4 +121,7 @@ Thing.prototype.set({
 })
 
 // Thing.prototype.yuz.remove()
-app.holder.yuz.remove()
+// app.holder.yuz.remove()
+console.time(1)
+app.holder.remove(false)
+console.timeEnd(1)

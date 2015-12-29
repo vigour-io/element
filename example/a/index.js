@@ -28,14 +28,20 @@ var Thing = new Element({
   },
   on: {
     click () {
-      console.log('dirty ballz', this._path)
+      console.log('parent Thing >>>>', this._path)
       // ev.target usen? // data something?
-      this.getNode().style.border = (Math.random() * 9) + 'px solid blue'
+      this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
     }
   },
   bla: new Title({
     text: function () {
       return this.parent.val
+    },
+    on: {
+      click () {
+        console.log('nested bla >>>>>>', this._path)
+        this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid red'
+      }
     }
   })
   // x: {

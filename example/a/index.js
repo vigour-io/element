@@ -25,13 +25,13 @@ var Thing = new Element({
     type: 'img',
     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
   },
-  // on: {
-  //   click (data, event) {
-  //     console.log('parent Thing >>>>', this._path, event)
-  //     // ev.target usen? // data something?
-  //     this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
-  //   }
-  // },
+  on: {
+    click (data, event) {
+      console.log('parent Thing >>>>', this._path, event)
+      // ev.target usen? // data something?
+      this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
+    }
+  },
   theText: {
     text: 'MURDER KAPOT!',
     on: {
@@ -41,7 +41,7 @@ var Thing = new Element({
       }
     }
   },
-  bla: new Title({
+  title: new Title({
     text: function () {
       return this.parent.val
     },
@@ -73,7 +73,7 @@ var Thing = new Element({
   // }
 }).Constructor
 
-Thing.prototype.bla.on('data', function () {
+Thing.prototype.title.on('data', function () {
   var node = this.getNode()
   // console.log('yes here')
   if (node) {
@@ -107,7 +107,7 @@ for (let i = 1; i < n + 1; i++) {
   global.obs.setKey(i, i)
   let a = global.obs[i]
   holder.setKey(i, new Thing({
-    bla: a
+    title: a
   }, false), false)
 }
 
@@ -141,23 +141,23 @@ global.nodes = globals.nodes
 
 // console.log('---------------')
 // obs[1].val = 222222
-app.holder.set({
-  bla: {
-    text: 'yo!'
-  },
-  yuz: {
-    type: 'img',
-    src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
-  }
-})
+// app.holder.set({
+//   bla: {
+//     text: 'yo!'
+//   },
+//   yuz: {
+//     type: 'img',
+//     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
+//   }
+// })
 
 // do we want to support this -- probably yesh?
-Thing.prototype.set({
-  yuz: {
-    type: 'img',
-    src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
-  }
-})
+// Thing.prototype.set({
+//   yuz: {
+//     type: 'img',
+//     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
+//   }
+// })
 // Thing.prototype.yuz.remove()
 // app.holder.yuz.remove()
 console.time(1)

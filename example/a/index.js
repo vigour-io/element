@@ -76,7 +76,10 @@ for (let i = 0; i < n; i++) {
 }
 
 app.set({
-  bla: new Element({
+  cnodes: new Element({
+    text: 'yo'
+  }),
+  nodes: new Element({
     text: 'yo'
   }),
   holder: new holder.Constructor(),
@@ -85,4 +88,10 @@ app.set({
 
 var globals = require('../../lib/globals')
 
-app.bla.text.val = 'nodes: ' + Object.keys(globals.nodes).join(', ') + ' cnodes: ' + Object.keys(globals.cnodes).join(', ')
+global.app = app
+
+app.cnodes.text.val = 'cnodes: ' + Object.keys(globals.cnodes).join(', ')
+app.nodes.text.val = 'nodes: ' + Object.keys(globals.nodes).join(', ')
+
+console.log('---------------')
+obs[0].val = 222222

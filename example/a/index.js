@@ -170,7 +170,13 @@ global.nodes = globals.nodes
 console.time(1)
 console.timeEnd(1)
 app.bla.inject(require('../../lib/property/scroll'))
+app.bla.node.style.height = 300
 
-setInterval(function () {
+global.contextChange = function (val) {
+  app.bla.holder.node.style.border = '1px solid red'
   app.bla.holder.text.val = global.activeContexts.toString()
-}, 1000)
+  setTimeout(function () {
+    app.bla.set({ scrollTop: 30000 + Math.random() * 999 })
+    app.bla.holder.node.style.border = 'none'
+  }, 200)
+}

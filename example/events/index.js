@@ -15,53 +15,63 @@ Element.prototype.inject(
   require('../../lib/event/up'),
   require('../../lib/event/drag'),
   require('../../lib/event/move'),
-  require('../../lib/event/render')
+  require('../../lib/event/render'),
+  require('../../lib/property/scroll')
 )
 
 var holder = new Element({
-  downer:{
+  css: 'holder',
+  scrollTop: {
+    val: 100,
+    on:{
+      data () {
+        console.log('scrolling!!', this.val)
+      }
+    }
+  },
+  downer: {
     text: 'downer',
     // css: 'red',
-    on: {
-      mousedown () {
-        this.text.val = Math.random()
-        // console.log('down', this.path, '->', this.text.path)
-      }
-    }
+    // on: {
+    //   mousedown () {
+    //     this.text.val = Math.random()
+    //     // console.log('down', this.path, '->', this.text.path)
+    //   }
+    // }
   },
-  upper:{
+  upper: {
     text: 'upper',
-    on: {
-      mouseup () {
-        this.text.val = Math.random()
-        // console.log('up', this.path, '->', this.text.path)
-      }
-    }
+    // on: {
+    //   mouseup () {
+    //     this.text.val = Math.random()
+    //     // console.log('up', this.path, '->', this.text.path)
+    //   }
+    // }
   },
-  clicker:{
+  clicker: {
     text: 'clicker',
-    on: {
-      click () {
-        this.text.val = Math.random()
-        // console.log('click', this.path, '->',this.text.path)
-      }
-    }
+    // on: {
+    //   click () {
+    //     this.text.val = Math.random()
+    //     // console.log('click', this.path, '->',this.text.path)
+    //   }
+    // }
   },
-  dragger:{
+  dragger: {
     text: 'dragger',
-    on: {
-      drag () {
-        console.log('drag')
-      }
-    }
+    // on: {
+    //   drag () {
+    //     // console.log('drag')
+    //   }
+    // }
   },
   mover: {
     text: 'mover',
-    on: {
-      move () {
-        console.log('move')
-      }
-    }
+    // on: {
+    //   move () {
+    //     // console.log('move')
+    //   }
+    // }
   }
 })
 

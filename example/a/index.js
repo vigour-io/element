@@ -19,6 +19,13 @@ var Thing = new Element({
     type: 'img',
     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
   },
+  on: {
+    click () {
+      console.log('dirty ballz', this._path)
+      // ev.target usen? // data something?
+      this.getNode().style.border = (Math.random() * 9) + 'px solid blue'
+    }
+  },
   bla: {
     text: function () {
       return this._context._input
@@ -85,10 +92,19 @@ app.set({
   cnodes: new Element({
     text: 'yo'
   }),
+  buttonx: new Element({
+    type: 'button',
+    text: '!!!!!!',
+    on: {
+      click () {
+        console.log('!!!')
+      }
+    }
+  }),
   nodes: new Element({
     text: 'yo'
   }),
-  holder: new holder.Constructor(),
+  holder: new holder.Constructor({ '0': { text: 'number 1 holder'}}),
   holder2: new holder.Constructor()
 })
 
@@ -123,5 +139,5 @@ Thing.prototype.set({
 // Thing.prototype.yuz.remove()
 // app.holder.yuz.remove()
 console.time(1)
-app.holder.remove(false)
+// app.holder.remove(false)
 console.timeEnd(1)

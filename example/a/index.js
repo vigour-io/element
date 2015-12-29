@@ -38,9 +38,13 @@ var Thing = new Element({
       return this.parent.val
     },
     on: {
-      click () {
+      click (data, event) {
         console.log('nested bla >>>>>>', this._path)
+        this.emit('flabber', void 0, event)
         this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid red'
+      },
+      flabber (data, event) {
+        console.log('FLABBER', this.path, data, event)
       }
     }
   })
@@ -63,9 +67,9 @@ var Thing = new Element({
 
 Thing.prototype.bla.on('data', function () {
   var node = this.getNode()
-  console.log('yes here')
+  // console.log('yes here')
   if (node) {
-    console.log('yes here go render')
+    // console.log('yes here go render')
     this.text.render(node)
   }
 })

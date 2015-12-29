@@ -25,17 +25,18 @@ var Thing = new Element({
     type: 'img',
     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
   },
-  on: {
-    click (data, event) {
-      console.log('parent Thing >>>>', this._path, event)
-      // ev.target usen? // data something?
-      this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
-    }
-  },
-  xxxx: {
-    text: 'yome!',
+  // on: {
+  //   click (data, event) {
+  //     console.log('parent Thing >>>>', this._path, event)
+  //     // ev.target usen? // data something?
+  //     this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
+  //   }
+  // },
+  theText: {
+    text: 'MURDER KAPOT!',
     on: {
       click () {
+        console.log('YO YO YO', this.path)
         this.text.val = Math.random() * 999
       }
     }
@@ -46,8 +47,8 @@ var Thing = new Element({
     },
     on: {
       click (data, event) {
-        console.log('nested bla >>>>>>', this._path)
-        this.emit('flabber', void 0, event)
+        // console.log('nested bla >>>>>>', this._path)
+        // this.emit('flabber', void 0, event)
         this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid red'
       },
       flabber (data, event) {

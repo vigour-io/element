@@ -15,63 +15,30 @@ Element.prototype.inject(
   require('../../lib/event/up'),
   require('../../lib/event/drag'),
   require('../../lib/event/move'),
-  require('../../lib/event/render'),
-  require('../../lib/property/scroll')
+  require('../../lib/event/render')
 )
 
 var holder = new Element({
-  css: 'holder',
-  scrollTop: {
-    val: 100,
-    on:{
-      data () {
-        console.log('scrolling!!', this.val)
+  downer:{
+    text: 'downer',
+    // css: 'red',
+    on: {
+      mousedown () {
+        this.text.val = Math.random()
+        // this.text.clearContextUp()
+        // console.log('down', this.path, '->', this.text.path)
       }
     }
   },
-  downer: {
-    text: 'downer',
-    // css: 'red',
-    // on: {
-    //   mousedown () {
-    //     this.text.val = Math.random()
-    //     // console.log('down', this.path, '->', this.text.path)
-    //   }
-    // }
-  },
-  upper: {
+  upper:{
     text: 'upper',
-    // on: {
-    //   mouseup () {
-    //     this.text.val = Math.random()
-    //     // console.log('up', this.path, '->', this.text.path)
-    //   }
-    // }
-  },
-  clicker: {
-    text: 'clicker',
-    // on: {
-    //   click () {
-    //     this.text.val = Math.random()
-    //     // console.log('click', this.path, '->',this.text.path)
-    //   }
-    // }
-  },
-  dragger: {
-    text: 'dragger',
-    // on: {
-    //   drag () {
-    //     // console.log('drag')
-    //   }
-    // }
-  },
-  mover: {
-    text: 'mover',
-    // on: {
-    //   move () {
-    //     // console.log('move')
-    //   }
-    // }
+    on: {
+      mouseup () {
+        console.log('up', this.path, '->', this.text.path)
+        this.text.val = Math.random()
+        // this.text.clearContextUp()
+      }
+    }
   }
 })
 
@@ -81,3 +48,4 @@ var app = new App({
   holder1: newHolder//,
   // holder2: new holder.Constructor()
 })
+global.app = app

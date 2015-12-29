@@ -9,12 +9,19 @@ var n = 1e3
 // ************************************************
 
 var app = new App()
+
+// use nodes combined with context to check up your shit
+var Title = new Element({
+  type: 'h3',
+  text: 'yo'
+}).Constructor
+
 // var str = new StringApp()
 var Thing = new Element({
   css: 'thing',
-  text: function () {
-    return this._context._input
-  },
+  // text: function () {
+  //   return this._context._input
+  // },
   img: {
     type: 'img',
     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
@@ -26,27 +33,37 @@ var Thing = new Element({
       this.getNode().style.border = (Math.random() * 9) + 'px solid blue'
     }
   },
-  bla: {
+  bla: new Title({
     text: function () {
-      return this._context._input
+      return this.parent.val
     }
-  },
-  x: {
-    text: function () {
-      return this._context._input
-    }
-  },
-  xx: {
-    text: function () {
-      return this._context._input
-    }
-  },
-  xxx: {
-    text: function () {
-      return this._context._input
-    }
-  }
+  })
+  // x: {
+  //   text: function () {
+  //     return this._context._input
+  //   }
+  // },
+  // xx: {
+  //   text: function () {
+  //     return this._context._input
+  //   }
+  // },
+  // xxx: {
+  //   text: function () {
+  //     return this._context._input
+  //   }
+  // }
 }).Constructor
+
+Thing.prototype.bla.on('data', function () {
+  var node = this.getNode()
+  console.log('yes here')
+  if (node) {
+    console.log('yes here go render')
+    this.text.render(node)
+  }
+})
+
 var holder = new Element({
   css: 'holder',
   '0': {
@@ -72,19 +89,7 @@ for (let i = 1; i < n + 1; i++) {
   global.obs.setKey(i, i)
   let a = global.obs[i]
   holder.setKey(i, new Thing({
-    text: a,
-    bla: {
-      text: a
-    },
-    x: {
-      text: a
-    },
-    xx: {
-      text: a
-    },
-    xxx: {
-      text: a
-    }
+    bla: a
   }, false), false)
 }
 
@@ -104,7 +109,7 @@ app.set({
   nodes: new Element({
     text: 'yo'
   }),
-  holder: new holder.Constructor({ '0': { text: 'number 1 holder'}}),
+  holder: new holder.Constructor({ '0': { text: 'number 1 holder' } }),
   holder2: new holder.Constructor()
 })
 
@@ -113,8 +118,8 @@ var globals = require('../../lib/engine/dom/globals')
 global.app = app
 global.nodes = globals.nodes
 
-app.cnodes.text.val = 'cnodes: ' + Object.keys(globals.cnodes).join(', ')
-app.nodes.text.val = 'nodes: ' + Object.keys(globals.nodes).join(', ')
+// app.cnodes.text.val = 'cnodes: ' + Object.keys(globals.cnodes).join(', ')
+// app.nodes.text.val = 'nodes: ' + Object.keys(globals.nodes).join(', ')
 
 // console.log('---------------')
 // obs[1].val = 222222

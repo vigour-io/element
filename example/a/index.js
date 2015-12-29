@@ -11,6 +11,7 @@ var n = 1
 var app = new App()
 // var str = new StringApp()
 var Thing = new Element({
+  css: 'thing',
   text: function () {
     return this._context._input
   },
@@ -18,7 +19,6 @@ var Thing = new Element({
     type: 'img',
     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
   },
-  css: 'titlex',
   bla: {
     text: function () {
       return this._context._input
@@ -40,7 +40,13 @@ var Thing = new Element({
     }
   }
 }).Constructor
-var holder = new Element()
+var holder = new Element({
+  css: 'holder',
+  '0': {
+    type: 'h1',
+    text: n
+  }
+})
 global.obs = new Observable({
   define: {
     updateAll () {
@@ -55,9 +61,9 @@ global.obs = new Observable({
   }
 })
 // var event = new Event(holder, 'data')
-for (let i = 0; i < n; i++) {
-  obs.setKey(i, i)
-  let a = obs[i]
+for (let i = 1; i < n + 1; i++) {
+  global.obs.setKey(i, i)
+  let a = global.obs[i]
   holder.setKey(i, new Thing({
     text: a,
     bla: {
@@ -86,12 +92,32 @@ app.set({
   holder2: new holder.Constructor()
 })
 
-var globals = require('../../lib/globals')
+var globals = require('../../lib/engine/dom/globals')
 
 global.app = app
 
 app.cnodes.text.val = 'cnodes: ' + Object.keys(globals.cnodes).join(', ')
 app.nodes.text.val = 'nodes: ' + Object.keys(globals.nodes).join(', ')
 
-console.log('---------------')
-obs[0].val = 222222
+// console.log('---------------')
+// obs[1].val = 222222
+app.holder.set({
+  bla: {
+    text: 'yo!'
+  },
+  yuz: {
+    type: 'img',
+    src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
+  }
+})
+
+// do we want to support this -- probably yesh?
+Thing.prototype.set({
+  yuz: {
+    type: 'img',
+    src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
+  }
+})
+
+// Thing.prototype.yuz.remove()
+app.holder.yuz.remove()

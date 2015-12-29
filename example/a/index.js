@@ -128,6 +128,7 @@ app.set({
     text: 'yo'
   }),
   bla: new Element({
+    css: 'bla',
     holder: {
       type: 'pre',
       text: 'yeey'
@@ -171,4 +172,5 @@ console.timeEnd(1)
 
 setInterval(function () {
   app.bla.holder.text.val = global.activeContexts.toString()
+  app.bla.inject(require('../../lib/property/scroll'))
 })

@@ -5,6 +5,12 @@ var Observable = require('vigour-js/lib/observable')
 var App = require('../../lib/engine/dom')
 require('./style.less')
 
+Element.prototype.inject(
+  require('../../lib/event/down'),
+  require('../../lib/event/click'),
+  require('../../lib/event/up')
+)
+
 var app = new App({
   downer: new Element({
     text: 'downer',

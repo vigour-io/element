@@ -8,7 +8,7 @@ require('./style.less')
 var n = 2
 // ************************************************
 var app = new App()
-
+global.app = app
 // use nodes combined with context to check up your shit
 var Title = new Element({
   type: 'h3',

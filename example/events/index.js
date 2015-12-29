@@ -25,6 +25,7 @@ var holder = new Element({
     on: {
       mousedown () {
         this.text.val = Math.random()
+        // this.text.clearContextUp()
         // console.log('down', this.path, '->', this.text.path)
       }
     }
@@ -33,33 +34,9 @@ var holder = new Element({
     text: 'upper',
     on: {
       mouseup () {
+        console.log('up', this.path, '->', this.text.path)
         this.text.val = Math.random()
-        // console.log('up', this.path, '->', this.text.path)
-      }
-    }
-  },
-  clicker:{
-    text: 'clicker',
-    on: {
-      click () {
-        this.text.val = Math.random()
-        // console.log('click', this.path, '->',this.text.path)
-      }
-    }
-  },
-  dragger:{
-    text: 'dragger',
-    on: {
-      drag () {
-        console.log('drag')
-      }
-    }
-  },
-  mover: {
-    text: 'mover',
-    on: {
-      move () {
-        console.log('move')
+        // this.text.clearContextUp()
       }
     }
   }
@@ -71,3 +48,4 @@ var app = new App({
   holder1: newHolder//,
   // holder2: new holder.Constructor()
 })
+global.app = app

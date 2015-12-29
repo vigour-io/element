@@ -19,53 +19,55 @@ Element.prototype.inject(
 )
 
 var holder = new Element({
-  downer: new Element({
+  downer:{
     text: 'downer',
     // css: 'red',
     on: {
       mousedown () {
         this.text.val = Math.random()
-        console.log('down', this.path, '->', this.text.path)
+        // console.log('down', this.path, '->', this.text.path)
       }
     }
-  }),
-  upper: new Element({
+  },
+  upper:{
     text: 'upper',
     on: {
       mouseup () {
         this.text.val = Math.random()
-        console.log('up', this.path, '->', this.text.path)
+        // console.log('up', this.path, '->', this.text.path)
       }
     }
-  }),
-  clicker: new Element({
+  },
+  clicker:{
     text: 'clicker',
     on: {
       click () {
         this.text.val = Math.random()
-        console.log('click', this.path, '->',this.text.path)
+        // console.log('click', this.path, '->',this.text.path)
       }
     }
-  }),
-  dragger: new Element({
+  },
+  dragger:{
     text: 'dragger',
     on: {
       drag () {
         console.log('drag')
       }
     }
-  }),
-  mover: new Element({
+  },
+  mover: {
     text: 'mover',
     on: {
       move () {
         console.log('move')
       }
     }
-  })
+  }
 })
 
+var newHolder = new holder.Constructor()
+
 var app = new App({
-  holder1: new holder.Constructor()//,
+  holder1: newHolder//,
   // holder2: new holder.Constructor()
 })

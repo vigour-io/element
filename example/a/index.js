@@ -27,15 +27,21 @@ var Thing = new Element({
     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
   },
   on: {
-    click () {
-      console.log('dirty ballz', this._path)
+    click (data, event) {
+      console.log('parent Thing >>>>', this._path, event)
       // ev.target usen? // data something?
-      this.getNode().style.border = (Math.random() * 9) + 'px solid blue'
+      this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
     }
   },
   bla: new Title({
     text: function () {
       return this.parent.val
+    },
+    on: {
+      click () {
+        console.log('nested bla >>>>>>', this._path)
+        this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid red'
+      }
     }
   })
   // x: {

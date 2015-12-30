@@ -37,9 +37,11 @@ thePlayer.set({
   source: {
     dash: 'https://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2038_d06f9f4f032f9f599edbe38f1acd2900/5391_93fe74e97ef2a8ff3389d5a490d902c7/5391.mpd',
     hls: 'https://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2038_d06f9f4f032f9f599edbe38f1acd2900/5391_93fe74e97ef2a8ff3389d5a490d902c7/5391.m3u8'
+    // hls: 'http://abudhabimedia-lh.akamaihd.net/i/ch_adaloulahd@325615/master.m3u8'
   },
-  volume: 1,
+  volume: 0,
   play: true,
+  time: 0.5,
   on: {
     render: {
       example () {
@@ -54,8 +56,10 @@ thePlayer.set({
               var creative = creatives[creatives.length - 1]
               var mediaFiles = creative.mediaFiles
               if (mediaFiles && mediaFiles.length) {
+                // throw new Error('RAHH!')
                 var mediaFile = mediaFiles[mediaFiles.length - 1]
                 adUrl.val = mediaFile.fileURL
+                // adUrl.val = 'http://www.macacofritodeoculospreto.com'
               }
             }
           }
@@ -70,7 +74,7 @@ thePlayer.ad.set({
     progressive: adUrl
   },
   play: true,
-  canSkip: false
+  canSkip: true
 })
 
 app.set({

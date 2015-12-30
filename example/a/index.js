@@ -7,22 +7,15 @@ require('./style.less')
 // ******************** CONFIG ********************
 var n = 2
 // ************************************************
-global.disable = true
-
 var app = new App()
-global.app = app
-// use nodes combined with context to check up your shit
+
 var Title = new Element({
   type: 'h3',
   text: 'yo'
 }).Constructor
 
-// var str = new StringApp()
 var Thing = new Element({
   css: 'thing',
-  // text: function () {
-  //   return this._context._input
-  // },
   img: {
     type: 'img',
     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
@@ -30,7 +23,6 @@ var Thing = new Element({
   on: {
     click (data, event) {
       console.log('parent Thing >>>>', this._path, event)
-      // ev.target usen? // data something?
       this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
     }
   },
@@ -38,8 +30,8 @@ var Thing = new Element({
     text: 'MURDER KAPOT!',
     on: {
       click (ev, event) {
-        console.log('YO YO YO', this.path)
-        this.text.set(Math.random() * 999, event)
+        this.node.style.border = '1px solid red'
+        this.text.set(Math.random() * 999)
       }
     }
   },
@@ -50,9 +42,7 @@ var Thing = new Element({
     },
     on: {
       click (data, event) {
-        // console.log('nested bla >>>>>>', this._path)
-        // this.emit('flabber', void 0, event)
-        this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid red'
+        this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid purple'
       },
       flabber (data, event) {
         console.log('FLABBER', this.path, data, event)
@@ -60,6 +50,13 @@ var Thing = new Element({
     }
   })
 }).Constructor
+
+// Thing.prototype.set({
+//   yuz: {
+//     type: 'img',
+//     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
+//   }
+// })
 
 Thing.prototype.title.on('data', function () {
   var node = this.getNode()
@@ -70,6 +67,8 @@ Thing.prototype.title.on('data', function () {
   }
 })
 
+// ****************** RENDER PART **********************
+
 var holder = new Element({
   css: 'holder',
   '0': {
@@ -77,6 +76,7 @@ var holder = new Element({
     text: n
   }
 })
+
 global.obs = new Observable({
   define: {
     updateAll () {
@@ -100,68 +100,26 @@ for (let i = 1; i < n + 1; i++) {
 }
 
 app.set({
-  // cnodes: new Element({
-  //   text: 'yo'
-  // }),
-  // buttonx: new Element({
-  //   type: 'button',
-  //   text: '!!!!!!',
-  //   on: {
-  //     click () {
-  //       console.log('!!!')
-  //     }
-  //   }
-  // }),
-  // nodes: new Element({
-  //   text: 'yo'
-  // }),
-  holder1: new holder.Constructor({ '0': { text: 'number 1 holder' } }),
+  holder1: new holder.Constructor(),
   holder2: new holder.Constructor()
 })
 
+// ****************** DEBUG **********************
+console.log('----------- DEBUG --------------')
+console.clear()
 var globals = require('../../lib/engine/dom/globals')
-
 global.app = app
 global.nodes = globals.nodes
-
-console.log('---------------')
-// obs[1].val = 222222
-app.holder1.set({
-  bla: {
-    text: 'yo!'
-  },
-  yuz: {
-    type: 'img',
-    src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
-  }
-})
-
-// do we want to support this -- probably yesh?
-Thing.prototype.set({
-  yuz: {
-    type: 'img',
-    src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
-  }
-})
-// Thing.prototype.yuz.remove()
-// app.holder.yuz.remove()
-
-app.set({
-  bla: new Element({
-    css: 'bla',
-    holder: {
-      type: 'pre',
-      text: 'yeey'
-    }
-  })
-})
-
-app.bla.inject(require('../../lib/property/scroll'))
-app.bla.node.style.height = 300
-
+var debug = require('vigour-js/lib/util/debug')
+debug.context(app).log('before resolve!')
 
 app.holder1[1].theText.text.val = 'YO!'
-console.clear()
-console.error('now its happening wrong!')
-obs.updateAll()
+
+debug.context(app).log('after resolve')
+// holder[1].title.clearContext()
+// app.holder1[1]
+console.error('now its happening updace!')
+global.obs.updateAll()
+debug.context(app).log('obs updateAll!')
+
 // this screws up updates

@@ -39,7 +39,8 @@ var holder = new Element({
         // this.text.clearContextUp()
       }
     }
-  }
+  },
+  y:200
 })
 
 var newHolder = new holder.Constructor()

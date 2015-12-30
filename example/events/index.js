@@ -5,9 +5,9 @@ var Observable = require('vigour-js/lib/observable')
 var App = require('../../lib/engine/dom')
 require('./style.less')
 
-Observable.prototype.inject(
-  require('vigour-js/lib/operator/add')
-)
+// Observable.prototype.inject(
+//   require('vigour-js/lib/operator/add')
+// )
 
 Element.prototype.inject(
   require('../../lib/event/down'),
@@ -71,14 +71,14 @@ var app = new App({
     // },
     y: {
       inject: require('../../lib/animation'),
-      $animation:{
-        duration: 60
-      },
+      // $animation: {
+      //   duration: 60
+      // },
       val: 200
     }
   })
 })
-
+console.clear()
 app.set({
   thing: new Element({
     text: 'thing',
@@ -93,8 +93,8 @@ app.set({
 
 global.app = app
 
-
+console.error('---------')
 // app.holder.val
 setTimeout(function () {
   app.holder1.y.val = 0
-})
+},1000)

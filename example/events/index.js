@@ -18,35 +18,62 @@ Element.prototype.inject(
   require('../../lib/event/render')
 )
 
-var holder = new Element({
-  downer: {
-    text: 'downer',
-    // css: 'red',
-    on: {
-      mousedown () {
-        this.text.val = Math.random()
-        // this.text.clearContextUp()
-        // console.log('down', this.path, '->', this.text.path)
-      }
-    }
-  },
-  upper: {
-    text: 'upper',
-    on: {
-      mouseup () {
-        console.log('up', this.path, '->', this.text.path)
-        this.text.val = Math.random()
-        // this.text.clearContextUp()
-      }
-    }
-  },
-  y: 200
-})
-
-var newHolder = new holder.Constructor()
-
 var app = new App({
-  holder1: newHolder//,
-  // holder2: new holder.Constructor()
+  holder: new Element({
+    $transform: new Observable({
+      one: {},
+      two: {},
+      three: {}
+    })
+  })
+  // holder1: new Element({
+  //   inject: require('../../lib/event/render'),
+  //   rendered: {
+  //     on: {
+  //       data () {
+  //         console.error('YOYOYO')
+  //       }
+  //     }
+  //   },
+  //   on: {
+  //     render () {
+  //       console.log('make it shine')
+  //     }
+  //   },
+  //   downer: {
+  //     text: 'downer',
+  //     // css: 'red',
+  //     on: {
+  //       mousedown () {
+  //         this.text.val = Math.random()
+  //         // this.text.clearContextUp()
+  //         // console.log('down', this.path, '->', this.text.path)
+  //       }
+  //     }
+  //   },
+  //   upper: {
+  //     text: 'upper',
+  //     on: {
+  //       mouseup () {
+  //         this.text.val = Math.random()
+  //         // this.text.clearContextUp()
+  //       }
+  //     }
+  //   },
+  //   y: {
+  //     inject: require('../../lib/animation'),
+  //     $animation:{
+  //       duration: 60
+  //     },
+  //     val: 200
+  //   }
+  // })
 })
+
 global.app = app
+
+
+app.holder.val
+// setTimeout(function () {
+//   app.holder1.y.val = 0
+// })

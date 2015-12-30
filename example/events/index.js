@@ -19,7 +19,7 @@ Element.prototype.inject(
 )
 
 var holder = new Element({
-  downer:{
+  downer: {
     text: 'downer',
     // css: 'red',
     on: {
@@ -30,7 +30,7 @@ var holder = new Element({
       }
     }
   },
-  upper:{
+  upper: {
     text: 'upper',
     on: {
       mouseup () {
@@ -40,7 +40,7 @@ var holder = new Element({
       }
     }
   },
-  y:200
+  y: 200
 })
 
 var newHolder = new holder.Constructor()

@@ -135,7 +135,7 @@ app.set({
       type: 'pre',
       text: 'yeey'
     }
-  }),
+  })
   // holder: new holder.Constructor({ '0': { text: 'number 1 holder' } }),
   // holder2: new holder.Constructor()
 })
@@ -195,4 +195,6 @@ global.xx = new bla.Constructor()
 
 global.disable = false
 
-global.xx = global.xx.YO.BLURF.val = 'yuzi'
+global.xx = global.xx.YO.BLURF.set('yuzi')
+
+global.bitch = bla

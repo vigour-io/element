@@ -3,6 +3,7 @@ var Element = require('../../lib/element')
 var Event = require('vigour-js/lib/event')
 var Observable = require('vigour-js/lib/observable')
 var App = require('../../lib/engine/dom')
+var debug = require('vigour-js/lib/util/debug')
 require('./style.less')
 // ******************** CONFIG ********************
 var n = 2
@@ -32,6 +33,7 @@ var Thing = new Element({
       click (ev, event) {
         this.node.style.border = '1px solid red'
         this.text.set(Math.random() * 999)
+        debug.context(app).log('after set')
       }
     }
   },
@@ -64,6 +66,7 @@ Thing.prototype.title.on('data', function () {
   if (node) {
     // console.log('yes here go render')
     this.text.render(node)
+    this.text.clearContext()
   }
 })
 
@@ -86,6 +89,7 @@ global.obs = new Observable({
         p.set(Math.random() * 99, ev)
       })
       ev.trigger()
+      debug.context(app).log('after updateAll')
       console.timeEnd('update')
     }
   }
@@ -110,16 +114,15 @@ console.clear()
 var globals = require('../../lib/engine/dom/globals')
 global.app = app
 global.nodes = globals.nodes
-var debug = require('vigour-js/lib/util/debug')
 debug.context(app).log('before resolve!')
 
+console.log('START')
+var target = app.holder1[1].theText.text
 app.holder1[1].theText.text.val = 'YO!'
-
+// target.clearContextUp()
 debug.context(app).log('after resolve')
 // holder[1].title.clearContext()
 // app.holder1[1]
 console.error('now its happening updace!')
 global.obs.updateAll()
-debug.context(app).log('obs updateAll!')
-
 // this screws up updates

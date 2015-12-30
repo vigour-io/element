@@ -35,7 +35,7 @@ var app = new App({
   //   })
   // }),
   holder1: new Element({
-    text:'fun',
+    text: 'app.holder1',
     // inject: require('../../lib/event/render'),
     // rendered: {
     //   on: {
@@ -49,17 +49,17 @@ var app = new App({
     //     console.log('make it shine')
     //   }
     // },
-    // downer: {
-    //   text: 'downer',
-    //   // css: 'red',
-    //   on: {
-    //     mousedown () {
-    //       this.text.val = Math.random()
-    //       // this.text.clearContextUp()
-    //       console.log('down', this.path, '->', this.text.path)
-    //     }
-    //   }
-    // },
+    downer: {
+      text: 'downer',
+      // css: 'red',
+      on: {
+        mousedown () {
+          this.text.val = Math.random()
+          // this.text.clearContextUp()
+          console.log('down', this.path, '->', this.text.path)
+        }
+      }
+    },
     // upper: {
     //   text: 'upper',
     //   on: {
@@ -70,18 +70,25 @@ var app = new App({
     //   }
     // },
     y: {
-      inject: require('../../lib/animation'),
+      // inject: require('../../lib/animation'),
       // $animation: {
       //   duration: 60
       // },
-      val: 200
+      val: 200,
+      on: {
+        data () {
+          console.error('JAAAAAAAAAAA')
+        }
+      }
     }
   })
 })
+
 console.clear()
+
 app.set({
   thing: new Element({
-    text: 'thing',
+    text: 'thing with transform: app.holder1',
     y: {
       val: app.holder1.y,
       $transform (val) {

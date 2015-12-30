@@ -45,6 +45,7 @@ var Thing = new Element({
   },
   title: new Title({
     text: function () {
+      console.log('ok!', this.path)
       return this.parent.val
     },
     on: {
@@ -114,7 +115,7 @@ app.set({
   // nodes: new Element({
   //   text: 'yo'
   // }),
-  holder: new holder.Constructor({ '0': { text: 'number 1 holder' } }),
+  holder1: new holder.Constructor({ '0': { text: 'number 1 holder' } }),
   holder2: new holder.Constructor()
 })
 
@@ -125,7 +126,7 @@ global.nodes = globals.nodes
 
 console.log('---------------')
 // obs[1].val = 222222
-app.holder.set({
+app.holder1.set({
   bla: {
     text: 'yo!'
   },
@@ -142,8 +143,8 @@ Thing.prototype.set({
     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
   }
 })
-Thing.prototype.yuz.remove()
-app.holder.yuz.remove()
+// Thing.prototype.yuz.remove()
+// app.holder.yuz.remove()
 
 app.set({
   bla: new Element({
@@ -159,7 +160,8 @@ app.bla.inject(require('../../lib/property/scroll'))
 app.bla.node.style.height = 300
 
 
-app.holder[1].theText.text.val = 'YO!'
+app.holder1[1].theText.text.val = 'YO!'
+console.clear()
 console.error('now its happening wrong!')
 obs.updateAll()
 // this screws up updates

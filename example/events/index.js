@@ -19,61 +19,82 @@ Element.prototype.inject(
 )
 
 var app = new App({
-  holder: new Element({
-    $transform: new Observable({
-      one: {},
-      two: {},
-      three: {}
-    })
+  // holder: new Element({
+  //   ChildConstructor:new Element({
+  //     text: 'hahahaha',
+  //     on: {
+  //       click () {
+  //         this.text.val = Math.random()
+  //       }
+  //     }
+  //   }),
+  //   $transform: new Observable({
+  //     one: {},
+  //     two: {},
+  //     three: {}
+  //   })
+  // }),
+  holder1: new Element({
+    text:'fun',
+    // inject: require('../../lib/event/render'),
+    // rendered: {
+    //   on: {
+    //     data () {
+    //       console.error('YOYOYO')
+    //     }
+    //   }
+    // },
+    // on: {
+    //   render () {
+    //     console.log('make it shine')
+    //   }
+    // },
+    // downer: {
+    //   text: 'downer',
+    //   // css: 'red',
+    //   on: {
+    //     mousedown () {
+    //       this.text.val = Math.random()
+    //       // this.text.clearContextUp()
+    //       console.log('down', this.path, '->', this.text.path)
+    //     }
+    //   }
+    // },
+    // upper: {
+    //   text: 'upper',
+    //   on: {
+    //     mouseup () {
+    //       this.text.val = Math.random()
+    //       // this.text.clearContextUp()
+    //     }
+    //   }
+    // },
+    y: {
+      inject: require('../../lib/animation'),
+      $animation:{
+        duration: 60
+      },
+      val: 200
+    }
   })
-  // holder1: new Element({
-  //   inject: require('../../lib/event/render'),
-  //   rendered: {
-  //     on: {
-  //       data () {
-  //         console.error('YOYOYO')
-  //       }
-  //     }
-  //   },
-  //   on: {
-  //     render () {
-  //       console.log('make it shine')
-  //     }
-  //   },
-  //   downer: {
-  //     text: 'downer',
-  //     // css: 'red',
-  //     on: {
-  //       mousedown () {
-  //         this.text.val = Math.random()
-  //         // this.text.clearContextUp()
-  //         // console.log('down', this.path, '->', this.text.path)
-  //       }
-  //     }
-  //   },
-  //   upper: {
-  //     text: 'upper',
-  //     on: {
-  //       mouseup () {
-  //         this.text.val = Math.random()
-  //         // this.text.clearContextUp()
-  //       }
-  //     }
-  //   },
-  //   y: {
-  //     inject: require('../../lib/animation'),
-  //     $animation:{
-  //       duration: 60
-  //     },
-  //     val: 200
-  //   }
-  // })
+})
+
+app.set({
+  thing: new Element({
+    text: 'thing',
+    y: {
+      val: app.holder1.y,
+      $transform (val) {
+        return val / 2
+      }
+    }
+  })
 })
 
 global.app = app
 
 
-app.holder.val
-// setTimeout(function () {
-//   app.holder1.y.val = 0
-// })
+// app.holder.val
+setTimeout(function () {
+  app.holder1.y.val = 0
+})

@@ -124,7 +124,7 @@ global.app = app
 global.nodes = globals.nodes
 
 console.log('---------------')
-obs[1].val = 222222
+// obs[1].val = 222222
 app.holder.set({
   bla: {
     text: 'yo!'
@@ -158,22 +158,8 @@ app.set({
 app.bla.inject(require('../../lib/property/scroll'))
 app.bla.node.style.height = 300
 
-global.contextChange = function (val) {
-  app.bla.holder.node.style.color = 'red'
-  app.bla.holder.text.val = global.activeContexts.toString()
-  setTimeout(function () {
-    app.bla.set({ scrollTop: 30000 + Math.random() * 999 })
-    app.bla.holder.node.style.color = 'inherit'
-  }, 200)
-}
 
-var bla = new Observable({
-  key: 'BITCH',
-  YO: {
-    BLURF: true
-  }
-})
-global.xx = new bla.Constructor()
-global.disable = false
-var resolve = global.xx.YO.BLURF.set('yuzi')
-global.bitch = bla
+app.holder[1].theText.text.val = 'YO!'
+console.error('now its happening wrong!')
+obs.updateAll()
+// this screws up updates

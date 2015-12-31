@@ -110,10 +110,10 @@ app.set({
 
 // ****************** DEBUG **********************
 console.log('----------- DEBUG --------------')
-console.clear()
-var globals = require('../../lib/engine/dom/globals')
+// console.clear()
+// var globals = require('../../lib/engine/dom/globals')
 global.app = app
-global.nodes = globals.nodes
+global.nodes = app.nodes
 debug.context(app).log('before resolve!')
 
 console.log('START')

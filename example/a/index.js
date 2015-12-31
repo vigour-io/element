@@ -43,7 +43,7 @@ var Thing = new Element({
     },
     on: {
       click (data, event) {
-        this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid purple'
+        this.remove()
       },
       flabber (data, event) {
         console.log('FLABBER', this.path, data, event)
@@ -107,10 +107,7 @@ app.set({
   holder1: new holder.Constructor(),
   holder2: new holder.Constructor()
 })
-
 console.timeEnd('creation')
-
-
 // ****************** DEBUG **********************
 console.log('----------- DEBUG --------------')
 // console.clear()
@@ -129,9 +126,7 @@ debug.context(app).log('after resolve')
 console.error('now its happening updace!')
 global.obs.updateAll()
 // this screws up updates
-
 // console.clear()
-
 // var Base = require('vigour-js/lib/base')
 // var d = new Base({
 //   // properties: {

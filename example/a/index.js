@@ -114,13 +114,13 @@ console.log('----------- DEBUG --------------')
 // var globals = require('../../lib/engine/dom/globals')
 global.app = app
 global.nodes = app.nodes
-debug.context(app).log('before resolve!')
+// debug.context(app).log('before resolve!')
 
 console.log('START')
 // var target = app.holder1[1].theText.text
 // app.holder1[1].theText.text.val = 'YO!'
 // target.clearContextUp()
-debug.context(app).log('after resolve')
+// debug.context(app).log('after resolve')
 // holder[1].title.clearContext()
 // app.holder1[1]
 console.error('now its happening updace!')

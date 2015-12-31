@@ -6,7 +6,7 @@ var App = require('../../lib/engine/dom')
 var debug = require('vigour-js/lib/util/debug')
 require('./style.less')
 // ******************** CONFIG ********************
-var n = 2
+var n = 1e3
 // ************************************************
 var app = new App()
 
@@ -23,7 +23,7 @@ var Thing = new Element({
   },
   on: {
     click (data, event) {
-      debug.context(app).log('after my parent click!!!!')
+      // debug.context(app).log('after my parent click!!!!')
       this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
     }
   },
@@ -33,7 +33,7 @@ var Thing = new Element({
       click (ev, event) {
         this.node.style.border = '1px solid red'
         this.text.set(Math.random() * 999)
-        debug.context(app).log('after click-set')
+        // debug.context(app).log('after click-set')
       }
     }
   },
@@ -70,6 +70,7 @@ Thing.prototype.title.on('data', function () {
 })
 
 // ****************** RENDER PART **********************
+console.time('creation')
 
 var holder = new Element({
   css: 'holder',
@@ -88,8 +89,8 @@ global.obs = new Observable({
         p.set(Math.random() * 99, ev)
       })
       ev.trigger()
-      debug.context(app).log('after updateAll')
       console.timeEnd('update')
+      // debug.context(app).log('after updateAll')
     }
   }
 })
@@ -107,6 +108,9 @@ app.set({
   holder2: new holder.Constructor()
 })
 
+console.timeEnd('creation')
+
+
 // ****************** DEBUG **********************
 console.log('----------- DEBUG --------------')
 // console.clear()
@@ -117,7 +121,7 @@ debug.context(app).log('before resolve!')
 
 console.log('START')
 // var target = app.holder1[1].theText.text
-app.holder1[1].theText.text.val = 'YO!'
+// app.holder1[1].theText.text.val = 'YO!'
 // target.clearContextUp()
 debug.context(app).log('after resolve')
 // holder[1].title.clearContext()

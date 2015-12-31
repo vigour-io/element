@@ -39,7 +39,6 @@ var Thing = new Element({
   },
   title: new Title({
     text: function () {
-      console.log('ok!', this.path)
       return this.parent.val
     },
     on: {

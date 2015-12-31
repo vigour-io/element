@@ -23,7 +23,7 @@ var Thing = new Element({
   },
   on: {
     click (data, event) {
-      console.log('parent Thing >>>>', this._path, event)
+      debug.context(app).log('after my parent click!!!!')
       this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
     }
   },
@@ -33,7 +33,7 @@ var Thing = new Element({
       click (ev, event) {
         this.node.style.border = '1px solid red'
         this.text.set(Math.random() * 999)
-        debug.context(app).log('after set')
+        debug.context(app).log('after click-set')
       }
     }
   },
@@ -117,7 +117,7 @@ global.nodes = globals.nodes
 debug.context(app).log('before resolve!')
 
 console.log('START')
-var target = app.holder1[1].theText.text
+// var target = app.holder1[1].theText.text
 app.holder1[1].theText.text.val = 'YO!'
 // target.clearContextUp()
 debug.context(app).log('after resolve')
@@ -126,3 +126,43 @@ debug.context(app).log('after resolve')
 console.error('now its happening updace!')
 global.obs.updateAll()
 // this screws up updates
+
+// console.clear()
+
+// var Base = require('vigour-js/lib/base')
+// var d = new Base({
+//   // properties: {
+//   //   x: new Observable({
+//   //     on: {
+//   //       data: function () {
+
+//   //       }
+//   //     }
+//   //   })
+//   // },
+//   x: {},
+//   useVal: true
+// })
+
+// var a = new Base({
+//   // trackInstances: true,
+//   key: 'a',
+//   b: {
+//     // trackInstances: true,
+//     c: {
+//       // trackInstances: true,
+//       d: new d.Constructor()
+//     }
+//   }
+// })
+
+// var a1 = new a.Constructor({
+//   key: 'a1'
+// })
+
+// console.clear()
+
+// console.log('????')
+// a1.b.c.d.x.val = 'xxx'
+
+// // console.clear()

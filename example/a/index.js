@@ -6,6 +6,7 @@ var Event = require('vigour-js/lib/event')
 // ******************** CONFIG ********************
 var n = 1e2
 // ************************************************
+require('./style.less')
 
 var Title = new Element({
   type: 'h3',
@@ -103,7 +104,6 @@ app.set({
 module.exports = app
 
 if (!require('vigour-js/lib/util/is/node')) {
-  require('./style.less')
   setInterval(function () {
     global.obs.updateAll()
   })

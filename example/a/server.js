@@ -1,4 +1,5 @@
 var http = require('http')
+require('../../lib/require')
 var app = require('./index.js')
 var zlib = require('zlib')
 var stream = require('stream')

@@ -38,8 +38,13 @@ var Thing = new Element({
     }
   },
   title: new Title({
-    text: function () {
-      return this.parent.val
+    text: {
+      val: function () {
+        return this.parent.val
+      },
+      $transform () {
+        return 'xxxx'
+      }
     },
     on: {
       click (data, event) {
@@ -51,13 +56,6 @@ var Thing = new Element({
     }
   })
 }).Constructor
-
-// Thing.prototype.set({
-//   yuz: {
-//     type: 'img',
-//     src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
-//   }
-// })
 
 Thing.prototype.title.on('data', function () {
   var node = this.getNode()
@@ -98,9 +96,7 @@ global.obs = new Observable({
 for (let i = 1; i < n + 1; i++) {
   global.obs.setKey(i, i)
   let a = global.obs[i]
-  holder.setKey(i, new Thing({
-    title: a
-  }, false), false)
+  holder.setKey(i, new Thing({ title: a }, false), false)
 }
 
 app.set({
@@ -108,59 +104,3 @@ app.set({
   holder2: new holder.Constructor()
 })
 console.timeEnd('creation')
-// ****************** DEBUG **********************
-console.log('----------- DEBUG --------------')
-// console.clear()
-// var globals = require('../../lib/engine/dom/globals')
-global.app = app
-global.nodes = app.nodes
-// debug.context(app).log('before resolve!')
-
-console.log('START')
-// var target = app.holder1[1].theText.text
-// app.holder1[1].theText.text.val = 'YO!'
-// target.clearContextUp()
-// debug.context(app).log('after resolve')
-// holder[1].title.clearContext()
-// app.holder1[1]
-console.error('now its happening updace!')
-global.obs.updateAll()
-// this screws up updates
-// console.clear()
-// var Base = require('vigour-js/lib/base')
-// var d = new Base({
-//   // properties: {
-//   //   x: new Observable({
-//   //     on: {
-//   //       data: function () {
-
-//   //       }
-//   //     }
-//   //   })
-//   // },
-//   x: {},
-//   useVal: true
-// })
-
-// var a = new Base({
-//   // trackInstances: true,
-//   key: 'a',
-//   b: {
-//     // trackInstances: true,
-//     c: {
-//       // trackInstances: true,
-//       d: new d.Constructor()
-//     }
-//   }
-// })
-
-// var a1 = new a.Constructor({
-//   key: 'a1'
-// })
-
-// console.clear()
-
-// console.log('????')
-// a1.b.c.d.x.val = 'xxx'
-
-// // console.clear()

@@ -2,8 +2,9 @@
 var Observable = require('vigour-js/lib/observable')
 var app = require('./app')
 var Element = app._Element
+var Event = require('vigour-js/lib/event')
 // ******************** CONFIG ********************
-var n = 1
+var n = 1e2
 // ************************************************
 console.log('xxxx', Element)
 
@@ -20,8 +21,6 @@ var Thing = new Element({
   },
   on: {
     click (data, event) {
-      console.log('ZE FUCK!', this.path)
-      // debug.context(app).log('after my parent click!!!!')
       this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
     }
   },
@@ -40,9 +39,9 @@ var Thing = new Element({
       val: function () {
         return this.parent.val
       },
-      $transform () {
-        return 'xxxx'
-      }
+      // $transform () {
+      //   return 'xxxx'
+      // }
     },
     on: {
       click (data, event) {
@@ -105,3 +104,9 @@ app.set({
 console.timeEnd('creation')
 
 module.exports = app
+
+if (!require('vigour-js/lib/util/is/node')) {
+  setInterval(function () {
+    obs.updateAll()
+  })
+}

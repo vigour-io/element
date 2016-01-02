@@ -1,18 +1,11 @@
 'use strict'
-var Element = require('../../lib/element')
-Element.prototype.inject(require('../../lib/engine/dom/element'))
-
-var Event = require('vigour-js/lib/event')
 var Observable = require('vigour-js/lib/observable')
-var App = require('../../lib/engine/dom')
-var debug = require('vigour-js/lib/util/debug')
-require('./style.less')
+var app = require('./app')
+var Element = app._Element
 // ******************** CONFIG ********************
-var n = 1e3
+var n = 1
 // ************************************************
-var app = new App()
-
-console.log('xxxx')
+console.log('xxxx', Element)
 
 var Title = new Element({
   type: 'h3',
@@ -106,8 +99,9 @@ for (let i = 1; i < n + 1; i++) {
 console.log('xxxx')
 
 app.set({
-  node: document.body,
   holder1: new holder.Constructor(),
   holder2: new holder.Constructor()
 })
 console.timeEnd('creation')
+
+module.exports = app

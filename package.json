@@ -16,6 +16,11 @@
   "bugs": {
     "url": "https://github.com/vigour-io/element/issues"
   },
+  "browser": {
+    "./example/a/app/": "./example/a/app/browser",
+    "./lib/engine/ua/": "./lib/engine/ua/browser",
+    "./lib/event/": "./lib/event/browser"
+  },
   "dependencies": {
     "vigour-js": "*",
     "vigour-ua": "0.0.3"

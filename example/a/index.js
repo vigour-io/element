@@ -6,7 +6,6 @@ var Event = require('vigour-js/lib/event')
 // ******************** CONFIG ********************
 var n = 1e2
 // ************************************************
-console.log('xxxx', Element)
 
 var Title = new Element({
   type: 'h3',
@@ -30,7 +29,6 @@ var Thing = new Element({
       click (ev, event) {
         this.node.style.border = '1px solid red'
         this.text.set(Math.random() * 999)
-        // debug.context(app).log('after click-set')
       }
     }
   },
@@ -38,7 +36,7 @@ var Thing = new Element({
     text: {
       val: function () {
         return this.parent.val
-      },
+      }
       // $transform () {
       //   return 'xxxx'
       // }
@@ -78,13 +76,13 @@ var holder = new Element({
 global.obs = new Observable({
   define: {
     updateAll () {
-      console.time('update')
+      // console.time('update')
       var ev = new Event()
       this.each(function (p) {
         p.set(Math.random() * 99, ev)
       })
       ev.trigger()
-      console.timeEnd('update')
+      // console.timeEnd('update')
       // debug.context(app).log('after updateAll')
     }
   }
@@ -95,18 +93,18 @@ for (let i = 1; i < n + 1; i++) {
   let a = global.obs[i]
   holder.setKey(i, new Thing({ title: a }, false), false)
 }
-console.log('xxxx')
+// console.log('xxxx')
 
 app.set({
   holder1: new holder.Constructor(),
   holder2: new holder.Constructor()
 })
-console.timeEnd('creation')
+// console.timeEnd('creation')
 
 module.exports = app
 
 if (!require('vigour-js/lib/util/is/node')) {
   setInterval(function () {
-    obs.updateAll()
+    global.obs.updateAll()
   })
 }

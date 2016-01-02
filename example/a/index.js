@@ -1,6 +1,6 @@
 'use strict'
 var Observable = require('vigour-js/lib/observable')
-var app = require('./app')
+var app = require('../../lib/app')
 var Element = app._Element
 var Event = require('vigour-js/lib/event')
 // ******************** CONFIG ********************
@@ -16,7 +16,7 @@ var Thing = new Element({
   css: 'thing',
   img: {
     type: 'img',
-    src: 'http://vignette1.wikia.nocookie.net/scarface/images/4/44/Tony_Montana.jpg/revision/latest/scale-to-width-down/300?cb=20120604034628&path-prefix=en'
+    src: 'http://localhost:3032/cat.png'
   },
   on: {
     click (data, event) {
@@ -100,10 +100,10 @@ app.set({
   holder2: new holder.Constructor()
 })
 // console.timeEnd('creation')
-
 module.exports = app
 
 if (!require('vigour-js/lib/util/is/node')) {
+  require('./style.less')
   setInterval(function () {
     global.obs.updateAll()
   })

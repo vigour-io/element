@@ -17,7 +17,7 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "browser": {
-    "./example/a/app/": "./example/a/app/browser",
+    "./lib/app/": "./lib/app/browser",
     "./lib/engine/ua/": "./lib/engine/ua/browser",
     "./lib/event/": "./lib/event/browser"
   },

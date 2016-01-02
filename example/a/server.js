@@ -2,10 +2,10 @@ var http = require('http')
 var app = require('./index.js')
 var zlib = require('zlib')
 var fs = require('fs')
-// var js = 'http://192.168.0.12:8111/bundle.js?$app=192.168.0.12:8111/example/a/index.js'
-// var css = 'http://192.168.0.12:8111/bundle.css?$app=192.168.0.12:8111/example/a/index.js'
-var js = 'http://localhost:3032/build/build.js'
-var css = 'http://localhost:3032/build/build.css'
+var js = 'http://192.168.0.12:8111/bundle.js?$app=192.168.0.12:8111/example/a/index.js'
+var css = 'http://192.168.0.12:8111/bundle.css?$app=192.168.0.12:8111/example/a/index.js'
+// var js = 'http://localhost:3032/build/build.js'
+// var css = 'http://localhost:3032/build/build.css'
 
 function make (js, css) {
   var str = '<html><head>'

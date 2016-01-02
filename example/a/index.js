@@ -1,5 +1,7 @@
 'use strict'
 var Element = require('../../lib/element')
+Element.prototype.inject(require('../../lib/engine/dom/element'))
+
 var Event = require('vigour-js/lib/event')
 var Observable = require('vigour-js/lib/observable')
 var App = require('../../lib/engine/dom')
@@ -9,6 +11,8 @@ require('./style.less')
 var n = 1e3
 // ************************************************
 var app = new App()
+
+console.log('xxxx')
 
 var Title = new Element({
   type: 'h3',
@@ -23,6 +27,7 @@ var Thing = new Element({
   },
   on: {
     click (data, event) {
+      console.log('ZE FUCK!', this.path)
       // debug.context(app).log('after my parent click!!!!')
       this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
     }
@@ -98,8 +103,10 @@ for (let i = 1; i < n + 1; i++) {
   let a = global.obs[i]
   holder.setKey(i, new Thing({ title: a }, false), false)
 }
+console.log('xxxx')
 
 app.set({
+  node: document.body,
   holder1: new holder.Constructor(),
   holder2: new holder.Constructor()
 })

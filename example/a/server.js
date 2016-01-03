@@ -1,5 +1,5 @@
 var http = require('http')
-require('../../lib/require')
+require('../../lib/util/require')
 var app = require('./index.js')
 var zlib = require('zlib')
 var stream = require('stream')
@@ -10,7 +10,6 @@ var js = 'http://localhost:3032/build/build.js'
 var css = 'http://localhost:3032/build/build.css'
 
 // finish this and add as a util to element (util/server)
-
 function make (js, css) {
   var str = '<html><head>'
   str += '<link href="' + css + '" rel="stylesheet" type="text/css">'

@@ -15,6 +15,10 @@ var Title = new Element({
 
 var Thing = new Element({
   css: 'thing',
+  // rick: {
+  //   type: 'section',
+  //   text: 'yo ricks!'
+  // },
   img: {
     type: 'img',
     src: 'http://localhost:3032/cat.png'
@@ -80,7 +84,7 @@ global.obs = new Observable({
       // console.time('update')
       var ev = new Event()
       this.each(function (p) {
-        p.set(Math.random() * 99, ev)
+        p.set(Math.random() * 919, ev)
       })
       ev.trigger()
       // console.timeEnd('update')
@@ -90,7 +94,7 @@ global.obs = new Observable({
 })
 // var event = new Event(holder, 'data')
 for (let i = 1; i < n + 1; i++) {
-  global.obs.setKey(i, i)
+  global.obs.setKey(i, i * 100)
   let a = global.obs[i]
   holder.setKey(i, new Thing({ title: a }, false), false)
 }

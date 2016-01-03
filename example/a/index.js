@@ -3,11 +3,12 @@ var Observable = require('vigour-js/lib/observable')
 var app = require('../../lib/app')
 var Element = app.ChildConstructor
 var Event = require('vigour-js/lib/event')
+require('./style.less')
+
 // // var event = require('../../lib/event')
 // // ******************** CONFIG ********************
 // var n = 2
 // // ************************************************
-// require('./style.less')
 
 // var Title = new Element({
 //   type: 'h3',
@@ -101,13 +102,17 @@ var Event = require('vigour-js/lib/event')
 // }
 // // console.log('xxxx')
 
-
 app.set({
   hello: {
     xxx: {
       on: {
         click () {
           console.log('yo yo yo')
+          this.set({
+            bla: {
+              text: '32322323'
+            }
+          })
         }
       },
       text: 'xxx'

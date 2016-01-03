@@ -146,53 +146,66 @@ var Sidebar = new Element({
 console.log('---------- CONTEXT ----------')
 console.clear()
 
-var sidebar = new Sidebar()
-sidebar.set({
+var Sidebar = new Sidebar({
   menu: {
     discover: {
       text: 'discover'
     }
   }
-})
-sidebar.Constructor
-var First = new Element().Constructor
-
-First.prototype.set({
-  sidebar: sidebar
 }).Constructor
+
+var first = new Element({
+
+})
+
+app.set({
+  first: new first.Constructor({
+    // properties: {
+    //   sidebar: Sidebar
+    // },
+    sidebar: new Sidebar({
+      properties: {
+        james: new Element({
+          bla: true
+        })
+      },
+      james: {}
+    })
+  })
+})
 
 // delete First.prototype.sidebar.menu._Constructor
 // First.prototype.sidebar.menu.Constructor
 
-var A = new Element({
-  bla: {
-    text: 'haha',
-    on: {
-      down () {
-        console.log('fire it!')
-        this.set({
-          text: 'xxxx'
-        })
-      }
-    }
-  }
-}).Constructor
+// var A = new Element({
+//   bla: {
+//     text: 'haha',
+//     on: {
+//       down () {
+//         console.log('fire it!')
+//         this.set({
+//           text: 'xxxx'
+//         })
+//       }
+//     }
+//   }
+// }).Constructor
 
-app.set({
-  bla: {
-    text: 'bla',
-    on: {
-      down () {
-        this.text.val = 'xxx'
-      }
-    }
-  },
-  a: new A(),
-  b: new A()
-  // first: new First()
-})
+// app.set({
+//   bla: {
+//     text: 'bla',
+//     on: {
+//       down () {
+//         this.text.val = 'xxx'
+//       }
+//     }
+//   },
+//   a: new A({}),
+//   b: new A()
+//   // first: new First()
+// })
 
-// console.timeEnd('creation')
+// // console.timeEnd('creation')
 module.exports = app
 
 // if (!require('vigour-js/lib/util/is/node')) {

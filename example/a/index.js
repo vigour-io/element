@@ -106,8 +106,9 @@ var Hello = new Element({
   hello: {
     xxx: {
       type: 'button',
+      inject: require('vigour-element/lib/event/down'),
       on: {
-        click () {
+        down () {
           console.log('yo yo yo', this.path)
           this.set({
             thing: {

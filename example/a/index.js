@@ -164,8 +164,32 @@ First.prototype.set({
 // delete First.prototype.sidebar.menu._Constructor
 // First.prototype.sidebar.menu.Constructor
 
+var A = new Element({
+  bla: {
+    text: 'haha',
+    on: {
+      down () {
+        console.log('fire it!')
+        this.set({
+          text: 'xxxx'
+        })
+      }
+    }
+  }
+}).Constructor
+
 app.set({
-  first: new First()
+  bla: {
+    text: 'bla',
+    on: {
+      down () {
+        this.text.val = 'xxx'
+      }
+    }
+  },
+  a: new A(),
+  b: new A()
+  // first: new First()
 })
 
 // console.timeEnd('creation')

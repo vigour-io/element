@@ -102,108 +102,145 @@ require('./style.less')
 // }
 // // console.log('xxxx')
 
-var Hello = new Element({
-  hello: {
-    xxx: {
-      type: 'button',
-      inject: require('vigour-element/lib/event/down'),
-      on: {
-        down () {
-          console.log('yo yo yo', this.path)
-          this.set({
-            thing: {
-              text: Math.random()*9999
-            }
-          })
-        }
-      },
-      text: 'xxx'
-    }
-  }
-}).Constructor
+// var Hello = new Element({
+//   hello: {
+//     xxx: {
+//       type: 'button',
+//       inject: require('vigour-element/lib/event/down'),
+//       on: {
+//         down () {
+//           console.log('yo yo yo', this.path)
+//           this.set({
+//             thing: {
+//               text: Math.random()*9999
+//             }
+//           })
+//         }
+//       },
+//       text: 'xxx'
+//     }
+//   }
+// }).Constructor
+
+// // Bla.Constructor
+
+// var Bla = new Element()
 
 // Bla.Constructor
 
-var Bla = new Element()
-
-Bla.Constructor
-
-Bla.set({
-  text: 'bla',
-  nestedhello: new Hello({
-    text: 'nestedhello',
-    yo: { text: 'yo' }
-  })
-})
+// Bla.set({
+//   text: 'bla',
+//   nestedhello: new Hello({
+//     text: 'nestedhello',
+//     yo: { text: 'yo' }
+//   })
+// })
 
 
-var Sidebar = new Element({
-  key: 'sidebar',
-  menu: {}
-}).Constructor
-// Sidebar.p
+// var Sidebar = new Element({
+//   key: 'sidebar',
+//   menu: {}
+// }).Constructor
+// // Sidebar.p
 
-console.log('---------- CONTEXT ----------')
-console.clear()
+// console.log('---------- CONTEXT ----------')
+// // console.clear()
 
-var Sidebar = new Sidebar({
-  menu: {
-    discover: {
-      text: 'discover'
-    }
-  }
-}).Constructor
-
-var first = new Element({
-
-})
-
-app.set({
-  first: new first.Constructor({
-    // properties: {
-    //   sidebar: Sidebar
-    // },
-    sidebar: new Sidebar({
-      properties: {
-        james: new Element({
-          bla: true
-        })
-      },
-      james: {}
-    })
-  })
-})
-
-// delete First.prototype.sidebar.menu._Constructor
-// First.prototype.sidebar.menu.Constructor
-
-// var A = new Element({
-//   bla: {
-//     text: 'haha',
-//     on: {
-//       down () {
-//         console.log('fire it!')
-//         this.set({
-//           text: 'xxxx'
-//         })
+// var Sidebar = new Sidebar({
+//   menu: {
+//     discover: {
+//       text: 'discover',
+//       on: {
+//         click () {
+//           this.node.style.border = Math.random() * 9 + 'px solid blue'
+//         }
 //       }
 //     }
 //   }
 // }).Constructor
 
-// app.set({
-//   bla: {
-//     text: 'bla',
-//     on: {
-//       down () {
-//         this.text.val = 'xxx'
-//       }
-//     }
-//   },
-//   a: new A({}),
-//   b: new A()
-//   // first: new First()
+// var first = new Element({
+
 // })
+
+// app.set({
+//   first: new first.Constructor({
+//     // properties: {
+//     //   sidebar: Sidebar
+//     // },
+//     sidebar: new Sidebar({
+//       properties: {
+//         james: new Element({
+//           bla: true
+//         })
+//       },
+//       menu: {
+//         discover: {
+//           on: {
+//             click () {
+//               this.node.style.border = Math.random() * 9 + 'px solid purple'
+//             }
+//           }
+//         }
+//       },
+//       james: {}
+//     })
+//   })
+// })
+
+// delete First.prototype.sidebar.menu._Constructor
+// First.prototype.sidebar.menu.Constructor
+var A = new Element({
+  bla: {
+    text: 'haha',
+    on: {
+      down (d, e) {
+        this.remove(e)
+        // this.set({
+          // text: 'xxxx'
+        // })
+      }
+    }
+  }
+}).Constructor
+
+var Bla = new Element({
+  tx: {
+    menu: new A()
+  }
+}).Constructor
+
+var holder = new Bla({
+  tx: {},
+  xy: new A(),
+  z: new A()
+})
+
+app.set({
+  btn: {
+    type: 'button',
+    text: 'clear',
+    on: {
+      down () {
+        this.parent.switcher.clear()
+      }
+    }
+  },
+  btn2: {
+    type: 'button',
+    text: 'make',
+    on: {
+      down () {
+        this.parent.set({ switcher: { [Math.random()]: { text: Math.random() * 9999 }}})
+      }
+    }
+  },
+  switcher: {
+    ChildConstructor: A
+  },
+  hh: new holder.Constructor()
+  // first: new First()
+})
 
 // // console.timeEnd('creation')
 module.exports = app

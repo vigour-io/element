@@ -102,24 +102,32 @@ require('./style.less')
 // }
 // // console.log('xxxx')
 
-app.set({
+
+var Hello = new Element({
   hello: {
     xxx: {
+      type: 'button',
       on: {
         click () {
           console.log('yo yo yo', this.path)
           this.set({
-            bla: {
-              text: '32322323'
+            thing: {
+              text: Math.random()*9999
             }
           })
         }
       },
       text: 'xxx'
     }
-  },
+  }
+}).Constructor
+
+app.set({
+  a: new Hello(),
+  b: new Hello(),
   bla: new Element({
-    text: 'xxxxxxxx'
+    text: 'xxxxxxxx',
+    bla: new Hello()
   })
   // holder1: new holder.Constructor(),
   // holder2: new holder.Constructor()

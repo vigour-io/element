@@ -121,16 +121,52 @@ var Hello = new Element({
   }
 }).Constructor
 
-app.set({
-  a: new Hello(),
-  b: new Hello(),
-  bla: new Element({
-    text: 'xxxxxxxx',
-    bla: new Hello()
+// Bla.Constructor
+
+var Bla = new Element()
+
+Bla.Constructor
+
+Bla.set({
+  text: 'bla',
+  nestedhello: new Hello({
+    text: 'nestedhello',
+    yo: { text: 'yo' }
   })
-  // holder1: new holder.Constructor(),
-  // holder2: new holder.Constructor()
 })
+
+
+var Sidebar = new Element({
+  key: 'sidebar',
+  menu: {}
+}).Constructor
+// Sidebar.p
+
+console.log('---------- CONTEXT ----------')
+console.clear()
+
+var sidebar = new Sidebar()
+sidebar.set({
+  menu: {
+    discover: {
+      text: 'discover'
+    }
+  }
+})
+sidebar.Constructor
+var First = new Element().Constructor
+
+First.prototype.set({
+  sidebar: sidebar
+}).Constructor
+
+// delete First.prototype.sidebar.menu._Constructor
+// First.prototype.sidebar.menu.Constructor
+
+app.set({
+  first: new First()
+})
+
 // console.timeEnd('creation')
 module.exports = app
 

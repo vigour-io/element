@@ -102,7 +102,6 @@ require('./style.less')
 // }
 // // console.log('xxxx')
 
-
 var Hello = new Element({
   hello: {
     xxx: {

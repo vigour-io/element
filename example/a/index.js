@@ -107,7 +107,7 @@ app.set({
     xxx: {
       on: {
         click () {
-          console.log('yo yo yo')
+          console.log('yo yo yo', this.path)
           this.set({
             bla: {
               text: '32322323'

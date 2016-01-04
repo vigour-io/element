@@ -4,7 +4,6 @@ var app = require('../../lib/app')
 var Element = app.ChildConstructor
 var Event = require('vigour-js/lib/event')
 require('./style.less')
-
 // // var event = require('../../lib/event')
 // // ******************** CONFIG ********************
 // var n = 2

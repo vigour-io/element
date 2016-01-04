@@ -54,7 +54,11 @@ function addListeners (element, target, attach, event) {
           // this is the render of the element ofc
           // subscribe and resolve for nested else get node does not work
           target.get(prop.$).on('data', [ function (data, event) {
-            element[key].render(element.getNode(), event, element)
+            // this is the trick of course here
+            var node = element.getNode()
+            if (node) {
+              element[key].render(element.getNode(), event, element)
+            }
           }, attach])
         } else {
           console.warn('cant find ', prop.$, prop.path)
@@ -69,23 +73,17 @@ function addListeners (element, target, attach, event) {
 Element.prototype.set({
   define: {
     blax (data, event) {
+      if (this._input === null) {
+        return
+      }
       console.log('ballz it!', this.path)
       // if (!this._input) {
       //   // HANDLE removal here!
       //   return
       // }
       var select = this.$
-
       var elem = this
       elem._self = elem.origin
-      console.log('yo!', elem.origin)
-
-      // if (select !== true) {
-        // console.log(select, elem._self)
-        // elem._self = elem._self.get(select)
-              // console.log('yo?!', elem.origin)
-
-      // }
       if (elem._self) {
         elem._self.each(function (prop, key) {
           elem = elem.setKey(key, void 0, event)
@@ -94,7 +92,24 @@ Element.prototype.set({
         })
       }
       elem._self.on('property', function (data) {
-        console.log(data)
+        console.log('bitch', data)
+        if (this._input === null) {
+          console.error('im removed fuck it!')
+        } else {
+          console.log('property', data)
+          if (data.removed) {
+            for (var i in data.removed) {
+              elem[data.removed[i]].remove()
+            }
+          }
+          if (data.added) {
+            for (var i in data.added) {
+              elem = elem.setKey(data.added[i], void 0, event)
+              elem[data.added[i]]._self = this[data.added[i]]
+              addListeners(elem[data.added[i]], this[data.added[i]], elem, event)
+            }
+          }
+        }
       })
       // handle property changes here -- first we need property datas!
       // this.origin.subscribe(val + '.$property', function () {})
@@ -115,7 +130,7 @@ Element.prototype.set({
 
 //--------------real-----------
 var obs = global.obs = new Observable({})
-for (var i = 0; i < 10; i++) {
+for (var i = 0; i < 2; i++) {
   obs.setKey(i, {
     text: i,
     nested: 'nest: ' + i,

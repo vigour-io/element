@@ -2,135 +2,12 @@
 var Observable = require('vigour-js/lib/observable')
 var app = require('../../lib/app')
 var Element = app.ChildConstructor
-var Event = require('vigour-js/lib/event')
+
 require('./style.less')
 
-function defBind () {
-  return this.parent.parseValue()
-}
-
-function getit (field) {
-  return function fieldbind () {
-    var self
-    if (this._context) {
-      self = this._context._self
-    }
-    if (self) {
-      return self.get(field).parseValue()
-    }
-    return 'bla'
-  }
-}
-
-var Prop = require('../../lib/property')
-Prop.prototype.set({
-  properties: {
-    $: function (val) {
-      this.$ = val
-      if (val === true) {
-        this.set(defBind)
-      } else {
-        this.set(getit(val))
-      }
-    }
-  }
-})
-
-function addListeners (element, target, attach, event) {
-  element.each(function (prop, key) {
-    var a = attach
-    if (prop.$) {
-      console.log('handle $')
-      prop.set((prop._self || target).get(prop.$), event)
-      a = prop
-      // prop.blax(void 0, event)
-    }
-    addListeners(prop, prop._self || target, attach, event)
-    // this can just be done on render -- omg
-  }, function (prop, key) {
-    if (prop instanceof Prop) {
-      if (prop.$) {
-        if (target.get(prop.$)) {
-          // this is the render of the element ofc
-          // subscribe and resolve for nested else get node does not work
-          target.get(prop.$).on('data', [ function (data, event) {
-            // this is the trick of course here
-            var node = element.getNode()
-            if (node) {
-              element[key].render(element.getNode(), event, element)
-            }
-          }, attach])
-        } else {
-          console.warn('cant find ', prop.$, prop.path)
-        }
-      }
-      return false
-    }
-    return prop instanceof Element
-  })
-}
-
-Element.prototype.set({
-  define: {
-    blax (data, event) {
-      if (this._input === null) {
-        return
-      }
-      console.log('ballz it!', this.path)
-      // if (!this._input) {
-      //   // HANDLE removal here!
-      //   return
-      // }
-      var select = this.$
-      var elem = this
-      elem._self = elem.origin
-      if (elem._self) {
-        elem._self.each(function (prop, key) {
-          elem = elem.setKey(key, void 0, event)
-          elem[key]._self = prop
-          addListeners(elem[key], prop, elem, event)
-        })
-      }
-      elem._self.on('property', function (data) {
-        console.log('bitch', data)
-        if (this._input === null) {
-          console.error('im removed fuck it!')
-        } else {
-          console.log('property', data)
-          if (data.removed) {
-            for (var i in data.removed) {
-              elem[data.removed[i]].remove()
-            }
-          }
-          if (data.added) {
-            for (var i in data.added) {
-              elem = elem.setKey(data.added[i], void 0, event)
-              elem[data.added[i]]._self = this[data.added[i]]
-              addListeners(elem[data.added[i]], this[data.added[i]], elem, event)
-            }
-          }
-        }
-      })
-      // handle property changes here -- first we need property datas!
-      // this.origin.subscribe(val + '.$property', function () {})
-      // event.trigger()
-    }
-  },
-  properties: {
-    $: function (val) {
-      this.$ = val
-      if (val) {
-        console.log('xxxxx', val)
-        this.on('reference', this.blax)
-      }
-    }
-  }
-})
-
-
-//--------------real-----------
+// --------------real-----------
 var obs = global.obs = new Observable({})
-for (var i = 0; i < 2; i++) {
+for (var i = 0; i < 20; i++) {
   obs.setKey(i, {
     text: i,
     nested: 'nest: ' + i,
@@ -144,6 +21,8 @@ for (var i = 0; i < 2; i++) {
     }
   })
 }
+
+Element.prototype.inject(require('./collection'))
 
 var bla = new Element({
   $: true,

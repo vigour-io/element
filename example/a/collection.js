@@ -25,6 +25,8 @@ function getit (field) {
   }
 }
 
+var isNode = require('vigour-js/lib/util/is/node')
+
 var Prop = require('../../lib/property')
 Prop.prototype.set({
   properties: {
@@ -50,7 +52,7 @@ function addListeners (element, target, attach, event) {
     addListeners(prop, prop._self || target, a, event)
     // this can just be done on render -- omg
   }, function (prop, key) {
-    if (prop instanceof Prop) {
+    if (prop instanceof Prop && !isNode) {
       if (prop.$) {
         if (target.get(prop.$)) {
           // this is the render of the element ofc
@@ -74,7 +76,12 @@ function addListeners (element, target, attach, event) {
 
 exports.define = {
   blax (data, event) {
+    if(data === null) {
+      console.error('????')
+    }
     if (this._input === null) {
+      // this.clear()
+      // update instances of course...
       return
     }
     var select = this.$
@@ -89,10 +96,15 @@ exports.define = {
     }
     elem._self.on('property', function (data) {
       if (this._input === null) {
+        console.log('!!!!')
+        elem.clear()
       } else {
         if (data.removed) {
+          console.log('xxx______x')
           for (var i in data.removed) {
+            console.log('yo lezz remove from elem!', elem, elem[data.removed[i]])
             elem[data.removed[i]].remove()
+            console.error('wtf')
           }
         }
         if (data.added) {

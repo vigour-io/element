@@ -55,3 +55,5 @@ console.timeEnd(1)
 console.time(1)
 app.set({ bla: bla })
 console.timeEnd(1)
+
+module.exports = app

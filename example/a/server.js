@@ -4,10 +4,10 @@ var app = require('./index.js')
 var zlib = require('zlib')
 var stream = require('stream')
 var fs = require('fs')
-// var js = 'http://192.168.0.12:8111/bundle.js?$app=192.168.0.12:8111/example/a/index.js'
-// var css = 'http://192.168.0.12:8111/bundle.css?$app=192.168.0.12:8111/example/a/index.js'
-var js = 'http://localhost:3032/build/build.js'
-var css = 'http://localhost:3032/build/build.css'
+var js = 'http://192.168.0.12:8111/bundle.js?$app=192.168.0.12:8111/example/a/index.js'
+var css = 'http://192.168.0.12:8111/bundle.css?$app=192.168.0.12:8111/example/a/index.js'
+// var js = 'http://localhost:3032/build/build.js'
+// var css = 'http://localhost:3032/build/build.css'
 
 // finish this and add as a util to element (util/server)
 function make (js, css) {
@@ -17,8 +17,12 @@ function make (js, css) {
   str += app.val
   str += '<script src="' + js + '" type="text/javascript"></script>'
   str += '</body></html>'
+
+  console.log(str)
+
   return str
 }
+
 
 // this is it
 http.createServer(function (req, res) {

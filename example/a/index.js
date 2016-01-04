@@ -4,248 +4,160 @@ var app = require('../../lib/app')
 var Element = app.ChildConstructor
 var Event = require('vigour-js/lib/event')
 require('./style.less')
-// // var event = require('../../lib/event')
-// // ******************** CONFIG ********************
-// var n = 2
-// // ************************************************
 
-// var Title = new Element({
-//   type: 'h3',
-//   text: 'yo'
-// }).Constructor
+function defBind () {
+  return this.parent.parseValue()
+}
 
-// var Thing = new Element({
-//   css: 'thing',
-//   // rick: {
-//   //   type: 'section',
-//   //   text: 'yo ricks!'
-//   // },
-//   img: {
-//     type: 'img',
-//     src: 'http://localhost:3032/cat.png'
-//   },
-//   on: {
-//     click (data, event) {
-//       this.getNode().style.border = (Math.random() * 3 + 1) + 'px solid blue'
-//     }
-//   },
-//   theText: {
-//     text: 'MURDER KAPOT!',
-//     on: {
-//       click (ev, event) {
-//         this.node.style.border = '1px solid red'
-//         this.text.set(Math.random() * 999)
-//       }
-//     }
-//   },
-//   title: new Title({
-//     text: {
-//       val: function () {
-//         return this.parent.val
-//       }
-//       // $transform () {
-//       //   return 'xxxx'
-//       // }
-//     },
-//     on: {
-//       click (data, event) {
-//         this.remove()
-//       },
-//       flabber (data, event) {
-//         console.log('FLABBER', this.path, data, event)
-//       }
-//     }
-//   })
-// }).Constructor
+function getit (field) {
+  return function fieldbind () {
+    var self
+    if (this._context) {
+      self = this._context._self
+    }
+    if (self) {
+      return self.get(field).parseValue()
+    }
+    return 'bla'
+  }
+}
 
-// Thing.prototype.title.on('data', function () {
-//   var node = this.getNode()
-//   // console.log('yes here')
-//   if (node) {
-//     // console.log('yes here go render')
-//     this.text.render(node)
-//     this.text.clearContext()
-//   }
-// })
+var Prop = require('../../lib/property')
+Prop.prototype.set({
+  properties: {
+    $: function (val) {
+      this.$ = val
+      if (val === true) {
+        this.set(defBind)
+      } else {
+        this.set(getit(val))
+      }
+    }
+  }
+})
 
-// // ****************** RENDER PART **********************
-// console.time('creation')
+function addListeners (element, target, attach, event) {
+  element.each(function (prop, key) {
+    var a = attach
+    if (prop.$) {
+      console.log('handle $')
+      prop.set((prop._self || target).get(prop.$), event)
+      a = prop
+      // prop.blax(void 0, event)
+    }
+    addListeners(prop, prop._self || target, attach, event)
+    // this can just be done on render -- omg
+  }, function (prop, key) {
+    if (prop instanceof Prop) {
+      if (prop.$) {
+        if (target.get(prop.$)) {
+          // this is the render of the element ofc
+          // subscribe and resolve for nested else get node does not work
+          target.get(prop.$).on('data', [ function (data, event) {
+            element[key].render(element.getNode(), event, element)
+          }, attach])
+        } else {
+          console.warn('cant find ', prop.$, prop.path)
+        }
+      }
+      return false
+    }
+    return prop instanceof Element
+  })
+}
 
-// var holder = new Element({
-//   css: 'holder',
-//   '0': {
-//     type: 'h1',
-//     text: n
-//   }
-// })
+Element.prototype.set({
+  define: {
+    blax (data, event) {
+      console.log('ballz it!', this.path)
+      // if (!this._input) {
+      //   // HANDLE removal here!
+      //   return
+      // }
+      var select = this.$
 
-// global.obs = new Observable({
-//   define: {
-//     updateAll () {
-//       // console.time('update')
-//       var ev = new Event()
-//       this.each(function (p) {
-//         p.set(Math.random() * 919, ev)
-//       })
-//       ev.trigger()
-//       // console.timeEnd('update')
-//       // debug.context(app).log('after updateAll')
-//     }
-//   }
-// })
-// // var event = new Event(holder, 'data')
-// for (let i = 1; i < n + 1; i++) {
-//   global.obs.setKey(i, i * 100)
-//   let a = global.obs[i]
-//   holder.setKey(i, new Thing({ title: a }, false), false)
-// }
-// // console.log('xxxx')
+      var elem = this
+      elem._self = elem.origin
+      console.log('yo!', elem.origin)
 
-// var Hello = new Element({
-//   hello: {
-//     xxx: {
-//       type: 'button',
-//       inject: require('vigour-element/lib/event/down'),
-//       on: {
-//         down () {
-//           console.log('yo yo yo', this.path)
-//           this.set({
-//             thing: {
-//               text: Math.random()*9999
-//             }
-//           })
-//         }
-//       },
-//       text: 'xxx'
-//     }
-//   }
-// }).Constructor
+      // if (select !== true) {
+        // console.log(select, elem._self)
+        // elem._self = elem._self.get(select)
+              // console.log('yo?!', elem.origin)
 
-// // Bla.Constructor
-
-// var Bla = new Element()
-
-// Bla.Constructor
-
-// Bla.set({
-//   text: 'bla',
-//   nestedhello: new Hello({
-//     text: 'nestedhello',
-//     yo: { text: 'yo' }
-//   })
-// })
+      // }
+      if (elem._self) {
+        elem._self.each(function (prop, key) {
+          elem = elem.setKey(key, void 0, event)
+          elem[key]._self = prop
+          addListeners(elem[key], prop, elem, event)
+        })
+      }
+      elem._self.on('property', function (data) {
+        console.log(data)
+      })
+      // handle property changes here -- first we need property datas!
+      // this.origin.subscribe(val + '.$property', function () {})
+      // event.trigger()
+    }
+  },
+  properties: {
+    $: function (val) {
+      this.$ = val
+      if (val) {
+        console.log('xxxxx', val)
+        this.on('reference', this.blax)
+      }
+    }
+  }
+})
 
 
-// var Sidebar = new Element({
-//   key: 'sidebar',
-//   menu: {}
-// }).Constructor
-// // Sidebar.p
+//--------------real-----------
+var obs = global.obs = new Observable({})
+for (var i = 0; i < 10; i++) {
+  obs.setKey(i, {
+    text: i,
+    nested: 'nest: ' + i,
+    shows: {
+      1: {
+        ballz: 'ballz' + i
+      },
+      2: {
+        ballz: 'ballz' + i * 2
+      }
+    }
+  })
+}
 
-// console.log('---------- CONTEXT ----------')
-// // console.clear()
-
-// var Sidebar = new Sidebar({
-//   menu: {
-//     discover: {
-//       text: 'discover',
-//       on: {
-//         click () {
-//           this.node.style.border = Math.random() * 9 + 'px solid blue'
-//         }
-//       }
-//     }
-//   }
-// }).Constructor
-
-// var first = new Element({
-
-// })
+var bla = new Element({
+  $: true,
+  ChildConstructor: new Element({
+    text: { $: 'text' },
+    bla: {
+      text: { $: 'nested' } // add this to one listener
+    },
+    collectionrandomballz: {
+      text: function () {
+        return this.parent.key
+      },
+      $: 'shows',
+      ChildConstructor: new Element({
+        text: { $: 'ballz' }
+      })
+    }
+  })
+})
 
 // app.set({
-//   first: new first.Constructor({
-//     // properties: {
-//     //   sidebar: Sidebar
-//     // },
-//     sidebar: new Sidebar({
-//       properties: {
-//         james: new Element({
-//           bla: true
-//         })
-//       },
-//       menu: {
-//         discover: {
-//           on: {
-//             click () {
-//               this.node.style.border = Math.random() * 9 + 'px solid purple'
-//             }
-//           }
-//         }
-//       },
-//       james: {}
-//     })
-//   })
+//   xx: bla
 // })
+console.time(1)
 
-// delete First.prototype.sidebar.menu._Constructor
-// First.prototype.sidebar.menu.Constructor
-var A = new Element({
-  bla: {
-    text: 'haha',
-    on: {
-      down (d, e) {
-        this.remove(e)
-        // this.set({
-          // text: 'xxxx'
-        // })
-      }
-    }
-  }
-}).Constructor
+bla.val = obs
 
-var Bla = new Element({
-  tx: {
-    menu: new A()
-  }
-}).Constructor
+console.timeEnd(1)
 
-var holder = new Bla({
-  tx: {},
-  xy: new A(),
-  z: new A()
-})
-
-app.set({
-  btn: {
-    type: 'button',
-    text: 'clear',
-    on: {
-      down () {
-        this.parent.switcher.clear()
-      }
-    }
-  },
-  btn2: {
-    type: 'button',
-    text: 'make',
-    on: {
-      down () {
-        this.parent.set({ switcher: { [Math.random()]: { text: Math.random() * 9999 }}})
-      }
-    }
-  },
-  switcher: {
-    ChildConstructor: A
-  },
-  hh: new holder.Constructor()
-  // first: new First()
-})
-
-// // console.timeEnd('creation')
-module.exports = app
-
-// if (!require('vigour-js/lib/util/is/node')) {
-//   setInterval(function () {
-//     global.obs.updateAll()
-//   })
-// }
+console.time(1)
+app.set({ bla: bla })
+console.timeEnd(1)

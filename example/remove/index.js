@@ -10,6 +10,7 @@ var Thing = new Element({
 }).Constructor
 
 var Modal = new Element({
+  // text: 'xxxx'
   properties: {
     thing: Thing
   },
@@ -26,6 +27,7 @@ setTimeout(function () {
   app.modal.remove()
 }, 500)
 
+console.error('not removed...')
 setTimeout(function () {
   app.set({
     modal: new Modal()

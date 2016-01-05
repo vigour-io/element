@@ -7,7 +7,7 @@ require('./style.less')
 
 // --------------real-----------
 var obs = global.obs = new Observable({})
-for (var i = 0; i < 20; i++) {
+for (var i = 0; i < 1; i++) {
   obs.setKey(i, {
     text: i,
     nested: 'nest: ' + i,

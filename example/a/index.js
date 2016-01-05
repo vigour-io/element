@@ -7,14 +7,15 @@ require('./style.less')
 
 // --------------real-----------
 var obs = global.obs = new Observable({})
-setTimeout(function () {
+// setTimeout(function () {
   console.log('go go go go go shit!')
-  for (var i = 0; i < 1; i++) {
+  for (var i = 1; i < 30; i++) {
     obs.set({[i] : {
       text: 'text: ' + i,
       nested: 'nest: ' + i,
       shows: {
         1: {
+          img: 'http://dummyimage.com/' + (i * 20) + 'x' + (i * 20) + '/089c90'
           // ballz: 'ballz' + i
         },
         2: {
@@ -23,13 +24,20 @@ setTimeout(function () {
       }
     }})
   }
-}, 1000)
+// }, 1000)
 
 // obs[0].on(function (data) {
 //   console.log('hello', data)
 // })
 
 // Element.prototype.inject(require('./collection'))
+
+var Img = new Element({
+  type: 'img',
+  src: {
+    $: 'img'
+  }
+}).Constructor
 
 var bla = new Element({
   $collection: true,
@@ -47,7 +55,8 @@ var bla = new Element({
         collection2: {
           $collection: true,
           ChildConstructor: new Element({
-            text: { $: 'ballz' }
+            text: { $: 'ballz' },
+            smus: new Img()
           })
         }
       }

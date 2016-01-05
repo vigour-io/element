@@ -35,10 +35,15 @@ var bla = new Element({
       text: function () {
         return this.parent.key
       },
-      $collection: 'shows',
-      ChildConstructor: new Element({
-        text: { $: 'ballz' }
-      })
+      xxx: {
+        $: 'shows',
+        bla: {
+          $collection: true,
+          ChildConstructor: new Element({
+            text: { $: 'ballz' }
+          })
+        }
+      }
     }
   })
 })

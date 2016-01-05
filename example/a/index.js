@@ -7,20 +7,28 @@ require('./style.less')
 
 // --------------real-----------
 var obs = global.obs = new Observable({})
-for (var i = 0; i < 1; i++) {
-  obs.setKey(i, {
-    text: 'text: ' + i,
-    nested: 'nest: ' + i,
-    shows: {
-      1: {
-        ballz: 'ballz' + i
-      },
-      2: {
-        ballz: '2ballz' + i
+setTimeout(function () {
+  console.log('go go go go go shit!')
+  for (var i = 0; i < 1; i++) {
+    obs.set({[i] : {
+      text: 'text: ' + i,
+      nested: 'nest: ' + i,
+      shows: {
+        1: {
+          // ballz: 'ballz' + i
+        },
+        2: {
+          ballz: '2ballz' + i
+        }
       }
-    }
-  })
-}
+    }})
+  }
+}, 1000)
+
+
+// obs[0].on(function (data) {
+//   console.log('hello', data)
+// })
 
 // Element.prototype.inject(require('./collection'))
 
@@ -28,16 +36,16 @@ var bla = new Element({
   $collection: true,
   ChildConstructor: new Element({
     text: { $: 'text' },
-    bla: {
+    nestedthing: {
       text: { $: 'nested' } // add this to one listener
     },
-    collectionrandomballz: {
-      text: function () {
-        return this.parent.key
-      },
-      xxx: {
+    colleciton1: {
+      // text: function () {
+      //   return this.parent.key
+      // },
+      nest1: {
         $: 'shows',
-        bla: {
+        collection2: {
           $collection: true,
           ChildConstructor: new Element({
             text: { $: 'ballz' }

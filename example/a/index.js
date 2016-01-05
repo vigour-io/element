@@ -25,7 +25,6 @@ setTimeout(function () {
   }
 }, 1000)
 
-
 // obs[0].on(function (data) {
 //   console.log('hello', data)
 // })

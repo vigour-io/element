@@ -11,15 +11,12 @@ function getit (field) {
     var self
     var parent = this.parent
     while (parent) {
-      parent = parent.parent
       self = parent._self
       if (self) {
-        break
+        let a = self.get(field)
+        return a ? a.parseValue() : 'smurky'
       }
-    }
-    if (self) {
-      let a = self.get(field)
-      return a ? a.parseValue() : 'smurky'
+      parent = parent.parent
     }
     return 'bla'
   }
@@ -76,7 +73,7 @@ function addListeners (element, target, attach, event) {
 
 exports.define = {
   blax (data, event) {
-    if(data === null) {
+    if (data === null) {
       console.error('????')
     }
     if (this._input === null) {
@@ -94,28 +91,29 @@ exports.define = {
         addListeners(elem[key], prop, elem, event)
       })
     }
-    elem._self.on('property', function (data) {
-      if (this._input === null) {
-        console.log('!!!!')
-        elem.clear()
-      } else {
-        if (data.removed) {
-          console.log('xxx______x')
-          for (var i in data.removed) {
-            console.log('yo lezz remove from elem!', elem, elem[data.removed[i]])
-            elem[data.removed[i]].remove()
-            console.error('wtf')
-          }
-        }
-        if (data.added) {
-          for (var i in data.added) {
-            elem = elem.setKey(data.added[i], void 0, event)
-            elem[data.added[i]]._self = this[data.added[i]]
-            addListeners(elem[data.added[i]], this[data.added[i]], elem, event)
-          }
-        }
-      }
-    })
+
+    // elem._self.on('property', function (data) {
+    //   if (this._input === null) {
+    //     console.log('!!!!')
+    //     elem.clear()
+    //   } else {
+    //     if (data.removed) {
+    //       console.log('xxx______x')
+    //       for (var i in data.removed) {
+    //         console.log('yo lezz remove from elem!', elem, elem[data.removed[i]])
+    //         elem[data.removed[i]].remove()
+    //         console.error('wtf')
+    //       }
+    //     }
+    //     if (data.added) {
+    //       for (var i in data.added) {
+    //         elem = elem.setKey(data.added[i], void 0, event)
+    //         elem[data.added[i]]._self = this[data.added[i]]
+    //         addListeners(elem[data.added[i]], this[data.added[i]], elem, event)
+    //       }
+    //     }
+    //   }
+    // })
     // handle property changes here -- first we need property datas!
     // this.origin.subscribe(val + '.$property', function () {})
     // event.trigger()

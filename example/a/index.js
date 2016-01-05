@@ -22,24 +22,24 @@ for (var i = 0; i < 1; i++) {
   })
 }
 
-Element.prototype.inject(require('./collection'))
+// Element.prototype.inject(require('./collection'))
 
 var bla = new Element({
-  $: true,
+  $collection: true,
   ChildConstructor: new Element({
     text: { $: 'text' },
     bla: {
       text: { $: 'nested' } // add this to one listener
     },
-    // collectionrandomballz: {
-    //   text: function () {
-    //     return this.parent.key
-    //   },
-    //   $: 'shows',
-    //   ChildConstructor: new Element({
-    //     text: { $: 'ballz' }
-    //   })
-    // }
+    collectionrandomballz: {
+      text: function () {
+        return this.parent.key
+      },
+      $collection: 'shows',
+      ChildConstructor: new Element({
+        text: { $: 'ballz' }
+      })
+    }
   })
 })
 

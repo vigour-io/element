@@ -9,14 +9,14 @@ require('./style.less')
 var obs = global.obs = new Observable({})
 for (var i = 0; i < 1; i++) {
   obs.setKey(i, {
-    text: i,
+    text: 'text: ' + i,
     nested: 'nest: ' + i,
     shows: {
       1: {
         ballz: 'ballz' + i
       },
       2: {
-        ballz: 'ballz' + i * 2
+        ballz: '2ballz' + i
       }
     }
   })
@@ -31,15 +31,15 @@ var bla = new Element({
     bla: {
       text: { $: 'nested' } // add this to one listener
     },
-    collectionrandomballz: {
-      text: function () {
-        return this.parent.key
-      },
-      $: 'shows',
-      ChildConstructor: new Element({
-        text: { $: 'ballz' }
-      })
-    }
+    // collectionrandomballz: {
+    //   text: function () {
+    //     return this.parent.key
+    //   },
+    //   $: 'shows',
+    //   ChildConstructor: new Element({
+    //     text: { $: 'ballz' }
+    //   })
+    // }
   })
 })
 

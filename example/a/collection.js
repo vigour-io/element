@@ -27,7 +27,7 @@ var isNode = require('vigour-js/lib/util/is/node')
 var Prop = require('../../lib/property')
 Prop.prototype.set({
   properties: {
-    $: function (val) {
+    $ (val) {
       this.$ = val
       if (val === true) {
         this.set(defBind)
@@ -50,15 +50,17 @@ function addListeners (element, target, attach, event) {
     // this can just be done on render -- omg
   }, function (prop, key) {
     if (prop instanceof Prop && !isNode) {
-      if (prop.$) {
-        if (target.get(prop.$)) {
+      let prop$ = prop.$
+      if (prop$) {
+        let property = target.get(prop$)
+        if (property) {
           // this is the render of the element ofc
           // subscribe and resolve for nested else get node does not work
-          target.get(prop.$).on('data', [ function (data, event) {
+          property.on('data', [ function (data, event) {
             // this is the trick of course here
             var node = element.getNode()
             if (node) {
-              element[key].render(element.getNode(), event, element)
+              element[key].render(node, event, element)
             }
           }, attach])
         } else {
@@ -72,7 +74,7 @@ function addListeners (element, target, attach, event) {
 }
 
 exports.define = {
-  blax (data, event) {
+  handleCollection (data, event) {
     if (data === null) {
       console.error('????')
     }
@@ -81,8 +83,7 @@ exports.define = {
       // update instances of course...
       return
     }
-    var select = this.$
-    var elem = this
+    let elem = this
     elem._self = elem.origin
     if (elem._self) {
       elem._self.each(function (prop, key) {
@@ -92,39 +93,54 @@ exports.define = {
       })
     }
 
-    // elem._self.on('property', function (data) {
-    //   if (this._input === null) {
-    //     console.log('!!!!')
-    //     elem.clear()
-    //   } else {
-    //     if (data.removed) {
-    //       console.log('xxx______x')
-    //       for (var i in data.removed) {
-    //         console.log('yo lezz remove from elem!', elem, elem[data.removed[i]])
-    //         elem[data.removed[i]].remove()
-    //         console.error('wtf')
-    //       }
-    //     }
-    //     if (data.added) {
-    //       for (var i in data.added) {
-    //         elem = elem.setKey(data.added[i], void 0, event)
-    //         elem[data.added[i]]._self = this[data.added[i]]
-    //         addListeners(elem[data.added[i]], this[data.added[i]], elem, event)
-    //       }
-    //     }
-    //   }
-    // })
+    elem._self.on('property', function (data) {
+      if (this._input === null) {
+        elem.clear()
+      } else {
+        if (data.removed) {
+          for (let i in data.removed) {
+            elem[data.removed[i]].remove()
+          }
+        }
+        if (data.added) {
+          for (let i in data.added) {
+            elem = elem.setKey(data.added[i], void 0, event)
+            elem[data.added[i]]._self = this[data.added[i]]
+            addListeners(elem[data.added[i]], this[data.added[i]], elem, event)
+          }
+        }
+      }
+    })
     // handle property changes here -- first we need property datas!
     // this.origin.subscribe(val + '.$property', function () {})
     // event.trigger()
+  },
+  handleData (data, event) {
+    if (data === null) {
+      console.error('????')
+    }
+    if (this._input === null) {
+      // this.clear()
+      // update instances of course...
+      return
+    }
+    let elem = this
+    elem._self = elem.origin
+    console.log('handleData:', elem, '||', elem.origin)
   }
 }
 
 exports.properties = {
-  $: function (val) {
+  $collection (val) {
     this.$ = val
     if (val) {
-      this.on('reference', this.blax)
+      this.on('reference', this.handleCollection)
+    }
+  },
+  $ (val) {
+    this.$ = val
+    if (val) {
+      this.on('reference', this.handleData)
     }
   }
 }

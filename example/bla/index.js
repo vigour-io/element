@@ -1,4 +1,6 @@
 'use strict'
+var debug = require('vigour-js/lib/util/debug')
+
 var Observable = require('vigour-js/lib/observable')
 var app = require('../../lib/app')
 var Element = app.ChildConstructor
@@ -24,7 +26,7 @@ var X = new Element({
     text: {
       $: 'title'
     },
-    blar: {
+    nestedseasoncollection: {
       type: 'ul',
       $collection: 'shows',
       ChildConstructor: new Element({
@@ -68,6 +70,20 @@ var b = new Observable({
       }
     }
 })
+
+var c = new Observable({
+    1: { title: 'c top 1' },
+    2: { title: 'c top 2' },
+    3: {
+      title: 'c top 3',
+      shows: {
+        1: {
+          title: 'c title 1',
+          season: ax
+        }
+      }
+    }
+})
 // var a = new Observable(b)
 
 var blurf = new Bla({
@@ -78,13 +94,11 @@ app.set({
   a: blurf
 })
 
-
 console.clear()
 console.log('here is blurf!', blurf.css)
 
 global.blaxxx = Bla.prototype
 // app.a.remove()
-
 
 var blurf = new Bla({
   shows: b
@@ -96,4 +110,13 @@ app.set({
 })
 
 
+app.set({
+  b: blurf
+})
+
+setTimeout(function () {
+  console.clear()
+  console.log(app.b.shows._input)
+  app.b.shows.val = c
+}, 500)
 // app.clear()

@@ -3,7 +3,9 @@ var Observable = require('vigour-js/lib/observable')
 var app = require('../../lib/app')
 var Element = app.ChildConstructor
 
-var Season = new Element({
+require('./style.less')
+
+var Seasons = new Element({
   $: 'season',
   text: { $: 'number' },
   seasons: {
@@ -28,13 +30,14 @@ var X = new Element({
       ChildConstructor: new Element({
         type: 'li',
         text: { $: 'title' },
-        season: new Season()
+        season: new Seasons()
       })
     }
   })
 }).Constructor
 
 var Bla = new Element({
+  css: 'blurf',
   properties: {
     shows: X
   }
@@ -43,31 +46,28 @@ var Bla = new Element({
 var ax = new Observable({
   number: 'number time ax!',
   seasons: {
-    1: { title: 'season 1'},
-    2: { title: 'season 2'}
+    1: { title: ' season 1'},
+    2: { title: ' season 2'}
   }
 })
 
 var b = new Observable({
-  // shows: {
-    1: { title: '1' },
-    2: { title: '2' },
+    1: { title: 'top 1' },
+    2: { title: 'top 2' },
     3: {
-      title: '3',
+      title: 'top 3',
       shows: {
         1: {
-          title: '1' ,
+          title: ' title 1',
           season: ax
         },
         2: {
-          title: '2',
+          // title: '2',
           season: ax
         }
       }
     }
-  // }
 })
-
 // var a = new Observable(b)
 
 var blurf = new Bla({
@@ -78,7 +78,13 @@ app.set({
   a: blurf
 })
 
-app.a.remove()
+
+console.clear()
+console.log('here is blurf!', blurf.css)
+
+global.blaxxx = Bla.prototype
+// app.a.remove()
+
 
 var blurf = new Bla({
   shows: b
@@ -86,7 +92,8 @@ var blurf = new Bla({
 // blurf.val = a
 
 app.set({
-  a: blurf
+  b: blurf
 })
 
-// app.a.remove()
+
+// app.clear()

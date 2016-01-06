@@ -31,6 +31,11 @@ var X = new Element({
       $collection: 'shows',
       ChildConstructor: new Element({
         type: 'li',
+        on: {
+          click () {
+            this.node.style.color = 'blue'
+          }
+        },
         text: { $: 'title' },
         season: new Seasons()
       })
@@ -76,12 +81,13 @@ var c = new Observable({
     2: { title: 'c top 2' },
     3: {
       title: 'c top 3',
-      shows: {
-        1: {
-          title: 'c title 1',
-          season: ax
-        }
-      }
+      // shows: {}
+      // shows: {
+      //   1: {
+      //     title: 'c title 1',
+      //     season: ax
+      //   }
+      // }
     }
 })
 // var a = new Observable(b)
@@ -99,7 +105,6 @@ console.log('here is blurf!', blurf.css)
 
 global.blaxxx = Bla.prototype
 // app.a.remove()
-
 var blurf = new Bla({
   shows: b
 })
@@ -116,7 +121,23 @@ app.set({
 
 setTimeout(function () {
   console.clear()
+  debug.context(app).log('gotz it?')
   console.log(app.b.shows._input)
   app.b.shows.val = c
+  debug.context(app).log('look at me now it?')
 }, 500)
 // app.clear()
+
+global.b = b
+global.c = c
+
+setTimeout(function () {
+  c[3].set({
+    shows: {
+      1: {
+        title: 'c title 1',
+        season: ax
+      }
+    }
+  })
+}, 1000)

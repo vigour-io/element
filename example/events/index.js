@@ -84,8 +84,6 @@ var app = new App({
   })
 })
 
-console.clear()
-
 app.set({
   thing: new Element({
     text: 'thing with transform: app.holder1',

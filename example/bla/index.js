@@ -110,34 +110,46 @@ var blurf = new Bla({
 })
 // blurf.val = a
 
-app.set({
-  b: blurf
-})
+console.log('-------------------', Object.keys(app.nodes).length)
 
 
 app.set({
   b: blurf
 })
 
-setTimeout(function () {
-  console.clear()
-  debug.context(app).log('gotz it?')
-  console.log(app.b.shows._input)
-  app.b.shows.val = c
-  debug.context(app).log('look at me now it?')
-}, 500)
-// app.clear()
 
-global.b = b
-global.c = c
+// app.set({
+//   b: blurf
+// })
 
-setTimeout(function () {
-  c[3].set({
-    shows: {
-      1: {
-        title: 'c title 1',
-        season: ax
-      }
-    }
-  })
-}, 1000)
+debug.context(app).log('xxxx')
+
+console.log('-------------------', Object.keys(app.nodes).length)
+app.b.remove()
+
+
+console.log('keys of nodes', Object.keys(app.nodes).length)
+debug.context(app).log('REMOVE')
+
+// setTimeout(function () {
+//   console.clear()
+//   debug.context(app).log('gotz it?')
+//   console.log(app.b.shows._input)
+//   app.b.shows.val = c
+//   debug.context(app).log('look at me now it?')
+// }, 500)
+// // app.clear()
+
+// global.b = b
+// global.c = c
+
+// setTimeout(function () {
+//   c[3].set({
+//     shows: {
+//       1: {
+//         title: 'c title 1',
+//         season: ax
+//       }
+//     }
+//   })
+// }, 1000)

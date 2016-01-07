@@ -68,13 +68,12 @@ var bla = new Element({
 //   xx: bla
 // })
 console.time(1)
-
-bla.val = obs
+// bla.val = obs
 
 console.timeEnd(1)
 
 console.time(1)
-app.set({ bla: bla })
+// app.set({ bla: bla })
 console.timeEnd(1)
 
 module.exports = app

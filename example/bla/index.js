@@ -19,7 +19,6 @@ var Seasons = new Element({
 }).Constructor
 
 var X = new Element({
-  // $: 'sho'
   type: 'ul',
   $collection: 'shows',
   headerofX_shows: {
@@ -54,6 +53,9 @@ var Bla = new Element({
   properties: {
     shows: X
   },
+  text: {
+    $: 'title'
+  },
   shows: {}
 }).Constructor
 
@@ -66,6 +68,7 @@ var ax = new Observable({
 })
 
 var b = new Observable({
+  title: 'yuzi',
   shows: {
     1: { title: 'top 1' },
     2: { title: 'top 2' },

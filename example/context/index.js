@@ -8,6 +8,7 @@ var Observable = require('vigour-js/lib/observable')
 
 // for element
 var Test = new Element({
+  fire: {},
   next: {}
 }).Constructor
 
@@ -35,6 +36,9 @@ app.set({
       h: 100
     }),
     shows: {
+      style:{
+        border:'1px solid red'
+      },
       text: 'app.holder.switcher.next.set(Math.random())',
       on: {
         click () {
@@ -44,6 +48,9 @@ app.set({
       }
     },
     holder: {
+      style:{
+        border:'1px solid red'
+      },
       text: 'holder.switcher.next.set(Math.random())',
       on: {
         click () {
@@ -53,6 +60,9 @@ app.set({
       }
     },
     obs: {
+      style:{
+        border:'1px solid green'
+      },
       text: 'obs.child.thing.set(Math.random())',
       on: {
         click () {

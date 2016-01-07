@@ -48,11 +48,12 @@ var X = new Element({
 }).Constructor
 
 var Bla = new Element({
-  $: true,
+  $: 'shows',
   css: 'blurf',
   properties: {
     shows: X
-  }
+  },
+  shows: {}
 }).Constructor
 
 var ax = new Observable({
@@ -64,6 +65,7 @@ var ax = new Observable({
 })
 
 var b = new Observable({
+  shows: {
     1: { title: 'top 1' },
     2: { title: 'top 2' },
     3: {
@@ -79,6 +81,7 @@ var b = new Observable({
         }
       }
     }
+  }
 })
 
 var c = new Observable({
@@ -98,14 +101,18 @@ var c = new Observable({
 // var a = new Observable(b)
 
 var blurf = new Bla({
-  shows: {}
+  // shows: {}
+  val: b
 })// blurf.val = a
 
-var gurk
+// var gurk
 
 app.set({
-  a: blurf,
-  val: b
+  // val: b
+  a: new Bla({
+    val: b
+  })
+  // val: b
 })
 
 // console.clear()
@@ -113,53 +120,11 @@ app.set({
 
 global.blaxxx = Bla.prototype
 // app.a.remove()
-var blurf = new Bla({
-  shows: {}
-})
-// blurf.val = a
-
 console.log('-------------------', Object.keys(app.nodes).length)
 
 app.set({
-  b: blurf
+  b: new Bla({
+    val: b
+  })
+  // val: b
 })
-
-
-debug.context(app).log('before remove')
-
-console.log('-------------------', Object.keys(app.nodes).length)
-app.a.remove()
-
-// app.set({
-//   b: blurf
-// })
-
-
-console.log('keys of nodes', Object.keys(app.nodes).length)
-debug.context(app).log('after remove REMOVE')
-
-// setTimeout(function () {
-//   // console.clear()
-//   debug.context(app).log('gotz it?')
-//   console.log(app.b.shows._input)
-//   app.b.shows.val = c
-
-//   // context has to go from app.b.shows ofcourse -- plus why contexT? its estrange
-//   debug.context(app).log('look at me now it? context after switch')
-// }, 500)
-// // app.clear()
-
-// global.b = b
-// global.c = c
-
-// setTimeout(function () {
-//   c[3].set({
-//     shows: {
-//       1: {
-//         title: 'c title 1',
-//         season: ax
-//       }
-//     }
-//   })
-//   debug.context(app).log('end context after set on c[3].shows[1]')
-// }, 1000)

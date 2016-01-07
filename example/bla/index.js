@@ -21,6 +21,10 @@ var Seasons = new Element({
 var X = new Element({
   type: 'ul',
   $collection: true,
+  bla: {
+    type: 'h4',
+    text: { $: 'title' }
+  },
   ChildConstructor: new Element({
     type: 'li',
     text: {
@@ -69,7 +73,7 @@ var b = new Observable({
           season: ax
         },
         2: {
-          // title: '2',
+          title: 'title 2',
           season: ax
         }
       }
@@ -129,25 +133,25 @@ console.log('-------------------', Object.keys(app.nodes).length)
 console.log('keys of nodes', Object.keys(app.nodes).length)
 debug.context(app).log('REMOVE')
 
-// setTimeout(function () {
-//   console.clear()
-//   debug.context(app).log('gotz it?')
-//   console.log(app.b.shows._input)
-//   app.b.shows.val = c
-//   debug.context(app).log('look at me now it?')
-// }, 500)
-// // app.clear()
+setTimeout(function () {
+  console.clear()
+  debug.context(app).log('gotz it?')
+  console.log(app.b.shows._input)
+  app.b.shows.val = c
+  debug.context(app).log('look at me now it?')
+}, 500)
+// app.clear()
 
-// global.b = b
-// global.c = c
+global.b = b
+global.c = c
 
-// setTimeout(function () {
-//   c[3].set({
-//     shows: {
-//       1: {
-//         title: 'c title 1',
-//         season: ax
-//       }
-//     }
-//   })
-// }, 1000)
+setTimeout(function () {
+  c[3].set({
+    shows: {
+      1: {
+        title: 'c title 1',
+        season: ax
+      }
+    }
+  })
+}, 1000)

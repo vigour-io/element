@@ -19,8 +19,9 @@ var Seasons = new Element({
 }).Constructor
 
 var X = new Element({
+  // $: 'sho'
   type: 'ul',
-  $collection: true,
+  $collection: 'shows',
   headerofX_shows: {
     type: 'h4',
     text: { $: 'title' }
@@ -48,7 +49,7 @@ var X = new Element({
 }).Constructor
 
 var Bla = new Element({
-  $: 'shows',
+  $: true,
   css: 'blurf',
   properties: {
     shows: X
@@ -85,6 +86,7 @@ var b = new Observable({
 })
 
 var c = new Observable({
+  shows: {
     1: { title: 'c top 1' },
     2: { title: 'c top 2' },
     3: {
@@ -97,13 +99,9 @@ var c = new Observable({
       //   }
       // }
     }
+  }
 })
 // var a = new Observable(b)
-
-var blurf = new Bla({
-  // shows: {}
-  val: b
-})// blurf.val = a
 
 // var gurk
 
@@ -118,13 +116,15 @@ app.set({
 // console.clear()
 // console.log('here is blurf!', blurf.css)
 
+global.c = c
+global.b = c
 global.blaxxx = Bla.prototype
 // app.a.remove()
 console.log('-------------------', Object.keys(app.nodes).length)
 
 app.set({
   b: new Bla({
-    val: b
+    val: c
   })
   // val: b
 })

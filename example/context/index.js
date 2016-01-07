@@ -8,20 +8,17 @@ var Observable = require('vigour-js/lib/observable')
 
 // for element
 var Test = new Element({
-  fire: {},
+  sibling: {},
   next: {}
 }).Constructor
 
 var Holder = new Element({
   switcher: new Test()
-  // switcher:{
-  //   fire: {},
-  //   next: {}
-  // }
 }).Constructor
 
 // same for observable
 var ObsChild = new Observable({
+  sibling: {},
   thing: {}
 }).Constructor
 
@@ -31,47 +28,33 @@ var obs = new Observable({
   }
 })
 
-var holder = new Holder()
-
 app.set({
   buttons: {
     ChildConstructor: new Element({
       node: 'button',
       h: 100
     }),
-    // shows: {
-    //   style:{
-    //     border:'1px solid red'
-    //   },
-    //   text: 'app.holder.switcher.next.set(Math.random())',
-    //   on: {
-    //     click () {
-    //       app.holder.switcher.next.set(Math.random())
-    //       debug.context(app).log('set app...next:')
-    //     }
-    //   }
-    // },
     holder: {
-      style:{
-        border:'1px solid red'
+      style: {
+        border: '5px solid red'
       },
-      text: 'holder.switcher.next.set(Math.random())',
+      text: 'APP ELEMENT WITH SIBLING',
       on: {
         click () {
-          holder.switcher.next.set(Math.random())
-          debug.context(app).log('set holder...next:')
+          app.holder.switcher.next.set(Math.random())
+          debug.context(app).log('app element with sibling')
         }
       }
     },
     obs: {
-      style:{
-        border:'1px solid green'
+      style: {
+        border: '5px solid green'
       },
-      text: 'obs.child.thing.set(Math.random())',
+      text: 'OBS WITH SIBLING',
       on: {
         click () {
           obs.child.thing.set(Math.random())
-          debug.context(app).log('set obs...thing:')
+          debug.context(app).log('observable with sibling')
         }
       }
     }

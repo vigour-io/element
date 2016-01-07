@@ -7,6 +7,17 @@ var Element = app.ChildConstructor
 
 require('./style.less')
 
+var Title = new Element({
+  css: 'titlex',
+  text: {
+    $: 'title'
+  }
+}).Constructor
+
+Element.prototype.properties = {
+  title: Title
+}
+
 var Episodes = new Element({
   text: 'epis',
   gurky: {
@@ -17,7 +28,15 @@ var Episodes = new Element({
           text: {
             $: 'number'
           }
-        }
+        },
+        finewine:{
+          balls:new Title({
+            text:{
+              $add:'flups'
+            }
+          })
+        },
+        title: {}
       })
     }
   }
@@ -25,24 +44,22 @@ var Episodes = new Element({
 
 var Show = new Element({
   $: true,
-  title: {
-    text: { $: 'title' }
-  },
-  currentEpisode: {
-    text: 'currentEpisode',
-    $: 'seasons.1.episodes.1', // if it can find
-    title: {
-      text: { $: 'number' }
-    }
-  },
+  // title: {},
+  // currentEpisode: {
+  //   text: 'currentEpisode',
+  //   $: 'seasons.1.episodes.1', // if it can find
+  //   title: {
+  //     text: { $: 'number' }
+  //   }
+  // },
   episodes: new Episodes(),
-  seasons: new (new Element({
-    text: 'seasons',
-    ChildConstructor: new Element({
-      text: { $: 'number' }
-    }),
-    $collection: 'seasons'
-  })).Constructor()
+  // seasons: new (new Element({
+  //   text: 'seasons',
+  //   ChildConstructor: new Element({
+  //     text: { $: 'number' }
+  //   }),
+  //   $collection: 'seasons'
+  // })).Constructor()
 }).Constructor
 
 var show = new Observable({
@@ -51,25 +68,140 @@ var show = new Observable({
     1: {
       number: 1,
       episodes: {
-        1: { number: ' 1.1', description: 'description 1' },
-        2: { number: ' 1.2', description: 'description 2' }
+        1: {
+          number: '1.1.1', description: 'description 1',
+          title: 'this is title 1.1.1'
+        },
+        2: {
+          number: '1.1.2', description: 'description 2',
+          // title: 'this is title 1.1.1'
+        }
       }
     },
     2: {
       number: 2,
       episodes: {
-        1: { number: ' 1.1', description: 'description 1' },
-        2: { number: ' 1.2', description: 'description 2' }
+        1: { number: '1.1.1', description: 'description 1' },
+        2: { number: '1.1.2', description: 'description 2' }
       }
     }
   }
 })
 
-// console.clear()
+var show2 = new Observable({
+  title: 'show 2',
+  seasons: {
+    1: {
+      number: 1,
+      episodes: {
+        1: { number: ' 2.1.1', description: 'description 1' },
+        2: { number: ' 2.1.2', description: 'description 2', title: 'this is title 2.1.2' }
+      }
+    },
+    2: {
+      number: 2,
+      episodes: {
+        1: { number: ' 2.1.1', description: 'description 1' },
+        2: { number: ' 2.1.2', description: 'description 2' }
+      }
+    }
+  }
+})
+var C = new Element({
+  // $:true,
+  thisisthebreaker:{
+    ChildConstructor:Title,
+    $collection: 'seasons.1.episodes', // if it can find
+  }
+}).Constructor
+
+var A = new Element({
+    text: 'currentEpisode',
+    magic: new C()
+  }).Constructor
+
+var Page = new Element({
+  $:true,
+  a: new A(),
+  b: new A(),//{ bla: new Title() }
+  // show:new Show(),
+  // another:new Show()
+}).Constructor
+
 app.set({
-  b: new Show({
-    val: show
-  })
+  switcher:{
+    page: new Page(show)
+  }
 })
 
-global.show = show
+// setTimeout(function(){
+//   app.switcher.page.remove()
+// },2000)
+
+// setTimeout(function(){
+//   app.switcher.set({
+//     page2:new Page(show2)
+//   })
+// },2010)
+
+// console.clear()
+// app.set({
+//   b: new Show({
+//     val: show
+//   })
+// })
+
+// // app.b.remove()
+
+// setTimeout(function () {
+//   // app.b.remove()
+//   app.b.val = show2
+// }, 500)
+
+
+// setTimeout(function () {
+//   app.b.remove()
+//   app.set({
+//     c: new Show({
+//       val: show2
+//     })
+//   })
+// }, 1000)
+
+// setTimeout(function () {
+//   show2.seasons.set({
+//     5: {
+//       number: 5,
+//       episodes: {
+//         1: {
+//           title: 'gurken 5.1.1',
+//           number: '5.1.1'
+//         }
+//       }
+//     }
+//   })
+// }, 1100)
+
+// global.show = show
+// global.show2 = show2
+
+global.wl = function walklisteners (obs, cnt) {
+  var x
+  if (!cnt) {
+    x = true
+    cnt = { cnt: 0 }
+  }
+  // cnt.cnt++
+  obs.each(function (p, key) {
+    walklisteners(p, cnt)
+  })
+  if (obs._on) {
+    if (obs._on.data && obs._on.data.attach) {
+      cnt.cnt++
+    }
+  }
+  if (x) {
+    console.log('listeners!', cnt.cnt)
+  }
+}
+

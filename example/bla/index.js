@@ -96,13 +96,13 @@ var c = new Observable({
 })
 // var a = new Observable(b)
 
-// var blurf = new Bla({
-//   shows: b
-// })// blurf.val = a
+var blurf = new Bla({
+  shows: b
+})// blurf.val = a
 
-// app.set({
-//   a: blurf
-// })
+app.set({
+  a: blurf
+})
 
 // console.clear()
 // console.log('here is blurf!', blurf.css)
@@ -120,25 +120,28 @@ app.set({
   b: blurf
 })
 
-// app.set({
-//   b: blurf
-// })
 
 debug.context(app).log('xxxx')
 
 console.log('-------------------', Object.keys(app.nodes).length)
-// app.b.remove()
+app.a.remove()
+
+// app.set({
+//   b: blurf
+// })
 
 
 console.log('keys of nodes', Object.keys(app.nodes).length)
-debug.context(app).log('REMOVE')
+debug.context(app).log('after remove REMOVE')
 
 setTimeout(function () {
-  console.clear()
+  // console.clear()
   debug.context(app).log('gotz it?')
   console.log(app.b.shows._input)
   app.b.shows.val = c
-  debug.context(app).log('look at me now it?')
+
+  // context has to go from app.b.shows ofcourse -- plus why contexT? its estrange
+  debug.context(app).log('look at me now it? context after switch')
 }, 500)
 // app.clear()
 
@@ -154,4 +157,5 @@ setTimeout(function () {
       }
     }
   })
+  debug.context(app).log('end context after set on c[3].shows[1]')
 }, 1000)

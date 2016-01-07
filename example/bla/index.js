@@ -134,28 +134,28 @@ app.a.remove()
 console.log('keys of nodes', Object.keys(app.nodes).length)
 debug.context(app).log('after remove REMOVE')
 
-setTimeout(function () {
-  // console.clear()
-  debug.context(app).log('gotz it?')
-  console.log(app.b.shows._input)
-  app.b.shows.val = c
+// setTimeout(function () {
+//   // console.clear()
+//   debug.context(app).log('gotz it?')
+//   console.log(app.b.shows._input)
+//   app.b.shows.val = c
 
-  // context has to go from app.b.shows ofcourse -- plus why contexT? its estrange
-  debug.context(app).log('look at me now it? context after switch')
-}, 500)
-// app.clear()
+//   // context has to go from app.b.shows ofcourse -- plus why contexT? its estrange
+//   debug.context(app).log('look at me now it? context after switch')
+// }, 500)
+// // app.clear()
 
-global.b = b
-global.c = c
+// global.b = b
+// global.c = c
 
-setTimeout(function () {
-  c[3].set({
-    shows: {
-      1: {
-        title: 'c title 1',
-        season: ax
-      }
-    }
-  })
-  debug.context(app).log('end context after set on c[3].shows[1]')
-}, 1000)
+// setTimeout(function () {
+//   c[3].set({
+//     shows: {
+//       1: {
+//         title: 'c title 1',
+//         season: ax
+//       }
+//     }
+//   })
+//   debug.context(app).log('end context after set on c[3].shows[1]')
+// }, 1000)

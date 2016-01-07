@@ -134,6 +134,8 @@ app.set({
   }
 })
 
+window.app = app
+window.page = Page.prototype
 // setTimeout(function(){
 //   app.switcher.page.remove()
 // },2000)

@@ -48,6 +48,7 @@ var X = new Element({
 }).Constructor
 
 var Bla = new Element({
+  $: true,
   css: 'blurf',
   properties: {
     shows: X
@@ -97,11 +98,14 @@ var c = new Observable({
 // var a = new Observable(b)
 
 var blurf = new Bla({
-  shows: b
+  shows: {}
 })// blurf.val = a
 
+var gurk
+
 app.set({
-  a: blurf
+  a: blurf,
+  val: b
 })
 
 // console.clear()
@@ -110,7 +114,7 @@ app.set({
 global.blaxxx = Bla.prototype
 // app.a.remove()
 var blurf = new Bla({
-  shows: b
+  shows: {}
 })
 // blurf.val = a
 

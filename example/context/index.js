@@ -35,8 +35,6 @@ var top = new Observable({
   }
 })
 
-<<<<<<< HEAD
-=======
 // another element
 var Test2 = new Element({
   properties: {
@@ -52,7 +50,6 @@ var Holder2 = new Element({
 }).Constructor
 
 // add to the app
->>>>>>> d374e1abf77c3e726aa8e69ceaf5e2f7b4cc033e
 app.set({
   buttons: {
     ChildConstructor: new Element({
@@ -60,8 +57,6 @@ app.set({
       h: 100,
       w: '100%'
     }),
-<<<<<<< HEAD
-=======
     holder2: {
       style: {
         border: '5px solid blue'
@@ -74,7 +69,6 @@ app.set({
         }
       }
     },
->>>>>>> d374e1abf77c3e726aa8e69ceaf5e2f7b4cc033e
     holder: {
       style: {
         border: '5px solid red'
@@ -94,11 +88,7 @@ app.set({
       text: 'OBS WITH SIBLING',
       on: {
         click () {
-<<<<<<< HEAD
-          obs.child.thing.set(Math.random())
-=======
           top.obs.child.thing.set(Math.random())
->>>>>>> d374e1abf77c3e726aa8e69ceaf5e2f7b4cc033e
           debug.context(app).log('observable with sibling')
         }
       }

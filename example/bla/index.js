@@ -84,7 +84,7 @@ var c = new Observable({
     1: { title: 'c top 1' },
     2: { title: 'c top 2' },
     3: {
-      title: 'c top 3',
+      title: 'c top 3'
       // shows: {}
       // shows: {
       //   1: {

@@ -8,10 +8,19 @@ var Element = app.ChildConstructor
 require('./style.less')
 
 var Episodes = new Element({
-  $collection: 'seasons.1.episodes',
-  ChildConstructor: new Element({
-    text: { $: 'title' }
-  })
+  text: 'epis',
+  gurky: {
+    murky: {
+      $collection: 'seasons.1.episodes',
+      ChildConstructor: new Element({
+        blurf: {
+          text: {
+            $: 'number'
+          }
+        }
+      })
+    }
+  }
 }).Constructor
 
 var Show = new Element({
@@ -20,29 +29,37 @@ var Show = new Element({
     text: { $: 'title' }
   },
   currentEpisode: {
+    text: 'currentEpisode',
     $: 'seasons.1.episodes.1', // if it can find
     title: {
-      text: { $: 'title' }
+      text: { $: 'number' }
     }
   },
-  episodes: new Episodes()
+  episodes: new Episodes(),
+  seasons: new (new Element({
+    text: 'seasons',
+    ChildConstructor: new Element({
+      text: { $: 'number' }
+    }),
+    $collection: 'seasons'
+  })).Constructor()
 }).Constructor
 
 var show = new Observable({
   title: 'show',
   seasons: {
     1: {
-      number: { $: 'number' },
+      number: 1,
       episodes: {
-        1: { title: ' 1.1', description: 'description 1' },
-        2: { title: ' 1.2', description: 'description 2' }
+        1: { number: ' 1.1', description: 'description 1' },
+        2: { number: ' 1.2', description: 'description 2' }
       }
     },
     2: {
-      number: { $: 'number' },
+      number: 2,
       episodes: {
-        1: { title: ' 1.1', description: 'description 1' },
-        2: { title: ' 1.2', description: 'description 2' }
+        1: { number: ' 1.1', description: 'description 1' },
+        2: { number: ' 1.2', description: 'description 2' }
       }
     }
   }
@@ -54,3 +71,5 @@ app.set({
     val: show
   })
 })
+
+global.show = show

@@ -14,6 +14,10 @@ var Test = new Element({
 
 var Holder = new Element({
   switcher: new Test()
+  // switcher:{
+  //   fire: {},
+  //   next: {}
+  // }
 }).Constructor
 
 // same for observable
@@ -35,18 +39,18 @@ app.set({
       node: 'button',
       h: 100
     }),
-    shows: {
-      style:{
-        border:'1px solid red'
-      },
-      text: 'app.holder.switcher.next.set(Math.random())',
-      on: {
-        click () {
-          app.holder.switcher.next.set(Math.random())
-          debug.context(app).log('set app...next:')
-        }
-      }
-    },
+    // shows: {
+    //   style:{
+    //     border:'1px solid red'
+    //   },
+    //   text: 'app.holder.switcher.next.set(Math.random())',
+    //   on: {
+    //     click () {
+    //       app.holder.switcher.next.set(Math.random())
+    //       debug.context(app).log('set app...next:')
+    //     }
+    //   }
+    // },
     holder: {
       style:{
         border:'1px solid red'

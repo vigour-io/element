@@ -21,7 +21,7 @@ var Seasons = new Element({
 var X = new Element({
   type: 'ul',
   $collection: true,
-  bla: {
+  headerofX_shows: {
     type: 'h4',
     text: { $: 'title' }
   },
@@ -121,7 +121,7 @@ app.set({
 })
 
 
-debug.context(app).log('xxxx')
+debug.context(app).log('before remove')
 
 console.log('-------------------', Object.keys(app.nodes).length)
 app.a.remove()

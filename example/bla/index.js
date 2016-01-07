@@ -21,6 +21,10 @@ var Seasons = new Element({
 var X = new Element({
   type: 'ul',
   $collection: true,
+  bla: {
+    type: 'h4',
+    text: { $: 'title' }
+  },
   ChildConstructor: new Element({
     type: 'li',
     text: {
@@ -69,7 +73,7 @@ var b = new Observable({
           season: ax
         },
         2: {
-          // title: '2',
+          title: 'title 2',
           season: ax
         }
       }
@@ -92,16 +96,16 @@ var c = new Observable({
 })
 // var a = new Observable(b)
 
-var blurf = new Bla({
-  shows: b
-})// blurf.val = a
+// var blurf = new Bla({
+//   shows: b
+// })// blurf.val = a
 
-app.set({
-  a: blurf
-})
+// app.set({
+//   a: blurf
+// })
 
-console.clear()
-console.log('here is blurf!', blurf.css)
+// console.clear()
+// console.log('here is blurf!', blurf.css)
 
 global.blaxxx = Bla.prototype
 // app.a.remove()
@@ -112,11 +116,9 @@ var blurf = new Bla({
 
 console.log('-------------------', Object.keys(app.nodes).length)
 
-
 app.set({
   b: blurf
 })
-
 
 // app.set({
 //   b: blurf
@@ -125,31 +127,31 @@ app.set({
 debug.context(app).log('xxxx')
 
 console.log('-------------------', Object.keys(app.nodes).length)
-app.b.remove()
+// app.b.remove()
 
 
 console.log('keys of nodes', Object.keys(app.nodes).length)
 debug.context(app).log('REMOVE')
 
-// setTimeout(function () {
-//   console.clear()
-//   debug.context(app).log('gotz it?')
-//   console.log(app.b.shows._input)
-//   app.b.shows.val = c
-//   debug.context(app).log('look at me now it?')
-// }, 500)
-// // app.clear()
+setTimeout(function () {
+  console.clear()
+  debug.context(app).log('gotz it?')
+  console.log(app.b.shows._input)
+  app.b.shows.val = c
+  debug.context(app).log('look at me now it?')
+}, 500)
+// app.clear()
 
-// global.b = b
-// global.c = c
+global.b = b
+global.c = c
 
-// setTimeout(function () {
-//   c[3].set({
-//     shows: {
-//       1: {
-//         title: 'c title 1',
-//         season: ax
-//       }
-//     }
-//   })
-// }, 1000)
+setTimeout(function () {
+  c[3].set({
+    shows: {
+      1: {
+        title: 'c title 1',
+        season: ax
+      }
+    }
+  })
+}, 1000)

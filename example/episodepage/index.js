@@ -151,12 +151,15 @@ window.page = Page.prototype
 //   app.switcher.page.remove()
 // },2000)
 
-// setTimeout(function(){
-//   app.switcher.set({
-//     xxx: { html: '</br>--------------------' },
-//     page2:new Page(show2)
-//   })
-// },500)
+setTimeout(function(){
+
+  // show.seasons[1].remove()
+// app.switcher.page.val = show2
+  // app.switcher.set({
+  //   xxx: { html: '</br>--------------------' },
+  //   // page2:new Page(show2)
+  // })
+},500)
 
 
 // setTimeout(function () {

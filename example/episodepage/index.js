@@ -95,7 +95,7 @@ var show2 = new Observable({
       number: 1,
       episodes: {
         1: { number: ' 2.1.1', description: 'description 1' },
-        gurk: { number: ' 2.1.1', description: 'description 1' },
+        gurk: { number: ' 2.1.gurk', description: 'description gurk' },
         2: { number: ' 2.1.2', description: 'description 2', title: 'this is title 2.1.2' }
       }
     },
@@ -138,10 +138,8 @@ var Page = new Element({
 
 app.set({
   switcher:{
-    xx: {
-      page: new Page(show2)
-      // page: new Page(show)
-    }
+    page: new Page(show)
+     // page: new Page(show)
   }
 })
 
@@ -153,12 +151,21 @@ window.page = Page.prototype
 //   app.switcher.page.remove()
 // },2000)
 
-// setTimeout(function(){
-//   app.switcher.set({
-//     page2:new Page(show2)
-//   })
-// },2010)
+setTimeout(function(){
+  app.switcher.set({
+    xxx: { html: '</br>--------------------' },
+    page2:new Page(show2)
+  })
+},500)
 
+
+setTimeout(function () {
+   app.switcher.set({
+    xxx: { html: '</br>---------SWAPPED-----------' }
+  })
+  app.switcher.page.val = show2
+  app.switcher.page2.val = show
+}, 1000)
 // console.clear()
 // app.set({
 //   b: new Show({

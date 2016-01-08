@@ -151,21 +151,21 @@ window.page = Page.prototype
 //   app.switcher.page.remove()
 // },2000)
 
-setTimeout(function(){
-  app.switcher.set({
-    xxx: { html: '</br>--------------------' },
-    page2:new Page(show2)
-  })
-},500)
+// setTimeout(function(){
+//   app.switcher.set({
+//     xxx: { html: '</br>--------------------' },
+//     page2:new Page(show2)
+//   })
+// },500)
 
 
-setTimeout(function () {
-   app.switcher.set({
-    xxx: { html: '</br>---------SWAPPED-----------' }
-  })
-  app.switcher.page.val = show2
-  app.switcher.page2.val = show
-}, 1000)
+// setTimeout(function () {
+//    app.switcher.set({
+//     xxx: { html: '</br>---------SWAPPED-----------' }
+//   })
+//   app.switcher.page.val = show2
+//   app.switcher.page2.val = show
+// }, 1000)
 // console.clear()
 // app.set({
 //   b: new Show({
@@ -227,3 +227,6 @@ global.wl = function walklisteners (obs, cnt) {
   }
 }
 
+
+global.show = show
+global.show2 = show2

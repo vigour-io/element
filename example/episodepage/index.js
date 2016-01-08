@@ -130,11 +130,14 @@ var Page = new Element({
 
 app.set({
   switcher:{
-    page: new Page(show)
+    xx: {
+      page: new Page()
+      // page: new Page(show)
+    }
   }
 })
 
-// app.switcher.page.set(show)
+app.switcher.xx.page.set(show)
 
 window.app = app
 window.page = Page.prototype

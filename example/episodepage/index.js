@@ -30,7 +30,7 @@ var Episodes = new Element({
           }
         },
         finewine:{
-          balls:new Title({
+          balls: new Title({
             text:{
               $add:'flups'
             }
@@ -95,6 +95,7 @@ var show2 = new Observable({
       number: 1,
       episodes: {
         1: { number: ' 2.1.1', description: 'description 1' },
+        gurk: { number: ' 2.1.1', description: 'description 1' },
         2: { number: ' 2.1.2', description: 'description 2', title: 'this is title 2.1.2' }
       }
     },
@@ -109,9 +110,16 @@ var show2 = new Observable({
 })
 var C = new Element({
   // $:true,
-  thisisthebreaker:{
-    ChildConstructor:Title,
-    $collection: 'seasons.1.episodes', // if it can find
+  thisisthebreaker: {
+    ChildConstructor: new Element({
+      text: { $: 'text' },
+      ChildConstructor: new Element({
+        // $: true,
+        text: { $: 'number' }
+      }),
+      $collection: 'episodes'
+    }),
+    $collection: 'seasons' // if it can find
   }
 }).Constructor
 
@@ -131,13 +139,13 @@ var Page = new Element({
 app.set({
   switcher:{
     xx: {
-      page: new Page()
+      page: new Page(show2)
       // page: new Page(show)
     }
   }
 })
 
-app.switcher.xx.page.set(show)
+// app.switcher.xx.page.set(show2)
 
 window.app = app
 window.page = Page.prototype

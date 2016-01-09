@@ -62,27 +62,25 @@ var Show = new Element({
   // })).Constructor()
 }).Constructor
 
-var show = new Observable({
+var show = global.show = new Observable({
   title: 'show',
+  currentSeason: {},
   seasons: {
     1: {
+      currentEpisode: {},
       number: 1,
       episodes: {
-        1: {
-          number: '1.1.1', description: 'description 1',
-          title: 'this is title 1.1.1'
-        },
-        2: {
-          number: '1.1.2', description: 'description 2',
-          // title: 'this is title 1.1.1'
-        }
+        1: { number: ' 1.1.1', description: 'description 1' },
+        2: { number: ' 1.1.2', description: 'description 2', title: 'this is title 1.1.2' }
       }
     },
     2: {
+      currentEpisode: {},
+      currentSeason: {},
       number: 2,
       episodes: {
-        1: { number: '1.1.1', description: 'description 1' },
-        2: { number: '1.1.2', description: 'description 2' }
+        1: { number: ' 1.2.1', description: 'description 1' },
+        2: { number: ' 1.2.2', description: 'description 2' }
       }
     }
   }
@@ -107,8 +105,8 @@ var show2 = new Observable({
       currentSeason: {},
       number: 2,
       episodes: {
-        1: { number: ' 2.1.1', description: 'description 1' },
-        2: { number: ' 2.1.2', description: 'description 2' }
+        1: { number: ' 2.2.1', description: 'description 1' },
+        2: { number: ' 2.2.2', description: 'description 2' }
       }
     }
   }
@@ -117,17 +115,70 @@ var show2 = new Observable({
 // show2.seasons[1].currentEpisode.val = {
 //   number: '!!!!!'
 // }
+show.set({ currentEpisode: show.seasons[1].episodes[1]})
+
+show2.set({ currentEpisode: show2.seasons[1].episodes.gurk})
 
 show2.seasons[1].currentEpisode.val = show2.seasons[1].episodes.gurk
 show2.currentSeason.val = show2.seasons[1]
+
+show.seasons[1].currentEpisode.val = show.seasons[1].episodes.gurk
+show.currentSeason.val = show.seasons[1]
 
 // var currentEpidose
 
 var C = new Element({
   nested2: {
     title: { text: { $: 'title' } },
+    switchSeason: {
+      type: 'button',
+      text: { $add: ' season', $: 'currentSeason.number' },
+      on: {
+        click () {
+          console.clear()
+          var origin = this.parent.parent.parent.parent.origin
+          var current = origin.currentSeason.origin
+          var seasons = origin.seasons
+          var keys = []
+          var index = 0
+          seasons.each((p, k) => {
+            keys.push(k)
+            if (k === current.key) {
+              index = keys.length - 1
+            }
+          })
+          var nextKey = (keys[++index] || keys[0])
+          origin.currentSeason.val = origin.seasons[nextKey]
+        }
+      }
+    },
+    currentEpisode: {
+      $: 'currentEpisode',
+      title: {
+        text: { $: 'number' }
+      }
+    },
+    currentSeason: {
+      $: 'currentSeason',
+      title: {
+        text: { $: 'number' }
+      },
+      episodes: {
+        type: 'ul',
+        $collection: 'episodes',
+        ChildConstructor: new Element({
+          type: 'li',
+          text: { $: 'number' }
+        })
+      }
+    },
     seasons: {
       ChildConstructor: new Element({
+        css: 'season',
+        text: {
+          $: 'number',
+          $transform (val) { return val || this.origin.key } // does not work yet
+        }, // also make possible to use things like 'key' going to be sweety ballz
         episode: {
           title: {
             $: null,
@@ -144,8 +195,7 @@ var C = new Element({
                   console.clear()
                   var current = this.parent._input
                   var origin = this.parent.parent.parent.origin
-                  // var keys = []
-                  var episodes = origin.parent.parent.currentSeason.origin.episodes
+                  var episodes = origin.episodes
                   var keys = []
                   var index = 0
                   episodes.each((p, k) => {
@@ -154,19 +204,13 @@ var C = new Element({
                       index = keys.length - 1
                     }
                   })
-                  console.log(index, keys[index], keys)
                   var nextKey = (keys[++index] || keys[0])
-                  console.log('set current episode from :',  origin.currentEpisode.origin.key, 'to:', nextKey)
-                  origin.currentEpisode.val = origin.parent.parent.currentSeason.origin.episodes[nextKey]
+                  origin.currentEpisode.val = episodes[nextKey]
                 }
               }
             }
           }
         },
-        text: {
-          $: 'number',
-          $transform (val) { return val || this.origin.key } // does not work yet
-        }, // also make possible to use things like 'key' going to be sweety ballz
         episodes: {
           ChildConstructor: new Element({
             text: { $: 'number' }
@@ -189,12 +233,23 @@ var Page = new Element({
   text: 'page',
   $: true,
   a: new A(),
-  b: new A() // { bla: new Title() }
+  // b: new A() // { bla: new Title() }
   // show:new Show(),
   // another:new Show()
 }).Constructor
 
 app.set({
+  switchpage: {
+    type: 'button',
+    text: 'switch page',
+    on: {
+      click () {
+        console.clear()
+        var page = this.parent.switcher.page
+        page.val = (page.origin === show ? show2 : show)
+      }
+    }
+  },
   switcher: {
     page: new Page(show2)
      // page: new Page(show)
@@ -205,7 +260,6 @@ app.set({
 
 window.app = app
 window.page = Page.prototype
-
 
 // console.clear()
 // show2.seasons[1].currentEpisode.val = show2.seasons[1].episodes.smurk
@@ -277,3 +331,7 @@ window.page = Page.prototype
 
 global.show = show
 global.show2 = show2
+
+console.clear()
+
+show2.seasons[1].episodes[2].remove()

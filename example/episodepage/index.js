@@ -331,3 +331,7 @@ window.page = Page.prototype
 
 global.show = show
 global.show2 = show2
+
+console.clear()
+
+show2.seasons[1].episodes[2].remove()

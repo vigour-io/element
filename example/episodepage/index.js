@@ -97,6 +97,7 @@ var show2 = new Observable({
       episodes: {
         1: { number: ' 2.1.1', description: 'description 1' },
         gurk: { number: ' 2.1.gurk', description: 'description gurk' },
+        smurk: { number: ' 2.1.smurk', description: 'description smurk' },
         2: { number: ' 2.1.2', description: 'description 2', title: 'this is title 2.1.2' }
       }
     },
@@ -120,19 +121,48 @@ show2.seasons[1].currentEpisode.val = show2.seasons[1].episodes.gurk
 // var currentEpidose
 
 var C = new Element({
-  thisisthebreaker: {
+  nested2: {
     title: { text: { $: 'title' } },
-    collection: {
+    seasons: {
       ChildConstructor: new Element({
         episode: {
-          $: 'currentEpisode',
-          text: { $: 'number' }
+          title: {
+            $: null,
+            text: 'currentEpisode'
+          },
+          epi: {
+            $: 'currentEpisode',
+            text: { $: 'number' },
+            nextEpisode: {
+              type: 'button',
+              text: 'nextEpisode',
+              on: {
+                click () {
+                  console.clear()
+                  // this has to work get('../../../')
+                  var current = this.parent._input
+                  var origin = this.parent.parent.parent.origin
+                  if (origin && origin.episodes) {
+                    console.log(origin, current)
+                  }
+                  show2.seasons[1].currentEpisode.val = show2.seasons[1].episodes.smurk
+
+                  // current.
+                  // this.parent.parent.parent.origin.each(function (p, key) {
+                  //   console.log('yo!', key, p)
+                  // })
+                  // this.parent.origin.val = this.parent.parent.origin
+
+                }
+              }
+            }
+          }
         },
         text: {
           $: 'number',
-          $transform (val) { return val || this.origin.key }
+          $transform (val) { return val || this.origin.key } // does not work yet
         }, // also make possible to use things like 'key' going to be sweety ballz
-        collection: {
+        episodes: {
           ChildConstructor: new Element({
             text: { $: 'number' }
           }),
@@ -145,11 +175,13 @@ var C = new Element({
 }).Constructor
 
 var A = new Element({
-  text: 'currentEpisode',
-  magic: new C()
+  text () { return this.parent.key },
+  nested1: new C()
 }).Constructor
 
 var Page = new Element({
+  css: 'page',
+  text: 'page',
   $: true,
   a: new A(),
   b: new A() // { bla: new Title() }
@@ -168,6 +200,11 @@ app.set({
 
 window.app = app
 window.page = Page.prototype
+
+
+// console.clear()
+// show2.seasons[1].currentEpisode.val = show2.seasons[1].episodes.smurk
+
 // setTimeout(function(){
 //   app.switcher.page.remove()
 // },2000)

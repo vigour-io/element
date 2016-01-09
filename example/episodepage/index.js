@@ -171,57 +171,56 @@ var C = new Element({
           text: { $: 'number' }
         })
       }
+    },
+    seasons: {
+      ChildConstructor: new Element({
+        css: 'season',
+        text: {
+          $: 'number',
+          $transform (val) { return val || this.origin.key } // does not work yet
+        }, // also make possible to use things like 'key' going to be sweety ballz
+        episode: {
+          title: {
+            $: null,
+            text: 'currentEpisode'
+          },
+          epi: {
+            $: 'currentEpisode',
+            text: { $: 'number' },
+            nextEpisode: {
+              type: 'button',
+              text: 'nextEpisode',
+              on: {
+                click () {
+                  console.clear()
+                  var current = this.parent._input
+                  var origin = this.parent.parent.parent.origin
+                  var episodes = origin.episodes
+                  var keys = []
+                  var index = 0
+                  episodes.each((p, k) => {
+                    keys.push(k)
+                    if (k === current.key) {
+                      index = keys.length - 1
+                    }
+                  })
+                  var nextKey = (keys[++index] || keys[0])
+                  origin.currentEpisode.val = episodes[nextKey]
+                }
+              }
+            }
+          }
+        },
+        episodes: {
+          ChildConstructor: new Element({
+            text: { $: 'number' }
+          }),
+          $collection: 'episodes'
+        }
+      }),
+      $collection: 'seasons' // if it can find
     }
   }
-  //   seasons: {
-  //     ChildConstructor: new Element({
-  //       css: 'season',
-  //       text: {
-  //         $: 'number',
-  //         $transform (val) { return val || this.origin.key } // does not work yet
-  //       }, // also make possible to use things like 'key' going to be sweety ballz
-  //       episode: {
-  //         title: {
-  //           $: null,
-  //           text: 'currentEpisode'
-  //         },
-  //         epi: {
-  //           $: 'currentEpisode',
-  //           text: { $: 'number' },
-  //           nextEpisode: {
-  //             type: 'button',
-  //             text: 'nextEpisode',
-  //             on: {
-  //               click () {
-  //                 console.clear()
-  //                 var current = this.parent._input
-  //                 var origin = this.parent.parent.parent.origin
-  //                 var episodes = origin.episodes
-  //                 var keys = []
-  //                 var index = 0
-  //                 episodes.each((p, k) => {
-  //                   keys.push(k)
-  //                   if (k === current.key) {
-  //                     index = keys.length - 1
-  //                   }
-  //                 })
-  //                 var nextKey = (keys[++index] || keys[0])
-  //                 origin.currentEpisode.val = episodes[nextKey]
-  //               }
-  //             }
-  //           }
-  //         }
-  //       },
-  //       episodes: {
-  //         ChildConstructor: new Element({
-  //           text: { $: 'number' }
-  //         }),
-  //         $collection: 'episodes'
-  //       }
-  //     }),
-  //     $collection: 'seasons' // if it can find
-  //   }
-  // }
 }).Constructor
 
 var A = new Element({

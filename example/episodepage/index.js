@@ -5,6 +5,8 @@ var Observable = require('vigour-js/lib/observable')
 var app = require('../../lib/app')
 var Element = app.ChildConstructor
 
+var Prop = require('../../lib/property')
+
 require('./style.less')
 
 var Title = new Element({
@@ -89,6 +91,9 @@ var show = global.show = new Observable({
 var show2 = new Observable({
   title: 'show 2',
   currentSeason: {},
+  meta: {
+    trivia: 'did you know this is [SHOW2]'
+  },
   seasons: {
     1: {
       currentEpisode: {},
@@ -115,6 +120,9 @@ var show2 = new Observable({
 // show2.seasons[1].currentEpisode.val = {
 //   number: '!!!!!'
 // }
+
+var currentEpisode = new Observable()
+
 show.set({ currentEpisode: show.seasons[1].episodes[1]})
 
 show2.set({ currentEpisode: show2.seasons[1].episodes.gurk})
@@ -126,13 +134,17 @@ show.seasons[1].currentEpisode.val = show.seasons[1].episodes.gurk
 show.currentSeason.val = show.seasons[1]
 
 // var currentEpidose
-
 var C = new Element({
   nested2: {
     title: { text: { $: 'title' } },
+    trivia: {
+      text: { $: 'meta.trivia' }
+    },
     switchSeason: {
+      $: 'currentSeason',
       type: 'button',
-      text: { $add: ' season', $: 'currentSeason.number' },
+      text: { $add: ' season', $: 'number' },
+      // text: { $add: ' season', $: 'currentSeason.number' }, //path over ref DOES not work NEED FIX NEED FIX FASH FASH FASH!
       on: {
         click () {
           console.clear()
@@ -152,10 +164,12 @@ var C = new Element({
         }
       }
     },
+  // }
+    // subscription from operators
     currentEpisode: {
       $: 'currentEpisode',
       title: {
-        text: { $: 'number' }
+        text: { $prepend: 'current episode (showlvl):', $: 'number' }
       }
     },
     currentSeason: {
@@ -168,7 +182,20 @@ var C = new Element({
         $collection: 'episodes',
         ChildConstructor: new Element({
           type: 'li',
-          text: { $: 'number' }
+          text: { $: 'number' },
+          bla: {
+            title: {
+              text: {
+                // setKey < setItem
+                // nextItem, prevItem
+                // add order as well
+                $: 'focus', // this is going to be something special -- that does al the listening etc
+                $transform (val) {
+                  return val === true ? 'FOCUS!' : 'no focus!'
+                }
+              }
+            }
+          }
         })
       }
     },
@@ -205,7 +232,12 @@ var C = new Element({
                     }
                   })
                   var nextKey = (keys[++index] || keys[0])
+
+                  origin.currentEpisode.origin.set({ focus: false })
                   origin.currentEpisode.val = episodes[nextKey]
+                  episodes[nextKey].set({ focus: true })
+                  origin.parent.parent.currentEpisode.val = episodes[nextKey]
+                  currentEpisode.val = episodes[nextKey]
                 }
               }
             }
@@ -213,6 +245,19 @@ var C = new Element({
         },
         episodes: {
           ChildConstructor: new Element({
+            properties: {
+              focus: new Prop({
+                inject: require('vigour-js/lib/operator/type'),
+                render (node) {
+                  // console.log()
+                  node.style.border = this.val === true ? '1px solid red' : 'none'
+                }
+              })
+            },
+            focus: { $: 'focus' },
+            // want to select current episode currently totally not doable...
+            // merging 2 data sources in same mysterious way
+            // what about using the power of parent for this?
             text: { $: 'number' }
           }),
           $collection: 'episodes'
@@ -233,7 +278,7 @@ var Page = new Element({
   text: 'page',
   $: true,
   a: new A(),
-  // b: new A() // { bla: new Title() }
+  b: new A() // { bla: new Title() }
   // show:new Show(),
   // another:new Show()
 }).Constructor
@@ -251,6 +296,14 @@ app.set({
     }
   },
   switcher: {
+    currentEpisode: {
+      $: true,
+      text: {
+        $prepend: 'last epi -->:',
+        $: 'number'
+      },
+      val: currentEpisode
+    },
     page: new Page(show2)
      // page: new Page(show)
   }
@@ -332,6 +385,6 @@ window.page = Page.prototype
 global.show = show
 global.show2 = show2
 
-console.clear()
+// console.clear()
 
-show2.seasons[1].episodes[2].remove()
+// show2.seasons[1].episodes[2].remove()

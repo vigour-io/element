@@ -92,6 +92,7 @@ var show2 = new Observable({
   title: 'show 2',
   seasons: {
     1: {
+      currentEpisode: {},
       number: 1,
       episodes: {
         1: { number: ' 2.1.1', description: 'description 1' },
@@ -100,6 +101,7 @@ var show2 = new Observable({
       }
     },
     2: {
+      currentEpisode: {},
       number: 2,
       episodes: {
         1: { number: ' 2.1.1', description: 'description 1' },
@@ -108,16 +110,30 @@ var show2 = new Observable({
     }
   }
 })
+
+// show2.seasons[1].currentEpisode.val = {
+//   number: '!!!!!'
+// }
+
+show2.seasons[1].currentEpisode.val = show2.seasons[1].episodes.gurk
+
+// var currentEpidose
+
 var C = new Element({
-  // $:true,
   thisisthebreaker: {
     title: { text: { $: 'title' } },
     collection: {
       ChildConstructor: new Element({
-        text: { $: 'number', $transform (val) {  return val || this.origin.key } }, // also make possible to use things like 'key' going to be sweety ballz
+        episode: {
+          $: 'currentEpisode',
+          text: { $: 'number' }
+        },
+        text: {
+          $: 'number',
+          $transform (val) { return val || this.origin.key }
+        }, // also make possible to use things like 'key' going to be sweety ballz
         collection: {
           ChildConstructor: new Element({
-            // $: true,
             text: { $: 'number' }
           }),
           $collection: 'episodes'
@@ -129,21 +145,21 @@ var C = new Element({
 }).Constructor
 
 var A = new Element({
-    text: 'currentEpisode',
-    magic: new C()
-  }).Constructor
+  text: 'currentEpisode',
+  magic: new C()
+}).Constructor
 
 var Page = new Element({
-  $:true,
+  $: true,
   a: new A(),
-  b: new A(),//{ bla: new Title() }
+  b: new A() // { bla: new Title() }
   // show:new Show(),
   // another:new Show()
 }).Constructor
 
 app.set({
-  switcher:{
-    page: new Page(show)
+  switcher: {
+    page: new Page(show2)
      // page: new Page(show)
   }
 })

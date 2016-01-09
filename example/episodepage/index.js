@@ -182,7 +182,17 @@ var C = new Element({
         $collection: 'episodes',
         ChildConstructor: new Element({
           type: 'li',
-          text: { $: 'number' }
+          text: { $: 'number' },
+          bla: {
+            title: {
+              text: {
+                $: 'focus', // this is going to be something special -- that does al the listening etc
+                $transform (val) {
+                  return val === true ? 'FOCUS!' : 'no focus!'
+                }
+              }
+            }
+          }
         })
       }
     },

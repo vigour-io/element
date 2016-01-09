@@ -205,6 +205,8 @@ var C = new Element({
                     }
                   })
                   var nextKey = (keys[++index] || keys[0])
+
+                  origin.parent.parent.currentEpisode.val = episodes[nextKey]
                   origin.currentEpisode.val = episodes[nextKey]
                 }
               }
@@ -334,4 +336,4 @@ global.show2 = show2
 
 console.clear()
 
-show2.seasons[1].episodes[2].remove()
+// show2.seasons[1].episodes[2].remove()

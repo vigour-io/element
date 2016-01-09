@@ -138,7 +138,7 @@ var C = new Element({
     switchSeason: {
       // $: 'currentSeason',
       type: 'button',
-      text: { $add: ' season', $: 'title' },
+      text: { $add: ' season', $: 'currentSeason.number' },
       on: {
         click () {
           console.clear()

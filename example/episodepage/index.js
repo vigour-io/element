@@ -186,6 +186,9 @@ var C = new Element({
           bla: {
             title: {
               text: {
+                // setKey < setItem
+                // nextItem, prevItem
+                // add order as well
                 $: 'focus', // this is going to be something special -- that does al the listening etc
                 $transform (val) {
                   return val === true ? 'FOCUS!' : 'no focus!'

@@ -90,6 +90,7 @@ var show = new Observable({
 
 var show2 = new Observable({
   title: 'show 2',
+  currentSeason: {},
   seasons: {
     1: {
       currentEpisode: {},
@@ -103,6 +104,7 @@ var show2 = new Observable({
     },
     2: {
       currentEpisode: {},
+      currentSeason: {},
       number: 2,
       episodes: {
         1: { number: ' 2.1.1', description: 'description 1' },
@@ -117,6 +119,7 @@ var show2 = new Observable({
 // }
 
 show2.seasons[1].currentEpisode.val = show2.seasons[1].episodes.gurk
+show2.currentSeason.val = show2.seasons[1]
 
 // var currentEpidose
 
@@ -139,20 +142,22 @@ var C = new Element({
               on: {
                 click () {
                   console.clear()
-                  // this has to work get('../../../')
                   var current = this.parent._input
                   var origin = this.parent.parent.parent.origin
-                  if (origin && origin.episodes) {
-                    console.log(origin, current)
-                  }
-                  show2.seasons[1].currentEpisode.val = show2.seasons[1].episodes.smurk
-
-                  // current.
-                  // this.parent.parent.parent.origin.each(function (p, key) {
-                  //   console.log('yo!', key, p)
-                  // })
-                  // this.parent.origin.val = this.parent.parent.origin
-
+                  // var keys = []
+                  var episodes = origin.parent.parent.currentSeason.origin.episodes
+                  var keys = []
+                  var index = 0
+                  episodes.each((p, k) => {
+                    keys.push(k)
+                    if (k === current.key) {
+                      index = keys.length - 1
+                    }
+                  })
+                  console.log(index, keys[index], keys)
+                  var nextKey = (keys[++index] || keys[0])
+                  console.log('set current episode from :',  origin.currentEpisode.origin.key, 'to:', nextKey)
+                  origin.currentEpisode.val = origin.parent.parent.currentSeason.origin.episodes[nextKey]
                 }
               }
             }

@@ -5,6 +5,8 @@ var Observable = require('vigour-js/lib/observable')
 var app = require('../../lib/app')
 var Element = app.ChildConstructor
 
+var Prop = require('../../lib/property')
+
 require('./style.less')
 
 var Title = new Element({
@@ -115,6 +117,9 @@ var show2 = new Observable({
 // show2.seasons[1].currentEpisode.val = {
 //   number: '!!!!!'
 // }
+
+var currentEpisode = new Observable()
+
 show.set({ currentEpisode: show.seasons[1].episodes[1]})
 
 show2.set({ currentEpisode: show2.seasons[1].episodes.gurk})
@@ -131,8 +136,9 @@ var C = new Element({
   nested2: {
     title: { text: { $: 'title' } },
     switchSeason: {
+      // $: 'currentSeason',
       type: 'button',
-      text: { $add: ' season', $: 'currentSeason.number' },
+      text: { $add: ' season', $: 'title' },
       on: {
         click () {
           console.clear()
@@ -151,78 +157,96 @@ var C = new Element({
           origin.currentSeason.val = origin.seasons[nextKey]
         }
       }
-    },
-    currentEpisode: {
-      $: 'currentEpisode',
-      title: {
-        text: { $: 'number' }
-      }
-    },
-    currentSeason: {
-      $: 'currentSeason',
-      title: {
-        text: { $: 'number' }
-      },
-      episodes: {
-        type: 'ul',
-        $collection: 'episodes',
-        ChildConstructor: new Element({
-          type: 'li',
-          text: { $: 'number' }
-        })
-      }
-    },
-    seasons: {
-      ChildConstructor: new Element({
-        css: 'season',
-        text: {
-          $: 'number',
-          $transform (val) { return val || this.origin.key } // does not work yet
-        }, // also make possible to use things like 'key' going to be sweety ballz
-        episode: {
-          title: {
-            $: null,
-            text: 'currentEpisode'
-          },
-          epi: {
-            $: 'currentEpisode',
-            text: { $: 'number' },
-            nextEpisode: {
-              type: 'button',
-              text: 'nextEpisode',
-              on: {
-                click () {
-                  console.clear()
-                  var current = this.parent._input
-                  var origin = this.parent.parent.parent.origin
-                  var episodes = origin.episodes
-                  var keys = []
-                  var index = 0
-                  episodes.each((p, k) => {
-                    keys.push(k)
-                    if (k === current.key) {
-                      index = keys.length - 1
-                    }
-                  })
-                  var nextKey = (keys[++index] || keys[0])
-
-                  origin.parent.parent.currentEpisode.val = episodes[nextKey]
-                  origin.currentEpisode.val = episodes[nextKey]
-                }
-              }
-            }
-          }
-        },
-        episodes: {
-          ChildConstructor: new Element({
-            text: { $: 'number' }
-          }),
-          $collection: 'episodes'
-        }
-      }),
-      $collection: 'seasons' // if it can find
     }
   }
+  //   // subscription from operators
+  //   currentEpisode: {
+  //     $: 'currentEpisode',
+  //     title: {
+  //       text: { $prepend: 'current episode (showlvl):', $: 'number' }
+  //     }
+  //   },
+  //   currentSeason: {
+  //     $: 'currentSeason',
+  //     title: {
+  //       text: { $: 'number' }
+  //     },
+  //     episodes: {
+  //       type: 'ul',
+  //       $collection: 'episodes',
+  //       ChildConstructor: new Element({
+  //         type: 'li',
+  //         text: { $: 'number' }
+  //       })
+  //     }
+  //   },
+  //   seasons: {
+  //     ChildConstructor: new Element({
+  //       css: 'season',
+  //       text: {
+  //         $: 'number',
+  //         $transform (val) { return val || this.origin.key } // does not work yet
+  //       }, // also make possible to use things like 'key' going to be sweety ballz
+  //       episode: {
+  //         title: {
+  //           $: null,
+  //           text: 'currentEpisode'
+  //         },
+  //         epi: {
+  //           $: 'currentEpisode',
+  //           text: { $: 'number' },
+  //           nextEpisode: {
+  //             type: 'button',
+  //             text: 'nextEpisode',
+  //             on: {
+  //               click () {
+  //                 console.clear()
+  //                 var current = this.parent._input
+  //                 var origin = this.parent.parent.parent.origin
+  //                 var episodes = origin.episodes
+  //                 var keys = []
+  //                 var index = 0
+  //                 episodes.each((p, k) => {
+  //                   keys.push(k)
+  //                   if (k === current.key) {
+  //                     index = keys.length - 1
+  //                   }
+  //                 })
+  //                 var nextKey = (keys[++index] || keys[0])
+
+  //                 origin.currentEpisode.origin.set({ focus: false })
+  //                 origin.currentEpisode.val = episodes[nextKey]
+  //                 episodes[nextKey].set({ focus: true })
+  //                 origin.parent.parent.currentEpisode.val = episodes[nextKey]
+  //                 currentEpisode.val = episodes[nextKey]
+  //               }
+  //             }
+  //           }
+  //         }
+  //       },
+  //       episodes: {
+  //         ChildConstructor: new Element({
+  //           properties: {
+  //             focus: new Prop({
+  //               inject: require('vigour-js/lib/operator/type'),
+  //               render (node) {
+  //                 // console.log()
+  //                 node.style.border = this.val === true ? '1px solid red' : 'none'
+  //               }
+  //             })
+  //           },
+  //           focus: { $: 'focus' },
+  //           // want to select current episode currently totally not doable...
+  //           // merging 2 data sources in same mysterious way
+  //           // what about using the power of parent for this?
+  //           text: { $: 'number' }
+  //         }),
+  //         $collection: 'episodes'
+  //       }
+  //     }),
+  //     $collection: 'seasons' // if it can find
+  //   }
+  // }
 }).Constructor
 
 var A = new Element({
@@ -235,7 +259,7 @@ var Page = new Element({
   text: 'page',
   $: true,
   a: new A(),
-  // b: new A() // { bla: new Title() }
+  b: new A() // { bla: new Title() }
   // show:new Show(),
   // another:new Show()
 }).Constructor
@@ -253,6 +277,14 @@ app.set({
     }
   },
   switcher: {
+    currentEpisode: {
+      $: true,
+      text: {
+        $prepend: 'last epi -->:',
+        $: 'number'
+      },
+      val: currentEpisode
+    },
     page: new Page(show2)
      // page: new Page(show)
   }
@@ -334,6 +366,6 @@ window.page = Page.prototype
 global.show = show
 global.show2 = show2
 
-console.clear()
+// console.clear()
 
 // show2.seasons[1].episodes[2].remove()

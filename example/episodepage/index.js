@@ -111,15 +111,20 @@ var show2 = new Observable({
 var C = new Element({
   // $:true,
   thisisthebreaker: {
-    ChildConstructor: new Element({
-      text: { $: 'text' },
+    title: { text: { $: 'title' } },
+    collection: {
       ChildConstructor: new Element({
-        // $: true,
-        text: { $: 'number' }
+        text: { $: 'number', $transform (val) {  return val || this.origin.key } }, // also make possible to use things like 'key' going to be sweety ballz
+        collection: {
+          ChildConstructor: new Element({
+            // $: true,
+            text: { $: 'number' }
+          }),
+          $collection: 'episodes'
+        }
       }),
-      $collection: 'episodes'
-    }),
-    $collection: 'seasons' // if it can find
+      $collection: 'seasons' // if it can find
+    }
   }
 }).Constructor
 
@@ -151,15 +156,15 @@ window.page = Page.prototype
 //   app.switcher.page.remove()
 // },2000)
 
-setTimeout(function(){
+// setTimeout(function(){
 
-  // show.seasons[1].remove()
+//   // show.seasons[1].remove()
 // app.switcher.page.val = show2
-  // app.switcher.set({
-  //   xxx: { html: '</br>--------------------' },
-  //   // page2:new Page(show2)
-  // })
-},500)
+//   app.switcher.set({
+//     xxx: { html: '</br>--------------------' },
+//     page2:new Page(show2)
+//   })
+// },500)
 
 
 // setTimeout(function () {
@@ -171,9 +176,9 @@ setTimeout(function(){
 // }, 1000)
 // console.clear()
 // app.set({
-//   b: new Show({
-//     val: show
-//   })
+//   // b: new Show({
+//   //   val: show
+//   // })
 // })
 
 // // app.b.remove()

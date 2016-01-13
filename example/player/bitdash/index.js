@@ -18,8 +18,8 @@ thePlayer.set({
   },
   inject: require('../../../lib/player/bitdash/'),
   src: {
-    dash: 'https://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2038_d06f9f4f032f9f599edbe38f1acd2900/5391_93fe74e97ef2a8ff3389d5a490d902c7/5391.mpd',
-    hls: 'https://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2038_d06f9f4f032f9f599edbe38f1acd2900/5391_93fe74e97ef2a8ff3389d5a490d902c7/5391.m3u8'
+    dash: 'https://s3-eu-west-1.amazonaws.com/sbs-storage-dev/output/104698_62f9febd21d06444f05e3ae7c7589a6d/m3u8s/104698.m3u8',
+    hls: 'https://s3-eu-west-1.amazonaws.com/sbs-storage-dev/output/104698_62f9febd21d06444f05e3ae7c7589a6d/mpds/104698.mpd'
     // hls: 'http://abudhabimedia-lh.akamaihd.net/i/ch_adaloulahd@325615/master.m3u8'
   },
   volume: 0,

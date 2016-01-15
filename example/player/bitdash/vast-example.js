@@ -2,16 +2,12 @@
 var Observable = require('vigour-js/lib/observable')
 Observable.prototype.inject(require('vigour-js/lib/operator/subscribe'))
 Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
-Observable.prototype.inject(require('vigour-track'))
+// Observable.prototype.inject(require('vigour-track'))
 
 // var PimpedElement = require('../utils/pimped-element')
-var PimpedElement = require('../../../lib/element')
 
-var App = require('../../../lib/app')
-var app = window.app = new App({
-  node: document.body,
-  ChildConstructor: PimpedElement
-})
+var app = require('../../../lib/app')
+
 const CUSTOM_WIDTH = 300
 
 var Player = require('../../../lib/player/')
@@ -35,7 +31,7 @@ thePlayer.set({
     id: 'mexirica'
   },
   inject: require('../../../lib/player/bitdash/'),
-  source: {
+  src: {
     dash: 'https://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2038_d06f9f4f032f9f599edbe38f1acd2900/5391_93fe74e97ef2a8ff3389d5a490d902c7/5391.mpd',
     hls: 'https://eu-storage-bitcodin.storage.googleapis.com/bitStorage/2038_d06f9f4f032f9f599edbe38f1acd2900/5391_93fe74e97ef2a8ff3389d5a490d902c7/5391.m3u8'
     // hls: 'http://abudhabimedia-lh.akamaihd.net/i/ch_adaloulahd@325615/master.m3u8'
@@ -71,7 +67,7 @@ thePlayer.set({
 })
 
 thePlayer.ad.set({
-  source: {
+  src: {
     progressive: adUrl
   },
   play: true,
@@ -179,6 +175,7 @@ app.set({
     },
     on: {
       click () {
+        console.log('haha', thePlayer.ad.src)
         thePlayer.ad.skip.val = true
       }
     }

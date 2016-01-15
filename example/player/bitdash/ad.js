@@ -2,9 +2,7 @@
 var Observable = require('vigour-js/lib/observable')
 Observable.prototype.inject(require('vigour-js/lib/operator/subscribe'))
 Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
-Observable.prototype.inject(require('vigour-track'))
-
-var PimpedElement = require('../utils/pimped-element')
+// Observable.prototype.inject(require('vigour-track'))
 
 var App = require('../../../lib/app')
 var app = window.app = new App({

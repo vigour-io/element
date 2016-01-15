@@ -53,7 +53,6 @@ thePlayer.set({
               var creative = creatives[creatives.length - 1]
               var mediaFiles = creative.mediaFiles
               if (mediaFiles && mediaFiles.length) {
-                // throw new Error('RAHH!')
                 var mediaFile = mediaFiles[mediaFiles.length - 1]
                 adUrl.val = mediaFile.fileURL
                 // adUrl.val = 'http://www.macacofritodeoculospreto.com'
@@ -126,6 +125,7 @@ app.set({
   play: {
     node: 'button',
     text: 'play/pause',
+    inject: require('vigour-track'),
     on: {
       click () {
         thePlayer.toggle()

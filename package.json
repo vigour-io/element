@@ -16,8 +16,14 @@
   "bugs": {
     "url": "https://github.com/vigour-io/element/issues"
   },
+  "browser": {
+    "./lib/app/": "./lib/app/browser",
+    "./lib/engine/ua/": "./lib/engine/ua/browser",
+    "./lib/event/": "./lib/event/browser"
+  },
   "dependencies": {
-    "vigour-js": "~0.4.2",
+    "vigour-js": "*",
+    "vast-client": "^1.3.6",
     "vigour-ua": "0.0.3"
   },
   "homepage": "https://github.com/vigour-io/element",

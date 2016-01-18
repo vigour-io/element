@@ -70,31 +70,27 @@ var app2 = new App({
     require('../../lib/events/nav/down'),
     require('../../lib/events/nav/right'),
     require('../../lib/events/nav/up'),
-    require('../../lib/events/nav/left'),
-    require('../../lib/events/click')
+    require('../../lib/events/nav/left')
   ],
 
-  on:{
-    // arrowDown(e){
-    //   e.preventDefault()
-    //   console.log('-----DOWN')
-    // },
-    // arrowRight(e){
-    //   e.preventDefault()
-    //   console.log('-----RIGHT')
-    // },
-    // arrowLeft(e){
-    //   e.preventDefault()
-    //   console.log('-----LEFT')
-    // },
-    // arrowUp(e){
-    //   e.preventDefault()
-    //   console.log('-----UP')
-    // },
-    click () {
-      console.log('click it')
-    }
-  },
+  // on:{
+  //   arrowDown(e){
+  //     e.preventDefault()
+  //     console.log('-----DOWN')
+  //   },
+  //   arrowRight(e){
+  //     e.preventDefault()
+  //     console.log('-----RIGHT')
+  //   },
+  //   arrowLeft(e){
+  //     e.preventDefault()
+  //     console.log('-----LEFT')
+  //   },
+  //   arrowUp(e){
+  //     e.preventDefault()
+  //     console.log('-----UP')
+  //   },
+  // },
 
   list: {
     $transform:[1,2,3,4,5]
@@ -112,6 +108,8 @@ var app2 = new App({
   //   }
   // }
 })
+
+
 
 // document.body.appendChild(app1.node)
 // document.body.appendChild(app2.node)

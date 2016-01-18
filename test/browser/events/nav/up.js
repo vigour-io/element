@@ -24,7 +24,7 @@ describe('Add arrowUp listener', () => {
   })
 
   it('document body should have a samsung tv listener for arrowUp', () => {
-    expect(platforms.up[29460]).to.be.equals("samsungUp")
+    expect(platforms.up[29460]).to.be.equals('samsungUp')
   })
 
 })

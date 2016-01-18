@@ -1,49 +1,54 @@
-require('./style.less')
-
-var Element = require('../../lib/element')
-var App = require('../../lib/app')
-var app = new App({
-  node: document.body
-})
-
+'use strict'
 var Observable = require('vigour-js/lib/observable')
-Observable.prototype.inject(require('vigour-js/lib/operator/transform'))
-
-Element.prototype.inject(
-  require('../../lib/property/css'),
-  require('../../lib/property/text'),
-  require('../../lib/property/style'),
-  require('../../lib/property/background')
-)
-
+var Element = require('../../lib/element')
 var cases = require('../../lib/cases')
+var app = require('../../lib/app')
+
 cases.set({
-  $bigscreen: false
+  $test: true,
+  $test2: true
 })
 
 app.set({
-  inject: require('../../lib/cases/inject'),
-  text: {
-    inject: require('../../lib/cases/inject'),
-    val: 'balls',
-    $bigscreen: {
-      val: 'randomString',
-      $desktop: 'DESKTOP'
-    },
-    $phone: 'phone ballz'
+  // thing: {
+  //   text: {
+  //     val: 'NO case',
+  //     $test: 'YES case!'
+  //   }
+  // },
+  thing2: {
+    text: {
+      val: '22 NO case',
+      $test: {
+        val: 'hihihi'
+      },
+      $test2: ' 22 YES case!'
+    }
   }
 })
 
-// var bla = new Observable({
-//   inject: injectable,
-//   val: 'YUZ MACHINE!',
-//   $bigscreen: 'yuz'
-// })
+// cases.$test.emit('data')
 
-// bla.on(function () {
-//   console.error('hey hey hey!', this.val)
-// })
+// setTimeout(function () {
+//   console.log('------1')
+//   cases.$test.val = false
+//   setTimeout(function () {
+//     console.log('------2')
+//     cases.$test.val = true
+//     cases.$test2.val = true
+//   }, 1000)
+// }, 1000)
 
-setInterval(function () {
-  cases.$bigscreen.val = !cases.$bigscreen.val
-}, 500)
+global.cases = cases
+
+// var obs = new Observable({
+//   on:{
+//     data () {
+//       console.log('fires!', this.val)
+//     }
+//   }
+// })
+// var ref = global.ref = new Observable(true)
+
+
+// obs.set(ref)

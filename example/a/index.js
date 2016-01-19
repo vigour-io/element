@@ -10,7 +10,10 @@ var a = global.a = new Observable({
 })
 
 var thing = new Element({
-  text: a
+  text: a,
+  css: {
+    $: 'flups'
+  }
 })
 
 var thing2 = new Element({
@@ -18,5 +21,21 @@ var thing2 = new Element({
 })
 
 app.set({
-  txxxxx: new thing2.Constructor()
+  tx: new thing2.Constructor()
 })
+
+var m = {}
+console.log(app.tx.$map(void 0, void 0, m), m)
+
+// console.log(app.tx.storedmap)
+
+app.tx.set({
+  bla: {
+    text: {
+      $: 'gurkens'
+    }
+  }
+})
+
+var m = {}
+console.log('?', app.tx.$map(void 0, void 0, m), m)

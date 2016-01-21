@@ -6,7 +6,9 @@ var Element = app.ChildConstructor
 require('./style.less')
 
 var a = global.a = new Observable({
-  val: '!!!!!!'
+  val: 'a val',
+  flups: 'a flup',
+  gurkens: 'a gurkens'
 })
 
 var thing = new Element({
@@ -51,5 +53,16 @@ app.tx.set({
 })
 
 var m = {}
-console.log('?', JSON.stringify(app.tx.$map(void 0, void 0, m), false, 2), m)
+console.log('?', JSON.stringify(app.tx.$map(void 0, void 0, m), false, 2 ), m)
 // lets fix!
+app.tx.val = a
+
+console.log('lets inject')
+var b = new Element({
+  type:'x',
+  inject: new Element({ gurk : { text: true }})
+})
+
+app.tx.set({
+  bb: b
+})

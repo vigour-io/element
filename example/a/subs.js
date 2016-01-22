@@ -56,5 +56,20 @@ var thing = new Element({
 })
 
 app.set({
-  bla: new thing.Constructor(bla)
+  xxx: {
+    text: 'marcus'
+  },
+  bla: new thing.Constructor(bla.get('smurt.smarts', {}))
+})
+
+bla.adapter.websocket.connected.is(true, function () {
+  console.log('zzzzzzzzzzzzz')
+  setTimeout(() => {
+    bla.get('LATER!!!!', {}).$({
+      YOYOYOYOYOYOLATER: { val: true }
+    }, void 0, function () {
+      // we need a stamp for the subs also add the binder etc
+      console.log('done!')
+    })
+  }, 100)
 })

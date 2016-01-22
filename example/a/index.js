@@ -104,7 +104,7 @@ app.tx.set({
 
 app.tx.set({
   bb: new b.Constructor({
-    ChildConstructor: {
+    Child: {
       james: { text: 'yex' } //check maybe allways make new?
     }
   })

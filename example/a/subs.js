@@ -26,9 +26,9 @@ var thing = new Element({
   },
   holder: {
     $collection: 'shows',
-    properties: new Element({
+    Child: {
       text: { $: 'textx' }
-    })
+    }
   }
 })
 

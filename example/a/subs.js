@@ -2,7 +2,7 @@
 var Observable = require('vigour-js/lib/observable')
 var app = require('../../lib/app')
 var Element = app.ChildConstructor
-
+var debug = require('../../lib/util/debug')
 require('./style.less')
 
 var a = global.a = new Observable({
@@ -11,15 +11,38 @@ var a = global.a = new Observable({
   gurkens: 'a gurkens',
   shows: {
     1: { textx: '?' },
-    2: { textx: 'x' }
+    2: { textx: 'x' },
+    3: { textx: 'x' }
   }
+})
+
+var Hub = require('vigour-hub/')
+
+// wrong
+var bla = global.hub = new Hub({
+  adapter: {
+    inject: require('vigour-hub/lib/protocol/websocket'),
+    websocket: 'ws://localhost:3031'
+  },
+  val: 'a val',
+  flups: 'a flup',
+  gurkens: 'a gurkens',
+  shows: {}
+})
+
+bla.$({
+  lulz: {
+    val: true
+  }
+}, void 0, function (map, attach, ready) {
+  global.alert('xxx')
 })
 
 var thing = new Element({
   $: true,
   text: { $: true },
   xxx: {
-    text: { $: 'flups' }
+    text: { $: 'hello' }
   },
   css: {
     $: 'gurkens'
@@ -27,13 +50,11 @@ var thing = new Element({
   holder: {
     $collection: 'shows',
     Child: {
-      text: { $: 'textx' }
+      text: { $: 'title' }
     }
   }
 })
 
 app.set({
-  bla: new thing.Constructor(a)
+  bla: new thing.Constructor(bla)
 })
-
-console.log(a)

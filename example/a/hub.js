@@ -1,23 +1,24 @@
 'use strict'
-var Observable = require('vigour-js/lib/observable')
-var debug = require('../../lib/util/debug')
-
 var Hub = require('vigour-hub/')
 
-// wrong
 var bla = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
     websocket: {
-      server: 3031
+
     }
   },
   val: 'a val',
   flups: 'a flup',
   gurkens: 'a gurkens',
+  a: {
+    b: {
+      c: 'hahaha'
+    }
+  },
   smurt: {
     smarts: {
-      gurkens: 'y!'
+      gurkens: [ '$', 'a', 'b', 'c' ] // can also support '~/a/b/c' //shorter also nice for normal obs!
     }
   },
   shows: {
@@ -25,6 +26,12 @@ var bla = global.hub = new Hub({
       title: 'from hub - 1'
     }
   }
+})
+
+// bla.smurt.smarts.gurkens
+
+bla.adapter.websocket.set({
+  server: 3031
 })
 
 console.log('start hub')

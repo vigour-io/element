@@ -50,8 +50,8 @@ var thing = new Element({
       $: 'gurkens'
     },
     on: {
-      keyup () {
-        this.value.origin.val = this.node.value
+      keyup (data, event) {
+        this.value.origin.origin.set(this.node.value, event)
       }
     }
   },

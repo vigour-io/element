@@ -44,8 +44,16 @@ var thing = new Element({
   // xxx: {
   //   text: { $: 'hello' }
   // },
-  css: {
-    $: 'gurkens'
+  bla: {
+    type: 'input',
+    value: {
+      $: 'gurkens'
+    },
+    on: {
+      keyup () {
+        this.value.origin.val = this.node.value
+      }
+    }
   },
   holder: {
     $collection: 'shows',

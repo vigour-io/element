@@ -15,6 +15,11 @@ var bla = global.hub = new Hub({
   val: 'a val',
   flups: 'a flup',
   gurkens: 'a gurkens',
+  smurt: {
+    smarts: {
+      gurkens: 'y!'
+    }
+  },
   shows: {
     1: {
       title: 'from hub - 1'

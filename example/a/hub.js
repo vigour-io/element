@@ -18,7 +18,8 @@ var bla = global.hub = new Hub({
   },
   smurt: {
     smarts: {
-      gurkens: [ '$', 'a', 'b', 'c' ] // can also support '~/a/b/c' //shorter also nice for normal obs!
+      gurkens: [ '$', 'a', 'b', 'c' ], // can also support '~/a/b/c' //shorter also nice for normal obs!
+      shows: [ '$', 'shows' ]
     }
   },
   shows: {
@@ -27,6 +28,13 @@ var bla = global.hub = new Hub({
     }
   }
 })
+
+setTimeout(() => {
+  console.log('DO IT LULZ it out!')
+  bla.set({
+    lulz: 'hello my name is lulz!'
+  })
+}, 6000)
 
 // bla.smurt.smarts.gurkens
 

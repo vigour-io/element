@@ -38,6 +38,13 @@ bla.$({
   global.alert('xxx')
 })
 
+var input = {
+  keyup (data, event) {
+    // very fucked!
+    this.value.origin.origin.set(this.node.value, event)
+  }
+}
+
 var thing = new Element({
   $: true,
   // text: { $: true },
@@ -49,16 +56,14 @@ var thing = new Element({
     value: {
       $: 'gurkens'
     },
-    on: {
-      keyup (data, event) {
-        this.value.origin.origin.set(this.node.value, event)
-      }
-    }
+    on: input
   },
   holder: {
     $collection: 'shows',
     Child: {
-      text: { $: 'title' }
+      type: 'input',
+      value: { $: 'title' },
+      on: input
     }
   }
 })

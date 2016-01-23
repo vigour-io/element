@@ -6,7 +6,10 @@ var bla = global.hub = new Hub({
     inject: require('vigour-hub/lib/protocol/websocket'),
     websocket: {
       server: {
-        http: require('vigour-hub/lib/debug').serverLogger
+        http: {
+          // val: //require('vigour-hub/lib/debug').serverLogger,
+          field: require('vigour-hub/lib/debug').serverDebug
+        }
       }
     }
   },
@@ -31,7 +34,7 @@ var bla = global.hub = new Hub({
   }
 })
 
-var n = 1
+var n = 4
 while (n) {
   var s = 10
   var seasons = {}
@@ -62,7 +65,8 @@ while (n) {
   })
 
   bla.shows[n].set({
-    currentEpisode: bla.shows[n].seasons[1].episodes[1]
+    currentEpisode: bla.shows[n].seasons[1].episodes[1],
+    currentSeason: bla.shows[n].seasons[2]
   })
   n--
 }

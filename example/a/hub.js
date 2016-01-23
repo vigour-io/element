@@ -82,7 +82,7 @@ setTimeout(() => {
   bla.set({
     lulz: 'hello my name is lulz!'
   })
-}, 6000)
+}, 2000)
 
 // bla.smurt.smarts.gurkens
 

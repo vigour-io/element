@@ -77,11 +77,24 @@ var thing = new Element({
   }
 })
 
+var seasons = new Element({
+  $collection: 'episodes',
+  Child: {
+    text: { $: 'title' }
+  }
+})
+
 app.set({
   xxx: {
     text: 'marcus'
   },
-  bla: new thing.Constructor(bla.get('smurt.smarts', {}))
+  bla: new thing.Constructor(bla.get('smurt.smarts', {})),
+  blax: new thing.Constructor(bla.get('smurt.smarts', {})),
+  blaaa: new Element({
+    $: 'currentEpisode',
+    text: { $: 'title' },
+    // bla: seasons
+  })
 })
 
 // after this changing!
@@ -89,7 +102,14 @@ setTimeout(() => {
   console.clear()
   console.log('\n\n\n\n\n remove this!!!!')
   app.bla.remove()
-}, 500)
+}, 1500)
+
+setTimeout(() => {
+  console.clear()
+  console.log('\n\n\n\n\n remove this!!!!')
+  app.blax.remove()
+}, 2500)
+
 
 // bla.adapter.websocket.connected.is(true, function () {
 //   console.log('zzzzzzzzzzzzz')
@@ -102,3 +122,6 @@ setTimeout(() => {
 //     })
 //   }, 100)
 // })
+
+// reference changes need to clean up stuff
+//

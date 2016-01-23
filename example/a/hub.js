@@ -29,6 +29,51 @@ var bla = global.hub = new Hub({
   }
 })
 
+var n = 1
+while (n) {
+  var s = 10
+  var seasons = {}
+  while (s) {
+    s--
+    let episodes = {}
+    let e = 20
+    seasons[s] = {
+      number: s + 1,
+      episodes: episodes
+    }
+    while (e) {
+      e--
+      episodes[e] = {
+        title: 'episode!' + s + '.' + e,
+        number: e + 1,
+        description: gentext(n),
+        video: 'bla' + e,
+        img: 'xxxxxx' + e
+      }
+    }
+  }
+  bla.shows.setKey(n, {
+    title: 'haha show!' + n,
+    description: gentext(n),
+    seasons: seasons
+  })
+
+  bla.shows[n].set({
+    currentEpisode: bla.shows[n].seasons[1].episodes[1]
+  })
+  n--
+}
+
+function gentext () {
+  var g = 100
+  var str = ''
+  while (g) {
+    g--
+    str += ' dcewew '
+  }
+  return str
+}
+
 setTimeout(() => {
   console.log('DO IT LULZ it out!')
   bla.set({

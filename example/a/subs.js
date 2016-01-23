@@ -38,6 +38,8 @@ bla.$({
   global.alert('xxx')
 })
 
+global.debug = true
+
 var input = {
   keyup (data, event) {
     // very fucked!
@@ -61,9 +63,13 @@ var thing = new Element({
   holder: {
     $collection: 'shows',
     Child: {
-      type: 'input',
-      value: { $: 'title' },
-      on: input
+      // type: 'input',
+      text: { $: 'title' },
+      holder: {
+        $: 'currentEpisode',
+        text: { $: 'title' }
+      }
+      // on: input
     }
   }
 })

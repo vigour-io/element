@@ -35,7 +35,7 @@ bla.$({
     val: true
   }
 }, void 0, function (map, attach, ready) {
-  global.alert('xxx')
+  // global.alert('xxx')
 })
 
 global.debug = true
@@ -67,7 +67,10 @@ var thing = new Element({
       text: { $: 'title' },
       holder: {
         $: 'currentEpisode',
-        text: { $: 'title' }
+        text: { $: 'title' },
+        bla: {
+          text: { $prepend: 'time:', $: 'time' }
+        }
       }
       // on: input
     }
@@ -80,6 +83,13 @@ app.set({
   },
   bla: new thing.Constructor(bla.get('smurt.smarts', {}))
 })
+
+// after this changing!
+setTimeout(() => {
+  console.clear()
+  console.log('\n\n\n\n\n remove this!!!!')
+  app.bla.remove()
+}, 500)
 
 // bla.adapter.websocket.connected.is(true, function () {
 //   console.log('zzzzzzzzzzzzz')

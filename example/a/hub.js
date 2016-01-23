@@ -5,7 +5,9 @@ var bla = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
     websocket: {
-
+      server: {
+        http: require('vigour-hub/lib/debug').serverLogger
+      }
     }
   },
   val: 'a val',
@@ -48,7 +50,8 @@ while (n) {
         number: e + 1,
         description: gentext(n),
         video: 'bla' + e,
-        img: 'xxxxxx' + e
+        img: 'xxxxxx' + e,
+        time: 0
       }
     }
   }

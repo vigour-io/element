@@ -14,11 +14,11 @@ function getit (field) {
       self = parent._self
       if (self) {
         let a = self.get(field)
-        return a ? a.parseValue() : 'smurky'
+        return a ? a.parseValue() : ''
       }
       parent = parent.parent
     }
-    return 'bla'
+    return ''
   }
 }
 

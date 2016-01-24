@@ -2,7 +2,7 @@
 var Observable = require('vigour-js/lib/observable')
 var app = require('../../lib/app')
 var Element = app.ChildConstructor
-var debug = global.debug = require('vigour-hub/lib/debug')
+// var debug = global.debug = require('vigour-hub/lib/debug')
 require('./style.less')
 
 var a = global.a = new Observable({

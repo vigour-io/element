@@ -9,25 +9,6 @@ var a = global.a = new Observable({
   val: '!!!!!!'
 })
 
-var thing = new Element({
-  text: a,
-  css: {
-    $: 'flups'
-  }
-})
-
-var x = new Element({
-  yo: {
-    text: 'yooooo'
-  }
-})
-
-var y = new x.Constructor({
-  yo: new Element({
-    text: 'gurk'
-  })
-})
-
 var thing2 = new Element({
   flups: new thing.Constructor()
 })
@@ -45,11 +26,11 @@ app.tx.set({
     text: {
       $: 'gurkens'
     }
-  },
-  xx: y,
-  yy: new x.Constructor()
+  }
 })
 
 var m = {}
-console.log('?', JSON.stringify(app.tx.$map(void 0, void 0, m), false, 2), m)
+console.log('?', app.tx.$map(void 0, void 0, m), m)
 // lets fix!
+
+// app.tx.

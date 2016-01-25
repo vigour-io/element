@@ -5,32 +5,29 @@ var Element = app.ChildConstructor
 
 require('./style.less')
 
-var a = global.a = new Observable({
-  val: '!!!!!!'
+var Hub = require('vigour-hub')
+
+var hub = global.hub = new Hub({
+  adapter: {
+    inject: require('vigour-hub/lib/protocol/websocket'),
+    websocket: {
+      val: 'ws://localhost:3031'
+      // val: 'ws://37.48.93.68:9000'
+    }
+  },
+  jobs: {}
 })
 
-var thing2 = new Element({
-  flups: new thing.Constructor()
-})
 
 app.set({
-  tx: new thing2.Constructor()
+  jobs: new Element({
+    $: true,
+    bla: {
+      $collection: true,
+      Child: {
+        text: { $: 'filename' }
+      },
+    },
+    val: hub.jobs
+  })
 })
-
-var m = {}
-console.log(app.tx.$map(void 0, void 0, m), m)
-// console.log(app.tx.storedmap)
-
-app.tx.set({
-  bla: {
-    text: {
-      $: 'gurkens'
-    }
-  }
-})
-
-var m = {}
-console.log('?', app.tx.$map(void 0, void 0, m), m)
-// lets fix!
-
-// app.tx.

@@ -22,21 +22,44 @@ var hub = global.hub = new Hub({
     },
     scope: 'james'
   },
-  jobs: {}
+  shows: {}
 })
 
-app.set({
-  jobs: new Element({
-    $collection: 'jobs',
+var Shows = new Element({
+  type: 'ul',
+  $collection: 'shows',
+  Child: {
+    type: 'li',
+    text: {
+      $: 'title'
+    }
+  }
+}).Constructor
+
+var Show = new Element({
+  $: true,
+  text: { $: 'title' },
+  seasons: {
+    type: 'ul',
+    $collection: 'currentSeason',
     Child: {
       type: 'li',
-      bla: {
-        $collection: true,
-        Child: {
-          text: { $: true }
-        }
+      text: {
+        $: 'number'
       }
-    },
-    val: hub
-  })
+    }
+  }
+}).Constructor
+
+app.set({
+  // shows: new Shows(hub),
+  show: new Show(hub.get('shows.2', {}))
 })
+
+// setTimeout(function () {
+//   hub.set({
+//     adapter: {
+//       websocket: 'ws://bla.local'
+//     }
+//   })
+// }, 1000)

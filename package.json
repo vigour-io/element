@@ -1,7 +1,7 @@
 {
   "name": "vigour-element",
   "description": "DOM stuff for vigour-js",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "main": "index.js",
   "scripts": {
     "test": "gaston test",
@@ -16,13 +16,15 @@
   "bugs": {
     "url": "https://github.com/vigour-io/element/issues"
   },
+  "browser": {
+    "./lib/app/": "./lib/app/browser",
+    "./lib/engine/ua/": "./lib/engine/ua/browser",
+    "./lib/event/": "./lib/event/browser"
+  },
   "dependencies": {
-    "axios": "^0.7.0",
-    "bluebird": "^3.0.5",
-    "vigour-js": "^0.3.8",
-    "vigour-track": "^1.0.5",
-    "vigour-ua": "~0.0.1",
-    "xfluent": "^1.0.0"
+    "vigour-js": "*",
+    "vast-client": "^1.3.6",
+    "vigour-ua": "0.0.3"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

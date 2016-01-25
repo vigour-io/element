@@ -25,7 +25,7 @@ describe('Add arrowRight listener', () => {
   })
 
   it('document body should have a samsung tv listener for arrowRight', () => {
-    expect(platforms.right[5]).to.be.equals("samsungRight")
+    expect(platforms.right[5]).to.be.equals('samsungRight')
   })
 
 })

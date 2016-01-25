@@ -18,3 +18,5 @@ after_failure:
 sudo: required
 services:
   - docker
+notifications:
+  slack: vigour:qQREnWSd0BgceDqfmTbUTGge

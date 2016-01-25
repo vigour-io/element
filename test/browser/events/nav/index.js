@@ -13,3 +13,11 @@ describe('On Arrow Left', function () {
 describe('On Arrow Right', function () {
   require('./right')
 })
+
+describe('On Back Button', function () {
+  require('./back')
+})
+
+describe('On Menu Button', function () {
+  require('./menu')
+})

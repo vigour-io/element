@@ -25,7 +25,7 @@ describe('Add arrowDown listener', () => {
   })
 
   it('document body should have a samsung tv listener for arrowDown', () => {
-    expect(platforms.down[29461]).to.be.equals("samsungDown")
+    expect(platforms.down[29461]).to.be.equals('samsungDown')
   })
 
 })

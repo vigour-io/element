@@ -36,22 +36,43 @@ var Shows = new Element({
   }
 }).Constructor
 
-var Show = new Element({
-  $: true,
-  text: { $: 'title' },
-  seasons: {
-    type: 'ul',
-    $collection: 'currentSeason',
-    Child: {
-      type: 'li',
-      text: {
-        $: 'number'
-      }
+// bla.$({
+//   shows: {
+//     '*': {
+//       title: {
+//         val: true
+//       }
+//     }
+//   }
+// })
+
+var Input = new Element({
+  type: 'input',
+  value: {},
+  on: {
+    keyup () {
+      this.value.origin.val = this.node.value
     }
   }
 }).Constructor
 
+var Show = new Element({
+  $: true,
+  title: new Input({ value: { $: 'title' } })
+  // seasons: {
+  //   type: 'ul',
+  //   $collection: 'currentSeason',
+  //   Child: {
+  //     type: 'li',
+  //     text: {
+  //       $: 'number'
+  //     }
+  //   }
+  // }
+}).Constructor
+
 app.set({
+  scope: new Input({ value: hub.adapter.scope }),
   // shows: new Shows(hub),
   show: new Show(hub.get('shows.2', {}))
 })

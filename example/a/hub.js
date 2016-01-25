@@ -21,3 +21,13 @@ var bla = global.hub = new Hub({
     }
   }
 })
+
+// bla.$({
+//   shows: {
+//     '*': {
+//       title: {
+//         val: true
+//       }
+//     }
+//   }
+// })

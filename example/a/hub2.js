@@ -1,6 +1,5 @@
 'use strict'
 var Hub = require('vigour-hub/')
-
 var bla = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
@@ -11,7 +10,7 @@ var bla = global.hub = new Hub({
           field: require('vigour-hub/lib/debug').serverDebug
         },
         val: 3032
-      },
+      }
       // val: 'ws://37.48.93.68:9000'
     }
   },

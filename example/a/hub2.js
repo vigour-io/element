@@ -9,7 +9,7 @@ var bla = global.hub = new Hub({
           // val: //require('vigour-hub/lib/debug').serverLogger,
           field: require('vigour-hub/lib/debug').serverDebug
         },
-        val: 3032
+        val: 3031
       }
       // val: 'ws://37.48.93.68:9000'
     }

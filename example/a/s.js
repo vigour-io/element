@@ -101,8 +101,15 @@ var Show = new Element({
       $collection: 'episodes',
       Child: {
         type: 'li',
-        text: {
-          $: 'title'
+        text: { $: 'title' },
+        time: new Input({
+          value: { $: 'time' }
+        }),
+        on: {
+          click () {
+            var data = this.lookUp('_input.currentEpisode')
+            data.val = this.origin
+          }
         }
       }
     }

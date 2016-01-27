@@ -36,15 +36,13 @@ var Shows = new Element({
   }
 }).Constructor
 
-// bla.$({
-//   shows: {
-//     '*': {
-//       title: {
-//         val: true
-//       }
-//     }
-//   }
-// })
+hub.$({
+  codes: {
+    '*': {
+      val: true
+    }
+  }
+})
 
 var Input = new Element({
   type: 'input',
@@ -117,6 +115,21 @@ var Show = new Element({
 }).Constructor
 
 app.set({
+  codes: {
+    type: 'ul',
+    $collection: 'codes',
+    Child: {
+      type: 'li',
+      text: {
+        $: true,
+        $prepend () {
+          console.log(this.origin.key)
+          return this.origin.key
+        }
+      }
+    },
+    val: hub
+  },
   scope: new Input({ value: hub.adapter.scope }),
   // shows: new Shows(hub),
   show: new Show(hub.get('shows.2', {}))

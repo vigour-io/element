@@ -15,10 +15,12 @@ var bla = global.hub = new Hub({
     }
   },
   autoRemoveScopes: false,
+  codes: { //so codes with no context --- and removal  special codes service???? --- hub 'codes hub...'
+    tempcode: true,
+    noContext: true
+  },
   shows: {
-    1: {
-      title: 'from hub - 1'
-    }
+    1: 'from hub - 1'
   }
 })
 

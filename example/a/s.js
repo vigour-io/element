@@ -51,6 +51,7 @@ var Input = new Element({
   value: {},
   on: {
     keyup () {
+      console.log('!!!WRONG!!!', this.value.origin)
       this.value.origin.val = this.node.value
     }
   }
@@ -58,7 +59,28 @@ var Input = new Element({
 
 var Show = new Element({
   $: true,
-  title: new Input({ value: { $: 'title' } })
+  title: new Input({ value: { $: 'title' } }),
+  switch: {
+    type: 'button',
+    text: 'swtich btn',
+    on: {
+      click () {
+        var data = this.parent.origin
+        var nr = Math.round(Math.random() * 10)
+        console.log(nr)
+        data.currentEpisode.val = data.get('seasons.0.episodes.' + nr, {})
+      }
+    }
+  },
+  episode: {
+    $: 'currentEpisode',
+    title: {
+      text: { $: 'title' }
+    },
+    time: new Input({
+      value: { $: 'time' }
+    })
+  }
   // seasons: {
   //   type: 'ul',
   //   $collection: 'currentSeason',

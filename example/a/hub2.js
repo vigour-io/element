@@ -14,6 +14,7 @@ var bla = global.hub = new Hub({
       // val: 'ws://37.48.93.68:9000'
     }
   },
+  autoRemoveScopes: false,
   shows: {
     1: {
       title: 'from hub - 1'

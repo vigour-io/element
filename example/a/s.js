@@ -62,7 +62,7 @@ var Show = new Element({
   title: new Input({ value: { $: 'title' } }),
   switch: {
     type: 'button',
-    text: 'swtich btn',
+    text: 'currentEpisode swtich btn',
     on: {
       click () {
         var data = this.parent.origin
@@ -80,17 +80,33 @@ var Show = new Element({
     time: new Input({
       value: { $: 'time' }
     })
+  },
+  holder: {
+    $: 'currentSeason',
+    switch: {
+      type: 'button',
+      text: 'currentSeason swtich btn',
+      on: {
+        click () {
+          var data = this.parent.parent.origin
+          var nr = Math.round(Math.random() * 7)
+          console.log(nr)
+          data.currentSeason.val = data.get('seasons.' + nr, {})
+        }
+      }
+    },
+    text: { $: 'number' },
+    episodes: {
+      type: 'ul',
+      $collection: 'episodes',
+      Child: {
+        type: 'li',
+        text: {
+          $: 'title'
+        }
+      }
+    }
   }
-  // seasons: {
-  //   type: 'ul',
-  //   $collection: 'currentSeason',
-  //   Child: {
-  //     type: 'li',
-  //     text: {
-  //       $: 'number'
-  //     }
-  //   }
-  // }
 }).Constructor
 
 app.set({

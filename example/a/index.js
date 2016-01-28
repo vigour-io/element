@@ -105,7 +105,7 @@ app.tx.set({
 app.tx.set({
   bb: new b.Constructor({
     Child: {
-      james: { text: 'yex' } //check maybe allways make new?
+      james: { text: 'yex' } // check maybe allways make new?
     }
   })
 })

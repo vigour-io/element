@@ -11,16 +11,16 @@ var hub = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
     websocket: {
-      val: 'ws://localhost:3031',
+      val: 'ws://jim.local:3031',
       connected: {
         on: {
-          data () {
-            console.log('yo connect!')
+          data (data) {
+            console.log('yo connect!', data)
           }
         }
       }
     },
-    scope: 'james'
+    scope: 'james'//'scope_' + Math.round(Math.random() * 9999)
   },
   shows: {}
 })
@@ -35,14 +35,6 @@ var Shows = new Element({
     }
   }
 }).Constructor
-
-hub.$({
-  codes: {
-    '*': {
-      val: true
-    }
-  }
-})
 
 var Input = new Element({
   type: 'input',
@@ -115,26 +107,55 @@ var Show = new Element({
 }).Constructor
 
 app.set({
-  codes: {
-    type: 'ul',
-    $collection: 'codes',
-    Child: {
-      type: 'li',
-      text: {
-        $: true,
-        $prepend () {
-          console.log(this.origin.key)
-          return this.origin.key
-        }
-      }
-    },
-    val: hub
-  },
+  // codes: {
+  //   $: true,
+  //   holder: {
+  //     $collection: true,
+  //     Child: new Input({
+  //       value: {
+  //         $: true
+  //         // inject: require('vigour-js/lib/operator/type'),
+  //         // $type: 'string'
+  //       },
+  //       on: {
+  //         keyup () {
+  //           this._input.val = this.node.value
+  //         }
+  //       }
+  //     })
+  //   }
+  // },
   scope: new Input({ value: hub.adapter.scope }),
-  // shows: new Shows(hub),
+  shows: new Shows(hub),
   show: new Show(hub.get('shows.2', {}))
 })
 
+// hub.get('codes', {}).$({
+//   '*': {
+//     val: true
+//   }
+// })
+
+// it the codes ofcourse
+
+hub.get('user', {}).$({
+  'yo': {
+    val: true
+  }
+})
+
+// app.codes.val = hub.codes
+
+// only have to sub on my own code -- but now we can refresh it
+// hub.get('codes', {}).on('property', function (data) {
+//   console.log('yoyoyoyoyo', data, data.added)
+// })
+
+// setTimeout(function () {
+//   hub.set({
+//     codes: { [Math.round(Math.random() * 9999)]: '?????' }
+//   })
+// }, 100)
 // setTimeout(function () {
 //   hub.set({
 //     adapter: {

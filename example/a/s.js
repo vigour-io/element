@@ -70,40 +70,40 @@ var Show = new Element({
     time: new Input({
       value: { $: 'time' }
     })
-  },
-  holder: {
-    $: 'currentSeason',
-    switch: {
-      type: 'button',
-      text: 'currentSeason swtich btn',
-      on: {
-        click () {
-          var data = this.parent.parent.origin
-          var nr = Math.round(Math.random() * 7)
-          console.log(nr)
-          data.currentSeason.val = data.get('seasons.' + nr, {})
-        }
-      }
-    },
-    text: { $: 'number' },
-    episodes: {
-      type: 'ul',
-      $collection: 'episodes',
-      Child: {
-        type: 'li',
-        text: { $: 'title' },
-        time: new Input({
-          value: { $: 'time' }
-        }),
-        on: {
-          click () {
-            var data = this.lookUp('_input.currentEpisode')
-            data.val = this.origin
-          }
-        }
-      }
-    }
   }
+  // holder: {
+  //   $: 'currentSeason',
+  //   switch: {
+  //     type: 'button',
+  //     text: 'currentSeason swtich btn',
+  //     on: {
+  //       click () {
+  //         var data = this.parent.parent.origin
+  //         var nr = Math.round(Math.random() * 7)
+  //         console.log(nr)
+  //         data.currentSeason.val = data.get('seasons.' + nr, {})
+  //       }
+  //     }
+  //   },
+  //   text: { $: 'number' },
+  //   episodes: {
+  //     type: 'ul',
+  //     $collection: 'episodes',
+  //     Child: {
+  //       type: 'li',
+  //       text: { $: 'title' },
+  //       time: new Input({
+  //         value: { $: 'time' }
+  //       }),
+  //       on: {
+  //         click () {
+  //           var data = this.lookUp('_input.currentEpisode')
+  //           data.val = this.origin
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }).Constructor
 
 app.set({
@@ -125,6 +125,7 @@ app.set({
   //     })
   //   }
   // },
+  address: new Input({ value: hub.adapter.websocket }),
   scope: new Input({ value: hub.adapter.scope }),
   shows: new Shows(hub),
   show: new Show(hub.get('shows.2', {}))

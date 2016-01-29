@@ -11,8 +11,8 @@ var bla = global.hub = new Hub({
           // val: //require('vigour-hub/lib/debug').serverLogger,
           field: require('vigour-hub/lib/debug').serverDebug
         }
-      }
-      // val: 'ws://37.48.93.68:9000'
+      },
+      val: 'ws://localhost:3033'
     }
   },
   scope (scope, event, getScope) {
@@ -23,19 +23,19 @@ var bla = global.hub = new Hub({
     var ret = getScope.apply(this, arguments)
     if (init && scope[0] !== '#') {
       // how can this fuck it it up so much?
+
+      // needs double later for scraper
       ret.set({
         // clients: {},
         adapter: {
+          // id: scope + '-hubs',
           websocket: 'ws://localhost:3032',
           scope: scope
         }
       }, event)
     }
     return ret
-  },
-  // autoRemoveScopes: false,
-  user: {},
-  shows: {}
+  }
   // codes: {
   //   noContext: true,
   //   noInstance: true,
@@ -56,55 +56,8 @@ var bla = global.hub = new Hub({
 //   tempcode: true
 // }, false)
 
-var n = 4
-while (n) {
-  var s = 10
-  var seasons = {}
-  while (s) {
-    s--
-    let episodes = {}
-    let e = 20
-    seasons[s] = {
-      number: s + 1,
-      episodes: episodes
-    }
-    while (e) {
-      e--
-      episodes[e] = {
-        title: 'episode!' + s + '.' + e,
-        number: e + 1,
-        description: gentext(n),
-        video: 'bla' + e,
-        img: 'xxxxxx' + e,
-        time: 0
-      }
-    }
-  }
-  bla.shows.setKey(n, {
-    title: 'haha show!' + n,
-    description: gentext(n),
-    seasons: seasons
-  }, false)
-
-  bla.shows[n].set({
-    currentEpisode: bla.shows[n].seasons[1].episodes[1],
-    currentSeason: bla.shows[n].seasons[2]
-  }, false)
-  n--
-}
-
-function gentext () {
-  var g = 100
-  var str = ''
-  while (g) {
-    g--
-    str += ' dcewew '
-  }
-  return str
-}
-
 bla.adapter.websocket.set({
   server: 3031
 })
 
-console.log('start hub')
+console.log('start normal hub')

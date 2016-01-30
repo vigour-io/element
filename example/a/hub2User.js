@@ -16,6 +16,11 @@ var bla = global.hub = new Hub({
     },
     user: {}
   },
+  shows: {
+    1: {
+      title: 'tssss'
+    }
+  },
   // ok so now we need to pass scope as well
   autoRemoveScopes: false,
   scope (scope, event, getScope) {

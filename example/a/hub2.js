@@ -15,6 +15,7 @@ var bla = global.hub = new Hub({
       val: 'ws://localhost:3033'
     }
   },
+  shows: {},
   scope (scope, event, getScope) {
     var init
     if (!this._scopes || !this._scopes[scope]) {
@@ -23,7 +24,6 @@ var bla = global.hub = new Hub({
     var ret = getScope.apply(this, arguments)
     if (init && scope[0] !== '#') {
       // how can this fuck it it up so much?
-
       // needs double later for scraper
       ret.set({
         // clients: {},
@@ -36,20 +36,6 @@ var bla = global.hub = new Hub({
     }
     return ret
   }
-  // codes: {
-  //   noContext: true,
-  //   noInstance: true,
-  //   Child: {
-  //     // on: {
-  //     //   new (val, event) {
-  //     //     console.log('haha new', event.stamp, event.client && event.client.val)
-  //     //     // find the client -- what about attaching the client to the event super conveniet
-  //     //   }
-  //     // },
-  //     noContext: true,
-  //     noInstance: true
-  //   }
-  // }
 })
 
 // bla.codes.set({
@@ -61,3 +47,13 @@ bla.adapter.websocket.set({
 })
 
 console.log('start normal hub')
+
+// setTimeout(function () {
+//   console.log('\n\n\nnow connect that fucker')
+//   bla.adapter.websocket.val = 'ws://localhost:3033'
+// }, 4000)
+
+// hub is going to be insane when done -- adition of streams and sane chunking -- addiiton of nanomsg and you have an insane system
+
+
+// so jsut add new property

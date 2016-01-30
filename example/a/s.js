@@ -11,40 +11,27 @@ var hub = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
     websocket: {
-      val: 'ws://jim.local:3031',
-      connected: {
-        on: {
-          data (data) {
-            console.log('yo connect!', data)
-          }
-        }
-      }
+      val: 'ws://jim.local:3031'
     },
-    scope: 'james'//'scope_' + Math.round(Math.random() * 9999)
-  },
-  shows: {}
-})
-
-var Shows = new Element({
-  type: 'ul',
-  $collection: 'shows',
-  Child: {
-    type: 'li',
-    text: {
-      $: 'title'
-    }
+    scope: 'james' // 'scope_' + Math.round(Math.random() * 9999)
   }
-}).Constructor
+})
 
 var Input = new Element({
   type: 'input',
   value: {},
   on: {
     keyup () {
-      console.log('!!!WRONG!!!', this.value.origin)
       this.value.origin.val = this.node.value
     }
   }
+}).Constructor
+
+var Shows = new Element({
+  $collection: 'shows',
+  Child: new Input({
+    value: { $: 'title' }
+  })
 }).Constructor
 
 var Show = new Element({
@@ -61,16 +48,16 @@ var Show = new Element({
         data.currentEpisode.val = data.get('seasons.0.episodes.' + nr, {})
       }
     }
-  },
-  episode: {
-    $: 'currentEpisode',
-    title: {
-      text: { $: 'title' }
-    },
-    time: new Input({
-      value: { $: 'time' }
-    })
   }
+  // episode: {
+  //   $: 'currentEpisode',
+  //   title: {
+  //     text: { $: 'title' }
+  //   },
+  //   time: new Input({
+  //     value: { $: 'time' }
+  //   })
+  // }
   // holder: {
   //   $: 'currentSeason',
   //   switch: {
@@ -107,6 +94,29 @@ var Show = new Element({
 }).Constructor
 
 app.set({
+  // dc: {
+  //   type: 'button',
+  //   text: {
+  //     val: hub.adapter.websocket.connected,
+  //     $transform (val) {
+  //       return val === true ? 'lets dc' : 'lezzzz connect it!'
+  //     }
+  //   },
+  //   on: {
+  //     click (data, event) {
+  //       if (hub.adapter.websocket.connected.val) {
+  //         hub.adapter.websocket.val = 'ws://blurf.local'
+  //         console.log(hub.shows)
+  //         hub.shows.each(function (p, key) {
+  //           console.log('?????', key)
+  //           p.remove(event)
+  //         })
+  //       } else {
+  //         hub.adapter.websocket.val = 'ws://jim.local:3031'
+  //       }
+  //     }
+  //   }
+  // },
   // codes: {
   //   $: true,
   //   holder: {
@@ -128,7 +138,7 @@ app.set({
   address: new Input({ value: hub.adapter.websocket }),
   scope: new Input({ value: hub.adapter.scope }),
   shows: new Shows(hub),
-  show: new Show(hub.get('shows.2', {}))
+  show: new Show(hub.get('shows.2', { title: '......' }))
 })
 
 // hub.get('codes', {}).$({
@@ -164,3 +174,5 @@ hub.get('user', {}).$({
 //     }
 //   })
 // }, 1000)
+
+// get path resolver in add property -- allways add on on orginal and make

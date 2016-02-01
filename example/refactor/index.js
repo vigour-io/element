@@ -7,13 +7,17 @@ var app = new Element({
 })
 
 var list = new Observable({
-  1: { title: 'xxx' },
-  2: { title: 'yyy' }
+  shows: {
+    1: { title: 'xxx' },
+    2: { title: 'yyy' }
+  }
 })
 
 var list2 = new Observable({
-  1: { title: 'hhh' },
-  2: { title: 'hihih' }
+  shows: {
+    1: { title: 'hhh' },
+    2: { title: 'hihih' }
+  }
 })
 
 var bla = new Observable({
@@ -57,7 +61,7 @@ app.set({
         html: '<h1>blurf</h1>' // parse need path prob
       }
     },
-    $collection: true,
+    $collection: 'shows',
     val: list
   }
 })

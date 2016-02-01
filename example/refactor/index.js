@@ -48,12 +48,16 @@ app.set({
       src: { $: 'title.blurf' }
     },
     on: {
-      click () {
-        console.log('jixen!', this.path)
+      click (ev) {
         this.set({
-          type: 'h1',
-          x: 300,
-          text: 'haha node flips'
+          type: 'input',
+          x: ev.pageX,
+          value: 'haha node flips'
+        })
+      },
+      keyup (ev) {
+        this.set({
+          x: ev.target.value
         })
       }
     },

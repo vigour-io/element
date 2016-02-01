@@ -52,7 +52,7 @@ var Element = new Observable({
     },
     on: {
       reference () {
-        // make better
+        // make better, faster
         this.patch()
       }
     },
@@ -114,15 +114,14 @@ Syncable.prototype.define({
     // this when using a set that bubles is the ultimate change manager dont care about anything else
     // what you can do is when catched -- do
     var changed = _sSet.apply(this, arguments)
-    var x = changed || this
-    if (x._on.data && x._on.data.base) {
-      x._on.data.base.each(function (p, key) {
+    var sync = changed || this
+    if (sync._on.data && sync._on.data.base) {
+      sync._on.data.base.each(function (p, key) {
         if (p instanceof Element) {
           p.patch()
         }
       })
     }
-    // }
     return changed
   }
 })
@@ -271,7 +270,6 @@ hub.$({
 //   console.log('???')
 //   console.timeEnd('patch')
 // })
-
 // window.requestAnimationFrame(function loopy() {
 //   app.patch(loopy)
 // })
@@ -283,10 +281,12 @@ setInterval(function () {
     app.set({
       bla: new DiscCol(hub.discover)
     })
+    isshows = false
   } else {
     app.set({
       bla: new Col(hub.shows)
     })
+    isshows = true
   }
   cnt++
 })
@@ -298,3 +298,5 @@ setInterval(function () {
   })
   prev = cnt
 }, 1e3)
+
+// what about just doing the subs maps for subscription? much less stuff

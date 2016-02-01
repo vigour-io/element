@@ -76,7 +76,7 @@ function addListeners (element, target, attach, event) {
 exports.define = {
   handleCollection (data, event) {
     if (data === null) {
-      console.error('????')
+      // console.error('????')
     }
     if (this._input === null) {
       // this.clear()

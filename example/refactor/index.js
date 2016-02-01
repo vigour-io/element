@@ -1,19 +1,39 @@
 'use strict'
+var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
-var app = require('../../lib/app')
-var Element = app.ChildConstructor
 
-// // require('./style.less')
-// var Hub = require('vigour-hub')
+var app = new Element({
+  DOM: document.body
+})
 
-// var hub = global.hub = new Hub({
-//   adapter: {
-//     inject: require('vigour-hub/lib/protocol/websocket'),
-//     websocket: {
-//       val: 'ws://jim.local:3031'
-//     },
-//     scope: 'james' // 'scope_' + Math.round(Math.random() * 9999)
-//   }
-// })
+var list = new Observable({
+  1: { title: 'xxx' },
+  2: { title: 'yyy' }
+})
 
-require('./element/render')
+var list2 = new Observable({
+  1: { title: 'hhh' },
+  2: { title: 'hihih' }
+})
+// update from 'sbscribeble or something give it a good name -- that can be used anywhere'
+// this will make update buble up! amaze ballz!
+
+app.set({
+  key: 'app',
+  bla: {
+    text: 'lulz'
+  },
+  bla2: {
+    Child: {
+      text: { $: 'title' }
+    },
+    $collection: true,
+    val: list
+  }
+})
+
+setTimeout(function () {
+  app.bla2.val = list2
+}, 500)
+
+// rename vjs to observable

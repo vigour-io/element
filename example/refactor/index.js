@@ -21,7 +21,10 @@ var list2 = new Observable({
 app.set({
   key: 'app',
   bla: {
-    text: 'lulz'
+    text: 'lulz',
+    css: {
+      yuzi: 'blurf'
+    }
   },
   bla2: {
     Child: {

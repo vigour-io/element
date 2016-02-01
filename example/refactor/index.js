@@ -36,11 +36,26 @@ var bla = new Observable({
 
 app.set({
   key: 'app',
+  on: {
+    click () {
+      console.log('whatttt?', this.path)
+    }
+  },
   bla: {
     type: 'img',
     x: bla.x, // DOES NOT LISTEN YET WILL BE FIXED! e.g. add on -- only when ref (else it just fires)
     attributes: {
       src: { $: 'title.blurf' }
+    },
+    on: {
+      click () {
+        console.log('jixen!', this.path)
+        this.set({
+          type: 'h1',
+          x: 300,
+          text: 'haha node flips'
+        })
+      }
     },
     css: {
       yuzi: {

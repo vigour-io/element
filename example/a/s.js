@@ -3,7 +3,7 @@ var Observable = require('vigour-js/lib/observable')
 var app = require('../../lib/app')
 var Element = app.ChildConstructor
 
-require('./style.less')
+// require('./style.less')
 
 var Hub = require('vigour-hub')
 

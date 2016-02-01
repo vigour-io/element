@@ -15,20 +15,47 @@ var list2 = new Observable({
   1: { title: 'hhh' },
   2: { title: 'hihih' }
 })
+
+var bla = new Observable({
+  title: {
+    val: 'YUZI!',
+    blurf: 'hahahaha!',
+  },
+  x: 100
+})
+
+// of course normal obs dont rly update have to handle that with subs --
+// will be done subs is injectable enhances set boom
+
 // update from 'sbscribeble or something give it a good name -- that can be used anywhere'
 // this will make update buble up! amaze ballz!
 
 app.set({
   key: 'app',
   bla: {
-    text: 'lulz',
+    type: 'img',
+    x: bla.x, // DOES NOT LISTEN YET WILL BE FIXED! e.g. add on -- only when ref (else it just fires)
+    attributes: {
+      src: { $: 'title.blurf' }
+    },
     css: {
-      yuzi: 'blurf'
-    }
+      yuzi: {
+        $: 'title',
+        jurk: {
+          $: 'blurf'
+        }
+      }
+      // make it possible to put stuff on props jus tuse the same shit
+    },
+    val: bla
   },
   bla2: {
     Child: {
-      text: { $: 'title' }
+      text: { $: 'title' },
+      w: 100,
+      gurken: {
+        html: '<h1>blurf</h1>' // parse need path prob
+      }
     },
     $collection: true,
     val: list

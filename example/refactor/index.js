@@ -25,7 +25,7 @@ var bla = new Observable({
     val: 'YUZI!',
     blurf: 'hahahaha!',
   },
-  x: 100
+  x: 20
 })
 
 // of course normal obs dont rly update have to handle that with subs --
@@ -33,16 +33,31 @@ var bla = new Observable({
 
 // update from 'sbscribeble or something give it a good name -- that can be used anywhere'
 // this will make update buble up! amaze ballz!
+console.clear()
+
+var Gurk = new Element({
+  type: 'br',
+  css: {
+    james: 'xxx'
+  }
+}).Constructor
+
+var Smuts = new Element({
+  type: 'br',
+  css: {
+    james: 'xxx'
+  }
+}).Constructor
 
 app.set({
-  key: 'app',
   on: {
     click () {
       console.log('whatttt?', this.path)
     }
   },
-  bla: {
+  bla: new Gurk({
     type: 'img',
+    bla: new Smuts(),
     x: bla.x, // DOES NOT LISTEN YET WILL BE FIXED! e.g. add on -- only when ref (else it just fires)
     attributes: {
       src: { $: 'title.blurf' }
@@ -51,39 +66,46 @@ app.set({
       click (ev) {
         this.set({
           type: 'input',
-          x: ev.pageX,
-          value: 'haha node flips'
+          attributes: null,
+          value: bla.x
         })
       },
       keyup (ev) {
-        this.set({
-          x: ev.target.value
-        })
+        // fix origin for property ofcourse
+        this.value.origin.val = ev.target.value
+        this.patch()
       }
     },
-    css: {
-      yuzi: {
-        $: 'title',
-        jurk: {
-          $: 'blurf'
-        }
-      }
-      // make it possible to put stuff on props jus tuse the same shit
-    },
+    // css: {
+    //   yuzi: {
+    //     $: 'title',
+    //     jurk: {
+    //       $: 'blurf'
+    //     }
+    //   }
+    //   // make it possible to put stuff on props jus tuse the same shit
+    // },
     val: bla
-  },
+  }),
   bla2: {
     Child: {
       text: { $: 'title' },
-      w: 100,
-      gurken: {
-        html: '<h1>blurf</h1>' // parse need path prob
-      }
+      w: 100
     },
+    // so each collection has to have its own renderthing
     $collection: 'shows',
     val: list
   }
 })
+
+console.clear()
+for (var i = 0; i < 10; i++) {
+  list2.shows.set({
+    [i]: {
+      title: 'hux'
+    }
+  }, false)
+}
 
 setTimeout(function () {
   app.bla2.val = list2

@@ -2,6 +2,7 @@
 var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 
+require('./bla.less')
 // temp solution
 var Syncable = require('vigour-hub/lib/syncable')
 var _set = Syncable.prototype.set
@@ -46,7 +47,8 @@ var Hub = require('vigour-hub')
 var hub = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
-    websocket: 'ws://37.48.93.68:5052'
+    websocket: 'ws://37.48.93.68:5052',
+    scope: '#james'
     // websocket: 'ws://'
   }
 })
@@ -65,7 +67,12 @@ var app = global.app = new Element({
 })
 
 var Shows = new Element({
+  css: 'shows',
   Child: {
+    css: 'show',
+    title: {
+      text: { $: 'title' }
+    },
     img: {
       type: 'img',
       src: { $: 'img' }
@@ -73,8 +80,23 @@ var Shows = new Element({
     description: {
       html: { $: 'description' }
     },
-    title: {
-      text: { $: 'title' }
+    on: {
+      down (ev) {
+        // also add this contextkey to $ then its perfection
+        console.clear()
+        // pass on the attached thing super importante
+        // when we have that its pretty ok allready!
+
+        //special resolve (key is also non-existing)
+        console.log('xxxxx', this.path, ev)
+        // var
+
+        this.set({
+          bla: {
+            text: 'xxxx!@!@#!@#'
+          }
+        })
+      }
     }
   },
   $collection: true
@@ -90,27 +112,38 @@ var Discover = new Element({
   $collection: true
 }).Constructor
 
+
+var Bla = new Element({
+  text: {}
+}).Constructor
+
 app.set({
-  btn2: {
-    type: 'button',
-    text: 'switchit',
-    on: {
-      up () {
-        if (this.parent.shows) {
-          this.parent.shows.remove()
-          this.parent.set({
-            discover: new Discover(hub.get('discover', {}))
-          })
-        } else {
-          this.parent.discover.remove()
-          this.parent.set({
-            shows: new Shows(hub.get('shows', {}))
-          })
+  key: 'app',
+  holder: {
+    btn2: {
+      type: 'button',
+      text: 'switchit',
+      on: {
+        up () {
+          if (this.parent.shows) {
+            this.parent.shows.remove()
+            this.parent.set({
+              discover: new Discover(hub.get('discover', {}))
+            })
+          } else {
+            this.parent.discover.remove()
+            this.parent.set({
+              shows: new Shows(hub.get('shows', {}))
+            })
+          }
         }
       }
-    }
+    },
+    shows: new Shows(hub.get('shows', {}))
   },
-  shows: new Shows(hub.get('shows', {}))
+  holder2: {
+    xx: new Bla('xxxxxx')
+  }
 })
 
 //// ws://37.48.93.68:5051

@@ -19,7 +19,6 @@ var Protocol = new Observable({
   useVal: true,
   on: {
     value () {
-      console.log('lulzzzz', this._path)
       if (!this.hasOwnProperty('conn')) {
         this.conn = new Conn({ upstream: this })
       }

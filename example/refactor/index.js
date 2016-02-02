@@ -23,7 +23,6 @@ Syncable.prototype.define({
   },
   on (type, val) {
     if (val.$map) {
-      //$ (map, event, ready, attach, key) {
       this.$(val.$map(), void 0, false, val)
     }
     return _on.apply(this, arguments)
@@ -32,9 +31,9 @@ Syncable.prototype.define({
 
 // Syncable.prototype._on.data.onRemoveProperty = function (base, type) {
 //   if (base.storedmap) {
+  // this is safer -- but may be too heavy or not nessecary... when doing event:false it does not unsub now
 //     // this is the next thing to optmize of course...
 //     console.error('UNSUBSCRIBE!', base.storedmap)
-
 //     // need to hash it? -- prob nice to all add to the map creator (should give me a subs)
 //   }
 // }

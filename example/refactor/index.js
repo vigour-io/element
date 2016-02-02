@@ -23,18 +23,21 @@ Syncable.prototype.define({
   },
   on (type, val) {
     if (val.$map) {
-      this.$(val.$map())
+      //$ (map, event, ready, attach, key) {
+      this.$(val.$map(), void 0, false, val)
     }
     return _on.apply(this, arguments)
-  },
-  _on: {
-    data: {
-      onRemoveProperty () {
-        console.log('?????')
-      }
-    }
   }
 })
+
+// Syncable.prototype._on.data.onRemoveProperty = function (base, type) {
+//   if (base.storedmap) {
+//     // this is the next thing to optmize of course...
+//     console.error('UNSUBSCRIBE!', base.storedmap)
+
+//     // need to hash it? -- prob nice to all add to the map creator (should give me a subs)
+//   }
+// }
 
 // Syncable.prototype.set({
   // on attach add!
@@ -44,7 +47,8 @@ var Hub = require('vigour-hub')
 var hub = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
-    websocket: 'ws://37.48.93.68:5051'
+    websocket: 'ws://37.48.93.68:5052'
+    // websocket: 'ws://'
   }
 })
 
@@ -63,34 +67,51 @@ var app = global.app = new Element({
 
 var Shows = new Element({
   Child: {
-    // text: {
-    //   $: 'title'
-    // },
     img: {
       type: 'img',
-      src: { $: 'img' },
-      // $transform (val) {
-      //   return val && `https://imgmtvplay-a.akamaihd.net/image/400/300?url=${val}`
-      // }
+      src: { $: 'img' }
+    },
+    description: {
+      html: { $: 'description' }
     },
     title: {
       text: { $: 'title' }
     }
   },
-  $collection: 'shows'
+  $collection: true
+}).Constructor
+
+var Discover = new Element({
+  Child: {
+    text: { $: 'title' },
+    shows: new Shows({
+      $collection: 'items'
+    })
+  },
+  $collection: true
 }).Constructor
 
 app.set({
-  btn: {
+  btn2: {
     type: 'button',
-    text: 'remove all!',
+    text: 'switchit',
     on: {
       up () {
-        this.parent.shows.remove()
+        if (this.parent.shows) {
+          this.parent.shows.remove()
+          this.parent.set({
+            discover: new Discover(hub.get('discover', {}))
+          })
+        } else {
+          this.parent.discover.remove()
+          this.parent.set({
+            shows: new Shows(hub.get('shows', {}))
+          })
+        }
       }
     }
   },
-  shows: new Shows(hub)
+  shows: new Shows(hub.get('shows', {}))
 })
 
 //// ws://37.48.93.68:5051

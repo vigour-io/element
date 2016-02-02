@@ -26,6 +26,13 @@ Syncable.prototype.define({
       this.$(val.$map())
     }
     return _on.apply(this, arguments)
+  },
+  _on: {
+    data: {
+      onRemoveProperty () {
+        console.log('?????')
+      }
+    }
   }
 })
 
@@ -74,6 +81,15 @@ var Shows = new Element({
 }).Constructor
 
 app.set({
+  btn: {
+    type: 'button',
+    text: 'remove all!',
+    on: {
+      up () {
+        this.parent.shows.remove()
+      }
+    }
+  },
   shows: new Shows(hub)
 })
 

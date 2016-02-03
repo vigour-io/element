@@ -22,9 +22,9 @@
     "./lib/event/": "./lib/event/browser"
   },
   "dependencies": {
-    "vigour-js": "*",
+    "vigour-js": "~0.4.4",
     "vast-client": "^1.3.6",
-    "vigour-ua": "0.0.3"
+    "vigour-ua": "~0.0.5"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

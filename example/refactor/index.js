@@ -81,6 +81,9 @@ var Shows = new Element({
       html: { $: 'description' }
     },
     on: {
+      drag (ev) {
+        console.log('!!!')
+      },
       down (ev) {
         console.log('xxxxx', this.path, ev)
         // var

@@ -82,20 +82,16 @@ var Shows = new Element({
     },
     on: {
       down (ev) {
-        // also add this contextkey to $ then its perfection
-        console.clear()
-        // pass on the attached thing super importante
-        // when we have that its pretty ok allready!
-
-        //special resolve (key is also non-existing)
         console.log('xxxxx', this.path, ev)
         // var
-
+        // console.clear()
+        console.log('--- start resolving ----')
         this.set({
           bla: {
             text: 'xxxx!@!@#!@#'
           }
         })
+        console.log('---- end resolve ----')
       }
     }
   },
@@ -139,7 +135,7 @@ app.set({
         }
       }
     },
-    shows: new Shows(hub.get('shows', {}))
+    discover: new Discover(hub.get('discover', {}))
   },
   holder2: {
     xx: new Bla('xxxxxx')
@@ -147,4 +143,3 @@ app.set({
 })
 
 //// ws://37.48.93.68:5051
-

@@ -47,7 +47,7 @@ var Hub = require('vigour-hub')
 var hub = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
-    websocket: 'ws://37.48.93.68:5052',
+    websocket: 'ws://37.48.93.68:5051',
     scope: '#james'
     // websocket: 'ws://'
   }
@@ -92,6 +92,8 @@ var Shows = new Element({
           }
         })
         console.log('---- end resolve ----')
+        // console.log('keys on app.col', app.col.keys())
+        console.log('keys on ChildConstructor [shows child]', Shows.prototype.Child.prototype.keys())
       }
     }
   },

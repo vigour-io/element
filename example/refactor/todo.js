@@ -4,15 +4,46 @@ var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 require('./todo.less')
 
+var _set = Observable.prototype.set
+
+var Cached = new Observable({
+  properties: {
+    _lstamp: true
+  },
+  on: {
+    data (data, event) {
+        var parent = this
+        while (parent && parent._lstamp !== event.stamp) {
+          parent._lstamp = event.stamp
+          if (parent._on.data.base) {
+            for(var i in parent._on.data.base) {
+              if (parent._on.data.base[i] && parent._on.data.base[i].patch) {
+                parent._on.data.base[i].patch()
+              }
+            }
+          }
+          parent = parent._parent
+        }
+    }
+  },
+  Child: 'Constructor'
+}).Constructor
+
 // ----- data ----
-var todos = new Observable({
-  todo: {
+var todos = global.todos = new Cached({
+  todo1: {
     title: 'some todo from datax'
   }
 })
 
+for(var i = 0 ; i < 100; i++) {
+  todos.set({ [i]: {
+    title: i
+  }})
+}
+
 // ----- ui -----
-var app = new Element({
+var app = global.app = new Element({
   DOM: document.body
 })
 
@@ -27,14 +58,19 @@ var Todo = new Element({
     },
     title: {
       type: 'label',
-      text: { $: 'title' }
+      html: { $: 'title' }
     },
     destroy: {
       type: 'button',
       on: {
         down () {
-          console.log('ok remove!')
-          app.patch()
+          var todo = this.parent.parent
+          var key = todo.key
+          console.time('remove')
+          todo.parent.origin[key].remove()
+          app.patch(function () {
+            console.timeEnd('remove')
+          })
         }
       }
     }
@@ -44,13 +80,9 @@ var Todo = new Element({
   }
 }).Constructor
 
+console.time('start')
 app.set({
   todoapp: {
-    on: {
-      click () {
-        console.log('?')
-      }
-    },
     header: {
       type: 'header',
       title: {
@@ -63,8 +95,19 @@ app.set({
           placeholder: 'What needs to be done?'
         },
         on: {
-          keyup () {
-            console.log('lullllz')
+          keydown (e) {
+            if (e.keyCode === 13) {
+              console.time('add')
+              app.todoapp.header.title.text.val = Math.random() * 999
+              todos.set({
+                [Date.now()]: {
+                  title: e.currentTarget.value
+                }
+              })
+              app.patch(function () {
+                console.timeEnd('add')
+              })
+            }
           }
         }
       },
@@ -87,3 +130,4 @@ app.set({
     }
   }
 })
+app.patch(() => console.timeEnd('start'))

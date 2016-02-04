@@ -4,22 +4,21 @@ var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 require('./todo.less')
 
-var _set = Observable.prototype.set
-
+Observable.prototype.inject(require('../../lib/subscription/stamp'))
 // ----- data ----
 var focus = new Observable()
-var todos = global.todos = new Cached({
+var todos = global.todos = new Observable({
   // todo1: {
   //   title: 'some todo from datax',
   //   style: focus
   // }
 })
 
-// for(var i = 0 ; i < 100; i++) {
-//   todos.set({ [i]: {
-//     title: i
-//   }})
-// }
+for(var i = 0 ; i < 500; i++) {
+  todos.set({ [i]: {
+    title: i
+  }})
+}
 
 // ----- ui -----
 var app = global.app = new Element({
@@ -56,13 +55,13 @@ var Todo = new Element({
     // and not for this one! (on update ofc)
     destroy: {
       type: 'button',
-      on: {
-        down () {
-          console.error('----->', this.path, this.state.data.key)
-          this.state.data.remove()
-          // this.state.data = null
-        }
-      }
+      // on: {
+      //   down () {
+      //     console.error('----->', this.path, this.state.data.key)
+      //     this.state.data.remove()
+      //     // this.state.data = null
+      //   }
+      // }
     }
   },
   edit: {

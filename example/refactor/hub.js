@@ -32,14 +32,14 @@ var hub = new Hub({
   }
 })
 
-var n = 4
+var n = 10e3
 while (n) {
-  var s = 10
+  var s = 2
   var seasons = {}
   while (s) {
     s--
     let episodes = {}
-    let e = 20
+    let e = 2
     seasons[s] = {
       number: s + 1,
       episodes: episodes

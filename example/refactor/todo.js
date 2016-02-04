@@ -4,6 +4,14 @@ var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 require('./todo.less')
 
+// ----- data ----
+var todos = new Observable({
+  todo: {
+    title: 'some todo from datax'
+  }
+})
+
+// ----- ui -----
 var app = new Element({
   DOM: document.body
 })
@@ -24,7 +32,7 @@ var Todo = new Element({
     destroy: {
       type: 'button',
       on: {
-        click () {
+        down () {
           console.log('ok remove!')
           app.patch()
         }
@@ -35,12 +43,6 @@ var Todo = new Element({
     type: 'input'
   }
 }).Constructor
-
-var todos = new Observable({
-  todo: {
-    title: 'some todo from datax'
-  }
-})
 
 app.set({
   todoapp: {
@@ -72,7 +74,6 @@ app.set({
         },
         ['todo-list']: {
           type: 'ul',
-          css: 'main',
           $collection: true,
           Child: Todo,
           val: todos

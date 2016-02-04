@@ -30,9 +30,11 @@ var Cached = new Observable({
 }).Constructor
 
 // ----- data ----
+var focus = new Observable()
 var todos = global.todos = new Cached({
   todo1: {
-    title: 'some todo from datax'
+    title: 'some todo from datax',
+    style: focus
   }
 })
 
@@ -49,37 +51,48 @@ var app = global.app = new Element({
 
 var Todo = new Element({
   type: 'li',
-  view: {
-    // not for this one!
-    toggle: {
-      type: 'input',
-      attributes: {
-        type: 'checkbox'
-      }
-    },
+  // view: {
+    // // not for this one!
+    // toggle: {
+    //   type: 'input',
+    //   attributes: {
+    //     type: 'checkbox'
+    //   }
+    // },
+    // css: {
+    //   $: 'style',
+    //   // $transform (val) {
+
+    //   //   if(todos[this.parent.parent.key].style.val) {
+    //   //     console.log(todos[this.parent.parent.key].style.origin.key, this.parent.parent.key, this.path)
+    //   //   }
+    //   //   // console.log(todos[this.parent.parent.key].style.origin.key)
+    //   //   return
+    //   // }
+    // },
     title: {
       type: 'label',
       text: { $: 'title' }
     },
     // and not for this one! (on update ofc)
-    destroy: {
-      type: 'button',
-      on: {
-        down () {
-          var todo = this.parent.parent
-          var key = todo.key
-          console.log('!!!!remove', this.path)
-          todo.parent.origin[key].remove()
-          app.patch(function () {
-            console.timeEnd('remove')
-          })
-        }
-      }
-    }
-  },
-  edit: {
-    type: 'input'
-  }
+    // destroy: {
+    //   type: 'button',
+    //   on: {
+    //     down () {
+    //       var todo = this.parent.parent
+    //       var key = todo.key
+    //       console.log('!!!!remove', this.path)
+    //       todo.parent.origin[key].remove()
+    //       app.patch(function () {
+    //         console.timeEnd('remove')
+    //       })
+    //     }
+    //   }
+    // }
+  // },
+  // edit: {
+  //   type: 'input'
+  // }
 }).Constructor
 
 console.time('start')
@@ -100,9 +113,15 @@ app.set({
           keydown (e) {
             if (e.keyCode === 13) {
               console.time('add')
-              var key = Math.round(Math.random() * 999999999)
+              var key = todos.keys().length
               app.todoapp.header.title.text.val = key
-              todos.set({ [key]: { title: e.currentTarget.value } })
+              todos.set({
+                [key]: {
+                  title: e.currentTarget.value,
+                  style: key + ' mystyles'
+                }
+              })
+              // focus.val = key
               app.patch(function () {
                 console.timeEnd('add')
               })

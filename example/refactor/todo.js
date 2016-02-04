@@ -48,7 +48,7 @@ var Todo = new Element({
     // },
     title: {
       type: 'label',
-      html: {
+      text: {
         $: 'title'
       }
     },

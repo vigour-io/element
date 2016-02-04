@@ -1,5 +1,4 @@
 'use strict'
-
 var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 require('./todo.less')
@@ -51,12 +50,19 @@ var app = global.app = new Element({
 
 var Todo = new Element({
   type: 'li',
-  text: { $: 'title' },
-  css: {
-    $: 'style',
-    $transform () {
-      console.log('hey hey hey')
-      return this.path.join('.')
+  view: {
+    text: { $: 'title' },
+    css: {
+      $: 'style',
+      $transform () {
+        return this.path.join('.')
+      }
+    }
+  },
+  on: {
+    click () {
+      console.log('helllllo!')
+      this.state.data.remove()
     }
   }
 }).Constructor

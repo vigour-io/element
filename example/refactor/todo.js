@@ -12,18 +12,18 @@ var Cached = new Observable({
   },
   on: {
     data (data, event) {
-        var parent = this
-        while (parent && parent._lstamp !== event.stamp) {
-          parent._lstamp = event.stamp
-          if (parent._on.data.base) {
-            for(var i in parent._on.data.base) {
-              if (parent._on.data.base[i] && parent._on.data.base[i].patch) {
-                parent._on.data.base[i].patch()
-              }
+      var parent = this
+      while (parent && parent._lstamp !== event.stamp) {
+        parent._lstamp = event.stamp
+        if (parent._on.data.base) {
+          for(var i in parent._on.data.base) {
+            if (parent._on.data.base[i] && parent._on.data.base[i].patch) {
+              parent._on.data.base[i].patch()
             }
           }
-          parent = parent._parent
         }
+        parent = parent._parent
+      }
     }
   },
   Child: 'Constructor'
@@ -32,10 +32,10 @@ var Cached = new Observable({
 // ----- data ----
 var focus = new Observable()
 var todos = global.todos = new Cached({
-  todo1: {
-    title: 'some todo from datax',
-    style: focus
-  }
+  // todo1: {
+  //   title: 'some todo from datax',
+  //   style: focus
+  // }
 })
 
 // for(var i = 0 ; i < 100; i++) {
@@ -51,14 +51,14 @@ var app = global.app = new Element({
 
 var Todo = new Element({
   type: 'li',
-  // view: {
-    // // not for this one!
-    // toggle: {
-    //   type: 'input',
-    //   attributes: {
-    //     type: 'checkbox'
-    //   }
-    // },
+  view: {
+    // not for this one!
+    toggle: {
+      type: 'input',
+      attributes: {
+        type: 'checkbox'
+      }
+    },
     // css: {
     //   $: 'style',
     //   // $transform (val) {
@@ -72,29 +72,28 @@ var Todo = new Element({
     // },
     title: {
       type: 'label',
-      text: { $: 'title' }
+      html: {
+        $: 'title'
+      }
     },
     // and not for this one! (on update ofc)
-    // destroy: {
-    //   type: 'button',
-    //   on: {
-    //     down () {
-    //       var todo = this.parent.parent
-    //       var key = todo.key
-    //       console.log('!!!!remove', this.path)
-    //       todo.parent.origin[key].remove()
-    //       app.patch(function () {
-    //         console.timeEnd('remove')
-    //       })
-    //     }
-    //   }
-    // }
-  // },
-  // edit: {
-  //   type: 'input'
-  // }
+    destroy: {
+      type: 'button',
+      on: {
+        down () {
+          console.error('----->', this.path, this.state.data.key)
+          this.state.data.remove()
+          // this.state.data = null
+        }
+      }
+    }
+  },
+  edit: {
+    type: 'input'
+  }
 }).Constructor
 
+var cnt = 0
 console.time('start')
 app.set({
   todoapp: {
@@ -113,12 +112,12 @@ app.set({
           keydown (e) {
             if (e.keyCode === 13) {
               console.time('add')
-              var key = todos.keys().length
+              var key = ++cnt
               app.todoapp.header.title.text.val = key
               todos.set({
                 [key]: {
-                  title: e.currentTarget.value,
-                  style: key + ' mystyles'
+                  title: key + ' : ' + e.currentTarget.value,
+                  // style:
                 }
               })
               // focus.val = key

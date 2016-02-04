@@ -71,7 +71,13 @@ var Shows = new Element({
   Child: {
     css: 'show',
     title: {
-      text: { $: 'title' }
+      type: 'input',
+      value: { $: 'title' },
+      on: {
+        keyup () {
+          console.log('KEYS!')
+        }
+      }
     },
     img: {
       type: 'img',

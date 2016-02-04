@@ -36,6 +36,12 @@ var todos = global.todos = new Cached({
   }
 })
 
+for(var i = 0 ; i < 100; i++) {
+  todos.set({ [i]: {
+    title: i
+  }})
+}
+
 // ----- ui -----
 var app = global.app = new Element({
   DOM: document.body
@@ -74,6 +80,7 @@ var Todo = new Element({
   }
 }).Constructor
 
+console.time('start')
 app.set({
   todoapp: {
     header: {
@@ -123,3 +130,4 @@ app.set({
     }
   }
 })
+app.patch(() => console.timeEnd('start'))

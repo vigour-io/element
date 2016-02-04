@@ -12,10 +12,8 @@ var Cached = new Observable({
   },
   on: {
     data (data, event) {
-      // var changed = _set.apply(this, arguments)
-      // if (changed && event) {
         var parent = this
-        while (parent) {
+        while (parent && parent._lstamp !== event.stamp) {
           parent._lstamp = event.stamp
           if (parent._on.data.base) {
             for(var i in parent._on.data.base) {
@@ -26,29 +24,8 @@ var Cached = new Observable({
           }
           parent = parent._parent
         }
-        console.log('obs change set lstamp')
-
-        // this._lstamp = event.stamp
-      // }
-      // return changed
     }
   },
-  // define: {
-  //   set (val, event) {
-  //     var changed = _set.apply(this, arguments)
-
-  //     if (changed && event) {
-  //       var parent = this
-  //       while (parent) {
-  //         parent._lstamp = event.stamp
-  //         parent = parent._parent
-  //       }
-  //       console.log('obs change set lstamp')
-  //       // this._lstamp = event.stamp
-  //     }
-  //     return changed
-  //   }
-  // },
   Child: 'Constructor'
 }).Constructor
 

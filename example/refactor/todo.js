@@ -12,6 +12,9 @@ var Cached = new Observable({
   },
   on: {
     data (data, event) {
+      // this needs improvement
+      // we can use this on the hubs as well -- stamp info
+      // just go up an send it out when someone reqs --- same system
       var parent = this
       while (parent && parent._lstamp !== event.stamp) {
         parent._lstamp = event.stamp

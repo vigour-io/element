@@ -5,19 +5,6 @@ var Observable = require('vigour-js/lib/observable')
 require('./bla.less')
 // temp solution
 var Syncable = require('vigour-hub/lib/syncable')
-var _set = Syncable.prototype.set
-var _on = Syncable.prototype.on
-
-Syncable.prototype.define({
-  on (type, val) {
-    if (val.$map) {
-      console.log('yeeey', val.$map(), this.path)
-      this.$(val.$map(), void 0, false, val)
-    }
-    return _on.apply(this, arguments)
-  }
-})
-
 Syncable.prototype.inject(require('../../lib/subscription/stamp'))
 
 // Syncable.prototype._on.data.onRemoveProperty = function (base, type) {

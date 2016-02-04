@@ -9,26 +9,16 @@ var _set = Syncable.prototype.set
 var _on = Syncable.prototype.on
 
 Syncable.prototype.define({
-  set () {
-    var r = _set.apply(this, arguments)
-    if (this._on && this._on.data.base) {
-      for (let i in this._on.data.base) {
-        let prop = this._on.data.base[i]
-        if (prop instanceof Element) {
-          prop.patch()
-          break
-        }
-      }
-    }
-    return r
-  },
   on (type, val) {
     if (val.$map) {
+      console.log('yeeey', val.$map(), this.path)
       this.$(val.$map(), void 0, false, val)
     }
     return _on.apply(this, arguments)
   }
 })
+
+Syncable.prototype.inject(require('../../lib/subscription/stamp'))
 
 // Syncable.prototype._on.data.onRemoveProperty = function (base, type) {
 //   if (base.storedmap) {
@@ -47,8 +37,8 @@ var Hub = require('vigour-hub')
 var hub = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
-    websocket: 'ws://37.48.93.68:5051',
-    scope: '#james'
+    websocket: 'ws://localhost:3033',
+    // scope: '#james'
     // websocket: 'ws://'
   }
 })
@@ -146,7 +136,7 @@ app.set({
         }
       }
     },
-    discover: new Discover(hub.get('discover', {}))
+    shows: new Shows(hub.get('shows', {}))
   },
   holder2: {
     xx: new Bla('xxxxxx')

@@ -85,13 +85,15 @@ var Context = new Element({
 app.set({
   key: 'app',
   // text: 'xxx',
-  col: new Col(a),
+  col: new Col(),
   // on: {
     // down () {
       // console.log('haha')
     // }
   // }
 })
+
+app.col.val = a
 
 //// ws://37.48.93.68:5051
 

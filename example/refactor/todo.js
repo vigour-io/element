@@ -36,11 +36,11 @@ var todos = global.todos = new Cached({
   }
 })
 
-for(var i = 0 ; i < 100; i++) {
-  todos.set({ [i]: {
-    title: i
-  }})
-}
+// for(var i = 0 ; i < 100; i++) {
+//   todos.set({ [i]: {
+//     title: i
+//   }})
+// }
 
 // ----- ui -----
 var app = global.app = new Element({
@@ -50,6 +50,7 @@ var app = global.app = new Element({
 var Todo = new Element({
   type: 'li',
   view: {
+    // not for this one!
     toggle: {
       type: 'input',
       attributes: {
@@ -58,15 +59,16 @@ var Todo = new Element({
     },
     title: {
       type: 'label',
-      html: { $: 'title' }
+      text: { $: 'title' }
     },
+    // and not for this one! (on update ofc)
     destroy: {
       type: 'button',
       on: {
         down () {
           var todo = this.parent.parent
           var key = todo.key
-          console.time('remove')
+          console.log('!!!!remove', this.path)
           todo.parent.origin[key].remove()
           app.patch(function () {
             console.timeEnd('remove')
@@ -98,12 +100,9 @@ app.set({
           keydown (e) {
             if (e.keyCode === 13) {
               console.time('add')
-              app.todoapp.header.title.text.val = Math.random() * 999
-              todos.set({
-                [Date.now()]: {
-                  title: e.currentTarget.value
-                }
-              })
+              var key = Math.round(Math.random() * 999999999)
+              app.todoapp.header.title.text.val = key
+              todos.set({ [key]: { title: e.currentTarget.value } })
               app.patch(function () {
                 console.timeEnd('add')
               })

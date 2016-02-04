@@ -8,16 +8,6 @@ var app = new Element({
   DOM: document.body
 })
 
-var Input = new Element({
-  type: 'input',
-  value: { $: 'title' },
-  on: {
-    keyup () {
-      console.log('key up lezzgo')
-    }
-  }
-}).Constructor
-
 var Todo = new Element({
   type: 'li',
   view: {
@@ -36,7 +26,6 @@ var Todo = new Element({
       on: {
         click () {
           console.log('ok remove!')
-          // this.parent.parent.origin.remove()
           app.patch()
         }
       }
@@ -65,6 +54,11 @@ app.set({
         type: 'input',
         attributes: {
           placeholder: 'What needs to be done?'
+        },
+        on: {
+          keyup () {
+            console.log('lullllz')
+          }
         }
       },
       main: {
@@ -87,18 +81,3 @@ app.set({
     }
   }
 })
-
-/*
- type: 'section',
-    title: {
-      type: 'h1',
-      text: 'todo-app'
-    },
-    ['todo-list']: {
-      type: 'ul',
-      css: 'main',
-      $collection: true,
-      Child: Todo,
-      val: todos
-    }
-*/

@@ -36,7 +36,8 @@ var NestCol = new Element({
       },
       on: {
         click () {
-          console.log('xxx', this.path)
+          // console.clear()
+          console.log('----CONTEXT HARDLINER----', this.path)
           this.set({
             img: {
               type: 'img',

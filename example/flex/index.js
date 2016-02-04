@@ -31,7 +31,6 @@ var cnt = 0
 var arr = ['one', 'two', 'three', 'four']
 
 app.set({
-  $: true,
   carousel: new Carousel({
     val: list,
     items: {

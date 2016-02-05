@@ -2,9 +2,10 @@
 
 var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
+Observable.prototype.inject(require('../../lib/subscription/stamp'))
+
 require('./todo.less')
 
-// Observable.prototype.inject(require('../../lib/subscription/stamp'))
 // ----- data ----
 var focus = new Observable()
 var todos = global.todos = new Observable({
@@ -24,7 +25,13 @@ var hub = global.hub = new Hub({
   }
 })
 
+var x = Date.now()
 todos = hub.get('shows', {})
+todos.once(function () {
+  window.requestAnimationFrame(function () {
+    app.todoapp.header.title.text.val ='hub:' + (Date.now() - x) + 'ms'
+  })
+})
 
 // ----- ui -----
 var app = global.app = new Element({
@@ -34,38 +41,39 @@ var app = global.app = new Element({
 var Todo = new Element({
   type: 'li',
   view: {
-    // not for this one!
     toggle: {
       type: 'input',
       attributes: {
-        type: 'checkbox'
+        $: true,
+        type: 'checkbox',
+        checked: {
+          $: 'done'
+        }
+      },
+      on: {
+        change () {
+          var data = this.state.data.get('done', false)
+          data.val = !data.val
+        }
       }
     },
-    // css: {
-    //   $: 'style',
-    //   // $transform (val) {
-
-    //   //   if(todos[this.parent.parent.key].style.val) {
-    //   //     console.log(todos[this.parent.parent.key].style.origin.key, this.parent.parent.key, this.path)
-    //   //   }
-    //   //   // console.log(todos[this.parent.parent.key].style.origin.key)
-    //   //   return
-    //   // }
-    // },
+    css: {
+      $: 'done',
+      $transform (val) {
+        return val ? 'haha' : 'no'
+      }
+    },
     title: {
       type: 'label',
       text: {
         $: 'title'
       }
     },
-    // and not for this one! (on update ofc)
     destroy: {
       type: 'button',
       on: {
         down () {
-          console.error('----->', this.path, this.state.data.key)
           this.state.data.remove()
-          // this.state.data = null
         }
       }
     }
@@ -126,9 +134,30 @@ app.set({
           $collection: true,
           Child: Todo,
           val: todos
+        },
+        buttons: {
+          removeall: {
+            type: 'button',
+            text: 'remove all',
+            on: {
+              click () {
+                todos.clear()
+              }
+            }
+          }
         }
       }
     }
   }
 })
-app.patch(() => app.todoapp.header.title.text.val = 'init: ' + (Date.now() - start) + ' ms')
+
+app.patch(() => {
+  // this will be fixed in vjs (faster each)
+  for (var i in todos._speshkeys) {
+    todos[todos._speshkeys[i]].set({ done: true })
+  }
+  todos.clear()
+  app.patch(() => {
+    app.todoapp.header.title.text.val = 'init: ' + (Date.now() - start) + ' ms'
+  })
+})

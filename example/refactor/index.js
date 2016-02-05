@@ -68,9 +68,6 @@ var Shows = new Element({
         console.log('!!!')
       },
       down (ev) {
-        console.log('xxxxx', this.path, ev)
-        // var
-        // console.clear()
         console.log('--- start resolving ----')
         this.set({
           bla: {

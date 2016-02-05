@@ -32,7 +32,7 @@ var hub = new Hub({
   }
 })
 
-var n = 10e3
+var n = 1e2
 while (n) {
   var s = 2
   var seasons = {}

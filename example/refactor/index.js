@@ -24,7 +24,7 @@ var Hub = require('vigour-hub')
 var hub = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
-    websocket: 'ws://localhost:3033',
+    websocket: 'ws://localhost:3033'
     // scope: '#james'
     // websocket: 'ws://'
   }
@@ -93,7 +93,6 @@ var Discover = new Element({
   $collection: true
 }).Constructor
 
-
 var Bla = new Element({
   text: {}
 }).Constructor
@@ -128,3 +127,4 @@ app.set({
 })
 
 //// ws://37.48.93.68:5051
+

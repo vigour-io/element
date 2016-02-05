@@ -2,7 +2,6 @@
 require('./todo.less')
 var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
-// Observable.prototype.inject(require('=../../lib/subscription/stamp'))
 // ----- data ----
 // var Syncable = require('vigour-hub/lib/syncable')
 // Syncable.prototype.inject(require('../../lib/subscription/stamp'))
@@ -19,8 +18,10 @@ var Observable = require('vigour-js/lib/observable')
 // })
 // var todos = hub.get('shows', {})
 
-var todos = new Observable({
-  inject: require('../../lib/subscription/stamp'),
+Observable.prototype.inject(require('../../lib/subscription/stamp'))
+
+var todos = global.todos = new Observable({
+  // inject: require('../../lib/subscription/stamp')
   // Child: 'Constructor'
 })
 
@@ -112,7 +113,7 @@ app.set({
         on: {
           keydown (e, event) {
             if (e.keyCode === 13) {
-              //hub.adapter.scope.val
+              // hub.adapter.scope.val
               todos.set({ [ ('z-' + Math.random() * 9999) ]: {
                 title: e.currentTarget.value || 'new todo' }
               }, event)

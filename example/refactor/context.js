@@ -39,7 +39,6 @@ var a = new Observable({
   }
 })
 
-
 var NestCol = new Element({
   $collection: true,
   Child: {

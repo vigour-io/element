@@ -1,59 +1,41 @@
 'use strict'
-
+require('./todo.less')
 var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 Observable.prototype.inject(require('../../lib/subscription/stamp'))
 
-require('./todo.less')
-
 // ----- data ----
-var focus = new Observable()
-var todos = global.todos = new Observable({
-  // todo1: {
-  //   title: 'some todo from datax',
-  //   style: focus
-  // }
-})
-
 var Syncable = require('vigour-hub/lib/syncable')
 Syncable.prototype.inject(require('../../lib/subscription/stamp'))
 var Hub = require('vigour-hub')
 var hub = global.hub = new Hub({
   adapter: {
     inject: require('vigour-hub/lib/protocol/websocket'),
-    websocket: 'ws://localhost:3033'
+    websocket: 'ws://localhost:3033',
+    scope: {
+      val: 'james',
+      inject: require('vigour-js/lib/observable/storage')
+    }
   }
 })
-
-var x = Date.now()
-todos = hub.get('shows', {})
-todos.once(function () {
-  window.requestAnimationFrame(function () {
-    app.todoapp.header.title.text.val ='hub:' + (Date.now() - x) + 'ms'
-  })
-})
+var todos = hub.get('shows', {})
 
 // ----- ui -----
 var app = global.app = new Element({
   DOM: document.body
 })
 
+// ----- todo -----
 var Todo = new Element({
   type: 'li',
   view: {
     toggle: {
       type: 'input',
       attributes: {
-        $: 'done',
         type: 'checkbox',
         checked: {
-          $: true,
-          $transform (val) {
-            if (this.state) {
-              console.log('YOYOYO', val, this.state.data.val)
-            }
-            return (this.state && this.state.data.val)
-          }
+          $: 'done',
+          $type: 'boolean'
         }
       },
       on: {
@@ -89,9 +71,6 @@ var Todo = new Element({
   }
 }).Constructor
 
-var cnt = 0
-var start = Date.now()
-
 app.set({
   time: {
     text: {}
@@ -103,25 +82,31 @@ app.set({
         type: 'h1',
         text: 'todo-app'
       },
+      user: {
+        type: 'input',
+        css: 'new-todo',
+        value: hub.adapter.scope,
+        on: {
+          keyup (e, event) {
+            hub.adapter.scope.set(e.currentTarget.value, event)
+          }
+        }
+      },
       ['new-todo']: {
         type: 'input',
         attributes: {
-          placeholder: 'What needs to be done?'
+          placeholder: {
+            val: hub.adapter.scope,
+            $add: ', what needs to be done?'
+          }
         },
         on: {
-          keydown (e) {
+          keydown (e, event) {
             if (e.keyCode === 13) {
-              var key = ++cnt
-              var update = Date.now()
-              app.todoapp.header.title.text.val = key
-              todos.set({
-                [key]: {
-                  title: key + ' : ' + e.currentTarget.value
-                }
-              })
-              app.patch(function () {
-                app.todoapp.header.title.text.val = 'add: ' + (Date.now() - update) + ' ms'
-              })
+              todos.set({ [todos._speshkeys.length]: {
+                title: e.currentTarget.value || 'new todo' }
+              }, event)
+              e.currentTarget.value = ''
             }
           }
         }
@@ -155,15 +140,4 @@ app.set({
       }
     }
   }
-})
-
-app.patch(() => {
-  // this will be fixed in vjs (faster each)
-  for (var i in todos._speshkeys) {
-    todos[todos._speshkeys[i]].set({ done: true })
-  }
-  todos.clear()
-  app.patch(() => {
-    app.todoapp.header.title.text.val = 'init: ' + (Date.now() - start) + ' ms'
-  })
 })

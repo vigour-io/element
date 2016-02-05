@@ -12,7 +12,6 @@ var Cached = new Observable({
     set (val, event) {
       var changed = _set.apply(this, arguments)
       if (changed && event) {
-        console.log('obs change set lstamp')
         var parent = this
         while (parent) {
           parent._lstamp = event.stamp

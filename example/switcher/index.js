@@ -21,7 +21,7 @@ var switcher = new Switcher({
   },
   ChildConstructor: new Element({
     $: true,
-    text: {
+    html: {
       $: 'title'
     }
   }),
@@ -57,17 +57,21 @@ data.current.set(new Observable({
 var cnt = 1
 var id = setInterval(function () {
   let key = Math.random()
+  app.holder.switcher.set({[key]: new Observable({
+    key: key,
+    title: key
+  })})
     // data.current.set(new Observable({
     //   key: key,
     //   title: key
     // }))
-    app.holder.switcher.set({[key]: {
-      html: 'flups:' + key
-    }})
+    // app.holder.switcher.set({[key]: {
+    //   html: 'flups:' + key
+    // }})
   //   // app.holder2.switcher.set({[key]: {
   //   //   html: 'haha:' + key
   //   // }})
-}, 100)
+}, 1000)
 
 // setTimeout(function () {
 //   clearInterval(id)

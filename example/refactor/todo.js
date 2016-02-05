@@ -107,7 +107,6 @@ app.set({
           placeholder: {
             // val: hub.adapter.scope,
             val: ', what needs to be done?'
-            // support operator is now broken -- also for cases!
           }
         },
         on: {
@@ -138,12 +137,38 @@ app.set({
           val: todos
         },
         buttons: {
+          Child: {
+            type: 'button'
+          },
           removeall: {
-            type: 'button',
             text: 'remove all',
             on: {
               click () {
                 todos.clear()
+              }
+            }
+          },
+          alldone: {
+            text: 'all done',
+            on: {
+              click (ev, event) {
+                todos.keys().forEach(function (val) {
+                  todos[val].set({
+                    done: true
+                  }, event)
+                })
+              }
+            }
+          },
+          allnotdone: {
+            text: 'all not done',
+            on: {
+              click (ev, event) {
+                todos.keys().forEach(function (val) {
+                  todos[val].set({
+                    done: false
+                  }, event)
+                })
               }
             }
           }

@@ -1,4 +1,17 @@
 'use strict'
+global.m = {
+  thunkcreation: 0,
+  getdata: 0,
+  propertyloop: 0,
+  comparestamps: 0,
+  render: 0,
+  propcompare: 0,
+  renderloopfromprop: 0,
+  renderloopfromelem: 0,
+  propertyloopEach: 0,
+  propertyloopEachFilter: 0
+}
+
 var Observable = require('vigour-js/lib/observable')
 var Element = require('../../lib')
 var app = global.app = new Element({

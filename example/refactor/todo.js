@@ -14,7 +14,7 @@ var todos = global.todos = new Observable({
   // }
 })
 
-for(var i = 0 ; i < 500; i++) {
+for(var i = 0 ; i < 100; i++) {
   todos.set({ [i]: {
     title: i
   }})
@@ -55,13 +55,13 @@ var Todo = new Element({
     // and not for this one! (on update ofc)
     destroy: {
       type: 'button',
-      // on: {
-      //   down () {
-      //     console.error('----->', this.path, this.state.data.key)
-      //     this.state.data.remove()
-      //     // this.state.data = null
-      //   }
-      // }
+      on: {
+        down () {
+          console.error('----->', this.path, this.state.data.key)
+          this.state.data.remove()
+          // this.state.data = null
+        }
+      }
     }
   },
   edit: {
@@ -70,8 +70,12 @@ var Todo = new Element({
 }).Constructor
 
 var cnt = 0
-console.time('start')
+var start = Date.now()
+
 app.set({
+  time: {
+    text: {}
+  },
   todoapp: {
     header: {
       type: 'header',
@@ -87,18 +91,16 @@ app.set({
         on: {
           keydown (e) {
             if (e.keyCode === 13) {
-              console.time('add')
               var key = ++cnt
+              var update = Date.now()
               app.todoapp.header.title.text.val = key
               todos.set({
                 [key]: {
-                  title: key + ' : ' + e.currentTarget.value,
-                  // style:
+                  title: key + ' : ' + e.currentTarget.value
                 }
               })
-              // focus.val = key
               app.patch(function () {
-                console.timeEnd('add')
+                app.todoapp.header.title.text.val = 'add: ' + (Date.now() - update) + ' ms'
               })
             }
           }
@@ -123,4 +125,4 @@ app.set({
     }
   }
 })
-app.patch(() => console.timeEnd('start'))
+app.patch(() => app.todoapp.header.title.text.val = 'init: ' + (Date.now() - start) + ' ms')

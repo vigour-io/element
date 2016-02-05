@@ -123,53 +123,48 @@ app.set({
       },
       main: {
         type: 'section',
-        ['toggle-all']: {
+        'toggle-all': {
           type: 'input',
           attributes: {
             type: 'checkbox',
             checked: true
           }
         },
-        ['todo-list']: {
+        'todo-list': {
           type: 'ul',
           $collection: true,
           Child: Todo,
           val: todos
+        }
+      },
+      footer: {
+        Child: {
+          css: 'footer-button'
         },
-        buttons: {
-          Child: {
-            type: 'button'
-          },
-          removeall: {
-            text: 'remove all',
-            on: {
-              click () {
-                todos.clear()
-              }
+        clearall: {
+          text: 'remove all',
+          on: {
+            click () { todos.clear() }
+          }
+        },
+        alldone: {
+          text: {
+            val: 'enable all',
+            $transform (val) {
+              console.log('yo !', val)
+              return this.parent.checked ? 'disable all' : val
             }
           },
-          alldone: {
-            text: 'all done',
-            on: {
-              click (ev, event) {
-                todos.keys().forEach(function (val) {
-                  todos[val].set({
-                    done: true
-                  }, event)
-                })
+          on: {
+            click (ev, event) {
+              var toggle = true
+              if (this.checked === true) {
+                toggle = false
               }
-            }
-          },
-          allnotdone: {
-            text: 'all not done',
-            on: {
-              click (ev, event) {
-                todos.keys().forEach(function (val) {
-                  todos[val].set({
-                    done: false
-                  }, event)
-                })
-              }
+              this.checked = toggle
+              this.text.patch(event)
+              console.log('lulllllz')
+              todos.keys().forEach((val) => todos[val].set({ done: toggle }, event))
             }
           }
         }

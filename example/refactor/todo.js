@@ -4,7 +4,7 @@ var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 require('./todo.less')
 
-Observable.prototype.inject(require('../../lib/subscription/stamp'))
+// Observable.prototype.inject(require('../../lib/subscription/stamp'))
 // ----- data ----
 var focus = new Observable()
 var todos = global.todos = new Observable({
@@ -14,11 +14,17 @@ var todos = global.todos = new Observable({
   // }
 })
 
-for(var i = 0 ; i < 100; i++) {
-  todos.set({ [i]: {
-    title: i
-  }})
-}
+var Syncable = require('vigour-hub/lib/syncable')
+Syncable.prototype.inject(require('../../lib/subscription/stamp'))
+var Hub = require('vigour-hub')
+var hub = global.hub = new Hub({
+  adapter: {
+    inject: require('vigour-hub/lib/protocol/websocket'),
+    websocket: 'ws://localhost:3033'
+  }
+})
+
+todos = hub.get('shows', {})
 
 // ----- ui -----
 var app = global.app = new Element({

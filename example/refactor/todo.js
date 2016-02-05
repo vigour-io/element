@@ -33,14 +33,11 @@ var Todo = new Element({
       type: 'input',
       attributes: {
         type: 'checkbox',
-        checked: {
-          $: 'done',
-          $type: 'boolean'
-        }
+        checked: { $: 'done', $type: 'boolean' }
       },
       on: {
         change () {
-          var data = this.state.data.get('done', {})
+          var data = this.state.data.get('done', false)
           data.val = !data.val
         }
       }
@@ -71,6 +68,7 @@ var Todo = new Element({
   }
 }).Constructor
 
+// ----- app -----
 app.set({
   time: {
     text: {}
@@ -98,12 +96,13 @@ app.set({
           placeholder: {
             val: hub.adapter.scope,
             $add: ', what needs to be done?'
+            // support operator is now broken -- also for cases!
           }
         },
         on: {
           keydown (e, event) {
             if (e.keyCode === 13) {
-              todos.set({ [todos._speshkeys.length]: {
+              todos.set({ [hub.adapter.scope.val + '' + Math.random() * 9999]: {
                 title: e.currentTarget.value || 'new todo' }
               }, event)
               e.currentTarget.value = ''

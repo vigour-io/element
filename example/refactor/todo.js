@@ -44,15 +44,21 @@ var Todo = new Element({
     toggle: {
       type: 'input',
       attributes: {
-        $: true,
+        $: 'done',
         type: 'checkbox',
         checked: {
-          $: 'done'
+          $: true,
+          $transform (val) {
+            if (this.state) {
+              console.log('YOYOYO', val, this.state.data.val)
+            }
+            return (this.state && this.state.data.val)
+          }
         }
       },
       on: {
         change () {
-          var data = this.state.data.get('done', false)
+          var data = this.state.data.get('done', {})
           data.val = !data.val
         }
       }

@@ -31,6 +31,18 @@ todos.set({
   }
 })
 
+var cases = global.cases = require('../../lib/cases')
+
+cases.set({
+  $wild: {
+    on: {
+      data () {
+        console.error('GO GO GO GO')
+      }
+    }
+  } // element cases
+})
+
 // // ----- ui -----
 var app = global.app = new Element({
   DOM: document.body
@@ -44,7 +56,10 @@ var Todo = new Element({
       type: 'input',
       attributes: {
         type: 'checkbox',
-        checked: { $: 'done', $type: 'boolean' }
+        checked: {
+          $: 'done',
+          $type: 'boolean'
+        }
       },
       on: {
         change () {
@@ -150,8 +165,8 @@ app.set({
         alldone: {
           text: {
             val: 'enable all',
+            $wild: 'MY BITCH',
             $transform (val) {
-              console.log('yo !', val)
               return this.parent.checked ? 'disable all' : val
             }
           },
@@ -163,7 +178,6 @@ app.set({
               }
               this.checked = toggle
               this.text.patch(event)
-              console.log('lulllllz')
               todos.keys().forEach((val) => todos[val].set({ done: toggle }, event))
             }
           }

@@ -47,7 +47,6 @@ Player.prototype.set({
 
 // example
 global.app = app.set({
-  val: data1,
   player: new Player(),
   button: {
     h: 40,
@@ -67,5 +66,6 @@ global.app = app.set({
         }
       }
     }
-  }
+  },
+  val: data1
 })

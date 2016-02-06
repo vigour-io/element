@@ -4,17 +4,7 @@ var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 // this needs to be injectable on everything!!!!
 // Observable.prototype.inject(require('../../lib/subscription/stamp'))
-global.h = new Observable({
-  bla: {
-    x: true
-  }
-})
 
-global.hx = new global.h.Constructor()
-
-hx.bla.x.remove()
-
-console.log(hx)
 // ----- data ----
 // var Syncable = require('vigour-hub/lib/syncable')
 // Syncable.prototype.inject(require('../../lib/subscription/stamp'))
@@ -42,7 +32,8 @@ var todos = global.todos = new Data({})
 todos.set({
   aTodoItem: {
     title: 'hello',
-    something: 'something hur'
+    something: 'something hur',
+    done: true
   }
 })
 
@@ -111,6 +102,8 @@ var Todo = new Element({
     },
     on: {
       down () {
+        console.clear()
+        console.log('ok resolve!')
         this.set({
           css: {
             james: 'james'
@@ -193,9 +186,6 @@ var Todoapp = new Element({
       removemyself: {
         on: {
           click (ev, event) {
-            // var a = this.set('resolve')
-            // console.log('')
-            // dont emit nested for element not nessecary
             this.patch(event)
             this.remove(event)
           }

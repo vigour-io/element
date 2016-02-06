@@ -2,6 +2,9 @@
 require('./todo.less')
 var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
+// this needs to be injectable on everything!!!!
+// Observable.prototype.inject(require('../../lib/subscription/stamp'))
+
 // ----- data ----
 // var Syncable = require('vigour-hub/lib/syncable')
 // Syncable.prototype.inject(require('../../lib/subscription/stamp'))
@@ -18,28 +21,39 @@ var Observable = require('vigour-js/lib/observable')
 // })
 // var todos = hub.get('shows', {})
 
-Observable.prototype.inject(require('../../lib/subscription/stamp'))
+// this here fails miserably!
+var Data = new Observable({
+  inject: require('../../lib/subscription/stamp'),
+  Child: 'Constructor'
+}).Constructor
 
-var todos = global.todos = new Observable({
-  // inject: require('../../lib/subscription/stamp')
-  // Child: 'Constructor'
-})
+var todos = global.todos = new Data({})
 
 todos.set({
-  bla: {
+  aTodoItem: {
     title: 'hello'
   }
 })
 
 var cases = global.cases = require('../../lib/cases')
 
+global.fakecase = new Observable({
+  val: true,
+  on: {
+    click () {}
+  }
+})
+
+global.fakecase2 = new Observable(global.fakecase)
+
 cases.set({
   $wild: {
-    on: {
-      data () {
-        console.error('GO GO GO GO')
-      }
-    }
+    val: false
+    // on: {
+    //   data () {
+    //     console.error('GO GO GO GO')
+    //   }
+    // }
   } // element cases
 })
 
@@ -50,7 +64,12 @@ var app = global.app = new Element({
 
 // // ----- todo -----
 var Todo = new Element({
+  key: 'todo',
   type: 'li',
+  // bla bla text? wrong!
+  bla: {
+    text: global.fakecase
+  },
   view: {
     toggle: {
       type: 'input',
@@ -78,6 +97,13 @@ var Todo = new Element({
       type: 'label',
       text: {
         $: 'title'
+      }
+    },
+    on: {
+      down () {
+        this.set({
+          text: 'bah!'
+        })
       }
     },
     destroy: {
@@ -162,6 +188,14 @@ app.set({
             click () { todos.clear() }
           }
         },
+        wildcase: {
+          text: { val: 'its off!', $wild: 'its wild!' },
+          on: {
+            click () {
+              cases.$wild.val = !cases.$wild.val
+            }
+          }
+        },
         alldone: {
           text: {
             val: 'enable all',
@@ -186,3 +220,9 @@ app.set({
     }
   }
 })
+
+setTimeout(function () {
+  console.clear()
+  console.log('--------------------')
+  global.fakecase.val = 222222
+}, 100)

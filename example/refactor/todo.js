@@ -197,7 +197,7 @@ var Todoapp = new Element({
             // console.log('')
             // dont emit nested for element not nessecary
             this.patch(event)
-            this.remove(event)
+            this.css.remove(event)
           }
         }
       },

@@ -111,6 +111,8 @@ var Todo = new Element({
     },
     on: {
       down () {
+        console.clear()
+        console.log('ok resolve!')
         this.set({
           css: {
             james: 'james'

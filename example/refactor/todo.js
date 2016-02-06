@@ -31,7 +31,8 @@ var todos = global.todos = new Data({})
 
 todos.set({
   aTodoItem: {
-    title: 'hello'
+    title: 'hello',
+    something: 'something hur'
   }
 })
 
@@ -66,10 +67,6 @@ var app = global.app = new Element({
 var Todo = new Element({
   key: 'todo',
   type: 'li',
-  // bla bla text? wrong!
-  bla: {
-    text: global.fakecase
-  },
   view: {
     toggle: {
       type: 'input',
@@ -96,13 +93,18 @@ var Todo = new Element({
     title: {
       type: 'label',
       text: {
-        $: 'title'
+        // does not work (yet)
+        // $prepend: { $: 'something' },
+        $: 'title',
+        $add: global.fakecase2
       }
     },
     on: {
       down () {
         this.set({
-          text: 'bah!'
+          css: {
+            james: 'james'
+          }
         })
       }
     },
@@ -121,6 +123,7 @@ var Todo = new Element({
 }).Constructor
 
 var Todoapp = new Element({
+  css: 'todoapp',
   header: {
     type: 'header',
     title: {
@@ -222,13 +225,12 @@ app.set({
     text: {}
   },
   $: true,
-  todoapp: new Todoapp(new Data({ todos: todos }))
+  // todoapp: new Todoapp(new Data({ todos: todos }))
   // apps: {
-  //   $collection: '*',
-  //   Child: {
-  //     text: { $: 'title' }
-  //   } // Todoapp
+  //   $collection: true,
+  //   Child: Todoapp
   // }
+  todoapp: new Todoapp(new Data({ todos: todos }))
 })
 
 // var dataapps = new Data({
@@ -237,12 +239,14 @@ app.set({
 //     todos: todos
 //   },
 //   b: {
-//     // todos: todos
+//     title: 'b',
+//     todos: todos
 //   }
 // })
 
-// .val needs to work!
-// app.set(dataapps)
+// // .val needs to work!
+// console.clear()
+// app.apps.set(dataapps)
 
 // setTimeout(function () {
 //   console.clear()

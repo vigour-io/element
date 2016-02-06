@@ -45,27 +45,29 @@ Player.prototype.set({
   }
 })
 
-// example
-global.app = app.set({
-  player: new Player(),
-  button: {
-    h: 40,
-    w: '50%',
-    type: 'button',
-    html: 'remove',
-    on: {
-      down (e, event) {
-        if (this.parent.player) {
-          this.html.set('new player')
-          this.parent.player.remove()
-        } else {
-          this.html.set('remove')
-          this.parent.set({
-            player: new Player()
-          })
+setTimeout(function () {
+  // example
+  global.app = app.set({
+    player: new Player(),
+    button: {
+      h: 40,
+      w: '50%',
+      type: 'button',
+      html: 'remove',
+      on: {
+        down (e, event) {
+          if (this.parent.player) {
+            this.html.set('new player')
+            this.parent.player.remove()
+          } else {
+            this.html.set('remove')
+            this.parent.set({
+              player: new Player()
+            })
+          }
         }
       }
-    }
-  },
-  val: data1
-})
+    },
+    val: data1
+  })
+}, 500)

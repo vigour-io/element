@@ -120,109 +120,133 @@ var Todo = new Element({
   }
 }).Constructor
 
-// // ----- app -----
-app.set({
-  time: {
-    text: {}
-  },
-  todoapp: {
-    header: {
-      type: 'header',
-      title: {
-        type: 'h1',
-        text: 'todo-app'
+var Todoapp = new Element({
+  header: {
+    type: 'header',
+    title: {
+      type: 'h1',
+      text: 'todo-app'
+    },
+    // user: {
+    //   type: 'input',
+    //   css: 'new-todo',
+    //   value: hub.adapter.scope,
+    //   on: {
+    //     keyup (e, event) {
+    //       hub.adapter.scope.set(e.currentTarget.value, event)
+    //     }
+    //   }
+    // },
+    ['new-todo']: {
+      type: 'input',
+      attributes: {
+        placeholder: {
+          // val: hub.adapter.scope,
+          val: ', what needs to be done?'
+        }
       },
-      // user: {
-      //   type: 'input',
-      //   css: 'new-todo',
-      //   value: hub.adapter.scope,
-      //   on: {
-      //     keyup (e, event) {
-      //       hub.adapter.scope.set(e.currentTarget.value, event)
-      //     }
-      //   }
-      // },
-      ['new-todo']: {
+      on: {
+        keydown (e, event) {
+          if (e.keyCode === 13) {
+            // hub.adapter.scope.val
+            todos.set({ [ ('z-' + Math.random() * 9999) ]: {
+              title: e.currentTarget.value || 'new todo' }
+            }, event)
+            e.currentTarget.value = ''
+          }
+        }
+      }
+    },
+    main: {
+      type: 'section',
+      'toggle-all': {
         type: 'input',
         attributes: {
-          placeholder: {
-            // val: hub.adapter.scope,
-            val: ', what needs to be done?'
+          type: 'checkbox',
+          checked: true
+        }
+      },
+      'todo-list': {
+        type: 'ul',
+        $collection: 'todos',
+        Child: Todo
+      }
+    },
+    footer: {
+      Child: {
+        css: 'footer-button'
+      },
+      clearall: {
+        text: 'remove all',
+        on: {
+          click () { todos.clear() }
+        }
+      },
+      wildcase: {
+        text: { val: 'its off!', $wild: 'its wild!' },
+        on: {
+          click () {
+            cases.$wild.val = !cases.$wild.val
+          }
+        }
+      },
+      alldone: {
+        text: {
+          val: 'enable all',
+          $wild: 'MY BITCH',
+          $transform (val) {
+            return this.parent.checked ? 'disable all' : val
           }
         },
         on: {
-          keydown (e, event) {
-            if (e.keyCode === 13) {
-              // hub.adapter.scope.val
-              todos.set({ [ ('z-' + Math.random() * 9999) ]: {
-                title: e.currentTarget.value || 'new todo' }
-              }, event)
-              e.currentTarget.value = ''
+          click (ev, event) {
+            var toggle = true
+            if (this.checked === true) {
+              toggle = false
             }
-          }
-        }
-      },
-      main: {
-        type: 'section',
-        'toggle-all': {
-          type: 'input',
-          attributes: {
-            type: 'checkbox',
-            checked: true
-          }
-        },
-        'todo-list': {
-          type: 'ul',
-          $collection: true,
-          Child: Todo,
-          val: todos
-        }
-      },
-      footer: {
-        Child: {
-          css: 'footer-button'
-        },
-        clearall: {
-          text: 'remove all',
-          on: {
-            click () { todos.clear() }
-          }
-        },
-        wildcase: {
-          text: { val: 'its off!', $wild: 'its wild!' },
-          on: {
-            click () {
-              cases.$wild.val = !cases.$wild.val
-            }
-          }
-        },
-        alldone: {
-          text: {
-            val: 'enable all',
-            $wild: 'MY BITCH',
-            $transform (val) {
-              return this.parent.checked ? 'disable all' : val
-            }
-          },
-          on: {
-            click (ev, event) {
-              var toggle = true
-              if (this.checked === true) {
-                toggle = false
-              }
-              this.checked = toggle
-              this.text.patch(event)
-              todos.keys().forEach((val) => todos[val].set({ done: toggle }, event))
-            }
+            this.checked = toggle
+            this.text.patch(event)
+            todos.keys().forEach((val) => todos[val].set({ done: toggle }, event))
           }
         }
       }
     }
   }
+}).Constructor
+
+// // ----- app -----
+console.clear()
+
+app.set({
+  time: {
+    text: {}
+  },
+  $: true,
+  todoapp: new Todoapp(new Data({ todos: todos }))
+  // apps: {
+  //   $collection: '*',
+  //   Child: {
+  //     text: { $: 'title' }
+  //   } // Todoapp
+  // }
 })
 
-setTimeout(function () {
-  console.clear()
-  console.log('--------------------')
-  global.fakecase.val = 222222
-}, 100)
+// var dataapps = new Data({
+//   a: {
+//     title: 'a',
+//     todos: todos
+//   },
+//   b: {
+//     // todos: todos
+//   }
+// })
+
+// .val needs to work!
+// app.set(dataapps)
+
+// setTimeout(function () {
+//   console.clear()
+//   console.log('--------------------')
+//   global.fakecase.val = 222222
+// }, 100)
+

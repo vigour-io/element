@@ -2,7 +2,6 @@
 require('./todo.less')
 var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
-// Observable.prototype.inject(require('=../../lib/subscription/stamp'))
 // ----- data ----
 // var Syncable = require('vigour-hub/lib/syncable')
 // Syncable.prototype.inject(require('../../lib/subscription/stamp'))
@@ -19,8 +18,10 @@ var Observable = require('vigour-js/lib/observable')
 // })
 // var todos = hub.get('shows', {})
 
-var todos = new Observable({
-  inject: require('../../lib/subscription/stamp'),
+Observable.prototype.inject(require('../../lib/subscription/stamp'))
+
+var todos = global.todos = new Observable({
+  // inject: require('../../lib/subscription/stamp')
   // Child: 'Constructor'
 })
 
@@ -28,6 +29,18 @@ todos.set({
   bla: {
     title: 'hello'
   }
+})
+
+var cases = global.cases = require('../../lib/cases')
+
+cases.set({
+  $wild: {
+    on: {
+      data () {
+        console.error('GO GO GO GO')
+      }
+    }
+  } // element cases
 })
 
 // // ----- ui -----
@@ -43,7 +56,10 @@ var Todo = new Element({
       type: 'input',
       attributes: {
         type: 'checkbox',
-        checked: { $: 'done', $type: 'boolean' }
+        checked: {
+          $: 'done',
+          $type: 'boolean'
+        }
       },
       on: {
         change () {
@@ -106,13 +122,12 @@ app.set({
           placeholder: {
             // val: hub.adapter.scope,
             val: ', what needs to be done?'
-            // support operator is now broken -- also for cases!
           }
         },
         on: {
           keydown (e, event) {
             if (e.keyCode === 13) {
-              //hub.adapter.scope.val
+              // hub.adapter.scope.val
               todos.set({ [ ('z-' + Math.random() * 9999) ]: {
                 title: e.currentTarget.value || 'new todo' }
               }, event)
@@ -123,27 +138,47 @@ app.set({
       },
       main: {
         type: 'section',
-        ['toggle-all']: {
+        'toggle-all': {
           type: 'input',
           attributes: {
             type: 'checkbox',
             checked: true
           }
         },
-        ['todo-list']: {
+        'todo-list': {
           type: 'ul',
           $collection: true,
           Child: Todo,
           val: todos
+        }
+      },
+      footer: {
+        Child: {
+          css: 'footer-button'
         },
-        buttons: {
-          removeall: {
-            type: 'button',
-            text: 'remove all',
-            on: {
-              click () {
-                todos.clear()
+        clearall: {
+          text: 'remove all',
+          on: {
+            click () { todos.clear() }
+          }
+        },
+        alldone: {
+          text: {
+            val: 'enable all',
+            $wild: 'MY BITCH',
+            $transform (val) {
+              return this.parent.checked ? 'disable all' : val
+            }
+          },
+          on: {
+            click (ev, event) {
+              var toggle = true
+              if (this.checked === true) {
+                toggle = false
               }
+              this.checked = toggle
+              this.text.patch(event)
+              todos.keys().forEach((val) => todos[val].set({ done: toggle }, event))
             }
           }
         }

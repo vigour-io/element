@@ -81,6 +81,8 @@ var Todo = new Element({
       on: {
         change () {
           var data = this.state.data.get('done', false)
+          console.clear()
+          console.warn('------lets set!---------')
           data.val = !data.val
         }
       }
@@ -100,15 +102,21 @@ var Todo = new Element({
         $add: global.fakecase2
       }
     },
-    on: {
-      down () {
-        console.clear()
-        console.log('ok resolve!')
-        this.set({
-          css: {
-            james: 'james'
+    resolver: {
+      type: 'button',
+      text: 'resolve',
+      on: {
+        click () {
+          console.clear()
+          console.log('ok resolve!')
+          if (this._input !== null) {
+            this.parent.set({
+              css: {
+                james: 'james'
+              }
+            })
           }
-        })
+        }
       }
     },
     destroy: {
@@ -186,6 +194,7 @@ var Todoapp = new Element({
       removemyself: {
         on: {
           click (ev, event) {
+            console.clear()
             this.patch(event)
             this.remove(event)
           }
@@ -230,7 +239,7 @@ var Todoapp = new Element({
 }).Constructor
 
 // // ----- app -----
-console.clear()
+// console.clear()
 
 app.set({
   time: {

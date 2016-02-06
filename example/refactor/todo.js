@@ -4,7 +4,17 @@ var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 // this needs to be injectable on everything!!!!
 // Observable.prototype.inject(require('../../lib/subscription/stamp'))
+global.h = new Observable({
+  bla: {
+    x: true
+  }
+})
 
+global.hx = new global.h.Constructor()
+
+hx.bla.x.remove()
+
+console.log(hx)
 // ----- data ----
 // var Syncable = require('vigour-hub/lib/syncable')
 // Syncable.prototype.inject(require('../../lib/subscription/stamp'))
@@ -177,7 +187,19 @@ var Todoapp = new Element({
     },
     footer: {
       Child: {
-        css: 'footer-button'
+        css: 'footer-button',
+        text () { return this.parent.key }
+      },
+      removemyself: {
+        on: {
+          click (ev, event) {
+            // var a = this.set('resolve')
+            // console.log('')
+            // dont emit nested for element not nessecary
+            this.patch(event)
+            this.remove(event)
+          }
+        }
       },
       clearall: {
         text: 'remove all',

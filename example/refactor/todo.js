@@ -4,17 +4,7 @@ var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 // this needs to be injectable on everything!!!!
 // Observable.prototype.inject(require('../../lib/subscription/stamp'))
-global.h = new Observable({
-  bla: {
-    x: true
-  }
-})
 
-global.hx = new global.h.Constructor()
-
-hx.bla.x.remove()
-
-console.log(hx)
 // ----- data ----
 // var Syncable = require('vigour-hub/lib/syncable')
 // Syncable.prototype.inject(require('../../lib/subscription/stamp'))
@@ -42,7 +32,8 @@ var todos = global.todos = new Data({})
 todos.set({
   aTodoItem: {
     title: 'hello',
-    something: 'something hur'
+    something: 'something hur',
+    done: true
   }
 })
 

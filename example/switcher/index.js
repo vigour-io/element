@@ -16,7 +16,7 @@ var switcher = new Switcher({
     axis: 'x',
     transition: {
       property: 'transform',
-      duration: 1000
+      duration: 300
     }
   },
   ChildConstructor: new Element({

@@ -11,7 +11,7 @@ var app = global.app = new Element({
 
 Observable.prototype.inject(require('vigour-element/lib/subscription/stamp'))
 
-var data = new Observable({
+var data1 = new Observable({
   img: {
     val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
   },
@@ -35,6 +35,8 @@ var data = new Observable({
   }
 })
 
+// var data2 = new Observable()
+
 // sbs integration
 Player.prototype.set({
   inject: require('vigour-element/lib/player/bitdash'),
@@ -45,7 +47,7 @@ Player.prototype.set({
 
 // example
 global.app = app.set({
-  val: data,
+  val: data1,
   player: new Player(),
   button: {
     h: 40,
@@ -60,7 +62,7 @@ global.app = app.set({
         } else {
           this.html.set('remove')
           this.parent.set({
-            player:new Player()
+            player: new Player()
           })
         }
       }

@@ -123,6 +123,7 @@ var Todo = new Element({
       type: 'button',
       on: {
         down () {
+          console.clear()
           this.state.data.remove()
         }
       }
@@ -246,11 +247,11 @@ app.set({
     text: {}
   },
   $: true,
-  // todoapp: new Todoapp(new Data({ todos: todos }))
-  apps: {
-    $collection: true,
-    Child: Todoapp
-  }
+  todoapp: new Todoapp(new Data({ todos: todos }))
+  // apps: {
+  //   $collection: true,
+  //   Child: Todoapp
+  // }
 })
 
 var dataapps = new Data({
@@ -266,7 +267,7 @@ var dataapps = new Data({
 
 // // .val needs to work!
 // console.clear()
-app.apps.set(dataapps)
+// app.apps.set(dataapps)
 
 // setTimeout(function () {
 //   console.clear()

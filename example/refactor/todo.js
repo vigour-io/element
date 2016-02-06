@@ -247,27 +247,26 @@ app.set({
   },
   $: true,
   // todoapp: new Todoapp(new Data({ todos: todos }))
-  // apps: {
-  //   $collection: true,
-  //   Child: Todoapp
-  // }
-  todoapp: new Todoapp(new Data({ todos: todos }))
+  apps: {
+    $collection: true,
+    Child: Todoapp
+  }
 })
 
-// var dataapps = new Data({
-//   a: {
-//     title: 'a',
-//     todos: todos
-//   },
-//   b: {
-//     title: 'b',
-//     todos: todos
-//   }
-// })
+var dataapps = new Data({
+  a: {
+    title: 'a',
+    todos: todos
+  },
+  b: {
+    title: 'b',
+    todos: todos
+  }
+})
 
 // // .val needs to work!
 // console.clear()
-// app.apps.set(dataapps)
+app.apps.set(dataapps)
 
 // setTimeout(function () {
 //   console.clear()

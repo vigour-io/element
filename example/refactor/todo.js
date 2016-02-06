@@ -193,11 +193,8 @@ var Todoapp = new Element({
       removemyself: {
         on: {
           click (ev, event) {
-            // var a = this.set('resolve')
-            // console.log('')
-            // dont emit nested for element not nessecary
             this.patch(event)
-            this.css.remove(event)
+            this.remove(event)
           }
         }
       },

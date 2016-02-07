@@ -13,8 +13,11 @@ Observable.prototype.inject(require('vigour-element/lib/subscription/stamp'))
 
 var Player = require('../../lib/player')
 
+Player.prototype.volume.origin.val = 0
+// app.volume
+
 var data1 = new Observable({
-  Child:Observable,
+  Child: Observable,
   img: {
     val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
   },
@@ -66,6 +69,7 @@ global.app = app.set({
       down (e, event) {
         if (this.parent.player) {
           this.html.set('new player')
+          console.log('????')
           this.parent.player.remove()
         } else {
           this.html.set('remove')

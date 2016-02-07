@@ -17,7 +17,7 @@ Player.prototype.volume.origin.val = 0
   // app.volume
 
 var datax = new Observable({
-  key:'111',
+  key: '111',
   Child: Observable,
   img: {
     val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
@@ -43,7 +43,7 @@ var datax = new Observable({
 })
 
 var dataz = new Observable({
-  key:'222',
+  key: '222',
   Child: Observable,
   img: {
     val: 'http://www.vier.be/sites/default/files/episode/1164364-7847b0d18de0c8e9b63da6208c71e079.jpg'
@@ -64,10 +64,6 @@ var dataz = new Observable({
     val: 'https://s3-eu-west-1.amazonaws.com/sbsvigour/output/123540_79e55a610e2f7868140e5c7d4ecd740a/{type}s/123540.{type}'
   }
 })
-<<<<<<< HEAD
-datax.time.val = 0.9
-=======
->>>>>>> 638e6d433872818eec5b6f48dbd0bc4cba33ad52
 
 var cnt = 0
 var dataarr = [datax, dataz]
@@ -81,17 +77,8 @@ Player.prototype.set({
   }
 })
 
-<<<<<<< HEAD
-var ref = global.ref = new Observable('flups')
-
-var Plholder = new Element({
-  // this guy does not receive data why does it play??
-  $: 'a', // this doesnto work yet....second time applies and does not get!
-  nest: new Player()
-=======
 var Balen = new Element({
   shit: new Player()
->>>>>>> 638e6d433872818eec5b6f48dbd0bc4cba33ad52
 }).Constructor
 
 // example
@@ -110,11 +97,7 @@ global.app = app.set({
         } else {
           this.html.set('remove')
           this.parent.set({
-<<<<<<< HEAD
-            player: new Plholder()
-=======
             player: new Balen()
->>>>>>> 638e6d433872818eec5b6f48dbd0bc4cba33ad52
           })
           // needs to reapply data on set key else wrong state
         }
@@ -142,6 +125,17 @@ global.app = app.set({
         let data = dataarr[++cnt] || dataarr[cnt = 0]
         console.log('----click:', data.path)
         this.parent._input.val = data
+      }
+    }
+  },
+  button4: {
+    h: 40,
+    w: 100,
+    type: 'button',
+    html: 'set random time',
+    on: {
+      down (e, event) {
+        this.parent.origin.time.val = Math.random()
       }
     }
   },

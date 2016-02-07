@@ -197,6 +197,7 @@ var Todo = new Element({
       on: {
         down () {
           console.clear()
+          console.log('ok destroy wtf is your problem!')
           this.state.data.remove()
         }
       }

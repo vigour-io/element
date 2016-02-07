@@ -188,7 +188,7 @@ var Todoapp = new Element({
     type: 'header',
     title: {
       type: 'h1',
-      text: 'todo-app'
+      text: { $: 'title' }
     },
     // user: {
     //   type: 'input',

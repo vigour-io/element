@@ -242,7 +242,8 @@ var Todoapp = new Element({
             this.state.data.set({
               todos: {
                 [ ('z-' + Math.random() * 9999) ]: {
-                  title: e.currentTarget.value || 'new todo'
+                  title: e.currentTarget.value || 'new todo',
+                  img: 'http://www.ufunk.net/wp-content/uploads/2015/09/De-Jeugd-Van-Tegenwoordig-Manon-' + (Math.round(Math.random() * 5) + 1) + '.jpg'
                 }
               }
             }, event)

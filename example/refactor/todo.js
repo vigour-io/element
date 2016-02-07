@@ -34,6 +34,30 @@ todos.set({
     title: 'hello',
     something: 'something hur',
     done: true
+  },
+  bTodoItem: {
+    title: 'hel222lo',
+    something: 'something hur 2',
+    done: true
+  }
+})
+
+for (var i = 0; i < 100; i++) {
+  todos.firstChild().set({
+    todos: {
+      [i]: {
+        title: 'lulz ' + i,
+        img: 'http://www.ufunk.net/wp-content/uploads/2015/09/De-Jeugd-Van-Tegenwoordig-Manon-2.jpg'
+      }
+    }
+  })
+}
+
+var data = new Data({
+  a: {
+    current: todos.firstChild(),
+    title: 'a',
+    todos: { useVal: todos }
   }
 })
 
@@ -66,7 +90,6 @@ var app = global.app = new Element({
 
 // // ----- todo -----
 var Todo = new Element({
-  key: 'todo',
   type: 'li',
   view: {
     toggle: {
@@ -102,6 +125,10 @@ var Todo = new Element({
         $add: global.fakecase2
       }
     },
+    img: {
+      type: 'img',
+      src: { $: 'img' }
+    },
     resolver: {
       type: 'button',
       text: 'resolve',
@@ -115,6 +142,19 @@ var Todo = new Element({
                 james: 'james'
               }
             })
+          }
+        }
+      }
+    },
+    current: {
+      type: 'button',
+      text: 'current',
+      on: {
+        click () {
+          console.clear()
+          console.log('ok current!!')
+          if (this._input !== null) {
+            data.a.current.val = this.state.data
           }
         }
       }
@@ -163,9 +203,14 @@ var Todoapp = new Element({
       on: {
         keydown (e, event) {
           if (e.keyCode === 13) {
-            // hub.adapter.scope.val
-            todos.set({ [ ('z-' + Math.random() * 9999) ]: {
-              title: e.currentTarget.value || 'new todo' }
+            console.clear()
+            console.error('wtf is happenig?', this.state.data.todos)
+            this.state.data.set({
+              todos: {
+                [ ('z-' + Math.random() * 9999) ]: {
+                  title: e.currentTarget.value || 'new todo'
+                }
+              }
             }, event)
             e.currentTarget.value = ''
           }
@@ -239,30 +284,31 @@ var Todoapp = new Element({
   }
 }).Constructor
 
+var CurrentTodo = new Element({
+  $: 'current',
+  h1: {
+    text: { $: 'title' }
+  },
+  css: {
+    $: 'done',
+    $transform (val) {
+      return val ? 'haha' : 'no'
+    },
+    name: 'currenttodo'
+  },
+  subtasks: new Todoapp()
+}).Constructor
+
 // // ----- app -----
 // console.clear()
 
 app.set({
-  time: {
-    text: {}
-  },
-  $: true,
-  todoapp: new Todoapp(new Data({ todos: todos }))
+  currenttodo: new CurrentTodo(data.a),
+  todoapp: new Todoapp(data.a)
   // apps: {
   //   $collection: true,
   //   Child: Todoapp
   // }
-})
-
-var dataapps = new Data({
-  a: {
-    title: 'a',
-    todos: todos
-  },
-  b: {
-    title: 'b',
-    todos: todos
-  }
 })
 
 // // .val needs to work!

@@ -8,11 +8,13 @@ var app = global.app = new Element({
   DOM: document.body
 })
 
+Observable = new Observable().Constructor
 Observable.prototype.inject(require('vigour-element/lib/subscription/stamp'))
 
 var Player = require('../../lib/player')
 
 var data1 = new Observable({
+  Child:Observable,
   img: {
     val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
   },

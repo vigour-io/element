@@ -53,13 +53,18 @@ Player.prototype.set({
 
 var ref = global.ref = new Observable('flups')
 
+var Plholder = new Element({
+  nested: new Player()
+}).Constructor
+
+// remove is not called of course for things in context... thats only the remove emitter... so problem
 // var Holder = new Element({
 //   html: ref
 // }).Constructor
 
 // example
 global.app = app.set({
-  player: new Player(),
+  player: new Plholder(),
   button: {
     h: 40,
     w: 100,

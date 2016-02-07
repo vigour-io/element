@@ -16,7 +16,7 @@ var Player = require('../../lib/player')
 Player.prototype.volume.origin.val = 0
 // app.volume
 
-var data1 = new Observable({
+var datax = new Observable({
   Child: Observable,
   img: {
     val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
@@ -41,6 +41,13 @@ var data1 = new Observable({
   }
 })
 
+var data1 = new Observable({
+  Child: Observable,
+  a: datax.serialize(),
+  // b: { useVal: datax }
+})
+datax.time.val = 0.1
+
 // var data2 = new Observable()
 
 // sbs integration
@@ -54,7 +61,8 @@ Player.prototype.set({
 var ref = global.ref = new Observable('flups')
 
 var Plholder = new Element({
-  nested: new Player()
+  $collection: true,
+  Child: Player
 }).Constructor
 
 // remove is not called of course for things in context... thats only the remove emitter... so problem

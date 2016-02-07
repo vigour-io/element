@@ -17,7 +17,7 @@ Player.prototype.volume.origin.val = 0
   // app.volume
 
 var datax = new Observable({
-  key:'111',
+  key: '111',
   Child: Observable,
   img: {
     val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
@@ -43,7 +43,7 @@ var datax = new Observable({
 })
 
 var dataz = new Observable({
-  key:'222',
+  key: '222',
   Child: Observable,
   img: {
     val: 'http://www.vier.be/sites/default/files/episode/1164364-7847b0d18de0c8e9b63da6208c71e079.jpg'
@@ -124,6 +124,17 @@ global.app = app.set({
         let data = dataarr[++cnt] || dataarr[cnt = 0]
         console.log('----click:', data.path)
         this.parent._input.val = data
+      }
+    }
+  },
+  button4: {
+    h: 40,
+    w: 100,
+    type: 'button',
+    html: 'set random time',
+    on: {
+      down (e, event) {
+        this.parent.origin.time.val = Math.random()
       }
     }
   },

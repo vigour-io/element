@@ -154,6 +154,24 @@ var Todo = new Element({
         }
       }
     },
+    todos: {
+      $collection: 'todos',
+      Child: {
+        css: 'nested-todo',
+        text: { $: 'title' },
+        css: {
+          $: 'done',
+          $transform (val) {
+            return val ? 'haha' : 'no'
+          }
+        },
+        on: {
+          click () {
+            data.a.current.val = this.state.data
+          }
+        }
+      }
+    },
     current: {
       type: 'button',
       text: 'current',

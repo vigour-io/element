@@ -64,10 +64,6 @@ var dataz = new Observable({
     val: 'https://s3-eu-west-1.amazonaws.com/sbsvigour/output/123540_79e55a610e2f7868140e5c7d4ecd740a/{type}s/123540.{type}'
   }
 })
-<<<<<<< HEAD
-datax.time.val = 0.9
-=======
->>>>>>> 638e6d433872818eec5b6f48dbd0bc4cba33ad52
 
 var cnt = 0
 var dataarr = [datax, dataz]
@@ -81,17 +77,8 @@ Player.prototype.set({
   }
 })
 
-<<<<<<< HEAD
-var ref = global.ref = new Observable('flups')
-
-var Plholder = new Element({
-  // this guy does not receive data why does it play??
-  $: 'a', // this doesnto work yet....second time applies and does not get!
-  nest: new Player()
-=======
 var Balen = new Element({
   shit: new Player()
->>>>>>> 638e6d433872818eec5b6f48dbd0bc4cba33ad52
 }).Constructor
 
 // example
@@ -110,11 +97,7 @@ global.app = app.set({
         } else {
           this.html.set('remove')
           this.parent.set({
-<<<<<<< HEAD
-            player: new Plholder()
-=======
             player: new Balen()
->>>>>>> 638e6d433872818eec5b6f48dbd0bc4cba33ad52
           })
           // needs to reapply data on set key else wrong state
         }

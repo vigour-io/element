@@ -2,7 +2,6 @@
 require('./style.less')
 
 var Observable = require('vigour-js/lib/observable')
-var Player = require('../../lib/player')
 var Element = require('../../lib')
 
 var app = global.app = new Element({
@@ -10,6 +9,8 @@ var app = global.app = new Element({
 })
 
 Observable.prototype.inject(require('vigour-element/lib/subscription/stamp'))
+
+var Player = require('../../lib/player')
 
 var data1 = new Observable({
   img: {
@@ -22,7 +23,7 @@ var data1 = new Observable({
     val: 'Aflevering van 12 oktober: Kevin Janssens, Kim Clijsters en Sam Louwyck'
   },
   time: {
-    val: 0
+    val: 0.5
   },
   duration: {
     val: 4020
@@ -45,29 +46,63 @@ Player.prototype.set({
   }
 })
 
-setTimeout(function () {
-  // example
-  global.app = app.set({
-    player: new Player(),
-    button: {
-      h: 40,
-      w: '50%',
-      type: 'button',
-      html: 'remove',
-      on: {
-        down (e, event) {
-          if (this.parent.player) {
-            this.html.set('new player')
-            this.parent.player.remove()
-          } else {
-            this.html.set('remove')
-            this.parent.set({
-              player: new Player()
-            })
-          }
+var ref = global.ref = new Observable('flups')
+
+// var Holder = new Element({
+//   html: ref
+// }).Constructor
+
+// example
+global.app = app.set({
+  player: new Player(),
+  button: {
+    h: 40,
+    w: 100,
+    type: 'button',
+    html: 'remove',
+    on: {
+      down (e, event) {
+        if (this.parent.player) {
+          this.html.set('new player')
+          this.parent.player.remove()
+        } else {
+          this.html.set('remove')
+          this.parent.set({
+            player: new Player()
+          })
         }
       }
-    },
-    val: data1
-  })
-}, 500)
+    }
+  },
+  time: {
+    html: {
+      $: 'time',
+      $prepend: 'time: '
+    }
+  },
+  playing: {
+    html: {
+      val: 'not playing',
+      $playerPlaying: 'playing!'
+    }
+  },
+  ready: {
+    html: {
+      val: 'not ready',
+      $playerReady: 'ready!'
+    }
+  },
+  loading: {
+    html: {
+      val: 'done loading!',
+      $playerLoading: 'loading...'
+    }
+  },
+  muted: {
+    html: {
+      val: 'volume on!',
+      $playerMuted: 'muted!'
+    }
+  },
+  val: data1
+})

@@ -42,7 +42,7 @@ todos.set({
   }
 })
 
-for (var i = 0; i < 100; i++) {
+for (var i = 0; i < 2; i++) {
   todos.firstChild().set({
     todos: {
       [i]: {
@@ -53,7 +53,7 @@ for (var i = 0; i < 100; i++) {
   })
 }
 
-for (var i = 0; i < 100; i++) {
+for (var i = 0; i < 2; i++) {
   todos.bTodoItem.set({
     todos: {
       [i]: {

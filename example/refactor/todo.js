@@ -47,7 +47,18 @@ for (var i = 0; i < 100; i++) {
     todos: {
       [i]: {
         title: 'lulz ' + i,
-        img: 'http://www.ufunk.net/wp-content/uploads/2015/09/De-Jeugd-Van-Tegenwoordig-Manon-2.jpg'
+        img: 'http://www.ufunk.net/wp-content/uploads/2015/09/De-Jeugd-Van-Tegenwoordig-Manon-' + (Math.round(Math.random() * 5) + 1) + '.jpg'
+      }
+    }
+  })
+}
+
+for (var i = 0; i < 100; i++) {
+  todos.bTodoItem.set({
+    todos: {
+      [i]: {
+        title: 'lulz ' + i,
+        img: 'http://www.ufunk.net/wp-content/uploads/2015/09/De-Jeugd-Van-Tegenwoordig-Manon-' + (Math.round(Math.random() * 5) + 1) + '.jpg'
       }
     }
   })
@@ -125,10 +136,7 @@ var Todo = new Element({
         $add: global.fakecase2
       }
     },
-    img: {
-      type: 'img',
-      src: { $: 'img' }
-    },
+    background: { $: 'img' },
     resolver: {
       type: 'button',
       text: 'resolve',

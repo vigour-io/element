@@ -14,9 +14,10 @@ Observable.prototype.inject(require('vigour-element/lib/subscription/stamp'))
 var Player = require('../../lib/player')
 
 Player.prototype.volume.origin.val = 0
-// app.volume
+  // app.volume
 
 var datax = new Observable({
+  key:'111',
   Child: Observable,
   img: {
     val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
@@ -41,14 +42,36 @@ var datax = new Observable({
   }
 })
 
-var data1 = new Observable({
+var dataz = new Observable({
+  key:'222',
   Child: Observable,
-  a: datax.serialize(),
-  // b: { useVal: datax }
+  img: {
+    val: 'http://www.vier.be/sites/default/files/episode/1164364-7847b0d18de0c8e9b63da6208c71e079.jpg'
+  },
+  number: {
+    val: 1
+  },
+  title: {
+    val: 'Aflevering van 31 augustus: Harry & Olga'
+  },
+  time: {
+    val: 0.02896701388888889
+  },
+  duration: {
+    val: 2880
+  },
+  video: {
+    val: 'https://s3-eu-west-1.amazonaws.com/sbsvigour/output/123540_79e55a610e2f7868140e5c7d4ecd740a/{type}s/123540.{type}'
+  }
 })
+<<<<<<< HEAD
 datax.time.val = 0.9
+=======
+>>>>>>> 638e6d433872818eec5b6f48dbd0bc4cba33ad52
 
-// var data2 = new Observable()
+var cnt = 0
+var dataarr = [datax, dataz]
+  // var data2 = new Observable()
 
 // sbs integration
 Player.prototype.set({
@@ -58,22 +81,22 @@ Player.prototype.set({
   }
 })
 
+<<<<<<< HEAD
 var ref = global.ref = new Observable('flups')
 
 var Plholder = new Element({
   // this guy does not receive data why does it play??
   $: 'a', // this doesnto work yet....second time applies and does not get!
   nest: new Player()
+=======
+var Balen = new Element({
+  shit: new Player()
+>>>>>>> 638e6d433872818eec5b6f48dbd0bc4cba33ad52
 }).Constructor
-
-// remove is not called of course for things in context... thats only the remove emitter... so problem
-// var Holder = new Element({
-//   html: ref
-// }).Constructor
 
 // example
 global.app = app.set({
-  player: new Plholder(),
+  player: new Balen(),
   button: {
     h: 40,
     w: 100,
@@ -83,15 +106,42 @@ global.app = app.set({
       down (e, event) {
         if (this.parent.player) {
           this.html.set('new player')
-          console.log('????')
           this.parent.player.remove()
         } else {
           this.html.set('remove')
           this.parent.set({
+<<<<<<< HEAD
             player: new Plholder()
+=======
+            player: new Balen()
+>>>>>>> 638e6d433872818eec5b6f48dbd0bc4cba33ad52
           })
           // needs to reapply data on set key else wrong state
         }
+      }
+    }
+  },
+  button2: {
+    h: 40,
+    w: 100,
+    type: 'button',
+    html: 'toggle',
+    on: {
+      down (e, event) {
+        this.parent.player.shit.toggle()
+      }
+    }
+  },
+  button3: {
+    h: 40,
+    w: 100,
+    type: 'button',
+    html: 'switch',
+    on: {
+      down (e, event) {
+        let data = dataarr[++cnt] || dataarr[cnt = 0]
+        console.log('----click:', data.path)
+        this.parent._input.val = data
       }
     }
   },
@@ -125,5 +175,5 @@ global.app = app.set({
       $playerMuted: 'muted!'
     }
   },
-  val: data1
+  val: new Observable(datax)
 })

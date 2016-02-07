@@ -69,8 +69,15 @@ var data = new Data({
     current: todos.firstChild(),
     title: 'a',
     todos: { useVal: todos }
+  },
+  b: {
+    current: {},
+    title: 'b',
+    todos: todos.serialize()
   }
 })
+
+data.b.todos.firstChild().title.val = 'xxxx'
 
 var cases = global.cases = require('../../lib/cases')
 
@@ -206,7 +213,7 @@ var Todoapp = new Element({
     type: 'header',
     title: {
       type: 'h1',
-      text: { $: 'title' }
+      text: { $: 'title', $add: ' schijt' }
     },
     // user: {
     //   type: 'input',

@@ -46,7 +46,7 @@ var data1 = new Observable({
   a: datax.serialize(),
   // b: { useVal: datax }
 })
-datax.time.val = 0.1
+datax.time.val = 0.9
 
 // var data2 = new Observable()
 
@@ -61,8 +61,9 @@ Player.prototype.set({
 var ref = global.ref = new Observable('flups')
 
 var Plholder = new Element({
-  $collection: true,
-  Child: Player
+  // this guy does not receive data why does it play??
+  $: 'a', // this doesnto work yet....second time applies and does not get!
+  nest: new Player()
 }).Constructor
 
 // remove is not called of course for things in context... thats only the remove emitter... so problem
@@ -87,8 +88,9 @@ global.app = app.set({
         } else {
           this.html.set('remove')
           this.parent.set({
-            player: new Player()
+            player: new Plholder()
           })
+          // needs to reapply data on set key else wrong state
         }
       }
     }

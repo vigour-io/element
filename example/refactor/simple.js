@@ -26,14 +26,17 @@ var bla = global.bla = new Cached({
 })
 
 var X = global.x = new Element({
-  type: 'button',
   text: function () {
     return ' ----' + this.path.join('.')
   },
-  on: {
-    click () {
-      console.log('ok so click wtf..', this.path, this._context)
-      this.remove()
+  a: {
+    type: 'button',
+    text: 'my nested thing',
+    on: {
+      click () {
+        console.log('ok so click wtf..', this.path, this._context)
+        this.parent.remove()
+      }
     }
   }
 }).Constructor

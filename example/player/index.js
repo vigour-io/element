@@ -72,18 +72,46 @@ var dataarr = [datax, dataz]
 // sbs integration
 Player.prototype.set({
   inject: require('vigour-element/lib/player/bitdash'),
-  config: {
-    key: '225bef4e-5b4d-4444-94b1-4f2fd499fd3b'
-  }
+  config: { key: '225bef4e-5b4d-4444-94b1-4f2fd499fd3b' }
 })
 
 var Balen = new Element({
   shit: new Player()
 }).Constructor
 
+var Genieten = new Element({
+  balen: new Balen()
+}).Constructor
+
+function seek (e) {
+  var rect = e.currentTarget.getBoundingClientRect()
+  var x = rect.left
+  var nr = (e.pageX - x) / (rect.right - x)
+  var val = nr > 1 ? 1 : nr < 0 ? 0 : nr
+  this.seek.bar.state.data.time.origin.val = val
+}
+
 // example
 global.app = app.set({
-  player: new Balen(),
+  player: new Genieten(),
+  progress: {
+    inject: require('vigour-element/lib/event/drag'),
+    on: {
+      down (e) { seek.call(this, e) },
+      drag (e) { seek.call(this, e) }
+    },
+    seek: {
+      bar: {
+        h: 20,
+        w: {
+          $: 'time',
+          $transform (val) {
+            return val * 100 + '%'
+          }
+        }
+      }
+    }
+  },
   button: {
     h: 40,
     w: 100,
@@ -97,7 +125,7 @@ global.app = app.set({
         } else {
           this.html.set('remove')
           this.parent.set({
-            player: new Balen()
+            player: new Genieten()
           })
           // needs to reapply data on set key else wrong state
         }
@@ -111,7 +139,7 @@ global.app = app.set({
     html: 'toggle',
     on: {
       down (e, event) {
-        this.parent.player.shit.toggle()
+        this.parent.player.balen.shit.toggle()
       }
     }
   },
@@ -123,7 +151,6 @@ global.app = app.set({
     on: {
       down (e, event) {
         let data = dataarr[++cnt] || dataarr[cnt = 0]
-        console.log('----click:', data.path)
         this.parent._input.val = data
       }
     }
@@ -136,6 +163,17 @@ global.app = app.set({
     on: {
       down (e, event) {
         this.parent.origin.time.val = Math.random()
+      }
+    }
+  },
+  button5: {
+    h: 40,
+    w: 100,
+    type: 'button',
+    html: 'move to end',
+    on: {
+      down (e, event) {
+        this.parent.origin.time.val = 0.9999999999
       }
     }
   },

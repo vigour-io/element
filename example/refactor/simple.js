@@ -2,6 +2,9 @@ var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 require('./simple.less')
 
+// var Operator = require('vigour-js/lib/operator')
+// Operator.prototype.inject(require('../../lib/subscription/stamp'))
+
 var _set = Observable.prototype.set
 
 var Cached = new Observable({
@@ -29,7 +32,8 @@ var bla = global.bla = new Cached({
   }
 })
 
-global.yuzi = new Cached('hello')
+global.yuzi = new Cached('yuzi (var)')
+global.james = new Cached('james (var)')
 
 var X = global.x = new Element({
   yx: {
@@ -75,14 +79,26 @@ global.h = new Cached({
   },
   b: {
     'a.b': 'a.b',
-    'b.b': 'b.b'
+    'b.b': 'b.b',
+    'bla:thing': 'ITS A THING'
   }
 })
+
+var Thing = new Element({
+  type: 'h1',
+  blurf: {
+    text: { $: true, $add: global.james }
+  }
+  // text: global.james
+}).Constructor
 
 var Holder = new Element({
   holder: {
     $collection: true,
-    Child: new X()
+    Child: new X(),
+    properties: {
+      thing: Thing
+    }
   }
   // text: global.yuzi
 }).Constructor
@@ -93,6 +109,7 @@ var Y = new Element({
   },
   $collection: true
 }).Constructor
+
 // after that fix the child thing and context updates
 var app = global.app = new Element({
   DOM: document.body,

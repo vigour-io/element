@@ -30,19 +30,19 @@ var Data = new Observable({
 var todos = global.todos = new Data({})
 
 todos.set({
-  aTodoItem: {
+  'aTodoItem:manon': {
     title: 'hello',
     something: 'something hur',
     done: true
   },
-  bTodoItem: {
+  'bTodoItem': {
     title: 'hel222lo',
     something: 'something hur 2',
     done: true
   }
 })
 
-for (var i = 0; i < 2; i++) {
+for (var i = 0; i < 1e2; i++) {
   todos.firstChild().set({
     todos: {
       [i]: {
@@ -53,10 +53,12 @@ for (var i = 0; i < 2; i++) {
   })
 }
 
-for (var i = 0; i < 2; i++) {
-  todos.bTodoItem.set({
+
+// make getters is nice1
+for (var i = 0; i < 1e2; i++) {
+  todos['bTodoItem'].set({
     todos: {
-      [i]: {
+      [i + ':manon']: {
         title: 'lulz ' + i,
         img: 'http://www.ufunk.net/wp-content/uploads/2015/09/De-Jeugd-Van-Tegenwoordig-Manon-' + (Math.round(Math.random() * 5) + 1) + '.jpg'
       }
@@ -167,7 +169,10 @@ var Todo = new Element({
       $collection: 'todos',
       Child: {
         css: 'nested-todo',
-        text: { $: 'title' },
+        bla: {
+          type: 'h1',
+          text: { $: 'title' }
+        },
         css: {
           $: 'done',
           $transform (val) {
@@ -177,6 +182,14 @@ var Todo = new Element({
         on: {
           click () {
             data.a.current.val = this.state.data
+          }
+        }
+      },
+      properties: {
+        manon: {
+          hello: {
+            type: 'h1',
+            text: 'MANON TYPE'
           }
         }
       }
@@ -344,7 +357,7 @@ var CurrentTodo = new Element({
 
 // // ----- app -----
 // console.clear()
-
+var d = Date.now()
 app.set({
   currenttodo: new CurrentTodo(data.a),
   todoapp: new Todoapp(data.a)
@@ -358,9 +371,13 @@ app.set({
 // console.clear()
 // app.apps.set(dataapps)
 
-setTimeout(function () {
-  // console.clear()
-  console.log('--------------------')
-  // global.fakecase.val = 222222
-  t.val = 'yuzxxxxxxxxxxxxxxxx'
-}, 100)
+// setTimeout(function () {
+//   // console.clear()
+//   console.log('--------------------')
+//   // global.fakecase.val = 222222
+//   t.val = 'yuzxxxxxxxxxxxxxxxx'
+// }, 100)
+
+window.requestAnimationFrame(function () {
+  app.todoapp.header.title.val = Date.now() - d
+})

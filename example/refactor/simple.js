@@ -1,6 +1,6 @@
 var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
-require('./todo.less')
+require('./simple.less')
 
 var _set = Observable.prototype.set
 
@@ -21,35 +21,38 @@ var bla = global.bla = new Cached({
   james: 100,
   'a:james': {
     val: 100,
-    gurk: 'yuzi'
+    gurk: 'this is a special field! yuzi'
   }
 })
 
-var collectionThing = new Element({
-  $collection: true,
-  properties: {
-    james: new Element({
-      bla: {
-        text: {
-          $: 'gurk'
-        }
-      },
-      gurk: {
-        text: 'hello'
-      },
-      text: {
-        $add: 'lulz'
-      }
-    })
+var X = global.x = new Element({
+  type: 'button',
+  text: function () {
+    return ' ----' + this.path.join('.')
   },
-  Child: {
-    text: { $: true }
+  on: {
+    click () {
+      console.log('ok so click wtf..', this.path, this._context)
+      this.remove()
+    }
   }
 }).Constructor
 
-// after that fix the child thing and context updates
+global.x = X.prototype
 
-var app = new Element({
+var T = new Element({
+  css: 'holder',
+  text () { return 'T:' + this.path.join('/') },
+  a: new X,
+  b: new X
+}).Constructor
+
+global.t = T.prototype
+
+// after that fix the child thing and context updates
+var app = global.app = new Element({
   DOM: document.body,
-  xxx: new collectionThing(bla)
+  bla: new T(),
+  blurf: new T()
+  // xxx: new collectionThing(bla)
 })

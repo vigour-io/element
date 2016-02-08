@@ -182,6 +182,7 @@ var Todo = new Element({
     current: {
       type: 'button',
       text: 'current',
+      $: true,
       on: {
         click () {
           console.clear()
@@ -194,6 +195,7 @@ var Todo = new Element({
     },
     destroy: {
       type: 'button',
+      $: true,
       on: {
         down () {
           console.clear()

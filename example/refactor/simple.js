@@ -18,6 +18,10 @@ var bla = global.bla = new Cached({
   a: 10,
   b: 20,
   c: 30,
+  xx: {
+    xy: 20,
+    z: 20
+  },
   james: 100,
   'a:james': {
     val: 100,
@@ -25,13 +29,22 @@ var bla = global.bla = new Cached({
   }
 })
 
+global.yuzi = new Cached('hello')
+
 var X = global.x = new Element({
-  text: function () {
-    return ' ----' + this.path.join('.')
+  yx: {
+    xx: {
+      bla: {
+        $: true
+      },
+      text: {
+        val: global.yuzi
+      }
+    }
   },
   a: {
     type: 'button',
-    text: 'my nested thing',
+    text: { $: true, $add: ' its a buttn!' },
     on: {
       click () {
         console.log('ok so click wtf..', this.path, this._context)
@@ -47,15 +60,32 @@ var T = new Element({
   css: 'holder',
   text () { return 'T:' + this.path.join('/') },
   a: new X,
-  b: new X
+  b: new X,
+  hello: {
+    text: global.yuzi
+  }
 }).Constructor
 
 global.t = T.prototype
 
+var Holder = new Element({
+  holder: {
+    $collection: true,
+    Child: new X()
+  }
+  // text: global.yuzi
+}).Constructor
+
+var Y = new Element({
+  xx: new Holder({
+    $: 'xx'
+  })
+}).Constructor
 // after that fix the child thing and context updates
 var app = global.app = new Element({
   DOM: document.body,
-  bla: new T(),
-  blurf: new T()
+  key: 'app',
+  bla: new Holder(bla),
+  blur: new Y(bla)
   // xxx: new collectionThing(bla)
 })

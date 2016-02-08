@@ -81,15 +81,15 @@ data.b.todos.firstChild().title.val = 'xxxx'
 
 var cases = global.cases = require('../../lib/cases')
 
-global.fakecase = new Observable({
+global.fakecase = new Data({
   val: true,
   on: {
     click () {}
   }
 })
 
-global.fakecase2 = new Observable(global.fakecase)
-
+global.fakecase2 = new Data(global.fakecase)
+global.sometext = new Data('its the text for remove all')
 cases.set({
   $wild: {
     val: false
@@ -132,13 +132,15 @@ var Todo = new Element({
       $: 'done',
       $transform (val) {
         return val ? 'haha' : 'no'
+      },
+      james: {
+        $wild: 'james'
       }
     },
     title: {
       type: 'label',
       text: {
-        // does not work (yet)
-        // $prepend: { $: 'something' },
+        $wild: 'haha',
         $: 'title',
         $add: global.fakecase2
       }
@@ -181,7 +183,7 @@ var Todo = new Element({
     },
     current: {
       type: 'button',
-      text: 'current',
+      text: (global.t = new Data('hahahaha')),
       $: true,
       on: {
         click () {
@@ -286,7 +288,9 @@ var Todoapp = new Element({
         }
       },
       clearall: {
-        text: 'remove all',
+        text: {
+          $prepend: global.sometext
+        },
         on: {
           click () { todos.clear() }
         }
@@ -354,9 +358,9 @@ app.set({
 // console.clear()
 // app.apps.set(dataapps)
 
-// setTimeout(function () {
-//   console.clear()
-//   console.log('--------------------')
-//   global.fakecase.val = 222222
-// }, 100)
-
+setTimeout(function () {
+  console.clear()
+  console.log('--------------------')
+  // global.fakecase.val = 222222
+  t.val = 'yuzxxxxxxxxxxxxxxxx'
+}, 100)

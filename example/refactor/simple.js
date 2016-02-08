@@ -68,6 +68,17 @@ var T = new Element({
 
 global.t = T.prototype
 
+global.h = new Cached({
+  a: {
+    'a.a': 'a.a',
+    'a.b': 'a.b'
+  },
+  b: {
+    'a.b': 'a.b',
+    'b.b': 'b.b'
+  }
+})
+
 var Holder = new Element({
   holder: {
     $collection: true,
@@ -77,15 +88,14 @@ var Holder = new Element({
 }).Constructor
 
 var Y = new Element({
-  xx: new Holder({
-    $: 'xx'
-  })
+  Child: {
+    xx: new Holder()
+  },
+  $collection: true
 }).Constructor
 // after that fix the child thing and context updates
 var app = global.app = new Element({
   DOM: document.body,
   key: 'app',
-  bla: new Holder(bla),
-  blur: new Y(bla)
-  // xxx: new collectionThing(bla)
+  bla: new Y(global.h)
 })

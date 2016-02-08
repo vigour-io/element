@@ -359,7 +359,7 @@ app.set({
 // app.apps.set(dataapps)
 
 setTimeout(function () {
-  console.clear()
+  // console.clear()
   console.log('--------------------')
   // global.fakecase.val = 222222
   t.val = 'yuzxxxxxxxxxxxxxxxx'

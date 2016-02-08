@@ -238,12 +238,14 @@ var Todoapp = new Element({
         keydown (e, event) {
           if (e.keyCode === 13) {
             console.clear()
-            console.error('wtf is happenig?', this.state.data.todos)
+            let nr = (Math.round(Math.random() * 5) + 1)
+            console.warn('wtf is happenig?', nr)
+
             this.state.data.set({
               todos: {
                 [ ('z-' + Math.random() * 9999) ]: {
                   title: e.currentTarget.value || 'new todo',
-                  img: 'http://www.ufunk.net/wp-content/uploads/2015/09/De-Jeugd-Van-Tegenwoordig-Manon-' + (Math.round(Math.random() * 5) + 1) + '.jpg'
+                  img: 'http://www.ufunk.net/wp-content/uploads/2015/09/De-Jeugd-Van-Tegenwoordig-Manon-' + nr + '.jpg'
                 }
               }
             }, event)

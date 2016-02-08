@@ -5,23 +5,7 @@ require('./todo.less')
 var _set = Observable.prototype.set
 
 var Cached = new Observable({
-  properties: {
-    _lstamp: true
-  },
-  define: {
-    set (val, event) {
-      var changed = _set.apply(this, arguments)
-      if (changed && event) {
-        var parent = this
-        while (parent) {
-          parent._lstamp = event.stamp
-          parent = parent._parent
-        }
-        // this._lstamp = event.stamp
-      }
-      return changed
-    }
-  },
+  inject: require('../../lib/subscription/stamp'),
   Child: 'Constructor'
 }).Constructor
 
@@ -30,9 +14,16 @@ var bla = global.bla = new Cached(20)
 var app = new Element({
   DOM: document.body,
   bla: {
-    text: bla
+    properties: {
+      james: new Element({
+        text: {
+          $: 'lulz'
+        }
+      })
+    },
+    text: bla,
+    'jurk:james': {
+      text: bla
+    }
   }
 })
-
-
-

@@ -1,5 +1,7 @@
 'use strict'
 require('./todo.less')
+
+
 var Element = require('../../lib')
 var Observable = require('vigour-js/lib/observable')
 
@@ -8,15 +10,10 @@ var Data = new Observable({
   Child: 'Constructor'
 }).Constructor
 
-var todos = global.todos = new Data({})
+// // ----- data -----
+var d = Date.now()
 
-todos.set({
-  'bTodoItem': {
-    title: 'hel222lo',
-    something: 'something hur 2',
-    done: true
-  }
-})
+var todos = global.todos = new Data({})
 
 // // ----- ui -----
 var app = global.app = new Element({
@@ -43,27 +40,13 @@ var Todo = new Element({
         }
       }
     },
+    css: {
+      $: 'done'
+    },
     title: {
       type: 'label',
       text: {
         $: 'title'
-      }
-    },
-    resolver: {
-      type: 'button',
-      text: 'resolve',
-      on: {
-        click () {
-          console.clear()
-          console.log('ok resolve!')
-          if (this._input !== null) {
-            this.parent.set({
-              css: {
-                james: 'james'
-              }
-            })
-          }
-        }
       }
     },
     destroy: {
@@ -81,15 +64,23 @@ var Todo = new Element({
   }
 }).Constructor
 
+function clearAllMarked (data, event) {
+  todos.keys().forEach((key) => {
+    if (todos[key].done && todos[key].done.val === true) {
+      todos[key].remove(event)
+    }
+  })
+}
+
 var Todoapp = new Element({
   css: 'todoapp',
   header: {
     type: 'header',
     title: {
       type: 'h1',
-      text: { $: 'title', $add: ' schijt' }
+      text: { $: true, $add: ' ms' }
     },
-    ['new-todo']: {
+    'new-todo': {
       type: 'input',
       attributes: {
         placeholder: ', what needs to be done?'
@@ -119,7 +110,7 @@ var Todoapp = new Element({
       },
       'todo-list': {
         type: 'ul',
-        $collection: 'todos',
+        $collection: true,
         Child: Todo
       }
     },
@@ -129,25 +120,54 @@ var Todoapp = new Element({
         text () { return this.parent.key }
       },
       clearall: {
-        text: {
-          $prepend: global.sometext
-        },
+        text: 'remove all marked',
         on: {
-          click () { todos.clear() }
+          click: clearAllMarked
         }
       }
     }
   }
 }).Constructor
 
-// // ----- app -----
-var d = Date.now()
+for (var i = 0; i < 101; i++) {
+  todos.set({
+    [i]: {
+      title: 'todo' + i
+    }
+  })
+}
+
+// ----- app -----
 app.set({
   todoapp: new Todoapp(todos)
 })
 
-window.requestAnimationFrame(function () {
-  var t = Date.now() - d
-  app.todoapp.header.title.val = t
-  console.log('TIME TO PARSE', t, 'ms')
+// event a module
+var Event = require('vigour-js/lib/event')
+var raf = window.requestAnimationFrame
+
+raf(function () {
+  var event = new Event('done')
+  todos.keys().forEach(function (key) {
+    todos[key].set({
+      done: true
+    }, event)
+  })
+  event.trigger()
 })
+
+raf(function () {
+  var event = new Event('done')
+  clearAllMarked(event)
+  event.trigger()
+})
+
+testComplete()
+
+function testComplete () {
+  raf(function () {
+    var t = Date.now() - d
+    app.todoapp.header.title.val = t
+    console.log('TIME TO PARSE', t, 'ms')
+  })
+}

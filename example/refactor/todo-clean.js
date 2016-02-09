@@ -1,37 +1,53 @@
 'use strict'
 require('./todo.less')
-
-
 var Element = require('../../lib')
+var isPlain = require('vigour-js/lib/util/is/plainobj')
 var Observable = require('vigour-js/lib/observable')
-
 var Data = new Observable({
   inject: require('../../lib/subscription/stamp'),
   Child: 'Constructor'
 }).Constructor
+var time = Date.now()
 
-// // ----- data -----
-var d = Date.now()
+// ---------------------------------------
+var todos = {}
+for (var i = 0; i < 101; i++) {
+  todos[i] = { title: 'todo ' + i }
+}
+todos = d(todos)
 
-var todos = global.todos = new Data({})
+function clearMarked (data, event) {
+  todos.keys().forEach((key) => {
+    if (todos[key].done && todos[key].done.val === true) {
+      todos[key].remove(event)
+    }
+  })
+}
 
-// // ----- ui -----
-var app = global.app = new Element({
-  DOM: document.body
-})
+function addTodo (e, event) {
+  if (e.keyCode === 13) {
+    todos._cnt = !todos._cnt ? 1 : todos._cnt + 1
+    console.log('new todo?')
+    this.state.data.set({
+      todos: {
+        [todos._cnt]: {
+          title: e.currentTarget.value || 'new todo'
+        }
+      }
+    }, event)
+    e.currentTarget.value = ''
+  }
+}
 
-// // ----- todo -----
-var Todo = new Element({
+// just change this object better type: 'cnstr' or something
+exports.todo = {
   type: 'li',
   view: {
     toggle: {
       type: 'input',
       attributes: {
         type: 'checkbox',
-        checked: {
-          $: 'done',
-          $type: 'boolean'
-        }
+        checked: { $: 'done', $type: 'boolean' }
       },
       on: {
         change () {
@@ -40,14 +56,10 @@ var Todo = new Element({
         }
       }
     },
-    css: {
-      $: 'done'
-    },
+    css: { $: 'done' },
     title: {
       type: 'label',
-      text: {
-        $: 'title'
-      }
+      text: { $: 'title' }
     },
     destroy: {
       type: 'button',
@@ -59,20 +71,10 @@ var Todo = new Element({
       }
     }
   },
-  edit: {
-    type: 'input'
-  }
-}).Constructor
-
-function clearAllMarked (data, event) {
-  todos.keys().forEach((key) => {
-    if (todos[key].done && todos[key].done.val === true) {
-      todos[key].remove(event)
-    }
-  })
+  edit: { type: 'input' }
 }
 
-var Todoapp = new Element({
+exports.todoapp = {
   css: 'todoapp',
   header: {
     type: 'header',
@@ -86,21 +88,7 @@ var Todoapp = new Element({
         placeholder: ', what needs to be done?'
       },
       $: true,
-      on: {
-        keydown (e, event) {
-          if (e.keyCode === 13) {
-            todos._cnt = !todos._cnt ? 1 : todos._cnt + 1
-            this.state.data.set({
-              todos: {
-                [ todos._cnt ]: {
-                  title: e.currentTarget.value || 'new todo'
-                }
-              }
-            }, event)
-            e.currentTarget.value = ''
-          }
-        }
-      }
+      on: { keydown: addTodo }
     },
     main: {
       type: 'section',
@@ -111,38 +99,23 @@ var Todoapp = new Element({
       'todo-list': {
         type: 'ul',
         $collection: true,
-        Child: Todo
+        Child: e('todo')
       }
     },
     footer: {
-      Child: {
-        css: 'footer-button',
-        text () { return this.parent.key }
-      },
       clearall: {
         text: 'remove all marked',
-        on: {
-          click: clearAllMarked
-        }
+        on: { click: clearMarked }
       }
     }
   }
-}).Constructor
-
-for (var i = 0; i < 101; i++) {
-  todos.set({
-    [i]: {
-      title: 'todo' + i
-    }
-  })
 }
 
-// ----- app -----
-app.set({
-  todoapp: new Todoapp(todos)
-})
+// ----- make todos -----
+var app = e('todoapp', { DOM: document.body })
+app.set(todos)
 
-// event a module
+// --------100 lines approx--------
 var Event = require('vigour-js/lib/event')
 var raf = setTimeout
 
@@ -154,18 +127,50 @@ window.requestAnimationFrame(function () {
     }, event)
   })
   event.trigger()
-  raf(function () {
+  window.requestAnimationFrame(function () {
     var event = new Event('done')
-    clearAllMarked(event)
+    clearMarked(event)
     event.trigger()
     testComplete()
-  }, 16)
+  })
 })
 
 function testComplete () {
   raf(function () {
-    var t = Date.now() - d
-    app.todoapp.header.title.val = t
+    var t = Date.now() - time
+    app.header.title.val = t
     console.log('TIME TO PARSE', t, 'ms')
   })
 }
+
+// -------------------------------------- this is a super nice helper
+// one event per render loop
+function e (type, set, event) {
+  if (typeof type === 'object') {
+    return new Element(type, set || false)
+  }
+  let target = exports[type]
+  if (target) {
+    // if(!type set type on elem)
+    if (isPlain(target)) {
+      // this is super efficient lets go for this style!
+      target = exports[type] = new Element(target, event).Constructor
+    }
+    if (target.Constructor) {
+      target = target.Constructor
+    }
+    return new target(set, event || false) //eslint-disable-line
+  }
+  if (!set) {
+    set = {}
+  }
+  if (!set.type) {
+    set.type = type
+  }
+  return new Element(set, event || false)
+}
+
+function d (set, event) {
+  return new Data(set, event || false)
+}
+// ---------------------------------------

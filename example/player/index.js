@@ -72,11 +72,26 @@ var dataarr = [datax, dataz]
 // sbs integration
 Player.prototype.set({
   inject: require('vigour-element/lib/player/bitdash'),
-  config: { key: '225bef4e-5b4d-4444-94b1-4f2fd499fd3b' }
+  config: {
+    apiKey: '225bef4e-5b4d-4444-94b1-4f2fd499fd3b'
+  }
 })
 
 var Balen = new Element({
-  shit: new Player()
+  shit: new Player({
+    overlay: {
+      text: 'IM AN OVERLAY!',
+      button: {
+        text: 'toggle fullscreen!',
+        on: {
+          down (e, event) {
+            var pl = this.parent.parent
+            pl.fullscreen.origin.set(!pl.fullscreen.val)
+          }
+        }
+      }
+    }
+  })
 }).Constructor
 
 var Genieten = new Element({
@@ -86,13 +101,16 @@ var Genieten = new Element({
 function seek (e) {
   var rect = e.currentTarget.getBoundingClientRect()
   var x = rect.left
-  var nr = (e.pageX - x) / (rect.right - x)
+  var nr = (e.x - x) / (rect.right - x)
   var val = nr > 1 ? 1 : nr < 0 ? 0 : nr
   this.seek.bar.state.data.time.origin.val = val
 }
 
 // example
 global.app = app.set({
+  topbar: {
+    text: 'topbar'
+  },
   player: new Genieten(),
   progress: {
     inject: require('vigour-element/lib/event/drag'),
@@ -102,7 +120,7 @@ global.app = app.set({
     },
     seek: {
       bar: {
-        h: 20,
+        h: 60,
         w: {
           $: 'time',
           $transform (val) {
@@ -113,8 +131,8 @@ global.app = app.set({
     }
   },
   button: {
-    h: 40,
-    w: 100,
+    h: 60,
+    w: '25%',
     type: 'button',
     html: 'remove',
     on: {
@@ -133,8 +151,8 @@ global.app = app.set({
     }
   },
   button2: {
-    h: 40,
-    w: 100,
+    h: 60,
+    w: '25%',
     type: 'button',
     html: 'toggle',
     on: {
@@ -144,8 +162,8 @@ global.app = app.set({
     }
   },
   button3: {
-    h: 40,
-    w: 100,
+    h: 60,
+    w: '25%',
     type: 'button',
     html: 'switch',
     on: {
@@ -156,10 +174,10 @@ global.app = app.set({
     }
   },
   button4: {
-    h: 40,
-    w: 100,
+    h: 60,
+    w: '25%',
     type: 'button',
-    html: 'set random time',
+    html: 'set time',
     on: {
       down (e, event) {
         this.parent.origin.time.val = Math.random()
@@ -167,8 +185,8 @@ global.app = app.set({
     }
   },
   button5: {
-    h: 40,
-    w: 100,
+    h: 60,
+    w: '25%',
     type: 'button',
     html: 'move to end',
     on: {
@@ -177,10 +195,40 @@ global.app = app.set({
       }
     }
   },
+  button6: {
+    h: 60,
+    w: '25%',
+    type: 'button',
+    html: 'toggle mute',
+    on: {
+      down (e, event) {
+        var pl = this.parent.player.balen.shit
+        pl.volume.origin.val = pl.volume.val ? 0 : 1
+      }
+    }
+  },
+  button7: {
+    h: 60,
+    w: '25%',
+    type: 'button',
+    html: 'fullscreen',
+    on: {
+      down (e, event) {
+        var pl = this.parent.player.balen.shit
+        pl.fullscreen.origin.set(!pl.fullscreen.val)
+      }
+    }
+  },
   time: {
     html: {
       $: 'time',
       $prepend: 'time: '
+    }
+  },
+  duration: {
+    html: {
+      $: 'duration',
+      $prepend: 'duration: '
     }
   },
   playing: {
@@ -205,6 +253,12 @@ global.app = app.set({
     html: {
       val: 'volume on!',
       $playerMuted: 'muted!'
+    }
+  },
+  ended: {
+    html: {
+      val: 'not ended',
+      $playerEnded: 'ended!'
     }
   },
   val: new Observable(datax)

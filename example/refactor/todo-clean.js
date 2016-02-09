@@ -146,7 +146,7 @@ app.set({
 var Event = require('vigour-js/lib/event')
 var raf = setTimeout
 
-raf(function () {
+window.requestAnimationFrame(function () {
   var event = new Event('done')
   todos.keys().forEach(function (key) {
     todos[key].set({
@@ -159,7 +159,7 @@ raf(function () {
     clearAllMarked(event)
     event.trigger()
     testComplete()
-  })
+  }, 16)
 })
 
 function testComplete () {

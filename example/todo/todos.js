@@ -3,13 +3,13 @@
 exports.components = {
   todo: {
     type: 'input',
-    text: { $: 'title' }
+    value: { $: 'title' }
+  },
+  button: {
+    type: 'button',
+    text: 'click me!',
+    css: 'randomass-button'
   }
-  // button: {
-  //   type: 'button',
-  //   text: 'click me!',
-  //   css: 'randomass-button'
-  // }
 }
 
 exports.todos = {
@@ -18,9 +18,8 @@ exports.todos = {
   Child: { type: 'todo' }
 }
 
-exports.xbuttons = {
-  text: 'buttons!'
-  // Child: { type: 'button' },
-  // gurk: {}
+exports.buttons = {
+  text: 'buttons!',
+  Child: { type: 'button' },
+  gurk: {}
 }
-// nu nested stuff as well

@@ -170,7 +170,6 @@ var Todo = new Element({
       Child: {
         css: 'nested-todo',
         bla: {
-          type: 'h1',
           text: { $: 'title' }
         },
         css: {
@@ -251,6 +250,7 @@ var Todoapp = new Element({
           val: ', what needs to be done?'
         }
       },
+      $: true,
       on: {
         keydown (e, event) {
           if (e.keyCode === 13) {
@@ -266,6 +266,7 @@ var Todoapp = new Element({
                 }
               }
             }, event)
+            console.log('do it datax!', this.state.data.todos.keys())
             e.currentTarget.value = ''
           }
         }
@@ -380,4 +381,5 @@ app.set({
 
 window.requestAnimationFrame(function () {
   app.todoapp.header.title.val = Date.now() - d
+  console.log('TIME TO PARSE', Date.now() - d, 'ms')
 })

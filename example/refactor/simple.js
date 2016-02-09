@@ -48,7 +48,7 @@ var X = global.x = new Element({
   },
   a: {
     type: 'button',
-    text: { $: true, $add: ' its a buttn!' },
+    text: { $: true, $add: ' its a buttn!' }, //lets read out operators
     on: {
       click () {
         console.log('ok so click wtf..', this.path, this._context)
@@ -74,23 +74,43 @@ global.t = T.prototype
 
 global.h = new Cached({
   a: {
-    'a.a': 'a.a',
-    'a.b': 'a.b'
+    'a_a': 'a_a',
+    'a_b': 'a_b'
   },
   b: {
-    'a.b': 'a.b',
-    'b.b': 'b.b',
+    'b_a': 'b_a',
+    'b_b': 'b_b',
     'bla:thing': 'ITS A THING'
-  }
+  },
+  ref: {}
 })
+
+h.ref.val = global.h.a
 
 var Thing = new Element({
   type: 'h1',
   blurf: {
     text: { $: true, $add: global.james }
+  },
+  col: {
+    text: 'nested col! over parent.parent.ref'
+  },
+  bla: {
+    col: { // not rendered why?
+      text: 'gurkens!'
+    },
+    $collection: 'parent.parent.ref',
+    Child: {
+      text: { $: true }
+    }
   }
-  // text: global.james
 }).Constructor
+
+console.error('THING:', Thing.prototype)
+
+// ref does not update parent subscription kinda makes sense... have to do something about it
+// maybe just add the ref on the parent or something?
+// extra subs something like that
 
 var Holder = new Element({
   holder: {
@@ -111,8 +131,23 @@ var Y = new Element({
 }).Constructor
 
 // after that fix the child thing and context updates
-var app = global.app = new Element({
+var app = global.app = new Element({ //eslint-disable-line
   DOM: document.body,
   key: 'app',
-  bla: new Y(global.h)
+  bla: new Y(global.h),
+  button: {
+    type: 'button',
+    text: {
+      $prepend: 'switch:',
+      val: global.h.ref,
+      $transform (val) {
+        return typeof this._input === 'object' ? val + ' ' + this.origin.path.join('.') : val
+      }
+    },
+    on: {
+      click () {
+        global.h.ref.val = global.h.ref.origin.key === 'a' ? global.h.b : global.h.a
+      }
+    }
+  }
 })

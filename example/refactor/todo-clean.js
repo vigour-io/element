@@ -144,7 +144,7 @@ app.set({
 
 // event a module
 var Event = require('vigour-js/lib/event')
-var raf = window.requestAnimationFrame
+var raf = setTimeout
 
 raf(function () {
   var event = new Event('done')
@@ -154,15 +154,13 @@ raf(function () {
     }, event)
   })
   event.trigger()
+  raf(function () {
+    var event = new Event('done')
+    clearAllMarked(event)
+    event.trigger()
+    testComplete()
+  })
 })
-
-raf(function () {
-  var event = new Event('done')
-  clearAllMarked(event)
-  event.trigger()
-})
-
-testComplete()
 
 function testComplete () {
   raf(function () {

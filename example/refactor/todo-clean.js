@@ -14,7 +14,7 @@ var todos = {}
 for (var i = 0; i < 101; i++) {
   todos[i] = { title: 'todo ' + i }
 }
-todos = d(todos)
+todos = global.todos = d(todos)
 
 function clearMarked (data, event) {
   todos.keys().forEach((key) => {
@@ -27,12 +27,10 @@ function clearMarked (data, event) {
 function addTodo (e, event) {
   if (e.keyCode === 13) {
     todos._cnt = !todos._cnt ? 1 : todos._cnt + 1
-    console.log('new todo?')
+    console.log('new todo?', todos._cnt)
     this.state.data.set({
-      todos: {
-        [todos._cnt]: {
-          title: e.currentTarget.value || 'new todo'
-        }
+      [todos._cnt]: {
+        title: e.currentTarget.value || 'new todo'
       }
     }, event)
     e.currentTarget.value = ''

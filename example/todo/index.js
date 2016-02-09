@@ -10,6 +10,7 @@ var bla = e({
 })
 
 console.log(bla)
+// now nested components and proepries
 
 var app = e([
   require('./todos'),
@@ -26,6 +27,16 @@ var app = e([
     components: {
       bla: {
         text: { $add: ' o yeeeeeah' }
+      }
+    },
+    flurks: {
+      components: {
+        bla: {
+          text: { $add: ' - ok nested flurks' }
+        }
+      },
+      gurkens: {
+        type: 'bla'
       }
     },
     xxx: {

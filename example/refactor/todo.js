@@ -30,19 +30,19 @@ var Data = new Observable({
 var todos = global.todos = new Data({})
 
 todos.set({
-  aTodoItem: {
+  'aTodoItem:manon': {
     title: 'hello',
     something: 'something hur',
     done: true
   },
-  bTodoItem: {
+  'bTodoItem': {
     title: 'hel222lo',
     something: 'something hur 2',
     done: true
   }
 })
 
-for (var i = 0; i < 2; i++) {
+for (var i = 0; i < 1e2; i++) {
   todos.firstChild().set({
     todos: {
       [i]: {
@@ -53,10 +53,12 @@ for (var i = 0; i < 2; i++) {
   })
 }
 
-for (var i = 0; i < 2; i++) {
-  todos.bTodoItem.set({
+
+// make getters is nice1
+for (var i = 0; i < 1e2; i++) {
+  todos['bTodoItem'].set({
     todos: {
-      [i]: {
+      [i + ':manon']: {
         title: 'lulz ' + i,
         img: 'http://www.ufunk.net/wp-content/uploads/2015/09/De-Jeugd-Van-Tegenwoordig-Manon-' + (Math.round(Math.random() * 5) + 1) + '.jpg'
       }
@@ -81,15 +83,15 @@ data.b.todos.firstChild().title.val = 'xxxx'
 
 var cases = global.cases = require('../../lib/cases')
 
-global.fakecase = new Observable({
+global.fakecase = new Data({
   val: true,
   on: {
     click () {}
   }
 })
 
-global.fakecase2 = new Observable(global.fakecase)
-
+global.fakecase2 = new Data(global.fakecase)
+global.sometext = new Data('its the text for remove all')
 cases.set({
   $wild: {
     val: false
@@ -132,13 +134,15 @@ var Todo = new Element({
       $: 'done',
       $transform (val) {
         return val ? 'haha' : 'no'
+      },
+      james: {
+        $wild: 'james'
       }
     },
     title: {
       type: 'label',
       text: {
-        // does not work (yet)
-        // $prepend: { $: 'something' },
+        $wild: 'haha',
         $: 'title',
         $add: global.fakecase2
       }
@@ -165,7 +169,9 @@ var Todo = new Element({
       $collection: 'todos',
       Child: {
         css: 'nested-todo',
-        text: { $: 'title' },
+        bla: {
+          text: { $: 'title' }
+        },
         css: {
           $: 'done',
           $transform (val) {
@@ -177,11 +183,19 @@ var Todo = new Element({
             data.a.current.val = this.state.data
           }
         }
+      },
+      properties: {
+        manon: {
+          hello: {
+            type: 'h1',
+            text: 'MANON TYPE'
+          }
+        }
       }
     },
     current: {
       type: 'button',
-      text: 'current',
+      text: (global.t = new Data('hahahaha')),
       $: true,
       on: {
         click () {
@@ -236,6 +250,7 @@ var Todoapp = new Element({
           val: ', what needs to be done?'
         }
       },
+      $: true,
       on: {
         keydown (e, event) {
           if (e.keyCode === 13) {
@@ -251,6 +266,7 @@ var Todoapp = new Element({
                 }
               }
             }, event)
+            console.log('do it datax!', this.state.data.todos.keys())
             e.currentTarget.value = ''
           }
         }
@@ -286,7 +302,9 @@ var Todoapp = new Element({
         }
       },
       clearall: {
-        text: 'remove all',
+        text: {
+          $prepend: global.sometext
+        },
         on: {
           click () { todos.clear() }
         }
@@ -340,7 +358,7 @@ var CurrentTodo = new Element({
 
 // // ----- app -----
 // console.clear()
-
+var d = Date.now()
 app.set({
   currenttodo: new CurrentTodo(data.a),
   todoapp: new Todoapp(data.a)
@@ -355,8 +373,13 @@ app.set({
 // app.apps.set(dataapps)
 
 // setTimeout(function () {
-//   console.clear()
+//   // console.clear()
 //   console.log('--------------------')
-//   global.fakecase.val = 222222
+//   // global.fakecase.val = 222222
+//   t.val = 'yuzxxxxxxxxxxxxxxxx'
 // }, 100)
 
+window.requestAnimationFrame(function () {
+  app.todoapp.header.title.val = Date.now() - d
+  console.log('TIME TO PARSE', Date.now() - d, 'ms')
+})

@@ -1,23 +1,37 @@
 body, html {
   overflow: hidden;
   width:100%;
-  // margin:20px;
+  margin: 0;
 }
 
 * {
-  border:1px solid red;
-  margin: 10px;
+  box-sizing: border-box;
 }
 
 .player {
-  height:400px;
+  -webkit-transition: opacity 0.5s;
+  -moz-transition: opacity 0.5s;
+  -ms-transition: opacity 0.5s;
+  -o-transition: opacity 0.5s;
+  transition: opacity 0.5s;
   width:600px;
-  background: #eee;
+  max-width: 100%;
+  background: black;
 }
 
+.overlay {
+  opacity: 0.5;
+  background: green;
+}
 
 .progress {
   .bar {
     background: red;
+  }
+}
+
+.playerLoading {
+  .player {
+    opacity: 0.5;
   }
 }

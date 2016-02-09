@@ -14,7 +14,7 @@ Observable.prototype.inject(require('vigour-element/lib/subscription/stamp'))
 var Player = require('../../lib/player')
 
 var data1 = new Observable({
-  Child:Observable,
+  Child: Observable,
   img: {
     val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
   },

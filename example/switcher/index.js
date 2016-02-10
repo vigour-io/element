@@ -4,11 +4,10 @@ require('./style.less')
 var Switcher = require('../../lib/switcher')
 var Observable = require('vigour-js/lib/observable')
 
-Observable = new Observable().Constructor
-Observable.prototype.inject(require('../../lib/subscription/stamp'))
-Observable.prototype.set({
-  Child: Observable
-})
+Observable = new Observable({
+  inject: require('vigour-element/lib/subscription/stamp'),
+  ChildConstructor: 'Constructor'
+}).Constructor
 
 var Element = require('../../lib')
 
@@ -20,13 +19,13 @@ var switcher = new Switcher({
   $: true,
   w: 300,
   h: 200,
-  config: {
-    axis: 'x',
-    transition: {
-      property: 'transform',
-      duration: 300
-    }
-  },
+  // config: {
+  //   axis: 'x',
+  //   transition: {
+  //     property: 'transform',
+  //     duration: 300
+  //   }
+  // },
   Child: {
     $: true,
     html: {
@@ -78,10 +77,10 @@ var id = setInterval(function () {
   //   key: 'durt',
   //   title: 'heeee'
   // }))
-  data.current.set(new Observable({
-    key: '' + key,
-    title: key
-  }))
+  // data.current.set(new Observable({
+  //   key: '' + key,
+  //   title: key
+  // }))
     // app.holder.switcher.set({[key]: {
     //   html: 'flups:' + key
     // }})

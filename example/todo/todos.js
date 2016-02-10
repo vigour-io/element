@@ -2,13 +2,18 @@
 
 exports.components = {
   todo: {
-    type: 'input',
-    value: { $: 'title' }
+    type: 'span',
+    text: { $: 'title' }
   },
   button: {
     type: 'button',
-    text: 'click me!',
-    css: 'randomass-button'
+    text () {
+      return this.parent.key
+    },
+    css: 'todo-button'
+  },
+  project: {
+
   }
 }
 
@@ -19,7 +24,35 @@ exports.todos = {
 }
 
 exports.buttons = {
-  text: 'buttons!',
   Child: { type: 'button' },
-  gurk: {}
+  clearAll: {
+    text: {
+      // $: true, // ORIGIN ERROR
+      $transform (val) {
+        return this.parent.state.data.keys().length
+          ? val
+          : 'add 1000'
+      }
+    },
+    on: {
+      click (ev, event) {
+        var state = this.state
+        if (state.data.keys().length) {
+          state.data.clear(event)
+        } else {
+          var i = 10000
+          console.time('t')
+          while (--i) {
+            // .add would be nice that generates keys
+            state.data.setKey(i, { title: 'blurf-' + i }, false)
+          }
+          console.timeEnd('t')
+          console.time('keys')
+          state.data.keys()
+          console.timeEnd('keys')
+        }
+        state.data.emit('data')
+      }
+    }
+  }
 }

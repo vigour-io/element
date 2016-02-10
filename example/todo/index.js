@@ -4,5 +4,4 @@ var e = require('../../e')
 e([
   require('./todos'),
   { DOM: document.body }
-])
-.set(require('./data'))
+]).set(require('./data'))

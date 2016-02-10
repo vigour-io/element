@@ -1,27 +1,44 @@
 'use strict'
+var methods = require('./methods')
 
 exports.components = {
   todo: {
-    type: 'span',
+    // type: 'span',
     text: { $: 'title' }
   },
   button: {
     type: 'button',
-    text () {
-      return this.parent.key
-    },
+    text () { return this.parent.key },
     css: 'todo-button'
   },
   project: {
-
+    type: 'section',
+    text: {
+      $: 'title'
+    },
+    title: {
+      type: 'h1',
+      text: { $: 'title', $add: ' burf' }
+    },
+    todos: {
+      type: 'todos',
+      $: 'todos'
+    }
+  },
+  todos: {
+    title: { type: 'h1', text: 'yo todos!' },
+    $collection: true,
+    Child: { type: 'todo' },
+    properties: {
+      // project: {
+      //   text: { $: 'title' }
+      // },
+      project: { type: 'project' }
+    }
   }
 }
 
-exports.todos = {
-  title: { type: 'h1', text: 'yo todos!' },
-  $collection: true,
-  Child: { type: 'todo' }
-}
+exports.todos = { type: 'todos' }
 
 exports.buttons = {
   Child: { type: 'button' },
@@ -35,25 +52,7 @@ exports.buttons = {
       }
     },
     on: {
-      click (ev, event) {
-        var state = this.state
-        if (state.data.keys().length) {
-          state.data.clear(event)
-        } else {
-          var i = 10000
-          console.time('t')
-          while (--i) {
-            // .add would be nice that generates keys
-            state.data.setKey(i, { title: 'blurf-' + i }, false)
-          }
-          console.timeEnd('t')
-          state.data._keys = null
-          console.log('keys', state.data.keys())
-          state.data.keys()
-          console.timeEnd('keys')
-        }
-        state.data.emit('data')
-      }
+      click: methods.toggleTodos
     }
   }
 }

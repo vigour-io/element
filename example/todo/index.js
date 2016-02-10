@@ -8,7 +8,7 @@ var app = e([
       todos: {
         properties: {
           project: {
-            background: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAP0lEQVQYV42Q0QoAIAgDz///aMPAKKeQb26HTg0tB6zKVUhI4Bus5tMn2K4Djh7gBGXM7Uvo5riQ/BfUNwwTWfn+CgiQkAMbAAAAAElFTkSuQmCC'
+            background: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAa0lEQVQYV2NkgIKmQ37/6+w2MYK4xpnX/h9piWDgFL4E54MZhBSdna7FyEiMIpBhYBNxWQcyCWYjTjchKwK5nRGbw9EVga3+/lbvP7LvsCkCGYbiRlyKdtW2QDwD0oFPkbDUMogbCSkCGQYAka1/qtkEIQkAAAAASUVORK5CYII='
           }
         }
       }

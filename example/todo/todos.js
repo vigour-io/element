@@ -37,6 +37,15 @@ exports.components = {
 
 exports.todos = { type: 'todos' }
 
+exports.list = {
+  $collection: true,
+  properties: {
+    project: {
+      text: 'dope'
+    }
+  }
+}
+
 // exports.buttons = {
 //   Child: { type: 'button' },
 //   clearAll: {

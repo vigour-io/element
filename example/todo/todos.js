@@ -47,7 +47,8 @@ exports.buttons = {
             state.data.setKey(i, { title: 'blurf-' + i }, false)
           }
           console.timeEnd('t')
-          console.time('keys')
+          state.data._keys = null
+          console.log('keys', state.data.keys())
           state.data.keys()
           console.timeEnd('keys')
         }

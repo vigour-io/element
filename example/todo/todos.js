@@ -3,28 +3,28 @@ var methods = require('./methods')
 
 exports.components = {
   todo: {
-    // type: 'span',
+    type: 'span',
     text: { $: 'title' }
   },
-  button: {
-    type: 'button',
-    text () { return this.parent.key },
-    css: 'todo-button'
-  },
-  project: {
-    type: 'section',
-    text: {
-      $: 'title'
-    },
-    title: {
-      type: 'h1',
-      text: { $: 'title', $add: ' burf' }
-    },
-    todos: {
-      type: 'todos',
-      $: 'todos'
-    }
-  },
+  // button: {
+  //   type: 'button',
+  //   text () { return this.parent.key },
+  //   css: 'todo-button'
+  // },
+  // project: {
+  //   type: 'section',
+  //   text: {
+  //     $: 'title'
+  //   },
+  //   title: {
+  //     type: 'h1',
+  //     text: { $: 'title', $add: ' burf' }
+  //   },
+  //   todos: {
+  //     type: 'todos',
+  //     $: 'todos'
+  //   }
+  // },
   todos: {
     title: { type: 'h1', text: 'yo todos!' },
     $collection: true,
@@ -40,19 +40,19 @@ exports.components = {
 
 exports.todos = { type: 'todos' }
 
-exports.buttons = {
-  Child: { type: 'button' },
-  clearAll: {
-    text: {
-      // $: true, // ORIGIN ERROR
-      $transform (val) {
-        return this.parent.state.data.keys().length
-          ? val
-          : 'add 1000'
-      }
-    },
-    on: {
-      click: methods.toggleTodos
-    }
-  }
-}
+// exports.buttons = {
+//   Child: { type: 'button' },
+//   clearAll: {
+//     text: {
+//       // $: true, // ORIGIN ERROR
+//       $transform (val) {
+//         return this.parent.state.data.keys().length
+//           ? val
+//           : 'add 1000'
+//       }
+//     },
+//     on: {
+//       click: methods.toggleTodos
+//     }
+//   }
+// }

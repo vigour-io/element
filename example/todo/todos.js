@@ -46,6 +46,10 @@ exports.list = {
   }
 }
 
+exports.todos2 = {
+  type: 'todos',
+  Child: false
+}
 
 // exports.buttons = {
 //   Child: { type: 'button' },

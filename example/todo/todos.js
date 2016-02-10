@@ -6,33 +6,30 @@ exports.components = {
     type: 'span',
     text: { $: 'title' }
   },
-  // button: {
-  //   type: 'button',
-  //   text () { return this.parent.key },
-  //   css: 'todo-button'
-  // },
-  // project: {
-  //   type: 'section',
-  //   text: {
-  //     $: 'title'
-  //   },
-  //   title: {
-  //     type: 'h1',
-  //     text: { $: 'title', $add: ' burf' }
-  //   },
-  //   todos: {
-  //     type: 'todos',
-  //     $: 'todos'
-  //   }
-  // },
+  button: {
+    type: 'button',
+    text () { return this.parent.key },
+    css: 'todo-button'
+  },
+  project: {
+    type: 'section',
+    text: {
+      $: 'title'
+    },
+    title: {
+      type: 'h1',
+      text: { $: 'title', $add: ' burf' }
+    },
+    // todos: {
+    //   type: 'todos',
+    //   $: 'todos'
+    // }
+  },
   todos: {
     title: { type: 'h1', text: 'yo todos!' },
     $collection: true,
     Child: { type: 'todo' },
     properties: {
-      // project: {
-      //   text: { $: 'title' }
-      // },
       project: { type: 'project' }
     }
   }

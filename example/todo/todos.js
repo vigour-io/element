@@ -37,12 +37,19 @@ exports.components = {
 
 exports.todos = { type: 'todos' }
 
+
+// this is the function for the custom matcher
 exports.list = {
   $collection: true,
-  properties: {
-    project: {
-      text: 'dope'
+  define: {
+    yuzi (key, val) {
+      if (val === 'yuzi') {
+        return 'project'
+      }
     }
+  },
+  properties: {
+    project: { text: 'dope' }
   }
 }
 

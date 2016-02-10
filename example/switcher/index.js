@@ -4,7 +4,7 @@ require('./style.less')
 var Switcher = require('../../lib/switcher')
 var Observable = require('vigour-js/lib/observable')
 
-Observable = new Observable({
+var Data = new Observable({
   inject: require('vigour-element/lib/subscription/stamp'),
   ChildConstructor: 'Constructor'
 }).Constructor
@@ -15,80 +15,43 @@ var app = global.app = new Element({
   DOM: document.body
 })
 
-var switcher = new Switcher({
-  $: true,
-  w: 300,
-  h: 200,
-  // config: {
-  //   axis: 'x',
-  //   transition: {
-  //     property: 'transform',
-  //     duration: 300
-  //   }
-  // },
-  Child: {
-    $: true,
-    html: {
-      $: 'title'
-    }
-  },
-  next: {
-    $: 'current'
-  }
-})
-
-var data = new Observable({
+var data = new Data({
   current: new Observable({
-    key: 'nerdje',
-    title: '?????'
+    title: 'flups'
   })
 })
 
-global.app = app.set({
+app.set({
   holder: {
-    switcher: new switcher.Constructor(data)
+    Child:{},
+    properties: {
+      // current: {
+      //   text: {
+      //     val: 'current!'
+      //     // $: 'title'
+      //   }
+      // },
+      discover: {
+        text: {
+          val: 'discover!'
+          // $: 'title'
+        }
+      },
+      shows: {
+        text: {
+          $: 'title'
+        }
+      }
+    },
+    $collection: true
   }
-  // holder2: {
-  //   switcher: new switcher.Constructor()
-  // }
 })
 
-// data.current.set(new Observable({
-//   key: 'durt',
-//   title: 'heeee'
-// }))
+app.set(data)
 
-// setInterval(function () {
-//   data.current.val = new Observable({
-//     key: Math.random(),
-//     title: Math.random()
-//   })
-// }, 500)
-
-var cnt = 1
-var id = setInterval(function () {
-  let key = Math.random()
-  // app.holder.switcher.set({[key]: new Observable({
-  //   key: key,
-  //   title: key
-  // })})
-  console.error('!!')
-  // data.current.set(new Observable({
-  //   key: 'durt',
-  //   title: 'heeee'
-  // }))
-  // data.current.set(new Observable({
-  //   key: '' + key,
-  //   title: key
-  // }))
-    // app.holder.switcher.set({[key]: {
-    //   html: 'flups:' + key
-    // }})
-  //   // app.holder2.switcher.set({[key]: {
-  //   //   html: 'haha:' + key
-  //   // }})
+setTimeout(function () {
+  data.current.set(new Observable({
+    key: 'discover',
+    title: 'hahaha'
+  }))
 }, 1000)
-
-// setTimeout(function () {
-//   clearInterval(id)
-// }, 1000)

@@ -41,11 +41,9 @@ exports.todos = { type: 'todos' }
 // this is the function for the custom matcher
 exports.list = {
   $collection: true,
-  define: {
-    yuzi (key, val) {
-      if (val === 'yuzi') {
-        return 'project'
-      }
+  mapProperty (key, val) {
+    if (val === 'yuzi') {
+      return 'project'
     }
   },
   properties: {

@@ -24,6 +24,7 @@ var app = e([
     components: {
       bla: bla,
       todo: {
+        css: 'hey!',
         type: 'div', // overwrites it
         text: { $: 'title' }
       }
@@ -52,7 +53,6 @@ var app = e([
 ])
 
 global.app = app
-
 app.set(data)
 
 // use globals/document or something for document.body more portable

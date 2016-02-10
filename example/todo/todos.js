@@ -37,38 +37,35 @@ exports.components = {
 
 exports.todos = { type: 'todos' }
 
-
+exports.todos2 = {
+  type: 'todos',
+  title: { text: 'yo this is a non-child todos list' },
+  Child: false
+}
 // this is the function for the custom matcher
 exports.list = {
   $collection: true,
   mapProperty (key, val) {
-    if (val === 'yuzi') {
-      return 'project'
-    }
+    return val.todos && 'project'
   },
   properties: {
-    project: { text: 'dope' }
+    project: { type: 'project' }
   }
 }
 
-exports.todos2 = {
-  type: 'todos',
-  Child: false
+exports.buttons = {
+  Child: { type: 'button' },
+  clearAll: {
+    text: {
+      // $: true, // ORIGIN ERROR
+      $transform (val) {
+        return this.parent.state.data.keys().length
+          ? val
+          : 'add 1000'
+      }
+    },
+    on: {
+      click: methods.toggleTodos
+    }
+  }
 }
-
-// exports.buttons = {
-//   Child: { type: 'button' },
-//   clearAll: {
-//     text: {
-//       // $: true, // ORIGIN ERROR
-//       $transform (val) {
-//         return this.parent.state.data.keys().length
-//           ? val
-//           : 'add 1000'
-//       }
-//     },
-//     on: {
-//       click: methods.toggleTodos
-//     }
-//   }
-// }

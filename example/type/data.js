@@ -11,12 +11,5 @@ module.exports = new Data({
   },
   2: {
     title: 'todox!'
-  },
-  '3:project': {
-    title: 'special project',
-    todos: {
-      1: { title: 'project 1' },
-      2: { title: 'project 2' }
-    }
   }
 })

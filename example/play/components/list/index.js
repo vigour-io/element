@@ -2,22 +2,22 @@
 
 // can also make base lists if you want, possible to use in this file
 exports.grid = {
-  $collection: true,
+  $collection: 'items',
   Child: { type: 'item' }
 }
 
 exports['grid-flex'] = {
-  $collection: true,
+  $collection: 'items',
   Child: { type: 'item-flex' }
 }
 
 exports.list = {
-  $collection: true,
+  $collection: 'items',
   Child: { type: 'item-row' }
 }
 
 exports['list-horizontal'] = {
-  $collection: true,
+  $collection: 'items',
   Child: { type: 'item' }
 }
 

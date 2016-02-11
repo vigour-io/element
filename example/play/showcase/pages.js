@@ -31,7 +31,8 @@ var app = global.app = e({
     channels: {
       type: 'channels',
       $: 'channels'
-    }
+    },
+    mixed: { type: 'mixed' }
   },
   DOM: document.body
 })

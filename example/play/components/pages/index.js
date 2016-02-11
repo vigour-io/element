@@ -40,6 +40,7 @@ exports.movies = {
 }
 
 exports.mixed = {
+  title: 'mixed',
   publishers: {
     type: 'list-horizontal',
     $collection: 'publishers'

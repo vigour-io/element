@@ -1,6 +1,6 @@
 {
-  "discover":{
-    "title":"Discovery",
+  "discover": {
+    "title":"discovery",
     "items":{
       "carousel":{
         "id":"1122",
@@ -52,7 +52,7 @@
     }
   },
   "shows":{
-    "title":false,
+    "title": "shows",
     "items":{
       "1893":{
         "id":"1893",
@@ -344,8 +344,14 @@
       }
     }
   },
+  "channels": {
+    "title": "channels",
+    "items": {
+
+    }
+  },
   "movies":{
-    "title":false,
+    "title":"movies",
     "items":{
       "3088":{
         "id":"3088",

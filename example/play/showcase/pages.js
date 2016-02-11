@@ -18,7 +18,19 @@ var app = global.app = e({
   pages: {
     discover: {
       type: 'discover',
-      $: 'discover.items'
+      $: 'discover'
+    },
+    shows: {
+      type: 'shows',
+      $: 'shows'
+    },
+    movies: {
+      type: 'movies',
+      $: 'movies'
+    },
+    channels: {
+      type: 'channels',
+      $: 'channels'
     }
   },
   DOM: document.body

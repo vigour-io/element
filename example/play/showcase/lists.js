@@ -25,32 +25,32 @@ var app = global.app = e({
       type: 'grid',
       $collection: 'shows.items'
     },
-    flex: {
+    flexGrid: {
       type: 'grid-flex',
       $collection: 'shows.items'
     },
     'horizontal': {
       type: 'list-horizontal',
-      $collection: 'shows.items'
+      $: 'shows'
     },
     'discover': {
       type: 'list-discover',
-      $collection: 'shows.items'
+      $: 'shows'
     },
     'video-horizontal': {
       type: 'list-horizontal',
-      $collection: 'shows.items',
-      Child: { type: 'item-video' }
+      $: 'shows',
+      list: { Child: { type: 'item-video' } }
     },
     channels: {
       type: 'list-horizontal',
-      $collection: 'channels.items',
-      Child: { type: 'item-channel' }
+      $: 'channels',
+      list: { Child: { type: 'item-channel' } }
     },
     movies: {
       type: 'list-horizontal',
-      $collection: 'shows.items',
-      Child: { type: 'item-poster' }
+      $: 'movies',
+      list: { Child: { type: 'item-poster' } }
     }
   },
   DOM: document.body

@@ -17,11 +17,16 @@ exports.list = {
 }
 
 exports['list-horizontal'] = {
-  $collection: 'items',
-  Child: { type: 'item' }
+  $: true,
+  title: { type: 'title' },
+  list: {
+    $collection: 'items',
+    Child: { type: 'item' }
+  }
 }
 
 exports['list-discover'] = {
+  type: 'list-horizontal',
   components: {
     arrow: {
       icon: { type: 'icon', css: 'arrow' },
@@ -33,6 +38,5 @@ exports['list-discover'] = {
     }
   },
   left: { type: 'arrow' },
-  right: { type: 'arrow' },
-  list: { type: 'list-horizontal' }
+  right: { type: 'arrow' }
 }

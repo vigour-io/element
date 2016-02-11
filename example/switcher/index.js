@@ -22,36 +22,40 @@ var data = new Data({
 })
 
 app.set({
-  holder: {
-    Child:{},
-    properties: {
-      // current: {
-      //   text: {
-      //     val: 'current!'
-      //     // $: 'title'
-      //   }
-      // },
-      discover: {
-        text: {
-          val: 'discover!'
-          // $: 'title'
-        }
-      },
-      shows: {
-        text: {
-          $: 'title'
-        }
+  holder: new Switcher({
+    w: 200,
+    x:200,
+    config: {
+      transition: {
+        property: 'transform',
+        duration: 1000
       }
     },
-    $collection: true
-  }
+    Child: {
+      text: {
+        $: 'title'
+      }
+    },
+    $put: 'current'
+  })
 })
 
 app.set(data)
 
-setTimeout(function () {
-  data.current.set(new Observable({
-    key: 'discover',
-    title: 'hahaha'
-  }))
-}, 1000)
+function make () {
+  setTimeout(function () {
+    data.current.set(new Observable({
+      key: 'discover',
+      title: 'DISCOVER!!'
+    }))
+    setTimeout(function () {
+      data.current.set(new Observable({
+        key: 'shows',
+        title: 'SHOWS!!!'
+      }))
+      make()
+    }, 1000)
+  }, 1000)
+}
+
+make()

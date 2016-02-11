@@ -3,7 +3,7 @@ var methods = require('./methods')
 
 exports.components = {
   todo: {
-    type: 'span',
+    type: 'li',
     text: { $: 'title' }
   },
   button: {
@@ -12,21 +12,21 @@ exports.components = {
     css: 'todo-button'
   },
   project: {
-    type: 'section',
-    text: {
-      $: 'title'
-    },
+    // type: 'todo', // WRONG has to take over todo of course
     title: {
       type: 'h1',
       text: { $: 'title', $add: ' burf' }
     },
-    // todos: {
-    //   type: 'todos',
-    //   $: 'todos'
-    // }
+    todos: {
+      // type: 'todos' // WRONG should not break
+      type: 'ul', // edge case want to use todo but bit hard to double ref
+      $collection: 'todos',
+      Child: { type: 'todo' }
+    }
   },
   todos: {
-    title: { type: 'h1', text: 'yo todos!' },
+    type: 'ul',
+    title: { type: 'h1', text: 'these are my todos!!' },
     $collection: true,
     Child: { type: 'todo' },
     properties: {
@@ -37,19 +37,35 @@ exports.components = {
 
 exports.todos = { type: 'todos' }
 
-// exports.buttons = {
-//   Child: { type: 'button' },
-//   clearAll: {
-//     text: {
-//       // $: true, // ORIGIN ERROR
-//       $transform (val) {
-//         return this.parent.state.data.keys().length
-//           ? val
-//           : 'add 1000'
-//       }
-//     },
-//     on: {
-//       click: methods.toggleTodos
-//     }
-//   }
-// }
+exports.todos2 = {
+  type: 'todos',
+  title: { text: 'yo this is a non-child todos list' },
+  Child: false
+}
+// this is the function for the custom matcher
+exports.list = {
+  $collection: true,
+  mapProperty (key, val) {
+    return val.todos && 'project'
+  },
+  properties: {
+    project: { type: 'project' }
+  }
+}
+
+exports.buttons = {
+  Child: { type: 'button' },
+  clearAll: {
+    text: {
+      // $: true, // ORIGIN ERROR
+      $transform (val) {
+        return this.parent.state.data.keys().length
+          ? val
+          : 'add 1000'
+      }
+    },
+    on: {
+      click: methods.toggleTodos
+    }
+  }
+}

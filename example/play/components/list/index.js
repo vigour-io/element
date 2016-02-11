@@ -1,17 +1,38 @@
 'use strict'
 
+// can also make base lists if you want, possible to use in this file
 exports.grid = {
-  css: 'list-grid'
+  $collection: true,
+  Child: { type: 'item' }
 }
 
-exports.verticalList = {
-  css: 'list-vertical'
+exports['grid-flex'] = {
+  $collection: true,
+  Child: { type: 'item-flex' }
 }
 
-exports.horizontalList = {
-  css: 'list-horizontal'
+exports.list = {
+  $collection: true,
+  Child: { type: 'item-row' }
 }
 
-exports.discoverList = {
-  css: 'list-discover'
+exports['list-horizontal'] = {
+  $collection: true,
+  Child: { type: 'item' }
+}
+
+exports['list-discover'] = {
+  components: {
+    arrow: {
+      icon: { type: 'icon', css: 'arrow' },
+      on: {
+        click () {
+          // if this.key === 'left' ?
+        }
+      }
+    }
+  },
+  left: { type: 'arrow' },
+  right: { type: 'arrow' },
+  list: { type: 'list-horizontal' }
 }

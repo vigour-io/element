@@ -30,17 +30,15 @@ var x = new Data(global.starts)
 var app = e({
   components: {
     a: {
-      type: 'b'
-      // something: {
-      //   type: 'b'
-      // }
+      type: 'b',
+      text: { $add: ' A!' },
+      something: {
+        type: 'b',
+        text: { $add: ' haha something' }
+      }
     },
     b: {
-      text: 'b'
-    },
-    input: {
-      type: 'input',
-      value: 'yo'
+      text: 'b text'
     }
   },
   bla: {
@@ -57,8 +55,6 @@ var app = e({
 })
 
 app.set({ DOM: document.body })
-
-
 
 global.app = app
 // app.set(data)

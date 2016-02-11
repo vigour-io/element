@@ -1,3 +1,51 @@
 * {
-  border: 1px solid red;
+  border: 1px solid rgba(0,0,0,0.1);
 }
+
+.lists {
+  > * {
+    border-bottom: 10px solid black;
+  }
+}
+
+.type-title {
+  font-size: 16px;
+  display: inline-block;
+}
+
+.type-subtitle {
+  font-size: 14px;
+  font-style: italic;
+}
+
+.type-item-row {
+  background-color: #ffeeee;
+  img {
+    display: inline-block;
+    width: 100px;
+    height: 50px;
+  }
+}
+
+.type-item {
+  display: inline-block;
+  width: 200px;
+  height: 300px;
+  background-color: #eee;
+  img {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+.type-item-poster {
+  background-color: #eeffee;
+  width: 100px;
+  height: 250px;
+  img.type-poster {
+    display: inline-block;
+    width: 100px;
+    height: 250px;
+  }
+}
+

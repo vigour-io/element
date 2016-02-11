@@ -1,16 +1,39 @@
 'use strict'
-exports.thumb = {
-  css: 'item-thumb'
+exports.item = {
+  img: { type: 'thumb' },
+  title: { type: 'title' },
+  subtitle: { type: 'subtitle' },
+  on: {
+    click () {
+      console.error('!!!', this.path)
+    }
+  }
 }
 
-exports.video = {
-  css: 'item-video'
+exports['item-flex'] = {
+  type: 'item',
+  description: {
+    text: { $: 'description' }
+  }
 }
 
-exports.poster = {
-  css: 'item-poster'
+exports['item-row'] = {
+  type: 'item',
+  arrow: { type: 'icon', css: 'arrow' }
 }
 
-exports.channel = {
-  css: 'item-channel'
+exports['item-video'] = {
+  type: 'item',
+  css: { inherits: 'type-item' },
+  progress: { type: 'progress' }
+}
+
+exports['item-channel'] = {
+  type: 'item-video'
+}
+
+exports['item-poster'] = {
+  type: 'item',
+  css: { inherits: 'type-item' },
+  img: { type: 'poster' }
 }

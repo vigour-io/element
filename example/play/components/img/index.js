@@ -1,8 +1,7 @@
 'use strict'
 
 exports.img = {
-  src: 'this is an image'
-  // src: { $: 'img' }
+  src: { $: 'img' }
 }
 
 exports.thumb = {

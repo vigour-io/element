@@ -25,7 +25,6 @@
     "less": "*",
     "style-loader": "*",
     "css-loader": "*",
-    "scratch": "*",
     "webpack": "*",
     "webpack-dev-server": "*"
   }

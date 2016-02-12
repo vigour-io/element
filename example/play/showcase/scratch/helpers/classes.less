@@ -1,0 +1,174 @@
+/**
+ * Helper classes
+ * ----------------------------------------------
+ * defining classes that may be used in markup
+ * for defining text and container styles
+ */
+
+// transition for interactive elements
+.ui-interactive {
+  .transition(@transition);
+}
+
+// opacity control
+.ui-opacity-full  {opacity: 1;}
+.ui-opacity-high  {opacity: .75;}
+.ui-opacity-half  {opacity: .5;}
+.ui-opacity-low   {opacity: .25;}
+.ui-opacity-zero  {opacity: 0;}
+
+// visibility control
+.ui-hidden    		{visibility: hidden;}
+.ui-hide      		{display: none;}
+.ui-none      		{display: none !important;} // vanish!
+
+// align center at x axis
+.ui-position-center-x {
+  .margin-h(auto);
+}
+
+// align center at y axis
+.ui-position-center-y {
+  .absolute(auto, 50%);
+  .translate(0, -50%);
+}
+
+// align center at both x and y axises
+.ui-position-center {
+  .absolute(50%, 50%);
+  .translate;
+}
+
+// floating
+.ui-position-left     {float: left;}
+.ui-position-right    {float: right;}
+.ui-position-reset    {float: none;}
+
+// relatives
+.ui-relation          {position: relative;}
+
+// font settings
+// headers
+.ui-heading           {font-weight: @font-regular;}
+
+// weight
+.ui-heading {
+  &.ui-font-slim         {font-weight: @font-slim;}
+  &.ui-font-light        {font-weight: @font-light;}
+  &.ui-font-regular      {font-weight: @font-regular;}
+  &.ui-font-semibold     {font-weight: @font-semibold;}
+  &.ui-font-bold         {font-weight: @font-bold;}
+  &.ui-font-extrabold    {font-weight: @font-extrabold;}
+}
+
+.ui-font-slim         {font-weight: @font-slim;}
+.ui-font-light        {font-weight: @font-light;}
+.ui-font-regular      {font-weight: @font-regular;}
+.ui-font-semibold     {font-weight: @font-semibold;}
+.ui-font-bold         {font-weight: @font-bold;}
+.ui-font-extrabold    {font-weight: @font-extrabold;}
+
+// families
+.ui-font-sans-serif   {font-family: @font-family-sans-serif;}
+.ui-font-serif        {font-family: @font-family-serif;}
+.ui-font-monospace    {font-family: @font-family-monospace;}
+
+// decoration
+.ui-font-underline    {text-decoration: underline;}
+.ui-font-line-through {text-decoration: line-through;}
+
+// styles
+.ui-font-italic       {font-style: italic;}
+
+// case
+.ui-font-uppercase    {text-transform: uppercase;}
+.ui-font-lowercase    {text-transform: lowercase;}
+.ui-font-camelcase    {text-transform: capitalize;}
+.ui-font-nocase       {text-transform: none}
+
+
+// align
+.ui-right {
+  text-align: right;
+  text-align: -webkit-right;
+}
+
+.ui-left {
+  text-align: left;
+  text-align: -webkit-left;
+}
+
+.ui-center {
+  text-align: center;
+  text-align: -webkit-center;
+}
+
+
+// busy
+.ui-busy {
+  pointer-events: none;
+}
+
+// aditional tricks
+// 4 space indent
+.ui-tab {
+  &:before {
+    content: "____";
+    opacity: 0;
+  }
+}
+
+// inline set children
+.ui-inline {
+  .clearfix;
+
+  & > li,
+  & > div {
+    float: left;
+  }
+}
+
+// tableset with witout using <table>
+.ui-table {
+  display: table;
+  width: 100%;
+  table-layout: fixed;
+
+  & > div {
+    display: table-row;
+
+    & > div {
+      display: table-cell;
+    }
+  }
+}
+
+// grow the first letter
+.first-letter {
+  &:first-letter {
+    font-size: 3em;
+    float: left;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    line-height: 1;
+  }
+}
+
+// clearfix
+.clear { // it also can be used in grids. !important is required to overwrite floating
+  clear: both !important;
+  width: 100% !important;
+  float: none !important;
+  height: 1px !important;
+  overflow: hidden !important;
+}
+
+.clearfix {
+  &:after {
+    content: "";
+    clear: both;
+    display: block;
+    height: 0;
+    float: none;
+  }
+}

@@ -40,7 +40,7 @@ var app = global.app = e({
     type: 'switcher',
     $: true,
     mapProperty (key, val) {
-      console.warn('-- lets find correct shit--->', key)
+      console.error('-- lets find correct shit--->', key)
       if (val.path.indexOf('movies') > 1) {
         return 'movies'
       } else {
@@ -57,7 +57,7 @@ var app = global.app = e({
   DOM: document.body
 })
 
-app.switcher.val = data
+app.switcher.val = data.current
 
 setInterval(function () {
   data.current.val = data.shows.g()

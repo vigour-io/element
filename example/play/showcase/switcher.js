@@ -38,12 +38,28 @@ var app = global.app = e({
   components: components,
   switcher: {
     type: 'switcher',
-    $: 'current'
+    $: true,
+    mapProperty (key, val) {
+      console.warn('-- lets find correct shit--->', key)
+      if (val.path.indexOf('movies') > 1) {
+        return 'movies'
+      } else {
+        return 'discover' // or generic page
+      }
+    },
+    properties: {
+      show: { type: 'show' },
+      discover: { type: 'discover' },
+      movies: { type: 'movies' },
+      channels: { type: 'channels' }
+    }
   },
   DOM: document.body
 })
 
-// console.error(data)
-app.pages.video.val = data.movies.g()
+app.switcher.val = data
 
-app.val = data
+setInterval(function () {
+  data.current.val = data.shows.g()
+}, 500)
+

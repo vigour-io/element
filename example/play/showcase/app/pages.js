@@ -44,9 +44,7 @@ var app = global.app = e({
   DOM: document.body
 })
 
-// console.error(data)
 app.pages.video.val = data.movies.g()
 app.pages.show.val = data.shows.items[2071]
 app.pages.publisher.val = data.publishers.g()
-
 app.val = data

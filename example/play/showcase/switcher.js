@@ -46,7 +46,7 @@ var app = global.app = e({
     type: 'switcher',
     $put: true,
     mapProperty (key, val) {
-      console.error('-- lets find correct shit--->', key)
+      console.error('-- lets find correct item from the switcher --->', key)
       if (val.path.indexOf('movies') > 1) {
         return 'movies'
       } else {

@@ -1,5 +1,4 @@
 'use strict'
-require('./style.less')
 
 exports.title = {
   // type: 'h1',

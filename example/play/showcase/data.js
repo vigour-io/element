@@ -5,4 +5,4 @@ var Data = new Observable({
   Child: 'Constructor'
 }).Constructor
 
-module.exports = new Data(require('./raw.json'), false)
+module.exports = new Data(require('./raw.js'), false)

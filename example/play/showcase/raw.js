@@ -1,4 +1,4 @@
-{
+module.exports = {
   "discover": {
     "title": "Discovery",
     "items": {
@@ -57,7 +57,6 @@
       "3075": {
         "id": "3075",
         "title": "Abu Dhabi HD",
-        "subtitle": "Nika subtitle good!",
         "description": "Abu Dhabi HD",
         "img": {
           "val": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30ed8e4b029b5c6d74d57-1454911815315_l_thumbnail",
@@ -874,7 +873,10 @@
         "img": {
           "val": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_thumbnail",
           "cover": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_main",
-          "logo": "http://www.tv.ae/images/tvae-logo.png"
+          "secondary_cover": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_secondary_cover",
+          "poster": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_poster",
+          "spotlight": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_spotlight",
+          "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_banner"
         },
         "access": 0,
         "items": {

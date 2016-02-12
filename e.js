@@ -1,3 +1,4 @@
+'use strict'
 var Element = require('./lib/index.js') // becomes ./element
 var isPlain = require('vigour-js/lib/util/is/plainobj')
 module.exports = function (set, event, parent, key) {

@@ -20,6 +20,7 @@
     &:not(.type-disabled):hover {
       > .type-thumb {
         img {
+
           .scale(1.05);
         }
       }
@@ -36,13 +37,17 @@
 .type-item-video {
   .type-thumb {
     position: relative;
+
     progress {
       width: 100%;
       position: absolute;
       bottom: 0;
-      &::-webkit-progress-bar {
-        .radius(0px);
-      }
+    }
+
+    progress,
+    progress::-webkit-progress-bar,
+    progress[value]::-webkit-progress-value {
+      .radius(0);
     }
   }
 }
@@ -51,6 +56,7 @@
   .info {
     .flex-display;
     .align-items(center);
+    padding: 10px 0;
 
     > progress {
       margin-left: @gutter-small;
@@ -72,6 +78,6 @@
 
   .type-info {
     .flex(1);
-    padding: @gutter-small;
+    padding: @gutter-small 0;
   }
 }

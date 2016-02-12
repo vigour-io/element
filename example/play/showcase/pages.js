@@ -1,5 +1,6 @@
 require('./style.less')
 var e = require('../../../e')
+require('vigour-scratch')
 
 // for dev only
 var merge = require('lodash/object/merge')

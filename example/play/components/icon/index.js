@@ -1,3 +1,5 @@
 'use strict'
 require('./style.less')
-exports.icon = {}
+exports.icon = {
+  type: 'i'
+}

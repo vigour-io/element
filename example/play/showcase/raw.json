@@ -57,6 +57,7 @@
       "3075": {
         "id": "3075",
         "title": "Abu Dhabi HD",
+        "subtitle": "Nika subtitle good!",
         "description": "Abu Dhabi HD",
         "img": {
           "val": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30ed8e4b029b5c6d74d57-1454911815315_l_thumbnail",

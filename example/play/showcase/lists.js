@@ -1,6 +1,8 @@
 require('./style.less')
 var e = require('../../../e')
 
+require('vigour-scratch')
+
 var merge = require('lodash/object/merge')
 var components = {}
 merge(components, require('../components/progress'))
@@ -13,47 +15,63 @@ merge(components, require('../components/list'))
 
 var data = require('./data')
 
-var app = global.app = e({
+var app = global.app = e([{
   key: 'app',
   components: components,
   lists: {
-    list: {
-      type: 'list',
-      $collection: 'shows.items'
-    },
-    grid: {
-      type: 'grid',
-      $collection: 'shows.items'
-    },
-    flexGrid: {
-      type: 'grid-flex',
-      $collection: 'shows.items'
-    },
-    'horizontal': {
-      type: 'list-horizontal',
-      $: 'shows'
-    },
-    'discover': {
-      type: 'list-discover',
-      $: 'shows'
-    },
-    'video-horizontal': {
-      type: 'list-horizontal',
-      $: 'shows',
-      list: { Child: { type: 'item-video' } }
-    },
+    // list: {
+    //   type: 'list',
+    //   $collection: 'shows.items'
+    // },
+    // horizontal: {
+    //   type: 'list-horizontal',
+    //   $: 'shows'
+    // },
+    // grid: {
+    //   type: 'grid',
+    //   $collection: 'shows.items'
+    // },
+    // flexGrid: {
+    //   type: 'grid-flex',
+    //   $collection: 'shows.items'
+    // },
+    // 'discover': {
+    //   type: 'list-discover',
+    //   $: 'shows'
+    // },
+    // 'video-horizontal': {
+    //   type: 'list-horizontal',
+    //   $: 'shows',
+    //   list: { Child: { type: 'item-video' } }
+    // },
     channels: {
       type: 'list-horizontal',
       $: 'channels',
       list: { Child: { type: 'item-channel' } }
     },
-    movies: {
-      type: 'list-horizontal',
-      $: 'movies',
-      list: { Child: { type: 'item-poster' } }
-    }
+    // movies: {
+    //   type: 'list-horizontal',
+    //   $: 'movies',
+    //   list: { Child: { type: 'item-poster' } }
+    // }
   },
   DOM: document.body
-})
+}, {
+  components: {
+    poster: {
+      src: {
+        $: null,
+        $transform: null,
+        val: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhNXqJLnXT0kJ9CTzlr42vId-ZhTj-TFxTL0mpCH1BuPW5PkM6XuNJeQ'
+      }
+    },
+    progress: {
+      value: {
+        $: null,
+        val: 0.5
+      }
+    }
+  }
+}])
 
 app.val = data

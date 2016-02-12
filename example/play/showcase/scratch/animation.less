@@ -1,0 +1,51 @@
+// Animations
+// ==============================================
+// Most of animations included here is copied from Animate.css
+// library by Daniel Eden (http://daneden.me/animate). They
+// are rewritten in less depend on our way of using variables.
+// It's under MIT License and it's free to use.
+
+// general mixin
+.animated(@name: '', @duration: @animation-duration) {
+  & when not (@name = '') {
+    .animation-name(@name);
+  }
+
+  .animation-fill(both);
+  .animation-duration(@duration);
+}
+
+& when (@animatecss-bounce = true) {
+  @import url('./animation/bounce.less');
+}
+
+& when (@animatecss-fade = true) {
+  @import url('./animation/fade.less');
+}
+
+& when (@animatecss-flip = true) {
+  @import url('./animation/flip.less');
+}
+
+& when (@animatecss-light-speed = true) {
+  @import url('./animation/light-speed.less');
+}
+
+& when (@animatecss-roll = true) {
+  @import url('./animation/roll.less');
+}
+
+& when (@animatecss-rotate = true) {
+  @import url('./animation/rotate.less');
+}
+
+// & when (@animatecss-slide = true) {
+//   @import url('./animation/slide.less');
+// }
+
+& when (@animatecss-zoom = true) {
+  @import url('./animation/zoom.less');
+}
+
+// infinite looping animations
+@import url('./animation/infinites.less');

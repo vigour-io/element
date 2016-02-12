@@ -1,0 +1,159 @@
+/**
+ * Scheme colors
+ * ----------------------------------------------
+ * defining color schemes that can reuse coloring
+ * for each component. priority color goes to
+ * background, contrast color to the text.
+ */
+
+ // primary
+.ui-scheme-primary {
+  &:not(.ui-inverse) {
+    .scheme(@primary-scheme);
+
+    &.ui-interactive {
+      .scheme-interactive(@primary-scheme, both, both);
+    }
+  }
+
+  &.ui-inverse {
+    .scheme(@primary-scheme-inverse);
+
+    &.ui-interactive {
+      .scheme-interactive(@primary-scheme-inverse, both, both);
+    }
+  }
+}
+
+// secondary
+.ui-scheme-secondary {
+  &:not(.ui-inverse) {
+    .scheme(@secondary-scheme);
+
+    &.ui-interactive {
+      .scheme-interactive(@secondary-scheme, both, both);
+    }
+  }
+
+  &.ui-inverse {
+    .scheme(@secondary-scheme-inverse);
+
+    &.ui-interactive {
+      .scheme-interactive(@secondary-scheme-inverse, both, both);
+    }
+  }
+}
+
+// tertiary
+.ui-scheme-tertiary {
+  &:not(.ui-inverse) {
+    .scheme(@tertiary-scheme);
+
+    &.ui-interactive {
+      .scheme-interactive(@tertiary-scheme, both, both);
+    }
+  }
+
+  &.ui-inverse {
+    .scheme(@tertiary-scheme-inverse);
+
+    &.ui-interactive {
+      .scheme-interactive(@tertiary-scheme-inverse, both, both);
+    }
+  }
+}
+
+// quaternary
+.ui-scheme-quaternary {
+  &:not(.ui-inverse) {
+    .scheme(@quaternary-scheme);
+
+    &.ui-interactive {
+      .scheme-interactive(@quaternary-scheme, both, both);
+    }
+  }
+
+  &.ui-inverse {
+    .scheme(@quaternary-scheme-inverse);
+
+    &.ui-interactive {
+      .scheme-interactive(@quaternary-scheme-inverse, both, both);
+    }
+  }
+}
+
+// quinary
+.ui-scheme-quinary {
+  &:not(.ui-inverse) {
+    .scheme(@quinary-scheme);
+
+    &.ui-interactive {
+      .scheme-interactive(@quinary-scheme, both, both);
+    }
+  }
+
+  &.ui-inverse {
+    .scheme(@quinary-scheme-inverse);
+
+    &.ui-interactive {
+      .scheme-interactive(@quinary-scheme-inverse, both, both);
+    }
+  }
+}
+
+// graydark
+.ui-scheme-graydark {
+  &:not(.ui-inverse) {
+    .scheme(@graydark-scheme);
+
+    &.ui-interactive {
+      .scheme-interactive(@graydark-scheme, both, both);
+    }
+  }
+
+  &.ui-inverse {
+    .scheme(@graydark-scheme-inverse);
+
+    &.ui-interactive {
+      .scheme-interactive(@graydark-scheme-inverse, both, both);
+    }
+  }
+}
+
+// graylight
+.ui-scheme-graylight {
+  &:not(.ui-inverse) {
+    .scheme(@graylight-scheme);
+
+    &.ui-interactive {
+      .scheme-interactive(@graylight-scheme, both, both);
+    }
+  }
+
+  &.ui-inverse {
+    .scheme(@graylight-scheme-inverse);
+
+    &.ui-interactive {
+      .scheme-interactive(@graylight-scheme-inverse, both, both);
+    }
+  }
+}
+
+// blackwhite
+.ui-scheme-blackwhite {
+  &:not(.ui-inverse) {
+    .scheme(@blackwhite-scheme);
+
+    &.ui-interactive {
+      .scheme-interactive(@blackwhite-scheme, both, both);
+    }
+  }
+
+  &.ui-inverse {
+    .scheme(@blackwhite-scheme-inverse);
+
+    &.ui-interactive {
+      .scheme-interactive(@blackwhite-scheme-inverse, both, both);
+    }
+  }
+}

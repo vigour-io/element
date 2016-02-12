@@ -41,48 +41,10 @@ data.set({
 var app = global.app = e({
   key: 'app',
   components: components,
-  buttons: {
-    Child: {
-      type: 'button',
-      on: {
-        click () {
-          console.log('swtich', this.key)
-          data.state.app.val = data[this.key]
-        }
-      }
-    },
-    gameOfThrones: {
-      text: 'gOt',
-      on: {
-        click () {
-          data.state.app.val = data.shows.g()
-        }
-      }
-    },
-    episode: {
-      text: 'gOt episode 1',
-      on: {
-        click () {
-          data.state.app.val = data.shows.g().seasons.firstChild().g()
-        }
-      }
-    },
-    discover: {
-      text: 'discover'
-    },
-    movies: {
-      text: 'movies'
-    },
-    channels: {
-      text: 'channels'
-    },
-    publisher: {
-      text: 'chapusblishernnels'
-    }
-  },
+  inject: require('./buttons'),
   switcher: {
     type: 'switcher',
-    $: true,
+    $put: true,
     mapProperty (key, val) {
       console.error('-- lets find correct shit--->', key)
       if (val.path.indexOf('movies') > 1) {
@@ -101,4 +63,5 @@ var app = global.app = e({
   DOM: document.body
 })
 
+// temp witcher
 app.switcher.val = data.state.app

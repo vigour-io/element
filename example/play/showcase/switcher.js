@@ -12,6 +12,7 @@ var components = {
 merge(components, require('../components/icon'))
 merge(components, require('../components/text'))
 merge(components, require('../components/img'))
+merge(components, require('../components/button'))
 merge(components, require('../components/progress'))
 
 // medium
@@ -29,23 +30,56 @@ merge(components, require('../components/pages'))
 
 var data = require('./data')
 
-//maybe state
-/*
-{
- [switcher.path]
-}
-*/
-
 data.set({
   state: {
     app: {},
-    modal: {}
+    modal: {},
+    focus: {}
   }
 })
 
 var app = global.app = e({
   key: 'app',
   components: components,
+  buttons: {
+    Child: {
+      type: 'button',
+      on: {
+        click () {
+          console.log('swtich', this.key)
+          data.state.app.val = data[this.key]
+        }
+      }
+    },
+    gameOfThrones: {
+      text: 'gOt',
+      on: {
+        click () {
+          data.state.app.val = data.shows.g()
+        }
+      }
+    },
+    episode: {
+      text: 'gOt episode 1',
+      on: {
+        click () {
+          data.state.app.val = data.shows.g().seasons.firstChild().g()
+        }
+      }
+    },
+    discover: {
+      text: 'discover'
+    },
+    movies: {
+      text: 'movies'
+    },
+    channels: {
+      text: 'channels'
+    },
+    publisher: {
+      text: 'chapusblishernnels'
+    }
+  },
   switcher: {
     type: 'switcher',
     $: true,
@@ -68,8 +102,3 @@ var app = global.app = e({
 })
 
 app.switcher.val = data.state.app
-
-setInterval(function () {
-  data.state.app.val = data.shows.g()
-}, 500)
-

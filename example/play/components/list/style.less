@@ -1,6 +1,6 @@
-@discover-arrow-background: fade(darken(@body-background, 30%), 50%);
 
-.type-list-discover {
+// list horizontal
+.type-list-horizontal {
   > .type-title {
     font-size: @h4;
     margin-bottom: @gutter-small;
@@ -11,21 +11,31 @@
   }
 
   > .list {
+    .ui-arrange-horizontal;
     z-index: 1;
-    .flex-display;
-    .flex-wrap(nowrap);
     overflow-x: auto;
 
-    .type-item {
-      .width-range(200px);
+    > .type-item {
       margin-right: @gutter;
     }
 
+    > .type-item-poster {
+      margin-right: @gutter;
+    }
+  }
+}
+
+// list discover
+@list-discover-arrow-width: 6rem;
+@list-discover-arrow-background: fade(darken(@body-background, 30%), 50%);
+.type-list-discover {
+  > .list {
     &:before,
     &:after {
       content: '';
       margin-right: @gutter;
-      min-width: 6rem;
+      min-width: @list-discover-arrow-width;
+      height: 1px;
     }
   }
 
@@ -35,9 +45,9 @@
     > i {
       .radius(@thumb-radius);
       position: absolute;
-      width: 6rem;
+      width: @list-discover-arrow-width;
       height: 16.5rem;
-      background: @discover-arrow-background;
+      background: @list-discover-arrow-background;
       cursor: pointer;
       z-index: 10;
       .user-select;
@@ -45,7 +55,7 @@
       &:before {
         color: white;
         .ui-position-center;
-        text-shadow: 0px 1px 0px #ddd;
+        text-shadow: 0px 1px 0px #aaa;
       }
     }
 
@@ -56,5 +66,24 @@
     > .right {
       right: 0;
     }
+  }
+}
+
+// list grid
+.type-grid {
+  .ui-arrange-grid;
+
+  > .type-item {
+    .width-range(200px);
+    margin-bottom: @gutter;
+    margin-right: @gutter;
+  }}
+
+// list
+.type-list {
+  .ui-arrange-vertical;
+
+  > .type-item-row {
+    margin: @gutter-tiny 0;
   }
 }

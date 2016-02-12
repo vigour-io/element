@@ -4,8 +4,7 @@
   "version": "0.2.3",
   "main": "lib/index.js",
   "scripts": {
-    "test": "gaston test",
-    "doc": "node documentation.js"
+    "dev": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -26,6 +25,8 @@
     "less": "*",
     "style-loader": "*",
     "css-loader": "*",
-    "scratch": "*"
+    "scratch": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*"
   }
 }

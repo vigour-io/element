@@ -15,12 +15,17 @@
     .flex-display;
     .flex-wrap(nowrap);
     overflow-x: auto;
-    padding-left: 7rem;
-    padding-right: 7rem;
 
     .type-item {
       .width-range(200px);
       margin-right: @gutter;
+    }
+
+    &:before,
+    &:after {
+      content: '';
+      margin-right: @gutter;
+      min-width: 6rem;
     }
   }
 

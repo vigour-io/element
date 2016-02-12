@@ -4,18 +4,25 @@ exports.discover = {
   title: { type: 'title' },
   list: {
     $collection: 'items',
-    Child: { type: 'list-discover' },
+    Child: {
+      type: 'list-discover',
+      rowcount: {
+        text: '2/20' // $: 'length' //phone and web
+      },
+      button: {
+        text: 'All channels' // { $: 'moreButton' } [true/false or a category]
+      }
+    },
     properties: {
       carousel: {
         type: 'carousel',
         items: {
           $collection: 'items',
           Child: { type: 'item-carousel' } // optional
-        },
-        css: 'ui-center ui-background-secondary' // refactor these names a
+        }
       },
-      actors: {
-        list: { Child: { type: 'item-poster' } }
+      actors: { // lets make this into a better category since this is super unclear
+        list: { Child: { type: 'item-video' } }
       },
       movies: {
         list: { Child: { type: 'item-poster' } }
@@ -33,11 +40,25 @@ exports.discover = {
   }
 }
 
+exports.publisher = {
+  type: 'discover',
+  cover: { type: 'item-cover' }
+}
+
 exports.shows = {
-  title: { type: 'title' },
+  title: { type: 'secondarytitle' },
   grid: {
     type: 'grid-flex',
     $collection: 'items'
+  }
+}
+
+exports.movies = {
+  title: { type: 'secondarytitle' },
+  grid: {
+    type: 'grid',
+    $collection: 'items',
+    Child: { type: 'item-poster' }
   }
 }
 
@@ -50,22 +71,13 @@ exports.channels = {
   }
 }
 
-exports.movies = {
-  title: { type: 'title' },
-  grid: {
-    type: 'grid',
-    $collection: 'items',
-    Child: { type: 'item-poster' }
-  }
-}
-
 exports.mixed = {
   title: {
     type: 'title',
     text: { val: 'mixed', $: null }
   },
   publishers: {
-    type: 'list-horizontal',
+    type: 'channels',
     $collection: 'publishers'
   },
   channels: {

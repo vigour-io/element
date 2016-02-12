@@ -52,13 +52,16 @@ var app = global.app = e({
     },
     mixed: { type: 'mixed' },
     video: { type: 'page-video' },
-    show: { type: 'show' }
+    show: { type: 'show' },
+    publisher: { type: 'publisher' }
   },
   DOM: document.body
 })
 
 // console.error(data)
 app.pages.video.val = data.movies.g()
-app.pages.show.val = data.shows.g()
+app.pages.show.val = data.shows.items[2071]
+console.error(data)
+app.pages.publisher.val = data.publishers.g()
 
 app.val = data

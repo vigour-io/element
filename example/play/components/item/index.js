@@ -14,7 +14,8 @@ exports['item-flex'] = {
   type: 'item',
   description: {
     text: { $: 'description' }
-  }
+  },
+  arrow: { type: 'icon', css: 'arrow' }
 }
 
 exports['item-flex-progress'] = {
@@ -50,4 +51,13 @@ exports['item-poster'] = {
   type: 'item',
   css: { inherits: 'type-item' },
   img: { type: 'poster' }
+}
+
+exports['item-cover'] = {
+  background: { $: 'img' },
+  logo: {
+    type: 'img',
+    src: { $: 'logo' }
+  },
+  description: { text: { $: 'description' } }
 }

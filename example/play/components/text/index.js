@@ -7,5 +7,10 @@ exports.title = {
 
 exports.subtitle = {
   type: 'h2',
-  text: 'subtitle'
+  text: { $: 'subtitle' }
+}
+
+exports.secondarytitle = {
+  type: 'title',
+  letters: { text: ' A-Z' }
 }

@@ -7,7 +7,7 @@ module.exports = function (set, event, parent, key) {
   var Constructor = Element
   if (!event) {
     console.warn('temporary fire emitters on creation -- ultra slow')
-    event = false
+    // event = false
   }
   if (set instanceof Array) {
     let tempset

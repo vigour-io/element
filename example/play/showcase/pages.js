@@ -10,6 +10,10 @@ merge(components, require('../components/img'))
 merge(components, require('../components/item'))
 merge(components, require('../components/list'))
 merge(components, require('../components/pages'))
+
+// need to refactor plauer to just object
+// components.player = require('../../../lib/player')
+// console.log(components.player)
 // this is of course not the way have to clean up later
 var data = require('./data')
 var app = global.app = e({
@@ -33,8 +37,12 @@ var app = global.app = e({
       $: 'channels'
     },
     mixed: { type: 'mixed' }
+    // player: { type: 'player' }
   },
   DOM: document.body
 })
+
+// console.error(data)
+// app.pages.player.val = data.movies.g()
 
 app.val = data

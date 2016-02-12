@@ -53,3 +53,10 @@ exports.mixed = {
     $: 'channels'
   }
 }
+
+// phone
+exports.episode = {
+  player: {
+    type: 'player'
+  }
+}

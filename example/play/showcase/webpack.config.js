@@ -1,8 +1,16 @@
 module.exports = {
   entry: {
-    app: ["./app/index.js"]
+    app: ['./app/index.js']
   },
   output: {
-    filename: "./bundle.js"
+    filename: './bundle.js'
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.less$/,
+        loader: 'style!css!less'
+      }
+    ]
   }
 }

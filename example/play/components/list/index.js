@@ -27,16 +27,9 @@ exports['list-horizontal'] = {
 
 exports['list-discover'] = {
   type: 'list-horizontal',
-  components: {
-    arrow: {
-      icon: { type: 'icon', css: 'arrow' },
-      on: {
-        click () {
-          // if this.key === 'left' ?
-        }
-      }
-    }
-  },
-  left: { type: 'arrow' },
-  right: { type: 'arrow' }
+  arrows: {
+    Child: { type: 'icon' },
+    left: { css: 'icon-left' },
+    right: { css: 'icon-right' }
+  }
 }

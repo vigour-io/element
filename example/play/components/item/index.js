@@ -5,7 +5,7 @@ exports.item = {
   title: { type: 'info' },
   on: {
     click () {
-      console.error('!!!', this.path)
+      // console.error('!!!', this.path)
     }
   }
 }

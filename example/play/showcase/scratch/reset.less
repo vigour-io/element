@@ -22,12 +22,6 @@ html {
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -webkit-overflow-scrolling: touch;
-
-  & when (@responsive = true) {
-    @media @under-tablet {
-      font-size: 9px;
-    }
-  }
 }
 
 body {
@@ -36,7 +30,7 @@ body {
   line-height: @body-line-height;
   border: 0;
   outline: 0;
-  font-weight: @body-weight;
+  font-weight: @body-font-weight;
   font-size: @body-font-size;
   font-style: @body-style;
   font-variant: @body-variant;

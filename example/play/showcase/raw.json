@@ -845,10 +845,7 @@
         "img": {
           "val": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_thumbnail",
           "cover": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_main",
-          "secondary_cover": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_secondary_cover",
-          "poster": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_poster",
-          "spotlight": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_spotlight",
-          "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_banner"
+          "logo": "http://www.tv.ae/images/tvae-logo.png"
         },
         "access": 0,
         "items": {
@@ -898,10 +895,7 @@
         "img": {
           "val": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_thumbnail",
           "cover": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_main",
-          "secondary_cover": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_secondary_cover",
-          "poster": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_poster",
-          "spotlight": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_spotlight",
-          "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_banner"
+          "logo": "http://www.dubailynx.com/assets/images/new/lynx_logo.svg"
         },
         "access": 0,
         "items": {

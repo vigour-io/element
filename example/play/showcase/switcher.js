@@ -29,8 +29,18 @@ merge(components, require('../components/pages'))
 
 var data = require('./data')
 
+//maybe state
+/*
+{
+ [switcher.path]
+}
+*/
+
 data.set({
-  current: {}
+  state: {
+    app: {},
+    modal: {}
+  }
 })
 
 var app = global.app = e({
@@ -57,9 +67,9 @@ var app = global.app = e({
   DOM: document.body
 })
 
-app.switcher.val = data.current
+app.switcher.val = data.state.app
 
 setInterval(function () {
-  data.current.val = data.shows.g()
+  data.state.app.val = data.shows.g()
 }, 500)
 

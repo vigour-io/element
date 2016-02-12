@@ -14,8 +14,11 @@ exports.discover = {
         },
         css: 'ui-center ui-background-secondary' // refactor these names a
       },
-      videos: { Child: { type: 'item-video' } },
-      channels: { Child: { type: 'item-channel' } }
+      actors: { list: { Child: { type: 'item-poster' } } },
+      movies: { list: { Child: { type: 'item-poster' } } },
+      continue: { list: { Child: { type: 'item-video' } } },
+      videos: { list: { Child: { type: 'item-video' } } },
+      channels: { list: { Child: { type: 'item-channel' } } }
     }
   }
 }

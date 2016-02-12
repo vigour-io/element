@@ -1,16 +1,16 @@
 // item
-@item-width: 200px;
+@item-width: 220px;
 .type-item {
   .user-select;
   width: 100%;
   cursor: pointer;
   display: block;
   .width-range(@item-width);
-
   .radius(@modal-radius);
 
   > .type-thumb {
     overflow: hidden;
+
     > img {
       .radius(@thumb-radius);
       width: 100%;
@@ -19,7 +19,7 @@
   }
 
   @media all @above-layout-breakpoint {
-    &:not(.type-disabled):hover {
+    &:hover {
       > .type-thumb {
         img {
           .scale(1.05);
@@ -50,10 +50,14 @@
 
 // channel item
 .type-item-channel {
-  .info {
+  > .type-thumb {
+    margin-bottom: @gutter-small;
+  }
+
+  > .info {
     .flex-display;
     .align-items(center);
-    padding: 10px 0;
+    padding: 0 0 @gutter-small;
 
     > progress {
       margin-left: @gutter-small;

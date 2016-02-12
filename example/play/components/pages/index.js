@@ -31,9 +31,9 @@ exports.shows = {
 exports.channels = {
   title: { type: 'title' },
   grid: {
-    type: 'grid',
+    type: 'grid-flex',
     $collection: 'items',
-    Child: { type: 'item-channel' }
+    Child: { type: 'item-flex-progress' }
   }
 }
 
@@ -80,7 +80,10 @@ exports.show = {
   list: {
     $: 'currentSeason',
     title: { type: 'title' },
-    list: { type: 'list' }
+    list: {
+      type: 'list',
+      Child: { type: 'item-row-progress' }
+    }
   }
 }
 

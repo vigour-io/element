@@ -17,9 +17,19 @@ exports['item-flex'] = {
   }
 }
 
+exports['item-flex-progress'] = {
+  type: 'item-flex',
+  progress: { type: 'progress' }
+}
+
 exports['item-row'] = {
   type: 'item',
   arrow: { type: 'icon', css: 'arrow' }
+}
+
+exports['item-row-progress'] = {
+  type: 'item-row',
+  progress: { type: 'progress' }
 }
 
 exports['item-carousel'] = {

@@ -22,6 +22,10 @@ exports['item-row'] = {
   arrow: { type: 'icon', css: 'arrow' }
 }
 
+exports['item-carousel'] = {
+  type: 'item'
+}
+
 exports['item-video'] = {
   type: 'item',
   css: { inherits: 'type-item' },

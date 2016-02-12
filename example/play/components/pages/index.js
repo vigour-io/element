@@ -6,7 +6,14 @@ exports.discover = {
     $collection: 'items',
     Child: { type: 'list-discover' },
     properties: {
-      carousel: { Child: { type: 'carousel' } },
+      carousel: {
+        type: 'carousel',
+        items: {
+          $collection: 'items',
+          Child: { type: 'item-carousel' } // optional
+        },
+        css: 'ui-center ui-background-secondary' // refactor these names a
+      },
       videos: { Child: { type: 'item-video' } },
       channels: { Child: { type: 'item-channel' } }
     }
@@ -54,9 +61,27 @@ exports.mixed = {
   }
 }
 
-// phone
-exports.episode = {
-  player: {
-    type: 'player'
+exports['page-video'] = {
+  player: { type: 'player' },
+  info: {
+    title: { type: 'title' },
+    subtitle: { type: 'subtitle' },
+    description: { html: { $: 'description' } }
   }
 }
+
+// if phone exports.episode = exports['page-video']
+exports.show = {
+  title: { type: 'title' },
+  video: {
+    type: 'page-video',
+    $: 'currentEpisode'
+  },
+  list: {
+    $: 'currentSeason',
+    title: { type: 'title' },
+    list: { type: 'list' }
+  }
+}
+
+// for phone different

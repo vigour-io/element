@@ -69,6 +69,8 @@
           "Fantasy"
         ],
         "actors":"NO_DATA_AVAILABLE",
+        "currentEpisode": [ "$", "shows", "items", "1893", "seasons", "1912", "items", "3066" ],
+        "currentSeason": [ "$", "shows", "items", "1893", "seasons", "1912" ],
         "seasons":{
           "1912":{
             "id":"1912",

@@ -40,11 +40,19 @@
 @import '../adm/style.less';
 
 body > .app {
+  overflow: hidden;
   height: 100vh;
   .flex-display;
   .align-items(top);
 
   > .main {
     .flex(1);
+    position: relative;
+
+    > .switcher {
+      .absolute;
+      .fullsize;
+      overflow-y: auto;
+    }
   }
 }

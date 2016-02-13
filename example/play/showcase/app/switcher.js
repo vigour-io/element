@@ -51,13 +51,12 @@ function inPath(path, key) {
   }
 }
 
-var app = global.app = e([{
+var app = global.app = e({
   key: 'app',
   components: components,
   inject: [
     require('./buttons'),
     {
-      // make this more configurable
       components: {
         player: {
           inject: require('../../../../lib/player/bitdash'),
@@ -85,18 +84,18 @@ var app = global.app = e([{
       }
     },
     properties: {
-      show: { type: 'show' },
-      channel: { type: 'channel' },
+      // show: { type: 'show' },
+      // channel: { type: 'channel' },
       discover: { type: 'discover' },
-      movies: { type: 'movies' },
-      movie: { type: 'page-video' }, // this one
-      channels: { type: 'channels' },
-      mixed: { type: 'mixed' },
+      // movies: { type: 'movies' },
+      // movie: { type: 'page-video' }, // this one
+      // channels: { type: 'channels' },
+      // mixed: { type: 'mixed' },
       publishers: { type: 'discover' }
     }
   },
   DOM: document.body
-}])
+})
 
 // temp witcher
 app.switcher.val = data.state.app

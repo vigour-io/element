@@ -1,0 +1,27 @@
+// flex item
+.type-item-flex {
+  @media all @above-layout-breakpoint {
+    .type-item;
+
+    .arrow {
+      display: none;
+    }
+  }
+
+  @media all @under-layout-breakpoint @above-sidebar-breakpoint {
+    .type-item;
+
+    .description,
+    .arrow {
+      display: none;
+    }
+  }
+
+  @media all @under-sidebar-breakpoint {
+    .type-item-row;
+
+    .description {
+      display: none;
+    }
+  }
+}

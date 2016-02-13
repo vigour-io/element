@@ -1,0 +1,18 @@
+@play-episode-section-background: none;
+@play-episode-section-border: none;
+
+.play-episode.ui-page.content .wrapper > div {
+  @media all @above-layout-breakpoint {
+    border: none;
+
+    > .header {
+      padding: 0;
+      height: auto;
+      margin-bottom: @gutter-small;
+    }
+
+    > .info {
+      .padding-h(0);
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "name": "vigour-element",
+  "description": "DOM stuff for vigour-js",
+  "version": "0.2.3",
+  "main": "lib/index.js",
+  "scripts": {
+    "dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vigour-io/element.git"
+  },
+  "author": "vigour.io <dev@vigour.io>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vigour-io/element/issues"
+  },
+  "browser": {
+    "./lib/app/": "./lib/app/browser",
+    "./lib/engine/ua/": "./lib/engine/ua/browser"
+  },
+  "dependencies": {
+    "raw-loader": "*",
+    "less-loader": "*",
+    "less": "*",
+    "style-loader": "*",
+    "css-loader": "*",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  }
+}

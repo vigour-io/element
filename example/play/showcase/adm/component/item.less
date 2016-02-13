@@ -1,0 +1,39 @@
+@item-big-background: lighten(@body-background, 10%);
+@item-big-border: none;
+
+// vertical item
+.play-item.play-item-vertical {
+  @media all @above-layout-breakpoint {
+    padding: 0 @gutter-small 0 0;
+    margin: @gutter-tiny 0;
+    background: @item-big-background !important;
+
+    &:before {
+      display: none;
+    }
+
+    > .ui-thumb {
+      width: 13rem;
+    }
+
+    > .caption {
+      .padding-v(@gutter-small);
+    }
+  }
+
+  &.ui-locked {
+    opacity: .5;
+  }
+}
+
+// row list
+.ui-row-list {
+  .ui-row {
+    &:before {
+      .gradient(currentColor, transparent, left, right);
+    }
+  }
+}
+
+// blurred item
+@play-item-blurred-blur-scheme: @secondary-scheme;

@@ -12,11 +12,11 @@ exports.components = {
     css: 'todo-button'
   },
   project: {
-    // type: 'todo', // WRONG has to take over todo of course
-    title: {
-      type: 'h1',
-      text: { $: 'title', $add: ' burf' }
-    },
+    type: 'todo', // WRONG has to take over todo of course
+    // title: {
+    //   type: 'h1',
+    //   text: { $add: ' burf' }
+    // },
     todos: {
       // type: 'todos' // WRONG should not break
       type: 'ul', // edge case want to use todo but bit hard to double ref

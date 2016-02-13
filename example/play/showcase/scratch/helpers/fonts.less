@@ -1,0 +1,13 @@
+@import url('../config/typography.less');
+
+& when (@font-local = true) {
+  @font-face {
+    font-family: @font-import-primary;
+    font-style: normal;
+    font-weight: 300;
+    src: local('Font Light'), local('Font-Light'), url("@{fonts-path}/@{fonts-import-primary}.woff") format('woff');
+  }
+}
+
+// @font-external-link: ~"https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,300,200,600,700,900";
+// @import url(@font-external-link);

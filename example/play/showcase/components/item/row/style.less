@@ -1,0 +1,22 @@
+// row item
+@item-row-padding: @gutter-small;
+@item-row-thumb-width: 130px;
+// ADM
+@item-row-padding: 0 @gutter-small 0 0;
+.type-item-row {
+  .flex-display;
+  .align-items(center);
+  .radius(@modal-radius);
+  overflow: hidden;
+  background-color: fade(black, 20%);
+  padding: @item-row-padding;
+
+  .type-thumb {
+    width: @item-row-thumb-width;
+  }
+
+  .type-info {
+    .flex(1);
+    padding: @gutter-small;
+  }
+}

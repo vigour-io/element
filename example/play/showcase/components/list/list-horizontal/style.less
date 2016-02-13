@@ -1,0 +1,84 @@
+// list horizontal
+.type-list-horizontal {
+  > .type-title {
+    font-size: @h4;
+    margin-bottom: @gutter-small;
+  }
+
+  > div {
+    position: relative;
+  }
+
+  > .list {
+    .ui-arrange-horizontal;
+    z-index: 1;
+    overflow-x: auto;
+
+    > .type-item {
+      margin-right: @gutter;
+    }
+
+    > .type-item-poster {
+      margin-right: @gutter;
+    }
+  }
+}
+
+// list discover
+@list-discover-arrow-width: 6rem;
+@list-discover-arrow-background: fade(darken(@body-background, 30%), 50%);
+.type-list-discover {
+  > .list {
+    &:before,
+    &:after {
+      content: '';
+      margin-right: @gutter;
+      min-width: @list-discover-arrow-width;
+      height: 1px;
+    }
+  }
+
+  > .button {
+    .padding-v(0.8rem);
+    border: 1px solid @coldgray;
+    height: auto;
+    line-height: auto;
+
+    &:hover {
+      background-color: white;
+    }
+
+    &:active {
+      border-color: @midgray;
+    }
+  }
+
+  > .arrows {
+    z-index: 2;
+
+    > i {
+      .radius(@thumb-radius);
+      position: absolute;
+      width: @list-discover-arrow-width;
+      height: 16.5rem;
+      background: @list-discover-arrow-background;
+      cursor: pointer;
+      z-index: 10;
+      .user-select;
+
+      &:before {
+        color: white;
+        .ui-position-center;
+        text-shadow: 0px 1px 0px #aaa;
+      }
+    }
+
+    > .left {
+      left: 0;
+    }
+
+    > .right {
+      right: 0;
+    }
+  }
+}

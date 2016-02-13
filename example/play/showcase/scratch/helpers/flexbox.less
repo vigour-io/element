@@ -1,0 +1,44 @@
+.ui-flexbox {
+  .flex-display;
+}
+
+/**
+ * Horizontal flexbox arrangement
+ * ----------------------------------------------
+ * All children elements will be arranged
+ * horizontally and it may need to use overflow
+ * property to make whole area reachable
+ */
+.ui-arrange-horizontal {
+  .ui-flexbox;
+  .flex-direction(row);
+  .flex-wrap(nowrap);
+  .align-items(flex-start);
+}
+
+/**
+ * Vertical flexbox arrangement
+ * ----------------------------------------------
+ * All children elements will be arranged
+ * vertically and it may need to use overflow
+ * property if container has fixed height
+ */
+.ui-arrange-vertical {
+  .ui-flexbox;
+  .flex-direction(column);
+  .flex-wrap(nowrap);
+  .align-content(flex-start);
+}
+
+/**
+ * Grid flexbox arrangement
+ * ----------------------------------------------
+ * All children elements will be arranged
+ * by grid way and it will break items on
+ * new line if necessary.
+ */
+.ui-arrange-grid {
+  .ui-flexbox;
+  .flex-direction(row);
+  .flex-wrap(wrap);
+}

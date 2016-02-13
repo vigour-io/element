@@ -1,0 +1,36 @@
+@import '../scratch/scratch.less';
+
+@animatecss: true;
+@font-local: false;
+@body-font-weight: @font-regular;
+
+@import '../adm/style.less';
+
+@import '../components/icon/style.less';
+@import '../components/img/style.less';
+@import '../components/text/style.less';
+@import '../components/progress/style.less';
+
+// pages
+@import '../components/pages/style.less';
+@import '../components/pages/discover/style.less';
+
+// items
+@import '../components/item/style.less';
+@import '../components/item/flex/style.less';
+@import '../components/item/row/style.less';
+
+// lists
+@import '../components/list/style.less';
+@import '../components/list/grid/style.less';
+@import '../components/list/list-horizontal/style.less';
+
+// icons
+@icon-family: 'ADM-Icons';
+@import url('https://i.icomoon.io/public/1760d3d9bc/ADM-VD/style.css');
+
+[class^="type-list"],
+[class*=" type-list"] {
+  margin: 5rem 0;
+  border-bottom: 1px solid green;
+}

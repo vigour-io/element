@@ -1,5 +1,7 @@
 var e = require('../../../../e')
+
 require('!style!css!less!./style.less')
+
 var merge = require('lodash/object/merge')
 var components = {}
 merge(components, require('../../components/progress'))

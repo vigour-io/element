@@ -75,5 +75,10 @@ exports['item-cover'] = {
     type: 'img',
     src: { $: 'logo' }
   },
-  description: { text: { $: 'description' } }
+  description: {
+    order: 1,
+    text: {
+      $: 'description'
+    }
+  }
 }

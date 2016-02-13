@@ -68,6 +68,74 @@
   }
 }
 
+// items grid mixin
+.items-grid (@flex: true) {
+  @media all @above-big {
+    > div {
+      .flex-grid(5);
+    }
+  }
+
+  @media all @big {
+    > div {
+      .flex-grid(4);
+    }
+  }
+
+  @media all @medium {
+    > div {
+      .flex-grid(3);
+    }
+  }
+
+  @media all @small {
+    > div {
+      .flex-grid(4);
+    }
+  }
+
+  @media all @tiny {
+    > div {
+      .flex-grid(3);
+    }
+  }
+
+  // padding
+  @media all @above-layout-breakpoint {
+    > div {
+      .flex-grid-gap();
+    }
+  }
+
+  @media all @under-layout-breakpoint @above-sidebar-breakpoint {
+    > div {
+      .flex-grid-gap(@gutter-small @gutter-small 0);
+    }
+  }
+
+  // if list is flex-list
+  & when (@flex = true) {
+    @media all @tablet {
+      > div {
+        .flex-grid(2);
+      }
+    }
+
+    @media all @under-mobile {
+      > div {
+        .flex-grid(1);
+      }
+    }
+
+    // padding
+    @media all @under-sidebar-breakpoint {
+      > div {
+        .flex-grid-gap(0 @gutter-small);
+      }
+    }
+  }
+}
+
 // list grid
 .type-grid {
   .ui-arrange-grid;
@@ -82,46 +150,7 @@
       margin-right: @gutter;
     }
 
-    @media all @above-big {
-      .flex-grid(5);
-    }
-
-    @media all @big {
-      .flex-grid(4);
-    }
-
-    @media all @medium {
-      .flex-grid(3);
-    }
-
-    @media all @small {
-      .flex-grid(4);
-    }
-
-    @media all @tiny {
-      .flex-grid(3);
-    }
-
-    @media all @tablet {
-      .flex-grid(2);
-    }
-
-    @media all @under-mobile {
-      .flex-grid(1);
-    }
-
-    // padding
-    @media all @above-layout-breakpoint {
-      .flex-grid-gap();
-    }
-
-    @media all @under-layout-breakpoint {
-      .flex-grid-gap(@gutter-small @gutter-small 0);
-    }
-
-    @media all @under-mobile {
-      .flex-grid-gap(0 @gutter-small);
-    }
+    .items-grid;
   }
 }
 
@@ -129,13 +158,15 @@
 .type-list {
   .ui-arrange-vertical;
 
-  > .type-item-row {
+  > div {
     margin: @gutter-tiny 0;
   }
 }
 
 // grid flex
 .type-grid-flex {
+  .items-grid(false);
+
   @media all @above-sidebar-breakpoint {
     .type-grid;
   }

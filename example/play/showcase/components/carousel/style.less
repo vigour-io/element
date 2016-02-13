@@ -33,15 +33,15 @@
 
       > figure {
         height: 100%;
+      }
 
-        img {
-          width: 100%;
-          max-height: none;
-          max-width: none;
-          z-index: 0;
-          .ui-position-center-y;
-          left: 0;
-        }
+      img {
+        width: 100%;
+        max-height: none;
+        max-width: none;
+        z-index: 0;
+        .ui-position-center-y;
+        left: 0;
       }
 
       > .type-info {
@@ -80,6 +80,11 @@
         > figure {
           .absolute;
           .fullsize;
+
+          > img {
+            z-index: 1;
+            margin-top: -19%;
+          }
         }
       }
     }

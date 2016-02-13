@@ -9,10 +9,10 @@ module.exports = {
           [ '$', 'shows', 'items', 'got' ]
         ]
       },
-      newontv: {
+      channels: {
         title: 'New on TV',
         items: [
-          [ '$', 'movies', 'items', 'lobster' ]
+          [ '$', 'channels', 'items', 'adb' ]
         ]
       },
       continue: {
@@ -27,7 +27,7 @@ module.exports = {
           [ '$', 'movies', 'items', 'lobster' ]
         ]
       },
-      'recommended:movies': {
+      'recommended:posters': {
         'title': 'Recommended for you',
         'items': [
           [ '$', 'movies', 'items', 'lobster' ],
@@ -40,11 +40,29 @@ module.exports = {
       }
     }
   },
+  channels: {
+    title: 'Channels',
+    items: {
+      adb: {
+        title: 'Abu Dahbi HD',
+        current: {
+          title: 'Riksons show',
+          time: 0.5,
+          subtitle: '18:30 - 19:00'
+        },
+        img: {
+          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg'
+        }
+      }
+    }
+  },
   movies: {
+    title: 'Movies',
     items: {
       lobster: {
         title: 'The Lobster',
         subtitle: '(2009) 201 min',
+        time: 0.5, // default s 0
         img: {
           val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
           thumb: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg', // 4:3
@@ -54,6 +72,7 @@ module.exports = {
     }
   },
   shows: {
+    title: 'Shows',
     items: {
       got: {
         title: 'Game of Thrones',

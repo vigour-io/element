@@ -26,6 +26,8 @@ merge(components, require('../components/list'))
 // large
 merge(components, require('../components/pages'))
 
+
+
 // need to refactor plauer to just object
 // components.player = require('../../../../lib/player')
 // console.log(components.player)

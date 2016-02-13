@@ -15,9 +15,15 @@ exports.discover = {
           text: '2/20'
         },
         button: {
+          $: 'link',
           type: 'button',
-          text: 'All channels',
-          css: { size: 'big' }
+          text: { $prepend: 'All ', $: 'title' },
+          css: { size: 'big' },
+          on: {
+            click () {
+              this.state.data.getRoot().state.app.val = this.state.data
+            }
+          }
           // { $: 'moreButton' } [true/false or a category]
         }
       },

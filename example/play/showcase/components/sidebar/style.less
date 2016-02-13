@@ -1,0 +1,329 @@
+// sidebar sizes
+@sidebar-width: 20rem;
+@sidebar-small-width: 30rem;
+@sidebar-scheme: @primary-scheme-inverse;
+
+// responsive
+@above-sidebar-breakpoint: @above-tablet;
+@sidebar-breakpoint: @tablet;
+@under-sidebar-breakpoint: @under-tablet;
+
+// shadow for mobile
+@sidebar-bgshadow-background: @secondary;
+@sidebar-bgshadow-gradient: darken(@sidebar-bgshadow-background, 10%) 70%,
+                            fade(@sidebar-bgshadow-background, 10%) 0%,
+                            right,
+                            ellipse;
+
+.sidebar {
+  .scheme(@sidebar-scheme);
+  z-index: 0;
+  position: relative;
+
+  .backLink {
+    .radius(0);
+    text-transform: lowercase;
+    text-decoration: none;
+
+    .icon {
+      margin-left: -@gutter-big;
+      margin-right: @gutter;
+    }
+  }
+
+  @media all @above-sidebar-breakpoint {
+    width: @sidebar-width;
+
+    .bgshadow {
+      display: none;
+    }
+  }
+
+  @media all @under-sidebar-breakpoint {
+    width: @sidebar-small-width;
+
+    &.ui-inverse {
+      background: @secondary;
+    }
+
+    > div,
+    > nav,
+    > a {
+      &:not(.bgshadow):not(.close)  {
+        position: relative;
+        z-index: 1;
+      }
+    }
+
+    > .bgshadow {
+      z-index: 0;
+      overflow: hidden;
+
+      > .image {
+        .absolute(0, 0);
+        max-width: none;
+        max-height: none;
+        height: 100%;
+        z-index: 0;
+        opacity: .4;
+      }
+
+      &,
+      &:after {
+        .absolute(0, 0);
+        .fullsize;
+      }
+
+      &:after {
+        content: '';
+        // .gradient-o(
+        //   extract(@sidebar-bgshadow-gradient, 1),
+        //   extract(@sidebar-bgshadow-gradient, 2),
+        //   extract(@sidebar-bgshadow-gradient, 3),
+        //   extract(@sidebar-bgshadow-gradient, 4)
+        // );
+      }
+    }
+
+    .close {
+      .absolute;
+      .fullsize;
+      left: @sidebar-small-width;
+      z-index: 999;
+    }
+  }
+
+  .flex-display;
+  .flex-direction(column);
+
+  > .menu {
+    @media all @above-sidebar-breakpoint {
+      padding-bottom: @gutter-large;
+    }
+
+    .flex-display;
+    .flex-direction(column);
+
+    .ui-row {
+      opacity: .6;
+      padding: 0 @gutter;
+      height: 5.4rem;
+      text-decoration: none;
+
+      &:hover {
+        opacity: .8;
+      }
+
+      &:active {
+        opacity: 1;
+      }
+
+      &.ui-active {
+        opacity: 1;
+      }
+
+      > .ui-heading {
+        text-transform: uppercase;
+        font-weight: @font-semibold;
+        letter-spacing: .3px;
+      }
+    }
+
+    // TODO: that's no way we need it!
+    @media all @under-sidebar-breakpoint {
+      .settings {
+        display: none;
+      }
+    }
+  }
+
+  > .meta {
+    .flex(1);
+    position: relative;
+
+    @media all @above-sidebar-breakpoint {
+      padding: @gutter;
+      background: fade(black, 10%);
+    }
+
+    .flex-display;
+    .flex-direction(column);
+
+    > .links {
+      text-transform: capitalize;
+
+      @media all @above-sidebar-breakpoint {
+        .flex(1);
+
+        a {
+          display: block;
+          text-decoration: none;
+          padding: .3rem 0;
+        }
+      }
+
+      @media all @under-sidebar-breakpoint {
+        .flex-order(2);
+        background: fade(white, 20%);
+        padding: .2rem @gutter-small;
+
+        a {
+          display: inline-block;
+          padding: @gutter-tiny;
+        }
+      }
+    }
+
+    > .user {
+      @media all @under-sidebar-breakpoint {
+        .flex(1);
+        padding: @gutter;
+      }
+
+      .flex-display;
+      .flex-direction(column);
+
+      > .buttons {
+        .flex(1);
+        margin-bottom: @gutter-tiny;
+
+        > .ui-button {
+          width: 100%;
+          min-width: 0;
+
+          &.ui-interactive {
+            text-decoration: none;
+          }
+
+          @media all @above-sidebar-breakpoint {
+            margin: 0 0 @gutter-small;
+
+            &.upgrade {
+              width: calc(100% - (@gutter * 2));
+              .ui-position-center;
+            }
+          }
+
+          @media all @under-sidebar-breakpoint {
+          margin: 0 0 @gutter;
+
+            &.ui-scheme-secondary {
+              .scheme-interactive(@tertiary-scheme-inverse);
+            }
+
+            &.ui-scheme-tertiary {
+              .scheme-interactive(@primary-scheme-inverse);
+            }
+          }
+        }
+      }
+
+      > .usericons {
+        .flex-display;
+        .flex-direction(column);
+
+        > .icons {
+          .flex-display;
+          .justify-content(space-between);
+
+          // TODO: quick fix
+          min-height: (@h2 + @gutter-tiny * 2);
+
+          > .ui-icon {
+            padding: @gutter-tiny;
+            cursor: pointer;
+          }
+
+          @media all @under-sidebar-breakpoint {
+            .cast {
+              display: none;
+            }
+          }
+
+          @media all @above-sidebar-breakpoint {
+            .flex(1 100%);
+            .flex-order(2);
+            background: fade(black, 10%);
+            margin: 0 -@gutter -@gutter;
+            padding: @gutter-tiny @gutter-small;
+          }
+        }
+
+        > .profile {
+          cursor: pointer;
+          height: auto;
+          margin-bottom: @gutter;
+
+          > .image {
+            position: relative;
+            .size(3.2rem);
+            .sizing;
+            .radius(100%);
+            .shadow(0 0 0 1px fade(white, 25%));
+            overflow: hidden;
+
+            > .ui-icon {
+              .ui-position-center;
+            }
+          }
+
+          > .caption {
+            margin-left: @gutter-small;
+
+            > .ui-heading {
+              line-height: 1.2;
+              margin: 0;
+            }
+
+            > .title {
+              text-transform: capitalize;
+            }
+          }
+        }
+
+        @media all @under-sidebar-breakpoint {
+          .flex-direction(row);
+          .justify-content(space-between);
+        }
+      }
+    }
+  }
+}
+
+body {
+  &.loggedin {
+    .sidebar {
+      .user {
+        .register,
+        .login {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &:not(.loggedin) {
+    .sidebar {
+      .user {
+        .upgrade,
+        .profile {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &.upgraded {
+    .sidebar {
+      .user {
+        .upgrade {
+          display: none;
+        }
+        .subtitle.subtitle {
+          color: @tertiary;
+          opacity: 1;
+        }
+      }
+    }
+  }
+}

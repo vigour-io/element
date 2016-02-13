@@ -2,13 +2,13 @@ module.exports = {
   discover: {
     title: 'Discovery',
     items: {
-      carousel: {
-        order: -1,
-        items: [
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ]
-        ]
-      },
+      // carousel: {
+      //   order: -1,
+      //   items: [
+      //     [ '$', 'movies', 'items', 'lobster' ],
+      //     [ '$', 'shows', 'items', 'got' ]
+      //   ]
+      // },
       channels: {
         link: [ '$', 'channels' ],
         title: 'New on TV',

@@ -3,12 +3,20 @@
 @reset: true;
 @body-font-weight: @font-regular;
 
-@import '../../components/icon/style.less';
-@import '../../components/img/style.less';
-@import '../../components/item/style.less';
-@import '../../components/text/style.less';
-@import '../../components/list/style.less';
-@import '../../components/progress/style.less';
+@import '../components/icon/style.less';
+@import '../components/img/style.less';
+@import '../components/text/style.less';
+@import '../components/progress/style.less';
+
+// items
+@import '../components/item/style.less';
+@import '../components/item/flex/style.less';
+@import '../components/item/row/style.less';
+
+// lists
+@import '../components/list/style.less';
+@import '../components/list/grid/style.less';
+@import '../components/list/list-horizontal/style.less';
 
 body {
   .sizing;

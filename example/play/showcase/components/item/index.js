@@ -1,5 +1,7 @@
 'use strict'
 
+var merge = require('lodash/object/merge')
+
 exports.item = {
   img: { type: 'thumb' },
   title: { type: 'info' },
@@ -8,39 +10,6 @@ exports.item = {
       // console.error('!!!', this.path)
     }
   }
-}
-
-exports['item-flex'] = {
-  type: 'item',
-  description: {
-    text: { $: 'description' }
-  },
-  arrow: {
-    order: 1,
-    type: 'icon',
-    css: 'icon-right'
-  }
-}
-
-exports['item-flex-progress'] = {
-  type: 'item-flex',
-  progress: { type: 'progress' }
-}
-
-exports['item-row'] = {
-  type: 'item',
-  arrow: {
-    order: 1,
-    type: 'icon',
-    css: {
-      icon: 'icon-right'
-    }
-  }
-}
-
-exports['item-row-progress'] = {
-  type: 'item-row',
-  progress: { type: 'progress' }
 }
 
 exports['item-carousel'] = {
@@ -82,3 +51,6 @@ exports['item-cover'] = {
     }
   }
 }
+
+merge(exports, require('./flex'))
+merge(exports, require('./row'))

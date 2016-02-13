@@ -30,11 +30,7 @@ exports.discover = {
       carousel: {
         type: 'carousel'
       },
-      actors: {
-        // lets make this into a better category since this is super unclear
-        list: { Child: { type: 'item-video' } }
-      },
-      movies: {
+      posters: {
         list: { Child: { type: 'item-poster' } }
       },
       continue: {

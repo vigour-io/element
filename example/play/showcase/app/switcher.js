@@ -26,6 +26,9 @@ merge(components, require('../components/list'))
 
 // large
 merge(components, require('../components/pages'))
+merge(components, require('../components/carousel'))
+
+
 
 // need to refactor plauer to just object
 // components.player = require('../../../../lib/player')
@@ -93,14 +96,14 @@ var app = global.app = e({
         }
       },
       properties: {
-        // show: { type: 'show' },
-        // channel: { type: 'channel' },
-        discover: { type: 'discover' }
-        // movies: { type: 'movies' },
-        // movie: { type: 'page-video' }, // this one
-        // channels: { type: 'channels' },
-        // mixed: { type: 'mixed' },
-        // publishers: { type: 'discover' }
+        show: { type: 'show' },
+        channel: { type: 'channel' },
+        discover: { type: 'discover' },
+        movies: { type: 'movies' },
+        movie: { type: 'page-video' }, // this one
+        channels: { type: 'channels' },
+        mixed: { type: 'mixed' },
+        publishers: { type: 'discover' }
       }
     }
   },

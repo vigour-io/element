@@ -24,7 +24,8 @@ var data = new Data({
 app.set({
   holder: new Switcher({
     w: 200,
-    x:200,
+    h: 200,
+    x: 200,
     config: {
       transition: {
         property: 'transform',
@@ -48,14 +49,27 @@ function make () {
       key: 'discover',
       title: 'DISCOVER!!'
     }))
-    setTimeout(function () {
-      data.current.set(new Observable({
-        key: 'shows',
-        title: 'SHOWS!!!'
-      }))
-      make()
-    }, 1000)
-  }, 1000)
+    // setTimeout(function () {
+    //   data.current.set(new Observable({
+    //     key: 'shows',
+    //     title: 'SHOWS!!!'
+    //   }))
+    //   setTimeout(function () {
+    //     data.current.set(new Observable({
+    //       key: 'discover',
+    //       title: 'DISCOVER!!'
+    //     }))
+    //     setTimeout(function () {
+    //       data.current.set(new Observable({
+    //         key: 'shows',
+    //         title: 'SHOWS!!!'
+    //       }))
+    //       // make()
+    //     }, 1000)
+    //   }, 100)
+    //   // make()
+    // }, 100)
+  }, 100)
 }
 
 make()

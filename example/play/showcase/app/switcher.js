@@ -29,7 +29,6 @@ merge(components, require('../components/pages'))
 merge(components, require('../components/carousel'))
 
 
-
 // need to refactor plauer to just object
 // components.player = require('../../../../lib/player')
 // console.log(components.player)

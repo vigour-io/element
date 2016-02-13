@@ -32,36 +32,41 @@ var data = require('../data')
 
 data.set({
   state: {
-    app: {},
+    app: [ '$', 'discover' ],
     modal: {},
     focus: {}
+  },
+  mixed: {
+    publishers: [ '$', 'publishers' ],
+    channels: [ '$', 'channels' ]
   }
 })
 
-var app = global.app = e({
+var app = global.app = e([{
   key: 'app',
   components: components,
   inject: require('./buttons'),
   switcher: {
     type: 'switcher',
     $put: true,
-    // mapProperty (key, val) {
-    //   console.error('-- lets find correct item from the switcher --->', key)
-    //   if (val.path.indexOf('movies') > 1) {
-    //     return 'movies'
-    //   } else {
-    //     return 'discover' // or generic page
-    //   }
-    // },
+    mapProperty (key, val) {
+      console.log('yo?', key, val)
+      if (val.path.indexOf('movies') > 1) {
+        return 'movie'
+      }
+    },
     properties: {
       show: { type: 'show' },
       discover: { type: 'discover' },
       movies: { type: 'movies' },
-      channels: { type: 'channels' }
+      movie: { type: 'page-video' }, // this one
+      channels: { type: 'channels' },
+      mixed: { type: 'mixed' },
+      publishers: { type: 'discover' }
     }
   },
   DOM: document.body
-})
+}])
 
 // temp witcher
 app.switcher.val = data.state.app

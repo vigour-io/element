@@ -20,8 +20,6 @@ components.player.inject({
   }
 })
 
-
-
 merge(components, require('../components/progress'))
 merge(components, require('../components/icon'))
 merge(components, require('../components/text'))
@@ -30,7 +28,6 @@ merge(components, require('../components/item'))
 merge(components, require('../components/list'))
 merge(components, require('../components/pages'))
 merge(components, require('../components/carousel'))
-
 
 // do set on the type
 // merge(components, require('../components/player'))
@@ -66,6 +63,7 @@ var app = global.app = e({
   key: 'app',
   components: components,
   inject: [{
+    // make this more configurable
     components: {
       player: {
         inject: require('../../../../lib/player/bitdash'),
@@ -103,7 +101,6 @@ var app = global.app = e({
 // app.pages.video.val = data.movies.g()
 // app.pages.show.val = data.shows.items[2071]
 // app.pages.publisher.val = data.publishers.g()
-
 console.info('---->', app.pages.video)
-app.pages.video.val = datax//data.movies.g()
+app.pages.video.val = datax // data.movies.g()
 console.log(data, app.pages.videox)

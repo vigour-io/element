@@ -1,5 +1,4 @@
 'use strict'
-
 var e = require('../../../../e')
 
 require('!style!css!less!./style.less')
@@ -20,32 +19,30 @@ merge(components, require('../components/item'))
 merge(components, require('../components/list'))
 merge(components, require('../components/player'))
 merge(components, require('../components/pages'))
-merge(components, require('../components/carousel'))
 
 var app = global.app = e({
   key: 'app',
   components: components,
   pages: {
-    discover: {
-      type: 'discover',
-      $: 'discover'
+    video: {
+      type: 'page-video'
     },
-    shows: {
-      type: 'shows',
-      $: 'shows'
-    },
-    movies: {
-      type: 'movies',
-      $: 'movies'
-    },
-    channels: {
-      type: 'channels',
-      $: 'channels'
-    },
-    mixed: { type: 'mixed' },
-    video: { type: 'page-video' },
-    show: { type: 'show' },
-    publisher: { type: 'publisher' }
+    // shows: {
+    //   type: 'shows',
+    //   $: 'shows'
+    // },
+    // movies: {
+    //   type: 'movies',
+    //   $: 'movies'
+    // },
+    // channels: {
+    //   type: 'channels',
+    //   $: 'channels'
+    // },
+    // mixed: { type: 'mixed' },
+    // video: { type: 'page-video' },
+    // show: { type: 'show' },
+    // publisher: { type: 'publisher' }
   },
   DOM: document.body
 })

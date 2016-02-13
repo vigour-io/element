@@ -1,8 +1,8 @@
 'use strict'
-var data = require('./data')
+var data = require('../data')
 exports.buttons = {
   Child: {
-    type: 'button',
+    type: 'button-spesh',
     on: {
       click () {
         console.log('swtich', this.key)
@@ -10,8 +10,8 @@ exports.buttons = {
       }
     }
   },
-  gameOfThrones: {
-    text: 'gOt',
+  firstShow: {
+    text: 'firstShow',
     on: {
       click () {
         data.state.app.val = data.shows.g()

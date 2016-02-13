@@ -42,7 +42,7 @@ todos.set({
   }
 })
 
-for (var i = 0; i < 1e2; i++) {
+for (var i = 0; i < 10; i++) {
   todos.firstChild().set({
     todos: {
       [i]: {
@@ -53,9 +53,8 @@ for (var i = 0; i < 1e2; i++) {
   })
 }
 
-
 // make getters is nice1
-for (var i = 0; i < 1e2; i++) {
+for (var i = 0; i < 10; i++) {
   todos['bTodoItem'].set({
     todos: {
       [i + ':manon']: {

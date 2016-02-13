@@ -28,6 +28,27 @@
 @list-discover-arrow-width: 6rem;
 @list-discover-arrow-background: fade(darken(@body-background, 30%), 50%);
 .type-list-discover {
+  > .header {
+    .flex-display;
+    font-size: @h4;
+    margin-bottom: @gutter-small;
+
+    > .type-title {
+      color: @primary;
+      font-size: 1em;
+      margin-right: @gutter-small;
+    }
+
+    > .rowcount {
+      .flex(1);
+    }
+
+    > .button {
+      font-size: @form-font-size;
+      .scheme(@secondary-scheme-inverse)
+    }
+  }
+
   > .list {
     &:before,
     &:after {

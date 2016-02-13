@@ -20,6 +20,7 @@ merge(components, require('../components/item'))
 merge(components, require('../components/list'))
 merge(components, require('../components/player'))
 merge(components, require('../components/pages'))
+merge(components, require('../components/carousel'))
 
 var app = global.app = e({
   key: 'app',

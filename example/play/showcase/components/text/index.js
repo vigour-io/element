@@ -6,7 +6,6 @@ exports.title = {
 }
 
 exports.subtitle = {
-  // type: 'h2',
   $: true,
   text: { $: 'subtitle' }
 }

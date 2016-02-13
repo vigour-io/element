@@ -75,4 +75,13 @@ exports.show = {
   }
 }
 
-// for phone different
+exports.channel = {
+  type: 'show',
+  video: {
+    type: 'page-video',
+    $: true
+  }
+  // list: {
+  //   $: 'currentSeason'
+  // }
+}

@@ -1,36 +1,31 @@
 'use strict'
-var Observable = require('vigour-js/lib/observable')
-var Data = new Observable({
-  inject: require('../../../../lib/subscription/stamp'),
-  Child: 'Constructor'
-}).Constructor
 
-var data = new Data({
-  1: {
-    title: 'hello'
-  },
-  2: {
-    title: 'blurf'
-  },
-  3: {
-    title: 'gurks'
-  }
-})
+var Observable = require('vigour-js/lib/observable')
 var e = require('../../../../e')
 
-var app = e({
-  holder: {
-    $collection: true,
-    Child: {
-      text: { $: 'title' }
+var somethingelse = e({
+  text: 'bla',
+  inject: {
+    properties: {
+      xx: Observable
+    },
+    gurkens: {
+      text: ' ---> hello'
+    }
+  }
+})
+
+// can also add order to props maybe
+var app = e({ //eslint-disable-line
+  components: {
+    bla: somethingelse
+  },
+  bla: {
+    type: 'bla',
+    lildifference: {
+      text: 'x'
     }
   },
   DOM: document.body
 })
 
-// setting xx in one go is wrong since there is no event on e.. may need to do something about it
-// make event on initial set it everywhere?
-
-app.set({
-  val: data
-})

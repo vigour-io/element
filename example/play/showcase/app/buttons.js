@@ -3,6 +3,8 @@ var data = require('../data')
 exports.buttons = {
   Child: {
     type: 'button-spesh',
+    display: 'inline',
+    text: { $add: ' | ' },
     on: {
       click () {
         console.log('swtich', this.key)
@@ -35,7 +37,10 @@ exports.buttons = {
   channels: {
     text: 'channels'
   },
-  publisher: {
-    text: 'chapusblishernnels'
+  publishers: {
+    text: 'publishers'
+  },
+  mixed: {
+    text: 'mixed'
   }
 }

@@ -1,8 +1,15 @@
 'use strict'
 
+var data = require('../../data')
+
 exports.sidebar = {
   logo: {
-    type: 'logo'
+    type: 'logo',
+    on: {
+      click () {
+        data.state.app.val = data.discover
+      }
+    }
   },
 
   menu: {

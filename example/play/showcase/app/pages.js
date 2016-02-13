@@ -29,6 +29,7 @@ merge(components, require('../components/img'))
 merge(components, require('../components/item'))
 merge(components, require('../components/list'))
 merge(components, require('../components/pages'))
+merge(components, require('../components/carousel'))
 
 
 // do set on the type

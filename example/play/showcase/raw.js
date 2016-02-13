@@ -67,7 +67,27 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30ed8e4b029b5c6d74d57-1454911815315_l_banner"
         },
         "video": "/api/mena-web/asset/3075/play",
-        "epg": "NO_DATA_AVAILABLE",
+        "epg": {
+          "title": "Abu Dhabi HD",
+          "items": {
+            "1": {
+              "title": "Ekatarina",
+              "description": "this show is fun",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": -1
+            },
+            "2": {
+              "title": "Fakkar Bill Seha",
+              "description": "",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 1
+            }
+          }
+        },
         "access": 0
       },
       "3076": {
@@ -83,7 +103,27 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30ee5e4b029b5c6d74d59-1454911839550_l_banner"
         },
         "video": "/api/mena-web/asset/3076/play",
-        "epg": "NO_DATA_AVAILABLE",
+        "epg": {
+          "title": "Al Emarat HD",
+          "items": {
+            "1": {
+              "title": "Iftah Ya Simsim",
+              "description": "this show is fun",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 2
+            },
+            "2": {
+              "title": "Seret Hob",
+              "description": "",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 3
+            }
+          }
+        },
         "access": 0
       },
       "3077": {
@@ -99,7 +139,27 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_banner"
         },
         "video": "/api/mena-web/asset/3077/play",
-        "epg": "NO_DATA_AVAILABLE",
+        "epg": {
+          "title": "AD Sport 1 HD",
+          "items": {
+            "1": {
+              "title": "AC Milan - Juventus",
+              "description": "this show is fun",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 4
+            },
+            "2": {
+              "title": "Manchester City - Chelsea",
+              "description": "",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 5
+            }
+          }
+        },
         "access": 0
       },
       "3078": {
@@ -115,7 +175,27 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b30eefe4b029b5c6d74d5b-1454911871353_l_banner"
         },
         "video": "/api/mena-web/asset/3078/play",
-        "epg": "NO_DATA_AVAILABLE",
+        "epg": {
+          "title": "AD Sport 1 HD",
+          "items": {
+            "1": {
+              "title": "AC Milan - Juventus",
+              "description": "this show is fun",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 6
+            },
+            "2": {
+              "title": "Manchester City - Chelsea",
+              "description": "",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 7
+            }
+          }
+        },
         "access": 0
       },
       "3079": {
@@ -131,13 +211,33 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b83195e4b067a58b072447-1454911893890_l_banner"
         },
         "video": "/api/mena-web/asset/3079/play",
-        "epg": "NO_DATA_AVAILABLE",
+        "epg": {
+          "title": "AD Sport 1 HD",
+          "items": {
+            "1": {
+              "title": "Iftah Ya Simsim",
+              "description": "this show is fun",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 8
+            },
+            "2": {
+              "title": "Ekatarina",
+              "description": "",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 9
+            }
+          }
+        },
         "access": 0
       },
       "3083": {
         "id": "3083",
         "title": "AD Test 2 HD",
-        "description": "AD Sport 6 HD",
+        "description": "AD Test 2 HD",
         "img": {
           "val": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b83195e4b067a58b072447-1454911893890_l_thumbnail",
           "cover": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b83195e4b067a58b072447-1454911893890_l_main",
@@ -147,7 +247,27 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b83195e4b067a58b072447-1454911893890_l_banner"
         },
         "video": "/api/mena-web/asset/3083/play",
-        "epg": "NO_DATA_AVAILABLE",
+        "epg": {
+          "title": "AD Test 2 HD",
+          "items": {
+            "1": {
+              "title": "Iftah Ya Simsim",
+              "description": "this show is fun",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 10
+            },
+            "2": {
+              "title": "Seret Hob",
+              "description": "",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 11
+            }
+          }
+        },
         "access": 0
       },
       "3085": {
@@ -163,7 +283,27 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b83195e4b067a58b072447-1454911893890_l_banner"
         },
         "video": "/api/mena-web/asset/3085/play",
-        "epg": "NO_DATA_AVAILABLE",
+        "epg": {
+          "title": "AD Test HD",
+          "items": {
+            "1": {
+              "title": "Iftah Ya Simsim",
+              "description": "this show is fun",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 12
+            },
+            "2": {
+              "title": "Seret Hob",
+              "description": "",
+              "startTime": "18:30",
+              "endTime": "19:20",
+              "time": "18:30 - 19:20",
+              "order": 13
+            }
+          }
+        },
         "access": 0
       },
       "3086": {

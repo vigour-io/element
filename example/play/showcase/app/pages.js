@@ -68,7 +68,8 @@ var app = global.app = e({
         inject: require('../../../../lib/player/bitdash'),
         config: {
           apiKey: '225bef4e-5b4d-4444-94b1-4f2fd499fd3b'
-        }
+        },
+        volume: 0
       }
     }
   }],

@@ -32,31 +32,31 @@ merge(components, require('../components/pages'))
 // merge(components, require('../components/player'))
 var Observable = require('vigour-js/lib/observable')
 
-var datax = new Observable({
-  key: '111',
-  Child: Observable,
-  img: {
-    val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
-  },
-  number: {
-    val: 1
-  },
-  title: {
-    val: 'Aflevering van 12 oktober: Kevin Janssens, Kim Clijsters en Sam Louwyck'
-  },
-  time: {
-    val: 0.5
-  },
-  duration: {
-    val: 4020
-  },
-  video: {
-    val: 'https://s3-eu-west-1.amazonaws.com/sbsvigour/output/111700_794541d68c8c4fbe47407aaaaa70ceef/{type}s/111700.{type}'
-  },
-  description: {
-    val: 'In de allereerste aflevering van een nieuw seizoen nemen Kim Clijsters, Kevin Janssens en Sam Louwyck het tegen elkaar op.'
-  }
-})
+// var datax = new Observable({
+//   key: '111',
+//   Child: Observable,
+//   img: {
+//     val: 'http://www.vier.be/sites/default/files/programma/erik-dsmtw.png'
+//   },
+//   number: {
+//     val: 1
+//   },
+//   title: {
+//     val: 'Aflevering van 12 oktober: Kevin Janssens, Kim Clijsters en Sam Louwyck'
+//   },
+//   time: {
+//     val: 0.5
+//   },
+//   duration: {
+//     val: 4020
+//   },
+//   video: {
+//     val: 'https://s3-eu-west-1.amazonaws.com/sbsvigour/output/111700_794541d68c8c4fbe47407aaaaa70ceef/{type}s/111700.{type}'
+//   },
+//   description: {
+//     val: 'In de allereerste aflevering van een nieuw seizoen nemen Kim Clijsters, Kevin Janssens en Sam Louwyck het tegen elkaar op.'
+//   }
+// })
 
 var app = global.app = e({
   key: 'app',

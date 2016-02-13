@@ -38,16 +38,21 @@ var app = global.app = e([
         volume: 0
       }
     }
+  },
+  {
+    components: require('../components/player')
   }
 ])
-
 
 console.info(data.shows)
 
 data.shows.g().set({
-  currentEpisode: data.shows.g().seasons.firstChild().episodes.firstChild()
+  currentEpisode: data.shows.g().seasons.firstChild().g()
 })
 // app.pages.video.val = data.movies.g()
 // app.pages.show.val = data.shows.items[2071]
 // app.pages.publisher.val = data.publishers.g()
+data.shows.g().seasons.firstChild().g().set({
+  time: 0
+})
 app.val = data.shows.g()

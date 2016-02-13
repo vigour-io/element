@@ -42,7 +42,7 @@ todos.set({
   }
 })
 
-for (var i = 0; i < 1e2; i++) {
+for (var i = 0; i < 100; i++) {
   todos.firstChild().set({
     todos: {
       [i]: {
@@ -53,9 +53,8 @@ for (var i = 0; i < 1e2; i++) {
   })
 }
 
-
 // make getters is nice1
-for (var i = 0; i < 1e2; i++) {
+for (var i = 0; i < 100; i++) {
   todos['bTodoItem'].set({
     todos: {
       [i + ':manon']: {
@@ -383,3 +382,10 @@ window.requestAnimationFrame(function () {
   app.todoapp.header.title.val = Date.now() - d
   console.log('TIME TO PARSE', Date.now() - d, 'ms')
 })
+
+
+setTimeout(function () {
+  console.time('remove')
+  todos.clear()
+  console.timeEnd('remove')
+}, 400)

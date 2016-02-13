@@ -31,7 +31,7 @@ module.exports = {
         'title': 'Recommended for you',
         'items': [
           [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'movies', 'items', 'lobster' ],
+          [ '$', 'shows', 'items', 'got' ],
           [ '$', 'movies', 'items', 'lobster' ],
           [ '$', 'movies', 'items', 'lobster' ],
           [ '$', 'movies', 'items', 'lobster' ],
@@ -79,7 +79,8 @@ module.exports = {
         subtitle: '2 Seasons - 12 Episodes',
         img: {
           val: 'http://static1.squarespace.com/static/528b0a4be4b0d32bd54a0862/t/53a7386be4b04854556bc822/1403467898455/Game-of-Thrones-poster.jpg',
-          thumb: 'http://static4.businessinsider.com/image/4f74d5f569bedd863a000012/stark-family-game-of-thrones.jpg'
+          thumb: 'http://static4.businessinsider.com/image/4f74d5f569bedd863a000012/stark-family-game-of-thrones.jpg',
+          poster: 'http://www.hollywoodreporter.com/sites/default/files/2011/03/got_-_official_poster.jpg' // 2:3
         }
       }
     }

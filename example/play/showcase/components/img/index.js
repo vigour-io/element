@@ -7,13 +7,12 @@ exports.img = {
 exports.thumb = {
   type: 'figure',
   img: {
-    type: 'img'
+    type: 'img',
+    src: { $: 'img.thumb' }
   }
 }
 
 exports.poster = {
   type: 'img',
-  src: {
-    $: 'img'
-  }
+  src: { $: 'img.poster' }
 }

@@ -27,10 +27,10 @@ var app = global.app = e([{
       type: 'grid',
       $collection: 'shows.items'
     },
-    flexGrid: {
-      type: 'grid-flex',
-      $collection: 'shows.items'
-    },
+    // flexGrid: {
+    //   type: 'grid-flex',
+    //   $collection: 'shows.items'
+    // },
     'discover': {
       type: 'list-discover',
       $: 'shows'

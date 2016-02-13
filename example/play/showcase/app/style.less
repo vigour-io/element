@@ -10,11 +10,16 @@
 @import '../../components/list/style.less';
 @import '../../components/progress/style.less';
 
+body {
+  padding: 2rem;
+}
+
 // icons
 @icon-family: 'ADM-Icons';
 @import url('https://i.icomoon.io/public/1760d3d9bc/ADM-VD/style.css');
 
-
-.lists {
-  max-width: 200px;
+[class^="type-list"],
+[class*=" type-list"] {
+  margin: 5rem 0;
+  border-bottom: 1px solid green;
 }

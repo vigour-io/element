@@ -27,6 +27,7 @@ exports['list-horizontal'] = {
 
 exports['list-discover'] = {
   type: 'list-horizontal',
+  css: { inherits: 'type-list-horizontal' },
   arrows: {
     Child: { type: 'icon' },
     left: { css: 'icon-left' },

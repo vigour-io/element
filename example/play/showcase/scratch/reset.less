@@ -13,7 +13,7 @@ html {
   position: relative;
   height: 100%;
   font-size: 10px;
-  font-family: @body-family;
+  font-family: @body-font-family;
 
   .scheme(@body-scheme);
 
@@ -32,9 +32,9 @@ body {
   outline: 0;
   font-weight: @body-font-weight;
   font-size: @body-font-size;
-  font-style: @body-style;
-  font-variant: @body-variant;
-  font-family: @body-family;
+  font-style: @body-font-style;
+  font-variant: @body-font-variant;
+  font-family: @body-font-family;
   min-width: @container-min-width;
   overflow-x: hidden;
   position: relative;
@@ -145,7 +145,7 @@ a {
   color: @a-color;
   font-weight: @a-weight;
   text-decoration: @a-decoration;
-  font-family: @a-family, @body-family;
+  font-family: @a-family, @body-font-family;
   outline: none;
   cursor: pointer;
 
@@ -170,7 +170,7 @@ a:hover {
 p {
   line-height: @paragraph-line-height;
   margin: @paragraph-margin;
-  font-family: @paragraph-family, @body-family;
+  font-family: @paragraph-family, @body-font-family;
 }
 
 abbr[title] {

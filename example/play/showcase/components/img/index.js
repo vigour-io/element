@@ -14,9 +14,6 @@ exports.thumb = {
 exports.poster = {
   type: 'img',
   src: {
-    $: 'img',
-    $transform (val) {
-      return 'mynikaimgserver.smurky?' + val + '&800/200'
-    }
+    $: 'img'
   }
 }

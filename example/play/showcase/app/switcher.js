@@ -1,10 +1,11 @@
 require('./style.less')
+
 var e = require('../../../../e')
 // for dev only
 var merge = require('lodash/object/merge')
 // default on element components are swithcer carousel and player
 var components = {
-  carousel: require('../../../../lib/carousel'),
+  // carousel: require('../../../../lib/carousel'),
   switcher: require('../../../../lib/switcher')
 }
 
@@ -16,6 +17,7 @@ merge(components, require('../components/button'))
 merge(components, require('../components/progress'))
 
 // medium
+merge(components, require('../components/carousel'))
 merge(components, require('../components/item'))
 merge(components, require('../components/list'))
 
@@ -48,6 +50,7 @@ var app = global.app = e([{
   inject: require('./buttons'),
   switcher: {
     type: 'switcher',
+    css: 'page',
     $put: true,
     mapProperty (key, val) {
       console.log('yo?', key, val)

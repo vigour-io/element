@@ -2,5 +2,5 @@
 // require('./lists.js')
 require('./pages.js')
 console.clear()
-require('./debug.js')
-require('../refactor/todo')
+// require('./debug.js')
+// require('../refactor/todo')

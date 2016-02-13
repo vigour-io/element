@@ -1,6 +1,6 @@
 'use strict'
-require('./lists.js')
-// require('./pages.js')
+// require('./lists.js')
+require('./pages.js')
 console.clear()
 
 // require('./debug.js')

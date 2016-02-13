@@ -1,25 +1,19 @@
 @charset "UTF-8";
 
 // config
-@import url('./config.less');
+@import 'config.less';
 
 // mixins
-@import url('./mixins.less');
+@import 'mixins.less';
 
 // reset
-& when (@reset = true) {
-  @import url('./reset.less');
-}
+@import 'reset.less';
 
 // helpers
-@import url('./helpers.less');
+@import 'helpers.less';
 
 // components
-& when (@components = true) {
-  @import url('./components.less');
-}
+@import 'components.less';
 
 // animations
-// & when (@animatecss = true) {
-  // @import url('./animation.less');
-// }
+@import 'animation.less';

@@ -2,7 +2,7 @@
 
 exports['list-horizontal'] = {
   $: true,
-  title: { type: 'title' },
+  title: { type: 'title', order: -1 },
   list: {
     $collection: 'items',
     Child: { type: 'item' }
@@ -11,6 +11,7 @@ exports['list-horizontal'] = {
 
 exports['list-discover'] = {
   type: 'list-horizontal',
+  order: { $: 'order' },
   css: { inherits: 'type-list-horizontal' },
   arrows: {
     Child: { type: 'icon' },

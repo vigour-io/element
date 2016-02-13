@@ -1,0 +1,16 @@
+@carousel-scheme: @primary-scheme-inverse;
+
+.ui-carousel > .items > div {
+  @media all @above-tablet {
+    &.next,
+    &.previous {
+      &:after {
+        opacity: .2;
+      }
+
+      > .ui-thumb > .ui-img {
+        opacity: .2;
+      }
+    }
+  }
+}

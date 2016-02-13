@@ -44,12 +44,7 @@ exports['item-cover'] = {
     type: 'img',
     src: { $: 'logo' }
   },
-  description: {
-    order: 1,
-    text: {
-      $: 'description'
-    }
-  }
+  description: { type: 'description' }
 }
 
 merge(exports, require('./flex'))

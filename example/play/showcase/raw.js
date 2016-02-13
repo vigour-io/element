@@ -5,7 +5,7 @@ module.exports = {
       "carousel": {
         "id": "1122",
         "panelName": "17KMPOprv",
-        "order": 0,
+        "order": -1,
         "title": "Carousel",
         "contentKey": "MJNdv3125",
         "items": [

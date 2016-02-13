@@ -29,27 +29,27 @@ var app = global.app = e({
       type: 'discover',
       $: 'discover'
     },
-    shows: {
-      type: 'shows',
-      $: 'shows'
-    },
-    movies: {
-      type: 'movies',
-      $: 'movies'
-    },
-    channels: {
-      type: 'channels',
-      $: 'channels'
-    },
-    mixed: { type: 'mixed' },
-    video: { type: 'page-video' },
-    show: { type: 'show' },
-    publisher: { type: 'publisher' }
+    // shows: {
+    //   type: 'shows',
+    //   $: 'shows'
+    // },
+    // movies: {
+    //   type: 'movies',
+    //   $: 'movies'
+    // },
+    // channels: {
+    //   type: 'channels',
+    //   $: 'channels'
+    // },
+    // mixed: { type: 'mixed' },
+    // video: { type: 'page-video' },
+    // show: { type: 'show' },
+    // publisher: { type: 'publisher' }
   },
   DOM: document.body
 })
 
-app.pages.video.val = data.movies.g()
-app.pages.show.val = data.shows.items[2071]
-app.pages.publisher.val = data.publishers.g()
+// app.pages.video.val = data.movies.g()
+// app.pages.show.val = data.shows.items[2071]
+// app.pages.publisher.val = data.publishers.g()
 app.val = data

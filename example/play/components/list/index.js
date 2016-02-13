@@ -3,12 +3,20 @@
 // can also make base lists if you want, possible to use in this file
 exports.grid = {
   $collection: 'items',
-  Child: { type: 'item' }
+  Child: {
+    item: {
+      type: 'item'
+    }
+  }
 }
 
 exports['grid-flex'] = {
   $collection: 'items',
-  Child: { type: 'item-flex' }
+  Child: {
+    item: {
+      type: 'item-flex'
+    }
+  }
 }
 
 exports.list = {

@@ -15,41 +15,41 @@ var app = global.app = e([{
   key: 'app',
   components: components,
   lists: {
-    list: {
-      type: 'list',
-      $collection: 'shows.items'
-    },
-    horizontal: {
-      type: 'list-horizontal',
-      $: 'shows'
-    },
-    grid: {
-      type: 'grid',
-      $collection: 'shows.items'
-    },
-    // flexGrid: {
-    //   type: 'grid-flex',
+    // list: {
+    //   type: 'list',
     //   $collection: 'shows.items'
     // },
-    'discover': {
-      type: 'list-discover',
-      $: 'shows'
+    // horizontal: {
+    //   type: 'list-horizontal',
+    //   $: 'shows'
+    // },
+    // grid: {
+    //   type: 'grid',
+    //   $collection: 'shows.items'
+    // },
+    flexGrid: {
+      type: 'grid-flex',
+      $collection: 'shows.items'
     },
-    'video-horizontal': {
-      type: 'list-horizontal',
-      $: 'shows',
-      list: { Child: { type: 'item-video' } }
-    },
-    channels: {
-      type: 'list-horizontal',
-      $: 'channels',
-      list: { Child: { type: 'item-channel' } }
-    },
-    movies: {
-      type: 'list-horizontal',
-      $: 'movies',
-      list: { Child: { type: 'item-poster' } }
-    }
+    // 'discover': {
+    //   type: 'list-discover',
+    //   $: 'shows'
+    // },
+    // 'video-horizontal': {
+    //   type: 'list-horizontal',
+    //   $: 'shows',
+    //   list: { Child: { type: 'item-video' } }
+    // },
+    // channels: {
+    //   type: 'list-horizontal',
+    //   $: 'channels',
+    //   list: { Child: { type: 'item-channel' } }
+    // },
+    // movies: {
+    //   type: 'list-horizontal',
+    //   $: 'movies',
+    //   list: { Child: { type: 'item-poster' } }
+    // }
   },
   DOM: document.body
 }, {

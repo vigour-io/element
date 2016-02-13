@@ -1,0 +1,31 @@
+@logo-size: @h0;
+@logo-padding: @gutter-big 0 @gutter;
+
+.logo {
+  position: relative;
+  padding: @logo-padding;
+  text-align: center;
+  cursor: pointer;
+
+  > .type-icon {
+    line-height: 1;
+    font-size: @logo-size;
+    .transition(@transition transform);
+
+    @media all @under-sidebar-breakpoint {
+      display: none;
+    }
+  }
+
+  > .type-img {
+    max-height: 7rem;
+
+    @media all @above-sidebar-breakpoint {
+      display: none;
+    }
+  }
+
+  @media all @under-sidebar-breakpoint {
+    padding: (@gutter * 2) 0 @gutter-big;
+  }
+}

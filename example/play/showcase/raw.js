@@ -10,7 +10,7 @@ module.exports = {
         ]
       },
       channels: {
-        link: [ '$', 'channels' ],
+        // link: [ '$', 'channels' ],
         title: 'Now on TV',
         items: [
           [ '$', 'channels', 'items', 'adb' ],

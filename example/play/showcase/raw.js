@@ -2,42 +2,42 @@ module.exports = {
   discover: {
     title: 'Discovery',
     items: {
-      carousel: {
-        order: -1,
-        items: [
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ]
-        ]
-      },
+      // carousel: {
+      //   order: -1,
+      //   items: [
+      //     [ '$', 'movies', 'items', 'lobster' ],
+      //     [ '$', 'shows', 'items', 'got' ]
+      //   ]
+      // },
       channels: {
         title: 'New on TV',
         items: [
           [ '$', 'channels', 'items', 'adb' ]
         ]
       },
-      continue: {
-        title: 'Continue Watching',
-        items: [
-          [ '$', 'movies', 'items', 'lobster' ]
-        ]
-      },
-      subscriptions: {
-        title: 'My Subscriptions',
-        items: [
-          [ '$', 'movies', 'items', 'lobster' ]
-        ]
-      },
-      'recommended:posters': {
-        'title': 'Recommended for you',
-        'items': [
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'movies', 'items', 'lobster' ]
-        ]
-      }
+      // continue: {
+      //   title: 'Continue Watching',
+      //   items: [
+      //     [ '$', 'movies', 'items', 'lobster' ]
+      //   ]
+      // },
+      // subscriptions: {
+      //   title: 'My Subscriptions',
+      //   items: [
+      //     [ '$', 'movies', 'items', 'lobster' ]
+      //   ]
+      // },
+      // 'recommended:posters': {
+      //   'title': 'Recommended for you',
+      //   'items': [
+      //     [ '$', 'movies', 'items', 'lobster' ],
+      //     [ '$', 'shows', 'items', 'got' ],
+      //     [ '$', 'movies', 'items', 'lobster' ],
+      //     [ '$', 'movies', 'items', 'lobster' ],
+      //     [ '$', 'movies', 'items', 'lobster' ],
+      //     [ '$', 'movies', 'items', 'lobster' ]
+      //   ]
+      // }
     }
   },
   channels: {

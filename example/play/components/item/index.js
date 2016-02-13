@@ -15,7 +15,11 @@ exports['item-flex'] = {
   description: {
     text: { $: 'description' }
   },
-  arrow: { type: 'icon', css: 'icon-right' }
+  arrow: {
+    order: 1,
+    type: 'icon',
+    css: 'icon-right'
+  }
 }
 
 exports['item-flex-progress'] = {
@@ -25,7 +29,13 @@ exports['item-flex-progress'] = {
 
 exports['item-row'] = {
   type: 'item',
-  icon: { type: 'icon', css: { icon: 'icon-right' } }
+  arrow: {
+    order: 1,
+    type: 'icon',
+    css: {
+      icon: 'icon-right'
+    }
+  }
 }
 
 exports['item-row-progress'] = {

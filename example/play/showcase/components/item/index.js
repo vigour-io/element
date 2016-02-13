@@ -2,13 +2,15 @@
 
 var merge = require('lodash/object/merge')
 
+function setAppState () {
+  this.state.data.getRoot().state.app.val = this.state.data
+}
+
 exports.item = {
   img: { type: 'thumb' },
   title: { type: 'info' },
   on: {
-    click () {
-      // console.error('!!!', this.path)
-    }
+    click: setAppState
   }
 }
 
@@ -35,7 +37,10 @@ exports['item-channel'] = {
 }
 
 exports['item-poster'] = {
-  type: 'poster'
+  type: 'poster',
+  on: {
+    click: setAppState
+  }
 }
 
 exports['item-cover'] = {

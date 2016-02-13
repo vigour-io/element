@@ -1,7 +1,6 @@
 'use strict'
 
 exports.discover = {
-  title: { type: 'title' },
   list: {
     $collection: 'items',
     Child: {

@@ -6,7 +6,7 @@
 // It's under MIT License and it's free to use.
 
 // general mixin
-.animated(@name: '', @duration: @animation-duration) {
+.animate(@name: '', @duration: @animation-duration) {
   & when not (@name = '') {
     .animation-name(@name);
   }
@@ -16,36 +16,36 @@
 }
 
 & when (@animatecss-bounce = true) {
-  @import url('./animation/bounce.less');
+  @import '/animation/bounce.less';
 }
 
 & when (@animatecss-fade = true) {
-  @import url('./animation/fade.less');
+  @import '/animation/fade.less';
 }
 
 & when (@animatecss-flip = true) {
-  @import url('./animation/flip.less');
+  @import '/animation/flip.less';
 }
 
 & when (@animatecss-light-speed = true) {
-  @import url('./animation/light-speed.less');
+  @import '/animation/light-speed.less';
 }
 
 & when (@animatecss-roll = true) {
-  @import url('./animation/roll.less');
+  @import '/animation/roll.less';
 }
 
 & when (@animatecss-rotate = true) {
-  @import url('./animation/rotate.less');
+  @import '/animation/rotate.less';
 }
 
 // & when (@animatecss-slide = true) {
-//   @import url('./animation/slide.less');
+//   @import '/animation/slide.less';
 // }
 
 & when (@animatecss-zoom = true) {
-  @import url('./animation/zoom.less');
+  @import '/animation/zoom.less';
 }
 
 // infinite looping animations
-@import url('./animation/infinites.less');
+@import '/animation/infinites.less';

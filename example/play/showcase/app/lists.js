@@ -1,13 +1,17 @@
 var e = require('../../../../e')
+
 require('!style!css!less!./style.less')
+
 var merge = require('lodash/object/merge')
 var components = {}
-merge(components, require('../../components/progress'))
-merge(components, require('../../components/icon'))
-merge(components, require('../../components/text'))
-merge(components, require('../../components/img'))
-merge(components, require('../../components/item'))
-merge(components, require('../../components/list'))
+
+merge(components, require('../components/progress'))
+merge(components, require('../components/icon'))
+merge(components, require('../components/text'))
+merge(components, require('../components/img'))
+merge(components, require('../components/item'))
+merge(components, require('../components/list'))
+
 // this is of course not the way have to clean up later
 var data = require('../data')
 

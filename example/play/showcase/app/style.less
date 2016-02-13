@@ -1,19 +1,29 @@
 @import '../scratch/scratch.less';
 
-@reset: true;
+@animatecss: true;
+@font-local: false;
 @body-font-weight: @font-regular;
 
-@import '../../components/icon/style.less';
-@import '../../components/img/style.less';
-@import '../../components/item/style.less';
-@import '../../components/text/style.less';
-@import '../../components/list/style.less';
-@import '../../components/progress/style.less';
+@import '../adm/style.less';
 
-body {
-  .sizing;
-  padding: 2rem;
-}
+@import '../components/icon/style.less';
+@import '../components/img/style.less';
+@import '../components/text/style.less';
+@import '../components/progress/style.less';
+
+// pages
+@import '../components/pages/style.less';
+@import '../components/pages/discover/style.less';
+
+// items
+@import '../components/item/style.less';
+@import '../components/item/flex/style.less';
+@import '../components/item/row/style.less';
+
+// lists
+@import '../components/list/style.less';
+@import '../components/list/grid/style.less';
+@import '../components/list/list-horizontal/style.less';
 
 // icons
 @icon-family: 'ADM-Icons';

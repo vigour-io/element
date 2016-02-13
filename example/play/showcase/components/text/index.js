@@ -20,3 +20,8 @@ exports.info = {
   title: { type: 'title' },
   subtitle: { type: 'subtitle' }
 }
+
+exports.description = {
+  order: 1,
+  text: { $: 'description' }
+}

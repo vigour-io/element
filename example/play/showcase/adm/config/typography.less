@@ -1,0 +1,46 @@
+& when (@font-local = true) {
+  // typography
+  @font-sans-serif: @font-import-primary;
+
+  // weights
+  @font-semibold:  @font-regular;
+
+  // font includes
+  @fonts-path: 'assets/font';
+  @font-import-primary: "VAG-Rounded-LT";
+
+  @font-face {
+    font-family: @font-import-primary;
+    font-style: normal;
+    font-weight: @font-slim;
+    src: local('Font Thin'), local('Font-Thin'), url("@{fonts-path}/@{font-import-primary}-Thin.woff") format('woff');
+  }
+
+  @font-face {
+    font-family: @font-import-primary;
+    font-style: normal;
+    font-weight: @font-light;
+    src: local('Font Light'), local('Font-Light'), url("@{fonts-path}/@{font-import-primary}-Light.woff") format('woff');
+  }
+
+  @font-face {
+    font-family: @font-import-primary;
+    font-style: normal;
+    font-weight: @font-regular;
+    src: local('Font Regular'), local('Font-Regular'), url("@{fonts-path}/@{font-import-primary}-Regular.woff") format('woff');
+  }
+
+  @font-face {
+    font-family: @font-import-primary;
+    font-style: normal;
+    font-weight: @font-bold;
+    src: local('Font Bold'), local('Font-Bold'), url("@{fonts-path}/@{font-import-primary}-Bold.woff") format('woff');
+  }
+
+  @font-face {
+    font-family: @font-import-primary;
+    font-style: normal;
+    font-weight: @font-extrabold;
+    src: local('Font Black'), local('Font-Black'), url("@{fonts-path}/@{font-import-primary}-Black.woff") format('woff');
+  }
+}

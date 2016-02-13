@@ -14,10 +14,6 @@ exports.item = {
   }
 }
 
-exports['item-carousel'] = {
-  type: 'item'
-}
-
 exports['item-video'] = {
   type: 'item',
   css: { inherits: 'type-item' },

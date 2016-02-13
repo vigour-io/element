@@ -20,6 +20,10 @@ exports.discover = {
           css: { size: 'big' }
           // { $: 'moreButton' } [true/false or a category]
         }
+      },
+      hr: {
+        order: 10,
+        type: 'hr'
       }
     },
     properties: {

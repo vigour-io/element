@@ -12,6 +12,11 @@ merge(components, require('../components/img'))
 merge(components, require('../components/item'))
 merge(components, require('../components/list'))
 
+console.log('-------------------------')
+console.log('components')
+console.log(components)
+console.log('-------------------------')
+
 // this is of course not the way have to clean up later
 var data = require('../data')
 

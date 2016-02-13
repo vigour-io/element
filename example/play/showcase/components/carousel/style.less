@@ -1,0 +1,128 @@
+.type-carousel {
+  position: relative;
+  width:100%;
+  overflow: hidden;
+
+  @media all @above-tablet {
+    padding-top: 28%;
+  }
+
+  @media all @under-tablet {
+    padding-top: 50%;
+  }
+
+  > .items {
+    .flex-display;
+    .flex-direction(row);
+    .flex-wrap(nowrap);
+    width: 100%;
+    height: calc(100% - 4px);
+    .absolute;
+    .user-select;
+
+    // TODO: temporary
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    > div {
+      position: relative;
+      height: 100%;
+      min-width: 60%;
+      color: white;
+      cursor: pointer;
+
+      > figure {
+        height: 100%;
+      }
+
+      img {
+        width: 100%;
+        max-height: none;
+        max-width: none;
+        z-index: 0;
+        .ui-position-center-y;
+        left: 0;
+      }
+
+      > .type-info {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        bottom: 0;
+        z-index: 1;
+        overflow: hidden;
+        .sizing;
+
+        @media all @above-layout-breakpoint {
+          padding: @gutter;
+        }
+
+        @media all @under-layout-breakpoint {
+          padding: @gutter-small;
+        }
+
+        &:after {
+          content: '';
+          background: fade(extract(@carousel-scheme-active, 4), 25%);
+          .absolute;
+          .fullsize;
+          z-index: 2;
+        }
+
+        > .title {
+          position: relative;
+          z-index: 3;
+          margin: 0;
+          font-size: @h3;
+          .text-overflow;
+        }
+
+        > figure {
+          .absolute;
+          .fullsize;
+
+          > img {
+            z-index: 1;
+            margin-top: -19%;
+          }
+        }
+      }
+    }
+  }
+
+  > .indicator {
+    .flex-display;
+    position: relative;
+    z-index: 2;
+
+    > div {
+      .flex(1);
+      height: 4px;
+
+      &:nth-child(1) {
+        background-color: @carousel-primary;
+      }
+
+      &:nth-child(2) {
+        background-color: @carousel-secondary;
+      }
+
+      &:nth-child(3) {
+        background-color: @carousel-tertiary;
+      }
+
+      &:nth-child(4) {
+        background-color: @carousel-quaternary;
+      }
+
+      &:nth-child(4) {
+        background-color: @carousel-quinary;
+      }
+
+      &.active {
+        margin-top: -2px;
+        height: 6px;
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 require('./style.less')
+
 var e = require('../../../../e')
 // for dev only
 var merge = require('lodash/object/merge')
@@ -6,7 +7,7 @@ var merge = require('lodash/object/merge')
 var components = {
   // carousel: require('../../../../lib/carousel'),
   switcher: require('../../../../lib/switcher'),
-  player: require('../../../../lib/player')
+  // player: require('../../../../lib/player')
 }
 
 // small
@@ -16,7 +17,9 @@ merge(components, require('../components/img'))
 merge(components, require('../components/button'))
 merge(components, require('../components/progress'))
 
+
 // medium
+merge(components, require('../components/carousel'))
 merge(components, require('../components/item'))
 merge(components, require('../components/list'))
 
@@ -60,16 +63,17 @@ var app = global.app = e({
     {
       components: {
         player: {
-          inject: require('../../../../lib/player/bitdash'),
-          config: {
-            apiKey: '225bef4e-5b4d-4444-94b1-4f2fd499fd3b'
-          }
+          // inject: require('../../../../lib/player/bitdash'),
+          // config: {
+            // apiKey: '225bef4e-5b4d-4444-94b1-4f2fd499fd3b'
+          // }
         }
       }
     }
   ],
   switcher: {
     type: 'switcher',
+    css: 'page',
     $put: true,
     mapProperty (key, val) {
       console.log('yo?', key, val, val.path)

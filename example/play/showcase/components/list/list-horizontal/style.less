@@ -30,8 +30,9 @@
 .type-list-discover {
   > .header {
     .flex-display;
+    .align-items(center);
     font-size: @h4;
-    margin-bottom: @gutter-small;
+    margin-bottom: @gutter;
 
     > .type-title {
       color: @primary;
@@ -100,6 +101,16 @@
 
     > .right {
       right: 0;
+    }
+  }
+
+  > hr {
+    margin: 2.5em 0;
+  }
+
+  &:last-child {
+    > hr {
+      display: none;
     }
   }
 }

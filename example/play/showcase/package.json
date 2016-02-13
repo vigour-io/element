@@ -26,6 +26,11 @@
     "style-loader": "*",
     "css-loader": "*",
     "webpack": "*",
-    "webpack-dev-server": "*"
+    "webpack-dev-server": "*",
+    "babel-loader": "*",
+    "babel-core": "*",
+    "babel-core": "*",
+    "babel-preset-es2015": "*",
+    "screenfull": "*"
   }
 }

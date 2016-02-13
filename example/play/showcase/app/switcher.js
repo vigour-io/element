@@ -45,14 +45,14 @@ var app = global.app = e({
   switcher: {
     type: 'switcher',
     $put: true,
-    mapProperty (key, val) {
-      console.error('-- lets find correct item from the switcher --->', key)
-      if (val.path.indexOf('movies') > 1) {
-        return 'movies'
-      } else {
-        return 'discover' // or generic page
-      }
-    },
+    // mapProperty (key, val) {
+    //   console.error('-- lets find correct item from the switcher --->', key)
+    //   if (val.path.indexOf('movies') > 1) {
+    //     return 'movies'
+    //   } else {
+    //     return 'discover' // or generic page
+    //   }
+    // },
     properties: {
       show: { type: 'show' },
       discover: { type: 'discover' },

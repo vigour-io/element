@@ -1,5 +1,5 @@
 'use strict'
 
 exports.player = {
-  text: '!this is the player type!'
+  // text: '!this is the player type!'
 }

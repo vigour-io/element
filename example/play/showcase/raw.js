@@ -1118,6 +1118,8 @@ module.exports = {
         "title": "Habbet Ramel",
         "description": "Set in Abu Dhabi in the year 1960, this show tells the story of an elderly father (played by Bilal Abdullah) who after the death of his eldest son seeks out his youngest son (played by Abdulla Zeid) and asks of him to return from Kuwait to marry the diseased brother's two widows, Raziqa Al Taresh and Huda Al Ghanem, in order to keep the family together.",
         "subtitle": "2 Seasons - 29 Episodes",
+        "currentSeason": ['$', 'shows', '2036', 'seasons', '2159'],
+        "currentEpisode": ['$', 'shows', '2036', 'seasons', '2159', 'episodes', '3695'],
         "img": {
           "val": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b89c24e4b067a58b072451-1454955074738_l_thumbnail",
           "cover": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b89c24e4b067a58b072451-1454955074738_l_main",
@@ -1973,6 +1975,8 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b8a21ae4b067a58b07246c-1454955204847_l_banner"
         },
         "date": "2016-02-08T05:39:24Z",
+        "currentSeason": ['$', 'shows', '2039', 'seasons', '2158'],
+        "currentEpisode": ['$', 'shows', '2039', 'seasons', '2158', 'episodes', '3564'],
         "genre": ["Programme"],
         "actors": ["Nancy Iskandar", "Hassan Al-Mulla"],
         "seasons": {
@@ -2132,6 +2136,8 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b89e5ce4b067a58b07245f-1454955242351_l_banner"
         },
         "date": "2016-02-08T05:39:24Z",
+        "currentSeason": ['$', 'shows', '2040', 'seasons', '2162'],
+        "currentEpisode": ['$', 'shows', '2040', 'seasons', '2162', 'episodes', '3551'],
         "genre": ["Programme"],
         "actors": ["Nancy Iskandar", "Hassan Al-Mulla"],
         "seasons": {
@@ -2203,6 +2209,8 @@ module.exports = {
           "banner": "https://vimond-docker-thumbor.ha.tvae-second.vimondtv.com/56b89b88e4b067a58b07244b-1454939035773_l_banner"
         },
         "date": "2016-02-08T05:39:24Z",
+        "currentSeason": ['$', 'shows', '2071', 'seasons', '2154'],
+        "currentEpisode": ['$', 'shows', '2071', 'seasons', '2154', 'episodes', '3654'],
         "genre": ["Programme"],
         "actors": ["Nancy Iskandar", "Hassan Al-Mulla"],
         "seasons": {

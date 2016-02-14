@@ -32,7 +32,7 @@ exports.carousel = merge(require('../../../../../lib/carousel'), {
       },
       on: {
         down (e, event) {
-          this.parent.previous()
+          this.parent.parent.previous()
         }
       }
     },
@@ -47,7 +47,7 @@ exports.carousel = merge(require('../../../../../lib/carousel'), {
       },
       on: {
         down (e, event) {
-          this.parent.next()
+          this.parent.parent.next()
         }
       }
     }

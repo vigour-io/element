@@ -14,7 +14,8 @@ exports.page = {
 
 exports.shows = {
   type: 'page',
-  title: { type: 'secondarytitle' },
+  title: { type: 'title-secondary' },
+  hr: { type: 'hr' },
   grid: {
     type: 'grid-flex',
     $collection: 'items'
@@ -23,7 +24,8 @@ exports.shows = {
 
 exports.movies = {
   type: 'page',
-  title: { type: 'secondarytitle' },
+  title: { type: 'title-secondary' },
+  hr: { type: 'hr' },
   grid: {
     type: 'grid',
     $collection: 'items',
@@ -34,6 +36,7 @@ exports.movies = {
 exports.channels = {
   type: 'page',
   title: { type: 'title' },
+  hr: { type: 'hr' },
   grid: {
     type: 'grid-flex',
     $collection: 'items',

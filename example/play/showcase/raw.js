@@ -59,11 +59,12 @@ module.exports = {
     items: {
       carousel: {
         order: -1,
-        items: [
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ]
-        ]
+        items: {
+          focus: 0,
+          0: [ '$', 'movies', 'items', 'lobster' ],
+          1: [ '$', 'shows', 'items', 'got' ],
+          2: [ '$', 'shows', 'items', 'lilyhammer' ]
+        }
       },
       channels: {
         title: 'Now on TV',

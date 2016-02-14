@@ -44,7 +44,7 @@ module.exports = {
       carousel: {
         order: -1,
         items: {
-          focus: 0,
+          focus: false,
           length: 3,
           0: [ '$', 'movies', 'items', '0' ],
           1: [ '$', 'shows', 'items', '0' ],

@@ -2,6 +2,8 @@ module.exports = {
 	title: 'Publishers',
 	icon: 'publishers',
 	items: {
+		focus: 0,
+    lenght: 2,
 	  0: {
 	    title: 'Dubai Lynx',
 	    description: 'Description of the Publisher',

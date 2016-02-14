@@ -1,15 +1,12 @@
 'use strict'
 
 exports.img = {
-  src: { $: 'img' }
+  src: { $: 'img.thumb' }
 }
 
 exports.thumb = {
   type: 'figure',
-  img: {
-    type: 'img',
-    src: { $: 'img.thumb' }
-  }
+  img: { type: 'img' }
 }
 
 exports.poster = {

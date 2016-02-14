@@ -5,54 +5,40 @@ module.exports = {
   continue: {
     title: 'Continue Watching',
     items: [
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'movies', 'items', 'sw' ],
-      [ '$', 'movies', 'items', 'h8' ]
+      [ '$', 'movies', 'items', 0 ]
     ]
   },
   subscriptions: {
     title: 'My Subscriptions',
     items: [
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ]
+      [ '$', 'shows', 'items', 0 ],
+      [ '$', 'channels', 'items', 0 ]
     ]
   },
   recommended: {
     'title': 'Recommended for you',
     'items': [
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'movies', 'items', 'sw' ],
-      [ '$', 'movies', 'items', 'h8' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'movies', 'items', 'sw' ],
-      [ '$', 'movies', 'items', 'h8' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'movies', 'items', 'sw' ],
-      [ '$', 'movies', 'items', 'h8' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'movies', 'items', 'lobster' ]
+      [ '$', 'movies', 'items', 0 ],
+      [ '$', 'shows', 'items', 0 ]
     ]
     // link: [ '$', 'recommended' ]
   },
 
   // non-user data
+  mixed: {
+    title: 'Channels',
+    channels: [ '$', 'channels' ],
+    icon: 'channels',
+    publishers: [ '$', 'publishers' ]
+  },
+  menu: {
+    discover: [ '$', 'discover' ],
+    shows: [ '$', 'shows' ],
+    movies: [ '$', 'movies' ],
+    mixed: [ '$', 'mixed' ],
+    // channels: [ '$', 'channels' ],
+    // subscriptions: [ '$', 'subscriptions' ]
+  },
   discover: {
     title: 'Discovery',
     icon: 'discover',
@@ -60,10 +46,10 @@ module.exports = {
       carousel: {
         order: -1,
         items: {
-          focus: 'lobster',
-          0: [ '$', 'movies', 'items', 'lobster' ],
-          1: [ '$', 'shows', 'items', 'got' ],
-          2: [ '$', 'shows', 'items', 'lilyhammer' ]
+          focus: 0,
+          0: [ '$', 'movies', 'items', '0' ],
+          1: [ '$', 'shows', 'items', '2' ],
+          2: [ '$', 'shows', 'items', '3' ]
         }
       },
       channels: {
@@ -288,33 +274,33 @@ module.exports = {
     title: 'Movies',
     icon: 'film',
     items: {
-      lobster: {
+      0: {
         title: 'The Lobster',
         subtitle: '(2009) 201 min',
-        description: descriptions.got,
+        description: 'In a dystopian near future, single people, according to the laws of The City, are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.',
         img: {
-          val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
-          thumb: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg', // 4:3
+          thumb: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 4:3
+          spotlight: 'http://pngimg.com/upload/cat_PNG1633.png', // 2:1
           poster: 'http://i.ebayimg.com/images/g/6wsAAOSw~bFWMFCS/s-l300.jpg' // 2:3
         },
         video: {},
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      sw: {
+      1: {
         title: 'Star Wars: The Force Awakens',
         subtitle: '(2009) 201 min',
-        time: 0.5, // default s 0
+        description: 'In a dystopian near future, single people, according to the laws of The City, are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.',
         img: {
-          val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
-          thumb: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg', // 4:3
+          thumb: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg',  // 2:1
+          spotlight: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg', // 4:3
           poster: 'http://www.cinemark.com/media/47129355/big.jpg' // 2:3
         },
         video: {},
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      joy: {
+      2: {
         title: 'Joy',
         subtitle: '(2009) 201 min',
         img: {
@@ -325,7 +311,7 @@ module.exports = {
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      h8: {
+      3: {
         title: 'The Hateful Eight',
         subtitle: '(2016) 201 min',
         time: 0.5, // default s 0
@@ -338,7 +324,7 @@ module.exports = {
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      zoolander: {
+      4: {
         title: 'Zoolander 2',
         subtitle: '(2016) 148 min',
         time: 0.5,

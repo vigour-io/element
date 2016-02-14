@@ -21,7 +21,8 @@ exports['item-video'] = {
   css: { inherits: 'type-item' },
   img: {
     progress: { type: 'progress' }
-  }
+  },
+  inject: click
 }
 
 exports['item-channel'] = {
@@ -42,7 +43,7 @@ exports['item-poster'] = {
 }
 
 exports['item-cover'] = {
-  background: { $: 'img' },
+  background: { $: 'img.thumb' },
   logo: {
     type: 'img',
     src: { $: 'logo' }

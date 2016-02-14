@@ -12,7 +12,7 @@ module.exports = {
     loaders: [
       {
         test: /\.less$/,
-        loader: 'style!css!less'
+        loader: 'style!css!less?strictMath'
       }
       // {
       //   test: /\.js$/,

@@ -20,7 +20,6 @@
     "./lib/engine/ua/": "./lib/engine/ua/browser"
   },
   "dependencies": {
-    "axios": "^0.9.1",
     "babel-core": "*",
     "babel-loader": "^6.2.2",
     "babel-preset-es2015": "*",

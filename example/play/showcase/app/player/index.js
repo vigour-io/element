@@ -3,6 +3,25 @@ var Player = require('../../../../../lib/player/')
 var videoAPi = require('../api/video')
 var playback = videoAPi.getSource
 
+var http = require('http')
+var opts = {
+  port: 80,
+  hostname: 'adm-ums.vigour.io:80',
+  method: 'post',
+  path: '/login/api',
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  }
+}
+
+console.error('===================== HEY')
+var req = http.request(opts)
+req.end(JSON.stringify({
+  username: 'zappa2@mailinator.com',
+  password: 'zappa2'
+}))
+
 var orRender = Player.src.render
 Player.src.define({
   render () {

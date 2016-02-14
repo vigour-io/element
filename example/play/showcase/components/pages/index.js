@@ -42,7 +42,7 @@ exports.channels = {
 exports.mixed = {
   publishers: {
     type: 'channels',
-    $collection: 'publishers'
+    $: 'publishers'
   },
   channels: {
     type: 'channels',

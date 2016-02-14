@@ -77,6 +77,9 @@ function inPath (path, key) {
   }
 }
 
+console.clear()
+console.log(components)
+
 var app = global.app = e({
   key: 'app',
   components: components,

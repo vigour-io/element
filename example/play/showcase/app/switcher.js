@@ -76,9 +76,12 @@ data.set({
 }, false)
 
 const LANDING = 'discover'
+// this will be a hub thing if no url then use hub value or go to discover
+// like a default operator on page
 
 window.addEventListener('popstate', readUrl)
 function readUrl (ev) {
+  // webpack-dev-server/
   var parsed = window.location.href.replace(/https?:\/\//, '')
   var url = parsed.split('/').slice(1)
   var event = new Event('url')

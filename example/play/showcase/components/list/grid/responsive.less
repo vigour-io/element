@@ -32,18 +32,18 @@
 
   // padding
   @media all @above-layout-breakpoint {
-    .margin-h(-@gutter);
+    .margin-h(-1.5rem);
 
     > div {
-      .flex-grid-gap(0 @gutter @gutter);
+      .flex-grid-gap(0 1.5rem 1.5rem);
     }
   }
 
   @media all @under-layout-breakpoint @above-sidebar-breakpoint {
-    .margin-h(-@gutter-small);
+    .margin-h(-1rem);
 
     > div {
-      .flex-grid-gap(0 @gutter-small @gutter-small);
+      .flex-grid-gap(0 1rem 1rem);
     }
   }
 
@@ -63,10 +63,10 @@
 
     // padding
     @media all @under-sidebar-breakpoint {
-      .margin-h(-@gutter-small);
+      .margin-h(-1rem);
 
       > div {
-        .flex-grid-gap(0 @gutter-small);
+        .flex-grid-gap(0 1rem);
       }
     }
   }

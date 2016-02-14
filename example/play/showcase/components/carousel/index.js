@@ -31,7 +31,13 @@ exports.carousel = merge(require('../../../../../lib/carousel'), {
 
 exports['item-carousel'] = {
   type: 'item',
+  img: {
+    img: { $: 'img.spotlight' }
+  },
   title: {
-    img: { type: 'thumb' }
+    img: { 
+      type: 'thumb', 
+      $: 'img.spotlight' 
+    }
   }
 }

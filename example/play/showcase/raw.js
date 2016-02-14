@@ -75,9 +75,9 @@ module.exports = {
         order: -1,
         items: {
           focus: 0,
-          0: [ '$', 'movies', 'items', 'lobster' ],
-          1: [ '$', 'shows', 'items', 'got' ],
-          2: [ '$', 'shows', 'items', 'lilyhammer' ]
+          0: [ '$', 'movies', 'items', '0' ],
+          1: [ '$', 'shows', 'items', '2' ],
+          2: [ '$', 'shows', 'items', '3' ]
         }
       },
       channels: {
@@ -136,7 +136,7 @@ module.exports = {
           }
         },
         img: {
-          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
+          val: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
@@ -175,7 +175,7 @@ module.exports = {
           }
         },
         img: {
-          thumb: 'http://en.kingofsat.net/jpg/alemarat-hd.jpg',
+          val: 'http://en.kingofsat.net/jpg/alemarat-hd.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
@@ -214,7 +214,7 @@ module.exports = {
           }
         },
         img: {
-          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
+          val: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
@@ -253,7 +253,7 @@ module.exports = {
           }
         },
         img: {
-          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
+          val: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
@@ -292,7 +292,7 @@ module.exports = {
           }
         },
         img: {
-          thumb: 'http://en.kingofsat.net/jpg/adkids-hd.jpg',
+          val: 'http://en.kingofsat.net/jpg/adkids-hd.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       }
@@ -302,33 +302,33 @@ module.exports = {
     title: 'Movies',
     icon: 'film',
     items: {
-      lobster: {
+      0: {
         title: 'The Lobster',
         subtitle: '(2009) 201 min',
-        description: descriptions.got,
+        description: 'In a dystopian near future, single people, according to the laws of The City, are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.',
         img: {
-          val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
-          thumb: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg', // 4:3
-          poster: 'http://i.ebayimg.com/images/g/6wsAAOSw~bFWMFCS/s-l300.jpg' // 2:3
+          val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 4:3
+          spotlight:  'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg' , // 2:1
+          poster: 'http://i.ebayimg.com/images/g/6wsAAOSw~bFWMFCS/s-l300.jpg', // 2:3
         },
         video: {},
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      sw: {
+      1: {
         title: 'Star Wars: The Force Awakens',
         subtitle: '(2009) 201 min',
-        time: 0.5, // default s 0
+        description: 'In a dystopian near future, single people, according to the laws of The City, are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.',
         img: {
-          val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
-          thumb: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg', // 4:3
+          val: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg',  // 2:1
+          spotlight: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg', // 4:3
           poster: 'http://www.cinemark.com/media/47129355/big.jpg' // 2:3
         },
         video: {},
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      joy: {
+      2: {
         title: 'Joy',
         subtitle: '(2009) 201 min',
         img: {
@@ -339,7 +339,7 @@ module.exports = {
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      h8: {
+      3: {
         title: 'The Hateful Eight',
         subtitle: '(2016) 201 min',
         time: 0.5, // default s 0
@@ -352,7 +352,7 @@ module.exports = {
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      zoolander: {
+      4: {
         title: 'Zoolander 2',
         subtitle: '(2016) 148 min',
         time: 0.5,

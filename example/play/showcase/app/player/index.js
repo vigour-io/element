@@ -25,7 +25,6 @@ req.end(JSON.stringify({
 var orRender = Player.src.render
 Player.src.define({
   render () {
-    console.error(' THE SOURCE! ', this.val)
     var onRenderArgs = arguments
     playback.on('response', (data) => {
       var videoUrls = data.videoUrl

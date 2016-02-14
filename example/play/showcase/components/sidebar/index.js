@@ -13,9 +13,24 @@ exports.sidebar = {
   },
 
   menu: {
-    // Child: {
-    // }
-    div: require('../../app/buttons')
+    Child: {
+      type: 'row',
+      icon: {
+        type: 'icon',
+        css: {
+          $: 'key',
+          $transform (val) {
+            val = 'discover'
+            return `icon-${val}`
+          }
+        }
+      },
+      text: {
+        val: 'discover'
+      }
+    },
+    discover: {}
+    // div: require('../../app/buttons')
   },
 
   meta: {

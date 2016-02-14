@@ -37,18 +37,6 @@ merge(components, require('../components/carousel'))
 var data = require('../data')
 var Event = require('vigour-js/lib/event')
 
-const LANDING = 'discover'
-
-window.addEventListener('popstate', readUrl)
-function readUrl (ev) {
-  var parsed = window.location.href.replace(/https?:\/\//, '')
-  var url = parsed.split('/').slice(1)
-  var event = new Event('url')
-  data.state.app.set(data.get(url || LANDING), event)
-  event.trigger()
-}
-// readUrl()
-
 data.set({
   state: {
     app: {
@@ -81,11 +69,23 @@ data.set({
   subscriptions: {
     title: 'Subscriptions',
     items: [
-      ['$', 'channels', 'items', 'adb' ]
+      [ '$', 'channels', 'items', 'adb' ]
       // [ '$', 'movies', 'items', 'lobster' ]
     ]
   }
 }, false)
+
+const LANDING = 'discover'
+
+window.addEventListener('popstate', readUrl)
+function readUrl (ev) {
+  var parsed = window.location.href.replace(/https?:\/\//, '')
+  var url = parsed.split('/').slice(1)
+  var event = new Event('url')
+  data.state.app.set(data.get(url || LANDING), event)
+  event.trigger()
+}
+readUrl()
 
 function inPath (path, key) {
   for (var i = 0, len = path.length; i < len; i++) {

@@ -11,7 +11,26 @@ exports.carousel = {
     }
   }),
   indicator: {
-    Child: {}
+    Child: {},
+    prerender (props, children) {
+      var hash = this.state.data.focus.val
+      for (var i = children.length - 1; i >= 0; i--) {
+        let child = children[i]
+        let state = child.state
+        if (state.data.origin.hash === hash) {
+          if (!state.props) {
+            state.props = {
+              properties: {
+                className: 'active'
+              }
+            }
+          } else {
+            state.props.properties.className = 'active'
+          }
+        }
+      }
+    },
+    $collection: 'items'
   },
   buttons: {
     Child: {
@@ -54,22 +73,6 @@ exports.carousel = {
       }
     }
   }
-  // buttonLeft: {
-  //   text: 'left',
-  //   on: {
-  //     down (e, event) {
-  //       this.parent.container.previous()
-  //     }
-  //   }
-  // },
-  // buttonRight: {
-  //   text: 'right',
-  //   on: {
-  //     down (e, event) {
-  //       this.parent.container.next()
-  //     }
-  //   }
-  // }
 }
 
 

@@ -10,8 +10,11 @@
 
     > div {
       .width-range(none);
-      margin-bottom: @gutter;
-      margin-right: @gutter;
+
+      @media all @under-layout-breakpoint {
+        margin-bottom: @gutter;
+        margin-right: @gutter;
+      }
     }
   }
 
@@ -38,7 +41,7 @@
   > div {
     .width-range(@item-poster-width-min, @item-poster-width-max);
     .flex(1);
-    .flex-grid-gap(@gutter-small);
+    .flex-grid-gap(0 @gutter-small @gutter-small);
 
     > img {
       width: 100%;

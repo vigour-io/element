@@ -1,6 +1,7 @@
 module.exports = {
   discover: {
     title: 'Discovery',
+    icon: 'discover',
     items: {
       carousel: {
         order: -1,
@@ -51,6 +52,7 @@ module.exports = {
   },
   channels: {
     title: 'Channels',
+    icon: 'channels',
     items: {
       adb: {
         title: 'Abu Dahbi HD',
@@ -67,6 +69,7 @@ module.exports = {
   },
   movies: {
     title: 'Movies',
+    icon: 'film',
     items: {
       lobster: {
         title: 'The Lobster',
@@ -102,6 +105,7 @@ module.exports = {
   },
   shows: {
     title: 'Shows',
+    icon: 'shows',
     items: {
       got: {
         title: 'Game of Thrones',

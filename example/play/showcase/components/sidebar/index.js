@@ -16,21 +16,18 @@ exports.sidebar = {
     Child: {
       type: 'row',
       icon: {
+        $: true,
         type: 'icon',
-        css: {
-          $: 'key',
-          $transform (val) {
-            val = 'discover'
-            return `icon-${val}`
-          }
-        }
+        css: { $prepend: 'icon-', $: 'icon' }
       },
-      text: {
-        val: 'discover'
+      text: { $: 'title' },
+      on: {
+        click () {
+          this.state.data.getRoot().state.app.val = this.state.data
+        }
       }
     },
-    discover: {}
-    // div: require('../../app/buttons')
+    $collection: 'menu'
   },
 
   meta: {
@@ -45,7 +42,6 @@ exports.sidebar = {
         profile: {
 
         },
-
         icons: {
           settings: {
 

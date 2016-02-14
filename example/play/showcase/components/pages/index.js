@@ -8,7 +8,10 @@ exports.publisher = {
   cover: { type: 'item-cover' }
 }
 
+exports.page = {}
+
 exports.shows = {
+  type: 'page',
   title: { type: 'secondarytitle' },
   grid: {
     type: 'grid-flex',
@@ -17,6 +20,7 @@ exports.shows = {
 }
 
 exports.movies = {
+  type: 'page',
   title: { type: 'secondarytitle' },
   grid: {
     type: 'grid',
@@ -26,6 +30,7 @@ exports.movies = {
 }
 
 exports.channels = {
+  type: 'page',
   title: { type: 'title' },
   grid: {
     type: 'grid-flex',
@@ -35,10 +40,6 @@ exports.channels = {
 }
 
 exports.mixed = {
-  title: {
-    type: 'title',
-    text: { val: 'mixed', $: null }
-  },
   publishers: {
     type: 'channels',
     $collection: 'publishers'

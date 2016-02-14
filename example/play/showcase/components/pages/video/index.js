@@ -41,7 +41,7 @@ exports.show = {
   on: {
     remove: {
       player (e, event) {
-        var pl = this.video.player
+        var pl = this.wrapper.video.player
         pl._on.removeEmitter.execInternal(pl, event)
       }
     }

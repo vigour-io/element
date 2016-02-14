@@ -8,3 +8,4 @@
 // require('../refactor/todo')
 // require('./videopage.js')
 require('./switcher')
+// require('../../../flex')

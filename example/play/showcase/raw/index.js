@@ -48,7 +48,9 @@ module.exports = {
           length: 3,
           0: [ '$', 'movies', 'items', '0' ],
           1: [ '$', 'shows', 'items', '0' ],
-          2: [ '$', 'shows', 'items', '1' ]
+          2: [ '$', 'shows', 'items', '1' ],
+          3: [ '$', 'channels', 'items', '4' ],
+          4: [ '$', 'channels', 'items', '0' ]
         }
       },
       channels: {

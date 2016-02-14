@@ -115,6 +115,8 @@ var app = global.app = e({
           return 'show'
         } else if (inPath(path, 'channels')) {
           return 'channel'
+        } else if (inPath(path, 'publishers')) {
+          return 'publisher'
         }
       },
       properties: {

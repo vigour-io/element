@@ -33,8 +33,8 @@ module.exports = {
                 poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
               },
               video: '/api/mena-web/asset/3787/play',
-              time: 0.3,
-              duration: 201 * 60 * 1e3
+              progress: 0.3,
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -45,8 +45,8 @@ module.exports = {
                 poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
               },
               video: '/api/mena-web/asset/3787/play',
-              time: 0.3,
-              duration: 201 * 60 * 1e3
+              progress: 0.3,
+              duration: 201 * 60
             }
           }
         },
@@ -65,8 +65,8 @@ module.exports = {
                 poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
               },
               video: '/api/mena-web/asset/3787/play',
-              time: 0.3,
-              duration: 201 * 60 * 1e3
+              progress: 0.3,
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -77,8 +77,8 @@ module.exports = {
                 poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
               },
               video: '/api/mena-web/asset/3787/play',
-              time: 0.3,
-              duration: 201 * 60 * 1e3
+              progress: 0.3,
+              duration: 201 * 60
             }
           }
         }
@@ -113,8 +113,8 @@ module.exports = {
                 poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
               },
               video: '/api/mena-web/asset/3787/play',
-              time: 0.3,
-              duration: 201 * 60 * 1e3
+              progress: 0.3,
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -125,8 +125,8 @@ module.exports = {
                 poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
               },
               video: '/api/mena-web/asset/3787/play',
-              time: 0.3,
-              duration: 201 * 60 * 1e3
+              progress: 0.3,
+              duration: 201 * 60
             }
           }
         },
@@ -145,8 +145,8 @@ module.exports = {
                 poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
               },
               video: '/api/mena-web/asset/3787/play',
-              time: 0.3,
-              duration: 201 * 60 * 1e3
+              progress: 0.3,
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -157,8 +157,8 @@ module.exports = {
                 poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
               },
               video: '/api/mena-web/asset/3787/play',
-              time: 0.3,
-              duration: 201 * 60 * 1e3
+              progress: 0.3,
+              duration: 201 * 60
             }
           }
         }

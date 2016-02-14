@@ -14,8 +14,8 @@ module.exports = {
           poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
         },
         video: '/api/mena-web/asset/3787/play',
-        time: 0.3,
-        duration: 201 * 60 * 1e3
+        progress: 0.3,
+        duration: 201 * 60
       },
       1: {
         title: 'Star Wars: The Force Awakens',
@@ -27,8 +27,8 @@ module.exports = {
           poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
         },
         video: '/api/mena-web/asset/3787/play',
-        time: 0.3,
-        duration: 201 * 60 * 1e3
+        progress: 0.3,
+        duration: 201 * 60
       },
       2: {
         title: 'Joy',
@@ -40,8 +40,8 @@ module.exports = {
           poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
         },
         video: '/api/mena-web/asset/3787/play',
-        time: 0.3,
-        duration: 201 * 60 * 1e3
+        progress: 0.3,
+        duration: 201 * 60
       },
       3: {
         title: 'The Hateful Eight',
@@ -53,8 +53,8 @@ module.exports = {
           poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
         },
         video: '/api/mena-web/asset/3787/play',
-        time: 0.3,
-        duration: 201 * 60 * 1e3
+        progress: 0.3,
+        duration: 201 * 60
       },
       4: {
         title: 'Zoolander 2',
@@ -66,8 +66,8 @@ module.exports = {
           poster: 'http://share.vigour.io/401H2C3e2b24/poster.png'
         },
         video: '/api/mena-web/asset/3787/play',
-        time: 0.3,
-        duration: 201 * 60 * 1e3
+        progress: 0.3,
+        duration: 201 * 60
       }
     }
   }

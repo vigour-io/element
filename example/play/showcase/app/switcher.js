@@ -44,7 +44,7 @@ data.set({
       on: {
         data (data, event) {
           if (event.type !== 'url') {
-            window.history.pushState(event.stamp, 'haha', '/' + this.origin.path.join('/'))
+            // window.history.pushState(event.stamp, 'haha', '/' + this.origin.path.join('/'))
           }
         }
       }

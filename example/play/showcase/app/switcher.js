@@ -96,6 +96,7 @@ var app = global.app = e({
       },
       properties: {
         show: { type: 'show' },
+        shows: { type: 'shows' },
         channel: { type: 'channel' },
         discover: { type: 'discover' },
         movies: { type: 'movies' },

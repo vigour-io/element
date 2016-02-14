@@ -5,6 +5,14 @@ var e = require('../../../../e')
 
 var data = require('../data')
 
+var cases = require('../../../../lib/cases')
+
+cases.set({
+  $james: false
+})
+
+window.cases = cases
+
 // var somethingelse = e({
 //   text: 'bla',
 //   inject: {
@@ -17,11 +25,10 @@ var data = require('../data')
 //   }
 // })
 
-
 var components = {}
 
 components.xx = {
-  text: 'lullllz'
+  text: { val: 'xxxxx', $james: ' dssdsdsd'}
 }
 
 components.ax = {
@@ -39,7 +46,7 @@ components.ab = {
   type: 'aa',
   $collection: 'shows',
   Child: {
-    item: { type: 'ax' }
+    // item: { type: 'ax' }  -- first cases
   }
 }
 

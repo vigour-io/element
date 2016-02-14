@@ -16,5 +16,10 @@ exports['item-row'] = {
 
 exports['item-row-progress'] = {
   type: 'item-row',
-  progress: { type: 'progress' }
+  title: {
+    subtitle: {
+      css: { inherits: 'type-row' },
+      progress: { type: 'progress' },
+    }
+  }
 }

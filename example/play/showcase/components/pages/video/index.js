@@ -1,5 +1,12 @@
 // if phone exports.episode = exports['page-video']
 exports['page-video'] = {
+  player: { type: 'player' },
+  info: {
+    type: 'info',
+    description: {
+      type: 'description'
+    }
+  },
   on: {
     remove: {
       player (e, event) {
@@ -7,12 +14,6 @@ exports['page-video'] = {
         pl._on.removeEmitter.execInternal(pl, event)
       }
     }
-  },
-  player: { type: 'player' },
-  info: {
-    title: { type: 'title' },
-    subtitle: { type: 'subtitle' },
-    description: { html: { $: 'description' } }
   }
 }
 

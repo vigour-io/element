@@ -31,7 +31,13 @@ exports.info = {
 exports.description = {
   order: 1,
   html: {
-    $: 'description',
+    $: 'description'
+  }
+}
+
+exports['description-short'] = {
+  type: 'description',
+  html: {
     $transform (val) {
       if (typeof val === 'string' && val.length > 255) {
         return `${val.slice(0, 255)}...`

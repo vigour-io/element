@@ -1,18 +1,26 @@
 'use strict'
 
 exports.title = {
-  // type: 'h1',
-  text: { $: 'title' }
+  title: {
+    text: {
+      $: 'title'
+    }
+  }
 }
 
 exports.subtitle = {
   $: true,
-  text: { $: 'subtitle' }
+  subtitle: {
+    text: {
+      $: 'subtitle'
+    }
+  }
 }
 
-exports.secondarytitle = {
+exports['title-secondary'] = {
   type: 'title',
-  letters: { text: ' A-Z' }
+  css: { inherits: 'type-title' },
+  letters: { text: ' A-Z', order: 1 }
 }
 
 exports.info = {

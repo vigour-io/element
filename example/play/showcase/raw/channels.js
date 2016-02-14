@@ -13,31 +13,31 @@ module.exports =  {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
         1: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         }
       },
       img: {
@@ -55,31 +55,31 @@ module.exports =  {
           title: 'Faker Bil Seha',
           description: 'Description of the Current Broadcast.',
           subtitle: '18:30 - 19:00',
-          time: 0.6
+          progress: 0.6
         },
          1: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         }
       },
       img: {
@@ -97,31 +97,31 @@ module.exports =  {
           title: 'Iftah Ya Simsim',
           description: 'Description of the Current Broadcast.',
           subtitle: '16:45 - 19:30',
-          time: 0.4
+          progress: 0.4
         },
          1: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         }
       },
       img: {
@@ -139,31 +139,31 @@ module.exports =  {
           title: 'Iftah Ya Simsim',
           description: 'Description of the Current Broadcast.',
           subtitle: '16:45 - 19:30',
-          time: 0.4
+          progress: 0.4
         },
          1: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         }
       },
       img: {
@@ -181,31 +181,31 @@ module.exports =  {
           title: 'Iftah Ya Simsim',
           description: 'Description of the Current Broadcast.',
           subtitle: '16:45 - 19:30',
-          time: 0.4
+          progress: 0.4
         },
          1: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          time: 0.3
+          progress: 0.3
         }
       },
       img: {

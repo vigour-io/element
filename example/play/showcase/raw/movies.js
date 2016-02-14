@@ -3,7 +3,7 @@ module.exports = {
   icon: 'film',
   items: {
    	focus: 0,
-   	lenght: 5,
+   	length: 5,
     0: {
         title: 'The Lobster',
         subtitle: '(2009) 201 min',

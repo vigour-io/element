@@ -201,24 +201,33 @@ module.exports = {
           thumb: 'http://static4.businessinsider.com/image/4f74d5f569bedd863a000012/stark-family-game-of-thrones.jpg',
           poster: 'http://ecx.images-amazon.com/images/I/41BFwCXK2vL._SY300_.jpg' // 2:3
         },
-        currentSeason: ['got', 'seasons', '1'],
-        currentEpisode: ['got', 'seasons', '1', 'episodes', '2'],
-        seasons: {
-          0: {
-            title: 'Season 1',
-            episodes: {
-              1: {
-                title: 'Winter is comming',
-                description: 'Winter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is comming'
+        currentSeason: ['$', 'shows', 'items', 'got', 'seasons', '1'],
+        currentEpisode: ['got', 'seasons', '1', 'episodes', '1'],
+        items: {
+          seasons: {
+            0: {
+              title: 'Season 1',
+              episodes: {
+                items: {
+                  1: {
+                    title: 'Winter is comming',
+                    description: 'Winter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is comming',
+                    img: {
+                      val: 'http://static1.squarespace.com/static/528b0a4be4b0d32bd54a0862/t/53a7386be4b04854556bc822/1403467898455/Game-of-Thrones-poster.jpg',
+                      thumb: 'http://static4.businessinsider.com/image/4f74d5f569bedd863a000012/stark-family-game-of-thrones.jpg',
+                      poster: 'http://ecx.images-amazon.com/images/I/41BFwCXK2vL._SY300_.jpg' // 2:3
+                    }
+                  }
+                }
               }
-            }
-          },
-          1: {
-            title: 'Season 1',
-            episodes: {
-              1: {
-                title: 'Winter is comming',
-                description: 'Winter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is comming'
+            },
+            1: {
+              title: 'Season 1',
+              episodes: {
+                1: {
+                  title: 'Winter is comming',
+                  description: 'Winter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is comming'
+                }
               }
             }
           }

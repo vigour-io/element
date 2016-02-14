@@ -113,6 +113,8 @@ var app = global.app = e({
           return 'movie'
         } else if (inPath(path, 'shows')) {
           return 'show'
+        } else if (inPath(path, 'videos')) {
+          return 'video'
         } else if (inPath(path, 'channels')) {
           return 'channel'
         } else if (inPath(path, 'publishers')) {
@@ -129,7 +131,8 @@ var app = global.app = e({
         movie: { type: 'page-video' }, // this one
         channels: { type: 'channels' },
         mixed: { type: 'mixed' },
-        subscriptions: { type: 'channels' }
+        subscriptions: { type: 'channels' },
+        video: { type: 'page-video' }
       }
     }
   },

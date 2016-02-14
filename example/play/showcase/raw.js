@@ -17,37 +17,15 @@ module.exports = {
   subscriptions: {
     title: 'My Subscriptions',
     items: [
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ]
+      [ '$', 'shows', 'items', 0 ],
+      [ '$', 'channels', 'items', 0 ]
     ]
   },
   recommended: {
     'title': 'Recommended for you',
     'items': [
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'movies', 'items', 'sw' ],
-      [ '$', 'movies', 'items', 'h8' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'movies', 'items', 'sw' ],
-      [ '$', 'movies', 'items', 'h8' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'movies', 'items', 'sw' ],
-      [ '$', 'movies', 'items', 'h8' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'movies', 'items', 'lobster' ]
+      [ '$', 'movies', 'items', 0 ],
+      [ '$', 'shows', 'items', 0 ]
     ]
     // link: [ '$', 'recommended' ]
   },
@@ -136,7 +114,7 @@ module.exports = {
           }
         },
         img: {
-          val: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
+          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
@@ -175,7 +153,7 @@ module.exports = {
           }
         },
         img: {
-          val: 'http://en.kingofsat.net/jpg/alemarat-hd.jpg',
+          thumb: 'http://en.kingofsat.net/jpg/alemarat-hd.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
@@ -214,7 +192,7 @@ module.exports = {
           }
         },
         img: {
-          val: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
+          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
@@ -253,7 +231,7 @@ module.exports = {
           }
         },
         img: {
-          val: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
+          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
@@ -292,7 +270,7 @@ module.exports = {
           }
         },
         img: {
-          val: 'http://en.kingofsat.net/jpg/adkids-hd.jpg',
+          thumb: 'http://en.kingofsat.net/jpg/adkids-hd.jpg',
           logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       }
@@ -307,9 +285,9 @@ module.exports = {
         subtitle: '(2009) 201 min',
         description: 'In a dystopian near future, single people, according to the laws of The City, are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.',
         img: {
-          val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 4:3
-          spotlight:  'http://pngimg.com/upload/cat_PNG1633.png' , // 2:1
-          poster: 'http://i.ebayimg.com/images/g/6wsAAOSw~bFWMFCS/s-l300.jpg', // 2:3
+          thumb: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 4:3
+          spotlight: 'http://pngimg.com/upload/cat_PNG1633.png', // 2:1
+          poster: 'http://i.ebayimg.com/images/g/6wsAAOSw~bFWMFCS/s-l300.jpg' // 2:3
         },
         video: {},
         time: 0.3,
@@ -320,7 +298,7 @@ module.exports = {
         subtitle: '(2009) 201 min',
         description: 'In a dystopian near future, single people, according to the laws of The City, are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.',
         img: {
-          val: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg',  // 2:1
+          thumb: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg',  // 2:1
           spotlight: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg', // 4:3
           poster: 'http://www.cinemark.com/media/47129355/big.jpg' // 2:3
         },

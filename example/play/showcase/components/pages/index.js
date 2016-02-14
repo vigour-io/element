@@ -53,6 +53,14 @@ exports.mixed = {
 }
 
 exports['page-video'] = {
+  on: {
+    remove: {
+      player (e, event) {
+        var pl = this.player
+        pl._on.removeEmitter.execInternal(pl, event)
+      }
+    }
+  },
   player: { type: 'player' },
   info: {
     title: { type: 'title' },
@@ -63,6 +71,14 @@ exports['page-video'] = {
 
 // if phone exports.episode = exports['page-video']
 exports.show = {
+  on: {
+    remove: {
+      player (e, event) {
+        var pl = this.video.player
+        pl._on.removeEmitter.execInternal(pl, event)
+      }
+    }
+  },
   title: { type: 'title' },
   video: {
     type: 'page-video',

@@ -45,7 +45,7 @@ module.exports = {
         order: -1,
         items: {
           focus: 0,
-          lenght: 3,
+          length: 3,
           0: [ '$', 'movies', 'items', '0' ],
           1: [ '$', 'shows', 'items', '0' ],
           2: [ '$', 'shows', 'items', '1' ]

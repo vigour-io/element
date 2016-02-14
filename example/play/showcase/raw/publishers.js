@@ -31,7 +31,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -43,7 +43,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             }
           }
 	      },
@@ -63,7 +63,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -75,7 +75,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             }
           }
 	      }
@@ -108,7 +108,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -120,7 +120,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             }
           }
 	      },
@@ -140,7 +140,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -152,7 +152,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             }
           }
 	      }
@@ -185,7 +185,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -197,7 +197,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             }
           }
 	      },
@@ -217,7 +217,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             },
             1: {
               title: 'Episode Title',
@@ -229,7 +229,7 @@ module.exports = {
               },
               video: '/api/mena-web/asset/3787/play',
               progress: 0.3,
-              duration: 201 * 60 * 1e3
+              duration: 201 * 60
             }
           }
 	      }

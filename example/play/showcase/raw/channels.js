@@ -13,31 +13,36 @@ module.exports =  {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
         1: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         }
       },
       img: {
@@ -61,25 +66,29 @@ module.exports =  {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         }
       },
       img: {
@@ -103,25 +112,29 @@ module.exports =  {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         }
       },
       img: {
@@ -145,25 +158,29 @@ module.exports =  {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         }
       },
       img: {
@@ -187,25 +204,29 @@ module.exports =  {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          2: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          3: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         },
          4: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
           subtitle: '17:30 - 21:30',
-          progress: 0.3
+          progress: 0.3,
+          duration: 2000
         }
       },
       img: {

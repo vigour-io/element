@@ -15,7 +15,7 @@ module.exports = {
         },
         video: '/api/mena-web/asset/3787/play',
         progress: 0.3,
-        duration: 201 * 60 * 1e3
+        duration: 201 * 60
       },
       1: {
         title: 'Star Wars: The Force Awakens',
@@ -28,7 +28,7 @@ module.exports = {
         },
         video: '/api/mena-web/asset/3787/play',
         progress: 0.3,
-        duration: 201 * 60 * 1e3
+        duration: 201 * 60
       },
       2: {
         title: 'Joy',
@@ -41,7 +41,7 @@ module.exports = {
         },
         video: '/api/mena-web/asset/3787/play',
         progress: 0.3,
-        duration: 201 * 60 * 1e3
+        duration: 201 * 60
       },
       3: {
         title: 'The Hateful Eight',
@@ -54,7 +54,7 @@ module.exports = {
         },
         video: '/api/mena-web/asset/3787/play',
         progress: 0.3,
-        duration: 201 * 60 * 1e3
+        duration: 201 * 60
       },
       4: {
         title: 'Zoolander 2',
@@ -67,7 +67,7 @@ module.exports = {
         },
         video: '/api/mena-web/asset/3787/play',
         progress: 0.3,
-        duration: 201 * 60 * 1e3
+        duration: 201 * 60
       }
     }
   }

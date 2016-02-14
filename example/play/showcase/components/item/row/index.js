@@ -3,7 +3,7 @@
 exports['item-row'] = {
   type: 'item',
   css: {
-    inherits: 'css'
+    inherits: 'type-row'
   },
   arrow: {
     order: 1,

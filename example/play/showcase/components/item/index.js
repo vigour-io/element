@@ -1,17 +1,19 @@
 'use strict'
-
 var merge = require('lodash/object/merge')
 
-function setAppState () {
-  this.state.data.getRoot().state.app.val = this.state.data
+var click = {
+  on: {
+    click () {
+      console.log('ok set this?', this.path)
+      this.state.data.getRoot().state.app.val = this.state.data.origin
+    }
+  }
 }
 
 exports.item = {
   img: { type: 'thumb' },
   title: { type: 'info' },
-  on: {
-    click: setAppState
-  }
+  inject: click
 }
 
 exports['item-video'] = {
@@ -30,14 +32,13 @@ exports['item-channel'] = {
     $: 'current',
     subtitle: { type: 'subtitle', $: 'subtitle' },
     progress: { type: 'progress', $: 'time' }
-  }
+  },
+  inject: click
 }
 
 exports['item-poster'] = {
   type: 'poster',
-  on: {
-    click: setAppState
-  }
+  inject: click
 }
 
 exports['item-cover'] = {

@@ -140,11 +140,11 @@ var app = global.app = e({
         shows: { type: 'shows' },
         channel: { type: 'channel' },
         discover: { type: 'discover' },
+        publisher: { type: 'discover' },
         movies: { type: 'movies' },
         movie: { type: 'page-video' }, // this one
         channels: { type: 'channels' },
         mixed: { type: 'mixed' },
-        publishers: { type: 'discover' },
         subscriptions: { type: 'channels' }
       }
     }

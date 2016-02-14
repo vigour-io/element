@@ -150,12 +150,15 @@ module.exports = {
       lobster: {
         title: 'The Lobster',
         subtitle: '(2009) 201 min',
-        time: 0.5, // default s 0
+        description: descriptions.got,
         img: {
           val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
           thumb: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg', // 4:3
           poster: 'http://i.ebayimg.com/images/g/6wsAAOSw~bFWMFCS/s-l300.jpg' // 2:3
-        }
+        },
+        video: {},
+        time: 0.3,
+        duration: 201 * 60 * 1e3
       },
       sw: {
         title: 'Star Wars: The Force Awakens',
@@ -165,7 +168,10 @@ module.exports = {
           val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
           thumb: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg', // 4:3
           poster: 'http://www.cinemark.com/media/47129355/big.jpg' // 2:3
-        }
+        },
+        video: {},
+        time: 0.3,
+        duration: 201 * 60 * 1e3
       },
       joy: {
         title: 'Joy',
@@ -173,7 +179,10 @@ module.exports = {
         img: {
           thumb: 'http://img2-2.timeinc.net/people/i/2016/news/160104/jennifer-lawrence-800.jpg',
           poster: 'http://www.eonline.com/eol_images/Entire_Site/2015717/rs_634x939-150817124543-634-joy-jennifer-lawrence-Onesheet.jpg'
-        }
+        },
+        video: {},
+        time: 0.3,
+        duration: 201 * 60 * 1e3
       },
       h8: {
         title: 'The Hateful Eight',
@@ -183,7 +192,10 @@ module.exports = {
           val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
           thumb: 'http://nick-intl.mtvnimages.com/uri/mgid:file:gsp:scenic:/international/mtvatthemovies.com/images/400x300/The-Hateful-Eight-400x300.jpg?height=300&width=400&matte=true&quality=0.91', // 4:3
           poster: 'https://upload.wikimedia.org/wikipedia/en/d/d4/The_Hateful_Eight.jpg' // 2:3
-        }
+        },
+        video: {},
+        time: 0.3,
+        duration: 201 * 60 * 1e3
       },
       zoolander: {
         title: 'Zoolander 2',
@@ -192,7 +204,10 @@ module.exports = {
         img: {
           thumb: 'http://www.cinealerta.com.br/wp-content/uploads/2010/11/Zoolander-2-Movie-Poster-400x300.jpg',
           poster: 'http://www.hollywoodreporter.com/sites/default/files/imagecache/thumbnail_medium_200/2015/11/zoolander_2_poster_by_eyrichdesign-d8hrbw9.jpg'
-        }
+        },
+        video: {},
+        time: 0.3,
+        duration: 201 * 60 * 1e3
       }
     }
   },
@@ -232,10 +247,14 @@ module.exports = {
             },
             1: {
               title: 'Season 1',
-              episodes: {
+              items: {
                 1: {
                   title: 'Winter is comming',
-                  description: 'Winter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is comming'
+                  subtitle: '15 min',
+                  description: 'Winter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is commingWinter is comming',
+                  video: {},
+                  time: 0.3,
+                  duration: 201 * 60 * 1e3
                 }
               }
             }

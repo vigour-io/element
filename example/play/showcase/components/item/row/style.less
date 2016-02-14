@@ -3,11 +3,13 @@
 @item-row-thumb-width: 130px;
 // ADM
 @item-row-padding: 0 @gutter-small 0 0;
-.type-item-row {
+.type-item-row,
+.type-item-row-progress {
   .radius(@modal-radius);
   overflow: hidden;
   background-color: fade(black, 20%);
   padding: @item-row-padding;
+  height: auto;
 
   .type-thumb {
     width: @item-row-thumb-width;

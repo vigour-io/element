@@ -37,6 +37,9 @@ exports.buttons = {
   channels: {
     text: 'channels'
   },
+  shows: {
+    text: 'shows'
+  },
   publishers: {
     text: 'publishers'
   },

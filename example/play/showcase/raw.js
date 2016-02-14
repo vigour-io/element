@@ -1,3 +1,5 @@
+var descriptions = require('./descriptions.js')
+
 module.exports = {
   discover: {
     title: 'Discovery',
@@ -7,19 +9,20 @@ module.exports = {
         order: -1,
         items: [
           [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ]
+          [ '$', 'shows', 'items', 'got' ],
+          [ '$', 'shows', 'items', 'lilyhammer' ]
         ]
       },
       channels: {
-        // link: [ '$', 'channels' ],
         title: 'Now on TV',
         items: [
           [ '$', 'channels', 'items', 'adb' ],
-          [ '$', 'channels', 'items', 'adb' ],
-          [ '$', 'channels', 'items', 'adb' ],
-          [ '$', 'channels', 'items', 'adb' ],
-          [ '$', 'channels', 'items', 'adb' ]
-        ]
+          [ '$', 'channels', 'items', 'ae' ],
+          [ '$', 'channels', 'items', 'ads' ],
+          [ '$', 'channels', 'items', 'ads2' ],
+          [ '$', 'channels', 'items', 'mk' ]
+        ],
+        link: [ '$', 'channels' ]
       },
       continue: {
         title: 'Continue Watching',
@@ -28,14 +31,25 @@ module.exports = {
           [ '$', 'shows', 'items', 'got' ],
           [ '$', 'shows', 'items', 'lilyhammer' ],
           [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'shows', 'items', 'got' ]
+          [ '$', 'shows', 'items', 'got' ],
+          [ '$', 'movies', 'items', 'sw' ],
+          [ '$', 'movies', 'items', 'h8' ]
         ]
+        // link: [ '$', 'continue' ]
       },
       subscriptions: {
         title: 'My Subscriptions',
         items: [
-          [ '$', 'movies', 'items', 'lobster' ]
+          [ '$', 'shows', 'items', 'got' ],
+          [ '$', 'shows', 'items', 'got' ],
+          [ '$', 'shows', 'items', 'lilyhammer' ],
+          [ '$', 'shows', 'items', 'lilyhammer' ],
+          [ '$', 'shows', 'items', 'got' ],
+          [ '$', 'shows', 'items', 'lilyhammer' ],
+          [ '$', 'shows', 'items', 'lilyhammer' ],
+          [ '$', 'shows', 'items', 'lilyhammer' ]
         ]
+        // link: [ '$', 'subscriptions' ]
       },
       'recommended:posters': {
         'title': 'Recommended for you',
@@ -45,8 +59,21 @@ module.exports = {
           [ '$', 'movies', 'items', 'sw' ],
           [ '$', 'movies', 'items', 'h8' ],
           [ '$', 'shows', 'items', 'lilyhammer' ],
+          [ '$', 'movies', 'items', 'lobster' ],
+          [ '$', 'movies', 'items', 'lobster' ],
+          [ '$', 'shows', 'items', 'got' ],
+          [ '$', 'movies', 'items', 'sw' ],
+          [ '$', 'movies', 'items', 'h8' ],
+          [ '$', 'shows', 'items', 'lilyhammer' ],
+          [ '$', 'movies', 'items', 'lobster' ],
+          [ '$', 'movies', 'items', 'lobster' ],
+          [ '$', 'shows', 'items', 'got' ],
+          [ '$', 'movies', 'items', 'sw' ],
+          [ '$', 'movies', 'items', 'h8' ],
+          [ '$', 'shows', 'items', 'lilyhammer' ],
           [ '$', 'movies', 'items', 'lobster' ]
         ]
+        // link: [ '$', 'recommended' ]
       }
     }
   },
@@ -55,7 +82,7 @@ module.exports = {
     icon: 'channels',
     items: {
       adb: {
-        title: 'Abu Dahbi HD',
+        title: 'Abu Dhabi HD',
         current: {
           title: 'Riksons show',
           time: 0.5,
@@ -63,6 +90,50 @@ module.exports = {
         },
         img: {
           thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg'
+        }
+      },
+      ae: {
+        title: 'Al Emarat HD',
+        current: {
+          title: 'Riksons show',
+          time: 0.5,
+          subtitle: '18:30 - 19:00'
+        },
+        img: {
+          thumb: 'http://en.kingofsat.net/jpg/alemarat-hd.jpg'
+        }
+      },
+      ads: {
+        title: 'AD Sport 1 HD',
+        current: {
+          title: 'Riksons show',
+          time: 0.5,
+          subtitle: '18:30 - 19:00'
+        },
+        img: {
+          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg'
+        }
+      },
+      ads2: {
+        title: 'AD Sport 2 HD',
+        current: {
+          title: 'Riksons show',
+          time: 0.5,
+          subtitle: '18:30 - 19:00'
+        },
+        img: {
+          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg'
+        }
+      },
+      mk: {
+        title: 'Majid Kids TV',
+        current: {
+          title: 'Riksons show',
+          time: 0.5,
+          subtitle: '18:30 - 19:00'
+        },
+        img: {
+          thumb: 'http://en.kingofsat.net/jpg/adkids-hd.jpg'
         }
       }
     }
@@ -87,7 +158,7 @@ module.exports = {
         time: 0.5, // default s 0
         img: {
           val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
-          thumb: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg', // 4:3
+          thumb: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg', // 4:3
           poster: 'http://a.dilcdn.com/bl/wp-content/uploads/sites/6/2015/10/star-wars-force-awakens-official-poster.jpg' // 2:3
         }
       },
@@ -110,6 +181,7 @@ module.exports = {
       got: {
         title: 'Game of Thrones',
         subtitle: '2 Seasons - 12 Episodes',
+        description: descriptions.got,
         time: 0.5,
         img: {
           val: 'http://static1.squarespace.com/static/528b0a4be4b0d32bd54a0862/t/53a7386be4b04854556bc822/1403467898455/Game-of-Thrones-poster.jpg',
@@ -119,6 +191,7 @@ module.exports = {
       },
       lilyhammer: {
         title: 'Lilyhammer',
+        description: descriptions.got,
         subtitle: '2 Seasons - 12 Episodes',
         time: 0.5,
         img: {
@@ -130,6 +203,7 @@ module.exports = {
       mf: {
         title: 'Game of Thrones',
         subtitle: '2 Seasons - 12 Episodes',
+        description: descriptions.got,
         time: 0.5,
         img: {
           val: 'http://static1.squarespace.com/static/528b0a4be4b0d32bd54a0862/t/53a7386be4b04854556bc822/1403467898455/Game-of-Thrones-poster.jpg',

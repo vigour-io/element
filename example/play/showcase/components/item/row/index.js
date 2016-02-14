@@ -2,6 +2,9 @@
 
 exports['item-row'] = {
   type: 'item',
+  css: {
+    inherits: 'css'
+  },
   arrow: {
     order: 1,
     type: 'icon',

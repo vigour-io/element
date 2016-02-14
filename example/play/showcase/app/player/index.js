@@ -35,7 +35,6 @@ Player.src.define({
     playback.set({
       asset: this.val,
       protocol: 'HLS,DASH'
-    }, false)
-    playback.asset.emit('data')
+    })
   }
 })

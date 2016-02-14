@@ -1,0 +1,73 @@
+// items grid mixin
+.items-grid (@flex: true) {
+  @media all @above-big {
+    > div {
+      .flex-grid(5);
+    }
+  }
+
+  @media all @big {
+    > div {
+      .flex-grid(4);
+    }
+  }
+
+  @media all @medium {
+    > div {
+      .flex-grid(3);
+    }
+  }
+
+  @media all @small {
+    > div {
+      .flex-grid(4);
+    }
+  }
+
+  @media all @tiny {
+    > div {
+      .flex-grid(3);
+    }
+  }
+
+  // padding
+  @media all @above-layout-breakpoint {
+    .margin-h(-@gutter);
+
+    > div {
+      .flex-grid-gap();
+    }
+  }
+
+  @media all @under-layout-breakpoint @above-sidebar-breakpoint {
+    .margin-h(-@gutter-small);
+
+    > div {
+      .flex-grid-gap(@gutter-small @gutter-small 0);
+    }
+  }
+
+  // if list is flex-list
+  & when (@flex = true) {
+    @media all @tablet {
+      > div {
+        .flex-grid(2);
+      }
+    }
+
+    @media all @under-mobile {
+      > div {
+        .flex-grid(1);
+      }
+    }
+
+    // padding
+    @media all @under-sidebar-breakpoint {
+      .margin-h(-@gutter-small);
+
+      > div {
+        .flex-grid-gap(0 @gutter-small);
+      }
+    }
+  }
+}

@@ -19,7 +19,7 @@ module.exports = {
       },
       1: {
         title: 'Star Wars: The Force Awakens',
-        subtitle: '(2009) 201 min',
+        subtitle: '(2009) 201 min',	
         description: 'Description of the Movie.',
         img: {
           thumb: 'http://share.vigour.io/2G2G003J3A39/thumb.png',

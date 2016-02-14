@@ -53,6 +53,20 @@ module.exports = {
   },
 
   // non-user data
+  mixed: {
+    title: 'Channels',
+    channels: [ '$', 'channels' ],
+    icon: 'channels',
+    publishers: [ '$', 'publishers' ]
+  },
+  menu: {
+    discover: [ '$', 'discover' ],
+    shows: [ '$', 'shows' ],
+    movies: [ '$', 'movies' ],
+    mixed: [ '$', 'mixed' ],
+    // channels: [ '$', 'channels' ],
+    // subscriptions: [ '$', 'subscriptions' ]
+  },
   discover: {
     title: 'Discovery',
     icon: 'discover',

@@ -53,27 +53,42 @@ module.exports = {
   },
 
   // non-user data
+  mixed: {
+    title: 'Channels',
+    channels: [ '$', 'channels' ],
+    icon: 'channels',
+    publishers: [ '$', 'publishers' ]
+  },
+  menu: {
+    discover: [ '$', 'discover' ],
+    shows: [ '$', 'shows' ],
+    movies: [ '$', 'movies' ],
+    mixed: [ '$', 'mixed' ],
+    // channels: [ '$', 'channels' ],
+    // subscriptions: [ '$', 'subscriptions' ]
+  },
   discover: {
     title: 'Discovery',
     icon: 'discover',
     items: {
       carousel: {
         order: -1,
-        items: [
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ]
-        ]
+        items: {
+          focus: 0,
+          0: [ '$', 'movies', 'items', '0' ],
+          1: [ '$', 'shows', 'items', '2' ],
+          2: [ '$', 'shows', 'items', '3' ]
+        }
       },
       channels: {
         title: 'Now on TV',
         link: [ '$', 'channels' ], // order is irrelevant now
         items: [
-          [ '$', 'channels', 'items', 'adb' ],
-          [ '$', 'channels', 'items', 'ae' ],
-          [ '$', 'channels', 'items', 'ads' ],
-          [ '$', 'channels', 'items', 'ads2' ],
-          [ '$', 'channels', 'items', 'mk' ]
+          [ '$', 'channels', 'items', '0' ],
+          [ '$', 'channels', 'items', '1' ],
+          [ '$', 'channels', 'items', '2' ],
+          [ '$', 'channels', 'items', '3' ],
+          [ '$', 'channels', 'items', '4' ]
         ]
       },
       // these things are references now
@@ -86,59 +101,199 @@ module.exports = {
     title: 'Channels',
     icon: 'channels',
     items: {
-      adb: {
+      0: {
         title: 'Abu Dhabi HD',
-        current: {
-          title: 'Riksons show',
-          time: 0.5,
-          subtitle: '18:30 - 19:00'
+        epg: {
+          0: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           1: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           2: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           3: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           4: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          }
         },
         img: {
-          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg'
+          val: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
+          logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
-      ae: {
+      1: {
         title: 'Al Emarat HD',
-        current: {
-          title: 'Riksons show',
-          time: 0.5,
-          subtitle: '18:30 - 19:00'
+        epg: {
+          0: {
+            title: 'Faker Bil Seha',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '18:30 - 19:00',
+            time: 0.6
+          },
+           1: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           2: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           3: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           4: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          }
         },
         img: {
-          thumb: 'http://en.kingofsat.net/jpg/alemarat-hd.jpg'
+          val: 'http://en.kingofsat.net/jpg/alemarat-hd.jpg',
+          logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
-      ads: {
+      2: {
         title: 'AD Sport 1 HD',
-        current: {
-          title: 'Riksons show',
-          time: 0.5,
-          subtitle: '18:30 - 19:00'
+        epg: {
+          0: {
+            title: 'Iftah Ya Simsim',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '16:45 - 19:30',
+            time: 0.4
+          },
+           1: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           2: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           3: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           4: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          }
         },
         img: {
-          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg'
+          val: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
+          logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
-      ads2: {
+      3: {
         title: 'AD Sport 2 HD',
-        current: {
-          title: 'Riksons show',
-          time: 0.5,
-          subtitle: '18:30 - 19:00'
+        epg: {
+          0: {
+            title: 'Seret Hob',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:45 - 20:15',
+            time: 0.7
+          },
+           1: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           2: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           3: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           4: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          }
         },
         img: {
-          thumb: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg'
+          val: 'http://www.dubaichronicle.com/wp-content/uploads/2009/07/AD-HD-Logo.jpg',
+          logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       },
-      mk: {
+      4: {
         title: 'Majid Kids TV',
-        current: {
-          title: 'Riksons show',
-          time: 0.5,
-          subtitle: '18:30 - 19:00'
+        epg: {
+          0: {
+            title: 'Majid Bil Seha',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '18:30 - 19:00',
+            time: 0.8
+          },
+           1: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           2: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           3: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          },
+           4: {
+            title: 'Ekatarina',
+            description: 'Ekaterina is a Russian production, which will have a total of 12 episodes lasting 44 minutes each. Ekaterina promises to be a rollercoaster of emotions, featuring incredible turns and twists to a historical feature, without leaving behind the authentic story of Catherine The Great.',
+            subtitle: '17:30 - 21:30',
+            time: 0.3
+          }
         },
         img: {
-          thumb: 'http://en.kingofsat.net/jpg/adkids-hd.jpg'
+          val: 'http://en.kingofsat.net/jpg/adkids-hd.jpg',
+          logo: 'https://s3.amazonaws.com/f.cl.ly/items/0b2W1U1K2E131t2i1E3t/ADSports4_Live_Thumb.png?v=b1ce2ee0'
         }
       }
     }
@@ -147,33 +302,33 @@ module.exports = {
     title: 'Movies',
     icon: 'film',
     items: {
-      lobster: {
+      0: {
         title: 'The Lobster',
         subtitle: '(2009) 201 min',
-        description: descriptions.got,
+        description: 'In a dystopian near future, single people, according to the laws of The City, are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.',
         img: {
-          val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
-          thumb: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg', // 4:3
-          poster: 'http://i.ebayimg.com/images/g/6wsAAOSw~bFWMFCS/s-l300.jpg' // 2:3
+          val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 4:3
+          spotlight:  'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg' , // 2:1
+          poster: 'http://i.ebayimg.com/images/g/6wsAAOSw~bFWMFCS/s-l300.jpg', // 2:3
         },
         video: {},
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      sw: {
+      1: {
         title: 'Star Wars: The Force Awakens',
         subtitle: '(2009) 201 min',
-        time: 0.5, // default s 0
+        description: 'In a dystopian near future, single people, according to the laws of The City, are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.',
         img: {
-          val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 2:1
-          thumb: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg', // 4:3
+          val: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg',  // 2:1
+          spotlight: 'http://images.techtimes.com/data/images/full/154411/star-wars-the-force-awakens-theatrical-poster.jpg', // 4:3
           poster: 'http://www.cinemark.com/media/47129355/big.jpg' // 2:3
         },
         video: {},
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      joy: {
+      2: {
         title: 'Joy',
         subtitle: '(2009) 201 min',
         img: {
@@ -184,7 +339,7 @@ module.exports = {
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      h8: {
+      3: {
         title: 'The Hateful Eight',
         subtitle: '(2016) 201 min',
         time: 0.5, // default s 0
@@ -197,7 +352,7 @@ module.exports = {
         time: 0.3,
         duration: 201 * 60 * 1e3
       },
-      zoolander: {
+      4: {
         title: 'Zoolander 2',
         subtitle: '(2016) 148 min',
         time: 0.5,
@@ -215,7 +370,7 @@ module.exports = {
     title: 'Shows',
     icon: 'shows',
     items: {
-      got: {
+      0: {
         title: 'Game of Thrones',
         subtitle: '2 Seasons - 12 Episodes',
         description: descriptions.got,
@@ -261,7 +416,7 @@ module.exports = {
           }
         }
       },
-      lilyhammer: {
+      1: {
         title: 'Lilyhammer',
         description: descriptions.got,
         subtitle: '2 Seasons - 12 Episodes',
@@ -272,7 +427,7 @@ module.exports = {
           poster: 'http://img.movieberry.com//static/photos/148166/poster-200x300.jpg' // 2:3
         }
       },
-      sopranos: {
+      2: {
         title: 'Sopranos',
         subtitle: '8 Seasons - 72 Episodes',
         description: descriptions.got,
@@ -283,7 +438,7 @@ module.exports = {
           poster: 'http://ecx.images-amazon.com/images/I/41vqBRr32IL._SY300_.jpg' // 2:3
         }
       },
-      mf: {
+      3: {
         title: 'Modern Family',
         subtitle: '8 Seasons - 72 Episodes',
         description: descriptions.got,

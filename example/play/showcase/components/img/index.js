@@ -8,7 +8,7 @@ exports.thumb = {
   type: 'figure',
   img: {
     type: 'img',
-    src: { $: 'img.thumb' }
+    src: { $: 'img' }
   }
 }
 

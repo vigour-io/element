@@ -51,27 +51,6 @@ data.set({
     },
     modal: {},
     focus: {}
-  },
-  mixed: {
-    title: 'Channels (mixed)',
-    channels: [ '$', 'channels' ],
-    icon: 'channels',
-    publishers: [ '$', 'publishers' ]
-  },
-  menu: {
-    discover: [ '$', 'discover' ],
-    shows: [ '$', 'shows' ],
-    movies: [ '$', 'movies' ],
-    mixed: [ '$', 'mixed' ],
-    channels: [ '$', 'channels' ],
-    subscriptions: [ '$', 'subscriptions' ]
-  },
-  subscriptions: {
-    title: 'Subscriptions',
-    items: [
-      [ '$', 'channels', 'items', 'adb' ]
-      // [ '$', 'movies', 'items', 'lobster' ]
-    ]
   }
 }, false)
 
@@ -97,6 +76,9 @@ function inPath (path, key) {
     }
   }
 }
+
+console.clear()
+console.log(components)
 
 var app = global.app = e({
   key: 'app',

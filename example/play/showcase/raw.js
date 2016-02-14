@@ -5,13 +5,7 @@ module.exports = {
   continue: {
     title: 'Continue Watching',
     items: [
-      [ '$', 'movies', 'items', 'lobster' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'lilyhammer' ],
-      [ '$', 'shows', 'items', 'got' ],
-      [ '$', 'movies', 'items', 'sw' ],
-      [ '$', 'movies', 'items', 'h8' ]
+      [ '$', 'movies', 'items', 0 ]
     ]
   },
   subscriptions: {

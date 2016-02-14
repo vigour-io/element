@@ -82,7 +82,7 @@ function readUrl (ev) {
   var parsed = window.location.href.replace(/https?:\/\//, '')
   var url = parsed.split('/').slice(1)
   var event = new Event('url')
-  data.state.app.set(data.get(url || LANDING), event)
+  data.state.app.set(data.get(url[0] || LANDING), event)
   event.trigger()
 }
 readUrl()

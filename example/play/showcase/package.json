@@ -4,7 +4,7 @@
   "version": "0.2.3",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "webpack-dev-server --history-api-fallback --inline --hot --content-base"
+    "dev": "webpack-dev-server --history-api-fallback --inline --hot"
   },
   "repository": {
     "type": "git",
@@ -20,20 +20,21 @@
     "./lib/engine/ua/": "./lib/engine/ua/browser"
   },
   "dependencies": {
-    "babel-core": "*",
-    "babel-loader": "^6.2.2",
-    "babel-preset-es2015": "*",
-    "css-loader": "*",
-    "hyperquest": "^1.2.0",
-    "less": "*",
-    "less-loader": "*",
     "raw-loader": "*",
-    "screenfull": "*",
+    "less-loader": "*",
+    "less": "*",
     "style-loader": "*",
-    "vigour-api": "0.0.3",
-    "vigour-url": "vigour-io/vigour-url",
+    "css-loader": "*",
     "webpack": "*",
-    "webpack-dev-server": "*"
+    "webpack-dev-server": "*",
+    "babel-loader": "*",
+    "babel-core": "*",
+    "babel-core": "*",
+    "babel-preset-es2015": "*",
+    "screenfull": "*",
+    "vigour-url": "vigour-io/vigour-url",
+    "vigour-api": "0.0.3",
+    "json-loader": "*"
   },
   "vigour": {
     "api": {
@@ -66,8 +67,5 @@
         }
       }
     }
-  },
-  "devDependencies": {
-    "json-loader": "^0.5.4"
   }
 }

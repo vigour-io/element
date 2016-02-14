@@ -18,4 +18,4 @@ var Data = new Observable({
 
 // module.exports.set
 
-module.exports = new Data(require('./raw'), false)
+module.exports = new Data(require('./scraperdata'), false)

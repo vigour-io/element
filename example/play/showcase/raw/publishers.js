@@ -2,6 +2,8 @@ module.exports = {
 	title: 'Publishers',
 	icon: 'publishers',
 	items: {
+		focus: 0,
+    length: 2,
 	  0: {
 	    title: 'Dubai Lynx',
 	    description: 'Description of the Publisher',
@@ -12,7 +14,7 @@ module.exports = {
       },
       items: {
       	focus: 0,
-      	lenght: 3,
+      	length: 3,
 	      0: {
 	        title: 'Feautured on Dubai Lynx',
 	        link: [ '$', 'channels' ], // order is irrelevant now
@@ -58,7 +60,7 @@ module.exports = {
       },
       items: {
       	focus: 0,
-      	lenght: 3,
+      	length: 3,
 	      0: {
 	        title: 'Feautured on The Toolshop',
 	        link: [ '$', 'channels' ], // order is irrelevant now

@@ -103,7 +103,7 @@ function seek (e) {
   var x = rect.left
   var nr = (e.x - x) / (rect.right - x)
   var val = nr > 1 ? 1 : nr < 0 ? 0 : nr
-  this.seek.bar.state.data.time.origin.val = val
+  this.seek.bar.state.data.progress.origin.val = val
 }
 
 // example

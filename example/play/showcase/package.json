@@ -4,7 +4,7 @@
   "version": "0.2.3",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "webpack-dev-server --history-api-fallback"
+    "dev": "webpack-dev-server --history-api-fallback --inline --hot"
   },
   "repository": {
     "type": "git",

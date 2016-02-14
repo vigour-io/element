@@ -11,22 +11,22 @@ exports.carousel = merge(require('../../../../../lib/carousel'), {
   indicator: {
     Child: {}
   },
-  // buttonLeft: {
-  //   text: 'left',
-  //   on: {
-  //     down (e, event) {
-  //       this.parent.previous()
-  //     }
-  //   }
-  // },
-  // buttonRight: {
-  //   text: 'right',
-  //   on: {
-  //     down (e, event) {
-  //       this.parent.next()
-  //     }
-  //   }
-  // }
+  buttonLeft: {
+    text: 'left',
+    on: {
+      down (e, event) {
+        this.parent.previous()
+      }
+    }
+  },
+  buttonRight: {
+    text: 'right',
+    on: {
+      down (e, event) {
+        this.parent.next()
+      }
+    }
+  }
 })
 
 exports['item-carousel'] = {

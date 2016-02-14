@@ -38,10 +38,123 @@
 }
 
 // temp
-.overlay {
-  border: 1px solid red;
-  * {
-    color:white !important;
-    border: 1px solid red;
+.vigour-player-container > .overlay {
+  .absolute(0, 0);
+  .fullsize;
+  .sizing;
+  z-index: 6;
+
+  @media all @above-tablet {
+    &:hover {
+      > .controls {
+        opacity: 1;
+        visibility: visible;
+      }
+    }
+  }
+
+  > .adMessage {
+    display: none;
+    background-color: rgba(20, 20, 20, 0.5);
+    padding: 8px;
+    margin: 15px;
+    font-size: 12px;
+    right: 15px;
+    position: absolute;
+    color: white;
+    border: 1px solid white;
+    border-radius: 2px;
+    top: 15px;
+  }
+
+  > .interaction {
+    position: relative;
+    width: 100%;
+    height: calc(100% - 54px);
+  }
+
+  > .controls {
+    color: white;
+    background: fade(@secondary, 25%);
+    height: 54px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    .flex-display;
+    .flex-wrap(nowrap);
+    .align-items(center);
+    .transition(~".4s ease opacity, .4s ease visibility");
+    opacity: 0;
+    visibility: hidden;
+
+    // TODO: need solution for phone
+    @media all @under-tablet {
+      .transition-delay(.1s);
+    }
+
+    .play {
+      // TODO: temporarily hide
+      @media all @under-tablet {
+        .ui-position-center;
+        margin-top: -@gutter;
+        font-size: @h0;
+      }
+    }
+
+    > .buttons {
+      .flex-display;
+      .flex-wrap(nowrap);
+    }
+
+    i {
+      text-align: center;
+      .size(60px);
+      cursor: pointer;
+
+      &:before {
+        line-height: 60px;
+      }
+    }
+
+    > .time,
+    > .duration {
+      text-align: center;
+      line-height: 1;
+      width: 6rem;
+    }
+
+    > .progress {
+      .flex(1);
+      .flex-display;
+      .flex-wrap(nowrap);
+      .align-items(center);
+      cursor: pointer;
+      height: 100%;
+
+      > .seek {
+        // .shadow(0 0 4px @midgray);
+        width: 100%;
+        border-radius: 2px;
+        background-color: rgba(255, 255, 255, 0.5);
+
+        > .bar {
+          position: relative;
+          background-color: @tertiary;
+          height: 4px;
+          border-radius: 2px;
+
+          > .button {
+            .size(20px);
+            // .shadow(0 0 4px @midgray);
+            background-color: @lightgray;
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            border-radius: 10px;
+            display: inline-block;
+          }
+        }
+      }
+    }
   }
 }

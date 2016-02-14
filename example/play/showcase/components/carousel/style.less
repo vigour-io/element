@@ -1,91 +1,138 @@
+// .type-carousel {
+//   position: relative;
+//   // margin-left: 300px;
+//   border-top:10px solid green;
+//   width: 60%;
+//   height: 300px;
+//   > .items {
+//     height: 100%;
+//     width: 100%;
+//     position: absolute;
+//     // border-top:10px solid blue;
+//     > div {
+//       font-size: 64px;
+//       text-align: center;
+//       // transition: font-size 0.3s;
+//       min-width:100%;
+//       max-width:100%;
+//     }
+//   }
+
+//   > .buttonLeft, .buttonRight {
+//     position: absolute;
+//     border: 1px solid red;
+//     top:0;
+//     bottom:0;
+//     width: 50px;
+//   }
+
+//   > .buttonRight {
+//     right: 0;
+//   }
+// }
+
 .type-carousel {
   position: relative;
   width:100%;
   overflow: hidden;
 
-  @media all @above-tablet {
-    padding-top: 28%;
-  }
+  > .container {
 
-  @media all @under-tablet {
-    padding-top: 50%;
-  }
+    @media all @above-tablet {
+      padding-top: 28%;
+    }
 
-  > .items {
-    .transition(0.3s ease-in left);
+    @media all @under-tablet {
+      padding-top: 50%;
+    }
 
-    .flex-display;
-    .flex-direction(row);
-    .flex-wrap(nowrap);
-    width: 100%;
-    height: calc(100% - 4px);
-    .absolute;
-    .user-select;
+    position: relative;
+    width: 60%;
+    margin-left: -40%;
+    > .items {
 
-    // TODO: temporary
-    // overflow-x: auto;
-    // overflow-y: hidden;
+      > .previous {
+        color:blue;
+      }
 
-    > div {
-      position: relative;
-      height: 100%;
-      min-width: 60%;
-      color: white;
-      cursor: pointer;
+      > .next {
+        color:green;
+      }
 
-      > figure {
+      .transition(0.3s ease-in left);
+      .flex-display;
+      .flex-direction(row);
+      .flex-wrap(nowrap);
+      width: 100%;
+      height: calc(100% - 4px);
+      .absolute;
+      .user-select;
+
+      // TODO: temporary
+      // overflow-x: auto;
+      // overflow-y: hidden;
+
+      > div {
+        position: relative;
         height: 100%;
-      }
-
-      img {
-        width: 100%;
-        max-height: none;
-        max-width: none;
-        z-index: 0;
-        .ui-position-center-y;
-        left: 0;
-      }
-
-      > .type-info {
-        position: absolute;
-        bottom: 0;
-        width: 100%;
-        bottom: 0;
-        z-index: 1;
-        overflow: hidden;
-        .sizing;
-
-        @media all @above-layout-breakpoint {
-          padding: @gutter;
-        }
-
-        @media all @under-layout-breakpoint {
-          padding: @gutter-small;
-        }
-
-        &:after {
-          content: '';
-          background: fade(extract(@carousel-scheme-active, 4), 25%);
-          .absolute;
-          .fullsize;
-          z-index: 2;
-        }
-
-        > .title {
-          position: relative;
-          z-index: 3;
-          margin: 0;
-          font-size: @h3;
-          .text-overflow;
-        }
+        min-width: 100%;
+        color: white;
+        cursor: pointer;
 
         > figure {
-          .absolute;
-          .fullsize;
+          height: 100%;
+        }
 
-          > img {
-            z-index: 1;
-            margin-top: -19%;
+        img {
+          width: 100%;
+          max-height: none;
+          max-width: none;
+          z-index: 0;
+          .ui-position-center-y;
+          left: 0;
+        }
+
+        > .type-info {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          bottom: 0;
+          z-index: 1;
+          overflow: hidden;
+          .sizing;
+
+          @media all @above-layout-breakpoint {
+            padding: @gutter;
+          }
+
+          @media all @under-layout-breakpoint {
+            padding: @gutter-small;
+          }
+
+          &:after {
+            content: '';
+            background: fade(extract(@carousel-scheme-active, 4), 25%);
+            .absolute;
+            .fullsize;
+            z-index: 2;
+          }
+
+          > .title {
+            position: relative;
+            z-index: 3;
+            margin: 0;
+            font-size: @h3;
+            .text-overflow;
+          }
+
+          > figure {
+            .absolute;
+            .fullsize;
+
+            > img {
+              z-index: 1;
+              margin-top: -19%;
+            }
           }
         }
       }

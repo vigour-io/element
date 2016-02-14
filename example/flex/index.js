@@ -33,7 +33,7 @@ app.set({
   },
   carousel: {
     type: 'carousel',
-    w: 300,
+    // w: 300,
     val: list,
     items: {
       Child: {

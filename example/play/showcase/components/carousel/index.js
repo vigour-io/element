@@ -1,13 +1,15 @@
 'use strict'
 var merge = require('lodash/object/merge')
 
-exports.carousel = merge(require('../../../../../lib/carousel'), {
-  items: {
-    $collection: 'items',
-    Child: {
-      type: 'item-carousel'
+exports.carousel = {
+  container: merge(require('../../../../../lib/carousel'), {
+    items: {
+      $collection: 'items',
+      Child: {
+        type: 'item-carousel'
+      }
     }
-  },
+  }),
   indicator: {
     Child: {}
   },
@@ -15,7 +17,7 @@ exports.carousel = merge(require('../../../../../lib/carousel'), {
     text: 'left',
     on: {
       down (e, event) {
-        this.parent.previous()
+        this.parent.container.previous()
       }
     }
   },
@@ -23,11 +25,41 @@ exports.carousel = merge(require('../../../../../lib/carousel'), {
     text: 'right',
     on: {
       down (e, event) {
-        this.parent.next()
+        this.parent.container.next()
       }
     }
   }
-})
+}
+
+
+
+// merge(require('../../../../../lib/carousel'), {
+//   items: {
+//     $collection: 'items',
+//     Child: {
+//       type: 'item-carousel'
+//     }
+//   },
+//   indicator: {
+//     Child: {}
+//   },
+//   buttonLeft: {
+//     text: 'left',
+//     on: {
+//       down (e, event) {
+//         this.parent.previous()
+//       }
+//     }
+//   },
+//   buttonRight: {
+//     text: 'right',
+//     on: {
+//       down (e, event) {
+//         this.parent.next()
+//       }
+//     }
+//   }
+// })
 
 exports['item-carousel'] = {
   type: 'item',

@@ -32,6 +32,40 @@
     "babel-core": "*",
     "babel-preset-es2015": "*",
     "screenfull": "*",
-    "vigour-url": "vigour-io/vigour-url"
+    "vigour-url": "vigour-io/vigour-url",
+    "vigour-api": "0.0.3",
+    "json-loader": "*"
+  },
+  "vigour": {
+    "api": {
+      "video": {
+        "getSource": {
+          "url": "http://adm-ums.vigour.io/video/",
+          "encodeJson": true,
+          "withCredentials": false,
+          "headers": {
+            "Accept": "application/json"
+          }
+        },
+        "sendPlayback": {
+          "url": "http://adm-ums.vigour.io/video/",
+          "httpMethod": "post",
+          "encodeJson": true,
+          "withCredentials": false,
+          "headers": {
+            "Accept": "application/json"
+          }
+        },
+        "sendEvent": {
+          "url": "http://adm-ums.vigour.io/video/event/",
+          "httpMethod": "post",
+          "encodeJson": true,
+          "withCredentials": false,
+          "headers": {
+            "Accept": "application/json"
+          }
+        }
+      }
+    }
   }
 }

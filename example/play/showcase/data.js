@@ -4,7 +4,7 @@ var Data = new Observable({
   inject: require('../../../lib/subscription/stamp'),
   properties: {
     video: {
-      $transform: 'https://s3-eu-west-1.amazonaws.com/sbsvigour/output/111700_794541d68c8c4fbe47407aaaaa70ceef/{type}s/111700.{type}'
+      $transform: '3099'
     }
   },
   Child: 'Constructor'
@@ -12,7 +12,7 @@ var Data = new Observable({
 
 /*
   video: {
-    val: 'https://s3-eu-west-1.amazonaws.com/sbsvigour/output/111700_794541d68c8c4fbe47407aaaaa70ceef/{type}s/111700.{type}'
+    val: '3099'
   },
 */
 

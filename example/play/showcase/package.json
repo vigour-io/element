@@ -4,7 +4,7 @@
   "version": "0.2.3",
   "main": "lib/index.js",
   "scripts": {
-    "dev": "webpack-dev-server --history-api-fallback"
+    "dev": "webpack-dev-server --history-api-fallback --inline --hot --content-base"
   },
   "repository": {
     "type": "git",
@@ -20,18 +20,52 @@
     "./lib/engine/ua/": "./lib/engine/ua/browser"
   },
   "dependencies": {
-    "raw-loader": "*",
-    "less-loader": "*",
-    "less": "*",
-    "style-loader": "*",
-    "css-loader": "*",
-    "webpack": "*",
-    "webpack-dev-server": "*",
-    "babel-loader": "*",
+    "axios": "^0.9.1",
     "babel-core": "*",
-    "babel-core": "*",
+    "babel-loader": "^6.2.2",
     "babel-preset-es2015": "*",
+    "css-loader": "*",
+    "hyperquest": "^1.2.0",
+    "less": "*",
+    "less-loader": "*",
+    "raw-loader": "*",
     "screenfull": "*",
-    "vigour-url": "vigour-io/vigour-url"
+    "style-loader": "*",
+    "vigour-api": "0.0.3",
+    "vigour-url": "vigour-io/vigour-url",
+    "webpack": "*",
+    "webpack-dev-server": "*"
+  },
+  "vigour": {
+    "api": {
+      "video": {
+        "getSource": {
+          "url": "http://adm-ums.vigour.io/video/",
+          "encodeJson": false,
+          "headers": {
+            "Accept": "application/json"
+          }
+        },
+        "sendPlayback": {
+          "url": "http://adm-ums.vigour.io/video/",
+          "httpMethod": "post",
+          "encodeJson": false,
+          "headers": {
+            "Accept": "application/json"
+          }
+        },
+        "sendEvent": {
+          "url": "http://adm-ums.vigour.io/video/event/",
+          "httpMethod": "post",
+          "encodeJson": false,
+          "headers": {
+            "Accept": "application/json"
+          }
+        }
+      }
+    }
+  },
+  "devDependencies": {
+    "json-loader": "^0.5.4"
   }
 }

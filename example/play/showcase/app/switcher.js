@@ -4,10 +4,15 @@ var e = require('../../../../e')
 // for dev only
 var merge = require('lodash/object/merge')
 // default on element components are swithcer carousel and player
+
+var player = require('../../../../lib/player')
+require('./player/')
+
 var components = {
   // carousel: require('../../../../lib/carousel'),
   switcher: require('../../../../lib/switcher'),
-  player: require('../../../../lib/player')
+  //player: require('../../../../lib/player')
+  player: player
 }
 
 // small

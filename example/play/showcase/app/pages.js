@@ -51,7 +51,7 @@ var datax = new Observable({
     val: 4020
   },
   video: {
-    val: 'https://s3-eu-west-1.amazonaws.com/sbsvigour/output/111700_794541d68c8c4fbe47407aaaaa70ceef/{type}s/111700.{type}'
+    val: '3099'
   },
   description: {
     val: 'In de allereerste aflevering van een nieuw seizoen nemen Kim Clijsters, Kevin Janssens en Sam Louwyck het tegen elkaar op.'

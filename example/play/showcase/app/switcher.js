@@ -28,7 +28,6 @@ merge(components, require('../components/list'))
 merge(components, require('../components/pages'))
 merge(components, require('../components/carousel'))
 
-
 // need to refactor plauer to just object
 // components.player = require('../../../../lib/player')
 // console.log(components.player)
@@ -40,16 +39,15 @@ var Event = require('vigour-js/lib/event')
 
 const LANDING = 'discover'
 
-window.addEventListener('popstate', function (ev) {
+window.addEventListener('popstate', readUrl)
+function readUrl (ev) {
   var parsed = window.location.href.replace(/https?:\/\//, '')
   var url = parsed.split('/').slice(1)
-  console.warn(ev)
   var event = new Event('url')
-  console.log('------------------------url')
-  console.log(url)
   data.state.app.set(data.get(url || LANDING), event)
   event.trigger()
-})
+}
+// readUrl()
 
 data.set({
   state: {
@@ -57,7 +55,6 @@ data.set({
       val: [ '$', LANDING ],
       on: {
         data (data, event) {
-          console.error('yo yo yo')
           if (event.type !== 'url') {
             window.history.pushState(event.stamp, 'haha', '/' + this.origin.path.join('/'))
           }

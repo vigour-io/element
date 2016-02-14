@@ -2,6 +2,7 @@
 
 var merge = require('lodash/object/merge')
 merge(exports, require('./discover'))
+merge(exports, require('./video'))
 
 exports.publisher = {
   type: 'discover',
@@ -50,58 +51,4 @@ exports.mixed = {
     type: 'channels',
     $: 'channels'
   }
-}
-
-exports['page-video'] = {
-  on: {
-    remove: {
-      player (e, event) {
-        var pl = this.player
-        pl._on.removeEmitter.execInternal(pl, event)
-      }
-    }
-  },
-  player: { type: 'player' },
-  info: {
-    title: { type: 'title' },
-    subtitle: { type: 'subtitle' },
-    description: { html: { $: 'description' } }
-  }
-}
-
-// if phone exports.episode = exports['page-video']
-exports.show = {
-  type: 'page',
-  on: {
-    remove: {
-      player (e, event) {
-        var pl = this.video.player
-        pl._on.removeEmitter.execInternal(pl, event)
-      }
-    }
-  },
-  title: { type: 'title' },
-  video: {
-    type: 'page-video',
-    $: 'currentEpisode'
-  },
-  list: {
-    $: 'currentSeason',
-    title: { type: 'title' },
-    list: {
-      type: 'list',
-      Child: { type: 'item-row-progress' }
-    }
-  }
-}
-
-exports.channel = {
-  type: 'show',
-  video: {
-    type: 'page-video',
-    $: true
-  }
-  // list: {
-  //   $: 'currentSeason'
-  // }
 }

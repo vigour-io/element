@@ -1,2 +1,2 @@
 'use strict'
-exports.progress = { value: { $: 'time' } }
+exports.progress = { value: { $: 'progress' } }

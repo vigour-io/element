@@ -58,7 +58,7 @@ var app = e({ //eslint-disable-line
 
 app.set({
   // aa: { type: 'aa' },
-  line: { text: { val: '--------------', $james: 'xxxxx' } },
+  line: { text: { val: '--------------', $james: 'xxxxx' }, on: { click () {} } },
   // ab: { type: 'ab' }
 })
 

@@ -2,7 +2,7 @@
 require('./style.less')
 
 var Observable = require('vigour-js/lib/observable')
-var Carousel = require('../../lib/carousel')
+var carousel = require('../../lib/carousel')
 var Element = require('../../lib')
 
 var app = global.app = new Element({
@@ -28,7 +28,11 @@ var list = new Observable({
 })
 
 app.set({
-  carousel: new Carousel({
+  components:{
+    carousel: carousel
+  },
+  carousel: {
+    type: 'carousel',
     w: 300,
     val: list,
     items: {
@@ -39,7 +43,7 @@ app.set({
       },
       $collection: true
     }
-  }),
+  },
   button: {
     h: 100,
     w: '50%',

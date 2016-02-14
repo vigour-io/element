@@ -3,12 +3,12 @@ module.exports =  {
   icon: 'channels',
   items: {
     focus: 0,
-    lenght: 5,
+    length: 5,
     0: {
       title: 'Abu Dhabi HD',
       items: {
         focus: 0,
-        lenght: 5,
+        length: 5,
         0: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',

@@ -15,9 +15,9 @@ module.exports = {
       items: {
       	focus: 0,
       	lenght: 3,
-	      0: {
+	      channels: {
 	        title: 'Feautured on Dubai Lynx',
-	        link: [ '$', 'channels' ], // order is irrelevant now
+	        link: [ '$', 'publishers', 'items', 0, 'items', 'channels' ], // order is irrelevant now
 	        items: [
 	          [ '$', 'channels', 'items', '0' ],
 	          [ '$', 'channels', 'items', '1' ],

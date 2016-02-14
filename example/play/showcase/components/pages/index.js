@@ -8,7 +8,9 @@ exports.publisher = {
   cover: { type: 'item-cover' }
 }
 
-exports.page = {}
+exports.page = {
+  css: 'page'
+}
 
 exports.shows = {
   type: 'page',

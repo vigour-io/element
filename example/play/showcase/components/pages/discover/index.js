@@ -1,6 +1,7 @@
 'use strict'
 
 exports.discover = {
+  type: 'page',
   list: {
     $collection: 'items',
     Child: {

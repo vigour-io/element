@@ -38,19 +38,23 @@ merge(components, require('../components/carousel'))
 var data = require('../data')
 var Event = require('vigour-js/lib/event')
 
+const LANDING = 'discover'
+
 window.addEventListener('popstate', function (ev) {
   var parsed = window.location.href.replace(/https?:\/\//, '')
   var url = parsed.split('/').slice(1)
   console.warn(ev)
   var event = new Event('url')
-  data.state.app.set(data.get(url), event)
+  console.log('------------------------url')
+  console.log(url)
+  data.state.app.set(data.get(url || LANDING), event)
   event.trigger()
 })
 
 data.set({
   state: {
     app: {
-      val: [ '$', 'discover' ],
+      val: [ '$', LANDING ],
       on: {
         data (data, event) {
           console.error('yo yo yo')
@@ -117,7 +121,6 @@ var app = global.app = e({
     navbar: {},
     switcher: {
       type: 'switcher',
-      css: 'page',
       $put: true,
       mapProperty (key, val) {
         console.log('yo?', key, val, val.path)

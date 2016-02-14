@@ -22,5 +22,13 @@ exports.info = {
 
 exports.description = {
   order: 1,
-  text: { $: 'description' }
+  text: {
+    $: 'description',
+    $transform (val) {
+      if (val.length > 255) {
+        return `${val.slice(1, 255)}...`
+      }
+      return val
+    }
+  }
 }

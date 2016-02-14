@@ -11,55 +11,71 @@ exports.carousel = {
     }
   }),
   indicator: {
-    Child: {}
-  },
-  buttonLeft: {
-    text: 'left',
-    on: {
-      down (e, event) {
-        this.parent.container.previous()
+    Child: {},
+    prerender (props, children) {
+      var hash = this.state.data.focus.val
+      for (var i = children.length - 1; i >= 0; i--) {
+        let child = children[i]
+        let state = child.state
+        if (state.data.origin.hash === hash) {
+          if (!state.props) {
+            state.props = {
+              properties: {
+                className: 'active'
+              }
+            }
+          } else {
+            state.props.properties.className = 'active'
+          }
+        }
       }
-    }
+    },
+    $collection: 'items'
   },
-  buttonRight: {
-    text: 'right',
-    on: {
-      down (e, event) {
-        this.parent.container.next()
+  buttons: {
+    Child: {
+      row: {
+        type: 'row',
+        icon: {
+          type: 'icon'
+        }
+      }
+    },
+    left: {
+      row: {
+        icon: {
+          css: 'icon-left',
+          order: -1
+        },
+        title: {
+          text: 'Previous'
+        }
+      },
+      on: {
+        down (e, event) {
+          this.parent.parent.container.previous()
+        }
+      }
+    },
+    right: {
+      row: {
+        icon: {
+          css: 'icon-right'
+        },
+        title: {
+          text: 'Next'
+        }
+      },
+      on: {
+        down (e, event) {
+          this.parent.parent.container.next()
+        }
       }
     }
   }
 }
 
 
-
-// merge(require('../../../../../lib/carousel'), {
-//   items: {
-//     $collection: 'items',
-//     Child: {
-//       type: 'item-carousel'
-//     }
-//   },
-//   indicator: {
-//     Child: {}
-//   },
-//   buttonLeft: {
-//     text: 'left',
-//     on: {
-//       down (e, event) {
-//         this.parent.previous()
-//       }
-//     }
-//   },
-//   buttonRight: {
-//     text: 'right',
-//     on: {
-//       down (e, event) {
-//         this.parent.next()
-//       }
-//     }
-//   }
-// })
 
 exports['item-carousel'] = {
   type: 'item',

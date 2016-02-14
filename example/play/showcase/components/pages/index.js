@@ -38,7 +38,11 @@ exports.channels = {
   grid: {
     type: 'grid-flex',
     $collection: 'items',
-    Child: { type: 'item-flex-progress' }
+    Child: {
+      item: {
+        type: 'item-flex-progress'
+      }
+    }
   }
 }
 

@@ -50,8 +50,10 @@ exports.show = {
 
 exports.channel = {
   type: 'show',
-  video: {
-    type: 'page-video',
-    $: true
+  wrapper: {
+    video: {
+      type: 'page-video',
+      $: true
+    }
   }
 }

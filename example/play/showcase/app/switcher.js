@@ -17,6 +17,7 @@ merge(components, require('../components/img'))
 merge(components, require('../components/button'))
 merge(components, require('../components/progress'))
 merge(components, require('../components/logo'))
+merge(components, require('../components/loader'))
 
 // medium
 merge(components, require('../components/sidebar'))

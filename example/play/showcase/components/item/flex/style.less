@@ -1,5 +1,6 @@
 .type-big-item {
-  background: fade(white, 10%);
+  background: fade(white, 5%);
+  margin: 0;
 
   > .type-info {
     padding: @gutter;
@@ -21,7 +22,8 @@
 }
 
 // flex item
-.type-item-flex {
+.type-item-flex,
+.type-item-flex-progress {
   @media all @above-layout-breakpoint {
     .type-item;
     .type-big-item;

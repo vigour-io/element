@@ -1,9 +1,14 @@
+@carousel-transition: .4s ease;
+
 .type-carousel {
   position: relative;
   width:100%;
   overflow: hidden;
 
   > .container {
+    position: relative;
+    width: 60%;
+    margin-left: -40%;
 
     @media all @above-tablet {
       padding-top: 28%;
@@ -13,31 +18,15 @@
       padding-top: 50%;
     }
 
-    position: relative;
-    width: 60%;
-    margin-left: -40%;
     > .items {
-
-      > .previous {
-        color:blue;
-      }
-
-      > .next {
-        color:green;
-      }
-
-      .transition(0.3s ease-in left);
+      .transition(@carousel-transition left);
       .flex-display;
       .flex-direction(row);
       .flex-wrap(nowrap);
       width: 100%;
-      height: calc(100% - 4px);
+      height: 100%;
       .absolute;
       .user-select;
-
-      // TODO: temporary
-      // overflow-x: auto;
-      // overflow-y: hidden;
 
       > div {
         position: relative;
@@ -45,6 +34,7 @@
         min-width: 100%;
         color: white;
         cursor: pointer;
+        .transition(~"@{carousel-transition} opacity, @{carousel-transition} background-color");
 
         > figure {
           height: 100%;
@@ -67,6 +57,7 @@
           z-index: 1;
           overflow: hidden;
           .sizing;
+          .transition(@carousel-transition opacity);
 
           @media all @above-layout-breakpoint {
             padding: @gutter;
@@ -102,6 +93,22 @@
             }
           }
         }
+
+        @media all @above-tablet {
+          &.next,
+          &.previous {
+            opacity: 0.4;
+            background-color: extract(@carousel-scheme, 4);
+
+            .type-info {
+              opacity: 0;
+            }
+
+            img {
+              opacity: .8;
+            }
+          }
+        }
       }
     }
   }
@@ -114,6 +121,8 @@
     > div {
       .flex(1);
       height: 4px;
+      opacity: .4;
+      .transition(@carousel-transition all);
 
       &:nth-child(1) {
         background-color: @carousel-primary;
@@ -131,26 +140,63 @@
         background-color: @carousel-quaternary;
       }
 
-      &:nth-child(4) {
+      &:nth-child(5) {
         background-color: @carousel-quinary;
       }
 
+      &:nth-child(6) {
+        background-color: @carousel-primary;
+      }
+
       &.active {
+        opacity: 1;
         margin-top: -2px;
         height: 6px;
       }
     }
   }
 
-  > .buttonLeft, .buttonRight {
-    position: absolute;
-    border: 1px solid red;
-    top:0;
-    bottom:0;
-    width: 50px;
+  &:hover {
+    > .buttons {
+      opacity: 1;
+    }
   }
 
-  > .buttonRight {
-    right: 0;
+  > .buttons {
+    opacity: 0;
+    z-index: 3;
+    .transition(.4s ease opacity);
+
+    > div {
+      position: absolute;
+      background: fade(black, 20%);
+      top: 0;
+      bottom: 0;
+      width: 20%;
+      cursor: pointer;
+
+      &.left {
+        left: 0;
+      }
+
+      &.right {
+        right: 0;
+        text-align: right;
+      }
+
+      > .type-row {
+        width: 100%;
+        .ui-position-center;
+
+        .title {
+          .flex(1);
+        }
+
+        .type-icon {
+          padding: 1rem;
+          font-size: @h2;
+        }
+      }
+    }
   }
 }

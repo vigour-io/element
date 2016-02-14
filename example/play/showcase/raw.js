@@ -308,7 +308,7 @@ module.exports = {
         description: 'In a dystopian near future, single people, according to the laws of The City, are taken to The Hotel, where they are obliged to find a romantic partner in forty-five days or are transformed into beasts and sent off into The Woods.',
         img: {
           val: 'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg',  // 4:3
-          spotlight:  'http://www.theshiznit.co.uk/media/2015/October/Lobster1.jpg' , // 2:1
+          spotlight:  'http://pngimg.com/upload/cat_PNG1633.png' , // 2:1
           poster: 'http://i.ebayimg.com/images/g/6wsAAOSw~bFWMFCS/s-l300.jpg', // 2:3
         },
         video: {},

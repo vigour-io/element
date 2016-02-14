@@ -11,7 +11,10 @@ var click = {
 }
 
 exports.item = {
-  img: { type: 'thumb' },
+  img: {
+    order: -1,
+    type: 'thumb'
+  },
   title: { type: 'info' },
   inject: click
 }

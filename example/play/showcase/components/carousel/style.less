@@ -142,15 +142,51 @@
     }
   }
 
-  > .buttonLeft, .buttonRight {
-    position: absolute;
-    border: 1px solid red;
-    top:0;
-    bottom:0;
-    width: 50px;
-  }
+  // > .buttonLeft, .buttonRight {
+  //   position: absolute;
+  //   border: 1px solid red;
+  //   top:0;
+  //   bottom:0;
+  //   width: 50px;
+  // }
 
-  > .buttonRight {
-    right: 0;
+  // > .buttonRight {
+  //   right: 0;
+  // }
+
+  > .buttons {
+    z-index: 3;
+
+    > div {
+      position: absolute;
+      background: fade(black, 20%);
+      top:0;
+      bottom:0;
+      width: 20%;
+      cursor: pointer;
+
+      &.left {
+        left: 0;
+      }
+
+      &.right {
+        right: 0;
+        text-align: right;
+      }
+
+      > .type-row {
+        width: 100%;
+        .ui-position-center;
+
+        .title {
+          .flex(1);
+        }
+
+        .type-icon {
+          padding: 1rem;
+          font-size: @h2;
+        }
+      }
+    }
   }
 }

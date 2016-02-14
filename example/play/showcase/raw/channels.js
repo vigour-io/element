@@ -6,6 +6,8 @@ module.exports =  {
     length: 5,
     0: {
       title: 'Abu Dhabi HD',
+      progress: 0.3,
+      duration: 2000,
       items: {
         focus: 0,
         length: 5,
@@ -53,6 +55,8 @@ module.exports =  {
     },
     1: {
       title: 'Al Emarat HD',
+      progress: 0.3,
+      duration: 2000,
       items: {
         focus: 0,
         lenght: 5,
@@ -60,7 +64,8 @@ module.exports =  {
           title: 'Faker Bil Seha',
           description: 'Description of the Current Broadcast.',
           subtitle: '18:30 - 19:00',
-          progress: 0.6
+          progress: 0.6,
+          duration: 2000
         },
          1: {
           title: 'Ekatarina',
@@ -99,6 +104,8 @@ module.exports =  {
     },
     2: {
       title: 'AD Sport 1 HD',
+      progress: 0.3,
+      duration: 2000,
       items: {
         focus: 0,
         lenght: 5,
@@ -106,7 +113,8 @@ module.exports =  {
           title: 'Iftah Ya Simsim',
           description: 'Description of the Current Broadcast.',
           subtitle: '16:45 - 19:30',
-          progress: 0.4
+          progress: 0.4,
+          duration: 2000
         },
          1: {
           title: 'Ekatarina',
@@ -145,6 +153,8 @@ module.exports =  {
     },
     3: {
       title: 'AD Sport 2 HD',
+      progress: 0.3,
+      duration: 2000,
       items: {
         focus: 0,
         lenght: 5,
@@ -152,7 +162,8 @@ module.exports =  {
           title: 'Iftah Ya Simsim',
           description: 'Description of the Current Broadcast.',
           subtitle: '16:45 - 19:30',
-          progress: 0.4
+          progress: 0.4,
+          duration: 2000
         },
          1: {
           title: 'Ekatarina',
@@ -191,6 +202,8 @@ module.exports =  {
     },
     4: {
       title: 'Majid Kids TV',
+      progress: 0.3,
+      duration: 2000,
       items: {
         focus: 0,
         lenght: 5,
@@ -198,7 +211,8 @@ module.exports =  {
           title: 'Iftah Ya Simsim',
           description: 'Description of the Current Broadcast.',
           subtitle: '16:45 - 19:30',
-          progress: 0.4
+          progress: 0.4,
+          duration: 2000
         },
          1: {
           title: 'Ekatarina',

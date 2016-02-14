@@ -34,7 +34,7 @@ exports.description = {
     $: 'description',
     $transform (val) {
       if (typeof val === 'string' && val.length > 255) {
-        return `${val.slice(1, 255)}...`
+        return `${val.slice(0, 255)}...`
       }
       return val
     }

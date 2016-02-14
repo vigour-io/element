@@ -13,9 +13,21 @@ exports.sidebar = {
   },
 
   menu: {
-    // Child: {
-    // }
-    div: require('../../app/buttons')
+    Child: {
+      type: 'row',
+      icon: {
+        $: true,
+        type: 'icon',
+        css: { $prepend: 'icon-', $: 'icon' }
+      },
+      text: { $: 'title' },
+      on: {
+        click () {
+          this.state.data.getRoot().state.app.val = this.state.data
+        }
+      }
+    },
+    $collection: 'menu'
   },
 
   meta: {
@@ -30,7 +42,6 @@ exports.sidebar = {
         profile: {
 
         },
-
         icons: {
           settings: {
 

@@ -11,6 +11,7 @@
 @import '../components/img/style.less';
 @import '../components/text/style.less';
 @import '../components/progress/style.less';
+@import '../components/row/style.less';
 
 // play
 @import '../components/logo/style.less';
@@ -39,12 +40,24 @@
 
 @import '../adm/style.less';
 
-body > .app {
-  height: 100vh;
-  .flex-display;
-  .align-items(top);
+body {
+  overflow: hidden;
 
-  > .main {
-    .flex(1);
+  > .app {
+    overflow: hidden;
+    height: 100vh;
+    .flex-display;
+    .align-items(top);
+
+    > .main {
+      .flex(1);
+      position: relative;
+
+      > .switcher {
+        .absolute;
+        .fullsize;
+        overflow-y: auto;
+      }
+    }
   }
 }

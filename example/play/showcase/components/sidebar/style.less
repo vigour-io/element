@@ -10,10 +10,11 @@
 
 // shadow for mobile
 @sidebar-bgshadow-background: @secondary;
-@sidebar-bgshadow-gradient: darken(@sidebar-bgshadow-background, 10%) 70%,
-                            fade(@sidebar-bgshadow-background, 10%) 0%,
-                            right,
-                            ellipse;
+@sidebar-bgshadow-gradient:
+  darken(@sidebar-bgshadow-background, 10%) 70%,
+  fade(@sidebar-bgshadow-background, 10%) 0%,
+  right,
+  ellipse;
 
 .sidebar {
   .scheme(@sidebar-scheme);
@@ -104,11 +105,21 @@
     .flex-display;
     .flex-direction(column);
 
-    .ui-row {
+    .type-row {
       opacity: .6;
       padding: 0 @gutter;
       height: 5.4rem;
       text-decoration: none;
+      .transition(@transition opacity);
+      letter-spacing: .3px;
+      text-transform: capitalize;
+
+      .icon {
+        font-size: @h3;
+        width: 3rem;
+        text-align: center;
+        padding-right: .5rem;
+      }
 
       &:hover {
         opacity: .8;
@@ -120,12 +131,6 @@
 
       &.ui-active {
         opacity: 1;
-      }
-
-      > .ui-heading {
-        text-transform: uppercase;
-        font-weight: @font-semibold;
-        letter-spacing: .3px;
       }
     }
 

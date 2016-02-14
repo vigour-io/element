@@ -57,11 +57,14 @@ var app = e({ //eslint-disable-line
 })
 
 app.set({
-  aa: { type: 'aa' },
-  line: { text: '--------------' },
-  ab: { type: 'ab' }
+  // aa: { type: 'aa' },
+  line: { text: { val: '--------------', $james: 'xxxxx' } },
+  // ab: { type: 'ab' }
 })
 
-app.val = data
+// app.val = data
 
 console.log(data)
+
+console.log('---------------------------------------------')
+cases.$james.val = true

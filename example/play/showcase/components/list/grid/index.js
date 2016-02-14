@@ -17,3 +17,12 @@ exports['grid-flex'] = {
     }
   }
 }
+
+exports['grid-flex-movies'] = {
+  $collection: 'items',
+  Child: {
+    item: {
+      type: 'item-poster'
+    }
+  }
+}

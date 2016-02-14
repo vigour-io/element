@@ -17,8 +17,7 @@ exports.shows = {
   title: { type: 'title-secondary' },
   hr: { type: 'hr' },
   grid: {
-    type: 'grid-flex',
-    $collection: 'items'
+    type: 'grid-flex'
   }
 }
 
@@ -27,13 +26,7 @@ exports.movies = {
   title: { type: 'title-secondary' },
   hr: { type: 'hr' },
   grid: {
-    type: 'grid-flex',
-    $collection: 'items',
-    Child: {
-      item: {
-        type: 'item-poster'
-      }
-    }
+    type: 'grid-flex-movies'
   }
 }
 

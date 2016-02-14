@@ -30,3 +30,18 @@
     .type-list;
   }
 }
+
+.type-grid-flex-movies {
+  .ui-arrange-grid;
+  .margin-h(-@gutter-small);
+
+  > div {
+    .width-range(@item-poster-width-min, @item-poster-width-max);
+    .flex(1);
+    .flex-grid-gap(@gutter-small);
+
+    > img {
+      width: 100%;
+    }
+  }
+}

@@ -71,6 +71,7 @@ exports['page-video'] = {
 
 // if phone exports.episode = exports['page-video']
 exports.show = {
+  type: 'page',
   on: {
     remove: {
       player (e, event) {

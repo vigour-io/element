@@ -10,8 +10,11 @@
 
     > div {
       .width-range(none);
-      margin-bottom: @gutter;
-      margin-right: @gutter;
+
+      @media all @under-layout-breakpoint {
+        margin-bottom: @gutter;
+        margin-right: @gutter;
+      }
     }
   }
 

@@ -20,5 +20,7 @@ exports['item-flex-poster'] = {
 
 exports['item-flex-progress'] = {
   type: 'item-flex',
-  progress: { type: 'progress' }
+  title: {
+    progress: { type: 'progress' }
+  }
 }

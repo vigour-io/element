@@ -14,10 +14,10 @@ module.exports = {
       },
       items: {
       	focus: 0,
-      	length: 3,
+	      length: 3,
 	      0: {
 	        title: 'Feautured on Dubai Lynx',
-	        link: [ '$', 'channels' ], // order is irrelevant now
+	        link: [ '$', 'publishers', 'items', 0, 'items', 'channels' ], // order is irrelevant now
 	        items: [
 	          [ '$', 'channels', 'items', '0' ],
 	          [ '$', 'channels', 'items', '1' ],

@@ -28,9 +28,9 @@ exports['item-video'] = {
 exports['item-channel'] = {
   css: { inherits: 'type-item' },
   img: { type: 'thumb' },
-  title: { type: 'title', $: 'epg.0.title' }, // $: 'next.title'
+  title: { type: 'title', $: 'items.0.title' }, // $: 'next.title'
   info: {
-    $: 'epg.0',
+    $: 'items.0',
     subtitle: { type: 'subtitle', $: 'subtitle' },
     progress: { type: 'progress', $: 'time' }
   },

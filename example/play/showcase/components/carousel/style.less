@@ -12,6 +12,8 @@
   }
 
   > .items {
+    .transition(0.3s ease-in left);
+
     .flex-display;
     .flex-direction(row);
     .flex-wrap(nowrap);
@@ -126,15 +128,15 @@
     }
   }
 
-  // > .buttonLeft, .buttonRight {
-  //   position: absolute;
-  //   border: 1px solid red;
-  //   top:0;
-  //   bottom:0;
-  //   width: 50px;
-  // }
+  > .buttonLeft, .buttonRight {
+    position: absolute;
+    border: 1px solid red;
+    top:0;
+    bottom:0;
+    width: 50px;
+  }
 
-  // > .buttonRight {
-  //   right: 0;
-  // }
+  > .buttonRight {
+    right: 0;
+  }
 }

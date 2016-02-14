@@ -60,7 +60,7 @@ module.exports = {
       carousel: {
         order: -1,
         items: {
-          focus: 0,
+          focus: 'lobster',
           0: [ '$', 'movies', 'items', 'lobster' ],
           1: [ '$', 'shows', 'items', 'got' ],
           2: [ '$', 'shows', 'items', 'lilyhammer' ]

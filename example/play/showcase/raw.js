@@ -1,6 +1,58 @@
 var descriptions = require('./descriptions.js')
 
 module.exports = {
+  // user data created on the client send to user hub
+  continue: {
+    title: 'Continue Watching',
+    items: [
+      [ '$', 'movies', 'items', 'lobster' ],
+      [ '$', 'shows', 'items', 'got' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ],
+      [ '$', 'shows', 'items', 'got' ],
+      [ '$', 'movies', 'items', 'sw' ],
+      [ '$', 'movies', 'items', 'h8' ]
+    ]
+  },
+  subscriptions: {
+    title: 'My Subscriptions',
+    items: [
+      [ '$', 'shows', 'items', 'got' ],
+      [ '$', 'shows', 'items', 'got' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ],
+      [ '$', 'shows', 'items', 'got' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ]
+    ]
+  },
+  recommended: {
+    'title': 'Recommended for you',
+    'items': [
+      [ '$', 'movies', 'items', 'lobster' ],
+      [ '$', 'shows', 'items', 'got' ],
+      [ '$', 'movies', 'items', 'sw' ],
+      [ '$', 'movies', 'items', 'h8' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ],
+      [ '$', 'movies', 'items', 'lobster' ],
+      [ '$', 'movies', 'items', 'lobster' ],
+      [ '$', 'shows', 'items', 'got' ],
+      [ '$', 'movies', 'items', 'sw' ],
+      [ '$', 'movies', 'items', 'h8' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ],
+      [ '$', 'movies', 'items', 'lobster' ],
+      [ '$', 'movies', 'items', 'lobster' ],
+      [ '$', 'shows', 'items', 'got' ],
+      [ '$', 'movies', 'items', 'sw' ],
+      [ '$', 'movies', 'items', 'h8' ],
+      [ '$', 'shows', 'items', 'lilyhammer' ],
+      [ '$', 'movies', 'items', 'lobster' ]
+    ]
+    // link: [ '$', 'recommended' ]
+  },
+
+  // non-user data
   discover: {
     title: 'Discovery',
     icon: 'discover',
@@ -15,62 +67,19 @@ module.exports = {
       },
       channels: {
         title: 'Now on TV',
+        link: [ '$', 'channels' ], // order is irrelevant now
         items: [
           [ '$', 'channels', 'items', 'adb' ],
           [ '$', 'channels', 'items', 'ae' ],
           [ '$', 'channels', 'items', 'ads' ],
           [ '$', 'channels', 'items', 'ads2' ],
           [ '$', 'channels', 'items', 'mk' ]
-        ],
-        link: [ '$', 'channels' ]
-      },
-      continue: {
-        title: 'Continue Watching',
-        items: [
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'movies', 'items', 'joy' ],
-          [ '$', 'movies', 'items', 'zoolander' ],
-          [ '$', 'movies', 'items', 'sw' ],
-          [ '$', 'movies', 'items', 'h8' ]
         ]
-        // link: [ '$', 'continue' ]
       },
-      subscriptions: {
-        title: 'My Subscriptions',
-        items: [
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'shows', 'items', 'sopranos' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'shows', 'items', 'mf' ]
-        ]
-        // link: [ '$', 'subscriptions' ]
-      },
-      'recommended:posters': {
-        'title': 'Recommended for you',
-        'items': [
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'movies', 'items', 'sw' ],
-          [ '$', 'movies', 'items', 'h8' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'movies', 'items', 'zoolander' ],
-          [ '$', 'movies', 'items', 'joy' ],
-          [ '$', 'shows', 'items', 'mf' ],
-          [ '$', 'movies', 'items', 'sopranos' ],
-          [ '$', 'movies', 'items', 'h8' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'movies', 'items', 'sw' ],
-          [ '$', 'movies', 'items', 'h8' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'movies', 'items', 'lobster' ]
-        ]
-        // link: [ '$', 'recommended' ]
-      }
+      // these things are references now
+      continue: [ '$', 'continue' ],
+      subscriptions: [ '$', 'subscriptions' ],
+      'recommended:posters': [ '$', 'recommended' ]
     }
   },
   channels: {

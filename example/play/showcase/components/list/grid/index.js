@@ -18,11 +18,11 @@ exports['grid-flex'] = {
   }
 }
 
-exports['grid-flex-movies'] = {
+exports['grid-flex-posters'] = {
   $collection: 'items',
   Child: {
     item: {
-      type: 'item-poster'
+      type: 'item-flex-poster'
     }
   }
 }

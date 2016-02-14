@@ -10,6 +10,10 @@ exports['item-flex'] = {
   }
 }
 
+exports['item-flex-poster'] = {
+  type: 'item-poster'
+}
+
 exports['item-flex-progress'] = {
   type: 'item-flex',
   progress: { type: 'progress' }

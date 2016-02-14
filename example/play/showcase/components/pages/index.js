@@ -26,7 +26,7 @@ exports.movies = {
   title: { type: 'title-secondary' },
   hr: { type: 'hr' },
   grid: {
-    type: 'grid-flex-movies'
+    type: 'grid-flex-posters'
   }
 }
 

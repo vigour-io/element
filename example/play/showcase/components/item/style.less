@@ -72,8 +72,14 @@
 }
 
 // poster item
-@item-poster-width-min: 100px;
+@item-poster-width-min: 108px;
 @item-poster-width-max: 140px;
 .type-item-poster {
-  // .width-range(@item-poster-width, none);
+  cursor: pointer;
+  .width-range(@item-poster-width-min);
+}
+
+// poster item flex
+.type-item-flex-poster {
+  cursor: pointer;
 }

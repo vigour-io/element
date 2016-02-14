@@ -30,7 +30,7 @@ exports.info = {
 
 exports.description = {
   order: 1,
-  text: {
+  html: {
     $: 'description',
     $transform (val) {
       if (typeof val === 'string' && val.length > 255) {

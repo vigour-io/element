@@ -8,6 +8,10 @@
   .width-range(@item-width);
   .radius(@modal-radius);
 
+  .type-title {
+    .transition(@transition color);
+  }
+
   > .type-thumb {
     overflow: hidden;
 
@@ -68,7 +72,14 @@
 }
 
 // poster item
-@item-poster-width: 107px;
+@item-poster-width-min: 108px;
+@item-poster-width-max: 140px;
 .type-item-poster {
-  .width-range(@item-poster-width);
+  cursor: pointer;
+  .width-range(@item-poster-width-min);
+}
+
+// poster item flex
+.type-item-flex-poster {
+  cursor: pointer;
 }

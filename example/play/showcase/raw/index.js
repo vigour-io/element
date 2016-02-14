@@ -46,8 +46,8 @@ module.exports = {
         items: {
           focus: 0,
           0: [ '$', 'movies', 'items', '0' ],
-          1: [ '$', 'shows', 'items', '2' ],
-          2: [ '$', 'shows', 'items', '3' ]
+          1: [ '$', 'shows', 'items', '0' ],
+          2: [ '$', 'shows', 'items', '1' ]
         }
       },
       channels: {

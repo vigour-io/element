@@ -7,9 +7,9 @@ var data = require('../data')
 
 var cases = require('../../../../lib/cases')
 
-cases.set({
-  $james: false
-})
+// cases.set({
+//   $james: false
+// })
 
 window.cases = cases
 
@@ -58,7 +58,7 @@ var app = e({ //eslint-disable-line
 
 app.set({
   // aa: { type: 'aa' },
-  line: { text: { val: '--------------', $james: 'xxxxx' } },
+  line: { text: { val: '--------------', ames: 'xxxxx' }, on: { click () {} } },
   // ab: { type: 'ab' }
 })
 
@@ -67,4 +67,4 @@ app.set({
 console.log(data)
 
 console.log('---------------------------------------------')
-cases.$james.val = true
+// cases.$james.val = true

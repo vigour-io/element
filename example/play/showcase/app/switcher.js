@@ -28,7 +28,6 @@ merge(components, require('../components/list'))
 merge(components, require('../components/pages'))
 merge(components, require('../components/carousel'))
 
-
 // need to refactor plauer to just object
 // components.player = require('../../../../lib/player')
 // console.log(components.player)
@@ -38,22 +37,12 @@ merge(components, require('../components/carousel'))
 var data = require('../data')
 var Event = require('vigour-js/lib/event')
 
-window.addEventListener('popstate', function (ev) {
-  var parsed = window.location.href.replace(/https?:\/\//, '')
-  var url = parsed.split('/').slice(1)
-  console.warn(ev)
-  var event = new Event('url')
-  data.state.app.set(data.get(url), event)
-  event.trigger()
-})
-
 data.set({
   state: {
     app: {
-      val: [ '$', 'discover' ],
+      val: [ '$', LANDING ],
       on: {
         data (data, event) {
-          console.error('yo yo yo')
           if (event.type !== 'url') {
             window.history.pushState(event.stamp, 'haha', '/' + this.origin.path.join('/'))
           }
@@ -80,11 +69,23 @@ data.set({
   subscriptions: {
     title: 'Subscriptions',
     items: [
-      ['$', 'channels', 'items', 'adb' ]
+      [ '$', 'channels', 'items', 'adb' ]
       // [ '$', 'movies', 'items', 'lobster' ]
     ]
   }
 }, false)
+
+const LANDING = 'discover'
+
+window.addEventListener('popstate', readUrl)
+function readUrl (ev) {
+  var parsed = window.location.href.replace(/https?:\/\//, '')
+  var url = parsed.split('/').slice(1)
+  var event = new Event('url')
+  data.state.app.set(data.get(url[0] || LANDING), event)
+  event.trigger()
+}
+readUrl()
 
 function inPath (path, key) {
   for (var i = 0, len = path.length; i < len; i++) {
@@ -117,7 +118,6 @@ var app = global.app = e({
     navbar: {},
     switcher: {
       type: 'switcher',
-      css: 'page',
       $put: true,
       mapProperty (key, val) {
         console.log('yo?', key, val, val.path)

@@ -2,7 +2,7 @@
 
 exports['item-flex'] = {
   type: 'item',
-  description: { type: 'description' },
+  title: { description: { type: 'description' } },
   arrow: {
     order: 1,
     type: 'icon',

@@ -8,7 +8,9 @@ exports.publisher = {
   cover: { type: 'item-cover' }
 }
 
-exports.page = {}
+exports.page = {
+  css: 'page'
+}
 
 exports.shows = {
   type: 'page',
@@ -42,7 +44,7 @@ exports.channels = {
 exports.mixed = {
   publishers: {
     type: 'channels',
-    $collection: 'publishers'
+    $: 'publishers'
   },
   channels: {
     type: 'channels',

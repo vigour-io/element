@@ -51,6 +51,7 @@ module.exports = {
     ]
     // link: [ '$', 'recommended' ]
   },
+
   // non-user data
   discover: {
     title: 'Discovery',
@@ -66,71 +67,19 @@ module.exports = {
       },
       channels: {
         title: 'Now on TV',
-        link: [ '$', 'channels' ],
+        link: [ '$', 'channels' ], // order is irrelevant now
         items: [
           [ '$', 'channels', 'items', 'adb' ],
           [ '$', 'channels', 'items', 'ae' ],
           [ '$', 'channels', 'items', 'ads' ],
           [ '$', 'channels', 'items', 'ads2' ],
           [ '$', 'channels', 'items', 'mk' ]
-<<<<<<< HEAD
-=======
-        ],
-        link: [ '$', 'channels' ]
-      },
-      continue: {
-        title: 'Continue Watching',
-        items: [
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'movies', 'items', 'joy' ],
-          [ '$', 'movies', 'items', 'zoolander' ],
-          [ '$', 'movies', 'items', 'sw' ],
-          [ '$', 'movies', 'items', 'h8' ]
->>>>>>> 837d322bd4593a87fc72d697f9dad205399a96ce
         ]
       },
-<<<<<<< HEAD
+      // these things are references now
       continue: [ '$', 'continue' ],
       subscriptions: [ '$', 'subscriptions' ],
       'recommended:posters': [ '$', 'recommended' ]
-=======
-      subscriptions: {
-        title: 'My Subscriptions',
-        items: [
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'shows', 'items', 'sopranos' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'shows', 'items', 'mf' ]
-        ]
-        // link: [ '$', 'subscriptions' ]
-      },
-      'recommended:posters': {
-        'title': 'Recommended for you',
-        'items': [
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'movies', 'items', 'sw' ],
-          [ '$', 'movies', 'items', 'h8' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'movies', 'items', 'zoolander' ],
-          [ '$', 'movies', 'items', 'joy' ],
-          [ '$', 'shows', 'items', 'mf' ],
-          [ '$', 'movies', 'items', 'sopranos' ],
-          [ '$', 'movies', 'items', 'h8' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'movies', 'items', 'lobster' ],
-          [ '$', 'shows', 'items', 'got' ],
-          [ '$', 'movies', 'items', 'sw' ],
-          [ '$', 'movies', 'items', 'h8' ],
-          [ '$', 'shows', 'items', 'lilyhammer' ],
-          [ '$', 'movies', 'items', 'lobster' ]
-        ]
-        // link: [ '$', 'recommended' ]
-      }
->>>>>>> 837d322bd4593a87fc72d697f9dad205399a96ce
     }
   },
   channels: {

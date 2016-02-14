@@ -136,7 +136,7 @@ module.exports = {
   },
   movies: {
     title: 'Movies',
-    icon: 'movies',
+    icon: 'film',
     items: {
       lobster: {
         title: 'The Lobster',

@@ -36,18 +36,55 @@ merge(components, require('../components/carousel'))
 // ------
 
 var data = require('../data')
+var Event = require('vigour-js/lib/event')
+
+window.addEventListener('popstate', function (ev) {
+  var parsed = window.location.href.replace(/https?:\/\//, '')
+  var url = parsed.split('/').slice(1)
+  console.warn(ev)
+  var event = new Event('url')
+  data.state.app.set(data.get(url), event)
+  event.trigger()
+})
 
 data.set({
   state: {
-    app: [ '$', 'discover' ],
+    app: {
+      val: [ '$', 'discover' ],
+      on: {
+        data (data, event) {
+          console.error('yo yo yo')
+          if (event.type !== 'url') {
+            window.history.pushState(event.stamp, 'haha', '/' + this.origin.path.join('/'))
+          }
+        }
+      }
+    },
     modal: {},
     focus: {}
   },
   mixed: {
-    publishers: [ '$', 'publishers' ],
-    channels: [ '$', 'channels' ]
+    title: 'Channels (mixed)',
+    channels: [ '$', 'channels' ],
+    icon: 'channels',
+    publishers: [ '$', 'publishers' ]
+  },
+  menu: {
+    discover: [ '$', 'discover' ],
+    shows: [ '$', 'shows' ],
+    movies: [ '$', 'movies' ],
+    mixed: [ '$', 'mixed' ],
+    channels: [ '$', 'channels' ],
+    subscriptions: [ '$', 'subscriptions' ]
+  },
+  subscriptions: {
+    title: 'Subscriptions',
+    items: [
+      ['$', 'channels', 'items', 'adb' ]
+      // [ '$', 'movies', 'items', 'lobster' ]
+    ]
   }
-})
+}, false)
 
 function inPath (path, key) {
   for (var i = 0, len = path.length; i < len; i++) {
@@ -76,6 +113,7 @@ var app = global.app = e({
     type: 'sidebar'
   },
   main: {
+    $: 'state.app',
     navbar: {},
     switcher: {
       type: 'switcher',
@@ -103,7 +141,8 @@ var app = global.app = e({
         movie: { type: 'page-video' }, // this one
         channels: { type: 'channels' },
         mixed: { type: 'mixed' },
-        publishers: { type: 'discover' }
+        publishers: { type: 'discover' },
+        subscriptions: { type: 'channels' }
       }
     }
   },
@@ -111,4 +150,4 @@ var app = global.app = e({
 })
 
 // temp witcher
-app.main.switcher.val = data.state.app
+app.val = data

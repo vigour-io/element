@@ -2,9 +2,13 @@ module.exports =  {
   title: 'Channels',
   icon: 'channels',
   items: {
+    focus: 0,
+    lenght: 5,
     0: {
       title: 'Abu Dhabi HD',
-      epg: {
+      items: {
+        focus: 0,
+        lenght: 5,
         0: {
           title: 'Ekatarina',
           description: 'Description of the Current Broadcast.',
@@ -44,7 +48,9 @@ module.exports =  {
     },
     1: {
       title: 'Al Emarat HD',
-      epg: {
+      items: {
+        focus: 0,
+        lenght: 5,
         0: {
           title: 'Faker Bil Seha',
           description: 'Description of the Current Broadcast.',
@@ -84,7 +90,9 @@ module.exports =  {
     },
     2: {
       title: 'AD Sport 1 HD',
-      epg: {
+      items: {
+        focus: 0,
+        lenght: 5,
         0: {
           title: 'Iftah Ya Simsim',
           description: 'Description of the Current Broadcast.',
@@ -124,7 +132,9 @@ module.exports =  {
     },
     3: {
       title: 'AD Sport 2 HD',
-      epg: {
+      items: {
+        focus: 0,
+        lenght: 5,
         0: {
           title: 'Iftah Ya Simsim',
           description: 'Description of the Current Broadcast.',
@@ -164,7 +174,9 @@ module.exports =  {
     },
     4: {
       title: 'Majid Kids TV',
-      epg: {
+      items: {
+        focus: 0,
+        lenght: 5,
         0: {
           title: 'Iftah Ya Simsim',
           description: 'Description of the Current Broadcast.',

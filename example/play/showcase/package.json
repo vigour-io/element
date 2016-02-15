@@ -20,6 +20,7 @@
     "./lib/engine/ua/": "./lib/engine/ua/browser"
   },
   "dependencies": {
+    "lodash": "3.10.x",
     "raw-loader": "*",
     "less-loader": "*",
     "less": "*",

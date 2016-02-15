@@ -83,7 +83,7 @@ function inPath (path, key) {
   }
 }
 
-console.clear()
+// console.clear()
 console.log(components)
 
 var app = global.app = e({

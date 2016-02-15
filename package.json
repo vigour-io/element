@@ -23,7 +23,7 @@
   "dependencies": {
     "lodash": "3.10.x",
     "dom-delegator": "vigour-io/dom-delegator",
-    "vigour-js": "0.5.2",
+    "vigour-js": "0.5.3",
     "vigour-ua": "0.0.3",
     "virtual-dom": "2.1.1"
   },

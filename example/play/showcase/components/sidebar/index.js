@@ -33,7 +33,10 @@ exports.sidebar = {
   bgshadow: {
     img: {
       type: 'img',
-      src: '/assets/img/app/sidebar.png'
+      src: {
+        $: null,
+        val: '/assets/img/app/sidebar.png'
+      }
     }
   }
 }

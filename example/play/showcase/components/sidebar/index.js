@@ -30,27 +30,10 @@ exports.sidebar = {
     $collection: 'menu'
   },
 
-  meta: {
-    links: {
-
-    },
-    user: {
-      buttons: {
-
-      },
-      info: {
-        profile: {
-
-        },
-        icons: {
-          settings: {
-
-          },
-          cast: {
-
-          }
-        }
-      }
+  bgshadow: {
+    img: {
+      type: 'img',
+      src: '/assets/img/app/sidebar.png'
     }
   }
 }

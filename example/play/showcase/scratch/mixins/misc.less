@@ -72,13 +72,15 @@
 .gradient-o (
   @from: #000 0%,
   @to: #fff 100%,
-  @position: center
+  @position: center,
+  @type: ellipse,
+  @sizing: cover
 ) {
-  background: -webkit-radial-gradient(@position, ellipse cover, @to, @from);
+  background: -webkit-radial-gradient(@position, @type @sizing, @to, @from);
   background: -webkit-gradient(radial, @position @position, @to, @from);
-  background: -moz-radial-gradient(@position, ellipse cover, @to, @from);
-  background: -ms-radial-gradient(@position, ellipse cover, @to, @from);
-  background: radial-gradient(ellipse at @position, @to, @from);
+  background: -moz-radial-gradient(@position, @type @sizing, @to, @from);
+  background: -ms-radial-gradient(@position, @type @sizing, @to, @from);
+  background: radial-gradient(@type at @position, @to, @from);
 }
 
 /**

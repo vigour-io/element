@@ -2,7 +2,6 @@
 
 .type-carousel {
   position: relative;
-  width:100%;
   overflow: hidden;
 
   > .container {
@@ -158,14 +157,7 @@
     }
   }
 
-  &:hover {
-    > .buttons {
-      opacity: 1;
-    }
-  }
-
   > .buttons {
-    opacity: 0;
     z-index: 3;
     .transition(@carousel-transition opacity);
     .user-select;
@@ -180,11 +172,19 @@
 
       &.left {
         left: 0;
+
+        .type-icon {
+          order: -1;
+        }
       }
 
       &.right {
         right: 0;
-        text-align: right;
+
+        > .type-row {
+          text-align: right;
+          .justify-content(flex-end);
+        }
       }
 
       > .type-row {
@@ -198,6 +198,31 @@
         .type-icon {
           padding: 1rem;
           font-size: @h2;
+        }
+      }
+    }
+  }
+
+  @media all @above-layout-breakpoint {
+    > .buttons {
+      opacity: 0;
+    }
+
+    &:hover {
+      > .buttons {
+        opacity: 1;
+      }
+    }
+  }
+
+  @media all @under-sidebar-breakpoint {
+    > .buttons {
+      > div {
+        width: 10%;
+        background: none;
+
+        .title {
+          display: none;
         }
       }
     }

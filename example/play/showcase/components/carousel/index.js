@@ -45,7 +45,6 @@ exports.carousel = {
       row: {
         icon: {
           css: 'icon-left',
-          order: -1
         },
         title: {
           text: 'Previous'

@@ -19,7 +19,13 @@ exports['item-row-progress'] = {
   title: {
     subtitle: {
       css: { inherits: 'type-row' },
-      progress: { type: 'progress' },
+      progress: { type: 'progress' }
+    }
+  },
+  on: {
+    click () {
+      var data = this.state.data
+      data.lookUp('currentEpisode').val = data
     }
   }
 }

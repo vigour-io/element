@@ -7,14 +7,16 @@
 
   > .container {
     position: relative;
-    width: 60%;
-    margin-left: -40%;
 
-    @media all @above-tablet {
+    @media all @above-sidebar-breakpoint {
+      width: 60%;
+      margin-left: -40%;
       padding-top: 28%;
     }
 
-    @media all @under-tablet {
+    @media all @under-sidebar-breakpoint {
+      width: 100%;
+      margin-left: 0;
       padding-top: 50%;
     }
 
@@ -94,7 +96,7 @@
           }
         }
 
-        @media all @above-tablet {
+        @media all @above-sidebar-breakpoint {
           &.next,
           &.previous {
             opacity: 0.4;
@@ -165,7 +167,7 @@
   > .buttons {
     opacity: 0;
     z-index: 3;
-    .transition(.4s ease opacity);
+    .transition(@carousel-transition opacity);
     .user-select;
 
     > div {

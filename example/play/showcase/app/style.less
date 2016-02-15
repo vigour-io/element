@@ -58,6 +58,33 @@ body {
         .absolute;
         .fullsize;
         overflow-y: auto;
+        background: @body-background;
+      }
+
+      @media all @under-navbar-breakpoint {
+        .transition(0.2s ease all);
+        .shadow(0 0 100px @darkgray);
+
+        &.sidebar-is-open {
+          .shadow(0 0 50px fade(@darkgray, 50));
+        }
+      }
+
+      @media all @above-sidebar-breakpoint @under-navbar-breakpoint {
+        margin-left: -@sidebar-width;
+
+        &.sidebar-is-open {
+          .translateX(@sidebar-width);
+        }
+      }
+
+      @media all @under-sidebar-breakpoint {
+        margin-left: -@sidebar-small-width;
+
+        &.sidebar-is-open {
+          pointer-events: none;
+          .translateX(@sidebar-small-width);
+        }
       }
     }
   }

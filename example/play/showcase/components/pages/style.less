@@ -1,8 +1,15 @@
 .page {
   .margin-h(auto);
   max-width: @container-big;
-  margin: 4rem;
   .sizing;
+
+  @media all @above-layout-breakpoint {
+    margin: 4rem;
+  }
+
+  @media all @under-layout-breakpoint {
+    margin: 0;
+  }
 
   > .type-title {
     color: @primary;

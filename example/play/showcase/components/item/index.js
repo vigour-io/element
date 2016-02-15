@@ -4,7 +4,6 @@ var merge = require('lodash/object/merge')
 var click = {
   on: {
     click () {
-      console.log('ok set this?', this.path)
       this.state.data.getRoot().state.app.val = this.state.data.origin
     }
   }

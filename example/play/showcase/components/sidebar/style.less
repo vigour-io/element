@@ -23,17 +23,44 @@
   z-index: 0;
   position: relative;
 
-  .backLink {
-    .radius(0);
-    text-transform: lowercase;
-    text-decoration: none;
+  .flex-display;
+  .flex-direction(column);
 
-    .icon {
-      margin-left: -@gutter-big;
-      margin-right: @gutter;
+  > .menu {
+    .flex-display;
+    .flex-direction(column);
+
+    .type-row {
+      opacity: .6;
+      padding: 0 @gutter;
+      height: 5.4rem;
+      text-decoration: none;
+      .transition(@transition opacity);
+      letter-spacing: .3px;
+      text-transform: capitalize;
+
+      .icon {
+        font-size: @h3;
+        width: 3rem;
+        text-align: center;
+        padding-right: .5rem;
+      }
+
+      &:hover {
+        opacity: .8;
+      }
+
+      &:active {
+        opacity: 1;
+      }
+
+      &.active {
+        opacity: 1;
+      }
     }
   }
 
+  // desktop ui
   @media all @above-sidebar-breakpoint {
     width: @sidebar-width;
 
@@ -42,12 +69,9 @@
     }
   }
 
+  // phone ui
   @media all @under-sidebar-breakpoint {
     width: @sidebar-small-width;
-
-    &.ui-inverse {
-      background: @secondary;
-    }
 
     > div,
     > nav,
@@ -93,119 +117,6 @@
       .fullsize;
       left: @sidebar-small-width;
       z-index: 999;
-    }
-  }
-
-  .flex-display;
-  .flex-direction(column);
-
-  > .menu {
-    @media all @above-sidebar-breakpoint {
-      padding-bottom: @gutter-large;
-    }
-
-    .flex-display;
-    .flex-direction(column);
-
-    .type-row {
-      opacity: .6;
-      padding: 0 @gutter;
-      height: 5.4rem;
-      text-decoration: none;
-      .transition(@transition opacity);
-      letter-spacing: .3px;
-      text-transform: capitalize;
-
-      .icon {
-        font-size: @h3;
-        width: 3rem;
-        text-align: center;
-        padding-right: .5rem;
-      }
-
-      &:hover {
-        opacity: .8;
-      }
-
-      &:active {
-        opacity: 1;
-      }
-
-      &.ui-active {
-        opacity: 1;
-      }
-    }
-
-    // TODO: that's no way we need it!
-    @media all @under-sidebar-breakpoint {
-      .settings {
-        display: none;
-      }
-    }
-  }
-
-  > .meta {
-    .flex(1);
-    position: relative;
-
-    @media all @above-sidebar-breakpoint {
-      padding: @gutter;
-      background: @sidebar-meta-background;
-    }
-
-    .flex-display;
-    .flex-direction(column);
-
-    > .links {
-      text-transform: capitalize;
-
-      @media all @above-sidebar-breakpoint {
-        .flex(1);
-
-        a {
-          display: block;
-          text-decoration: none;
-          padding: .3rem 0;
-        }
-      }
-    }
-  }
-}
-
-body {
-  &.loggedin {
-    .sidebar {
-      .user {
-        .register,
-        .login {
-          display: none;
-        }
-      }
-    }
-  }
-
-  &:not(.loggedin) {
-    .sidebar {
-      .user {
-        .upgrade,
-        .profile {
-          display: none;
-        }
-      }
-    }
-  }
-
-  &.upgraded {
-    .sidebar {
-      .user {
-        .upgrade {
-          display: none;
-        }
-        .subtitle.subtitle {
-          color: @tertiary;
-          opacity: 1;
-        }
-      }
     }
   }
 }

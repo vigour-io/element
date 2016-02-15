@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "lodash": "3.10.x",
-    "dom-delegator": "^13.1.0",
+    "dom-delegator": "vigour-io/dom-delegator",
     "screenfull": "3.0.0",
     "vast-client": "^1.3.6",
     "vigour-config": "0.0.9",

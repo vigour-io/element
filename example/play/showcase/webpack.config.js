@@ -3,7 +3,7 @@ module.exports = {
     app: ['./app/index.js']
   },
   output: {
-    path: './bundle.js'
+    filename: 'bundle.js'
   },
   node: {
     global: true
@@ -13,6 +13,10 @@ module.exports = {
       {
         test: /\.less$/,
         loader: 'style!css!less?strictMath'
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
       }
       // {
       //   test: /\.js$/,

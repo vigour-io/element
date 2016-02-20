@@ -26,7 +26,8 @@
     "screenfull": "3.0.0",
     "vigour-js": "0.5.3",
     "vigour-ua": "0.0.3",
-    "virtual-dom": "2.1.1"
+    "virtual-dom": "2.1.1",
+    "vigour-util": "0.2.1"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

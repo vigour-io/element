@@ -27,7 +27,8 @@
     "virtual-dom": "2.1.1",
     "vigour-util": "1.0.0",
     "vigour-event": "1.0.0",
-    "vigour-observable": "1.0.0",
+    "vigour-base": "1.0.2",
+    "vigour-observable": "1.0.2",
     "lodash.merge": "4.3.0"
   },
   "homepage": "https://github.com/vigour-io/element",

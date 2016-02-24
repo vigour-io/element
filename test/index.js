@@ -20,7 +20,7 @@ test('children and text', function (t) {
   )
 })
 
-test('attributes and types', function (t) {
+test('attributes, types and data', function (t) {
   t.plan(1)
   var Observable = require('vigour-observable')
   var Data = new Observable({
@@ -40,9 +40,7 @@ test('attributes and types', function (t) {
         }
       }
     },
-    child: {
-      type: 'checkbox'
-    },
+    child: { type: 'checkbox' },
     val: new Data({ 'node-type': 'checkbox' }),
     DOM: fakeDom
   })

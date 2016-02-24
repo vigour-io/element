@@ -4,8 +4,7 @@
   "version": "0.6.0",
   "main": "lib/index.js",
   "scripts": {
-    "test": "gaston test",
-    "doc": "node documentation.js"
+    "test": "node test"
   },
   "repository": {
     "type": "git",

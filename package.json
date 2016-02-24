@@ -29,8 +29,10 @@
     "vigour-event": "1.0.0",
     "vigour-base": "1.0.2",
     "vigour-observable": "1.0.2",
-    "vdom-to-html": "2.2.0",
     "lodash.merge": "4.3.0"
+  },
+  "devDependencies": {
+    "vdom-to-html": "2.2.0"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

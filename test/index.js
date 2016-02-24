@@ -1,9 +1,6 @@
 'use strict'
 
-console.log('yo yo yo')
-
 var e = require('../e')
-
 var fakeDom = {}
 
 // do this with a conditional require or something
@@ -17,11 +14,9 @@ var app = e({
   DOM: fakeDom
 })
 
-console.log('gurk', app.renderTree)
+// get browser tests a bit later
 var toHTML = require('vdom-to-html')
-
 var http = require('http')
-
 var server = http.createServer((req,res) => {
   res.setHeader('Content-Type', 'text/html')
   res.writeHead(200, {'Content-Type': 'text/html'})

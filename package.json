@@ -32,7 +32,8 @@
     "lodash.merge": "4.3.0"
   },
   "devDependencies": {
-    "vdom-to-html": "2.2.0"
+    "vdom-to-html": "2.2.0",
+    "tape": "4.4.0"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

@@ -2,6 +2,7 @@
 
 var e = require('../e')
 var fakeDom = {}
+var test = require('tape')
 
 // do this with a conditional require or something
 var app = e({
@@ -14,12 +15,6 @@ var app = e({
   DOM: fakeDom
 })
 
-// get browser tests a bit later
-var toHTML = require('vdom-to-html')
-var http = require('http')
-var server = http.createServer((req,res) => {
-  res.setHeader('Content-Type', 'text/html')
-  res.writeHead(200, {'Content-Type': 'text/html'})
-  var str = '<html><head></head><body>' + toHTML(app.renderTree) + '</body></html>'
-  res.end(str)
-}).listen(3031)
+var str = toHTML(app.renderTree)
+
+console.log(str)

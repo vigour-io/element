@@ -5,6 +5,7 @@ var test = require('tape')
 var toHTML = require('vdom-to-html')
 
 test('children and text', function (t) {
+  t.plan(1)
   var app = e({
     child: {
       child: {
@@ -13,7 +14,6 @@ test('children and text', function (t) {
     },
     DOM: fakeDom
   })
-  t.plan(1)
   t.equal(
     toHTML(app.renderTree),
     '<div><div class="child"><div class="child">text</div></div></div>'
@@ -21,12 +21,17 @@ test('children and text', function (t) {
 })
 
 test('attributes and types', function (t) {
+  t.plan(1)
+  var Observable = require('vigour-observable')
+  var Data = new Observable({
+    inject: require('vigour-observable/lib/data')
+  }).Constructor
   var app = e({
     components: {
       checkbox: {
         type: 'input',
         attributes: {
-          type: 'checkbox',
+          type: { $: 'node-type' },
           checked: {
             $transform () {
               return true
@@ -38,12 +43,15 @@ test('attributes and types', function (t) {
     child: {
       type: 'checkbox'
     },
+    val: new Data({ 'node-type': 'checkbox' }),
     DOM: fakeDom
   })
-  t.plan(1)
-  var output = toHTML(app.renderTree)
-  t.equal(
-    output,
-    '<div><input type="checkbox" checked class="child type-checkbox"></div>'
-  )
+
+  process.nextTick(function () {
+    var output = toHTML(app.renderTree)
+    t.equal(
+      output,
+      '<div><input type="checkbox" checked class="child type-checkbox"></div>'
+    )
+  })
 })

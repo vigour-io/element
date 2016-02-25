@@ -88,6 +88,8 @@ test('css compare functionality with complex types', function (t) {
 
 test('creating and using cases in element', function (t) {
   t.plan(2)
+  // use references to cases check if it works!
+  // cases have to be scoped to an app not global on elem, it's annoying to test!
   var app = e({
     cases: { $test: true },
     text: 'nothing',
@@ -105,4 +107,21 @@ test('creating and using cases in element', function (t) {
     output = toHTML(app.renderTree)
     t.equal(output, '<div><div class="child">child</div>nothing</div>')
   })
+})
+
+test('conditional subscription', function (t) {
+  t.plan(2)
+  var app = e({
+    cases: { $test: true },
+    text: 'nothing',
+    child: { text: 'child' },
+    $test: {
+      text: 'active',
+      child: { text: '$test' }
+    },
+    DOM: fakeDom
+  })
+
+
+
 })

@@ -86,7 +86,7 @@ test('css compare functionality with complex types', function (t) {
   })
 })
 
-test('creating references to cases before init of an element', function (t) {
+test('creating and using cases in element', function (t) {
   t.plan(2)
   var app = e({
     cases: { $test: true },

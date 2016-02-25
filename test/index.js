@@ -85,3 +85,17 @@ test('css compare functionality with complex types', function (t) {
     )
   })
 })
+
+test('creating references to cases before init of an element', function (t) {
+  t.plan(1)
+  var app = e({
+    cases: { $test: true },
+    a: { type: 'a1' },
+    bla: {
+      text: [ '$', 'cases', '$test' ]
+    },
+    DOM: fakeDom
+  })
+  var output = toHTML(app.renderTree)
+  console.log(output)
+})

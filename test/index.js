@@ -53,3 +53,35 @@ test('attributes, types and data', function (t) {
     )
   })
 })
+
+test('css compare functionality with complex types', function (t) {
+  t.plan(1)
+  var app = e({
+    components: {
+      a1: {
+        text: 'hello!',
+        css: { s: 'i-a1' }
+      },
+      b1: {
+        css: { inherits: 'i-b1' },
+        a1: { type: 'a1' }
+      },
+      b2: {
+        type: 'b1',
+        css: { inherits: 'i-b2' },
+      },
+      p1: { s: { type: 'b1' } },
+      p2: { s: { type: 'b2' } }
+    },
+    posts: { type: 'p1' },
+    DOM: fakeDom
+  })
+  app.set({ posts: { type: 'p2' }})
+  process.nextTick(function () {
+    var output = toHTML(app.renderTree)
+    t.equal(
+      output,
+      '<div><div class="posts type-p2"><div class="type-b2 s i-b2"><div class="type-a1 a1 i-a1">hello!</div></div></div></div>'
+    )
+  })
+})

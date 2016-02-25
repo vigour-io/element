@@ -87,15 +87,22 @@ test('css compare functionality with complex types', function (t) {
 })
 
 test('creating references to cases before init of an element', function (t) {
-  t.plan(1)
+  t.plan(2)
   var app = e({
     cases: { $test: true },
-    a: { type: 'a1' },
-    bla: {
-      text: [ '$', 'cases', '$test' ]
+    text: 'nothing',
+    child: { text: 'child' },
+    $test: {
+      text: 'active',
+      child: { text: '$test' }
     },
     DOM: fakeDom
   })
   var output = toHTML(app.renderTree)
-  console.log(output)
+  t.equal(output, '<div>nothing<div class="child">$test</div>active</div>')
+  app.cases.$test.val = false
+  process.nextTick(function () {
+    output = toHTML(app.renderTree)
+    t.equal(output, '<div><div class="child">child</div>nothing</div>')
+  })
 })

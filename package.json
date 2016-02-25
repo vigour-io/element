@@ -21,7 +21,6 @@
   },
   "dependencies": {
     "dom-delegator": "vigour-io/dom-delegator",
-    "screenfull": "3.0.0",
     "vigour-ua": "0.0.3",
     "virtual-dom": "2.1.1",
     "vigour-util": "1.0.1",

@@ -1,11 +1,10 @@
 {
   "name": "vigour-element",
   "description": "DOM stuff for vigour-js",
-  "version": "0.6.0",
+  "version": "1.1.2",
   "main": "lib/index.js",
   "scripts": {
-    "test": "gaston test",
-    "doc": "node documentation.js"
+    "test": "node test"
   },
   "repository": {
     "type": "git",
@@ -21,12 +20,18 @@
     "./lib/engine/ua/": "./lib/engine/ua/browser"
   },
   "dependencies": {
-    "lodash": "3.10.x",
     "dom-delegator": "vigour-io/dom-delegator",
-    "screenfull": "3.0.0",
-    "vigour-js": "0.5.3",
     "vigour-ua": "0.0.3",
-    "virtual-dom": "2.1.1"
+    "virtual-dom": "2.1.1",
+    "vigour-util": "1.0.1",
+    "vigour-event": "1.0.1",
+    "vigour-base": "1.0.3",
+    "vigour-observable": "1.0.3",
+    "lodash.merge": "4.3.0"
+  },
+  "devDependencies": {
+    "vdom-to-html": "2.2.0",
+    "tape": "4.4.0"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

@@ -1,14 +1,10 @@
 'use strict'
 var Element = require('./lib/index.js') // becomes ./element
-var isPlain = require('vigour-js/lib/util/is/plainobj')
+var isPlain = require('vigour-util/is/plainobj')
 module.exports = function (set, event, parent, key) {
   // wtf this array style is rly good for observable as well
   // something to pass the components of something else would be nice
   var Constructor = Element
-  if (!event) {
-    console.warn('temporary fire emitters on creation -- ultra slow')
-    // event = false
-  }
   if (set instanceof Array) {
     let tempset
     if (isPlain(set[0])) {

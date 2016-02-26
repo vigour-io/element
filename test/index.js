@@ -88,7 +88,6 @@ test('css compare functionality with complex types', function (t) {
 
 test('creating and using cases in element', function (t) {
   t.plan(2)
-  // use references to cases check if it works!
   // cases have to be scoped to an app not global on elem, it's annoying to test!
   var app = e({
     cases: { $test: true },

@@ -100,7 +100,7 @@ test('creating and using cases in element', function (t) {
         text: {
           val: [ '$', 'cases', '$test' ],
           $transform (val) {
-            if(val === true) {
+            if (val === true) {
               return '$test'
             }
           }

@@ -120,9 +120,8 @@ test('conditional subscription', function (t) {
       title: {
         $: {
           val: true,
-          condition (data, key) {
-            // lets go!
-            console.log(data, key, this.path)
+          condition (data, event) {
+            return data && data.loaded && data.loaded.val
           }
         },
         text: { $: 'title' }
@@ -131,9 +130,14 @@ test('conditional subscription', function (t) {
     DOM: fakeDom,
     title: { type: 'title' },
     val: new Data({
-      title: 'hello'
+      title: 'title'
     })
   })
   var output = toHTML(app.renderTree)
-  console.log(output, app.$map())
+  t.equal(output, '<div></div>')
+  app.origin.set({ loaded: true })
+  process.nextTick(function () {
+    output = toHTML(app.renderTree)
+    t.equal(output, '<div><div class="title type-title">title</div></div>')
+  })
 })

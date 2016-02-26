@@ -96,7 +96,16 @@ test('creating and using cases in element', function (t) {
     child: { text: 'child' },
     $test: {
       text: 'active',
-      child: { text: '$test' }
+      child: {
+        text: {
+          val: [ '$', 'cases', '$test' ],
+          $transform (val) {
+            if(val === true) {
+              return '$test'
+            }
+          }
+        }
+      }
     },
     DOM: fakeDom
   })

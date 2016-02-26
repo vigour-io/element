@@ -118,21 +118,18 @@ test('conditional subscription', function (t) {
   var app = e({
     components: {
       title: {
-        text: {
-          $: {
-            val: 'title',
-            condition (data, key) {
-              // lets go!
-              console.log(data, key, this.path)
-            }
+        $: {
+          val: true,
+          condition (data, key) {
+            // lets go!
+            console.log(data, key, this.path)
           }
-        }
+        },
+        text: { $: 'title' }
       }
     },
     DOM: fakeDom,
-    title: {
-      type: 'title'
-    },
+    title: { type: 'title' },
     val: new Data({
       title: 'hello'
     })

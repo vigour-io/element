@@ -88,7 +88,6 @@ test('css compare functionality with complex types', function (t) {
 
 test('creating and using cases in element', function (t) {
   t.plan(2)
-  // use references to cases check if it works!
   // cases have to be scoped to an app not global on elem, it's annoying to test!
   var app = e({
     cases: { $test: true },
@@ -96,7 +95,16 @@ test('creating and using cases in element', function (t) {
     child: { text: 'child' },
     $test: {
       text: 'active',
-      child: { text: '$test' }
+      child: {
+        text: {
+          val: [ '$', 'cases', '$test' ],
+          $transform (val) {
+            if (val === true) {
+              return '$test'
+            }
+          }
+        }
+      }
     },
     DOM: fakeDom
   })
@@ -111,17 +119,33 @@ test('creating and using cases in element', function (t) {
 
 test('conditional subscription', function (t) {
   t.plan(2)
+  var Observable = require('vigour-observable')
+  var Data = new Observable({
+    inject: require('vigour-observable/lib/data')
+  }).Constructor
   var app = e({
-    cases: { $test: true },
-    text: 'nothing',
-    child: { text: 'child' },
-    $test: {
-      text: 'active',
-      child: { text: '$test' }
+    components: {
+      title: {
+        $: {
+          val: true,
+          condition (data, event) {
+            return data && data.loaded && data.loaded.val
+          }
+        },
+        text: { $: 'title' }
+      }
     },
-    DOM: fakeDom
+    DOM: fakeDom,
+    title: { type: 'title' },
+    val: new Data({
+      title: 'title'
+    })
   })
-
-
-
+  var output = toHTML(app.renderTree)
+  t.equal(output, '<div></div>')
+  app.origin.set({ loaded: true })
+  process.nextTick(function () {
+    output = toHTML(app.renderTree)
+    t.equal(output, '<div><div class="title type-title">title</div></div>')
+  })
 })

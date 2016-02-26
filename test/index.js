@@ -111,17 +111,32 @@ test('creating and using cases in element', function (t) {
 
 test('conditional subscription', function (t) {
   t.plan(2)
+  var Observable = require('vigour-observable')
+  var Data = new Observable({
+    inject: require('vigour-observable/lib/data')
+  }).Constructor
   var app = e({
-    cases: { $test: true },
-    text: 'nothing',
-    child: { text: 'child' },
-    $test: {
-      text: 'active',
-      child: { text: '$test' }
+    components: {
+      title: {
+        text: {
+          $: {
+            val: 'title',
+            condition (data, key) {
+              // lets go!
+              console.log(data, key, this.path)
+            }
+          }
+        }
+      }
     },
-    DOM: fakeDom
+    DOM: fakeDom,
+    title: {
+      type: 'title'
+    },
+    val: new Data({
+      title: 'hello'
+    })
   })
-
-
-
+  var output = toHTML(app.renderTree)
+  console.log(output, app.$map())
 })

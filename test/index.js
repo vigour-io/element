@@ -23,6 +23,7 @@ test('children and text', function (t) {
 test('attributes, types and data', function (t) {
   t.plan(1)
   var Observable = require('vigour-observable')
+  // will make this into a seperate module
   var Data = new Observable({
     inject: require('vigour-observable/lib/data')
   }).Constructor

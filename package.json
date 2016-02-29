@@ -44,19 +44,5 @@
     "Jim de Beer <jim@vigour.io>",
     "Nika Tomadze <nika@vigour.io>",
     "Renan Calvalho <renan@vigour.io>"
-  ],
-  "engines": {},
-  "gaston": {
-    "source-maps": true
-  },
-  "standard": {
-    "globals": [
-      "describe",
-      "it",
-      "beforeEach",
-      "sinon",
-      "expect",
-      "xit"
-    ]
-  }
+  ]
 }

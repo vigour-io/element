@@ -1,7 +1,7 @@
 {
   "name": "vigour-element",
   "description": "DOM stuff for vigour-js",
-  "version": "1.2.11",
+  "version": "1.2.12",
   "main": "lib/index.js",
   "scripts": {
     "test": "node test"

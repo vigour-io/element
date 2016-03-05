@@ -20,6 +20,35 @@ test('children and text', function (t) {
   )
 })
 
+test('complex observable types and string in element', function (t) {
+  t.plan(1)
+  var Observable = require('vigour-observable')
+  var injectable = {
+    api: {
+      type: 'observable',
+      components: {
+        api: {
+          on: {
+            data: {
+              api () {}
+            }
+          }
+        }
+      },
+      Child: { type: 'api' },
+      language: {}
+    }
+  }
+  var elem = require('../').prototype
+  elem.inject(injectable)
+  var app = e({
+    child: 'hello',
+    DOM: fakeDom
+  })
+  var output = toHTML(app.renderTree)
+  t.equal(output, '<div><div class="child">hello</div></div>')
+})
+
 test('attributes, types and data', function (t) {
   t.plan(1)
   var Observable = require('vigour-observable')

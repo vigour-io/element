@@ -18,7 +18,6 @@ test('children and text', function (t) {
     toHTML(app.renderTree),
     '<div><div class="child"><div class="child">text</div></div></div>'
   )
-  console.log(app)
 })
 
 test('complex observable types and string in element', function (t) {

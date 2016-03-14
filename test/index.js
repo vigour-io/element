@@ -22,7 +22,6 @@ test('children and text', function (t) {
 
 test('complex observable types and string in element', function (t) {
   t.plan(1)
-  var Observable = require('vigour-observable')
   var injectable = {
     api: {
       type: 'observable',
@@ -139,11 +138,19 @@ test('creating and using cases in element', function (t) {
     DOM: fakeDom
   })
   var output = toHTML(app.renderTree)
-  t.equal(output, '<div>nothing<div class="child">$test</div>active</div>')
+  t.equal(
+    output,
+    '<div>nothing<div class="child">$test</div>active</div>',
+    'case is true'
+  )
   app.cases.$test.val = false
   process.nextTick(function () {
     output = toHTML(app.renderTree)
-    t.equal(output, '<div><div class="child">child</div>nothing</div>')
+    t.equal(
+      output,
+      '<div><div class="child">child</div>nothing</div>',
+      'case is false'
+    )
   })
 })
 
@@ -167,15 +174,17 @@ test('conditional subscription', function (t) {
     },
     DOM: fakeDom,
     title: { type: 'title' },
-    val: new Data({
-      title: 'title'
-    })
+    val: new Data({ title: 'title' })
   })
   var output = toHTML(app.renderTree)
-  t.equal(output, '<div></div>')
+  t.equal(output, '<div></div>', 'condition does not pass')
   app.origin.set({ loaded: true })
   process.nextTick(function () {
     output = toHTML(app.renderTree)
-    t.equal(output, '<div><div class="title type-title">title</div></div>')
+    t.equal(
+      output,
+      '<div><div class="title type-title">title</div></div>',
+      'condition passes'
+    )
   })
 })

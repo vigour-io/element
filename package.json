@@ -4,7 +4,7 @@
   "version": "1.4.2",
   "main": "lib/index.js",
   "scripts": {
-    "test": "node test"
+    "test": "node test | tap-difflet"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,8 @@
   },
   "devDependencies": {
     "vdom-to-html": "^2.2.0",
-    "tape": "^4.4.0"
+    "tape": "^4.4.0",
+    "tap-difflet": "0.4.0"
   },
   "homepage": "https://github.com/vigour-io/element",
   "keywords": [

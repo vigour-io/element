@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "dom-delegator": "vigour-io/dom-delegator",
-    "vigour-ua": "0.0.3",
+    "vigour-ua": "^1.0.0",
     "virtual-dom": "^2.1.1",
     "vigour-util": "^1.0.1",
     "vigour-event": "^1.0.3",

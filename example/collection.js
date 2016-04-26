@@ -29,10 +29,8 @@ operator.set({
   inject: require('../lib/map')
 })
 
-// const Property = require('../lib/property')
 const Element = require('../lib/element')
-
-var svgNS = 'http://www.w3.org/2000/svg'
+const svgNS = 'http://www.w3.org/2000/svg'
 
 var app = new Element({
   key: 'app',
@@ -41,7 +39,13 @@ var app = new Element({
       text: { $: 'first', $add: ' ms initial render' }
     },
     ms: {
-      text: { $: 'ms', $add: ' periodic updates' }
+      text: {
+        $: 'ms',
+        $transform (val) {
+          return isNumber(val) ? Math.round(val) : 'not measured'
+        },
+        $add: ' ms periodic updates'
+      }
     },
     elems: {
       text: { $: 'elems', $add: ' dom-nodes' }
@@ -201,17 +205,18 @@ function loop () {
   }
   var ms = Date.now()
   var obj = {}
-  for (var i = 0; i < 2e3; i++) {
+  for (var i = 0; i < 5e3; i++) {
     obj[i] = {
       title: { val: i + cnt, lastname: i },
       x: i
     }
   }
   state.collection.set(obj)
-  total += (Date.now() - ms)
-  state.ms.set(total / cnt)
   if (!state.first) {
-    state.set({ first: total / cnt })
+    state.set({ first: Date.now() - ms })
+  } else {
+    total += (Date.now() - ms)
+    state.ms.set(total / cnt)
   }
   if (cnt < 5) {
     raf(loop)

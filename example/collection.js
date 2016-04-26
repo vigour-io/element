@@ -205,7 +205,7 @@ function loop () {
   }
   var ms = Date.now()
   var obj = {}
-  for (var i = 0; i < 5e3; i++) {
+  for (var i = 0; i < 2e3; i++) {
     obj[i] = {
       title: { val: i + cnt, lastname: i },
       x: i
@@ -218,7 +218,7 @@ function loop () {
     total += (Date.now() - ms)
     state.ms.set(total / cnt)
   }
-  if (cnt < 5) {
+  if (cnt < 10) {
     raf(loop)
   }
 }

@@ -48,47 +48,47 @@ var app = new Element({
     }
   },
   main: {
-    holder2: {
-      $: 'collection',
-      $any: true,
-      // css: null,
-      namespace: svgNS,
-      node: 'svg',
-      attr: {
-        width: 1000,
-        height: 1000
-      },
-      Child: { // if you reuse here stuff here as a Child uid is not enough!
-        namespace: svgNS,
-        node: 'circle',
-        // css: null,
-        attr: {
-          cx: {
-            $: 'title',
-            $transform (val) { return Math.sin(val / 30) * (val / 5) + 250 }
-          }, // 50,
-          cy: {
-            $: 'title', $transform (val) { return Math.cos(val / 30) * (val / 5) + 250 }
-          }, // 50,
-          r: 10,
-          'stroke-width': 1,
-          fill: 'red',
-          stroke: 'black'
-        }
-        // $transform () {
-        // ambitious but doable -- do this later
-        // hard parts -- needs to add the stuff to subscriptions
-        // same for 'property definitions (although that can be an operator'
-        // now there is no way to switch etc
-        //   return {
-        //     text: { $: 'title' }
-        //   }
-        // },
-        // text: { $: 'title' }
-      }
-    },
+    // holder2: {
+    //   $: 'collection',
+    //   $any: true,
+    //   // css: null,
+    //   namespace: svgNS,
+    //   node: 'svg',
+    //   attr: {
+    //     width: 1000,
+    //     height: 1000
+    //   },
+    //   Child: { // if you reuse here stuff here as a Child uid is not enough!
+    //     namespace: svgNS,
+    //     node: 'circle',
+    //     // css: null,
+    //     attr: {
+    //       cx: {
+    //         $: 'title',
+    //         $transform (val) { return Math.sin(val / 30) * (val / 5) + 250 }
+    //       }, // 50,
+    //       cy: {
+    //         $: 'title', $transform (val) { return Math.cos(val / 30) * (val / 5) + 250 }
+    //       }, // 50,
+    //       r: 10,
+    //       'stroke-width': 1,
+    //       fill: 'red',
+    //       stroke: 'black'
+    //     }
+    //     // $transform () {
+    //     // ambitious but doable -- do this later
+    //     // hard parts -- needs to add the stuff to subscriptions
+    //     // same for 'property definitions (although that can be an operator'
+    //     // now there is no way to switch etc
+    //     //   return {
+    //     //     text: { $: 'title' }
+    //     //   }
+    //     // },
+    //     // text: { $: 'title' }
+    //   }
+    // },
     holder: {
-      // $: 'collection',
+      $: 'collection',
       $any: true,
       Child: {
         css: 'nestchild',
@@ -201,7 +201,7 @@ function loop () {
   }
   var ms = Date.now()
   var obj = {}
-  for (var i = 0; i < 5e2; i++) {
+  for (var i = 0; i < 2e3; i++) {
     obj[i] = {
       title: { val: i + cnt, lastname: i },
       x: i
@@ -213,7 +213,9 @@ function loop () {
   if (!state.first) {
     state.set({ first: total / cnt })
   }
-  raf(loop)
+  if (cnt < 5) {
+    raf(loop)
+  }
 }
 
 state.collection[0].remove()

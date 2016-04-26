@@ -1,3 +1,2 @@
-[![Build Status](https://travis-ci.org/vigour-io/element.svg?branch=master)](https://travis-ci.org/vigour-io/element)
-
-# element
+<!-- VDOC.badges travis; standard; npm; coveralls -->
+Reactive ui elements, blazing fast

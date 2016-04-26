@@ -12,7 +12,7 @@ const isNumber = require('vigour-util/is/number')
 const state = s({ name: 'trees' })
 const obj = {}
 
-const amount = 1000
+const amount = 2000
 
 for (var i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({

@@ -12,7 +12,7 @@ const isNumber = require('vigour-util/is/number')
 const state = s({ name: 'trees' })
 const obj = {}
 
-const amount = 2000
+const amount = 2500
 
 for (var i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
@@ -66,19 +66,19 @@ var app = new Element({
     //     width: 1000,
     //     height: 1000
     //   },
-    //   Child: { // if you reuse here stuff here as a Child uid is not enough!
-    //     namespace: svgNS,
+    //   Child: { // if you reuse stuff here as a Child uid is not enough!
+    //     namespace: svgNS, // this will become a prop ofcourse
     //     node: 'circle',
     //     // css: null,
     //     attr: {
     //       cx: {
     //         $: 'title',
-    //         $transform (val) { return Math.sin(val / 30) * (val / 5) + 250 }
+    //         $transform (val) { return Math.sin(val / 30) * (val / 2) + 250 }
     //       }, // 50,
     //       cy: {
-    //         $: 'title', $transform (val) { return Math.cos(val / 30) * (val / 5) + 250 }
+    //         $: 'title', $transform (val) { return Math.cos(val / 30) * (val / 2) + 250 }
     //       }, // 50,
-    //       r: 10,
+    //       r: { $: 'title', $transform (val) { return val/50 + 1 } },
     //       'stroke-width': 1,
     //       fill: 'red',
     //       stroke: 'black'
@@ -95,16 +95,16 @@ var app = new Element({
     //     // text: { $: 'title' }
     //   }
     // },
-    // holder3: {
-    //   $: 'collection',
-    //   $any: true,
-    //   Child: {
-    //     css: 'weirdChild',
-    //     text: { $: 'title' }
-    //   }
-    // },
-    holder: {
+    holder3: {
       $: 'collection',
+      $any: true,
+      Child: {
+        css: 'weirdChild',
+        text: { $: 'title' }
+      }
+    },
+    holder: {
+      // $: 'collection',
       $any: true,
       Child: {
         css: 'nestchild',
@@ -218,11 +218,11 @@ setTimeout(function () {
     var ms = Date.now()
     var obj = {}
     for (var i = 0; i < amount; i++) {
-      // obj[i] = { title: i + cnt }
-      obj[i] = {
-        title: { val: i + cnt, lastname: i + cnt },
-        x: i + cnt
-      }
+      obj[i] = { title: i + cnt }
+      // obj[i] = {
+      //   title: { val: i + cnt, lastname: i + cnt },
+      //   x: i + cnt
+      // }
     }
     state.collection.set(obj)
     if (!state.first) {

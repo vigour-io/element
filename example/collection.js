@@ -91,58 +91,66 @@ var app = new Element({
     //     // text: { $: 'title' }
     //   }
     // },
-    holder: {
+    holder3: {
       $: 'collection',
       $any: true,
       Child: {
-        css: 'nestchild',
-        on: {
-          remove (val, stamp, node) {
-            console.log('FIRE REMOVE:', val, stamp, node)
-          }
-        },
-        star: {},
-        something: {
-          a: {
-            b: {
-              c: {
-                text: 'haha'
-              }
-            }
-          }
-        },
-        title: {
-          text: { $: 'title' }
-        },
-        // more: {
-        //   text: { $: '$root.ms' } -- root is not yet supported (needs some minor revisions)
-        // },
-        header: {
-          a: {
-            bla: {
-              // $: true,
-              // $: 'title',
-              x: {
-                text: { $: 'x', $prepend: 'x:' }
-              },
-              lastname: {
-                text: {
-                  $: 'title.lastname',
-                  $prepend: 'lname: '
-                }
-              }
-            },
-            text: {
-              $: 'title',
-              // $prepend: 'h:',
-              $transform (val) {
-                return val
-              }
-            }
-          }
-        }
+        css: 'weirdChild',
+        text: { $: 'title' }
       }
-    }
+    },
+    // holder: {
+    //   $: 'collection',
+    //   $any: true,
+    //   Child: {
+    //     css: 'nestchild',
+    //     on: {
+    //       remove (val, stamp, node) {
+    //         console.log('FIRE REMOVE:', val, stamp, node)
+    //       }
+    //     },
+    //     star: {},
+    //     something: {
+    //       a: {
+    //         b: {
+    //           c: {
+    //             text: 'haha'
+    //           }
+    //         }
+    //       }
+    //     },
+    //     title: {
+    //       text: { $: 'title' }
+    //     },
+    //     // more: {
+    //     //   text: { $: '$root.ms' } -- root is not yet supported (needs some minor revisions)
+    //     // },
+    //     header: {
+    //       a: {
+    //         bla: {
+    //           // $: true,
+    //           // $: 'title',
+    //           x: {
+    //             text: { $: 'x', $prepend: 'x:' }
+    //           },
+    //           lastname: {
+    //             text: {
+    //               $: 'title.lastname',
+    //               $prepend: 'lname: '
+    //             }
+    //           }
+    //         },
+    //         text: {
+    //           $: 'title',
+    //           // $prepend: 'h:',
+    //           $transform (val) {
+    //             return val
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
   // menu: {
   //   // this needs to be rendered of course -- even if there is no data -- else its pretty strange
@@ -205,11 +213,12 @@ function loop () {
   }
   var ms = Date.now()
   var obj = {}
-  for (var i = 0; i < 2e3; i++) {
-    obj[i] = {
-      title: { val: i + cnt, lastname: i },
-      x: i
-    }
+  for (var i = 0; i < 25e2; i++) {
+    obj[i] = { title: i + cnt }
+    // obj[i] = {
+    //   title: { val: i + cnt, lastname: i },
+    //   x: i
+    // }
   }
   state.collection.set(obj)
   if (!state.first) {

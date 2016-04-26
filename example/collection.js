@@ -1,7 +1,6 @@
 'use strict'
-const Observable = require('vigour-observable') // very slow init -- need to opmize
-const subscribe = require('../../../subscribe')
-const s = require('../../../s')
+const subscribe = require('vigour-state/subscribe')
+const s = require('vigour-state/s')
 
 require('./style.less')
 console.time('START')
@@ -26,21 +25,12 @@ state.set({
 
 const operator = require('vigour-observable/lib/operator/constructor').prototype
 operator.set({
-  properties: {
-    $: true
-  },
-  inject: require('./map')
+  properties: { $: true },
+  inject: require('../lib/map')
 })
 
-const Property = require('../lib/property')
+// const Property = require('../lib/property')
 const Element = require('../lib/element')
-
-/*
-<svg height="100" width="100">
-  <circle cx="50" cy="50" r="40" stroke="black" stroke-width="3" fill="red" />
-  Sorry, your browser does not support inline SVG.
-</svg>
-*/
 
 var svgNS = 'http://www.w3.org/2000/svg'
 
@@ -168,7 +158,7 @@ var app = new Element({
 
 var subs = app.$map()
 
-var render = require('./render').multiple
+var render = require('../lib/render').multiple
 
 var tree = { parent: true }
 // need to do initial render as well

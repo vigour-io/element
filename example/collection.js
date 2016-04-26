@@ -179,77 +179,72 @@ var render = require('../lib/render').multiple
 var tree = { parent: true }
 // need to do initial render as well
 
+console.timeEnd('START')
 
 setTimeout(function () {
 
-var ms = Date.now()
-render.call(state, 'new', state._lstamp, subs, tree, void 0, tree)
-tree = subscribe(state, subs, function (type, stamp, subs, ctree, ptree) {
-  // console.group()
-  // console.log('FIRE', this.path(), type, subs)
-  // console.log('tree:', tree)
-  // console.log('ptree:', ptree)
-  if (subs._) {
-    render.call(this, type, stamp, subs, ctree, ptree, tree)
-  } else {
-    console.warn('no _ ?', this.path())
-  }
-  // console.groupEnd()
-  // render.f
-}, tree)
-// unsubscribe for more tests
-document.body.appendChild(tree._[app.uid()])
-state.set({ first: Date.now() - ms })
-
-
-// -------------------------
-console.log('subs:', subs)
-// -------------------------
-console.timeEnd('START')
-
-global.state = state
-global.tree = tree
-global.subs = subs
-// console.log(tree._[app.uid()])
-var cnt = 0
-var total = 0
-function loop () {
-  cnt++
-  if (cnt > 1e3) {
-    cnt = 0
-  }
   var ms = Date.now()
-  var obj = {}
-  for (var i = 0; i < amount; i++) {
-    // obj[i] = { title: i + cnt }
-    obj[i] = {
-      title: { val: i + cnt, lastname: i + cnt },
-      x: i + cnt
+  render.call(state, 'new', state._lstamp, subs, tree, void 0, tree)
+  tree = subscribe(state, subs, function (type, stamp, subs, ctree, ptree) {
+    // console.group()
+    // console.log('FIRE', this.path(), type, subs)
+    // console.log('tree:', tree)
+    // console.log('ptree:', ptree)
+    if (subs._) {
+      render.call(this, type, stamp, subs, ctree, ptree, tree)
+    } else {
+      console.warn('no _ ?', this.path())
     }
+    // console.groupEnd()
+    // render.f
+  }, tree)
+  // unsubscribe for more tests
+  document.body.appendChild(tree._[app.uid()])
+  state.set({ first: Date.now() - ms })
+
+
+  // -------------------------
+  console.log('subs:', subs)
+  // -------------------------
+
+  global.state = state
+  global.tree = tree
+  global.subs = subs
+  // console.log(tree._[app.uid()])
+  var cnt = 0
+  var total = 0
+  function loop () {
+    cnt++
+    var ms = Date.now()
+    var obj = {}
+    for (var i = 0; i < amount; i++) {
+      // obj[i] = { title: i + cnt }
+      obj[i] = {
+        title: { val: i + cnt, lastname: i + cnt },
+        x: i + cnt
+      }
+    }
+    state.collection.set(obj)
+    if (!state.first) {
+      state.set({ first: Date.now() - ms })
+    } else {
+      total += (Date.now() - ms)
+      state.ms.set(total / cnt)
+    }
+    // if (cnt < 10) {
+    raf(loop)
+    // }
   }
-  state.collection.set(obj)
-  if (!state.first) {
-    state.set({ first: Date.now() - ms })
-  } else {
-    total += (Date.now() - ms)
-    state.ms.set(total / cnt)
-  }
-  // if (cnt < 10) {
-  raf(loop)
-  // }
-}
 
-state.collection[0].remove()
+  state.collection[0].remove()
 
+  loop()
 
-loop()
-
-console.log('----------------------------')
-console.log('tree:', tree)
-state.set({ elems: document.getElementsByTagName('*').length })
-// if i do this correctly dont need parent ever -- just need to store
-// element and then find it by checking parent yes better
-// document.appendChild(elem)
-// tree.node or something...
-
+  console.log('----------------------------')
+  console.log('tree:', tree)
+  state.set({ elems: document.getElementsByTagName('*').length })
+  // if i do this correctly dont need parent ever -- just need to store
+  // element and then find it by checking parent yes better
+  // document.appendChild(elem)
+  // tree.node or something...
 })

@@ -2,6 +2,7 @@
 const subscribe = require('vigour-state/subscribe')
 const s = require('vigour-state/s')
 
+// https://github.com/Matt-Esch/virtual-dom/issues/371 <-- hahahaha! wining all
 require('./style.less')
 console.time('START')
 // -------------------------
@@ -10,7 +11,10 @@ const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = s({ name: 'trees' })
 const obj = {}
-for (var i = 0; i < 2; i++) { obj[i] = { title: i } }
+
+const amount = 2500
+
+for (var i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,
   ms: {
@@ -175,11 +179,11 @@ var render = require('../lib/render').multiple
 var tree = { parent: true }
 // need to do initial render as well
 
-console.error('-----------------')
-console.error('TOP LEVEL RENDER')
-render.call(state, 'new', state._lstamp, subs, tree, void 0, tree)
-console.error('-----------------')
 
+setTimeout(function () {
+
+var ms = Date.now()
+render.call(state, 'new', state._lstamp, subs, tree, void 0, tree)
 tree = subscribe(state, subs, function (type, stamp, subs, ctree, ptree) {
   // console.group()
   // console.log('FIRE', this.path(), type, subs)
@@ -193,6 +197,10 @@ tree = subscribe(state, subs, function (type, stamp, subs, ctree, ptree) {
   // console.groupEnd()
   // render.f
 }, tree)
+// unsubscribe for more tests
+document.body.appendChild(tree._[app.uid()])
+state.set({ first: Date.now() - ms })
+
 
 // -------------------------
 console.log('subs:', subs)
@@ -203,7 +211,6 @@ global.state = state
 global.tree = tree
 global.subs = subs
 // console.log(tree._[app.uid()])
-document.body.appendChild(tree._[app.uid()])
 var cnt = 0
 var total = 0
 function loop () {
@@ -213,7 +220,7 @@ function loop () {
   }
   var ms = Date.now()
   var obj = {}
-  for (var i = 0; i < 25e2; i++) {
+  for (var i = 0; i < amount; i++) {
     obj[i] = { title: i + cnt }
     // obj[i] = {
     //   title: { val: i + cnt, lastname: i },
@@ -233,6 +240,8 @@ function loop () {
 }
 
 state.collection[0].remove()
+
+
 loop()
 
 console.log('----------------------------')
@@ -242,3 +251,5 @@ state.set({ elems: document.getElementsByTagName('*').length })
 // element and then find it by checking parent yes better
 // document.appendChild(elem)
 // tree.node or something...
+
+})

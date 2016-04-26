@@ -12,7 +12,7 @@ const isNumber = require('vigour-util/is/number')
 const state = s({ name: 'trees' })
 const obj = {}
 
-const amount = 2500
+const amount = 1000
 
 for (var i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
@@ -95,66 +95,66 @@ var app = new Element({
     //     // text: { $: 'title' }
     //   }
     // },
-    holder3: {
-      $: 'collection',
-      $any: true,
-      Child: {
-        css: 'weirdChild',
-        text: { $: 'title' }
-      }
-    },
-    // holder: {
+    // holder3: {
     //   $: 'collection',
     //   $any: true,
     //   Child: {
-    //     css: 'nestchild',
-    //     on: {
-    //       remove (val, stamp, node) {
-    //         console.log('FIRE REMOVE:', val, stamp, node)
-    //       }
-    //     },
-    //     star: {},
-    //     something: {
-    //       a: {
-    //         b: {
-    //           c: {
-    //             text: 'haha'
-    //           }
-    //         }
-    //       }
-    //     },
-    //     title: {
-    //       text: { $: 'title' }
-    //     },
-    //     // more: {
-    //     //   text: { $: '$root.ms' } -- root is not yet supported (needs some minor revisions)
-    //     // },
-    //     header: {
-    //       a: {
-    //         bla: {
-    //           // $: true,
-    //           // $: 'title',
-    //           x: {
-    //             text: { $: 'x', $prepend: 'x:' }
-    //           },
-    //           lastname: {
-    //             text: {
-    //               $: 'title.lastname',
-    //               $prepend: 'lname: '
-    //             }
-    //           }
-    //         },
-    //         text: {
-    //           $: 'title',
-    //           // $prepend: 'h:',
-    //           $transform (val) {
-    //             return val
-    //           }
-    //         }
-    //       }
-    //     }
+    //     css: 'weirdChild',
+    //     text: { $: 'title' }
     //   }
-    // }
+    // },
+    holder: {
+      $: 'collection',
+      $any: true,
+      Child: {
+        css: 'nestchild',
+        on: {
+          remove (val, stamp, node) {
+            console.log('FIRE REMOVE:', val, stamp, node)
+          }
+        },
+        star: {},
+        something: {
+          a: {
+            b: {
+              c: {
+                text: 'haha'
+              }
+            }
+          }
+        },
+        title: {
+          text: { $: 'title' }
+        },
+        // more: {
+        //   text: { $: '$root.ms' } -- root is not yet supported (needs some minor revisions)
+        // },
+        header: {
+          a: {
+            bla: {
+              // $: true,
+              // $: 'title',
+              x: {
+                text: { $: 'x', $prepend: 'x:' }
+              },
+              lastname: {
+                text: {
+                  $: 'title.lastname',
+                  $prepend: 'lname: '
+                }
+              }
+            },
+            text: {
+              $: 'title',
+              // $prepend: 'h:',
+              $transform (val) {
+                return val
+              }
+            }
+          }
+        }
+      }
+    }
   }
   // menu: {
   //   // this needs to be rendered of course -- even if there is no data -- else its pretty strange
@@ -221,11 +221,11 @@ function loop () {
   var ms = Date.now()
   var obj = {}
   for (var i = 0; i < amount; i++) {
-    obj[i] = { title: i + cnt }
-    // obj[i] = {
-    //   title: { val: i + cnt, lastname: i },
-    //   x: i
-    // }
+    // obj[i] = { title: i + cnt }
+    obj[i] = {
+      title: { val: i + cnt, lastname: i + cnt },
+      x: i + cnt
+    }
   }
   state.collection.set(obj)
   if (!state.first) {
@@ -234,9 +234,9 @@ function loop () {
     total += (Date.now() - ms)
     state.ms.set(total / cnt)
   }
-  if (cnt < 10) {
-    raf(loop)
-  }
+  // if (cnt < 10) {
+  raf(loop)
+  // }
 }
 
 state.collection[0].remove()

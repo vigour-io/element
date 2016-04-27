@@ -94,6 +94,9 @@ const app = new Element({
         props: {
           bla: 'hello!',
           blurf: { $: 'title' }
+        },
+        style: {
+          border: '1px solid red'
         }
       }
     },

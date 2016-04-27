@@ -162,7 +162,7 @@ setTimeout(function () {
     raf(loop)
     // }
   }
-  // state.collection[0].remove()
+  state.collection[0].remove()
   loop()
   console.log('----------------------------')
   state.set({ elems: document.getElementsByTagName('*').length })

@@ -1,10 +1,20 @@
 'use strict'
 const State = require('vigour-state')
+// give elem a render method? perhaps? -- or when you pass something like a dom node?
 const Element = require('../lib/element')
 const render = require('../lib/render')
 
-var app = new Element({
-  text: 'hello'
+const state = new State({
+  a: 'hello a',
+  b: {}
 })
 
-document.body.appendChild(render(app))
+const app = new Element({
+  text: 'hello',
+  field: {
+    $: 'b',
+    text: { $: '$root.a' }
+  }
+})
+
+document.body.appendChild(render(app, state))

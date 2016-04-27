@@ -1,10 +1,10 @@
 'use strict'
 console.time('START')
+// for some perf examples --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const State = require('vigour-state')
 const Element = require('../lib/element')
 const render = require('../lib/render')
 // -------------------------
-// https://github.com/Matt-Esch/virtual-dom/issues/371
 require('./style.less')
 // -------------------------
 const raf = window.requestAnimationFrame
@@ -22,7 +22,7 @@ state.set({
     },
     $add: ' ms'
   },
-  settings: {}
+  // settings: {}
 })
 // -------------------------
 const app = new Element({
@@ -115,21 +115,18 @@ const app = new Element({
         }
       }
     }
+  },
+  menu: {
+    button: { text: 'a button' },
+    settings: {
+      $: 'settings',
+      button: { text: { $: 'languages' } }
+    }
+  },
+  footer: {
+    left: { text: 'on the left' },
+    right: { text: 'on the right' }
   }
-  // menu: {
-  //   // this needs to be rendered of course -- even if there is no data -- else its pretty strange
-  //   // for now we cna work arround this (leave it!) but alter we need to change this
-  //   // it just weird that if there is a state it allways takes over and takes care of the handeling
-  //   button: { text: 'a button' },
-  //   settings: {
-  //     $: 'settings',
-  //     button: { text: { $: 'languages' } }
-  //   }
-  // },
-  // footer: {
-  //   left: { text: 'on the left' },
-  //   right: { text: 'on the right' }
-  // }
 }, false)
 
 console.timeEnd('START')

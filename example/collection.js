@@ -13,7 +13,7 @@ const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = global.state = new State({ name: 'trees' })
 const obj = {}
-const amount = 2500
+const amount = 25e2
 for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,
@@ -90,7 +90,11 @@ const app = new Element({
       $any: true,
       Child: {
         class: 'weirdChild',
-        text: { $: 'title' }
+        text: { $: 'title' },
+        props: {
+          bla: 'hello!',
+          blurf: { $: 'title' }
+        }
       }
     },
     holder: {
@@ -165,9 +169,13 @@ const app = new Element({
 console.timeEnd('START')
 
 setTimeout(function () {
+
   var ms = Date.now()
+  // as an extra option add the nested render function (/w type or somethig) type:'DOM'
+  // type: 'hscript'
   document.body.appendChild(render(app, state))
   state.set({ first: Date.now() - ms })
+
   var cnt = 0
   var total = 0
   function loop () {
@@ -188,12 +196,12 @@ setTimeout(function () {
       total += (Date.now() - ms)
       state.ms.set(total / cnt)
     }
-    // if (cnt < 10) {
-    raf(loop)
-    // }
+    if (cnt < 10) {
+      raf(loop)
+    }
   }
 
-  state.collection[0].remove()
+  // state.collection[0].remove()
 
   loop()
 

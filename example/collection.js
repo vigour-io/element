@@ -91,13 +91,14 @@ const app = new Element({
       Child: {
         class: 'weirdChild',
         text: { $: 'title' },
-        props: {
-          bla: 'hello!',
-          blurf: { $: 'title' }
-        },
-        style: {
-          border: '1px solid red'
-        }
+        // props: {
+        //   bla: 'hello!',
+        //   blurf: { $: 'title' }
+        // },
+        // style: {
+        //   border: '1px solid red',
+        //   width: 200
+        // }
       }
     },
     holder: {

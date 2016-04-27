@@ -9,10 +9,11 @@ require('./style.less')
 // -------------------------
 const raf = window.requestAnimationFrame
 const isNumber = require('vigour-util/is/number')
+// const svgNS = 'http://www.w3.org/2000/svg'
 // -------------------------
 const state = global.state = new State({ name: 'trees' })
 const obj = {}
-const amount = 25
+const amount = 25e2
 for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,
@@ -45,12 +46,52 @@ const app = new Element({
     }
   },
   main: {
+    // holder2: {
+    //   $: 'collection',
+    //   $any: true,
+    //   // css: null,
+    //   namespace: svgNS,
+    //   node: 'svg',
+    //   attr: {
+    //     width: 1000,
+    //     height: 1000
+    //   },
+    //   Child: { // if you reuse stuff here as a Child uid is not enough!
+    //     namespace: svgNS, // this will become a prop ofcourse
+    //     node: 'circle',
+    //     // css: null,
+    //     attr: {
+    //       cx: {
+    //         $: 'title',
+    //         $transform (val) { return Math.sin(val / 30) * (val / 2) + 250 }
+    //       }, // 50,
+    //       cy: {
+    //         $: 'title', $transform (val) { return Math.cos(val / 30) * (val / 2) + 250 }
+    //       }, // 50,
+    //       r: { $: 'title', $transform (val) { return val/50 + 1 } },
+    //       'stroke-width': 1,
+    //       fill: 'red',
+    //       stroke: 'black'
+    //     }
+    //     // $transform () {
+    //     // ambitious but doable -- do this later
+    //     // hard parts -- needs to add the stuff to subscriptions
+    //     // same for 'property definitions (although that can be an operator'
+    //     // now there is no way to switch etc
+    //     //   return {
+    //     //     text: { $: 'title' }
+    //     //   }
+    //     // },
+    //     // text: { $: 'title' }
+    //   }
+    // },
     holder3: {
       $: 'collection',
       $any: true,
       Child: {
         node: 'span',
         class: 'weirdChild',
+        // text has to be qualified as an element
         // text: 'haha', // wrong need to see this multiple times (cloneNode(true))
         text: { $: 'title' },
         props: {
@@ -58,13 +99,13 @@ const app = new Element({
           // blurf: { $: 'title' }
         },
         style: {
-          border: '1px solid red'
+          // border: '1px solid red'
           // width: 100
         }
       }
     },
     holder: {
-      $: 'collection',
+      // $: 'collection',
       $any: true,
       Child: {
         class: 'nestchild',
@@ -106,7 +147,7 @@ const app = new Element({
             },
             text: {
               $: 'title',
-              $prepend: 'h:',
+              // $prepend: 'h:',
               $transform (val) {
                 return val
               }
@@ -135,9 +176,13 @@ const app = new Element({
 console.timeEnd('START')
 
 setTimeout(function () {
+
   var ms = Date.now()
+  // as an extra option add the nested render function (/w type or somethig) type:'DOM'
+  // type: 'hscript'
   document.body.appendChild(render(app, state))
   state.set({ first: Date.now() - ms })
+
   var cnt = 0
   var total = 0
   function loop () {
@@ -145,11 +190,11 @@ setTimeout(function () {
     var ms = Date.now()
     var obj = {}
     for (var i = 0; i < amount; i++) {
-      // obj[i] = { title: i + cnt }
-      obj[i] = {
-        title: { val: i + cnt, lastname: i + cnt },
-        x: i + cnt
-      }
+      obj[i] = { title: i + cnt }
+      // obj[i] = {
+      //   title: { val: i + cnt, lastname: i + cnt },
+      //   x: i + cnt
+      // }
     }
     state.collection.set(obj)
     if (!state.first) {
@@ -162,8 +207,15 @@ setTimeout(function () {
     raf(loop)
     // }
   }
+
   // state.collection[0].remove()
+
   loop()
+
   console.log('----------------------------')
   state.set({ elems: document.getElementsByTagName('*').length })
+  // if i do this correctly dont need parent ever -- just need to store
+  // element and then find it by checking parent yes better
+  // document.appendChild(elem)
+  // tree.node or something...
 })

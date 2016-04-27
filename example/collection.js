@@ -1,20 +1,20 @@
 'use strict'
-const subscribe = require('vigour-state/subscribe')
-const s = require('vigour-state/s')
-
-// https://github.com/Matt-Esch/virtual-dom/issues/371 <-- hahahaha! wining all
-require('./style.less')
 console.time('START')
+const State = require('vigour-state')
+const Element = require('../lib/element')
+const render = require('../lib/render')
+// -------------------------
+// https://github.com/Matt-Esch/virtual-dom/issues/371
+require('./style.less')
 // -------------------------
 const raf = window.requestAnimationFrame
 const isNumber = require('vigour-util/is/number')
+// const svgNS = 'http://www.w3.org/2000/svg'
 // -------------------------
-const state = s({ name: 'trees' })
+const state = global.state = new State({ name: 'trees' })
 const obj = {}
-
 const amount = 2500
-
-for (var i = 0; i < amount; i++) { obj[i] = { title: i } }
+for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,
   ms: {
@@ -25,18 +25,8 @@ state.set({
   },
   settings: {}
 })
-// // -------------------------
-
-const operator = require('vigour-observable/lib/operator/constructor').prototype
-operator.set({
-  properties: { $: true },
-  inject: require('../lib/map')
-})
-
-const Element = require('../lib/element')
-const svgNS = 'http://www.w3.org/2000/svg'
-
-var app = new Element({
+// -------------------------
+const app = new Element({
   key: 'app',
   holder: {
     init: {
@@ -99,7 +89,7 @@ var app = new Element({
       $: 'collection',
       $any: true,
       Child: {
-        css: 'weirdChild',
+        class: 'weirdChild',
         text: { $: 'title' }
       }
     },
@@ -107,7 +97,7 @@ var app = new Element({
       // $: 'collection',
       $any: true,
       Child: {
-        css: 'nestchild',
+        class: 'nestchild',
         on: {
           remove (val, stamp, node) {
             console.log('FIRE REMOVE:', val, stamp, node)
@@ -172,45 +162,12 @@ var app = new Element({
   // }
 }, false)
 
-var subs = app.$map()
-
-var render = require('../lib/render').multiple
-
-var tree = { parent: true }
-// need to do initial render as well
-
 console.timeEnd('START')
 
 setTimeout(function () {
-
   var ms = Date.now()
-  render.call(state, 'new', state._lstamp, subs, tree, void 0, tree)
-  tree = subscribe(state, subs, function (type, stamp, subs, ctree, ptree) {
-    // console.group()
-    // console.log('FIRE', this.path(), type, subs)
-    // console.log('tree:', tree)
-    // console.log('ptree:', ptree)
-    if (subs._) {
-      render.call(this, type, stamp, subs, ctree, ptree, tree)
-    } else {
-      console.warn('no _ ?', this.path())
-    }
-    // console.groupEnd()
-    // render.f
-  }, tree)
-  // unsubscribe for more tests
-  document.body.appendChild(tree._[app.uid()])
+  document.body.appendChild(render(app, state))
   state.set({ first: Date.now() - ms })
-
-
-  // -------------------------
-  console.log('subs:', subs)
-  // -------------------------
-
-  global.state = state
-  global.tree = tree
-  global.subs = subs
-  // console.log(tree._[app.uid()])
   var cnt = 0
   var total = 0
   function loop () {
@@ -241,7 +198,6 @@ setTimeout(function () {
   loop()
 
   console.log('----------------------------')
-  console.log('tree:', tree)
   state.set({ elems: document.getElementsByTagName('*').length })
   // if i do this correctly dont need parent ever -- just need to store
   // element and then find it by checking parent yes better

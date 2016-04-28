@@ -1,4 +1,5 @@
 'use strict'
+console.clear()
 console.time('START')
 // for some perf examples --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const State = require('vigour-state')

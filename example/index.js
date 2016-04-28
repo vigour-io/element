@@ -2,12 +2,8 @@
 // simple budo run script
 const exec = require('child_process').exec
 const fs = require('fs')
-const command = `
-  budo ./index.js -p ${process.argv[3] || 8080}
-  --css ./bundle.css
-  --live
-  -- -r ../../package.json:package.json
-`
+const port = process.argv[3] || 8080
+const command = `budo ./index.js -p ${port} --css ./bundle.css --live -- -r ../../package.json:package.json`
 
 var target = process.argv[2]
 
@@ -23,6 +19,7 @@ if (!target) {
 exec(command,
   { cwd: 'example/' + target },
   (error, stdout, stderr) => {
+    console.log(`starting budo on port "${port}"`)
     console.log(`stdout: ${stdout}`)
     console.log(`stderr: ${stderr}`)
     if (error !== null) {

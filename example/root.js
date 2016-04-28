@@ -13,8 +13,13 @@ const app = new Element({
   text: 'hello',
   field: {
     $: 'b',
-    text: { $: '$root.a' }
+    bla: {
+      $: 'c',
+      text: { $: 'd' }
+    }
   }
 })
 
-document.body.appendChild(render(app, state))
+document.body.appendChild(render(app, state, 'dom', function (type) {
+  console.log('lulzzz', type, this.path())
+}))

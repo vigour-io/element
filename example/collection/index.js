@@ -62,70 +62,70 @@ const app = new Element({
         }
       }
     },
-    holder: {
-      $: 'collection',
-      $any: true,
-      Child: {
-        class: 'nestchild',
-        on: {
-          remove (val, stamp, node) {
-            console.log('FIRE REMOVE:', val, stamp, node)
-          }
-        },
-        star: {},
-        something: {
-          a: {
-            b: {
-              c: {
-                text: 'haha'
-              }
-            }
-          }
-        },
-        title: {
-          text: { $: 'title' }
-        },
-        // more: {
-        //   text: { $: '$root.ms' } -- root is not yet supported (needs some minor revisions)
-        // },
-        header: {
-          a: {
-            bla: {
-              // $: true,
-              // $: 'title',
-              x: {
-                text: { $: 'x', $prepend: 'x:' }
-              },
-              lastname: {
-                text: {
-                  $: 'title.lastname',
-                  $prepend: 'lname: '
-                }
-              }
-            },
-            text: {
-              $: 'title',
-              $prepend: 'h:',
-              $transform (val) {
-                return val
-              }
-            }
-          }
-        }
-      }
-    }
+    // holder: {
+    //   // $: 'collection',
+    //   $any: true,
+    //   Child: {
+    //     class: 'nestchild',
+    //     on: {
+    //       remove (val, stamp, node) {
+    //         console.log('FIRE REMOVE:', val, stamp, node)
+    //       }
+    //     },
+    //     star: {},
+    //     something: {
+    //       a: {
+    //         b: {
+    //           c: {
+    //             text: 'haha'
+    //           }
+    //         }
+    //       }
+    //     },
+    //     title: {
+    //       text: { $: 'title' }
+    //     },
+    //     // more: {
+    //     //   text: { $: '$root.ms' } -- root is not yet supported (needs some minor revisions)
+    //     // },
+    //     header: {
+    //       a: {
+    //         bla: {
+    //           // $: true,
+    //           // $: 'title',
+    //           x: {
+    //             text: { $: 'x', $prepend: 'x:' }
+    //           },
+    //           lastname: {
+    //             text: {
+    //               $: 'title.lastname',
+    //               $prepend: 'lname: '
+    //             }
+    //           }
+    //         },
+    //         text: {
+    //           $: 'title',
+    //           $prepend: 'h:',
+    //           $transform (val) {
+    //             return val
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   },
-  menu: {
-    button: { text: 'a button' },
-    settings: {
-      $: 'settings',
-      button: { text: { $: 'languages' } }
-    }
-  },
-  footer: {
-    left: { text: 'on the left' },
-    right: { text: 'on the right' }
-  }
+  // menu: {
+  //   button: { text: 'a button' },
+  //   settings: {
+  //     $: 'settings',
+  //     button: { text: { $: 'languages' } }
+  //   }
+  // },
+  // footer: {
+  //   left: { text: 'on the left' },
+  //   right: { text: 'on the right' }
+  // }
 }, false)
 
 console.timeEnd('START')

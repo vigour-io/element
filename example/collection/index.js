@@ -39,6 +39,9 @@ const app = new Element({
   },
   main: {
     holder3: {
+      style: {
+        width: 100
+      },
       $: 'collection',
       $any: true,
       Child: {

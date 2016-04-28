@@ -10,6 +10,7 @@
     "view-cover": "istanbul report html && open ./coverage/index.html",
     "docs": "node_modules/vigour-doc/bin/vdoc",
     "example": "node example",
+    "dev": "budo ./example/collection/index.js --css ./bundle.css --live -- -r ./package.json:package.json",
     "travis": "npm run cover -s && istanbul report lcov && ((cat coverage/lcov.info | coveralls) || exit 0)"
   },
   "repository": {

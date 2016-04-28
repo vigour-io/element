@@ -110,7 +110,7 @@ console.timeEnd('START')
 
 setTimeout(function () {
   var ms = Date.now()
-  document.body.appendChild(render(app, state))
+  document.body.appendChild(render(app, state, 'dom'))
   state.set({ first: Date.now() - ms })
   var cnt = 0
   var total = 0

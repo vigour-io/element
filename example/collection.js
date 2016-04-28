@@ -21,7 +21,7 @@ state.set({
       return isNumber(val) ? Math.round(val) : 'not measured'
     },
     $add: ' ms'
-  },
+  }
   // settings: {}
 })
 // -------------------------

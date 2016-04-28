@@ -2,17 +2,17 @@
 console.time('START')
 // for some perf examples --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const State = require('vigour-state')
-const Element = require('../lib/element')
-const render = require('../lib/render')
+const Element = require('../../lib/element')
+const render = require('../../lib/render')
 // -------------------------
-require('./style.css')
+require('../style.css')
 // -------------------------
 const raf = window.requestAnimationFrame
 const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = global.state = new State({ name: 'trees' })
 const obj = {}
-const amount = 1e3
+const amount = 1e2
 for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,

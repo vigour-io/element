@@ -9,8 +9,7 @@
     "cover": "istanbul cover --report none --print detail test/index.js",
     "view-cover": "istanbul report html && open ./coverage/index.html",
     "docs": "node_modules/vigour-doc/bin/vdoc",
-    "example": "node example/run",
-    "budo": "budo ./example/collection.js -p 8080 --css ./bundle.css --live -- -r ./package.json:package.json",
+    "example": "node example",
     "travis": "npm run cover -s && istanbul report lcov && ((cat coverage/lcov.info | coveralls) || exit 0)"
   },
   "repository": {

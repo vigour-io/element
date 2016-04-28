@@ -1,7 +1,7 @@
 'use strict'
 console.clear()
 console.time('START')
-// for some perf examples --> https://github.com/Matt-Esch/virtual-dom/issues/371
+// for some perf comparisons --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const State = require('vigour-state')
 const Element = require('../../lib/element')
 const render = require('../../lib/render')
@@ -11,17 +11,11 @@ const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = global.state = new State({ name: 'trees' })
 const obj = {}
-const amount = 1e4
+const amount = 200
 for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,
-  ms: {
-    $transform (val) {
-      return isNumber(val) ? Math.round(val) : 'not measured'
-    },
-    $add: ' ms'
-  }
-  // settings: {}
+  ms: {} // state compute is very very slow
 })
 // -------------------------
 const app = new Element({
@@ -50,8 +44,8 @@ const app = new Element({
       Child: {
         node: 'span',
         class: 'weirdChild',
-        text: 'haha', // wrong need to see this multiple times (cloneNode(true))
-        // text: { $: 'title' },
+        // text: 'haha', // wrong need to see this multiple times (cloneNode(true))
+        text: { $: 'title' },
         props: {
           bla: 'hello!'
           // blurf: { $: 'title' }
@@ -61,71 +55,55 @@ const app = new Element({
           // width: 10
         }
       }
+    },
+    holder: {
+      $: 'collection',
+      $any: true,
+      Child: {
+        class: 'nestchild',
+        on: {
+          remove (val, stamp, node) {
+            console.log('FIRE REMOVE:', val, stamp, node)
+          }
+        },
+        star: {},
+        something: {
+          a: {
+            b: {
+              c: {
+                text: 'haha'
+              }
+            }
+          }
+        },
+        title: {
+          text: { $: 'title' }
+        },
+        header: {
+          a: {
+            bla: {
+              x: {
+                text: { $: 'x', $prepend: 'x:' }
+              },
+              lastname: {
+                text: {
+                  $: 'title.lastname',
+                  $prepend: 'lname: '
+                }
+              }
+            },
+            text: {
+              $: 'title',
+              $prepend: 'h:',
+              $transform (val) {
+                return val
+              }
+            }
+          }
+        }
+      }
     }
-    // holder: {
-    //   // $: 'collection',
-    //   $any: true,
-    //   Child: {
-    //     class: 'nestchild',
-    //     on: {
-    //       remove (val, stamp, node) {
-    //         console.log('FIRE REMOVE:', val, stamp, node)
-    //       }
-    //     },
-    //     star: {},
-    //     something: {
-    //       a: {
-    //         b: {
-    //           c: {
-    //             text: 'haha'
-    //           }
-    //         }
-    //       }
-    //     },
-    //     title: {
-    //       text: { $: 'title' }
-    //     },
-    //     // more: {
-    //     //   text: { $: '$root.ms' } -- root is not yet supported (needs some minor revisions)
-    //     // },
-    //     header: {
-    //       a: {
-    //         bla: {
-    //           // $: true,
-    //           // $: 'title',
-    //           x: {
-    //             text: { $: 'x', $prepend: 'x:' }
-    //           },
-    //           lastname: {
-    //             text: {
-    //               $: 'title.lastname',
-    //               $prepend: 'lname: '
-    //             }
-    //           }
-    //         },
-    //         text: {
-    //           $: 'title',
-    //           $prepend: 'h:',
-    //           $transform (val) {
-    //             return val
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
   }
-  // menu: {
-  //   button: { text: 'a button' },
-  //   settings: {
-  //     $: 'settings',
-  //     button: { text: { $: 'languages' } }
-  //   }
-  // },
-  // footer: {
-  //   left: { text: 'on the left' },
-  //   right: { text: 'on the right' }
-  // }
 }, false)
 
 console.timeEnd('START')
@@ -141,9 +119,11 @@ setTimeout(function () {
     var ms = Date.now()
     var obj = {}
     for (var i = 0; i < amount; i++) {
-      // obj[i] = { title: i + cnt }
       obj[i] = {
-        title: { val: i + cnt, lastname: i + cnt },
+        title: {
+          val: i + cnt,
+          lastname: i + cnt
+        },
         x: i + cnt
       }
     }
@@ -154,12 +134,9 @@ setTimeout(function () {
       total += (Date.now() - ms)
       state.ms.set(total / cnt)
     }
-    // if (cnt < 10) {
     raf(loop)
-    // }
   }
   state.collection[0].remove()
   loop()
-  console.log('----------------------------')
   state.set({ elems: document.getElementsByTagName('*').length })
 })

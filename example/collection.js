@@ -54,12 +54,12 @@ const app = new Element({
         // text: 'haha', // wrong need to see this multiple times (cloneNode(true))
         text: { $: 'title' },
         props: {
-          // bla: 'hello!'
+          bla: 'hello!'
           // blurf: { $: 'title' }
         },
         style: {
-          border: '1px solid red'
-          // width: 100
+          border: '1px solid white'
+          // width: 10
         }
       }
     },

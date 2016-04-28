@@ -2,9 +2,9 @@
 const State = require('vigour-state')
 const Element = require('../lib/element')
 const render = require('../lib/render')
-
-var app = new Element({
+const s = new State()
+const app = new Element({
   text: 'hello'
 })
 
-document.body.appendChild(render(app))
+document.body.appendChild(render(app, s))

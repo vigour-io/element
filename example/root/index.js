@@ -5,6 +5,7 @@ const State = require('vigour-state')
 const Element = require('../../lib/element')
 const render = require('../../lib/render')
 const s = new State({
+  key: 'STATE',
   a: {
     b: 'its a.b'
   },
@@ -12,14 +13,15 @@ const s = new State({
     d: {
       e: 'e'
     }
-  },
-  b: 'its root.b'
+  }
+  // b: 'its root.b'
 })
 
 const app = new Element({
+  key: 'app',
   text: 'hello',
   a: {
-    // $: 'a',
+    $: 'a',
     b: {
       // text: { $: 'c.d.e' }
       // something extra funky going on with root...
@@ -31,8 +33,10 @@ const app = new Element({
 
 // const app = new Element({ text: 'hello' })
 document.body.appendChild(render(app, s, 'dom', function (type, stamp, subs, tree) {
-  console.log('yo yo yo', this.path(), type, stamp, tree)
-  // 2 times a never root?
+  console.log('FIRE FIRE', this.path(), type, stamp, tree)
+  // 2 times A never root?
 }))
+
+s.set({ b: 'hello its root b!' })
 
 s.c.d.e.set('hello its e!')

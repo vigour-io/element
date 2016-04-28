@@ -5,7 +5,7 @@ const State = require('vigour-state')
 const Element = require('../lib/element')
 const render = require('../lib/render')
 // -------------------------
-require('./style.less')
+require('./style.css')
 // -------------------------
 const raf = window.requestAnimationFrame
 const isNumber = require('vigour-util/is/number')

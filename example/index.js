@@ -16,14 +16,9 @@ if (!target) {
   }
 }
 
-exec(command,
-  { cwd: 'example/' + target },
-  (error, stdout, stderr) => {
-    console.log(`starting budo on port "${port}"`)
-    console.log(`stdout: ${stdout}`)
-    console.log(`stderr: ${stderr}`)
-    if (error !== null) {
-      console.log(`exec error: ${error}`)
-    }
-  }
-)
+console.log(`starting budo on port "${port}" running example "${target}"`)
+
+const budo = exec(command, { cwd: 'example/' + target })
+
+budo.stdout.pipe(process.stdout)
+budo.stderr.pipe(process.stderr)

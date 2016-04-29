@@ -39,6 +39,10 @@ const app = new Element({
   },
   main: {
     holder3: {
+      style: {
+        hyphens: 'manual',
+        width: 100
+      },
       $: 'collection',
       $any: true,
       Child: {
@@ -110,7 +114,7 @@ console.timeEnd('START')
 
 setTimeout(function () {
   var ms = Date.now()
-  document.body.appendChild(render(app, state))
+  document.body.appendChild(render(app, state, 'dom'))
   state.set({ first: Date.now() - ms })
   var cnt = 0
   var total = 0

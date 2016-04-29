@@ -24,7 +24,7 @@ $handleShifted: function(i) {
 ```
 
 
-Depending on the function that you're writing, there are some informations that may not be necessary. e.g = `@param` , `@return`.
+Depending on the function that you're writing, there are some informations that may not be necessary. e.g = `@param`, `@return`.
 
 There is just one information that cannot be avoid.
 
@@ -57,7 +57,7 @@ function newElement (){
 ```
 
 - `@link` - If for some reason, you may use another function to explain or show a behavior
- that will help on 
+ that will help on
 
 
 ####How to document Namespaces/Class
@@ -81,12 +81,12 @@ module.exports = new Observable({
       value: 0,
       writable: true
       .....
-      
+
 ```
 
 ####How to generate the documentation file?
 
-All the markdown files are hosted on the VUI github wiki, and configured as a submodule of the VUI repo. Submodules are basically a repo inside another repo, it means that when you pull VUI, vui.wiki will be pulled as well. 
+All the markdown files are hosted on the VUI github wiki, and configured as a submodule of the VUI repo. Submodules are basically a repo inside another repo, it means that when you pull VUI, vui.wiki will be pulled as well.
 
 When working with submodules you need to initialize the submodule and updated it, you have two ways to do that:
 
@@ -102,7 +102,7 @@ Notice that the first time that you do one of the both options above, the vui.wi
 
 
 
-Once you've completed with the coding using the style mentioned above, you don't need to touch any markdown file. Go to terminal and run `npm run doc`, this command will update the vui.wiki repo with all the new comments that you've added. 
+Once you've completed with the coding using the style mentioned above, you don't need to touch any markdown file. Go to terminal and run `npm run doc`, this command will update the vui.wiki repo with all the new comments that you've added.
 
 ####Pushing the documentation content
 

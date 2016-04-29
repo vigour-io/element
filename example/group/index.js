@@ -42,8 +42,8 @@ var app = {
       text: 'its child!',
       someGroup: {
         type: 'group',
-        render () {
-          console.log('lulllz', this.inspect())
+        render (state) {
+          console.log('lulllz???', this.inspect(), state.path())
         },
         field: {
           $: 'i',

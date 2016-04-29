@@ -1,15 +1,18 @@
 'use strict'
+console.time('START')
+// -------------------------
 require('../style.css')
 const s = require('vigour-state/s')
+const Element = require('../../lib/element')
+const render = require('../../lib/render')
 // https://github.com/Matt-Esch/virtual-dom/issues/371 <-- hahahaha! wining all
-console.time('START')
 // -------------------------
 const raf = window.requestAnimationFrame
 const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = s({ name: 'trees' })
 const obj = {}
-const amount = 2500
+const amount = 25e2
 // -------------------------
 for (var i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
@@ -19,12 +22,9 @@ state.set({
       return isNumber(val) ? Math.round(val) : 'not measured'
     },
     $add: ' ms'
-  },
-  settings: {}
+  }
 })
 // // -------------------------
-const Element = require('../../lib/element')
-
 var app = new Element({
   key: 'app',
   holder: {
@@ -56,9 +56,8 @@ var app = new Element({
   }
 }, false)
 
-var render = require('../../lib/render')
-var tree = { parent: true }
 console.timeEnd('START')
+
 setTimeout(function () {
   var ms = Date.now()
   document.body.appendChild(render(app, state))

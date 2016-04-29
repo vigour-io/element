@@ -1,7 +1,6 @@
 'use strict'
 console.clear()
 console.time('START')
-// for some perf comparisons --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const State = require('vigour-state')
 const Element = require('../../lib/element')
 const render = require('../../lib/render')
@@ -11,7 +10,7 @@ const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = global.state = new State({ name: 'trees' })
 const obj = {}
-const amount = 2500
+const amount = 1e3
 for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,
@@ -55,54 +54,54 @@ const app = new Element({
           // width: 10
         }
       }
-    }//,
-    // holder: {
-    //   $: 'collection',
-    //   $any: true,
-    //   Child: {
-    //     class: 'nestchild',
-    //     on: {
-    //       remove (val, stamp, node) {
-    //         console.log('FIRE REMOVE:', val, stamp, node)
-    //       }
-    //     },
-    //     star: {},
-    //     something: {
-    //       a: {
-    //         b: {
-    //           c: {
-    //             text: 'haha'
-    //           }
-    //         }
-    //       }
-    //     },
-    //     title: {
-    //       text: { $: 'title' }
-    //     },
-    //     header: {
-    //       a: {
-    //         bla: {
-    //           x: {
-    //             text: { $: 'x', $prepend: 'x:' }
-    //           },
-    //           lastname: {
-    //             text: {
-    //               $: 'title.lastname',
-    //               $prepend: 'lname: '
-    //             }
-    //           }
-    //         },
-    //         text: {
-    //           $: 'title',
-    //           $prepend: 'h:',
-    //           $transform (val) {
-    //             return val
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+    },
+    holder: {
+      $: 'collection',
+      $any: true,
+      Child: {
+        class: 'nestchild',
+        on: {
+          remove (val, stamp, node) {
+            console.log('FIRE REMOVE:', val, stamp, node)
+          }
+        },
+        star: {},
+        something: {
+          a: {
+            b: {
+              c: {
+                text: 'haha'
+              }
+            }
+          }
+        },
+        title: {
+          text: { $: 'title' }
+        },
+        header: {
+          a: {
+            bla: {
+              x: {
+                text: { $: 'x', $prepend: 'x:' }
+              },
+              lastname: {
+                text: {
+                  $: 'title.lastname',
+                  $prepend: 'lname: '
+                }
+              }
+            },
+            text: {
+              $: 'title',
+              $prepend: 'h:',
+              $transform (val) {
+                return val
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }, false)
 
@@ -120,15 +119,12 @@ setTimeout(function () {
     var obj = {}
     for (var i = 0; i < amount; i++) {
       obj[i] = {
-        title: i + cnt
+        title: {
+          val: i + cnt,
+          lastname: i + cnt
+        },
+        x: i + cnt
       }
-      // obj[i] = {
-      //   title: {
-      //     val: i + cnt,
-      //     lastname: i + cnt
-      //   },
-      //   x: i + cnt
-      // }
     }
     state.collection.set(obj)
     if (!state.first) {

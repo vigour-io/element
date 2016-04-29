@@ -57,9 +57,7 @@ var app = new Element({
   }
 }, false)
 
-var subs = app.$map()
 var render = require('../../lib/render')
-var tree = { parent: true }
 console.timeEnd('START')
 setTimeout(function () {
   var ms = Date.now()
@@ -85,6 +83,6 @@ setTimeout(function () {
     raf(loop)
   }
   state.collection[0].remove()
-  // loop()
+  loop()
   state.set({ elems: document.getElementsByTagName('*').length })
 })

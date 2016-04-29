@@ -23,13 +23,14 @@
     "url": "https://github.com/vigour-io/element/issues"
   },
   "dependencies": {
-    "vigour-ua": "^1.0.3",
-    "vigour-observable": "^2.1.4",
-    "vigour-state": "^1.0.1",
-    "vigour-util": "^2.0.8",
-    "vigour-stamp": "^1.0.1",
+    "hyperscript": "^1.4.7",
+    "lodash.get": "^4.2.0",
     "lodash.set": "^4.1.0",
-    "lodash.get": "^4.2.0"
+    "vigour-observable": "^2.1.4",
+    "vigour-stamp": "^1.0.1",
+    "vigour-state": "^1.0.1",
+    "vigour-ua": "^1.0.3",
+    "vigour-util": "^2.0.8"
   },
   "devDependencies": {
     "tape": "^4.4.0",
@@ -46,7 +47,14 @@
   "browserify": {
     "transform": [
       "postcssify",
-      ["babelify", { "presets": ["es2015"] }]
+      [
+        "babelify",
+        {
+          "presets": [
+            "es2015"
+          ]
+        }
+      ]
     ]
   },
   "homepage": "https://github.com/vigour-io/element",

@@ -4,37 +4,54 @@ const render = require('../../lib/render')
 
 document.body.appendChild(render({
   key: 'app',
-  rotated: {
-    text: 'rotate!',
+  transformed: {
+    text: 'transform!',
     style: {
-      rotate: 45
+      transform: 'rotate(7deg) skewX(10deg)'
     }
   },
-  scaled: {
-    text: 'scale!',
-    style:{
-      scale: 3
-    }
-  },
-  xd: {
-    text: 'x!',
-    style:{
-      x: 100
-    }
-  },
-  yd:{
-    text: 'y!',
-    style:{
-      y: 100
-    }
-  },
+  // rotated: {
+  //   text: 'rotate!',
+  //   style: {
+  //     transform: {
+  //       rotate: 45
+  //     }
+  //   }
+  // },
+  // scaled: {
+  //   text: 'scale!',
+  //   style:{
+  //     transform: {
+  //       scale: 1.2
+  //     }
+  //   }
+  // },
+  // xd: {
+  //   text: 'x!',
+  //   style:{
+  //     transform: {
+  //       x: 100
+  //     }
+  //   }
+  // },
+  // yd:{
+  //   text: 'y!',
+  //   style:{
+  //     transform: {
+  //       y: 100,
+  //       x: 50
+  //     }
+  //   }
+  // },
   everything:{
     text: 'everything!',
     style:{
-      y: 100,
-      x: 100,
-      scale: 3,
-      rotate: 45
+      transform: {
+        y: 100,
+        x: 100,
+        scale: 3,
+        rotate: 45
+      }
     }
   }
 }))

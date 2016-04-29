@@ -85,6 +85,6 @@ setTimeout(function () {
     raf(loop)
   }
   state.collection[0].remove()
-  loop()
+  // loop()
   state.set({ elems: document.getElementsByTagName('*').length })
 })

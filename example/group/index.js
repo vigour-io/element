@@ -1,25 +1,22 @@
 'use strict'
-console.time('START')
-// -------------------------
 require('../style.css')
 const s = require('vigour-state/s')
 const Element = require('../../lib/element')
 const render = require('../../lib/render')
-// https://github.com/Matt-Esch/virtual-dom/issues/371 <-- hahahaha! wining all
 // -------------------------
 const raf = window.requestAnimationFrame
 const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = s({ name: 'trees' })
 const obj = {}
-const amount = 25e2
+const amount = 10
 // -------------------------
 for (var i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({ collection: obj, ms: {} })
 // // -------------------------
 var app = new Element({
   key: 'app',
-  holder: {
+  info: {
     init: {
       text: { $: 'first', $add: ' ms initial render' }
     },
@@ -36,21 +33,17 @@ var app = new Element({
       text: { $: 'elems', $add: ' dom-nodes' }
     }
   },
-  main: {
-    holder3: {
-      $: 'collection',
-      $any: true,
-      Child: {
-        class: 'weirdChild',
-        text: { $: 'title' }
-      }
-    }
+  text: 'hello',
+  holder: {
+    $: 'collection',
+    $any: true
   }
 }, false)
 
 console.timeEnd('START')
 
 setTimeout(function () {
+  // reuse this piece a bit
   var ms = Date.now()
   document.body.appendChild(render(app, state))
   state.set({ first: Date.now() - ms })

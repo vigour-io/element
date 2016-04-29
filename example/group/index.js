@@ -36,23 +36,23 @@ var app = {
   },
   text: 'hello app',
   holder: {
-    $: 'collection',
-    $any: true,
-    Child: {
-      text: 'its child!',
-      someGroup: {
-        type: 'group',
+    $: 'collection.0',
+    // $any: true,
+    // Child: {
+    text: 'its child!',
+    someGroup: {
+      type: 'group',
+      render (state) {
+        console.log('lulllz???', this.inspect(), state.path())
+      },
+      field: {
+        $: 'i',
         render (state) {
-          console.log('lulllz???', this.inspect(), state.path())
-        },
-        field: {
-          $: 'i',
-          render (state) {
-            console.log('this is a field -->', state && state.inspect())
-          }
+          console.log('this is a field -->', state && state.inspect())
         }
       }
     }
+    // }
   }
 }
 

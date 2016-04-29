@@ -47,9 +47,7 @@ var app = new Element({
     }
   }
 }, false)
-
 console.timeEnd('START')
-
 setTimeout(function () {
   var ms = Date.now()
   document.body.appendChild(render(app, state))

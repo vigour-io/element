@@ -1,4 +1,5 @@
 'use strict'
+console.clear()
 require('../style.css')
 const s = require('vigour-state/s')
 const Element = require('../../lib/element')
@@ -7,14 +8,14 @@ const render = require('../../lib/render')
 const raf = window.requestAnimationFrame
 const isNumber = require('vigour-util/is/number')
 // -------------------------
-const state = s({ name: 'trees' })
+const state = s()
 const obj = {}
-const amount = 10
+const amount = 5
 // -------------------------
-for (var i = 0; i < amount; i++) { obj[i] = { title: i } }
+for (var i = 0; i < amount; i++) { obj[i] = { i: i } }
 state.set({ collection: obj, ms: {} })
 // // -------------------------
-var app = new Element({
+var app = {
   key: 'app',
   info: {
     init: {
@@ -33,12 +34,27 @@ var app = new Element({
       text: { $: 'elems', $add: ' dom-nodes' }
     }
   },
-  text: 'hello',
+  text: 'hello app',
   holder: {
     $: 'collection',
-    $any: true
+    $any: true,
+    Child: {
+      text: 'its child!',
+      someGroup: {
+        type: 'group',
+        render () {
+          console.log('lulllz', this.inspect())
+        },
+        field: {
+          $: 'i',
+          render (state) {
+            console.log('this is a field -->', state && state.inspect())
+          }
+        }
+      }
+    }
   }
-}, false)
+}
 
 console.timeEnd('START')
 setTimeout(function () {
@@ -54,7 +70,7 @@ setTimeout(function () {
     var ms = Date.now()
     var obj = {}
     for (var i = 0; i < amount; i++) {
-      obj[i] = { title: i + cnt }
+      obj[i] = { i: i + cnt }
     }
     state.collection.set(obj)
     if (!state.first) {
@@ -65,6 +81,6 @@ setTimeout(function () {
     }
     raf(loop)
   }
-  loop()
+  // loop()
   state.set({ elems: document.getElementsByTagName('*').length })
 })

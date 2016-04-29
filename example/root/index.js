@@ -6,10 +6,11 @@ const Element = require('../../lib/element')
 const render = require('../../lib/render')
 const s = new State({
   key: 'STATE',
-  a: {
-    b: 'its a.b'
-  },
+  // a: {
+  //   b: 'its a.b'
+  // },
   c: {
+    val: 'bla',
     d: {
       e: 'e'
     }
@@ -23,20 +24,30 @@ const app = new Element({
   a: {
     $: 'a',
     b: {
-      // text: { $: 'c.d.e' }
-      // something extra funky going on with root...
-      text: { $: '$root.b' }
-      // $: 'b.$root.b'
+      text: { $: '$root.b' },
+      c: {
+        text: { $: '$root.c' }
+      }
     }
   }
 })
 
 // const app = new Element({ text: 'hello' })
-document.body.appendChild(render(app, s, 'dom', function (type, stamp, subs, tree) {
-  console.log('FIRE FIRE', this.path(), type, stamp, tree)
-  // 2 times A never root?
+document.body.appendChild(render(app, s, 'dom', function (type, stamp, subs, tree, ptree, fromTree) {
+  console.error('FIRE FIRE', this.path(), type, stamp, tree, fromTree)
 }))
 
+console.log('\n\nCREATE ROOT:')
 s.set({ b: 'hello its root b!' })
 
-s.c.d.e.set('hello its e!')
+// s.c.d.e.set('hello its e!')
+console.log('\n\nUPDATE ROOT:')
+s.set({ b: 'hello its root b!xxxxxxxxxxxxx' })
+
+console.log('\n\nUPDATE ROOTxxx:')
+
+s.set({ b: 'yuzi!' })
+
+s.set({ c: 'james' })
+
+s.set({ a: {} })

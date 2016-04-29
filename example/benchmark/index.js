@@ -1,8 +1,7 @@
 'use strict'
-// require('../style.css')
+require('../style.css')
 const s = require('vigour-state/s')
 // https://github.com/Matt-Esch/virtual-dom/issues/371 <-- hahahaha! wining all
-// require('./style.less')
 console.time('START')
 // -------------------------
 const raf = window.requestAnimationFrame
@@ -58,6 +57,7 @@ var app = new Element({
 }, false)
 
 var render = require('../../lib/render')
+var tree = { parent: true }
 console.timeEnd('START')
 setTimeout(function () {
   var ms = Date.now()

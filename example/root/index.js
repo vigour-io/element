@@ -6,16 +6,12 @@ const Element = require('../../lib/element')
 const render = require('../../lib/render')
 const s = new State({
   key: 'STATE',
-  a: {
-    b: 'its a.b'
-  },
   c: {
     val: 'bla',
     d: {
       e: 'e'
     }
   }
-  // b: 'its root.b'
 })
 
 const app = new Element({
@@ -24,17 +20,25 @@ const app = new Element({
   a: {
     $: 'a',
     b: {
-      text: { $: '$root.b' },
+      text: { $: '$root.b' }, // fucker fires WRONG!
       c: {
-        text: { $: '$root.c' }
+        text: { $: '$root.c', $prepend: 'a.b.c: ' }
       }
+    }
+  },
+  holder: {
+    // $: '$any.collection'
+    $any: true, // unify and make easier
+    $: 'collection',
+    Child: {
+      text: { $: '$root.c' }
     }
   }
 })
 
 // const app = new Element({ text: 'hello' })
-document.body.appendChild(render(app, s, function (state, type, stamp, subs, tree, ptree, fromTree) {
-  console.error('FIRE FIRE', state.path(), type, stamp, tree, fromTree)
+document.body.appendChild(render(app, s, 'dom', function (state, type, stamp, subs, tree) {
+  console.error('FIRE:', state.path(), type, stamp, tree)
 }))
 
 console.log('\n\nCREATE ROOT:')
@@ -46,8 +50,19 @@ s.set({ b: 'hello its root b!xxxxxxxxxxxxx' })
 
 console.log('\n\nUPDATE ROOTxxx:')
 
-s.set({ b: 'yuzi!' })
+// s.set({ b: 'yuzi!' })
 
 s.set({ c: 'james' })
-
 s.set({ a: {} })
+
+s.set({
+  collection: [1, 2, 3, 4]
+})
+
+console.log('\n\n\nupdate YUZ')
+// shit shit shit <--- root in colleciton wrong!!!!
+s.c.set('yuz')
+
+console.log('\n\n\nupdate BLURF')
+
+s.c.set('blurf')

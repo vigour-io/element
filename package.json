@@ -27,10 +27,10 @@
     "lodash.get": "^4.2.0",
     "lodash.set": "^4.1.0",
     "vigour-observable": "^2.1.4",
+    "vigour-state": "^1.1.0",
+    "vigour-util": "^2.0.8",
     "vigour-stamp": "^1.0.1",
-    "vigour-state": "^1.0.1",
-    "vigour-ua": "^1.0.3",
-    "vigour-util": "^2.0.8"
+    "vigour-ua": "^1.0.3"
   },
   "devDependencies": {
     "tape": "^4.4.0",

@@ -33,7 +33,7 @@ const app = new Element({
 })
 
 // const app = new Element({ text: 'hello' })
-document.body.appendChild(render(app, s, 'dom', function (state, type, stamp, subs, tree, ptree, fromTree) {
+document.body.appendChild(render(app, s, function (state, type, stamp, subs, tree, ptree, fromTree) {
   console.error('FIRE FIRE', state.path(), type, stamp, tree, fromTree)
 }))
 

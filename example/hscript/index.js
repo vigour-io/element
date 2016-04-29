@@ -20,6 +20,4 @@ const app = new Element({
   }
 }, false)
 
-console.log('\nresult:\n\n', render('dom', app).outerHTML)
-// document.body.appendChild(render(app))
-console.log('frequent:')
+console.log('\nresult:\n\n', render(app).outerHTML)

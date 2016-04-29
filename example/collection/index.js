@@ -39,7 +39,6 @@ const app = new Element({
   },
   main: {
     holder3: {
-
       style: {
         hyphens: 'manual',
         width: 100

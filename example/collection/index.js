@@ -11,7 +11,7 @@ const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = global.state = new State({ name: 'trees' })
 const obj = {}
-const amount = 200
+const amount = 1
 for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,

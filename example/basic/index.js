@@ -15,15 +15,7 @@ const obj = {}
 const amount = 25e2
 // -------------------------
 for (var i = 0; i < amount; i++) { obj[i] = { title: i } }
-state.set({
-  collection: obj,
-  ms: {
-    $transform (val) {
-      return isNumber(val) ? Math.round(val) : 'not measured'
-    },
-    $add: ' ms'
-  }
-})
+state.set({ collection: obj, ms: {} })
 // // -------------------------
 var app = new Element({
   key: 'app',
@@ -55,9 +47,7 @@ var app = new Element({
     }
   }
 }, false)
-
 console.timeEnd('START')
-
 setTimeout(function () {
   var ms = Date.now()
   document.body.appendChild(render(app, state))

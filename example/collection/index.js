@@ -12,10 +12,7 @@ const state = global.state = new State({ name: 'trees' })
 const obj = {}
 const amount = 1e3
 for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
-state.set({
-  collection: obj,
-  ms: {} // state compute is very very slow
-})
+state.set({ collection: obj, ms: {} })
 // -------------------------
 const app = new Element({
   key: 'app',

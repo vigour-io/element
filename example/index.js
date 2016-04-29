@@ -1,5 +1,8 @@
 'use strict'
 // simple budo run script
+// add console.clear()
+// just require budo vs doing a command -- much better!
+// call this file budo.js
 const exec = require('child_process').exec
 const fs = require('fs')
 const port = process.argv[3] || 8080

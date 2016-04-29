@@ -10,45 +10,45 @@ document.body.appendChild(render({
       transform: 'rotate(7deg) skewX(10deg)'
     }
   },
-  // rotated: {
-  //   text: 'rotate!',
-  //   style: {
-  //     transform: {
-  //       rotate: 45
-  //     }
-  //   }
-  // },
-  // scaled: {
-  //   text: 'scale!',
-  //   style:{
-  //     transform: {
-  //       scale: 1.2
-  //     }
-  //   }
-  // },
-  // xd: {
-  //   text: 'x!',
-  //   style:{
-  //     transform: {
-  //       x: 100
-  //     }
-  //   }
-  // },
-  // yd:{
-  //   text: 'y!',
-  //   style:{
-  //     transform: {
-  //       y: 100,
-  //       x: 50
-  //     }
-  //   }
-  // },
+  rotated: {
+    text: 'rotate!',
+    style: {
+      transform: {
+        rotate: 45
+      }
+    }
+  },
+  scaled: {
+    text: 'scale!',
+    style:{
+      transform: {
+        scale: 1.2
+      }
+    }
+  },
+  xd: {
+    text: 'x!',
+    style:{
+      transform: {
+        x: 100
+      }
+    }
+  },
+  yd:{
+    text: 'y!',
+    style:{
+      transform: {
+        y: 100,
+        x: 50
+      }
+    }
+  },
   everything:{
     text: 'everything!',
     style:{
       transform: {
         y: 100,
-        x: 100,
+        x: 300,
         scale: 3,
         rotate: 45
       }

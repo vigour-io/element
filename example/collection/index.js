@@ -14,7 +14,7 @@ const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = global.state = new State({ name: 'trees' })
 const obj = {}
-const amount = 1
+const amount = 25e2
 for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,
@@ -53,18 +53,18 @@ const app = new Element({
         class: 'weirdChild',
         // text: 'haha', // wrong need to see this multiple times (cloneNode(true))
         text: { $: 'title' },
-        props: {
-          bla: 'hello!'
+        // props: {
+          // bla: 'hello!'
           // blurf: { $: 'title' }
-        },
-        style: {
-          border: '1px solid white'
+        // },
+        // style: {
+          // border: '1px solid white'
           // width: 10
-        }
+        // }
       }
     },
     holder: {
-      $: 'collection',
+      // $: 'collection',
       $any: true,
       Child: {
         class: 'nestchild',

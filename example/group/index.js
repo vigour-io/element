@@ -69,24 +69,24 @@ setTimeout(function () {
   document.body.appendChild(render(app, state))
   state.set({ first: Date.now() - ms })
   // -------------------------
-  var cnt = 0
-  var total = 0
-  function loop () {
-    cnt++
-    var ms = Date.now()
-    var obj = {}
-    for (var i = 0; i < amount; i++) {
-      obj[i] = { x: i + cnt, y: i * cnt }
-    }
-    state.collection.set(obj)
-    if (!state.first) {
-      state.set({ first: Date.now() - ms })
-    } else {
-      total += (Date.now() - ms)
-      state.ms.set(total / cnt)
-    }
-    raf(loop)
-  }
+  // var cnt = 0
+  // var total = 0
+  // function loop () {
+  //   cnt++
+  //   var ms = Date.now()
+  //   var obj = {}
+  //   for (var i = 0; i < amount; i++) {
+  //     obj[i] = { x: i + cnt, y: i * cnt }
+  //   }
+  //   state.collection.set(obj)
+  //   if (!state.first) {
+  //     state.set({ first: Date.now() - ms })
+  //   } else {
+  //     total += (Date.now() - ms)
+  //     state.ms.set(total / cnt)
+  //   }
+  //   raf(loop)
+  // }
   // loop()
   state.set({ elems: document.getElementsByTagName('*').length })
 })

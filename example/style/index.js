@@ -2,56 +2,30 @@
 // for some perf comparisons --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const render = require('../../lib/render')
 
-document.body.appendChild(render({
+const elem = {
   key: 'app',
-  transformed: {
-    text: 'transform!',
-    style: {
-      transform: 'rotate(7deg) skewX(10deg)'
-    }
-  },
-  rotated: {
-    text: 'rotate!',
-    style: {
-      transform: {
-        rotate: 45
+  holder: {
+      $: 'one',
+      text: 'everything!',
+      style: {
+        transform: {
+          type: 'group',
+          y: { $: 'y' },
+          x: { $: 'x' },
+          scale: { $: 'scale' },
+          rotate: { $: 'rotate' }
+        }
       }
-    }
-  },
-  scaled: {
-    text: 'scale!',
-    style:{
-      transform: {
-        scale: 1.2
-      }
-    }
-  },
-  xd: {
-    text: 'x!',
-    style:{
-      transform: {
-        x: 100
-      }
-    }
-  },
-  yd:{
-    text: 'y!',
-    style:{
-      transform: {
-        y: 100,
-        x: 50
-      }
-    }
-  },
-  everything:{
-    text: 'everything!',
-    style:{
-      transform: {
-        y: 100,
-        x: 300,
-        scale: 3,
-        rotate: 45
-      }
-    }
   }
-}))
+}
+
+const state = {
+  one:{
+    y: 100,
+    x: 300,
+    scale: 3,
+    rotate: 45
+  }
+}
+
+document.body.appendChild(render(elem, state))

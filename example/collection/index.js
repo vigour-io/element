@@ -129,12 +129,15 @@ setTimeout(function () {
     var obj = {}
     for (var i = 0; i < amount; i++) {
       obj[i] = {
-        title: {
-          val: i + cnt,
-          lastname: i + cnt
-        },
-        x: i + cnt
+        title: i + cnt
       }
+      // obj[i] = {
+      //   title: {
+      //     val: i + cnt,
+      //     lastname: i + cnt
+      //   },
+      //   x: i + cnt
+      // }
     }
     state.collection.set(obj)
     if (!state.first) {

@@ -41,7 +41,6 @@ var app = new Element({
 }, false)
 
 console.timeEnd('START')
-
 setTimeout(function () {
   // reuse this piece a bit
   var ms = Date.now()
@@ -66,7 +65,6 @@ setTimeout(function () {
     }
     raf(loop)
   }
-  state.collection[0].remove()
   loop()
   state.set({ elems: document.getElementsByTagName('*').length })
 })

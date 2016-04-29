@@ -25,7 +25,7 @@
   "dependencies": {
     "vigour-ua": "^1.0.3",
     "vigour-observable": "^2.1.4",
-    "vigour-state": "^1.0.1",
+    "vigour-state": "^1.1.0",
     "vigour-util": "^2.0.8",
     "vigour-stamp": "^1.0.1",
     "lodash.set": "^4.1.0",

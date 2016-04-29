@@ -1,17 +1,20 @@
 'use strict'
-console.clear()
 console.time('START')
 // for some perf comparisons --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const State = require('vigour-state')
 const Element = require('../../lib/element')
 const render = require('../../lib/render')
 // -------------------------
-const raf = window.requestAnimationFrame
+const raf = typeof window !== 'undefined'
+? window.requestAnimationFrame
+: function (fn) {
+  setTimeout(fn, 1000)
+}
 const isNumber = require('vigour-util/is/number')
 // -------------------------
 const state = global.state = new State({ name: 'trees' })
 const obj = {}
-const amount = 200
+const amount = 1
 for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
 state.set({
   collection: obj,
@@ -67,7 +70,7 @@ const app = new Element({
         class: 'nestchild',
         on: {
           remove (val, stamp, node) {
-            console.log('FIRE REMOVE:', val, stamp, node)
+            // console.log('FIRE REMOVE:', val, stamp, node)
           }
         },
         star: {},
@@ -114,7 +117,9 @@ console.timeEnd('START')
 
 setTimeout(function () {
   var ms = Date.now()
-  document.body.appendChild(render(app, state, 'dom'))
+  var node = render(app, state)
+  // console.log('FIRST RENDER:', node.outerHTML)
+  document.body && document.body.appendChild(render(app, state))
   state.set({ first: Date.now() - ms })
   var cnt = 0
   var total = 0
@@ -138,9 +143,9 @@ setTimeout(function () {
       total += (Date.now() - ms)
       state.ms.set(total / cnt)
     }
-    raf(loop)
+    raf && raf(loop)
   }
   state.collection[0].remove()
   loop()
-  state.set({ elems: document.getElementsByTagName('*').length })
+  document.getElementsByTagName && state.set({ elems: document.getElementsByTagName('*').length })
 })

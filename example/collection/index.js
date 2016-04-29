@@ -1,38 +1,8 @@
 'use strict'
-console.clear()
-console.time('START')
-const State = require('vigour-state')
-const Element = require('../../lib/element')
-const render = require('../../lib/render')
-// -------------------------
-const raf = window.requestAnimationFrame
-const isNumber = require('vigour-util/is/number')
-// -------------------------
-const state = global.state = new State({ name: 'trees' })
-const obj = {}
-const amount = 1e3
-for (let i = 0; i < amount; i++) { obj[i] = { title: i } }
-state.set({ collection: obj, ms: {} })
-// -------------------------
-const app = new Element({
+require('../style.css')
+const benchmark = require('../benchmark')
+const app = {
   key: 'app',
-  holder: {
-    init: {
-      text: { $: 'first', $add: ' ms initial render' }
-    },
-    ms: {
-      text: {
-        $: 'ms',
-        $transform (val) {
-          return isNumber(val) ? Math.round(val) : 'not measured'
-        },
-        $add: ' ms periodic updates'
-      }
-    },
-    elems: {
-      text: { $: 'elems', $add: ' dom-nodes' }
-    }
-  },
   main: {
     holder3: {
       $: 'collection',
@@ -40,15 +10,12 @@ const app = new Element({
       Child: {
         node: 'span',
         class: 'weirdChild',
-        // text: 'haha', // wrong need to see this multiple times (cloneNode(true))
         text: { $: 'title' },
         props: {
           bla: 'hello!'
-          // blurf: { $: 'title' }
         },
         style: {
-          border: '1px solid white'
-          // width: 10
+          border: '1px dotted white'
         }
       }
     },
@@ -91,48 +58,21 @@ const app = new Element({
             text: {
               $: 'title',
               $prepend: 'h:',
-              $transform (val) {
-                return val
-              }
+              $transform (val) { return val }
             }
           }
         }
       }
     }
   }
-}, false)
+}
 
-console.timeEnd('START')
-
-setTimeout(function () {
-  var ms = Date.now()
-  document.body.appendChild(render(app, state))
-  state.set({ first: Date.now() - ms })
-  var cnt = 0
-  var total = 0
-  function loop () {
-    cnt++
-    var ms = Date.now()
-    var obj = {}
-    for (var i = 0; i < amount; i++) {
-      obj[i] = {
-        title: {
-          val: i + cnt,
-          lastname: i + cnt
-        },
-        x: i + cnt
-      }
-    }
-    state.collection.set(obj)
-    if (!state.first) {
-      state.set({ first: Date.now() - ms })
-    } else {
-      total += (Date.now() - ms)
-      state.ms.set(total / cnt)
-    }
-    raf(loop)
+benchmark.loop(1000, app, (i, cnt) => {
+  return {
+    title: {
+      val: i + cnt,
+      lastname: i + cnt
+    },
+    x: i + cnt
   }
-  state.collection[0].remove()
-  loop()
-  state.set({ elems: document.getElementsByTagName('*').length })
 })

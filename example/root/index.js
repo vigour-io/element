@@ -24,12 +24,20 @@ const app = new Element({
   a: {
     $: 'a',
     b: {
-      text: { $: '$root.b' },
+      text: { $: '$root.b' }, // fucker fires WRONG!
       c: {
         text: { $: '$root.c' }
       }
     }
   }
+  // holder: {
+  //   // $: '$any.collection'
+  //   $any: true, // unify and make easier
+  //   $: 'collection',
+  //   Child: {
+  //     text: { $: '$root.c' }
+  //   }
+  // }
 })
 
 // const app = new Element({ text: 'hello' })
@@ -46,8 +54,15 @@ s.set({ b: 'hello its root b!xxxxxxxxxxxxx' })
 
 console.log('\n\nUPDATE ROOTxxx:')
 
-s.set({ b: 'yuzi!' })
+// s.set({ b: 'yuzi!' })
 
 s.set({ c: 'james' })
-
 s.set({ a: {} })
+
+s.set({
+  collection: [1, 2, 3, 4]
+})
+
+console.log('\n\n\nupdate YUZ')
+// shit shit shit <--- root in colleciton wrong!!!!
+s.c.set('yuz')

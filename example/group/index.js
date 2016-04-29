@@ -12,7 +12,7 @@ const state = s()
 const obj = {}
 const amount = 5
 // -------------------------
-for (var i = 0; i < amount; i++) { obj[i] = { i: i } }
+for (var i = 0; i < amount; i++) { obj[i] = { x: i, y: i * 2 } }
 state.set({ collection: obj, ms: {} })
 // // -------------------------
 var app = {
@@ -36,23 +36,29 @@ var app = {
   },
   text: 'hello app',
   holder: {
-    $: 'collection.0',
-    // $any: true,
-    // Child: {
-    text: 'its child!',
-    someGroup: {
-      type: 'group',
-      render (state) {
-        console.log('lulllz???', this.inspect(), state.path())
-      },
-      field: {
-        $: 'i',
+    $: 'collection',
+    $any: true,
+    Child: {
+      text: 'its child!',
+      coordinates: {
+        type: 'group',
         render (state) {
-          console.log('this is a field -->', state && state.inspect())
+          console.log('fire coordinates -->', this.inspect(), state.path())
+        },
+        x: {
+          $: 'x',
+          render (state) {
+            console.log('fire x -->', state && state.inspect())
+          }
+        },
+        y: {
+          $: 'y',
+          render (state) {
+            console.log('fire y -->', state && state.inspect())
+          }
         }
       }
     }
-    // }
   }
 }
 
@@ -70,7 +76,7 @@ setTimeout(function () {
     var ms = Date.now()
     var obj = {}
     for (var i = 0; i < amount; i++) {
-      obj[i] = { i: i + cnt }
+      obj[i] = { x: i + cnt, y: i * cnt }
     }
     state.collection.set(obj)
     if (!state.first) {

@@ -6,9 +6,9 @@ const Element = require('../../lib/element')
 const render = require('../../lib/render')
 const s = new State({
   key: 'STATE',
-  // a: {
-  //   b: 'its a.b'
-  // },
+  a: {
+    b: 'its a.b'
+  },
   c: {
     val: 'bla',
     d: {
@@ -33,8 +33,8 @@ const app = new Element({
 })
 
 // const app = new Element({ text: 'hello' })
-document.body.appendChild(render(app, s, 'dom', function (type, stamp, subs, tree, ptree, fromTree) {
-  console.error('FIRE FIRE', this.path(), type, stamp, tree, fromTree)
+document.body.appendChild(render(app, s, 'dom', function (state, type, stamp, subs, tree, ptree, fromTree) {
+  console.error('FIRE FIRE', state.path(), type, stamp, tree, fromTree)
 }))
 
 console.log('\n\nCREATE ROOT:')

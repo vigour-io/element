@@ -50,7 +50,7 @@ var app = new Element({
       $: 'collection',
       $any: true,
       Child: {
-        css: 'weirdChild',
+        class: 'weirdChild',
         text: { $: 'title' }
       }
     }

@@ -8,8 +8,7 @@ const app = {
       $: 'collection',
       $any: true,
       Child: {
-        node: 'span',
-        class: 'weirdChild',
+        class: 'basic',
         text: { $: 'title' },
         props: {
           bla: 'hello!'
@@ -67,7 +66,7 @@ const app = {
   }
 }
 
-benchmark.loop(1000, app, (i, cnt) => {
+benchmark.init(1, app, (i, cnt) => {
   return {
     title: {
       val: i + cnt,

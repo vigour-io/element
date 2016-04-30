@@ -9,7 +9,7 @@ for (var i = 0; i < amount; i++) {
   state.collection[i] = {
     x: i,
     y: i * 2,
-    text: i
+    title: i
   }
 }
 
@@ -20,7 +20,7 @@ document.body.appendChild(render({
     $: 'collection',
     $any: true,
     Child: {
-      text: { $: 'text' },
+      text: { $: 'title' },
       coordinates: {
         type: 'group',
         render (state) {

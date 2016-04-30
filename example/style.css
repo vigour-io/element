@@ -31,20 +31,21 @@ body {
   float:right;
 }
 
+.basic {
+  display: inline-block;
+  padding: 5px;
+  width: 20px;
+  font-size: 8px;
+  border: 1px solid var(--white);
+}
+
 .weirdChild {
-  // display: inline-block;
-  // padding: 5px;
-  // width: 20px;
-  // font-size: 8px;
   position: absolute;
-  // margin: -38px;
   width: 120px;
   height: 120px;
   border-radius: 50%;
   opacity: 0.5;
   border: 2px solid rgba(255,255,255,0.3);
-  // background-image: url('http://exmoorpet.com/wp-content/uploads/2012/08/cat.png');
-  // background-size: cover;
 }
 
 .menu {

@@ -2,7 +2,6 @@
 console.clear()
 require('../style.css')
 const State = require('vigour-state')
-const Element = require('../../lib/element')
 const render = require('../../lib/render')
 const s = new State({
   key: 'STATE',
@@ -14,7 +13,7 @@ const s = new State({
   }
 })
 
-const app = new Element({
+const app = {
   key: 'app',
   text: 'hello',
   a: {
@@ -34,7 +33,7 @@ const app = new Element({
       text: { $: '$root.c' }
     }
   }
-})
+}
 
 // const app = new Element({ text: 'hello' })
 document.body.appendChild(render(app, s, function (state, type, stamp, subs, tree) {

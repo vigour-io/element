@@ -1,7 +1,6 @@
 'use strict'
 require('../style.css')
 const benchmark = require('../benchmark')
-let x = 0 // dirty solve /w fixes
 
 benchmark.loop(
   1000,
@@ -32,8 +31,7 @@ benchmark.loop(
     var val = i + cnt
     val /= 5
     return {
-      // random cat!
-      bg: 'http://loremflickr.com/320/240?' + (x > i ? x : x++) + i,
+      bg: 'http://loremflickr.com/320/240?' + i,
       i: cnt / 2,
       x: Math.sin(val / 5 + cnt / 40) * 400 +
         i * 0.3 + 500 +

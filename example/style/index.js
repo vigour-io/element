@@ -1,57 +1,55 @@
 'use strict'
 // for some perf comparisons --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const render = require('../../lib/render')
+// -------------------------
+const s = require('vigour-state/s')
+// -------------------------
 
-document.body.appendChild(render({
+const elem = {
   key: 'app',
-  transformed: {
-    text: 'transform!',
+  style:{
+    transform:{
+      x: 300,
+      y: 300
+    }
+  },
+  holder: {
+    $: 'one',
+    text: 'make everything!',
     style: {
-      transform: 'rotate(7deg) skewX(10deg)'
-    }
-  },
-  rotated: {
-    text: 'rotate!',
-    style: {
       transform: {
-        rotate: 45
-      }
-    }
-  },
-  scaled: {
-    text: 'scale!',
-    style:{
-      transform: {
-        scale: 1.2
-      }
-    }
-  },
-  xd: {
-    text: 'x!',
-    style:{
-      transform: {
-        x: 100
-      }
-    }
-  },
-  yd:{
-    text: 'y!',
-    style:{
-      transform: {
-        y: 100,
-        x: 50
-      }
-    }
-  },
-  everything:{
-    text: 'everything!',
-    style:{
-      transform: {
-        y: 100,
-        x: 300,
-        scale: 3,
-        rotate: 45
+        y: { $: 'y' },
+        x: { $: 'x' },
+        scale: { $: 'scale' },
+        rotate: 45//{ $: 'rotate' }
       }
     }
   }
-}))
+}
+
+const state = s({
+  one:{
+    rotate: 1,
+    scale:1,
+    y: 10,
+    x: 30
+  }
+})
+
+document.body.appendChild(render(elem, state))
+
+const raf = window.requestAnimationFrame
+let x = 0
+function loop () {
+  raf(function () {
+    state.one.set({
+      y: Math.sin(x++ / 10) * 50,
+      x: Math.sin(x++ / 10) * 50,
+      scale: Math.sin(x++ / 100) * 5,
+      rotate: Math.sin(x++ / 10) * 10
+    })
+    loop()
+  })
+}
+
+loop()

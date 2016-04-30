@@ -3,7 +3,7 @@ console.clear() // do this in budo
 require('../style.css')
 const render = require('../../lib/render')
 const state = { collection: {} }
-const amount = 1
+const amount = 4
 
 for (var i = 0; i < amount; i++) {
   state.collection[i] = {
@@ -15,28 +15,26 @@ for (var i = 0; i < amount; i++) {
 
 document.body.appendChild(render({
   key: 'app',
-  text: 'hello app',
-  holder: {
-    $: 'collection',
-    $any: true,
-    Child: {
-      text: { $: 'title' },
-      coordinates: {
-        type: 'group',
+  $: 'collection',
+  $any: true,
+  Child: {
+    text: { $: 'title', $prepend: 'child:' },
+    coordinates: {
+      type: 'group',
+      render (state) {
+        console.log('fire coordinates -->', this.inspect(), state.path())
+        console.log('--------------------------------------------------')
+      },
+      x: {
+        $: 'x',
         render (state) {
-          console.log('fire coordinates -->', this.inspect(), state.path())
-        },
-        x: {
-          $: 'x',
-          render (state) {
-            console.log('fire x -->', state && state.inspect())
-          }
-        },
-        y: {
-          $: 'y',
-          render (state) {
-            console.log('fire y -->', state && state.inspect())
-          }
+          console.log('fire x -->', state && state.inspect())
+        }
+      },
+      y: {
+        $: 'y',
+        render (state) {
+          console.log('fire y -->', state && state.inspect())
         }
       }
     }

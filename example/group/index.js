@@ -15,7 +15,7 @@ for (var i = 0; i < amount; i++) {
 
 document.body.appendChild(render({
   key: 'app',
-  $: 'gurk',
+  $: 'collection',
   $any: true,
   Child: {
     text: { $: 'title', $prepend: 'child:' },

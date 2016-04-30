@@ -1,7 +1,7 @@
 'use strict'
 require('../style.css')
 const benchmark = require('../benchmark')
-let x = 0 // dirty
+let x = 0 // dirty solve /w fixes
 
 benchmark.loop(
   1000,

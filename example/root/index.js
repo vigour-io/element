@@ -19,15 +19,14 @@ const app = {
   a: {
     $: 'a',
     b: {
-      text: { $: '$root.b' }, // fucker fires WRONG!
+      text: { $: '$root.b' },
       c: {
         text: { $: '$root.c', $prepend: 'a.b.c: ' }
       }
     }
   },
   holder: {
-    // $: '$any.collection'
-    $any: true, // unify and make easier
+    $any: true,
     $: 'collection',
     Child: {
       text: { $: '$root.c' }

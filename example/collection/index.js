@@ -1,5 +1,6 @@
 'use strict'
 require('../style.css')
+console.clear()
 const benchmark = require('../benchmark')
 const app = {
   key: 'app',
@@ -66,7 +67,7 @@ const app = {
   }
 }
 
-benchmark.init(1, app, (i, cnt) => {
+benchmark.loop(1000, app, (i, cnt) => {
   return {
     title: {
       val: i + cnt,

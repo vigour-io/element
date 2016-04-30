@@ -1,4 +1,5 @@
 'use strict'
+require('../style.css')
 // for some perf comparisons --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const render = require('../../lib/render')
 // -------------------------
@@ -14,6 +15,7 @@ const elem = {
     }
   },
   holder: {
+    class: 'weirdChild',
     $: 'one',
     text: 'make everything!',
     style: {

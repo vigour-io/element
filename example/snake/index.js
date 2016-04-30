@@ -11,7 +11,7 @@ benchmark.loop(
       $any: true,
       Child: {
         node: 'img',
-        class: 'weirdChild',
+        class: 'snake-dot',
         props: {
           src: {
             $: 'bg'

@@ -1,13 +1,7 @@
 'use strict'
-// -------------------------
-// for comparable results
-// https://github.com/Matt-Esch/virtual-dom/issues/371
-// -------------------------
 require('../style.css')
 const benchmark = require('../benchmark')
-let x = 0
-
-
+let x = 0 // dirty solve /w fixes
 
 benchmark.loop(
   1000,
@@ -17,7 +11,7 @@ benchmark.loop(
       $: 'collection',
       $any: true,
       Child: {
-        node:'img',
+        node: 'img',
         class: 'weirdChild',
         props: {
           src: {
@@ -28,7 +22,7 @@ benchmark.loop(
           transform: {
             y: { $: 'y' },
             x: { $: 'x' },
-            rotate:{ $: 'i' }
+            rotate: { $: 'i' }
           }
         }
       }
@@ -38,7 +32,8 @@ benchmark.loop(
     var val = i + cnt
     val /= 5
     return {
-      bg: "http://loremflickr.com/320/240?" + (x > i ? x : x++) + i,
+      // random cat!
+      bg: 'http://loremflickr.com/320/240?' + (x > i ? x : x++) + i,
       i: cnt / 2,
       x: Math.sin(val / 5 + cnt / 40) * 400 +
         i * 0.3 + 500 +

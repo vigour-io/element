@@ -1,5 +1,6 @@
 'use strict'
 require('../style.css')
+console.clear()
 const benchmark = require('../benchmark')
 const app = {
   key: 'app',
@@ -8,8 +9,7 @@ const app = {
       $: 'collection',
       $any: true,
       Child: {
-        node: 'span',
-        class: 'weirdChild',
+        class: 'basic',
         text: { $: 'title' },
         props: {
           bla: 'hello!'

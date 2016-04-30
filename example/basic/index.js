@@ -13,7 +13,7 @@ benchmark.loop(
       $: 'collection',
       $any: true,
       Child: {
-        class: 'weirdChild',
+        class: 'basic',
         text: { $: 'title' }
       }
     }

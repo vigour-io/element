@@ -22,22 +22,25 @@ exports.ui = {
   }
 }
 
+exports.init = function (amount, app, method) {
+  app.benchmark = exports.ui
+  var state = { collection: {}, ms: {} }
+  for (let i = 0; i < amount; i++) {
+    state.collection[i] = method(i, 0)
+  }
+  state = new State(state)
+  // init measure
+  var ms = Date.now()
+  document.body.appendChild(render(app, state))
+  state.set({ first: Date.now() - ms })
+  return state
+}
+
 exports.loop = function (amount, app, method) {
   setTimeout(function () {
-    app.benchmark = exports.ui
-    var state = { collection: {}, ms: {} }
+    const state = exports.init(amount, app, method)
     var cnt = 0
     var total = 0
-    for (let i = 0; i < amount; i++) {
-      state.collection[i] = method(i, cnt)
-    }
-    state = new State(state)
-    // init measure
-    var ms = Date.now()
-    document.body.appendChild(render(app, state))
-    state.set({ first: Date.now() - ms })
-
-    // loop
     function loop () {
       cnt++
       var ms = Date.now()
@@ -54,7 +57,7 @@ exports.loop = function (amount, app, method) {
       }
       raf(loop)
     }
-    state.collection[0].remove()
+    // state.collection[0].remove()
     loop()
     state.set({ elems: document.getElementsByTagName('*').length })
   })

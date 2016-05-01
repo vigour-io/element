@@ -1,5 +1,4 @@
 'use strict'
-console.clear() // do this in budo
 require('../style.css')
 const render = require('../../lib/render')
 const state = { collection: {} }
@@ -15,7 +14,7 @@ for (var i = 0; i < amount; i++) {
 
 document.body.appendChild(render({
   key: 'app',
-  $: 'gurk',
+  $: 'collection',
   $any: true,
   Child: {
     text: { $: 'title', $prepend: 'child:' },

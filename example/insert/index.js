@@ -8,7 +8,7 @@ const benchmark = require('../benchmark')
 const obj = {
   $: 'collection.0'
 }
-let cnt = 1000
+let cnt = 5000
 while (cnt--) {
   obj['-' + cnt + '-'] = {
     $: cnt,
@@ -25,9 +25,9 @@ benchmark.loop(
   },
   (i, cnt) => {
     var obj = {}
-    var random = ~~(Math.random() * cnt)
+    // var random = ~~(Math.random() * cnt)
+    var random = cnt
     obj[random] = { title: random }
-
     return obj
   }
 )

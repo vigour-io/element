@@ -52,12 +52,17 @@ elem.hoho.afterTwo = {
 }
 
 elem.hoho.first = {
-  order: -1,
+  order: {
+    $: 'order'
+  },
   text: 'i want to be the first!'
 }
 
+
+
 const state = s({
   haha: {
+    order:1,
     titleone: {
       title: 'one title'
     },

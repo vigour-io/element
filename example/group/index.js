@@ -22,7 +22,7 @@ document.body.appendChild(render({
       type: 'group',
       render (state) {
         console.log('fire coordinates -->', this.inspect(), state.path())
-        console.log('--------------------------------------------------')
+        console.log('-----------------------')
       },
       x: {
         $: 'x',

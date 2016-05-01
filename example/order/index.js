@@ -7,42 +7,57 @@ const s = require('vigour-state/s')
 
 const elem = {
   key: 'app',
+  components: {
+    thingy: {
+      $: 'haha',
+      one: {
+        $: 'titleone',
+        text: {
+          $: 'title'
+        }
+      },
+      middleman: {
+        sneaky: {
+          text: 'im inbetween one and two!'
+        }
+      },
+      two: {
+        $: 'titletwo',
+        text: {
+          $: 'title'
+        }
+      },
+      three: {
+        $:  'titlethree',
+        text: {
+          $:  'title'
+        }
+      }
+    }
+  },
   hoho: {
-    $: 'haha',
-    one: {
-      $: 'titleone',
-      text: {
-        $: 'title'
-      }
-    },
-    middleman: {
-      sneaky: {
-        text: 'im inbetween one and two!'
-      }
-    },
-    two: {
-      $: 'titletwo',
-      text: {
-        $: 'title'
-      }
-    },
-    three: {
-      $:  'titlethree',
-      text: {
-        $:  'title'
-      }
-    },
+    type: 'thingy',
     four: {
-      $:  'titlefour',
+      $: 'titlefour',
       text: {
-        $:  'title'
+        $: 'title'
       }
     }
   }
 }
 
+elem.hoho.afterTwo = {
+  insertBefore: 'three',
+  text: 'i want to be before three!'
+}
+
+elem.hoho.first = {
+  order: -1,
+  text: 'i want to be the first!'
+}
+
 const state = s({
-  haha:{
+  haha: {
     titleone: {
       title: 'one title'
     },

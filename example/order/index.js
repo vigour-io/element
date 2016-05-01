@@ -28,9 +28,9 @@ const elem = {
         }
       },
       three: {
-        $:  'titlethree',
+        $: 'titlethree',
         text: {
-          $:  'title'
+          $: 'title'
         }
       }
     }

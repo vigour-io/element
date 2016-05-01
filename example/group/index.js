@@ -1,5 +1,4 @@
 'use strict'
-console.clear() // do this in budo
 require('../style.css')
 const render = require('../../lib/render')
 const state = { collection: {} }

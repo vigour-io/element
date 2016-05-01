@@ -1,6 +1,5 @@
 'use strict'
 require('../style.css')
-console.clear()
 const benchmark = require('../benchmark')
 const app = {
   key: 'app',

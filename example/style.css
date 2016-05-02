@@ -2,6 +2,7 @@
   --bg: rgb(38, 50, 56);
   --white: white;
   --fg: rgb(84, 206, 177);
+  --whitea: rgba(255, 255, 255, 0.8);
   --fg2: rgb(128, 203, 196);
 }
 
@@ -11,126 +12,87 @@ body {
   color: var(--white);
 }
 
-.big {
-  font-size: 10vw;
-}
-
-.main {
-  border: 1px solid  var(--fg2);
-  padding:5px;
+.app {
+  text-transform: uppercase;
+  & * {
+    text-transform: none;
+  }
 }
 
 .holder {
-  border: 1px dotted var(--fg);
-  padding:5px;
+  text-align: center;
+  margin-top: 10px;
+  background-color: var(--fg2);
+  padding:30px;
 }
 
-.holder3 {
-  border: 1px solid var(--white);
-}
-
-.main {
-  width: 80%;
+.basic-item {
   display: inline-block;
-  float:right;
-}
-
-.basic {
-  display: inline-block;
+  margin: 5px;
   padding: 5px;
-  width: 20px;
+  min-width: 20px;
   font-size: 8px;
   border: 1px solid var(--white);
 }
 
-.snake-dot {
-  position: absolute;
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  opacity: 0.5;
-  border: 2px solid rgba(255,255,255,0.3);
-}
-
-.menu {
-  width: 10%;
-  background-color: var(--fg);
-  float:left;
-  padding: 10px;
-}
-
-.nestchild {
-  width: 100px;
+.complex-item {
+  min-width: 150px;
+  margin: 5px;
+  padding: 5px;
   display: inline-block;
-  border: 1px solid  var(--fg);
+  border: 1px solid  var(--white);
+  font-size: 11px;
   padding: 15px;
+  & .title {
+    margin-bottom: 15px;
+  }
+  & .header {
+    font-weight: bold;
+  }
+  & .nested * {
+    padding: 5px;
+    border: 1px solid var(--white);
+  }
+  & .img {
+    padding: 10px;
+    height: 100px;
+    background-image: url('http://25.media.tumblr.com/tumblr_md8rg6Ijkp1rpm93ro1_250.jpg');
+    background-size: cover;
+  }
+  & .title {
+    font-size: 22px;
+    background-color:  var(--fg2);
+    border-bottom: 1px solid white;
+    padding: 15px;
+    text-transform: uppercase;
+  }
 }
 
-.title {
-  font-size: 22px;
-  background-color:  var(--fg2);
-  text-align: center;
-  padding: 15px;
-}
-
-.header {
-  font-weight: bold;
-}
-
-.star {
+.symbol {
   position: relative;
+  display: inline-block;
   width: 40px;
-  height: 40px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  height: 15px;
 }
 
-.star:before,
-.star:after {
+.symbol:before,
+.symbol:after {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
-  width: 12px;
-  height: 12px;
-  border: 4px solid var(--fg2);
-  -moz-border-radius: 10px 10px 0 10px;
-       border-radius: 10px 10px 0 10px;
-  -webkit-transform: rotate(-45deg);
-     -moz-transform: rotate(-45deg);
-      -ms-transform: rotate(-45deg);
-       -o-transform: rotate(-45deg);
-          transform: rotate(-45deg);
+  width: 15px;
+  height: 15px;
+  border: 1px solid var(--white);
+  border-radius: 10px 10px 0 10px;
+  transform: rotate(-45deg);
 }
 
-.something * {
-  padding: 5px;
-  border: 1px solid var(--fg);
-}
-
-.something .c {
-    padding: 10px;
-    height: 20px;
-    background-image: url('http://exmoorpet.com/wp-content/uploads/2012/08/cat.png');
-    background-size: cover;
-  }
-
-.star:after {
+.symbol:after {
   left: auto;
   right: 0;
-  -moz-border-radius: 10px 10px 10px 0;
-       border-radius: 10px 10px 10px 0;
-  -webkit-transform: rotate(45deg);
-     -moz-transform: rotate(45deg);
-      -ms-transform: rotate(45deg);
-       -o-transform: rotate(45deg);
-          transform: rotate(45deg);
-}
-
-.my-name {
-  border:2px solid orange;
-}
-.other-name {
-  background-color: grey;
-}
-.not-this-name {
-  color: red;
+  border-radius: 10px 10px 10px 0;
+  transform: rotate(45deg);
 }

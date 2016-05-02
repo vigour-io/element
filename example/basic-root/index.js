@@ -1,25 +1,25 @@
 'use strict'
 // -------------------------
-// for comparable results
-// https://github.com/Matt-Esch/virtual-dom/issues/371
-// -------------------------
 require('../style.css')
 const benchmark = require('../benchmark')
 benchmark.loop(
   2500,
   {
     key: 'app',
-    text: 'basic',
+    text: 'basic-root',
     holder: {
       $: 'collection',
       $any: true,
       Child: {
         class: 'basic-item',
-        text: { $: 'title' }
+        text: { $: '$root.title' }
       }
     }
   },
   (i, cnt) => {
     return { title: i + cnt }
+  },
+  (state, cnt) => {
+    state.set({ title: cnt })
   }
 )

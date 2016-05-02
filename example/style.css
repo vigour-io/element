@@ -11,6 +11,10 @@ body {
   color: var(--white);
 }
 
+.big {
+  font-size: 10vw;
+}
+
 .main {
   border: 1px solid  var(--fg2);
   padding:5px;

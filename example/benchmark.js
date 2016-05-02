@@ -1,4 +1,5 @@
 'use strict'
+require('./benchmark.css')
 const render = require('../lib/render')
 const State = require('vigour-state')
 const isNumber = require('vigour-util/is/number')

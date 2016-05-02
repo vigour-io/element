@@ -3,38 +3,33 @@ require('../style.css')
 const benchmark = require('../benchmark')
 const app = {
   key: 'app',
+  text: 'collection',
   main: {
-    holder3: {
+    holder1: {
+      class: 'holder',
       $: 'collection',
       $any: true,
       Child: {
-        class: 'basic',
-        text: { $: 'title' },
-        props: {
-          bla: 'hello!'
-        },
-        style: {
-          border: '1px dotted white'
-        }
+        class: 'basic-item',
+        text: { $: 'title' }
       }
     },
-    holder: {
+    holder2: {
+      class: 'holder',
       $: 'collection',
       $any: true,
       Child: {
-        class: 'nestchild',
+        class: 'complex-item',
         on: {
           remove (val, stamp, node) {
             console.log('FIRE REMOVE:', val, stamp, node)
           }
         },
-        star: {},
-        something: {
+        symbol: {},
+        img: {
           a: {
             b: {
-              c: {
-                text: 'haha'
-              }
+              deep: { caption: { text: 'static img' } }
             }
           }
         },

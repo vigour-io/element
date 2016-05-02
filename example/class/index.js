@@ -1,5 +1,6 @@
 'use strict'
 require('../style.css')
+require('./style.css')
 // for some perf comparisons --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const render = require('../../lib/render')
 // -------------------------

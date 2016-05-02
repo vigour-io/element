@@ -1,5 +1,6 @@
 'use strict'
 require('../style.css')
+require('./style.css')
 const benchmark = require('../benchmark')
 
 benchmark.loop(

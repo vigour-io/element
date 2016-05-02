@@ -7,15 +7,15 @@ document.body.appendChild(render({
   key: 'app',
   text: 'context',
   components: {
-    row: {
-      class: 'row',
+    item: {
+      class: 'complex-item',
       title: { text: 'static text' },
-      field: { b: { c: { text: { $: 'title' } } } }
+      nested: { b: { c: { text: { $: 'title' } } } }
     }
   },
   holder: {
-    rowA: { type: 'row' },
-    rowB: { type: 'row' }
+    rowA: { type: 'item' },
+    rowB: { type: 'item' }
   }
 }, state))
 

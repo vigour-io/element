@@ -26,10 +26,10 @@ const app = {
           }
         },
         symbol: {},
-        img: {
+        nested: {
           a: {
             b: {
-              deep: { caption: { text: 'static img' } }
+              img: { caption: { text: 'static img' } }
             }
           }
         },

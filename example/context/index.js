@@ -28,5 +28,3 @@ document.body.appendChild(render({
 }, state))
 
 state.title.set('dynamic text updated')
-
-console.log(window.steps)

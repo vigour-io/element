@@ -3,6 +3,9 @@ require('../style.css')
 const render = require('../../lib/render')
 const s = require('vigour-state/s')
 const state = s({ title: 'dynamic text' }, false)
+
+const benchmark = require('../benchmark')
+
 document.body.appendChild(render({
   key: 'app',
   text: 'context',
@@ -10,7 +13,8 @@ document.body.appendChild(render({
     item: {
       class: 'complex-item',
       title: { text: 'static text' },
-      nested: { b: { c: { text: { $: 'title' } } } }
+      nested: { b: { c: { text: { $: 'title' } } } },
+      symbol: {}
     }
   },
   holder: {

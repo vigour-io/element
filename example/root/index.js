@@ -39,7 +39,7 @@ document.body.appendChild(
     app,
     s,
     (state, type, stamp, subs, tree, stype) => {
-      console.log('fire:', state.path().join('/'), type, stype || 'normal')
+      console.log('  fire:', state.path().join('/'), type, stype || 'normal')
     }
   )
 )
@@ -47,7 +47,7 @@ document.body.appendChild(
 console.log('\ncreate root b')
 s.set({ b: 'b init' })
 
-console.log('\nupdate root b (update 1):')
+console.log('\nupdate root b (update 1)')
 s.set({ b: 'b update 1' })
 
 console.log('\ninit c, set a')

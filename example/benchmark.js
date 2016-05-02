@@ -38,6 +38,7 @@ exports.init = function (amount, app, method, update) {
   var ms = Date.now()
   document.body.appendChild(render(app, state))
   state.set({ first: Date.now() - ms })
+  state.set({ elems: document.getElementsByTagName('*').length })
   return state
 }
 
@@ -68,6 +69,5 @@ exports.loop = function (amount, app, method, update) {
     }
     // state.collection[0].remove()
     loop()
-    state.set({ elems: document.getElementsByTagName('*').length })
   })
 }

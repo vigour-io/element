@@ -14,7 +14,11 @@ document.body.appendChild(render({
       class: 'complex-item',
       title: { text: 'static text' },
       nested: { b: { c: { text: { $: 'title' } } } },
-      symbol: {}
+      symbol: {},
+      symbol2: {
+        class: 'symbol',
+        order: -1
+      }
     }
   },
   holder: {
@@ -24,3 +28,5 @@ document.body.appendChild(render({
 }, state))
 
 state.title.set('dynamic text updated')
+
+console.log(window.steps)

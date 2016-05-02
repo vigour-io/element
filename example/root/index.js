@@ -1,66 +1,65 @@
 'use strict'
-console.clear()
 require('../style.css')
 const State = require('vigour-state')
 const render = require('../../lib/render')
 const s = new State({
-  key: 'STATE',
   c: {
     val: 'bla',
-    d: {
-      e: 'e'
-    }
+    d: { e: 'e' }
   }
-})
+}, false)
 
 const app = {
   key: 'app',
-  text: 'hello',
-  a: {
-    $: 'a',
-    b: {
-      text: { $: '$root.b' },
-      c: {
-        text: { $: '$root.c', $prepend: 'a.b.c: ' }
-      }
-    }
-  },
+  text: 'root',
   holder: {
-    $any: true,
-    $: 'collection',
-    Child: {
-      text: { $: '$root.c' }
+    a: {
+      class: 'complex-item',
+      $: 'a',
+      b: {
+        text: { $: '$root.b' },
+        c: {
+          text: { $: '$root.c', $prepend: 'a.b.c: ' }
+        }
+      }
+    },
+    collection: {
+      $any: true,
+      $: 'collection',
+      Child: {
+        class: 'basic-item',
+        text: { $: '$root.c' }
+      }
     }
   }
 }
 
-// const app = new Element({ text: 'hello' })
-document.body.appendChild(render(app, s, function (state, type, stamp, subs, tree) {
-  console.error('FIRE:', state.path(), type, stamp, tree)
-}))
+document.body.appendChild(
+  render(
+    app,
+    s,
+    (state, type, stamp, subs, tree, stype) => {
+      console.log('fire:', state.path().join('/'), type, stype || 'normal')
+    }
+  )
+)
 
-console.log('\n\nCREATE ROOT:')
-s.set({ b: 'hello its root b!' })
+console.log('\ncreate root b')
+s.set({ b: 'b init' })
 
-// s.c.d.e.set('hello its e!')
-console.log('\n\nUPDATE ROOT:')
-s.set({ b: 'hello its root b!xxxxxxxxxxxxx' })
+console.log('\nupdate root b (update 1):')
+s.set({ b: 'b update 1' })
 
-console.log('\n\nUPDATE ROOTxxx:')
-
-// s.set({ b: 'yuzi!' })
-
-s.set({ c: 'james' })
+console.log('\ninit c, set a')
+s.set({ c: 'c init' })
 s.set({ a: {} })
 
 s.set({
   collection: [1, 2, 3, 4]
 })
 
-console.log('\n\n\nupdate YUZ')
-// shit shit shit <--- root in colleciton wrong!!!!
-s.c.set('yuz')
+console.log('\nupdate c (update 1)')
+s.c.set('c update 1')
 
-console.log('\n\n\nupdate BLURF')
-
-s.c.set('blurf')
+console.log('\nupdate c (update 2)')
+s.c.set('c update 2')

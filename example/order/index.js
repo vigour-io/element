@@ -46,18 +46,24 @@ const elem = {
   }
 }
 
-elem.hoho.afterTwo = {
-  insertBefore: 'three',
-  text: 'i want to be before three!'
-}
+// elem.hoho.beforeThree = {
+//   insertBefore: 'three',
+//   text: 'i want to be before three!'
+// }
 
 elem.hoho.first = {
-  order: -1,
+  // order: -1,
+  order: {
+    $: 'order'
+  },
   text: 'i want to be the first!'
 }
 
+
+
 const state = s({
   haha: {
+    order: -1,
     titleone: {
       title: 'one title'
     },

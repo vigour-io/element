@@ -14,7 +14,7 @@ benchmark.loop(
       $any: true,
       Child: {
         class: 'basic',
-        text: { $: 'title' }
+        text: { $: '$root.title' }
       }
     }
   },

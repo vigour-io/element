@@ -12,6 +12,8 @@ document.body.appendChild(render({
   components: {
     item: {
       class: 'complex-item',
+      win: { $: 'a', class: 'nested', b: { c: { text: { $: 'win' } } } },
+      lose: { $: 'b', class: 'nested', b: { c: { text: { $: 'lose' } } } },
       title: { text: 'static text' },
       nested: { b: { c: { text: { $: 'title' } } } },
       symbol: {},
@@ -28,3 +30,11 @@ document.body.appendChild(render({
 }, state))
 
 state.title.set('dynamic text updated')
+
+state.set({
+  b: { lose: 'lose' }
+})
+
+state.set({
+  a: { win: 'win' }
+})

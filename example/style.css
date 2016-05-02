@@ -11,14 +11,45 @@ body {
   color: var(--white);
 }
 
+.benchmark {
+  top: 0px;
+  left: 0px;
+  position: fixed;
+  width: 100%;
+  padding:5px;
+  background-color: var(--fg2);
+  border-bottom: 1px solid var(--white);
+  & * {
+    padding: 10px;
+    margin: 5px;
+    font-size: 11px;
+    border: 1px solid var(--white);
+    display: inline-block;
+  }
+}
+
+.app.shiftdown {
+  margin-top: 70px;
+}
+
+.app {
+  text-transform: uppercase;
+  & * {
+    text-transform: none;
+  }
+}
+
 .main {
   border: 1px solid  var(--fg2);
   padding:5px;
 }
 
 .holder {
-  border: 1px dotted var(--fg);
-  padding:5px;
+  /*width: 100%;*/
+  text-align: center;
+  margin-top: 10px;
+  background-color: var(--fg2);
+  padding:30px;
 }
 
 .holder3 {
@@ -33,6 +64,7 @@ body {
 
 .basic {
   display: inline-block;
+  margin: 5px;
   padding: 5px;
   width: 20px;
   font-size: 8px;
@@ -67,6 +99,25 @@ body {
   background-color:  var(--fg2);
   text-align: center;
   padding: 15px;
+}
+
+.row {
+  margin-top: 15px;
+  border: 1px solid var(--fg2);
+  & .title {
+    font-size: 60px;
+  }
+  & .a {
+    padding: 15px;
+    background-color: var(--bg);
+    color: var(--fg);
+    & * {
+      padding: 15px;
+      border-left: 1px solid var(--fg2);
+      background-color: var(--bg);
+      color: var(--fg);
+    }
+  }
 }
 
 .header {

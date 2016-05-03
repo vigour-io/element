@@ -13,7 +13,7 @@ document.body.appendChild(render({
       first: { $: 'a', class: 'nested', b: { c: { text: { $: 'first' } } } },
       second: { $: 'b', class: 'nested', b: { c: { text: { $: 'second' } } } },
       title: { text: 'context' },
-      subtitle: { text: 'static & non-static order' },
+      subtitle: { text: 'static & state order' },
       nested: { b: { c: { text: { $: 'title' } } } },
       symbol: {},
       symbol2: {
@@ -42,7 +42,7 @@ document.body.appendChild(render({
       class: 'complex-item',
       symbol: {},
       title: { text: 'no context' },
-      subtitle: { text: 'path subs' },
+      subtitle: { text: 'path subscription' },
       first: { class: 'basic-item', $: 'a.first', text: 'first' },
       second: { class: 'basic-item', $: 'b.second', text: 'second' }
     }

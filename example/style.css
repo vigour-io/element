@@ -1,3 +1,6 @@
+/*@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono');*/
+@import './fonts/style.css';
+
 :root {
   --bg: rgb(38, 50, 56);
   --white: white;
@@ -8,7 +11,7 @@
 
 body {
   background-color: var(--bg);
-  font-family: "droid sans mono";
+  font-family: 'Droid-Sans-Mono';
   color: var(--white);
 }
 
@@ -47,11 +50,12 @@ body {
   border: 1px solid  var(--white);
   font-size: 11px;
   padding: 15px;
-  & .title {
-    margin-bottom: 15px;
-  }
   & .header {
     font-weight: bold;
+  }
+  & .nested {
+    margin-top: 7.5px;
+    margin-bottom: 7.5px;
   }
   & .nested * {
     padding: 5px;
@@ -65,10 +69,18 @@ body {
   }
   & .title {
     font-size: 22px;
-    background-color:  var(--fg2);
     border-bottom: 1px solid white;
     padding: 15px;
     text-transform: uppercase;
+    margin-bottom: 15px;
+  }
+  & .subtitle {
+    font-size: 14px;
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    margin-top: -5px;
   }
 }
 

@@ -14,21 +14,39 @@ const elem = {
           $: 'title'
         },
         on: {
-          forcechanged (data) {
-            console.log('force changed')
+          // click (data) {
+          //   console.log(data)
+          //   data.state.title.set('click!')
+          // },
+          // hover (data) {
+          //   console.log(data)
+          //   data.state.title.set('hover!')
+          // },
+          // forcechanged (data) {
+          //   console.log(data)
+          //   data.state.title.set('force changed')
+          // },
+          touchstart (data) {
+            data.state.title.set('touch start')
+          },
+          touchend (data) {
+            data.state.title.set('touch end')
           },
           forcedown (data) {
-            console.log('force down')
+            data.state.title.set('force down')
           },
           forceup (data) {
-            console.log('force up')
+            console.log(data)
+            data.state.title.set('force up')
           },
-          rightclick (data) {
-            console.log('rightclick!')
-          },
-          drag (data) {
-            data.state.title.set(data.x - data.startX)
-          }
+          // rightclick (data) {
+          //   console.log(data)
+          //   data.state.title.set('rightclick')
+          // },
+          // drag (data) {
+          //   console.log(data)
+          //   data.state.title.set('drag:' + (data.x - data.startX))
+          // }
         }
       }
     }

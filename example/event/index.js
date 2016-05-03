@@ -14,6 +14,15 @@ const elem = {
           $: 'title'
         },
         on: {
+          forcechanged (data) {
+            console.log('force changed')
+          },
+          forcedown (data) {
+            console.log('force down')
+          },
+          forceup (data) {
+            console.log('force up')
+          },
           rightclick (data) {
             console.log('rightclick!')
           },

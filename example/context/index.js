@@ -10,10 +10,10 @@ document.body.appendChild(render({
   components: {
     item: {
       class: 'complex-item',
-      win: { $: 'a', class: 'nested', b: { c: { text: { $: 'win' } } } },
-      lose: { $: 'b', class: 'nested', b: { c: { text: { $: 'lose' } } } },
+      first: { $: 'a', class: 'nested', b: { c: { text: { $: 'first' } } } },
+      second: { $: 'b', class: 'nested', b: { c: { text: { $: 'second' } } } },
       title: { text: 'context' },
-      subtitle: { text: 'static subtitle' },
+      subtitle: { text: 'static & non-static order' },
       nested: { b: { c: { text: { $: 'title' } } } },
       symbol: {},
       symbol2: {
@@ -31,13 +31,24 @@ document.body.appendChild(render({
     rowA: {
       class: 'complex-item',
       symbol: {},
-      title: { text: 'non context' },
-      noContextWin: { $: 'a', class: 'nested', b: { c: { text: { $: 'win' } } } },
-      noContextLose: { $: 'b', class: 'nested', b: { c: { text: { $: 'lose' } } } }
+      title: { text: 'no context' },
+      first: { $: 'a', class: 'nested', b: { c: { text: { $: 'first' } } } },
+      second: { $: 'b', class: 'nested', b: { c: { text: { $: 'second' } } } }
+    }
+  },
+  holder3: {
+    class: 'holder',
+    rowA: {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'path subs' },
+      first: { class: 'basic-item', $: 'a.first', text: 'first' },
+      second: { class: 'basic-item', $: 'b.second', text: 'second' }
     }
   }
 }, state))
 
-state.title.set('dynamic text updated')
-state.set({ b: { lose: 'lose' } })
-state.set({ a: { win: 'win' } })
+state.title.set('third')
+state.set({ b: { second: 'second' } })
+state.set({ a: { first: 'first' } })

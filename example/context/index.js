@@ -34,21 +34,31 @@ document.body.appendChild(render({
       title: { text: 'no context' },
       first: { $: 'a', class: 'nested', b: { c: { text: { $: 'first' } } } },
       second: { $: 'b', class: 'nested', b: { c: { text: { $: 'second' } } } }
-    }
-  },
-  holder3: {
-    class: 'holder',
-    rowA: {
+    },
+    rowB: {
       class: 'complex-item',
       symbol: {},
       title: { text: 'no context' },
       subtitle: { text: 'path subscription' },
       first: { class: 'basic-item', $: 'a.first', text: 'first' },
       second: { class: 'basic-item', $: 'b.second', text: 'second' }
+    },
+    rowC: {
+      $: 'rootspawner',
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'root subscription' },
+      // this is a very ncie test
+      first: { class: 'basic-item', $: '$root.a', text: 'first' },
+      second: { class: 'basic-item', $: '$root.b', text: 'second' }
     }
   }
-}, state))
+}, state, (state, type, stamp, tree, subs, sType) => {
+  console.log('\nFIRE:', state.path().join('/'), ' - ', type, ' - ', sType || 'normal')
+}))
 
 state.title.set('third')
 state.set({ b: { second: 'second' } })
 state.set({ a: { first: 'first' } })
+state.set({ rootspawner: {} })

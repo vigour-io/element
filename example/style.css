@@ -1,5 +1,4 @@
 /*@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono');*/
-
 @import './fonts/style.css';
 
 :root {
@@ -69,10 +68,17 @@ body {
   }
   & .title {
     font-size: 22px;
-    background-color:  var(--fg2);
     border-bottom: 1px solid white;
     padding: 15px;
     text-transform: uppercase;
+  }
+  & .subtitle {
+    font-size: 14px;
+    border-bottom: 1px solid white;
+    padding-bottom: 20px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    margin-top: -5px;
   }
 }
 

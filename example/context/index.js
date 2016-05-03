@@ -12,7 +12,8 @@ document.body.appendChild(render({
       class: 'complex-item',
       win: { $: 'a', class: 'nested', b: { c: { text: { $: 'win' } } } },
       lose: { $: 'b', class: 'nested', b: { c: { text: { $: 'lose' } } } },
-      title: { text: 'static text' },
+      title: { text: 'static title' },
+      subtitle: { text: 'static subtitle' },
       nested: { b: { c: { text: { $: 'title' } } } },
       symbol: {},
       symbol2: {

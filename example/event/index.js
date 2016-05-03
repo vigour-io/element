@@ -15,7 +15,6 @@ const elem = {
         },
         on: {
           drag (data) {
-            console.log('drag!!!')
             data.state.title.set(data.state.title.val + '.')
           }
         }

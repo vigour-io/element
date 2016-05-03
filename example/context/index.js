@@ -32,8 +32,8 @@ document.body.appendChild(render({
       class: 'complex-item',
       symbol: {},
       title: { text: 'non context' },
-      win: { $: 'a', class: 'nested', b: { c: { text: { $: 'win' } } } },
-      lose: { $: 'b', class: 'nested', b: { c: { text: { $: 'lose' } } } }
+      noContextWin: { $: 'a', class: 'nested', b: { c: { text: { $: 'win' } } } },
+      noContextLose: { $: 'b', class: 'nested', b: { c: { text: { $: 'lose' } } } }
     }
   }
 }, state))

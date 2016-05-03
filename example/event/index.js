@@ -14,8 +14,11 @@ const elem = {
           $: 'title'
         },
         on: {
+          rightclick (data) {
+            console.log('rightclick!')
+          },
           drag (data) {
-            data.state.title.set(data.state.title.val + '.')
+            data.state.title.set(data.x - data.startX)
           }
         }
       }
@@ -28,7 +31,7 @@ let n = 1
 
 data.collection = {}
 
-while (n--) data.collection[n] = {title: n}
+while (n--) data.collection[n] = {title: '0'}
 
 const state = s(data)
 

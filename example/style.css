@@ -1,3 +1,7 @@
+/*@import url('https://fonts.googleapis.com/css?family=Droid+Sans+Mono');*/
+
+@import './fonts/style.css';
+
 :root {
   --bg: rgb(38, 50, 56);
   --white: white;
@@ -8,7 +12,7 @@
 
 body {
   background-color: var(--bg);
-  font-family: "droid sans mono";
+  font-family: 'Droid-Sans-Mono';
   color: var(--white);
 }
 

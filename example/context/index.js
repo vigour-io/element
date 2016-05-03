@@ -22,10 +22,10 @@ document.body.appendChild(render({
       }
     }
   },
-  holder: {
-    rowA: { type: 'item' },
-    rowB: { type: 'item' }
-  },
+  // holder: {
+  //   rowA: { type: 'item' },
+  //   rowB: { type: 'item' }
+  // },
   holder2: {
     class: 'holder',
     rowA: {
@@ -44,15 +44,24 @@ document.body.appendChild(render({
       second: { class: 'basic-item', $: 'b.second', text: 'second' }
     },
     rowC: {
-      $: 'rootspawner',
       class: 'complex-item',
       symbol: {},
       title: { text: 'no context' },
-      subtitle: { text: 'root subscription' },
-      // this is a very ncie test
-      first: { class: 'basic-item', $: '$root.a', text: 'first' },
-      second: { class: 'basic-item', $: '$root.b', text: 'second' }
+      subtitle: { text: 'mixed subscription' },
+      first: { class: 'basic-item', $: 'a', text: 'first' },
+      second: { class: 'basic-item', $: 'b.second', text: 'second' }
     }
+    // rowD: {
+    //   $: 'rootspawner',
+    //   class: 'complex-item',
+    //   symbol: {},
+    //   title: { text: 'no context' },
+    //   subtitle: { text: 'root subscription' },
+    //   // now this does nto fire... on remove
+    //   // and fires one to may after the remove for b
+    //   first: { class: 'basic-item', $: '$root.a.first', text: 'first' },
+    //   second: { class: 'basic-item', $: '$root.b.second', text: 'second' }
+    // }
   }
 }, state, (state, type, stamp, tree, subs, sType) => {
   console.log('\nFIRE:', state.path().join('/'), ' - ', type, ' - ', sType || 'normal')
@@ -61,4 +70,8 @@ document.body.appendChild(render({
 state.title.set('third')
 state.set({ b: { second: 'second' } })
 state.set({ a: { first: 'first' } })
-state.set({ rootspawner: {} })
+// state.set({ rootspawner: {} })
+
+console.error('\nREMOVE!')
+// context removal is still broken
+// state.set({ a: null })

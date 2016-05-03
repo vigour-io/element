@@ -28,11 +28,16 @@ document.body.appendChild(render({
   },
   removeButton: {
     class: 'basic-item',
-    text: 'remove first',
-    $: 'first',
+    text: {
+      $: 'first.text',
+      $transform (val) {
+        return !val ? 'add first' : 'remove ' + val
+      }
+    },
+    // $: 'first',
     on: {
       click (data) {
-        data.state.remove()
+        state.set({ first: state.first ? null : { text: 'first' } })
       }
     }
   },

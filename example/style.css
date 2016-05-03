@@ -29,12 +29,15 @@ body {
 .holder {
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 10px;
   background-color: var(--fg2);
   padding: 30px;
 }
 
 .basic-item {
+  user-select: none;
   display: inline-block;
+  cursor: default;
   margin: 5px;
   padding: 5px;
   min-width: 20px;

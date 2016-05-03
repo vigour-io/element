@@ -46,11 +46,6 @@ const elem = {
   }
 }
 
-// elem.hoho.beforeThree = {
-//   insertBefore: 'three',
-//   text: 'i want to be before three!'
-// }
-
 elem.hoho.first = {
   // order: -1,
   order: {
@@ -58,8 +53,6 @@ elem.hoho.first = {
   },
   text: 'i want to be the first!'
 }
-
-
 
 const state = s({
   haha: {
@@ -73,9 +66,7 @@ const state = s({
   }
 })
 
-console.log('----render')
 document.body.appendChild(render(elem, state))
-console.log('----rendered')
 console.log('\n\n-------set some new stuff')
 
 state.set({

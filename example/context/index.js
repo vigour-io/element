@@ -28,13 +28,13 @@ document.body.appendChild(render({
   },
   removeButton: {
     class: 'basic-item',
-    text: {
-      $: 'first.text',
-      $transform (val) {
-        return !val ? 'add first' : 'remove ' + val
-      }
-    },
-    // $: 'first',
+    // text: {
+    //   $: 'first.text',
+    //   $transform (val) {
+    //     return !val ? 'add first' : 'remove ' + val
+    //   }
+    // },
+    text: 'toggle',
     on: {
       click (data) {
         state.set({ first: state.first ? null : { text: 'first' } })

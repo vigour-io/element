@@ -12,7 +12,7 @@ document.body.appendChild(render({
       class: 'complex-item',
       win: { $: 'a', class: 'nested', b: { c: { text: { $: 'win' } } } },
       lose: { $: 'b', class: 'nested', b: { c: { text: { $: 'lose' } } } },
-      title: { text: 'static title' },
+      title: { text: 'context' },
       subtitle: { text: 'static subtitle' },
       nested: { b: { c: { text: { $: 'title' } } } },
       symbol: {},
@@ -25,15 +25,19 @@ document.body.appendChild(render({
   holder: {
     rowA: { type: 'item' },
     rowB: { type: 'item' }
+  },
+  holder2: {
+    class: 'holder',
+    rowA: {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'non context' },
+      win: { $: 'a', class: 'nested', b: { c: { text: { $: 'win' } } } },
+      lose: { $: 'b', class: 'nested', b: { c: { text: { $: 'lose' } } } }
+    }
   }
 }, state))
 
 state.title.set('dynamic text updated')
-
-state.set({
-  b: { lose: 'lose' }
-})
-
-state.set({
-  a: { win: 'win' }
-})
+state.set({ b: { lose: 'lose' } })
+state.set({ a: { win: 'win' } })

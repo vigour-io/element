@@ -10,8 +10,8 @@ document.body.appendChild(render({
   components: {
     item: {
       class: 'complex-item',
-      first: { $: 'a', class: 'nested', b: { c: { text: { $: 'first' } } } },
-      second: { $: 'b', class: 'nested', b: { c: { text: { $: 'second' } } } },
+      first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
+      second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } },
       title: { text: 'context' },
       subtitle: { text: 'static & state order' },
       nested: { b: { c: { text: { $: 'title' } } } },
@@ -25,53 +25,62 @@ document.body.appendChild(render({
   holder: {
     rowA: { type: 'item' },
     rowB: { type: 'item' }
+  },
+  removeButton: {
+    class: 'basic-item',
+    text: 'remove first',
+    $: 'first',
+    on: {
+      click (data) {
+        data.state.remove()
+      }
+    }
+  },
+  holder2: {
+    class: 'holder',
+    rowA: {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
+      second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
+    },
+    rowB: {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'path subscription' },
+      first: { class: 'basic-item', $: 'first.text', text: 'first' },
+      second: { class: 'basic-item', $: 'second.text', text: 'second' }
+    },
+    rowC: {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'mixed subscription' },
+      first: { class: 'basic-item', $: 'first', text: 'first' },
+      second: { class: 'basic-item', $: 'second.text', text: 'second' }
+    }
+    // rowD: {
+    //   $: 'rootspawner',
+    //   class: 'complex-item',
+    //   symbol: {},
+    //   title: { text: 'no context' },
+    //   subtitle: { text: 'root subscription' },
+    //   // now this does nto fire... on remove
+    //   // and fires one to may after the remove for b
+    //   first: { class: 'basic-item', $: '$root.a.first', text: 'first' },
+    //   second: { class: 'basic-item', $: '$root.b.second', text: 'second' }
+    // }
   }
-  // holder2: {
-  //   class: 'holder',
-  //   rowA: {
-  //     class: 'complex-item',
-  //     symbol: {},
-  //     title: { text: 'no context' },
-  //     first: { $: 'a', class: 'nested', b: { c: { text: { $: 'first' } } } },
-  //     second: { $: 'b', class: 'nested', b: { c: { text: { $: 'second' } } } }
-  //   },
-  //   rowB: {
-  //     class: 'complex-item',
-  //     symbol: {},
-  //     title: { text: 'no context' },
-  //     subtitle: { text: 'path subscription' },
-  //     first: { class: 'basic-item', $: 'a.first', text: 'first' },
-  //     second: { class: 'basic-item', $: 'b.second', text: 'second' }
-  //   },
-  //   rowC: {
-  //     class: 'complex-item',
-  //     symbol: {},
-  //     title: { text: 'no context' },
-  //     subtitle: { text: 'mixed subscription' },
-  //     first: { class: 'basic-item', $: 'a', text: 'first' },
-  //     second: { class: 'basic-item', $: 'b.second', text: 'second' }
-  //   }
-  //   // rowD: {
-  //   //   $: 'rootspawner',
-  //   //   class: 'complex-item',
-  //   //   symbol: {},
-  //   //   title: { text: 'no context' },
-  //   //   subtitle: { text: 'root subscription' },
-  //   //   // now this does nto fire... on remove
-  //   //   // and fires one to may after the remove for b
-  //   //   first: { class: 'basic-item', $: '$root.a.first', text: 'first' },
-  //   //   second: { class: 'basic-item', $: '$root.b.second', text: 'second' }
-  //   // }
-  // }
 }, state, (state, type, stamp, tree, subs, sType) => {
   console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
 }))
 
 state.title.set('third')
-state.set({ b: { second: 'second' } })
-state.set({ a: { first: 'first' } })
+state.set({ second: { text: 'second' } })
+state.set({ first: { text: 'first' } })
 // state.set({ rootspawner: {} })
 
 console.error('\nREMOVE!')
 // context removal is still broken
-state.set({ a: null })

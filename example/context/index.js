@@ -52,7 +52,7 @@ document.body.appendChild(render({
   key: 'app',
   Child: { class: 'holder' },
   properties: { texts: { Child: { type: 'text' } } },
-  texts: [ '~ ', { $: 'first.text' }, ' ~' ],
+  texts: [ '-', { $: 'first.text' }, '-' ],
   // holder: [
   //   { type: 'basic' },
   //   { type: 'basic' }

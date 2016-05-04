@@ -49,30 +49,33 @@ document.body.appendChild(render({
   key: 'app',
   text: 'context',
   Child: { class: 'holder' },
-  holder: {
-    a: { type: 'basic' },
-    b: { type: 'basic' }
+  bla: {
+    $: 'first.text'
   },
-  holder2: {
-    a: { type: 'complex' },
-    b: { type: 'complex' }
+  // holder: [
+  //   // { type: 'basic' },
+  //   // { type: 'basic' }
+  // ],
+  // holder2: [
+  //   // { type: 'complex' },
+  //   // { type: 'complex' }
+  // ],
+  updateText: {
+    class: 'basic-item',
+    text: 'update all text',
+    on: {
+      click (data) {
+        function updateText (state) {
+          if (state.val) {
+            const split = state.val.split(' ')
+            state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
+          }
+          state.each(updateText)
+        }
+        updateText(state)
+      }
+    }
   },
-  // updateText: {
-  //   class: 'basic-item',
-  //   text: 'update all text',
-  //   on: {
-  //     click (data) {
-  //       function updateText (state) {
-  //         if (state.val) {
-  //           const split = state.val.split(' ')
-  //           state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
-  //         }
-  //         state.each(updateText)
-  //       }
-  //       updateText(state)
-  //     }
-  //   }
-  // },
   // toggle: {
   //   class: 'basic-item',
   //   text: {

@@ -8,7 +8,6 @@ const elem = {
   switcher: {
     class: 'holder',
     $: 'navigation',
-    // temp solution!
     $switch: true,
     map (state, type, stamp, subs, tree, sType) {
       if (state.key === 'episodeData') {
@@ -42,15 +41,15 @@ const elem = {
     }
   },
   sick: {
+    staticIndex: 1,
     class: 'basic-item',
     text: 'buttonballz',
     on: {
       click () {
-        if (state.navigation.val === state.content.episodeData) {
-          state.navigation.set('$root.content.discoverData')
-        } else {
-          state.navigation.set('$root.content.episodeData')
-        }
+        const navigation = state.navigation
+        state.navigation.set(navigation.val === state.content.episodeData
+          ? '$root.content.discoverData'
+          : '$root.content.episodeData')
       }
     }
   }
@@ -72,12 +71,4 @@ const state = s({
   }
 })
 
-console.log('-----------\n--render!--\n-----------')
-
-document.body.appendChild( render(elem, state, function (state, type, stamp, subs, tree, sType) {
-
-}))
-
-console.log('-----------\n--switch!--\n-----------')
-
-// setTimeout(() => state.navigation.set('$root.content.discoverData'), 2000)
+document.body.appendChild( render(elem, state, () => {}))

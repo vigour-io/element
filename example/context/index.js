@@ -12,7 +12,7 @@ document.body.appendChild(render({
       first: {
         $: 'first',
         text: { $: 'text' },
-        bottom: { type: 'text', val: '| static-second | ' }
+        bottom: { type: 'text', val: ' | static-second |' }
       },
       second: { text: 'static-second' }
     },
@@ -21,28 +21,24 @@ document.body.appendChild(render({
       first: {
         $: 'first',
         class: 'nested',
-        b: {
-          c: {
-            Child: { class: 'basic-item' },
-            a: { text: { $: 'text' } },
-            b: { text: 'static-second' }
-          }
+        a: {
+          Child: { class: 'basic-item' },
+          a: { text: { $: 'text' } },
+          b: { text: 'static-second' }
         }
       },
       second: {
         $: 'second',
         class: 'nested',
-        b: {
-          c: {
-            text: { $: 'text' }
-          }
+        a: {
+          a: { text: { $: 'text' } }
         }
       },
       title: { text: 'context' },
       subtitle: { text: 'static & state order' },
       nested: {
-        b: {
-          c: { text: { $: 'title' } }
+        a: {
+          a: { text: { $: 'title' } }
         }
       },
       symbol: {},
@@ -52,21 +48,19 @@ document.body.appendChild(render({
       }
     }
   },
-  properties: {
-    texts: { Child: { type: 'text' } }
-  },
   text: 'context',
-  texts: [ '>>>>> ', { $: 'first.text' }, ' <<<<<' ],
   key: 'app',
   Child: { class: 'holder' },
+  properties: { texts: { Child: { type: 'text' } } },
+  texts: [ '~ ', { $: 'first.text' }, ' ~' ],
   // holder: [
+  //   { type: 'basic' },
   //   { type: 'basic' }
-  //   // { type: 'basic' }
   // ],
-  // holder2: [
-  //   { type: 'complex' },
-  //   { type: 'complex' }
-  // ],
+  holder2: [
+    { type: 'complex' },
+    { type: 'complex' }
+  ],
   updateText: {
     class: 'basic-item',
     text: 'update all text',

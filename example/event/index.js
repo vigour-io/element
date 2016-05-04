@@ -10,10 +10,15 @@ const elem = {
     $any: true,
     Child: {
       big: {
-        text: {
-          $: 'title'
-        },
+        node: 'input',
+        text: { $: 'title' },
         on: {
+          arrowleft (data) {
+            console.log('arrowleft:', data)
+          },
+          arrowright (data) {
+            console.log('arrowright:', data)
+          },
           // click (data) {
           //   console.log(data)
           //   data.state.title.set('click!')
@@ -26,19 +31,19 @@ const elem = {
           //   console.log(data)
           //   data.state.title.set('force changed')
           // },
-          touchstart (data) {
-            data.state.title.set('touch start')
-          },
-          touchend (data) {
-            data.state.title.set('touch end')
-          },
-          forcedown (data) {
-            data.state.title.set('force down')
-          },
-          forceup (data) {
-            console.log(data)
-            data.state.title.set('force up')
-          },
+          // touchstart (data) {
+          //   data.state.title.set('touch start')
+          // },
+          // touchend (data) {
+          //   data.state.title.set('touch end')
+          // },
+          // forcedown (data) {
+          //   data.state.title.set('force down')
+          // },
+          // forceup (data) {
+          //   console.log(data)
+          //   data.state.title.set('force up')
+          // },
           // rightclick (data) {
           //   console.log(data)
           //   data.state.title.set('rightclick')

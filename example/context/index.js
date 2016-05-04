@@ -26,13 +26,33 @@ document.body.appendChild(render({
     rowA: { type: 'item' },
     rowB: { type: 'item' }
   },
-  removeButton: {
+  updateText: {
     class: 'basic-item',
-    text: 'remove first',
-    $: 'first',
+    text: 'update all text',
     on: {
       click (data) {
-        data.state.remove()
+        function updateText (state) {
+          if (state.val) {
+            const split = state.val.split(' ')
+            state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
+          }
+          state.each(updateText)
+        }
+        updateText(state)
+      }
+    }
+  },
+  toggle: {
+    class: 'basic-item',
+    text: {
+      $: 'first.text',
+      $transform (val) {
+        return !val ? 'add first' : 'remove ' + val
+      }
+    },
+    on: {
+      click (data) {
+        state.set({ first: state.first ? null : { text: 'first' } })
       }
     }
   },
@@ -81,6 +101,3 @@ state.title.set('third')
 state.set({ second: { text: 'second' } })
 state.set({ first: { text: 'first' } })
 // state.set({ rootspawner: {} })
-
-console.error('\nREMOVE!')
-// context removal is still broken

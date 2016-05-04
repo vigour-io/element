@@ -49,17 +49,14 @@ document.body.appendChild(render({
   key: 'app',
   text: 'context',
   Child: { class: 'holder' },
-  bla: {
-    $: 'first.text'
-  },
-  // holder: [
-  //   // { type: 'basic' },
-  //   // { type: 'basic' }
-  // ],
-  // holder2: [
-  //   // { type: 'complex' },
-  //   // { type: 'complex' }
-  // ],
+  holder: [
+    { type: 'basic' },
+    { type: 'basic' }
+  ],
+  holder2: [
+    { type: 'complex' },
+    { type: 'complex' }
+  ],
   updateText: {
     class: 'basic-item',
     text: 'update all text',
@@ -76,45 +73,45 @@ document.body.appendChild(render({
       }
     }
   },
-  // toggle: {
-  //   class: 'basic-item',
-  //   text: {
-  //     $: 'first.text',
-  //     $transform (val) {
-  //       return !val ? 'add first' : 'remove ' + val
-  //     }
-  //   },
-  //   on: {
-  //     click (data) {
-  //       state.set({ first: state.first ? null : { text: 'first' } })
-  //     }
-  //   }
-  // },
-  // holder2: {
-  //   rowA: {
-  //     class: 'complex-item',
-  //     symbol: {},
-  //     title: { text: 'no context' },
-  //     first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
-  //     second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
-  //   },
-  //   rowB: {
-  //     class: 'complex-item',
-  //     symbol: {},
-  //     title: { text: 'no context' },
-  //     subtitle: { text: 'path subscription' },
-  //     first: { class: 'basic-item', $: 'first.text', text: 'first' },
-  //     second: { class: 'basic-item', $: 'second.text', text: 'second' }
-  //   },
-  //   rowC: {
-  //     class: 'complex-item',
-  //     symbol: {},
-  //     title: { text: 'no context' },
-  //     subtitle: { text: 'mixed subscription' },
-  //     first: { class: 'basic-item', $: 'first', text: 'first' },
-  //     second: { class: 'basic-item', $: 'second.text', text: 'second' }
-  //   }
-    // rowD: {
+  toggle: {
+    class: 'basic-item',
+    text: {
+      $: 'first.text',
+      $transform (val) {
+        return !val ? 'add first' : 'remove ' + val
+      }
+    },
+    on: {
+      click (data) {
+        state.set({ first: state.first ? null : { text: 'first' } })
+      }
+    }
+  },
+  holder3: [
+    {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
+      second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
+    },
+    {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'path subscription' },
+      first: { class: 'basic-item', $: 'first.text', text: 'first' },
+      second: { class: 'basic-item', $: 'second.text', text: 'second' }
+    },
+    {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'mixed subscription' },
+      first: { class: 'basic-item', $: 'first', text: 'first' },
+      second: { class: 'basic-item', $: 'second.text', text: 'second' }
+    }
+    // {
     //   $: 'rootspawner',
     //   class: 'complex-item',
     //   symbol: {},
@@ -125,7 +122,7 @@ document.body.appendChild(render({
     //   first: { class: 'basic-item', $: '$root.a.first', text: 'first' },
     //   second: { class: 'basic-item', $: '$root.b.second', text: 'second' }
     // }
-  // }
+  ]
 }, state, (state, type, stamp, tree, subs, sType) => {
   console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
 }))

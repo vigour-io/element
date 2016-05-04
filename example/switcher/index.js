@@ -41,7 +41,6 @@ const elem = {
     }
   },
   sick: {
-    staticIndex: 1,
     class: 'basic-item',
     text: 'buttonballz',
     on: {

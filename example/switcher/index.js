@@ -5,17 +5,20 @@ const s = require('vigour-state/s')
 const render = require('../../lib/render')
 const elem = {
   key: 'app',
-  holder: {
+  switcher: {
+    class: 'holder',
     $: 'navigation',
     // temp solution!
     $switch: true,
     map (state, type, stamp, subs, tree, sType) {
-      console.log('map:---->', state.key)
       if (state.key === 'episodeData') {
         return 'episode'
       } else if (state.key === 'discoverData') {
         return 'discover'
       }
+    },
+    Child: {
+      class: 'complex-item'
     },
     properties: {
       episode: {
@@ -28,11 +31,25 @@ const elem = {
         }
       },
       discover: {
+        $: 'field',
         text: 'Discover:',
         title: {
           text: {
             $: 'dis-title'
           }
+        }
+      }
+    }
+  },
+  sick: {
+    class: 'basic-item',
+    text: 'buttonballz',
+    on: {
+      click () {
+        if (state.navigation.val === state.content.episodeData) {
+          state.navigation.set('$root.content.discoverData')
+        } else {
+          state.navigation.set('$root.content.episodeData')
         }
       }
     }
@@ -48,12 +65,19 @@ const state = s({
       }
     },
     discoverData: {
-      'dis-title': 'discover it!'
+      field: {
+        'dis-title': 'discover it!'
+      }
     }
   }
 })
 
+console.log('-----------\n--render!--\n-----------')
+
 document.body.appendChild( render(elem, state, function (state, type, stamp, subs, tree, sType) {
-  console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
-  console.log('tree:', tree)
+
 }))
+
+console.log('-----------\n--switch!--\n-----------')
+
+// setTimeout(() => state.navigation.set('$root.content.discoverData'), 2000)

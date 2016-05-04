@@ -13,8 +13,8 @@ document.body.appendChild(render({
         $: 'first',
         text: { $: 'text' },
         bottom: { type: 'text', val: '| static-second | ' }
-      }
-      // second: { text: 'static-second' }
+      },
+      second: { text: 'static-second' }
     },
     complex: {
       class: 'complex-item',
@@ -55,7 +55,7 @@ document.body.appendChild(render({
   properties: {
     texts: { Child: { type: 'text' } }
   },
-  // text: 'context',
+  text: 'context',
   texts: [ '>>>>> ', { $: 'first.text' }, ' <<<<<' ],
   key: 'app',
   Child: { class: 'holder' },
@@ -67,36 +67,36 @@ document.body.appendChild(render({
   //   { type: 'complex' },
   //   { type: 'complex' }
   // ],
-  // updateText: {
-  //   class: 'basic-item',
-  //   text: 'update all text',
-  //   on: {
-  //     click (data) {
-  //       function updateText (state) {
-  //         if (state.val) {
-  //           const split = state.val.split(' ')
-  //           state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
-  //         }
-  //         state.each(updateText)
-  //       }
-  //       updateText(state)
-  //     }
-  //   }
-  // },
-  // toggle: {
-  //   class: 'basic-item',
-  //   text: {
-  //     $: 'first.text',
-  //     $transform (val) {
-  //       return !val ? 'add first' : 'remove ' + val
-  //     }
-  //   },
-  //   on: {
-  //     click (data) {
-  //       state.set({ first: state.first ? null : { text: 'first' } })
-  //     }
-  //   }
-  // }
+  updateText: {
+    class: 'basic-item',
+    text: 'update all text',
+    on: {
+      click (data) {
+        function updateText (state) {
+          if (state.val) {
+            const split = state.val.split(' ')
+            state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
+          }
+          state.each(updateText)
+        }
+        updateText(state)
+      }
+    }
+  },
+  toggle: {
+    class: 'basic-item',
+    text: {
+      $: 'first.text',
+      $transform (val) {
+        return !val ? 'add first' : 'remove ' + val
+      }
+    },
+    on: {
+      click (data) {
+        state.set({ first: state.first ? null : { text: 'first' } })
+      }
+    }
+  }
   // holder3: [
   //   {
   //     class: 'complex-item',

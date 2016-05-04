@@ -11,9 +11,10 @@ document.body.appendChild(render({
       Child: { class: 'basic-item' },
       first: {
         $: 'first',
-        text: { $: 'text' }
-      },
-      second: { text: 'static-second' }
+        text: { $: 'text' },
+        bottom: { type: 'text', val: '| static-second | ' }
+      }
+      // second: { text: 'static-second' }
     },
     complex: {
       class: 'complex-item',
@@ -55,8 +56,8 @@ document.body.appendChild(render({
   text: 'context',
   Child: { class: 'holder' },
   holder: [
-    { type: 'basic' },
     { type: 'basic' }
+    // { type: 'basic' }
   ],
   // holder2: [
   //   { type: 'complex' },

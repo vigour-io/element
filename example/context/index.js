@@ -52,13 +52,17 @@ document.body.appendChild(render({
       }
     }
   },
+  properties: {
+    texts: { Child: { type: 'text' } }
+  },
+  // text: 'context',
+  texts: [ '>>>>> ', { $: 'first.text' }, ' <<<<<' ],
   key: 'app',
-  text: 'context',
   Child: { class: 'holder' },
-  holder: [
-    { type: 'basic' }
-    // { type: 'basic' }
-  ],
+  // holder: [
+  //   { type: 'basic' }
+  //   // { type: 'basic' }
+  // ],
   // holder2: [
   //   { type: 'complex' },
   //   { type: 'complex' }
@@ -79,20 +83,20 @@ document.body.appendChild(render({
   //     }
   //   }
   // },
-  toggle: {
-    class: 'basic-item',
-    text: {
-      $: 'first.text',
-      $transform (val) {
-        return !val ? 'add first' : 'remove ' + val
-      }
-    },
-    on: {
-      click (data) {
-        state.set({ first: state.first ? null : { text: 'first' } })
-      }
-    }
-  }
+  // toggle: {
+  //   class: 'basic-item',
+  //   text: {
+  //     $: 'first.text',
+  //     $transform (val) {
+  //       return !val ? 'add first' : 'remove ' + val
+  //     }
+  //   },
+  //   on: {
+  //     click (data) {
+  //       state.set({ first: state.first ? null : { text: 'first' } })
+  //     }
+  //   }
+  // }
   // holder3: [
   //   {
   //     class: 'complex-item',

@@ -111,6 +111,8 @@ document.body.appendChild(render({
       first: { class: 'basic-item', $: 'first', text: 'first' },
       second: { class: 'basic-item', $: 'second.text', text: 'second' }
     }
+    // HAS TO BE DONE BY TMRW!
+
     // {
     //   $: 'rootspawner',
     //   class: 'complex-item',

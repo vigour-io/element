@@ -6,12 +6,10 @@ const render = require('../../lib/render')
 const elem = {
   key: 'app',
   switcher: {
-    class: 'holder',
-    $: 'navigation',
-    $switch: true,
+    $: 'navigation.$switch',
     map (state, type, stamp, subs, tree, sType) {
-      if (state.key === 'episodeData') {
-        return 'episode'
+      if (state.key === 'showData') {
+        return 'show'
       } else if (state.key === 'discoverData') {
         return 'discover'
       }
@@ -20,12 +18,12 @@ const elem = {
       class: 'complex-item'
     },
     properties: {
-      episode: {
+      show: {
         $: 'field',
-        text: 'Episode:',
+        text: 'Show:',
         title: {
           text: {
-            $: 'ep-title'
+            $: 'show-title'
           }
         }
       },
@@ -42,24 +40,24 @@ const elem = {
   },
   sick: {
     class: 'basic-item',
-    text: 'buttonballz',
+    text: 'switch page',
     on: {
       click () {
         const navigation = state.navigation
-        state.navigation.set(navigation.val === state.content.episodeData
+        navigation.set(navigation.val === state.content.showData
           ? '$root.content.discoverData'
-          : '$root.content.episodeData')
+          : '$root.content.showData')
       }
     }
   }
 }
 
 const state = s({
-  navigation: '$root.content.episodeData',
+  navigation: '$root.content.showData',
   content: {
-    episodeData: {
+    showData: {
       field: {
-        'ep-title': 'awesome episode!'
+        'show-title': 'awesome show!'
       }
     },
     discoverData: {

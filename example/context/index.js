@@ -2,7 +2,8 @@
 require('../style.css')
 const render = require('../../lib/render')
 const s = require('vigour-state/s')
-const state = s({ title: 'dynamic text' }, false)
+const state = s()
+// { title: 'dynamic text' }, false
 
 document.body.appendChild(render({
   components: {
@@ -23,8 +24,19 @@ document.body.appendChild(render({
         class: 'nested',
         a: {
           Child: { class: 'basic-item' },
-          a: { text: { $: 'text' } },
-          b: { text: 'static-second' }
+          dynamic: { text: { $: 'text' } },
+          static: {
+            text: 'static-second',
+            on: {
+              click (e) {
+                console.log('--->', e)
+                e.target.style.border = '1px solid red'
+                setTimeout(() => {
+                  e.target.style.border = 'inherit'
+                }, 100)
+              }
+            }
+          }
         }
       },
       second: {
@@ -120,9 +132,15 @@ document.body.appendChild(render({
   console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
 }))
 
-state.title.set('third')
-state.set({ second: { text: 'second' } })
+// state.title.set('third')
+// state.set({ second: { text: 'second' } })
 state.set({ first: { text: 'first' } })
+
+console.log('-----remove first------')
+state.set({ first: null })
+
+console.log('----reset first-------')
+state.set({ first: { text: 'haha' } })
 // state.set({ rootspawner: {} })
 
 // HAS TO BE DONE BY TMRW!

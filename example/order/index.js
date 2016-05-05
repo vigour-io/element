@@ -43,20 +43,6 @@ const app = {
       }
     }
   },
-  basic: [
-    { type: 'basic' },
-    { type: 'basic' }
-  ],
-  complex: [
-    { type: 'complex' },
-    { type: 'complex' },
-    { type: 'complex' }
-  ],
-  deep: [
-    { type: 'deep' },
-    { type: 'deep' },
-    { type: 'deep' }
-  ],
   nocontext: [
     {
       class: 'complex-item',
@@ -81,6 +67,20 @@ const app = {
       first: { class: 'basic-item', $: 'first', text: 'first' },
       second: { class: 'basic-item', $: 'second.text', text: 'second' }
     }
+  ],
+  basic: [
+    { type: 'basic' },
+    { type: 'basic' }
+  ],
+  complex: [
+    { type: 'complex' },
+    { type: 'complex' },
+    { type: 'complex' }
+  ],
+  deep: [
+    { type: 'deep' },
+    { type: 'deep' },
+    { type: 'deep' }
   ]
 }
 

@@ -6,7 +6,7 @@
 require('../style.css')
 const benchmark = require('../benchmark')
 benchmark.init(
-  25000,
+  2,
   {
     key: 'app',
     text: 'basic',

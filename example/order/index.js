@@ -1,96 +1,14 @@
 'use strict'
 require('../style.css')
 const render = require('../../lib/render')
+const components = require('./components')
+
 const s = require('vigour-state/s')
 const state = s({ title: 'third' })
 
-document.body.appendChild(render({
-  components: {
-    basic: {
-      class: 'basic-item',
-      Child: { class: 'basic-item' },
-      first: {
-        $: 'first',
-        text: { $: 'text' },
-        bottom: { type: 'text', val: ' | static-second' }
-      },
-      second: { text: 'static-second' }
-    },
-    texts: { Child: { type: 'text' } },
-    complex: {
-      class: 'complex-item',
-      first: {
-        $: 'first',
-        class: 'nested',
-        a: {
-          Child: { class: 'basic-item' },
-          dynamic: { text: { $: 'text' } },
-          static: {
-            text: 'static-second',
-            on: {
-              click (e) {
-                e.target.style.border = '1px dashed white'
-                setTimeout(() => {
-                  e.target.style.border = 'inherit'
-                }, 100)
-              }
-            }
-          }
-        }
-      },
-      second: {
-        $: 'second',
-        class: 'nested',
-        a: {
-          a: { text: { $: 'text' } }
-        }
-      },
-      title: { text: 'context' },
-      subtitle: { text: 'static & state order' },
-      nested: {
-        a: {
-          a: { text: { $: 'title' } }
-        }
-      },
-      symbol: {},
-      symbol2: {
-        class: 'symbol',
-        order: -1
-      }
-    },
-    deep: {
-      class: 'complex-item',
-      symbol: {},
-      title: { text: 'deep context' },
-      nested: {
-        first: {
-          type: 'basic',
-          properties: { texts: { type: 'texts' } },
-          texts: [
-            '-',
-            {
-              $: 'first.text',
-              $transform (val) {
-                return val || 'first removed'
-              }
-            },
-            '-'
-          ],
-          deep: {
-            type: 'basic',
-            first: {
-              $: 'second'
-            }
-          }
-        }
-      },
-      footer: {
-        symbol2: { class: 'symbol' }
-      },
-      complex: { type: 'complex' }
-    }
-  },
-  text: 'context',
+const app = {
+  inject: components,
+  text: 'order',
   key: 'app',
   Child: { class: 'holder' },
   properties: { texts: { type: 'texts' } },
@@ -164,10 +82,9 @@ document.body.appendChild(render({
       second: { class: 'basic-item', $: 'second.text', text: 'second' }
     }
   ]
-}, state, (state, type, stamp, tree, subs, sType) => {
-  console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
-}))
+}
 
+document.body.appendChild(render(app, state))
 state.set({ second: { text: 'second' } })
 state.set({ first: { text: 'first' } })
 

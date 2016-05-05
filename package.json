@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "main": "lib/index.js",
   "scripts": {
+    "browser-test": "budo ./test/index.js --live -- -r ./package.json:package.json",
     "test": "node test | tap-difflet",
     "watch": "nodemon test | tap-difflet",
     "cover": "istanbul cover --report none --print detail test/index.js",

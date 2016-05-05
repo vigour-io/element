@@ -1,9 +1,9 @@
 'use strict'
 require('../style.css')
 const s = require('vigour-state/s')
-
+const Element = require('../../lib/element')
 const render = require('../../lib/render')
-const elem = {
+const elem = new Element({
   key: 'app',
   holder: {
     $: 'collection',
@@ -26,7 +26,10 @@ const elem = {
       }
     }
   }
-}
+})
+
+elem.holder.Child.prototype.big.__on.remove()
+// console.log('-->', )
 
 const data = {}
 let n = 1

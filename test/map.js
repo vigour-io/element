@@ -4,6 +4,7 @@ const Elem = require('../lib/element')
 const test = require('tape')
 const e = (set) => new Elem(set)
 const slice = [].slice
+
 test('simple element map', function (t) {
   var elem, map
   t.plan(4)
@@ -77,14 +78,45 @@ test('simple element with properties map', function (t) {
   }, 'mixed properties, subs')
 })
 
+test('simple collection map', function (t) {
+  var elem, map
+  t.plan(2)
+
+  elem = e({ $: 'things.$any' })
+  map = prep(elem.$map())
+  t.same(map, {
+    things: {
+      val: 1,
+      $any: sub(1, 't', child(elem)),
+      _: obj('t', elem)
+    }
+  }, 'collection, no child subs')
+
+  elem = e({
+    $: 'things.$any',
+    Child: { $: 'field' }
+  })
+  map = prep(elem.$map())
+  t.same(map, {
+    things: {
+      val: 1,
+      $any: {
+        val: 1,
+        field: sub(1, 't', child(elem)),
+        _: obj('t', child(elem))
+      },
+      _: obj('t', elem)
+    }
+  }, 'collection, child subs')
+})
+
 // starts uids from 1 in each object and removes parent field
 function prep (map) {
   if (isObj(map)) {
-    let cnt = 1
     let remap = {}
     for (let i in map) {
       if (i !== 'p' && i !== 'da' && i !== 'sa' && i !== 'ta') {
-        remap[isNaN(i) ? i : cnt++] = prep(map[i])
+        remap[i] = prep(map[i])
       }
     }
     return remap
@@ -103,15 +135,20 @@ function sub (val) {
 function obj () {
   const l = arguments.length
   const obj = {}
-  let target, cnt
+  let target
   for (let i = 0; i < l; i++) {
     const val = arguments[i]
     if (typeof val === 'string') {
       target = obj[val] = {}
-      cnt = 1
     } else {
-      target[cnt++] = arguments[i]
+      const elem = arguments[i]
+      // @todo needs context uid
+      target[elem._uid] = elem
     }
   }
   return obj
+}
+
+function child (elem) {
+  return elem.Child.prototype
 }

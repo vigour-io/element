@@ -2,7 +2,7 @@
 require('../style.css')
 const render = require('../../lib/render')
 const s = require('vigour-state/s')
-const state = s({ title: 'dynamic text' })
+const state = s({ title: 'third' })
 
 document.body.appendChild(render({
   components: {
@@ -12,10 +12,11 @@ document.body.appendChild(render({
       first: {
         $: 'first',
         text: { $: 'text' },
-        bottom: { type: 'text', val: ' | static-second |' }
+        bottom: { type: 'text', val: ' | static-second' }
       },
       second: { text: 'static-second' }
     },
+    texts: { Child: { type: 'text' } },
     complex: {
       class: 'complex-item',
       first: {
@@ -57,12 +58,43 @@ document.body.appendChild(render({
         class: 'symbol',
         order: -1
       }
+    },
+    deep: {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'deep context' },
+      nested: {
+        first: {
+          type: 'basic',
+          properties: { texts: { type: 'texts' } },
+          texts: [
+            '-',
+            {
+              $: 'first.text',
+              $transform (val) {
+                return val || 'first removed'
+              }
+            },
+            '-'
+          ],
+          deep: {
+            type: 'basic',
+            first: {
+              $: 'second'
+            }
+          }
+        }
+      },
+      footer: {
+        symbol2: { class: 'symbol' }
+      },
+      complex: { type: 'complex' }
     }
   },
   text: 'context',
   key: 'app',
   Child: { class: 'holder' },
-  properties: { texts: { Child: { type: 'text' } } },
+  properties: { texts: { type: 'texts' } },
   texts: [ '-', { $: 'first.text' }, '-' ],
   updateText: {
     class: 'basic-item',
@@ -94,16 +126,20 @@ document.body.appendChild(render({
       }
     }
   },
-  holder: [
+  basic: [
     { type: 'basic' },
     { type: 'basic' }
   ],
-  holder2: [
+  complex: [
     { type: 'complex' },
     { type: 'complex' },
     { type: 'complex' }
   ],
-  holder3: [
+  deep: [
+    { type: 'deep' },
+    { type: 'deep' }
+  ],
+  nocontext: [
     {
       class: 'complex-item',
       symbol: {},
@@ -132,12 +168,8 @@ document.body.appendChild(render({
   console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
 }))
 
-// state.title.set('third')
 state.set({ second: { text: 'second' } })
 state.set({ first: { text: 'first' } })
-
-// console.log('-----remove first------')
-// state.set({ first: null })
 
 // console.log('----reset first-------')
 // state.set({ first: { text: 'haha' } })

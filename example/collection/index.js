@@ -7,57 +7,56 @@ const app = {
   main: {
     holder1: {
       class: 'holder',
-      $: 'collection',
-      $any: true,
+      $: 'collection.$any',
       Child: {
         class: 'basic-item',
         text: { $: 'title' }
       }
     },
-    holder2: {
-      class: 'holder',
-      $: 'collection',
-      $any: true,
-      Child: {
-        class: 'complex-item',
-        on: {
-          remove (val, stamp, node) {
-            console.log('FIRE REMOVE:', val, stamp, node)
-          }
-        },
-        symbol: {},
-        nested: {
-          a: {
-            b: {
-              img: { caption: { text: 'static img' } }
-            }
-          }
-        },
-        title: {
-          text: { $: 'title' }
-        },
-        header: {
-          a: {
-            bla: {
-              x: {
-                text: { $: 'x', $prepend: 'x:' }
-              },
-              lastname: {
-                text: {
-                  $: 'title.lastname',
-                  $prepend: 'lname: '
-                }
-              }
-            },
-            text: {
-              $: 'title',
-              $prepend: 'h:',
-              $transform (val) { return val }
-            }
-          }
-        }
-      }
-    }
+    // holder2: {
+    //   class: 'holder',
+    //   $: 'collection',
+    //   $any: true,
+    //   Child: {
+    //     class: 'complex-item',
+    //     on: {
+    //       remove (val, stamp, node) {
+    //         console.log('FIRE REMOVE:', val, stamp, node)
+    //       }
+    //     },
+    //     symbol: {},
+    //     nested: {
+    //       a: {
+    //         b: {
+    //           img: { caption: { text: 'static img' } }
+    //         }
+    //       }
+    //     },
+    //     title: {
+    //       text: { $: 'title' }
+    //     },
+    //     header: {
+    //       a: {
+    //         bla: {
+    //           x: {
+    //             text: { $: 'x', $prepend: 'x:' }
+    //           },
+    //           lastname: {
+    //             text: {
+    //               $: 'title.lastname',
+    //               $prepend: 'lname: '
+    //             }
+    //           }
+    //         },
+    //         text: {
+    //           $: 'title',
+    //           $prepend: 'h:',
+    //           $transform (val) { return val }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 

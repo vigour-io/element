@@ -83,7 +83,7 @@ function prep (map) {
     let cnt = 1
     let remap = {}
     for (let i in map) {
-      if (i !== 'p') {
+      if (i !== 'p' && i !== 'da' && i !== 'sa' && i !== 'ta') {
         remap[isNaN(i) ? i : cnt++] = prep(map[i])
       }
     }

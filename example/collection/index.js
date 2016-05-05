@@ -16,7 +16,6 @@ const app = {
     holder2: {
       class: 'holder',
       $: 'collection.$any',
-      $any: true,
       Child: {
         class: 'complex-item',
         on: {

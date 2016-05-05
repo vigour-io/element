@@ -94,6 +94,17 @@ document.body.appendChild(render({
 console.log(document.body.children[2].children[0].children[1])
 state.greeting.set('bye')
 console.log(document.body.children[2].children[0].children[1])
+
+console.log('yo subs', subs)
+
+function logger (a) {
+  for (var i = 0 ; i < a.length; i += 2) {
+    console.log(a[i] + ' : ' + a[i + 1].path().join('/'))
+  }
+}
+logger(subs._.ta)
+// logger(subs.greeting._.ta)
+
 // state.c.b.set('c-b')
 
 // state.field.remove()

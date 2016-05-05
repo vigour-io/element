@@ -42,7 +42,7 @@ const app = {
               },
               lastname: {
                 text: {
-                  // $: 'title.lastname',
+                  $: 'title.lastname',
                   $prepend: 'lname: '
                 }
               }

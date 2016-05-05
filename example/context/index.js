@@ -29,8 +29,7 @@ document.body.appendChild(render({
             text: 'static-second',
             on: {
               click (e) {
-                console.log('--->', e)
-                e.target.style.border = '1px solid red'
+                e.target.style.border = '1px dashed white'
                 setTimeout(() => {
                   e.target.style.border = 'inherit'
                 }, 100)
@@ -136,6 +135,7 @@ document.body.appendChild(render({
     { type: 'complex' }
   ],
   deep: [
+    { type: 'deep' },
     { type: 'deep' },
     { type: 'deep' }
   ],

@@ -5,78 +5,78 @@ const test = require('tape')
 const e = (set) => new Elem(set)
 const slice = [].slice
 
-test('simple element map', function (t) {
-  var elem, map
-  t.plan(4)
+// test('simple element map', function (t) {
+//   var elem, map
+//   t.plan(4)
 
-  elem = e()
-  map = prep(elem.$map())
-  t.same(map, {
-    _: obj('t', elem)
-  }, 'empty element, no subs')
+//   elem = e()
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     _: obj('t', elem)
+//   }, 'empty element, no subs')
 
-  elem = e({ holder: {} })
-  map = prep(elem.$map())
-  t.same(map, {
-    _: obj('t', elem)
-  }, 'element with child, no subs')
+//   elem = e({ holder: {} })
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     _: obj('t', elem)
+//   }, 'element with child, no subs')
 
-  elem = e({ $: 'field' })
-  map = prep(elem.$map())
-  t.same(map, {
-    field: sub(1, 't', elem)
-  }, 'element, sub')
+//   elem = e({ $: 'field' })
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     field: sub(1, 't', elem)
+//   }, 'element, sub')
 
-  elem = e({ holder: { $: 'field' } })
-  map = prep(elem.$map())
-  t.same(map, {
-    field: sub(1, 't', elem.holder),
-    _: obj('t', elem)
-  }, 'element with child, nested sub')
-})
+//   elem = e({ holder: { $: 'field' } })
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     field: sub(1, 't', elem.holder),
+//     _: obj('t', elem)
+//   }, 'element with child, nested sub')
+// })
 
-test('simple element with properties map', function (t) {
-  var elem, map
-  t.plan(4)
+// test('simple element with properties map', function (t) {
+//   var elem, map
+//   t.plan(4)
 
-  elem = e({ style: { x: 10 } })
-  map = prep(elem.$map())
-  t.same(map, {
-    _: obj('t', elem)
-  }, 'property, no subs')
+//   elem = e({ style: { x: 10 } })
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     _: obj('t', elem)
+//   }, 'property, no subs')
 
-  elem = e({ text: { $: 'textField' } })
-  map = prep(elem.$map())
-  t.same(map, {
-    textField: sub(true, 's', elem.text),
-    _: obj('t', elem)
-  }, 'text property, subs')
+//   elem = e({ text: { $: 'textField' } })
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     textField: sub(true, 's', elem.text),
+//     _: obj('t', elem)
+//   }, 'text property, subs')
 
-  elem = e({
-    style: { x: { $: 'xField' } }
-  })
-  map = prep(elem.$map())
-  t.same(map, {
-    xField: sub(true, 's', elem.style.x),
-    _: obj('t', elem.style, elem)
-  }, 'style property, subs')
+//   elem = e({
+//     style: { x: { $: 'xField' } }
+//   })
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     xField: sub(true, 's', elem.style.x),
+//     _: obj('t', elem.style, elem)
+//   }, 'style property, subs')
 
-  elem = e({
-    text: { $: 'textField' },
-    style: {
-      x: { $: 'xField' },
-      y: { $: 'yField' }
-    }
-  })
+//   elem = e({
+//     text: { $: 'textField' },
+//     style: {
+//       x: { $: 'xField' },
+//       y: { $: 'yField' }
+//     }
+//   })
 
-  map = prep(elem.$map())
-  t.same(map, {
-    xField: sub(true, 's', elem.style.x),
-    yField: sub(true, 's', elem.style.y),
-    textField: sub(true, 's', elem.text),
-    _: obj('t', elem.style, elem)
-  }, 'mixed properties, subs')
-})
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     xField: sub(true, 's', elem.style.x),
+//     yField: sub(true, 's', elem.style.y),
+//     textField: sub(true, 's', elem.text),
+//     _: obj('t', elem.style, elem)
+//   }, 'mixed properties, subs')
+// })
 
 test('simple collection map', function (t) {
   var elem, map
@@ -91,6 +91,8 @@ test('simple collection map', function (t) {
       _: obj('t', elem)
     }
   }, 'collection, no child subs')
+
+  console.log('---->', map)
 
   elem = e({
     $: 'things.$any',

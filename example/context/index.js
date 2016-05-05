@@ -65,27 +65,27 @@ document.body.appendChild(render({
       // Child: { type: 'other', $: false }
     }
   },
-  // propsholder: {
-  //   title: { text: 'props' }
-  //   // a: { type: 'propsElem' }
-  //   // components: {
-  //   //   a: { $: 'greeting' }
-  //   // },
-  //   // a: { type: 'a' },
-  //   // b: { type: 'a', $: 'field' },
-  //   // c: { type: 'a', $: false }
-  // },
+  propsholder: {
+    title: { text: 'props' },
+    a: { type: 'propsElem' }
+    // components: {
+    //   a: { $: 'greeting' }
+    // },
+    // a: { type: 'a' },
+    // b: { type: 'a', $: 'field' },
+    // c: { type: 'a', $: false }
+  },
   // elems: {
   //   title: { text: 'elements' },
   //   other2: { type: 'other', $: 'c' },
   //   other: { type: 'other' }
   // },
-  collections: {
-    title: { text: 'collections' },
-    collection: { type: 'collection' } // this is def wrong
-    // collection2: { type: 'collection' },
-    // collection3: { type: 'collection' }
-  }
+  // collections: {
+  //   title: { text: 'collections' },
+  //   collection: { type: 'collection' } // this is def wrong
+  //   // collection2: { type: 'collection' },
+  //   // collection3: { type: 'collection' }
+  // }
 }, state, (state, type, stamp, tree, subs, sType) => {
   // pass app, rState, rTree
   console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')

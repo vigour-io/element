@@ -5,8 +5,8 @@
 // -------------------------
 require('../style.css')
 const benchmark = require('../benchmark')
-benchmark.loop(
-  2500,
+benchmark.init(
+  2,
   {
     key: 'app',
     text: 'basic',
@@ -14,7 +14,7 @@ benchmark.loop(
       $: 'collection.$any',
       Child: {
         class: 'basic-item',
-        text: { $: 'title' }
+        text: { $: 'title' } // lookup 2 per thing and then one extra for the parent very very bad
       }
     }
   },

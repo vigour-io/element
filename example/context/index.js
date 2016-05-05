@@ -74,7 +74,7 @@ document.body.appendChild(render({
     // a: { type: 'a' },
     // b: { type: 'a', $: 'field' },
     // c: { type: 'a', $: false }
-  },
+  }
   // elems: {
   //   title: { text: 'elements' },
   //   other2: { type: 'other', $: 'c' },

@@ -11,8 +11,7 @@ benchmark.loop(
     key: 'app',
     text: 'basic',
     holder: {
-      $: 'collection',
-      $any: true,
+      $: 'collection.$any',
       Child: {
         class: 'basic-item',
         text: { $: 'title' }

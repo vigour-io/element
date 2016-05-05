@@ -1,86 +1,107 @@
 'use strict'
 require('../style.css')
-// for some perf comparisons --> https://github.com/Matt-Esch/virtual-dom/issues/371
 const render = require('../../lib/render')
-// -------------------------
+const components = require('./components')
+
 const s = require('vigour-state/s')
+const state = s({ title: 'third' })
 
-const elem = {
+const app = {
+  inject: components,
+  text: 'order',
   key: 'app',
-  components: {
-    thingy: {
-      $: 'haha',
-      one: {
-        $: 'titleone',
-        text: {
-          $: 'title'
+  Child: { class: 'holder' },
+  properties: { texts: { type: 'texts' } },
+  texts: [ '-', { $: 'first.text' }, '-' ],
+  updateText: {
+    class: 'basic-item',
+    text: 'update all text',
+    on: {
+      click (data) {
+        function updateText (state) {
+          if (state.val) {
+            const split = state.val.split(' ')
+            state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
+          }
+          state.each(updateText)
         }
-      },
-      middleman: {
-        sneaky: {
-          text: 'im inbetween one and two!'
-        }
-      },
-      two: {
-        $: 'titletwo',
-        text: {
-          $: 'title'
-        }
-      },
-      three: {
-        $: 'titlethree',
-        text: {
-          $: 'title'
-        }
+        updateText(state)
       }
     }
   },
-  hoho: {
-    type: 'thingy',
-    four: {
-      $: 'titlefour',
-      text: {
-        $: 'title'
+  toggle: {
+    class: 'basic-item',
+    text: {
+      $: 'first.text',
+      $transform (val) {
+        return !val ? 'add first' : 'remove ' + val
       }
-    }
-  }
-}
-
-elem.hoho.first = {
-  // order: -1,
-  order: {
-    $: 'order'
-  },
-  text: 'i want to be the first!'
-}
-
-const state = s({
-  haha: {
-    order: -1,
-    titleone: {
-      title: 'one title'
     },
-    titlefour: {
-      title: 'four title'
+    on: {
+      click (data) {
+        state.set({ first: state.first ? null : { text: 'first' } })
+      }
     }
-  }
-})
-
-document.body.appendChild(render(elem, state))
-console.log('\n\n-------set some new stuff')
-
-state.set({
-  haha: {
-    titletwo: {
-      title: 'two title'
+  },
+  nocontext: [
+    {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
+      second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
+    },
+    {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'path subscription' },
+      first: { class: 'basic-item', $: 'first.text', text: 'first' },
+      second: { class: 'basic-item', $: 'second.text', text: 'second' }
+    },
+    {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'mixed subscription' },
+      first: { class: 'basic-item', $: 'first', text: 'first' },
+      second: { class: 'basic-item', $: 'second.text', text: 'second' }
     }
-  }
-})
+  ],
+  basic: [
+    { type: 'basic' },
+    { type: 'basic' }
+  ],
+  complex: [
+    { type: 'complex' },
+    { type: 'complex' },
+    { type: 'complex' }
+  ],
+  deep: [
+    { type: 'deep' },
+    { type: 'deep' },
+    { type: 'deep' }
+  ]
+}
 
-state.set({
-  haha: {
-    titlethree: {
-      title: 'three title'
-    }
-  }
-})
+document.body.appendChild(render(app, state))
+state.set({ second: { text: 'second' } })
+state.set({ first: { text: 'first' } })
+
+// console.log('----reset first-------')
+// state.set({ first: { text: 'haha' } })
+// state.set({ rootspawner: {} })
+
+// HAS TO BE DONE BY TMRW!
+// ROOT
+// {
+//   $: 'rootspawner',
+//   class: 'complex-item',
+//   symbol: {},
+//   title: { text: 'no context' },
+//   subtitle: { text: 'root subscription' },
+//   // now this does nto fire... on remove
+//   // and fires one to may after the remove for b
+//   first: { class: 'basic-item', $: '$root.a.first', text: 'first' },
+//   second: { class: 'basic-item', $: '$root.b.second', text: 'second' }
+// }

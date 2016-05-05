@@ -5,8 +5,8 @@
 // -------------------------
 require('../style.css')
 const benchmark = require('../benchmark')
-benchmark.loop(
-  2,
+benchmark.init(
+  25000,
   {
     key: 'app',
     text: 'basic',

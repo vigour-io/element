@@ -1,81 +1,117 @@
 'use strict'
-const test = require('tape')
+const isObj = require('vigour-util/is/obj')
 const Elem = require('../lib/element')
+const test = require('tape')
+const e = (set) => new Elem(set)
+const slice = [].slice
+test('simple element map', function (t) {
+  var elem, map
+  t.plan(4)
 
+  elem = e()
+  map = prep(elem.$map())
+  t.same(map, {
+    _: obj('t', elem)
+  }, 'empty element, no subs')
 
-test('Elem map', function (t) {
-  t.plan(1)
-  const elem1 = new Elem({
-    holder: {
-      $: 'field'
-    }
-  })
-  const map1 = reset(elem1.$map())
+  elem = e({ holder: {} })
+  map = prep(elem.$map())
+  t.same(map, {
+    _: obj('t', elem)
+  }, 'element with child, no subs')
 
+  elem = e({ $: 'field' })
+  map = prep(elem.$map())
+  t.same(map, {
+    field: sub(1, 't', elem)
+  }, 'element, sub')
 
-  const elem2 = new Elem({
-    holder: {
-      $: 'field'
-    }
-  })
-
-  const map2 = reset(elem2.$map())
-
-  console.log(map1, map2)
-
-
-  // testmap(t, elem1, {
-  //   field: {
-  //     val: 1,
-  //     _: {
-  //       t: {
-  //         1: elem1.holder
-  //       }
-  //     }
-  //   },
-  //   _: {
-  //     t: {
-  //       2: elem1
-  //     }
-  //   }
-  // })
-
-  // const elem1 = new Elem({ holder: { $: 'field' } })
-  // const map1 = elem1.$map()
-
-  // t.same(map1, {
-  //   field: {
-  //     val: 1,
-  //     _: {
-  //       t: {
-  //         1: elem1.holder
-  //       }
-  //     }
-  //   },
-  //   _: {
-  //     t: {
-  //       2: elem1
-  //     }
-  //   }
-  // })
-
-  // return elem
+  elem = e({ holder: { $: 'field' } })
+  map = prep(elem.$map())
+  t.same(map, {
+    field: sub(1, 't', elem.holder),
+    _: obj('t', elem)
+  }, 'element with child, nested sub')
 })
 
-function reset (map) {
-  let cnt = 1
-  for (let i in map) {
-    if (typeof map[i] === 'object' && !map[i].isElement) {
-      console.log(i)
-      map[i] = reset(map[i])
+test('simple element with properties map', function (t) {
+  var elem, map
+  t.plan(4)
+
+  elem = e({ style: { x: 10 } })
+  map = prep(elem.$map())
+  t.same(map, {
+    _: obj('t', elem)
+  }, 'property, no subs')
+
+  elem = e({ text: { $: 'textField' } })
+  map = prep(elem.$map())
+  t.same(map, {
+    textField: sub(true, 's', elem.text),
+    _: obj('t', elem)
+  }, 'text property, subs')
+
+  elem = e({
+    style: { x: { $: 'xField' } }
+  })
+  map = prep(elem.$map())
+  t.same(map, {
+    xField: sub(true, 's', elem.style.x),
+    _: obj('t', elem.style, elem)
+  }, 'style property, subs')
+
+  elem = e({
+    text: { $: 'textField' },
+    style: {
+      x: { $: 'xField' },
+      y: { $: 'yField' }
     }
-    if (!isNaN(i)) {
-      if (i != cnt) { // eslint-disable-line
-        map[cnt] = map[i]
-        delete map[cnt]
+  })
+
+  map = prep(elem.$map())
+  t.same(map, {
+    xField: sub(true, 's', elem.style.x),
+    yField: sub(true, 's', elem.style.y),
+    textField: sub(true, 's', elem.text),
+    _: obj('t', elem.style, elem)
+  }, 'mixed properties, subs')
+})
+
+// starts uids from 1 in each object and removes parent field
+function prep (map) {
+  if (isObj(map)) {
+    let cnt = 1
+    let remap = {}
+    for (let i in map) {
+      if (i !== 'p') {
+        remap[isNaN(i) ? i : cnt++] = prep(map[i])
       }
-      cnt++
+    }
+    return remap
+  } else {
+    return map
+  }
+}
+
+function sub (val) {
+  return {
+    val: val,
+    _: obj.apply(null, slice.call(arguments, 1))
+  }
+}
+// creates store for every string argument and populates with following arguments
+function obj () {
+  const l = arguments.length
+  const obj = {}
+  let target, cnt
+  for (let i = 0; i < l; i++) {
+    const val = arguments[i]
+    if (typeof val === 'string') {
+      target = obj[val] = {}
+      cnt = 1
+    } else {
+      target[cnt++] = arguments[i]
     }
   }
-  return map
+  return obj
 }

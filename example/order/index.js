@@ -65,7 +65,7 @@ const app = {
       symbol: {},
       title: { text: 'no context' },
       first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
-      // second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
+      second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
     },
     // {
     //   class: 'complex-item',

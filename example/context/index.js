@@ -58,23 +58,25 @@ document.body.appendChild(render({
     },
     collection: {
       class: 'complex-item',
-      title: { text: 'collection' },
-      $any: true,
-      $: 'collection',
-      Child: { text: { $: 'b' } } // this is def broken
+      // list: {
+      // title: { text: 'collection' },
+      $: 'collection.$any',
+      Child: { class: 'basic-item', text: { $: 'b' } }
+      // }
+      // this is def broken
       // Child: { type: 'other', $: false }
     }
   },
-  propsholder: {
-    title: { text: 'props' },
-    a: { type: 'propsElem' }
-    // components: {
-    //   a: { $: 'greeting' }
-    // },
-    // a: { type: 'a' },
-    // b: { type: 'a', $: 'field' },
-    // c: { type: 'a', $: false }
-  },
+  // propsholder: {
+  //   title: { text: 'props' },
+  //   a: { type: 'propsElem' }
+  //   // components: {
+  //   //   a: { $: 'greeting' }
+  //   // },
+  //   // a: { type: 'a' },
+  //   // b: { type: 'a', $: 'field' },
+  //   // c: { type: 'a', $: false }
+  // },
   // elems: {
   //   title: { text: 'elements' },
   //   other2: { type: 'other', $: 'c' },
@@ -89,27 +91,10 @@ document.body.appendChild(render({
 }, state, (state, type, stamp, tree, subs, sType) => {
   // pass app, rState, rTree
   console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
+  console.log(subs)
 }))
 
-console.log(document.body.children[2].children[0].children[1])
+// console.log(document.body.children[2].children[0].children[1])
 state.greeting.set('bye')
-console.log(document.body.children[2].children[0].children[1])
-
+// console.log(document.body.children[2].children[0].children[1])
 console.log('yo subs', subs)
-
-function logger (a) {
-  for (var i = 0 ; i < a.length; i += 3) {
-    console.log(a[i] + ' : ' + a[i + 2].path().join('/'))
-  }
-}
-logger(subs._.ta)
-// logger(subs.greeting._.ta)
-
-// state.c.b.set('c-b')
-
-// state.field.remove()
-// console.log(document.body.children[2].children[0])
-// props
-// then group
-// then style
-// then transform

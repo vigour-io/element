@@ -7,7 +7,7 @@ const benchmark = require('../benchmark')
 require('../style.css')
 
 benchmark.loop(
-  2500,
+  25e2,
   {
     key: 'app',
     text: 'basic',

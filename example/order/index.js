@@ -32,6 +32,7 @@ const app = {
   toggle: {
     class: 'basic-item',
     text: {
+      // completely wrong allready
       $: 'first.text',
       $transform (val) {
         return !val ? 'add first' : 'remove ' + val
@@ -68,20 +69,20 @@ const app = {
       second: { class: 'basic-item', $: 'second.text', text: 'second' }
     }
   ],
-  basic: [
-    { type: 'basic' },
-    { type: 'basic' }
-  ],
-  complex: [
-    { type: 'complex' },
-    { type: 'complex' },
-    { type: 'complex' }
-  ],
-  deep: [
-    { type: 'deep' },
-    { type: 'deep' },
-    { type: 'deep' }
-  ]
+  // basic: [
+  //   { type: 'basic' },
+  //   { type: 'basic' }
+  // ],
+  // complex: [
+  //   { type: 'complex' },
+  //   { type: 'complex' },
+  //   { type: 'complex' }
+  // ],
+  // deep: [
+  //   { type: 'deep' },
+  //   { type: 'deep' },
+  //   { type: 'deep' }
+  // ]
 }
 
 document.body.appendChild(render(app, state))

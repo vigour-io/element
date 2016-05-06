@@ -11,8 +11,8 @@ const app = {
   text: 'order',
   key: 'app',
   Child: { class: 'holder' },
-  // properties: { texts: { type: 'texts' } },
-  // texts: [ '-', { $: 'first.text' }, '-' ],
+  properties: { texts: { type: 'texts' } },
+  texts: [ '-', { $: 'first.text' }, '-' ],
   updateText: {
     class: 'basic-item',
     text: 'update all text',
@@ -67,37 +67,37 @@ const app = {
       first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
       second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
     },
-    // {
-    //   class: 'complex-item',
-    //   symbol: {},
-    //   title: { text: 'no context' },
-    //   subtitle: { text: 'path subscription' },
-    //   first: { class: 'basic-item', $: 'first.text', text: 'first' },
-    //   second: { class: 'basic-item', $: 'second.text', text: 'second' }
-    // },
-    // {
-    //   class: 'complex-item',
-    //   symbol: {},
-    //   title: { text: 'no context' },
-    //   subtitle: { text: 'mixed subscription' },
-    //   first: { class: 'basic-item', $: 'first', text: 'first' },
-    //   second: { class: 'basic-item', $: 'second.text', text: 'second' }
-    // }
+    {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'path subscription' },
+      first: { class: 'basic-item', $: 'first.text', text: 'first' },
+      second: { class: 'basic-item', $: 'second.text', text: 'second' }
+    },
+    {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      subtitle: { text: 'mixed subscription' },
+      first: { class: 'basic-item', $: 'first', text: 'first' },
+      second: { class: 'basic-item', $: 'second.text', text: 'second' }
+    }
   ],
-  // basic: [
-  //   { type: 'basic' },
-  //   { type: 'basic' }
-  // ],
-  // complex: [
-  //   { type: 'complex' },
-  //   { type: 'complex' },
-  //   { type: 'complex' }
-  // ],
-  // deep: [
-  //   { type: 'deep' },
-  //   { type: 'deep' },
-  //   { type: 'deep' }
-  // ]
+  basic: [
+    { type: 'basic' },
+    { type: 'basic' }
+  ],
+  complex: [
+    { type: 'complex' },
+    { type: 'complex' },
+    { type: 'complex' }
+  ],
+  deep: [
+    { type: 'deep' },
+    { type: 'deep' },
+    { type: 'deep' }
+  ]
 }
 
 

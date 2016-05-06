@@ -94,4 +94,4 @@ document.body.appendChild(render({
 // console.log(document.body.children[2].children[0].children[1])
 state.greeting.set('bye')
 // console.log(document.body.children[2].children[0].children[1])
-console.log('yo subs', subs)
+// console.log('yo subs', subs)

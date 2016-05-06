@@ -1,9 +1,10 @@
 'use strict'
+require('vigour-util/require')()
 require('./benchmark.css')
 const render = require('../lib/render')
 const State = require('vigour-state')
 const isNumber = require('vigour-util/is/number')
-const raf = window.requestAnimationFrame
+const raf = global.requestAnimationFrame || process.nextTick
 
 exports.ui = {
   class: { shiftdown: true },
@@ -36,9 +37,11 @@ exports.init = function (amount, app, method, update) {
   if (update) { update(state, 0) }
   // init measure
   var ms = Date.now()
-  document.body.appendChild(render(app, state))
-  state.set({ first: Date.now() - ms })
-  state.set({ elems: document.getElementsByTagName('*').length })
+  if (document.body) {
+    document.body.appendChild(render(app, state))
+    state.set({ first: Date.now() - ms })
+    state.set({ elems: document.getElementsByTagName('*').length })
+  }
   return state
 }
 

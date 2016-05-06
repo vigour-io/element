@@ -3,10 +3,11 @@
 // for comparable results
 // https://github.com/Matt-Esch/virtual-dom/issues/371
 // -------------------------
-require('../style.css')
 const benchmark = require('../benchmark')
-benchmark.init(
-  25e2,
+require('../style.css')
+
+benchmark.loop(
+  2500,
   {
     key: 'app',
     text: 'basic',

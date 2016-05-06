@@ -59,7 +59,7 @@ const app = {
   }
 }
 
-benchmark.loop(1000, app, (i, cnt) => {
+benchmark.init(5000, app, (i, cnt) => {
   return {
     title: {
       val: i + cnt,

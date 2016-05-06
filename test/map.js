@@ -174,6 +174,35 @@ test('collection map', function (t) {
   }, 'nested collections, child subs')
 })
 
+// @todo finish when jazzy is done with new context
+// test('context element map', function (t) {
+//   var elem, map
+//   t.plan(1)
+
+//   elem = e({
+//     components: {
+//       thing: {
+//         text: {
+//           $: 'textField'
+//         }
+//       }
+//     },
+//     thing1: {
+//       type: 'thing'
+//     },
+//     thing2: {
+//       type: 'thing'
+//     }
+//   })
+//   map = prep(elem.$map())
+//   console.log('----->', map, elem.components.thing)
+//   // t.same(map, true)
+//   t.same(map, {
+//     textField: sub(true, 's', elem.thing1, elem.thing2),
+//     _: obj('t', elem, elem.thing1, elem.thing2)
+//   }, 'component with sub, 2 times')
+// })
+
 // starts uids from 1 in each object and removes parent field
 function prep (map) {
   if (isObj(map)) {

@@ -60,13 +60,13 @@ const app = {
     }
   },
   nocontext: [
-    // {
-    //   class: 'complex-item',
-    //   symbol: {},
-    //   title: { text: 'no context' },
-    //   first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
-    //   // second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
-    // },
+    {
+      class: 'complex-item',
+      symbol: {},
+      title: { text: 'no context' },
+      first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
+      // second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
+    },
     // {
     //   class: 'complex-item',
     //   symbol: {},
@@ -120,8 +120,8 @@ function logger (a) {
 }
 console.log(subs)
 
-console.log('TOP TA')
-logger(subs._.ta)
+console.log('tList')
+logger(subs._.tList)
 
 console.log('TOP FIRST TA')
 // logger(subs.first._.ta)

@@ -11,63 +11,63 @@ const app = {
   text: 'order',
   key: 'app',
   Child: { class: 'holder' },
-  properties: { texts: { type: 'texts' } },
-  texts: [ '-', { $: 'first.text' }, '-' ],
-  updateText: {
-    class: 'basic-item',
-    text: 'update all text',
-    on: {
-      click (data) {
-        function updateText (state) {
-          if (state.val) {
-            const split = state.val.split(' ')
-            state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
-          }
-          state.each(updateText)
-        }
-        updateText(state)
-      }
-    }
-  },
-  toggle: {
-    class: 'basic-item',
-    text: {
-      // completely wrong allready
-      $: 'first.text',
-      $transform (val) {
-        return !val ? 'add first' : 'remove ' + val
-      }
-    },
-    on: {
-      click (data) {
-        state.set({ first: state.first ? null : { text: 'first' } })
-      }
-    }
-  },
+  // properties: { texts: { type: 'texts' } },
+  // texts: [ '-', { $: 'first.text' }, '-' ],
+  // updateText: {
+  //   class: 'basic-item',
+  //   text: 'update all text',
+  //   on: {
+  //     click (data) {
+  //       function updateText (state) {
+  //         if (state.val) {
+  //           const split = state.val.split(' ')
+  //           state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
+  //         }
+  //         state.each(updateText)
+  //       }
+  //       updateText(state)
+  //     }
+  //   }
+  // },
+  // toggle: {
+  //   class: 'basic-item',
+  //   text: {
+  //     // completely wrong allready
+  //     $: 'first.text',
+  //     $transform (val) {
+  //       return !val ? 'add first' : 'remove ' + val
+  //     }
+  //   },
+  //   on: {
+  //     click (data) {
+  //       state.set({ first: state.first ? null : { text: 'first' } })
+  //     }
+  //   }
+  // },
   nocontext: [
     {
       class: 'complex-item',
       symbol: {},
       title: { text: 'no context' },
       first: { $: 'first', class: 'nested', b: { c: { text: { $: 'text' } } } },
-      second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
+      // second: { $: 'second', class: 'nested', b: { c: { text: { $: 'text' } } } }
     },
-    {
-      class: 'complex-item',
-      symbol: {},
-      title: { text: 'no context' },
-      subtitle: { text: 'path subscription' },
-      first: { class: 'basic-item', $: 'first.text', text: 'first' },
-      second: { class: 'basic-item', $: 'second.text', text: 'second' }
-    },
-    {
-      class: 'complex-item',
-      symbol: {},
-      title: { text: 'no context' },
-      subtitle: { text: 'mixed subscription' },
-      first: { class: 'basic-item', $: 'first', text: 'first' },
-      second: { class: 'basic-item', $: 'second.text', text: 'second' }
-    }
+    // {
+    //   class: 'complex-item',
+    //   symbol: {},
+    //   title: { text: 'no context' },
+    //   subtitle: { text: 'path subscription' },
+    //   first: { class: 'basic-item', $: 'first.text', text: 'first' },
+    //   second: { class: 'basic-item', $: 'second.text', text: 'second' }
+    // },
+    // {
+    //   class: 'complex-item',
+    //   symbol: {},
+    //   title: { text: 'no context' },
+    //   subtitle: { text: 'mixed subscription' },
+    //   first: { class: 'basic-item', $: 'first', text: 'first' },
+    //   second: { class: 'basic-item', $: 'second.text', text: 'second' }
+    // }
   ],
   // basic: [
   //   { type: 'basic' },

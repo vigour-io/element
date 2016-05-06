@@ -3,8 +3,10 @@
 // for comparable results
 // https://github.com/Matt-Esch/virtual-dom/issues/371
 // -------------------------
-require('../style.css')
 const benchmark = require('../benchmark')
+
+require('../style.css')
+
 benchmark.loop(
   2500,
   {

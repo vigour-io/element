@@ -5,7 +5,7 @@ const test = require('tape')
 const e = (set) => new Elem(set)
 const slice = [].slice
 
-test('simple element map', function (t) {
+test('element map', function (t) {
   var elem, map
   t.plan(4)
 
@@ -35,7 +35,7 @@ test('simple element map', function (t) {
   }, 'element with child, nested sub')
 })
 
-test('simple element with properties map', function (t) {
+test('element with properties map', function (t) {
   var elem, map
   t.plan(4)
 
@@ -78,9 +78,9 @@ test('simple element with properties map', function (t) {
   }, 'mixed properties, subs')
 })
 
-test('simple collection map', function (t) {
+test('collection map', function (t) {
   var elem, map
-  t.plan(3)
+  t.plan(5)
 
   elem = e({ $: 'things.$any' })
   map = prep(elem.$map())
@@ -111,7 +111,6 @@ test('simple collection map', function (t) {
     $: 'things.$any'
   })
   map = prep(elem.$map())
-
   t.same(map, {
     things: sub(1, 't', elem, {
       $any: sub(1, 't', child(elem), {
@@ -120,7 +119,59 @@ test('simple collection map', function (t) {
         })
       })
     })
-  }, 'collection, child subs')
+  }, 'collection, child subs nested props')
+
+  elem = e({
+    coll1: {
+      $: 'things.$any',
+      Child: { $: 'field', text: { $: 'title' } }
+    },
+    coll2: {
+      $: 'things.$any',
+      Child: { $: 'field', text: { $: 'title' } }
+    }
+  })
+  map = prep(elem.$map())
+  t.same(map, {
+    things: sub(1, 't', elem.coll1, elem.coll2, {
+      $any: sub(1, 't', child(elem.coll1), child(elem.coll2), {
+        field: sub(1, 't', child(elem.coll1), child(elem.coll2), {
+          title: sub(true, 's', child(elem.coll1).text, child(elem.coll2).text)
+        })
+      })
+    }),
+    _: obj('t', elem)
+  }, 'double collection same data, child subs')
+
+  elem = e({
+    coll1: {
+      $: 'things.$any',
+      Child: {
+        $: 'field',
+        coll2: {
+          $: 'nestedThings.$any',
+          Child: { $: 'nestedField' }
+        }
+      }
+    }
+  })
+  map = prep(elem.$map())
+  const coll1child = child(elem.coll1)
+  const coll2child = child(coll1child.coll2)
+  t.same(map, {
+    things: sub(1, 't', elem.coll1, {
+      $any: sub(1, 't', coll1child, {
+        field: sub(1, 't', coll1child, {
+          nestedThings: sub(1, 't', coll1child.coll2, {
+            $any: sub(1, 't', coll2child, {
+              nestedField: sub(1, 't', coll2child)
+            })
+          })
+        })
+      })
+    }),
+    _: obj('t', elem)
+  }, 'nested collections, child subs')
 })
 
 // starts uids from 1 in each object and removes parent field

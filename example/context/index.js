@@ -74,18 +74,18 @@ document.body.appendChild(render({
     // a: { type: 'a' },
     // b: { type: 'a', $: 'field' },
     // c: { type: 'a', $: false }
-  }
+  },
   // elems: {
   //   title: { text: 'elements' },
   //   other2: { type: 'other', $: 'c' },
   //   other: { type: 'other' }
   // },
-  // collections: {
-  //   title: { text: 'collections' },
-  //   collection: { type: 'collection' } // this is def wrong
-  //   // collection2: { type: 'collection' },
-  //   // collection3: { type: 'collection' }
-  // }
+  collections: {
+    title: { text: 'collections' },
+    collection: { type: 'collection' } // this is def wrong
+    // collection2: { type: 'collection' },
+    // collection3: { type: 'collection' }
+  }
 }, state, (state, type, stamp, tree, subs, sType) => {
   // pass app, rState, rTree
   console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
@@ -98,8 +98,8 @@ console.log(document.body.children[2].children[0].children[1])
 console.log('yo subs', subs)
 
 function logger (a) {
-  for (var i = 0 ; i < a.length; i += 2) {
-    console.log(a[i] + ' : ' + a[i + 1].path().join('/'))
+  for (var i = 0 ; i < a.length; i += 3) {
+    console.log(a[i] + ' : ' + a[i + 2].path().join('/'))
   }
 }
 logger(subs._.ta)

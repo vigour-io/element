@@ -5,7 +5,7 @@ const s = require('vigour-state/s')
 const state = s({
   greeting: 'hello',
   cat: 'http://loremflickr.com',
-  field: 'field',
+  field: '\nfield',
   fields: {
     a: {
       b: 'a/b'
@@ -26,8 +26,6 @@ const state = s({
     { b: '2/b' }
   ]
 })
-
-//// 'http://loremflickr.com/320/240?' + i, random cats!
 
 document.body.appendChild(render({
   text: 'context',
@@ -56,12 +54,15 @@ document.body.appendChild(render({
           greeting: {
             $: 'greeting',
             $transform (val) {
-              return (val !== this && val !== true && val) || 'hahaha'
+              return (val !== this && val !== true && val) || 'greetings!'
             }
           },
           cat: {
             $: 'cat',
-            $add: '/100/100',
+            $add: {
+              val: '/100/100',
+              $add () { return '?' + Math.random() }
+            },
             name: 'src'
           }
         },
@@ -80,7 +81,7 @@ document.body.appendChild(render({
       }
     },
     collection: {
-      class: 'complex-item',
+      class: 'complex-item fill',
       title: { text: 'collection' },
       $: 'collection.$any',
       Child: {
@@ -105,42 +106,27 @@ document.body.appendChild(render({
       haha: 'ha!',
       yuzi: { $: 'field' }
     },
-    small: { type: 'cat' },
-    large: {
+    first: { type: 'cat' },
+    second: {
       type: 'cat',
       props: {
         cat: null,
         largeCat: true
       }
-    }
-    // components: {
-    //   a: { $: 'greeting' }
-    // },
-    // a: { type: 'a' },
-    // b: { type: 'a', $: 'field' },
-    // c: { type: 'a', $: false }
+    },
+    third: { type: 'cat' }
   },
-  // elems: {
-  //   title: { text: 'elements' },
-  //   other2: { type: 'other', $: 'fields.c' },
-  //   other: { type: 'other' }
-  // },
-  // collections: {
-  //   title: { text: 'collections' },
-  //   collection: { type: 'collection' }, // this is def wrong
-  //   text: { $: 'field' },
-  //   collection2: { type: 'collection' } // this is def wrong
-  //   // collection2: { type: 'collection' },
-  //   // collection3: { type: 'collection' }
-  // }
-}, state, (state, type, stamp, tree, subs, sType, app, rState, rSubs) => {
-  global.subs = rSubs
-  // pass app, rState, rTree
-  // console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
-  // console.log(subs)
-}))
+  elems: {
+    title: { text: 'elements' },
+    other2: { type: 'other', $: 'fields.c' },
+    other: { type: 'other' }
+  },
+  collections: {
+    title: { text: 'collections' },
+    collection: { type: 'collection' }, // this is def wrong
+    text: { $: 'field' },
+    collection2: { type: 'collection' } // this is def wrong
+  }
+}, state))
 
-// console.log(document.body.children[2].children[0].children[1])
 state.greeting.set('bye')
-// console.log(document.body.children[2].children[0].children[1])
-console.log('yo subs', subs)

@@ -1,5 +1,4 @@
 'use strict'
-// 'http://loremflickr.com/320/240?' + i, random cats!
 require('../style.css')
 require('./style.css')
 const benchmark = require('../benchmark')

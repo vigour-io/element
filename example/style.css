@@ -44,6 +44,7 @@ body {
 
 .basic-item {
   user-select: none;
+  vertical-align: middle;
   display: inline-block;
   cursor: default;
   margin: 5px;
@@ -129,4 +130,8 @@ body {
   right: 0;
   border-radius: 10px 10px 10px 0;
   transform: rotate(45deg);
+}
+
+.whitefilter {
+  filter: grayscale(100%) brightness(2);
 }

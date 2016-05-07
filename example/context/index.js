@@ -4,6 +4,7 @@ const render = require('../../lib/render')
 const s = require('vigour-state/s')
 const state = s({
   greeting: 'hello',
+  cat: 'http://loremflickr.com',
   field: 'field',
   fields: {
     a: {
@@ -26,6 +27,8 @@ const state = s({
   ]
 })
 
+//// 'http://loremflickr.com/320/240?' + i, random cats!
+
 document.body.appendChild(render({
   text: 'context',
   key: 'app',
@@ -45,7 +48,9 @@ document.body.appendChild(render({
       t3: {},
       t4: { $: false, val: 'static' }
     },
-    propsElem: {
+    cat: {
+      node: 'img',
+      class: 'basic-item whitefilter',
       props: {
         components: {
           greeting: {
@@ -53,13 +58,23 @@ document.body.appendChild(render({
             $transform (val) {
               return (val !== this && val !== true && val) || 'hahaha'
             }
+          },
+          cat: {
+            $: 'cat',
+            $add: '/100/100',
+            name: 'src'
           }
         },
         properties: {
-          // when making into context goes wrong (makes sense)
-          greeting: { type: 'greeting' }
+          greeting: { type: 'greeting' },
+          cat: { type: 'cat' },
+          largeCat: {
+            type: 'cat',
+            $add: '/500/500'
+          }
         },
         greeting: true,
+        cat: true,
         otherGreeting: { type: 'greeting' },
         staticGreeting: { type: 'greeting', $: false, val: 'gutten morgen' }
       }
@@ -90,7 +105,14 @@ document.body.appendChild(render({
       haha: 'ha!',
       yuzi: { $: 'field' }
     },
-    a: { type: 'propsElem' }
+    small: { type: 'cat' },
+    large: {
+      type: 'cat',
+      props: {
+        cat: null,
+        largeCat: true
+      }
+    }
     // components: {
     //   a: { $: 'greeting' }
     // },

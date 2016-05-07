@@ -94,12 +94,12 @@ document.body.appendChild(render({
   //   // b: { type: 'a', $: 'field' },
   //   // c: { type: 'a', $: false }
   // },
-  elems: {
-    title: { text: 'elements' },
-    other2: { type: 'other', $: 'fields.c' },
-    text: { $: 'field' },
-    other: { type: 'other' }
-  },
+  // elems: {
+  //   title: { text: 'elements' },
+  //   other2: { type: 'other', $: 'fields.c' },
+  //   text: { $: 'field' },
+  //   other: { type: 'other' }
+  // },
   collections: {
     title: { text: 'collections' },
     collection: { type: 'collection' }, // this is def wrong
@@ -108,7 +108,8 @@ document.body.appendChild(render({
     // collection2: { type: 'collection' },
     // collection3: { type: 'collection' }
   }
-}, state, (state, type, stamp, tree, subs, sType) => {
+}, state, (state, type, stamp, tree, subs, sType, app, rState, rSubs) => {
+  global.subs = rSubs
   // pass app, rState, rTree
   // console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
   // console.log(subs)
@@ -117,4 +118,4 @@ document.body.appendChild(render({
 // console.log(document.body.children[2].children[0].children[1])
 state.greeting.set('bye')
 // console.log(document.body.children[2].children[0].children[1])
-// console.log('yo subs', subs)
+console.log('yo subs', subs)

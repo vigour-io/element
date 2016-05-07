@@ -84,30 +84,33 @@ document.body.appendChild(render({
       }
     }
   },
-  // propsholder: {
-  //   title: { text: 'props' },
-  //   a: { type: 'propsElem' }
-  //   // components: {
-  //   //   a: { $: 'greeting' }
-  //   // },
-  //   // a: { type: 'a' },
-  //   // b: { type: 'a', $: 'field' },
-  //   // c: { type: 'a', $: false }
-  // },
+  propsholder: {
+    title: { text: 'props' },
+    props: {
+      haha: 'ha!',
+      yuzi: { $: 'field' }
+    }
+    // a: { type: 'propsElem' }
+    // components: {
+    //   a: { $: 'greeting' }
+    // },
+    // a: { type: 'a' },
+    // b: { type: 'a', $: 'field' },
+    // c: { type: 'a', $: false }
+  },
   // elems: {
   //   title: { text: 'elements' },
   //   other2: { type: 'other', $: 'fields.c' },
-  //   text: { $: 'field' },
   //   other: { type: 'other' }
   // },
-  collections: {
-    title: { text: 'collections' },
-    collection: { type: 'collection' }, // this is def wrong
-    text: { $: 'field' },
-    collection2: { type: 'collection' } // this is def wrong
-    // collection2: { type: 'collection' },
-    // collection3: { type: 'collection' }
-  }
+  // collections: {
+  //   title: { text: 'collections' },
+  //   collection: { type: 'collection' }, // this is def wrong
+  //   text: { $: 'field' },
+  //   collection2: { type: 'collection' } // this is def wrong
+  //   // collection2: { type: 'collection' },
+  //   // collection3: { type: 'collection' }
+  // }
 }, state, (state, type, stamp, tree, subs, sType, app, rState, rSubs) => {
   global.subs = rSubs
   // pass app, rState, rTree

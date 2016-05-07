@@ -108,7 +108,6 @@ document.body.appendChild(render({
       text: {
         $: true,
         $transform (val) {
-          console.log('yo yo yo', '???', val, val.keys())
           return 'elements ' + val.keys()
         }
       }
@@ -116,28 +115,28 @@ document.body.appendChild(render({
     other2: { type: 'other', $: 'fields.c' },
     other: { type: 'other' }
   },
-  // propsholder: {
-  //   title: { text: 'props' },
-  //   props: {
-  //     haha: 'ha!',
-  //     yuzi: { $: 'field' }
-  //   },
-  //   first: { type: 'cat' },
-  //   second: {
-  //     type: 'cat',
-  //     props: {
-  //       cat: null,
-  //       largeCat: true
-  //     }
-  //   },
-  //   third: { type: 'cat' }
-  // },
-  // collections: {
-  //   title: { text: 'collections' },
-  //   collection: { type: 'collection' }, // this is def wrong
-  //   text: { $: 'field' },
-  //   collection2: { type: 'collection' } // this is def wrong
-  // }
+  propsholder: {
+    title: { text: 'props' },
+    props: {
+      haha: 'ha!',
+      yuzi: { $: 'field' }
+    },
+    first: { type: 'cat' },
+    second: {
+      type: 'cat',
+      props: {
+        cat: null,
+        largeCat: true
+      }
+    },
+    third: { type: 'cat' }
+  },
+  collections: {
+    title: { text: 'collections' },
+    collection: { type: 'collection' }, // this is def wrong
+    text: { $: 'field' },
+    collection2: { type: 'collection' } // this is def wrong
+  }
 }, state))
 
 state.greeting.set('bye')

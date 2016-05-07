@@ -89,8 +89,8 @@ document.body.appendChild(render({
     props: {
       haha: 'ha!',
       yuzi: { $: 'field' }
-    }
-    // a: { type: 'propsElem' }
+    },
+    a: { type: 'propsElem' }
     // components: {
     //   a: { $: 'greeting' }
     // },

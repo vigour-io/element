@@ -19,4 +19,7 @@ console.log(`starting budo on port "${port}" running example "${target}"`)
 
 const budo = exec(command, { cwd: 'example/' + target })
 budo.stdout.pipe(process.stdout)
+budo.stderr.on('data', () => {
+  console.log('BROKEN BITCH')
+})
 budo.stderr.pipe(process.stderr)

@@ -8,9 +8,11 @@ const state = s({
   field: '\nfield',
   fields: {
     a: {
+      val: 'a',
       b: 'a/b'
     },
     c: {
+      val: 'c',
       b: 'c/b'
     },
   },
@@ -41,7 +43,7 @@ document.body.appendChild(render({
       class: 'basic-item',
       $: 'fields.a',
       Child: { type: 't' },
-      t: {},
+      t: { $: true },
       t2: {},
       t3: {},
       t4: { $: false, val: 'static' }
@@ -100,33 +102,43 @@ document.body.appendChild(render({
       }
     }
   },
-  propsholder: {
-    title: { text: 'props' },
-    props: {
-      haha: 'ha!',
-      yuzi: { $: 'field' }
-    },
-    first: { type: 'cat' },
-    second: {
-      type: 'cat',
-      props: {
-        cat: null,
-        largeCat: true
+  elems: {
+    title: {
+      $: 'fields',
+      text: {
+        $: true,
+        $transform (val) {
+          console.log('yo yo yo', '???', val, val.keys())
+          return 'elements ' + val.keys()
+        }
       }
     },
-    third: { type: 'cat' }
-  },
-  elems: {
-    title: { text: 'elements' },
     other2: { type: 'other', $: 'fields.c' },
     other: { type: 'other' }
   },
-  collections: {
-    title: { text: 'collections' },
-    collection: { type: 'collection' }, // this is def wrong
-    text: { $: 'field' },
-    collection2: { type: 'collection' } // this is def wrong
-  }
+  // propsholder: {
+  //   title: { text: 'props' },
+  //   props: {
+  //     haha: 'ha!',
+  //     yuzi: { $: 'field' }
+  //   },
+  //   first: { type: 'cat' },
+  //   second: {
+  //     type: 'cat',
+  //     props: {
+  //       cat: null,
+  //       largeCat: true
+  //     }
+  //   },
+  //   third: { type: 'cat' }
+  // },
+  // collections: {
+  //   title: { text: 'collections' },
+  //   collection: { type: 'collection' }, // this is def wrong
+  //   text: { $: 'field' },
+  //   collection2: { type: 'collection' } // this is def wrong
+  // }
 }, state))
 
 state.greeting.set('bye')
+global.state = state

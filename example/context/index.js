@@ -5,15 +5,23 @@ const s = require('vigour-state/s')
 const state = s({
   greeting: 'hello',
   field: 'field',
-  a: {
-    b: 'a/b'
-  },
-  c: {
-    b: 'c/b'
+  fields: {
+    a: {
+      b: 'a/b'
+    },
+    c: {
+      b: 'c/b'
+    },
   },
   collection: [
     { b: '0/b' },
-    { b: '1/b' },
+    {
+      b: '1/b',
+      list: {
+        a: { text: 'b/1/nested/a' },
+        b: { text: 'b/1/nested/b' }
+      }
+    },
     { b: '2/b' }
   ]
 })
@@ -30,7 +38,7 @@ document.body.appendChild(render({
     },
     other: {
       class: 'basic-item',
-      $: 'a',
+      $: 'fields.a',
       Child: { type: 't' },
       t: {},
       t2: {},
@@ -60,7 +68,20 @@ document.body.appendChild(render({
       class: 'complex-item',
       title: { text: 'collection' },
       $: 'collection.$any',
-      Child: { class: 'basic-item', text: { $: 'b' } }
+      Child: {
+        class: 'complex-item',
+        title: { text: { $: 'b' } },
+        nested: {
+          $: 'list.$any',
+          Child: {
+            class: 'basic-item',
+            text: { $: 'text' }
+          }
+        },
+        footer: {
+          symbol: {}
+        }
+      }
     }
   },
   // propsholder: {
@@ -73,14 +94,16 @@ document.body.appendChild(render({
   //   // b: { type: 'a', $: 'field' },
   //   // c: { type: 'a', $: false }
   // },
-  // elems: {
-  //   title: { text: 'elements' },
-  //   other2: { type: 'other', $: 'c' },
-  //   other: { type: 'other' }
-  // },
+  elems: {
+    title: { text: 'elements' },
+    other2: { type: 'other', $: 'fields.c' },
+    text: { $: 'field' },
+    other: { type: 'other' }
+  },
   collections: {
     title: { text: 'collections' },
     collection: { type: 'collection' }, // this is def wrong
+    text: { $: 'field' },
     collection2: { type: 'collection' } // this is def wrong
     // collection2: { type: 'collection' },
     // collection3: { type: 'collection' }

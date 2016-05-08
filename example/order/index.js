@@ -2,10 +2,8 @@
 require('../style.css')
 const render = require('../../lib/render')
 const components = require('./components')
-
 const s = require('vigour-state/s')
 const state = s({ title: 'third' })
-
 const app = {
   inject: components,
   text: 'order',

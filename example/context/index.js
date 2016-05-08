@@ -4,16 +4,27 @@ const render = require('../../lib/render')
 const s = require('vigour-state/s')
 const state = s({
   greeting: 'hello',
-  field: 'field',
-  a: {
-    b: 'a/b'
-  },
-  c: {
-    b: 'c/b'
+  cat: 'http://loremflickr.com',
+  field: '\nfield',
+  fields: {
+    a: {
+      val: 'a',
+      b: 'a/b'
+    },
+    c: {
+      val: 'c',
+      b: 'c/b'
+    },
   },
   collection: [
     { b: '0/b' },
-    { b: '1/b' },
+    {
+      b: '1/b',
+      list: {
+        a: { text: 'b/1/nested/a' },
+        b: { text: 'b/1/nested/b' }
+      }
+    },
     { b: '2/b' }
   ]
 })
@@ -30,86 +41,103 @@ document.body.appendChild(render({
     },
     other: {
       class: 'basic-item',
-      $: 'a',
+      $: 'fields.a',
       Child: { type: 't' },
-      t: {},
+      t: { $: true },
       t2: {},
       t3: {},
       t4: { $: false, val: 'static' }
     },
-    propsElem: {
+    cat: {
+      node: 'img',
+      class: 'basic-item whitefilter',
       props: {
         components: {
           greeting: {
             $: 'greeting',
             $transform (val) {
-              return (val !== this && val !== true && val) || 'hahaha'
+              return (val !== this && val !== true && val) || 'greetings!'
             }
+          },
+          cat: {
+            $: 'cat',
+            $add: {
+              val: '/100/100',
+              $add () { return '?' + Math.random() }
+            },
+            name: 'src'
           }
         },
         properties: {
-          // when making into context goes wrong (makes sense)
-          greeting: { type: 'greeting' }
+          greeting: { type: 'greeting' },
+          cat: { type: 'cat' },
+          largeCat: {
+            type: 'cat',
+            $add: '/500/500'
+          }
         },
         greeting: true,
+        cat: true,
         otherGreeting: { type: 'greeting' },
         staticGreeting: { type: 'greeting', $: false, val: 'gutten morgen' }
       }
     },
     collection: {
-      class: 'complex-item',
+      class: 'complex-item fill',
       title: { text: 'collection' },
-      $any: true,
-      $: 'collection',
-      Child: { text: { $: 'b' } } // this is def broken
-      // Child: { type: 'other', $: false }
+      $: 'collection.$any',
+      Child: {
+        class: 'complex-item',
+        title: { text: { $: 'b' } },
+        nested: {
+          $: 'list.$any',
+          Child: {
+            class: 'basic-item',
+            text: { $: 'text' }
+          }
+        },
+        footer: {
+          symbol: {}
+        }
+      }
     }
+  },
+  elems: {
+    title: {
+      $: 'fields',
+      text: {
+        $: true,
+        $transform (val) {
+          return 'elements ' + val.keys()
+        }
+      }
+    },
+    other2: { type: 'other', $: 'fields.c' },
+    other: { type: 'other' }
   },
   propsholder: {
     title: { text: 'props' },
-    a: { type: 'propsElem' }
-    // components: {
-    //   a: { $: 'greeting' }
-    // },
-    // a: { type: 'a' },
-    // b: { type: 'a', $: 'field' },
-    // c: { type: 'a', $: false }
+    props: {
+      haha: 'ha!',
+      yuzi: { $: 'field' }
+    },
+    first: { type: 'cat' },
+    second: {
+      type: 'cat',
+      props: {
+        cat: null,
+        largeCat: true
+      }
+    },
+    third: { type: 'cat' }
   },
-  // elems: {
-  //   title: { text: 'elements' },
-  //   other2: { type: 'other', $: 'c' },
-  //   other: { type: 'other' }
-  // },
   collections: {
     title: { text: 'collections' },
-    collection: { type: 'collection' } // this is def wrong
-    // collection2: { type: 'collection' },
-    // collection3: { type: 'collection' }
+    collection: { type: 'collection' }, // this is def wrong
+    text: { $: 'field' },
+    collection2: { type: 'collection' } // this is def wrong
   }
-}, state, (state, type, stamp, tree, subs, sType) => {
-  // pass app, rState, rTree
-  console.log('%cFIRE', 'color: white;background-color: #333; padding: 2px;', state.path().join('/'), ' - ', type, ' - ', sType || 'normal', '\n\n')
-}))
+}, state))
 
-console.log(document.body.children[2].children[0].children[1])
 state.greeting.set('bye')
-console.log(document.body.children[2].children[0].children[1])
-
-console.log('yo subs', subs)
-
-function logger (a) {
-  for (var i = 0 ; i < a.length; i += 3) {
-    console.log(a[i] + ' : ' + a[i + 2].path().join('/'))
-  }
-}
-logger(subs._.ta)
-// logger(subs.greeting._.ta)
-
-// state.c.b.set('c-b')
-
-// state.field.remove()
-// console.log(document.body.children[2].children[0])
-// props
-// then group
-// then style
-// then transform
+global.state = state

@@ -44,11 +44,13 @@ body {
 
 .basic-item {
   user-select: none;
+  vertical-align: middle;
   display: inline-block;
   cursor: default;
   margin: 5px;
   padding: 5px;
   min-width: 20px;
+  max-width: 90%;
   font-size: 8px;
   border: 1px solid var(--white);
   & .texts {
@@ -129,4 +131,12 @@ body {
   right: 0;
   border-radius: 10px 10px 10px 0;
   transform: rotate(45deg);
+}
+
+.whitefilter {
+  filter: grayscale(100%) brightness(2);
+}
+
+.fill {
+  width: calc(100% - 45px);
 }

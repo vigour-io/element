@@ -5,6 +5,7 @@ const s = require('vigour-state/s')
 const state = s({
   greeting: 'hello',
   cat: 'http://loremflickr.com',
+  border: 'solid white',
   field: '\nfield',
   fields: {
     a: {
@@ -21,7 +22,10 @@ const state = s({
     {
       b: '1/b',
       list: {
-        a: { text: 'b/1/nested/a' },
+        a: {
+
+          text: 'b/1/nested/a'
+        },
         b: { text: 'b/1/nested/b' }
       }
     },
@@ -51,6 +55,31 @@ document.body.appendChild(render({
     cat: {
       node: 'img',
       class: 'basic-item whitefilter',
+      style: {
+        components: {
+          fatborder: {
+            name: 'border',
+            $: 'border'
+          }
+        },
+        properties: {
+          fatborder:{
+            type: 'fatborder'
+          }
+        },
+        fatborder:{
+          $transform (val) {
+            return (Math.random() * 30) + 'px ' + val
+          }
+        },
+        fakeborder: {
+          type: 'fatborder',
+          name: 'backgroundColor',
+          $transform (val) {
+            return 'black'
+          }
+        }
+      },
       props: {
         components: {
           greeting: {

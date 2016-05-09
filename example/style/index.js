@@ -5,7 +5,6 @@ const render = require('../../lib/render')
 // -------------------------
 const s = require('vigour-state/s')
 // -------------------------
-
 const elem = {
   key: 'app',
   components: {
@@ -18,9 +17,10 @@ const elem = {
               $: 'rotate'
             },
             x: 50,
-            y: 100
-            // rotate:30,
-            // scale:2
+            y: 100,
+            scale: {
+              $: 'scale'
+            }
           },
           height: { $: 'h' },
           border: '1px solid red'
@@ -43,6 +43,12 @@ const elem = {
         scale: 0.5
       }
     }
+  },
+  coll: {
+    $: 'things.$any',
+    Child: {
+      type: 'thingy'
+    }
   }
 }
 
@@ -56,6 +62,14 @@ const state = s({
   thing2:{
     h: '400px',
     rotate: 10
+  },
+  things: {
+    0: {
+      scale: 1.5
+    },
+    1: {
+      scale: 3
+    }
   }
 })
 

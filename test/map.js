@@ -26,7 +26,6 @@ test('element map', function (t) {
   t.same(map, {
     field: sub(1, 't', elem)
   }, 'element, sub')
-
   elem = e({ holder: { $: 'field' } })
   map = prep(elem.$map())
   t.same(map, {
@@ -78,129 +77,100 @@ test('element with properties map', function (t) {
   }, 'mixed properties, subs')
 })
 
-test('collection map', function (t) {
-  var elem, map
-  t.plan(5)
-
-  elem = e({ $: 'things.$any' })
-  map = prep(elem.$map())
-  t.same(map, {
-    things: sub(1, 't', elem, {
-      $any: sub(1, 't', child(elem))
-    })
-  }, 'collection, no child subs')
-
-  elem = e({
-    $: 'things.$any',
-    Child: { $: 'field' }
-  })
-  map = prep(elem.$map())
-  t.same(map, {
-    things: sub(1, 't', elem, {
-      $any: sub(1, 't', child(elem), {
-        field: sub(1, 't', child(elem))
-      })
-    })
-  }, 'collection, child subs')
-
-  elem = e({
-    Child: {
-      $: 'field',
-      holder: { text: { $: 'title' } }
-    },
-    $: 'things.$any'
-  })
-  map = prep(elem.$map())
-  t.same(map, {
-    things: sub(1, 't', elem, {
-      $any: sub(1, 't', child(elem), {
-        field: sub(1, 't', child(elem), child(elem).holder, {
-          title: sub(true, 's', child(elem).holder.text)
-        })
-      })
-    })
-  }, 'collection, child subs nested props')
-
-  elem = e({
-    coll1: {
-      $: 'things.$any',
-      Child: { $: 'field', text: { $: 'title' } }
-    },
-    coll2: {
-      $: 'things.$any',
-      Child: { $: 'field', text: { $: 'title' } }
-    }
-  })
-  map = prep(elem.$map())
-  t.same(map, {
-    things: sub(1, 't', elem.coll1, elem.coll2, {
-      $any: sub(1, 't', child(elem.coll1), child(elem.coll2), {
-        field: sub(1, 't', child(elem.coll1), child(elem.coll2), {
-          title: sub(true, 's', child(elem.coll1).text, child(elem.coll2).text)
-        })
-      })
-    }),
-    _: obj('t', elem)
-  }, 'double collection same data, child subs')
-
-  elem = e({
-    coll1: {
-      $: 'things.$any',
-      Child: {
-        $: 'field',
-        coll2: {
-          $: 'nestedThings.$any',
-          Child: { $: 'nestedField' }
-        }
-      }
-    }
-  })
-  map = prep(elem.$map())
-  const coll1child = child(elem.coll1)
-  const coll2child = child(coll1child.coll2)
-  t.same(map, {
-    things: sub(1, 't', elem.coll1, {
-      $any: sub(1, 't', coll1child, {
-        field: sub(1, 't', coll1child, {
-          nestedThings: sub(1, 't', coll1child.coll2, {
-            $any: sub(1, 't', coll2child, {
-              nestedField: sub(1, 't', coll2child)
-            })
-          })
-        })
-      })
-    }),
-    _: obj('t', elem)
-  }, 'nested collections, child subs')
-})
-
-// @todo finish when jazzy is done with new context
-// test('context element map', function (t) {
+// test('collection map', function (t) {
 //   var elem, map
-//   t.plan(1)
+//   t.plan(5)
+
+//   elem = e({ $: 'things.$any' })
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     things: sub(1, 't', elem, {
+//       $any: sub(1, 't', child(elem))
+//     })
+//   }, 'collection, no child subs')
 
 //   elem = e({
-//     components: {
-//       thing: {
-//         text: {
-//           $: 'textField'
-//         }
-//       }
+//     $: 'things.$any',
+//     Child: { $: 'field' }
+//   })
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     things: sub(1, 't', elem, {
+//       $any: sub(1, 't', child(elem), {
+//         field: sub(1, 't', child(elem))
+//       })
+//     })
+//   }, 'collection, child subs')
+
+//   elem = e({
+//     Child: {
+//       $: 'field',
+//       holder: { text: { $: 'title' } }
 //     },
-//     thing1: {
-//       type: 'thing'
+//     $: 'things.$any'
+//   })
+//   map = prep(elem.$map())
+//   t.same(map, {
+//     things: sub(1, 't', elem, {
+//       $any: sub(1, 't', child(elem), {
+//         field: sub(1, 't', child(elem), child(elem).holder, {
+//           title: sub(true, 's', child(elem).holder.text)
+//         })
+//       })
+//     })
+//   }, 'collection, child subs nested props')
+
+//   elem = e({
+//     coll1: {
+//       $: 'things.$any',
+//       Child: { $: 'field', text: { $: 'title' } }
 //     },
-//     thing2: {
-//       type: 'thing'
+//     coll2: {
+//       $: 'things.$any',
+//       Child: { $: 'field', text: { $: 'title' } }
 //     }
 //   })
 //   map = prep(elem.$map())
-//   console.log('----->', map, elem.components.thing)
-//   // t.same(map, true)
 //   t.same(map, {
-//     textField: sub(true, 's', elem.thing1, elem.thing2),
-//     _: obj('t', elem, elem.thing1, elem.thing2)
-//   }, 'component with sub, 2 times')
+//     things: sub(1, 't', elem.coll1, elem.coll2, {
+//       $any: sub(1, 't', child(elem.coll1), child(elem.coll2), {
+//         field: sub(1, 't', child(elem.coll1), child(elem.coll2), {
+//           title: sub(true, 's', child(elem.coll1).text, child(elem.coll2).text)
+//         })
+//       })
+//     }),
+//     _: obj('t', elem)
+//   }, 'double collection same data, child subs')
+
+//   elem = e({
+//     coll1: {
+//       $: 'things.$any',
+//       Child: {
+//         $: 'field',
+//         coll2: {
+//           $: 'nestedThings.$any',
+//           Child: { $: 'nestedField' }
+//         }
+//       }
+//     }
+//   })
+//   map = prep(elem.$map())
+//   const coll1child = child(elem.coll1)
+//   const coll2child = child(coll1child.coll2)
+//   t.same(map, {
+//     things: sub(1, 't', elem.coll1, {
+//       $any: sub(1, 't', coll1child, {
+//         field: sub(1, 't', coll1child, {
+//           nestedThings: sub(1, 't', coll1child.coll2, {
+//             $any: sub(1, 't', coll2child, {
+//               nestedField: sub(1, 't', coll2child)
+//             })
+//           })
+//         })
+//       })
+//     }),
+//     _: obj('t', elem)
+//   }, 'nested collections, child subs')
 // })
 
 // starts uids from 1 in each object and removes parent field
@@ -208,7 +178,7 @@ function prep (map) {
   if (isObj(map)) {
     let remap = {}
     for (let i in map) {
-      if (i !== 'p' && i !== 'da' && i !== 'sa' && i !== 'ta') {
+      if (i !== 'tList' && i !== 'p') {
         remap[i] = prep(map[i])
       }
     }

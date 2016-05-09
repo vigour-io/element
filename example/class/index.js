@@ -9,25 +9,25 @@ const s = require('vigour-state/s')
 
 const elem = {
   key: 'app',
-  // one: {
-  //   text: 'my-name other-name',
-  //   class: 'my-name other-name'
-  // },
-  // two: {
-  //   text: 'my-name other-name',
-  //   class: {
-  //     'my-name': true,
-  //     'other-name': true,
-  //     'not-this-name': false
-  //   }
-  // },
-  // three: {
-  //   text: 'my-name other-name',
-  //   class: {
-  //     name: 'my-name',
-  //     other: 'other-name'
-  //   }
-  // },
+  one: {
+    text: 'my-name other-name',
+    class: 'my-name other-name'
+  },
+  two: {
+    text: 'my-name other-name',
+    class: {
+      'my-name': true,
+      'other-name': true,
+      'not-this-name': false
+    }
+  },
+  three: {
+    text: 'my-name other-name',
+    class: {
+      name: 'my-name',
+      other: 'other-name'
+    }
+  },
   four: {
     $: 'thing',
     text: 'four: my-name other-name',
@@ -49,20 +49,23 @@ const state = s({
   thing:{
     one: true,
     two: true,
-    three: false
+    three: true
   }
 })
 
 document.body.appendChild(render(elem, state))
 
+// console.log('---------')
+// state.thing.three.set(true)
+
 // const raf = window.requestAnimationFrame
-// const one = state.one
+// const thing = state.thing
 // function loop () {
 //   raf(function () {
-//     one.set({
-//       one: !one.one.val,
-//       two: !one.two.val,
-//       three: !one.three.val
+//     thing.set({
+//       one: !thing.one.val,
+//       two: !thing.two.val,
+//       three: !thing.three.val
 //     })
 //     loop()
 //   })

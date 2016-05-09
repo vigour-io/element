@@ -14,10 +14,10 @@ for (var i = 0; i < amount; i++) {
 
 const app = {
   key: 'app',
-  $: 'collection',
-  $any: true,
+  x: {
+  $: 'collection.$any',
   Child: {
-    text: { $: 'title', $prepend: 'child:' },
+    text: { $: 'title', $prepend: 'child:' }
     // coordinates: {
     //   type: 'group',
     //   render (state) {
@@ -38,6 +38,7 @@ const app = {
     //   }
     // }
   }
+}
 }
 
 document.body.appendChild(render(app, state))

@@ -9,47 +9,40 @@ const s = require('vigour-state/s')
 
 const elem = {
   key: 'app',
-  one: {
-    text: 'my-name other-name',
-    class: 'my-name other-name'
-  },
-  two: {
-    text: 'my-name other-name',
-    class: {
-      'my-name': true,
-      'other-name': true,
-      'not-this-name': false
-    }
-  },
-  three: {
-    text: 'my-name other-name',
-    class: {
-      name: 'my-name',
-      other: 'other-name'
-    }
-  },
-  four: {
-    $: 'thing',
-    text: 'four: my-name other-name',
-    class: {
-      'my-name': {
-        $: 'one'
-      },
-      'other-name': {
-        $: 'two'
-      },
-      'not-this-name': {
-        $: 'three'
+  components: {
+    thingy: {
+      nested: {
+        text: 'thingy.nested',
+        class: {
+          'my-name': {
+            $: 'one'
+          },
+          'not-this-name': true
+        }
       }
     }
-  }
+  },
+  first: {
+    type: 'thingy',
+    $: 'thing'
+  },
+  second: {
+    type: 'thingy',
+    $: 'thing2'
+  },
+  third: { type: 'thingy' }
 }
 
 const state = s({
   thing:{
     one: true,
     two: true,
-    three: true
+    three: false
+  },
+  thing2:{
+    one: false,
+    two: true,
+    three: false
   }
 })
 

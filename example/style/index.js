@@ -8,50 +8,54 @@ const s = require('vigour-state/s')
 
 const elem = {
   key: 'app',
-  style:{
-    transform:{
-      x: 300,
-      y: 300
+  components: {
+    thingy: {
+      nested: {
+        text: 'thingy.nested',
+        style: {
+          transform: {
+            rotate: {
+              $: 'rotate'
+            },
+            x: 50,
+            y: 100
+            // rotate:30,
+            // scale:2
+          },
+          // height: { $: 'h' },
+          border: '1px solid red'
+        }
+      }
     }
   },
-  holder: {
-    class: 'weirdChild',
-    $: 'one',
-    text: 'make everything!',
+  first: {
+    type: 'thingy',
+    $: 'thing'
+  },
+  second: {
+    type: 'thingy',
+    $: 'thing2'
+  },
+  third: {
+    type: 'thingy',
     style: {
       transform: {
-        y: { $: 'y' },
-        x: { $: 'x' },
-        scale: { $: 'scale' },
-        rotate: 45//{ $: 'rotate' }
+        scale: 2
       }
     }
   }
 }
 
 const state = s({
-  one:{
-    rotate: 1,
-    scale:1,
-    y: 10,
-    x: 30
+  thing:{
+    // x:100,
+    // y:20,
+    rotate: 30
+  },
+  thing2:{
+    h:200,
+    rotate: 10
   }
 })
 
 document.body.appendChild(render(elem, state))
-
-const raf = window.requestAnimationFrame
-let x = 0
-function loop () {
-  raf(function () {
-    state.one.set({
-      y: Math.sin(x++ / 10) * 50,
-      x: Math.sin(x++ / 10) * 50,
-      scale: Math.sin(x++ / 100) * 5,
-      rotate: Math.sin(x++ / 10) * 10
-    })
-    loop()
-  })
-}
-
-loop()

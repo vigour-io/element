@@ -12,30 +12,32 @@ for (var i = 0; i < amount; i++) {
   }
 }
 
-document.body.appendChild(render({
+const app = {
   key: 'app',
   $: 'collection',
   $any: true,
   Child: {
     text: { $: 'title', $prepend: 'child:' },
-    coordinates: {
-      type: 'group',
-      render (state) {
-        console.log('fire coordinates -->', this.inspect(), state.path())
-        console.log('-----------------------')
-      },
-      x: {
-        $: 'x',
-        render (state) {
-          console.log('fire x -->', state && state.inspect())
-        }
-      },
-      y: {
-        $: 'y',
-        render (state) {
-          console.log('fire y -->', state && state.inspect())
-        }
-      }
-    }
+    // coordinates: {
+    //   type: 'group',
+    //   render (state) {
+    //     console.log('fire coordinates -->', this.inspect(), state.path())
+    //     console.log('-----------------------')
+    //   },
+    //   x: {
+    //     $: 'x',
+    //     render (state) {
+    //       console.log('fire x -->', state && state.inspect())
+    //     }
+    //   },
+    //   y: {
+    //     $: 'y',
+    //     render (state) {
+    //       console.log('fire y -->', state && state.inspect())
+    //     }
+    //   }
+    // }
   }
-}, state))
+}
+
+document.body.appendChild(render(app, state))

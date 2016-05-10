@@ -15,13 +15,12 @@ const elem = {
       face: {
         text: 'check it',
         class: {
-          $: 'breakme'
-          // 'other-name': {
-          //   $: 'one'
-          // },
-          // dont: {
-          //   $: 'breakme'
-          // }
+          'other-name': {
+            $: 'one'
+          },
+          dont: {
+            $: 'breakme'
+          }
         }
       }
     },

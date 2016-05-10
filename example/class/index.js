@@ -9,59 +9,40 @@ const s = require('vigour-state/s')
 
 const elem = {
   key: 'app',
-  components: {
-    thingy: {
-      nested: {
-        text: 'thingy.nested',
+  holder: {
+    $: 'thing',
+    components: {
+      face: {
+        text: 'check it',
         class: {
-          'my-name': {
-            $: 'one'
-          },
-          'not-this-name': true
+          $: 'breakme'
+          // 'other-name': {
+          //   $: 'one'
+          // },
+          // dont: {
+          //   $: 'breakme'
+          // }
         }
       }
+    },
+    first: {
+      type: 'face'
+    },
+    second: {
+      type: 'face',
+      class: {}
+    },
+    third: {
+      type: 'face'
     }
-  },
-  first: {
-    type: 'thingy',
-    $: 'thing'
-  },
-  second: {
-    type: 'thingy',
-    $: 'thing2'
-  },
-  third: { type: 'thingy' }
+  }
 }
 
 const state = s({
   thing:{
     one: true,
-    two: true,
-    three: false
+    breakme: 'not-this-name'
   },
-  thing2:{
-    one: false,
-    two: true,
-    three: false
-  }
 })
 
 document.body.appendChild(render(elem, state))
-
-// console.log('---------')
-// state.thing.three.set(true)
-
-// const raf = window.requestAnimationFrame
-// const thing = state.thing
-// function loop () {
-//   raf(function () {
-//     thing.set({
-//       one: !thing.one.val,
-//       two: !thing.two.val,
-//       three: !thing.three.val
-//     })
-//     loop()
-//   })
-// }
-
-// loop()

@@ -135,6 +135,7 @@ body {
 
 .whitefilter {
   filter: grayscale(100%) brightness(2);
+  border-radius: 50%;
 }
 
 .fill {

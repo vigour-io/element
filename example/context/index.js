@@ -6,6 +6,7 @@ const state = s({
   greeting: 'hello',
   cat: 'http://loremflickr.com',
   border: 'solid white',
+  random: Math.random() + '',
   field: '\nfield',
   fields: {
     a: {
@@ -54,7 +55,17 @@ document.body.appendChild(render({
     },
     cat: {
       node: 'img',
-      class: 'basic-item whitefilter',
+      class: {
+        'basic-item': true,
+        'whitefilter': true
+        // 'basic-item': true,
+        // 'whitefilter': {
+        //   $: 'random',
+        //   transform () {
+        //     return true
+        //   }
+        // }
+      },
       style: {
         components: {
           fatborder: {

@@ -1,7 +1,7 @@
 'use strict'
 require('../style.css')
 require('./style.css')
-// for some perf comparisons --> https://github.com/Matt-Esch/virtual-dom/issues/371
+
 const render = require('../../lib/render')
 // -------------------------
 const s = require('vigour-state/s')
@@ -15,12 +15,14 @@ const elem = {
       face: {
         text: 'check it',
         class: {
-          'other-name': {
-            $: 'one'
+          components: {
+            nameThing: {
+              // val: 'my-name'
+              $: 'special'
+            }
           },
-          dont: {
-            $: 'breakme'
-          }
+          'other-name': { $: 'one' },
+          dont: { $: 'breakme' }
         }
       }
     },
@@ -29,7 +31,10 @@ const elem = {
     },
     second: {
       type: 'face',
-      class: {}
+      class: {
+        thing: { type: 'nameThing' }
+      }
+      // class: { 'my-name': true },
     },
     third: {
       type: 'face'
@@ -40,8 +45,16 @@ const elem = {
 const state = s({
   thing:{
     one: true,
-    breakme: 'not-this-name'
+    breakme: 'not-this-name',
+    special: 'my-name'
   },
 })
 
 document.body.appendChild(render(elem, state))
+// console.log('\n-------------------------------\n\n')
+// state.set({
+//   thing:{
+//     one: 1,
+//     breakme: 'not-this-name'
+//   }
+// })

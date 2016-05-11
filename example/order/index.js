@@ -103,12 +103,12 @@ var subs
 
 document.body.appendChild(render(app, state, (state, type, stamp, nsubs, tree, sType, elem, s, rsubs) => {
   subs = rsubs
-  console.log(
-    '%cFIRE', 'color: white;background-color: #333; padding: 2px;',
-    state.path().join('/'), ' - ',
-    type, ' - ',
-    sType || 'normal', '\n\n'
-  )
+  // console.log(
+  //   '%cFIRE', 'color: white;background-color: #333; padding: 2px;',
+  //   state.path().join('/'), ' - ',
+  //   type, ' - ',
+  //   sType || 'normal', '\n\n'
+  // )
 }))
 
 function logger (a) {

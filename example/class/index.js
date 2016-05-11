@@ -34,7 +34,6 @@ const elem = {
       class: {
         thing: { type: 'nameThing' }
       }
-      // class: { 'my-name': true },
     },
     third: {
       type: 'face'

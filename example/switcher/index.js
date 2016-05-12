@@ -6,6 +6,7 @@ const render = require('../../lib/render')
 const elem = {
   key: 'app',
   switcher: {
+    class: 'basic-item',
     $: 'navigation.$switch',
     map (state, type, stamp, subs, tree, sType) {
       if (state.key === 'showData') {
@@ -38,18 +39,18 @@ const elem = {
       }
     }
   },
-  sick: {
-    class: 'basic-item',
-    text: 'switch page',
-    on: {
-      click () {
-        const navigation = state.navigation
-        navigation.set(navigation.val === state.content.showData
-          ? '$root.content.discoverData'
-          : '$root.content.showData')
-      }
-    }
-  }
+  // sick: {
+  //   class: 'basic-item',
+  //   text: 'switch page',
+  //   on: {
+  //     click () {
+  //       const navigation = state.navigation
+  //       navigation.set(navigation.val === state.content.showData
+  //         ? '$root.content.discoverData'
+  //         : '$root.content.showData')
+  //     }
+  //   }
+  // }
 }
 
 const state = s({
@@ -69,3 +70,7 @@ const state = s({
 })
 
 document.body.appendChild( render(elem, state, () => {}))
+
+setTimeout(() => {
+
+})

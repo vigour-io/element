@@ -11,52 +11,52 @@ const app = {
   Child: { class: 'holder' },
   properties: { texts: { type: 'texts' } },
   texts: [ '-', { $: 'first.text' }, '-' ],
-  updateText: {
-    class: 'basic-item',
-    text: 'update all text',
-    on: {
-      click (data) {
-        function updateText (state) {
-          if (state.val) {
-            const split = state.val.split(' ')
-            state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
-          }
-          state.each(updateText)
-        }
-        updateText(state)
-      }
-    }
-  },
-  toggle: {
-    class: 'basic-item',
-    text: {
-      // completely wrong allready
-      $: 'first.text',
-      $transform (val) {
-        return !val ? 'add first' : 'remove ' + val
-      }
-    },
-    on: {
-      click (data) {
-        state.set({ first: state.first ? null : { text: 'first' } })
-      }
-    }
-  },
-  toggle2: {
-    class: 'basic-item',
-    text: {
-      // completely wrong allready
-      $: 'second.text',
-      $transform (val) {
-        return !val ? 'add second' : 'remove ' + val
-      }
-    },
-    on: {
-      click (data) {
-        state.set({ second: state.second ? null : { text: 'second' } })
-      }
-    }
-  },
+  // updateText: {
+  //   class: 'basic-item',
+  //   text: 'update all text',
+  //   on: {
+  //     click (data) {
+  //       function updateText (state) {
+  //         if (state.val) {
+  //           const split = state.val.split(' ')
+  //           state.set(split[0] + ' ' + Math.round(Math.random() * 9999))
+  //         }
+  //         state.each(updateText)
+  //       }
+  //       updateText(state)
+  //     }
+  //   }
+  // },
+  // toggle: {
+  //   class: 'basic-item',
+  //   text: {
+  //     // completely wrong allready
+  //     $: 'first.text',
+  //     $transform (val) {
+  //       return !val ? 'add first' : 'remove ' + val
+  //     }
+  //   },
+  //   on: {
+  //     click (data) {
+  //       state.set({ first: state.first ? null : { text: 'first' } })
+  //     }
+  //   }
+  // },
+  // toggle2: {
+  //   class: 'basic-item',
+  //   text: {
+  //     // completely wrong allready
+  //     $: 'second.text',
+  //     $transform (val) {
+  //       return !val ? 'add second' : 'remove ' + val
+  //     }
+  //   },
+  //   on: {
+  //     click (data) {
+  //       state.set({ second: state.second ? null : { text: 'second' } })
+  //     }
+  //   }
+  // },
   nocontext: [
     {
       class: 'complex-item',
@@ -84,18 +84,18 @@ const app = {
   ],
   basic: [
     { type: 'basic' },
-    { type: 'basic' }
+    // { type: 'basic' }
   ],
-  complex: [
-    { type: 'complex' },
-    { type: 'complex' },
-    { type: 'complex' }
-  ],
-  deep: [
-    { type: 'deep' },
-    { type: 'deep' },
-    { type: 'deep' }
-  ]
+  // complex: [
+  //   { type: 'complex' },
+  //   { type: 'complex' },
+  //   { type: 'complex' }
+  // ],
+  // deep: [
+  //   { type: 'deep' },
+  //   { type: 'deep' },
+  //   { type: 'deep' }
+  // ]
 }
 
 
@@ -103,12 +103,12 @@ var subs
 
 document.body.appendChild(render(app, state, (state, type, stamp, nsubs, tree, sType, elem, s, rsubs) => {
   subs = rsubs
-  console.log(
-    '%cFIRE', 'color: white;background-color: #333; padding: 2px;',
-    state.path().join('/'), ' - ',
-    type, ' - ',
-    sType || 'normal', '\n\n'
-  )
+  // console.log(
+  //   '%cFIRE', 'color: white;background-color: #333; padding: 2px;',
+  //   state.path().join('/'), ' - ',
+  //   type, ' - ',
+  //   sType || 'normal', '\n\n'
+  // )
 }))
 
 function logger (a) {

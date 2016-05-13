@@ -9,6 +9,7 @@ const elem = {
     class: 'basic-item',
     $: 'navigation.$switch',
     map (state, type, stamp, subs, tree, sType) {
+      console.log('%cmap:', 'color: blue', state.path())
       if (state.key === 'showData') {
         return 'show'
       } else if (state.key === 'discoverData') {
@@ -20,8 +21,7 @@ const elem = {
     },
     properties: {
       show: {
-        $: 'field',
-        text: 'Show:',
+        text: 'Show!',
         title: {
           text: {
             $: 'show-title'
@@ -29,8 +29,7 @@ const elem = {
         }
       },
       discover: {
-        $: 'field',
-        text: 'Discover:',
+        text: 'Discover!',
         title: {
           text: {
             $: 'dis-title'
@@ -39,38 +38,50 @@ const elem = {
       }
     }
   },
-  // sick: {
-  //   class: 'basic-item',
-  //   text: 'switch page',
-  //   on: {
-  //     click () {
-  //       const navigation = state.navigation
-  //       navigation.set(navigation.val === state.content.showData
-  //         ? '$root.content.discoverData'
-  //         : '$root.content.showData')
-  //     }
-  //   }
-  // }
+  sick: {
+    class: 'basic-item',
+    text: 'switch page',
+    on: {
+      click () {
+        console.log('----click----')
+        const navigation = state.navigation
+        navigation.set(navigation.val === state.content.showData
+          ? '$root.content.discoverData'
+          : '$root.content.showData')
+      }
+    }
+  }
 }
 
 const state = s({
   navigation: '$root.content.showData',
   content: {
     showData: {
-      field: {
+      // field: {
         'show-title': 'awesome show!'
-      }
+      // }
     },
     discoverData: {
-      field: {
+      // field: {
         'dis-title': 'discover it!'
-      }
+      // }
     }
   }
 })
 
-document.body.appendChild( render(elem, state, () => {}))
+var treex
+var topsubs
+document.body.appendChild( render(elem, state,
+  (state, type, stamp, nsubs, tree, sType, subs, rTree) => {
+ treex = rTree
+ topsubs = subs
+}))
 
-setTimeout(() => {
+console.log('rSubs:', topsubs)
+console.log('rTree', treex)
 
-})
+// setTimeout(function () {
+//   state.set({
+
+//   })
+// })

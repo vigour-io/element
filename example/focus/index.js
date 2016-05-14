@@ -6,20 +6,32 @@ const render = require('../../lib/render')
 
 const elem = {
   key: 'app',
-  $: 'thing',
-  class: {
-    focus: {
-      $: '$root.focus'
+  holder: {
+    $: 'shows.items.$any',
+    Child: {
+      text: {
+        $: 'title'
+      },
+      class: {
+        focus: { $: true }
+      }
     }
   }
 }
 
 const state = s({
   title: 'root-title',
-  thing: {
-    focus: true//'$root.shows.items.0',
-  },
-  focus: true,//'$root.shows.items.0',
+  focus: '$root.shows.items.1',
+  shows: {
+    title: 'Shows!',
+    focus: true,
+    items: [
+      {title:'Show 1'},
+      {title:'Show 2'},
+      {title:'Show 3'},
+      {title:'Show 4'}
+    ]
+  }
 })
 
 var treex

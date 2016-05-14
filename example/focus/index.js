@@ -7,13 +7,49 @@ const render = require('../../lib/render')
 const elem = {
   key: 'app',
   holder: {
-    $: 'shows.items.$any',
-    Child: {
-      text: {
-        $: 'title'
-      },
+    // this fucks shit up
+    // thing: {
+    //   $: 'menu.items.1',
+    //   text: { $: '$root.menu.title' }
+    // },
+    menu: {
+      class: 'complex-item',
+      list: {
+        $: 'menu.items.$any',
+        Child: {
+          class: {
+            focus: {
+              $: '$root.menu.focus'
+            }
+          },
+          text: {
+            $: 'title'
+          }
+        }
+      }
+    },
+    player: {
+      $: 'episodes.currentEpisode',
+      title: [
+        { text: 'Im a player!' },
+        { class: 'complex-item', text: { $: 'title' } }
+      ],
       class: {
-        focus: { $: true }
+        val: 'complex-item',
+        // focus: {
+        //   $: '$root.focus'
+        // }
+      }
+    },
+    list: {
+      $: 'episodes.items.$any',
+      Child: {
+        text: {
+          $: 'title'//,
+        },
+        class: {
+          focus: { $: '$parent.$parent.focus' }
+        }
       }
     }
   }
@@ -21,15 +57,25 @@ const elem = {
 
 const state = s({
   title: 'root-title',
-  focus: '$root.shows.items.1',
-  shows: {
-    title: 'Shows!',
-    focus: true,
+  focus: '$root.episodes.focus',
+  menu: {
+    title: 'im the menu!',
+    focus: '$root.menu.items.1',
     items: [
-      {title:'Show 1'},
-      {title:'Show 2'},
-      {title:'Show 3'},
-      {title:'Show 4'}
+      { title:'discover!' },
+      { title:'shows!' },
+      { title:'channels!' }
+    ]
+  },
+  episodes: {
+    currentEpisode: '$root.episodes.items.1',
+    title: 'episodes!',
+    focus: '$root.episodes.items.1',
+    items: [
+      { title:'episode 1' },
+      { title:'episode 2' },
+      { title:'episode 3' },
+      { title:'episode 4 '}
     ]
   }
 })
@@ -42,5 +88,7 @@ document.body.appendChild( render(elem, state,
  topsubs = subs
 }))
 
+console.log('---------')
 console.log('rSubs:', topsubs)
 console.log('rTree', treex)
+console.log('---------')

@@ -9,6 +9,10 @@
   --fg2: rgb(128, 203, 196);
 }
 
+div:focus {
+  outline: 2px solid var(--whitea);
+}
+
 body {
   background-color: var(--bg);
   font-family: 'Droid-Sans-Mono';

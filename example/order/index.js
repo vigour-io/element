@@ -119,7 +119,7 @@ function logger (a) {
 console.log(subs)
 
 console.log('tList')
-logger(subs._.tList)
+// logger(subs._.tList)
 
 console.log('TOP FIRST TA')
 // logger(subs.first._.ta)

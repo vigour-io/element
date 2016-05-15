@@ -7,20 +7,13 @@ const render = require('../../lib/render')
 const elem = {
   key: 'app',
   holder: {
-    // this fucks shit up
-    // thing: {
-    //   $: 'menu.items.1',
-    //   text: { $: '$root.menu.title' }
-    // },
     menu: {
       class: 'complex-item',
       list: {
         $: 'menu.items.$any',
         Child: {
-          class: {
-            focus: {
-              $: '$root.menu.focus'
-            }
+          focus: {
+            $: '$parent.$parent.focus'
           },
           text: {
             $: 'title'
@@ -28,27 +21,24 @@ const elem = {
         }
       }
     },
-    player: {
-      $: 'episodes.currentEpisode',
+    preview: {
+      $: '$root.focus',
       title: [
-        { text: 'Im a player!' },
+        { text: 'Im a preview!' },
         { class: 'complex-item', text: { $: 'title' } }
       ],
       class: {
         val: 'complex-item',
-        // focus: {
-        //   $: '$root.focus'
-        // }
       }
     },
     list: {
       $: 'episodes.items.$any',
       Child: {
         text: {
-          $: 'title'//,
+          $: 'title'
         },
-        class: {
-          focus: { $: '$parent.$parent.focus' }
+        focus: {
+          $: '$parent.$parent.focus'
         }
       }
     }

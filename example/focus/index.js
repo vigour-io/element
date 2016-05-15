@@ -17,14 +17,30 @@ const elem = {
           },
           text: {
             $: 'title'
+          },
+          on: {
+            arrowup (data) {
+              const previous = data.target.previousSibling
+              if (previous) { previous.focus() }
+            },
+            arrowdown (data, stamp) {
+              const next = data.target.nextSibling
+              if (next) {
+                next.focus()
+              } else {
+                const rootstate = data.state.getRoot()
+                rootstate.focus.set(rootstate.episodes.focus, stamp)
+                rootstate.episodes.focus.emit('data', stamp)
+              }
+            }
           }
         }
       }
     },
-    preview: {
+    secondscreen: {
       $: '$root.focus',
       title: [
-        { text: 'Im a preview!' },
+        { text: 'Im a secondscreen!' },
         { class: 'complex-item', text: { $: 'title' } }
       ],
       class: {
@@ -39,6 +55,21 @@ const elem = {
         },
         focus: {
           $: '$parent.$parent.focus'
+        },
+        on: {
+          arrowup (data, stamp) {
+            const previous = data.target.previousSibling
+            if (previous) { previous.focus() }
+           else {
+            const rootstate = data.state.getRoot()
+            rootstate.focus.set(rootstate.menu.focus, stamp)
+            rootstate.menu.focus.emit('data', stamp)
+          }
+          },
+          arrowdown (data) {
+            const next = data.target.nextSibling
+            if (next) { next.focus() }
+          }
         }
       }
     }

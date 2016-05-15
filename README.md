@@ -6,4 +6,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/vigour-io/element/badge.svg?branch=master)](https://coveralls.io/github/vigour-io/element?branch=master)
 
 <!-- VDOC END -->
-Reactive ui elements, blazing fast
+#Deprecated
+Last stable version: https://github.com/vigour-io/element/tree/v1.4.6
+
